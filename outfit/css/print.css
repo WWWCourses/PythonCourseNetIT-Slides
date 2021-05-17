@@ -1,7 +1,7 @@
 @import url("/PythonCourseNetIT-Slides/lib/reveal.js/css/print/pdf.css");
 @page { size: landscape; }
 
-@media all{
+@media print{
     .top_links{
         display: none;
     }

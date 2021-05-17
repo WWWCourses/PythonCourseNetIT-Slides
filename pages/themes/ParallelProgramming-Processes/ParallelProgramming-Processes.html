@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>parallelProgramming</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/pdf.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#parallelProgramming" target="_top"><img src="../../../outfit/images/logos/software-web@256x256.png" height="80" alt=""></a>
+			<span class="help_link" href="#"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+        <div><span>N/Space</span><span>next slide</span></div>
+        <div><span>P</span><span>previous slide</span></div>
+        <div><span>O</span><span>overview slides</span></div>
+        <div><span>ctrl+left click</span><span>zoom element</span></div>
+      </div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Parallel programming: multithreading and multiprocessing</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png">
+			</a>
+		</div>
+
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+
+<section><h1>Shape the concepts</h1></section>
+<section><h2>Shape the concepts</h2>
+	<section><h3>Multitasking</h3>
+		<a href="images/driver_multitasking.jpg"><img src="images/driver_multitasking.jpg"></a>
+		<a href="images/driver_multitasking_diagram.png"><img src="images/driver_multitasking_diagram.png"></a>
+	</section>
+ <section><h3>Multitasking</h3>
+ 	<dl class="fa">
+ 		<dt>Multitasking is implemented in Python by threading and multiprocessing.</dt>
+ 		<dt>A hot topic, in the contest of rapid increase of the number of cores in contemporary microprocessors.</dt>
+ 	</dl>
+ </section>
+	<section><h3>Preliminary</h3>
+		<dl class="fa">
+			<dt>N <span class="note">cores</span> ==  N physical <span class="note">Central Processing Units(CPU)</span> leaving in one chip.</dt>
+			<dt><span class="note">threads</span> are something virtual. Multithreading performance is increased by logic for splitting tasks between hardware resources.</dt>
+			<dt>Hyper-Threading Technology - to make OS to "see" more CPUs than the real physical units are.</dt>
+		</dl>
+	</section>
+	<section><h3>Threads vs Processes</h3>
+		<a href="images/MultiThreadingStorage.png"><img src="images/MultiThreadingStorage.png"></a>
+	</section>
+	<section><h3>Threads vs Processes</h3>
+		<a href="images/Processes.png"><img src="images/Processes.png"></a>
+	</section>
+	<section><h3>Threads vs Processes</h3>
+		<dl class="fa">
+			<dt>Memory:</dt>
+			<dd>A Process has its own individual memory segment, not shareable with other process. <span class="note">Inter process communication</span> techniques are applied in order for process to share data</dd>
+			<dd>Threads <span class="note">share same memory</span>. </dd>
+			<dt>A Thread lives in a Process. One Process can run multiple Threads. </dt>
+			<dt>A python process has at least one thread - for the main programme.</dt>
+		</dl>
+	</section>
+</section>
+
+<section><h1>Thread-based parallelism</h1></section>
+<section><h2>Thread-based parallelism</h2>
+	<section><h3>Multithreading in Python</h3>
+		<dl class="fa">
+			<dt><a href="https://docs.python.org/3/library/threading.html">threading</a> module is the preferred way in Python for thread-based "parallelism" (a note abou GIL!)</dt>
+			<dt>A thread is created by the <code class="note">Thread</code> class constructor.</dt>
+			<dt>Once created, the thread could be started my <code class="note">start()</code> method</dt>
+			<dt>Other threads can call a thread’s <code class="note">join()</code> method. This blocks the calling thread until the thread whose join() method is called is terminated</dt>
+		</dl>
+	</section>
+	<section><h3>Creating Thread objects</h3>
+		<pre><code rel="Syntax" class="python">
+			tr_obj = threading.Thread(target=None, name=None, args=(), kwargs={}, daemon=None)
+		</code></pre>
+		<dl class="fa" style="font-size: .8em">
+			<dt><code class="note">target</code> - function to be run in a thread</dt>
+			<dt><code>name</code> is the thread name. By default, a unique name is constructed of the form "Thread-N" where N is a small decimal number</dt>
+			<dt><code class="note">args</code> is the argument <b>tuple</b> for the target invocation</dt>
+			<dt><code>kwargs</code> is a dictionary of keyword arguments for the target invocation</dt>
+			<dt><code>daemon</code> -  if not None, a daemonic thread will be created.</dt>
+			<dd style="font-size: .8em">A non-daemon thread blocks the main program to exit if they are not dead. Daemonic thread do not prevent the main program to exit, and will be killed by the main process when exiting.</dd>
+		</dl>
+	</section>
+	<section><h3>Creating and running thread - example</h3>
+		<pre><code rel="simlplest.py" class="python">
+			import threading
+			import time
+
+
+			def worker(x):
+			  tid = threading.currentThread().name;
+			  print("x = {} in {}".format(x, tid))
+			  time.sleep(2)
+
+			# create the tread
+			tr = threading.Thread(target=worker, args=(42,))
+
+			# start the thread:
+			tr.start()
+
+			# wait until thread terminates:
+			tr.join()
+
+			print("Worker did its job!")
+		</code></pre>
+	</section>
+	<section><h3>A more useful example</h3>
+		<dl class="fa">
+			<dt>You can enjoy the speed of multithreading in Python, <span class="note">if the threaded workers are not CPU intensive.</span></dt>
+			<dt>Get raw code of <a href="https://pastebin.com/raw/y6BEiZiu"> multi_vs_single_with_sleep.py</a></dt>
+		</dl>
+	</section>
+	<section><h3 class="advanced">GIL - the Global Interpreter Lock</h3>
+		<dl class="fa">
+			<dt>GIL is a mechanism which prevents simultaneous working of multiple thread. So, Python's GIL prevents the "real" parallel multitasking mechanism, and instead implements a <em>cooperative and preemptive multitasking</em>.</dt>
+			<dt><a href="https://wiki.python.org/moin/GlobalInterpreterLock">GIL @wiki.python.org</a></dt>
+		</dl>
+	</section>
+	<section><h3>The GIL effect - example</h3>
+		<dl class="fa">
+			<dt>In CPU intensive task, <span class="note">multithreading is slower</span> than sequential single-thread processing!</dt>
+		</dl>
+		<a href="https://pastebin.com/JJn8sf6k">get raw code</a>
+	</section>
+	<section><h3>The problem of shared state - example</h3>
+		<dl class="fa">
+			<dt>Each thread increments the counter with 1. But at the end, counter value is not equal to the number of threads!</dt>
+			<dt>It is even different on each execution!</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			import threading
+			import time
+
+
+			def worker():
+			  global counter
+
+			  tmp = counter
+			  print("Before:",counter)
+			  counter = tmp + 1
+			  print("After:",counter)
+
+
+
+			counter = 0
+
+			# create some treads to count together:
+			thread_pool = []
+			for i in range(10000):
+			  tr = threading.Thread(target=worker)
+			  tr.start()
+			  thread_pool.append(tr)
+
+			# wait for tread to finish:
+			for tr in thread_pool:
+			  tr.join()
+
+			print("Workers counted:", counter)
+		</code></pre>
+	</section>
+	<section><h3>Solution: Lock the <em>critical sections</em></h3>
+		<pre><code rel="Python" class="python">
+			import threading
+			import time
+
+
+			def worker():
+			  global counter
+
+			  # lock the critical section:
+			  lock.acquire()
+			  tmp = counter
+			  print("Before:",counter)
+			  counter = tmp + 1
+			  print("After:",counter)
+			  lock.release()
+
+
+
+			counter = 0
+			# create a lock
+			lock = threading.Lock()
+
+			# create some treads to count together:
+			thread_pool = []
+			for i in range(10000):
+			  tr = threading.Thread(target=worker)
+			  tr.start()
+			  thread_pool.append(tr)
+
+			# wait for tread to finish:
+			for tr in thread_pool:
+			  tr.join()
+
+			print("Workers counted:", counter)
+		</code></pre>
+	</section>
+</section>
+
+<section><h1>Process-based parallelism</h1></section>
+<section><h2>Process-based parallelism</h2>
+	<section><h3>Multiprocessing in Python</h3>
+		<dl class="fa">
+			<dt><a href="https://docs.python.org/3.4/library/multiprocessing.html">multiprocessing</a> module is the built in module to create process-based parallelism in Python.</dt>
+			<dt>A process is created by the <code class="note">Process</code> class constructor.</dt>
+			<dt>Once created, the process could be started by <code class="note">start()</code> method</dt>
+			<dt>Other processes can call a process’s <code class="note">join()</code> method. This blocks the calling process until the process whose join() method is called is terminated</dt>
+		</dl>
+	</section>
+	<section><h3>Creating Process objects</h3>
+		<p>The multiprocessing package mostly replicates the API of the threading module</p>
+		<pre><code rel="Syntax" class="python">
+			pr_obj = multiprocessing.Process(target=None, name=None, args=(), kwargs={}, daemon=None)
+		</code></pre>
+	</section>
+	<section><h3>Programming guidelines for using multiprocessing</h3>
+		<dl class="fa">
+			<dt>There are certain guidelines and idioms which should be adhered to when using multiprocessing: <a href="https://docs.python.org/3.4/library/multiprocessing.html#multiprocessing-programming">Programming guidelines @python3 docs</a>.</dt>
+			<dt>But most important is to make sure that the main module can be safely imported by a new Python interpreter without causing unintended side effects (such as starting a new process)</dt>
+			<dt class="note">I.e. always use <code>if __name__ == '__main__':</code> when using processes!</dt>
+		</dl>
+	</section>
+	<section><h3>Creating and running process - example</h3>
+		<pre><code rel="Python" class="python">
+			import multiprocessing as mp
+			import time
+
+
+			def worker(x):
+			  pid = mp.current_process().name;
+			  print("x = {} in {}".format(x, pid))
+			  time.sleep(2)
+
+
+			if __name__ == '__main__':
+			  # create the process
+			  p = mp.Process(target=worker, args=(42,))
+
+			  # start the process:
+			  p.start()
+
+			  # wait until process completes:
+			  p.join()
+
+			  print("Worker did its job as separate Process!")
+		</code></pre>
+	</section>
+	<section><h3>Sharing state between processes (inter-process comunication) </h3>
+		<dl class="fa">
+			<dt>The multiprocessing module defines the Queue class for sharing data between processes (using <em>pipes</em> and <em>locks/semaphores</em>)</dt>
+			<dt>Also, it provides the <code>Value</code> and <code>Array</code> classes for Shared memory communication</dt>
+		</dl>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			class multiprocessing.Queue([maxsize])
+		</code></pre>
+	</section>
+	<section><h3>No GIL effect on processes</h3>
+		<dl class="fa">
+			<dt>You can use the full power of multiprocessing if your system have multiple cores.</dt>
+			<dt>Get raw code of <a href="https://pastebin.com/Yzj7whm1">GIL_effect.py</a></dt>
+		</dl>
+	</section>
+	<section><h3>No need of Lock</h3>
+		<dl class="fa">
+			<dt>As processes <span class="note">do not</span> share state, there is no need for lock:</dt>
+		</dl>
+	</section>
+	<section><h3>Data Parallelism</h3>
+		<dl class="fa">
+			<dt>The Pool object in multiprocessing module offers a convenient means of parallelizing the execution of a function across multiple input values, distributing the input data across processes (data parallelism)</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from multiprocessing import Pool
+			import time
+
+			def worker(n):
+			  # for light work, the pool is not efficient, try with n**10
+			  return n**1000
+
+			if __name__ == '__main__':
+			  t =time.time()
+
+			  # create the Pool:
+			  p = Pool(processes=5)
+			  result = p.map(worker, range(100000))
+			  p.close()
+			  p.join()
+
+			  print("Pool took: ", time.time() - t)
+
+			  # serial processing:
+			  t = time.time()
+			  result = []
+			  for x in range(100000):
+			    result.append(worker(x))
+			  # print("Result: ", result)
+			  print("Serial processing took: ", time.time() - t)
+		</code></pre>
+	</section>
+	<section><h3>Processes vs Threads - when to use which</h3>
+		<dl class="fa">
+			<dt>Multiprocessing Pros:</dt>
+			<dd>Takes advantage of multiple CPUs and cores</dd>
+			<dd>Avoids GIL limitations</dd>
+			<dd>Memory leaks in one process would not harm the others</dd>
+			<dd>Child processes could be killed</dd>
+			<dd>An intuitive and easy to use module APIs (very close to threading)</dd>
+			<dd>Very useful with cPython for CPU-bound processing</dd>
+			<dt>Cons:</dt>
+			<dd>Separate memory space is harder to manage.</dd>
+			<dd>Larger memory footprint</dd>
+		</dl>
+	</section>
+	<section><h3>Processes vs Threads - when to use which</h3>
+		<dl class="fa">
+			<dt>Threading Pros:</dt>
+			<dd>Lightweight and low memory footprint</dd>
+			<dd>Shared memory between threads - easier to manage.</dd>
+			<dd>Perfect for responsive UIs, DB Querying, Online Data Retrieval, I/O-bound and other applications where a lot of background work is done</dd>
+			<dt>Cons:</dt>
+			<dd>A memory leak in one thread will corrupt all threads</dd>
+		</dl>
+	</section>
+</section>
+
+<section><h1>References</h1></section>
+<section><h2>References</h2>
+	<section><h3>Readings</h3>
+		<dl class="fa">
+			<dt><a href="https://medium.com/practo-engineering/threading-vs-multiprocessing-in-python-7b57f224eadb">Threading vs Multiprocessing in Python by Pawan Pundir</a></dt>
+			<dt><a href="https://opensource.com/article/17/4/grok-gil">Grok the GIL: How to write fast and thread-safe Python</a></dt>
+		</dl>
+	</section>
+	<section><h3>Videos</h3>
+		<dl class="fa">
+			<dt><a href="https://www.youtube.com/playlist?list=PLeo1K3hjS3uub3PRhdoCTY8BxMKSW7RjN">Python Multithreading/Multiprocessing</a> -  6 videos on theme by <a href="https://www.youtube.com/channel/UCh9nVJoWXmFb7sLApWGcLPQ">codebasics</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<!-- <section><h1>___MainSectionTitle___</h1></section>
+<section><h2>___MainSectionTitle___</h2>
+	<section><h3>___MainSectionSubTitle___</h3></section>
+</section> -->
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section>
+
+<section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: parallelProgramming">ivawebcourses@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+	 <p>These slides are based on</p>
+	 <p>customised version of </p>
+	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+	 <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1024,
+			height: 850,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+maous click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
