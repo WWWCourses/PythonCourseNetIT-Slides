@@ -203,7 +203,7 @@ a.home_link{
 }
 
 a.home_link::before{
-  /* content: url(/PythonCourseNetIT-Slides/outfit/images/logos/software-web@256x256.png); */
+  content: url(/PythonCourseNetIT-Slides/outfit/images/logos/software-web@256x256.png);
 }
 
 .help_link{

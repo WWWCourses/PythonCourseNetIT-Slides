@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ParallelProgramming-Overview-Threads</title>
+	<title>ParallelProgramming-Lecture2</title>
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
 	<!-- css & themes include -->
 	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
 	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
@@ -14,7 +17,7 @@
 		var link = document.createElement( 'link' );
 		link.rel = 'stylesheet';
 		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/pdf.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
 		document.getElementsByTagName( 'head' )[0].appendChild( link );
 	</script>
 	<!--[if lt IE 9]>
@@ -26,7 +29,7 @@
 <body>
 	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
 		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#parallelProgramming" target="_top"><img src="../../../outfit/images/logos/software-web@256x256.png" height="80" alt=""></a>
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#ParallelProgramming" target="_top"></a>
 			<span class="help_link"><i class="fa fa-question"></i></span>
 			<div class="help_text">
         <div><span>N/Space</span><span>next slide</span></div>
@@ -46,7 +49,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section><h1>ParallelProgramming-Processes</h1></section>
+<section><h1>Паралелно Програмиране - лекция 2</h1></section>
 <section data-transition="zoom">
 	<!-- linkedin badge -->
 
@@ -68,20 +71,170 @@
 	</section> -->
 </section>
 
-<section><h1>Въведение</h1></section>
-<section><h2>Въведение</h2>
-	<section><h3>Характеристики на Процесите</h3>
+<section data-min="5"><h1>Създаване на нишки чрез подклас на Thread</h1></section>
+<section><h2>Създаване на нишки чрез подклас на Thread</h2>
+	<section><h3>Защо и Как?</h3>
 		<dl class="fa">
-			<dt>Всеки процес има собствен сегмент памет, който не може да бъде достъпен от останалите процеси.</dt>
-			<dd>За да могат множество процеси да обменят данни се използват различни техники, известни с общото име <span class="note">Inter process communication</span> </dd>
-			<dt>При стартирането на една Python програма се стартира поне един процес и поне една нишка за главната програма.</dt>
-			<dt>Множество процеси могат да работят едновременно на различни ядра. За разлика от "паралелизмът" чрез нишки, в Python, паралелизмът чрез процеси не е засегнат от GIL.</dt>
+			<dt>Можем да управляваме по-финно стратирането на нишки ако създадем наш клас, който да наследява Thread класа.</dt>
+			<dt>Основните стъпки са:</dt>
+			<dd>Създаване на нов подклас на класа Thread.</dd>
+			<dd>Пренаписване на <code>__init__(self [,args])</code> метода за да добавим собствени аргументи.</dd>
+			<dd>Пренаписване на <code>run(self [,args])</code> метода за да укажем собствена функционалност при стартиране на нишка.</dd>
 		</dl>
 	</section>
-	<section><h3>Характеристики на Процесите</h3>
-		<a href="images/Processes.png"><img src="images/Processes.png"></a>
+	<section><h3>Пример 1</h3>
+		<pre><code rel="createThreadSubclass.py" class="python3">
+			import threading
+			import time
+
+			def print_time(threadName, counter, delay):
+				while counter:
+					print("{:10s}: {:s}".format(threadName, time.ctime(time.time())))
+
+					time.sleep(delay)
+
+					counter -= 1
+
+
+			class myThread(threading.Thread):
+				def __init__(self, name, delay):
+					threading.Thread.__init__(self)
+					self.name = name
+					self.delay = delay
+
+				def run(self):
+					print(f"Starting {self.name}")
+					print_time(self.name, 5, self.delay)
+					print(f"\nExiting {self.name}")
+
+			# Create new threads
+			thread1 = myThread("Thread-1", delay=1)
+			thread2 = myThread("Thread-2", delay=2)
+
+			# Start new Threads
+			thread1.start()
+			thread2.start()
+
+			# Join new threads
+			thread1.join()
+			thread2.join()
+
+			print(f"\nExiting Main Thread")
+		</code></pre>
 	</section>
 </section>
+
+<section data-min="5"><h1>Споделени Ресурси/Критична Секция</h1></section>
+<section><h2>Споделени Ресурси/Критична Секция</h2>
+	<section>
+		<dl class="fa">
+			<dt>Нишките споделят общи глобални променливи (споделени ресурси).</dt>
+			<dt>Критична секция е тази част от код в която се достъпват споделените ресурси.</dt>
+			<dt>Едновременният достъп до споделен ресурс може да доведе до т.нар. Race Condition.</dt>
+		</dl>
+		<a href="./images/SharedResource_wikipedia.png"><img src="./images/SharedResource_wikipedia.png" style="height:60vh"></a>
+	</section>
+
+</section>
+
+<section><h3>Критична Секция - Пример</h3>
+	<dl class="fa">
+		<dt>Имаме 2 нишки и глобален брояч, който се увеличава от всяка една нишка по 10000000 пъти</dt>
+		<dt>В края на процеса, стойността на глобалният брояч би трябвало да е 2*10000000 пъти, но тъй като той е споделен ресурс, виждаме че резултата е непредсказуен.</dt>
+	</dl>
+	<pre><code rel="Python" class="python">
+		import threading
+		import time
+
+
+		def worker():
+			global counter
+
+			for i in range(10000000):
+				counter += 1
+
+
+		counter = 0
+
+		# create some treads to count together:
+		thread_pool = []
+		for i in range(2):
+			tr = threading.Thread(target=worker)
+			thread_pool.append(tr)
+
+			print(f"Counter before start of {tr.name}: {counter}")
+			tr.start()
+
+		# wait for tread to finish:
+		for tr in thread_pool:
+			tr.join()
+
+		print("Workers counted:", counter)
+	</code></pre>
+</section>
+<section><h3>Критична Секция - Диаграма на проблема</h3>
+	<a href="./images/raceConditionOfCounterDemo.png"><img src="./images/raceConditionOfCounterDemo.png" alt=""></a>
+</section>
+<section><h3>Solution: Lock the <em>critical sections</em></h3>
+	<pre><code rel="Python" class="python">
+		import threading
+		import time
+
+
+		def worker():
+		  global counter
+
+		  # lock the critical section:
+		  lock.acquire()
+		  tmp = counter
+		  print("Before:",counter)
+		  counter = tmp + 1
+		  print("After:",counter)
+		  lock.release()
+
+
+
+		counter = 0
+		# create a lock
+		lock = threading.Lock()
+
+		# create some treads to count together:
+		thread_pool = []
+		for i in range(10000):
+		  tr = threading.Thread(target=worker)
+		  tr.start()
+		  thread_pool.append(tr)
+
+		# wait for tread to finish:
+		for tr in thread_pool:
+		  tr.join()
+
+		print("Workers counted:", counter)
+	</code></pre>
+</section>
+
+<section data-min="5"><h1>Състояния на нишките и GIL</h1></section>
+<section><h2>Състояния на нишките и GIL</h2>
+	<section><h3>Състояния на нишките</h3>
+		<dl class="fa">
+			<dt>Една нишка може да се намира в едно от съществуващите състояния:</dt>
+			<dd><span class="note">създадена</span> -нишката е създадена, но не е стартирана;</dd>
+			<dd><span class="note">стартирана</span> - нишката изпълнява дадената задача;</dd>
+			<dd><span class="note">блокирана</span> - изпълнява блокиращ метод;</dd>
+			<dd><span class="note">завършила</span> -“убита”- e приключила своето изпълнение.</dd>
+		</dl>
+		<a href="./images/ThreadStates.png"><img src="./images/ThreadStates.png" alt="ThreadStates.png"></a>
+	</section>
+	<section><h3>Global Interpreted Lock (GIL)</h3>
+		<dl class="fa">
+			<dt>GIL механизмът в Python не позволява повече от една нишка да работи в даден момент от времето.</dt>
+			<dt>При multithreading нямаме истински паралелизъм а <span class="note">кооперативно изчисление</span></dt>
+			<dt>Когато една нишка e стартирана тя получава GIL, но когато тя е в състояние на пауза или I/O операции, тя освобождава GIL, който се подава на друга чакаща нишка.</dt>
+		</dl>
+		<a href="./images/GIL_in_Python_Diagram.png"><img src="./images/GIL_in_Python_Diagram.png" alt=""></a>
+	</section>
+</section>
+
 
 
 <section><h1>Process-based parallelism</h1></section>
@@ -210,6 +363,31 @@
 	</section>
 </section>
 
+<section data-min="10"><h1>CPU-Bound и I/O-Bound задачи</h1></section>
+<section><h2>CPU-Bound и I/O-Bound задачи</h2>
+	<section><h3></h3>
+		<dl class="fa">
+			<dt>Всяка една задача, решавана от съвременните компютри може да се определи като CPU-Bound или I/O-Bound.</dt>
+			<dt>Разбирайки типа на задачата ще можем да определим по-лесно коя от библиотеките за паралелно програмиране в Python да използваме (threading, multiprocessing, asyncio).</dt>
+		</dl>
+	</section>
+	<section><h3>CPU-Bound задачи</h3>
+		<dl class="fa">
+			<dt>Казваме че една задача е <span class="note">CPU-bound</span> когато времето за нейното изпълнение зависи изключително от бързодействието на процесора.</dt>
+			<dt>Класически пример за такъв тип задачи са тези обвързани с огромни математически изчисления (например: сумата на числата от 0 до 100 милиарда).</dt>
+			<dt>При такива задачи увеличаването на процесорната мощ ще увеличи бързодействието на програмата.</dt>
+		</dl>
+		<p><a href="./images/CPUBound.webp"><img src="./images/CPUBound.webp" alt="CPUBound" style="width: 70%;"></a></p>
+	</section>
+	<section><h3>I/O-Bound задачи</h3>
+		<dl class="fa">
+			<dt>Когато времето за изпълнение на една задача се определя предимно от входно-изходни (I/O) операции, като четене/запис в големи файлове, се казва че задачата е <span class="note">I/O Bound</span></dt>
+			<dt>Класически пример за такъв тип задачи са тези свързани с четене/запис в големи файлове; множество HTTP и/или DB заявки към сървъри.</dt>
+			<dt>За да се увеличи бързодействието на програмата при такъв тип задачи е необходимо да се увеличи скоростта на RAM и външната памет, или мрежовата скорост.</dt>
+		</dl>
+		<p><a href="./images/IOBound.webp"><img src="./images/IOBound.webp" alt="IOBound.webp" style="width: 70%;"></a></p>
+	</section>
+</section>
 
 
 
@@ -229,34 +407,26 @@
 	</section>
 </section>
 
-
-<!-- <section><h1>___MainSectionTitle___</h1></section>
-<section><h2>___MainSectionTitle___</h2>
-	<section><h3>___MainSectionSubTitle___</h3></section>
-</section> -->
 <!--
 <section id="hw"><h1>Exercises</h1></section>
 <section><h2>Task1</h2>
 	<section><h3>The Task</h3>
 
 	</section>
-</section>
+</section> -->
 
-<section><h3>Submission</h3>
+<!-- <section><h3>Submission</h3>
 	<dl class="fa">
 		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
 		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: parallelProgramming">ivawebcourses@gmail.com</a></dt>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: ParallelProgramming">ivawebcourses@gmail.com</a></dt>
 	</dl>
 </section> -->
 
 
 
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
-	 <p>These slides are based on</p>
-	 <p>customised version of </p>
-	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
-	 <p>framework</p>
+
 </section>
 <!--
 ########################################################
@@ -286,12 +456,12 @@
 			height: 1080,
 			// Bounds for smallest/largest possible scale to apply to content
 			// minScale: .5,
-			// maxScale: 1,
+			maxScale: 1,
 			// slide transition
 			transition: 'concave', // none/fade/slide/convex/concave/zoom
 			// Factor of the display size that should remain empty around the content
 			margin: 0.1,
-			// shift+maous click to zoom in/out element
+			// shift+left click to zoom in/out element
 			zoomKey: 'ctrl',
 			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 			// transition: Reveal.getQueryHash().transition || 'default'
