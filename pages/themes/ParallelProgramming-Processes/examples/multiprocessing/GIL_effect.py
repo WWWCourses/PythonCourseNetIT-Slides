@@ -27,8 +27,8 @@ if __name__ == '__main__':
 	t = time.time()
 	result = 0
 
-	worker(range(50_000_000))
-	worker(range(50_000_000,100_000_000))
+	worker(range(10_000_000))
+	worker(range(10_000_000,50_000_000))
 
 	print("Sequential Processing result: ", result)
 	print("Sequential Processing took:",time.time() - t,"\n")

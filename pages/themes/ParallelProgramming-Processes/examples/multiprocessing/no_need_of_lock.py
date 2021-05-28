@@ -6,9 +6,9 @@ def worker():
   global counter
 
   tmp = output.get()
-  print("Before:",tmp)
+  # print("Before:",tmp)
   counter = tmp + 1
-  print("After:",counter)
+  # print("After:",counter)
   output.put(counter)
 
 
