@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>regexIntro</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div><span>N/Space</span><span>next slide</span></div>
+				<div><span>P</span><span>previous slide</span></div>
+				<div><span>O</span><span>overview slides</span></div>
+				<div><span>ctrl+left click</span><span>zoom element</span></div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Regular Expressions - Lecture 1</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="logo">
+			</a>
+		</div>
+
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+<section><h2>What are Regular Expressions?</h2>
+	<section><h3>Intro</h3>
+		<dl class="fa">
+			<dt>Regular Expression is a <span class="note">string pattern</span>, which can match or not other stings</dt>
+			<dt>You can think of it a as a kind of search mechanism.</dt>
+			<dt>Regular Expression synonyms:</dt>
+			<dd data-tooltip="/\breg(?:ular\s*)?exp?(?:ression)?\b/i">Regex, RegEx, RegExp</dd>
+		</dl>
+	</section>
+	<section><h3>Example</h3>
+		<pre><code rel="JS" class="js">
+			import re
+
+			user_pass = "qazwsx";
+
+			#the RegEx to find if the user_pass contains at least 3 symbols:
+			pattern = r".{3,}";
+
+			# do the test:
+			match = re.search(pattern,user_pass)
+
+			if match:
+				print("Match")
+			else:
+				print("No match!")
+		</code></pre>
+	</section>
+	<section><h3>The Language</h3>
+		<dl class="fa">
+			<dt>You can think of Regular Expressions as a separate language, with its own rules and specs.</dt>
+			<dt>In fact, the Regular Expressions are coming from the <span class="note">regular language</span> defined by <a href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene">Kleene</a> in the early 1950s</dt>
+			<dt>Nowadays, almost all programming languages implements the concept of Regex.</dt>
+		</dl>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>A regex grammar includes 2 types of symbols:</dt>
+			<dd><span class="note">Regular symbols</span>: they are matched literally on the matching string</dd>
+			<dd><span class="note">Meta-characters</span>: they have special meaning and gives the power of regex</dd>
+			<pre><code rel="complete list of regex metacharacters" class="python" data-noescape>
+
+			<span style="font-size: 1.5em;line-height:1.5em;color: darkred">. ^ $ * + ? { } [ ] \ | ( )</span>
+			</code></pre>
+			<dt>All characters which are <span class="note">not metacharacters</span> are matched literally.</dt>
+		</dl>
+		</section>
+		<section><h3>metacharacters - example</h3>
+		<pre><code rel="Python3" class="python">
+			import re
+
+			phone_numbers = ['+359 88 7123 456', '+359 88 7123456' ]
+
+			# match numbers with format: +359 YY YXXX XXX
+			regex = r'\+359\s\d{2}\s\d{4}\s\d{3}'
+
+			for number in phone_numners:
+			if re.match(regex,number):
+				print("{} is a valid number format".format(number))
+			else:
+				print("{} is NOT IN A VALID FORMAT".format(number))
+		</code></pre>
+		<pre><code rel="Output" class="bash" data-noescape>
+			+359 88 7123 456 is a valid number format
+			+359 88 7123456 is NOT IN A VALID FORMAT
+		</code></pre>
+		</section>
+</section>
+
+<section data-min="20"><h1>Using regexes in Python - the <code><a href="https://docs.python.org/3/library/re.html">re</a></code> module</h1></section>
+<section><h2>Using regexes in Python - the <code><a href="https://docs.python.org/3/library/re.html">re</a></code> module</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>The built-in <code><a href="https://docs.python.org/3/library/re.html">re</a></code> module in Python provides regular expression matching operations similar to those found in Perl.</dt>
+			<dt>Regular expressions are compiled into <a href="https://docs.python.org/3/library/re.html#re-objects">Regular Expression Object</a>, which have methods for various operations such as searching for pattern matches or performing string substitutions.</dt>
+			<dt><span class="note">Regular expressions in Python are handled as strings</span> because regular expressions aren’t part of the core Python language, and no special syntax was created for expressing them.</dt>
+		</dl>
+	</section>
+	<section><h3>How to write regex</h3>
+		<dl class="fa">
+			<dt><span class="note">Regex in Python are written as string</span>, which can be passed to re.compile() method or directly to other matching methods, like re.search(), re.match(). These topics will be discussed deeply later in the course</dt>
+			<dt>We can use <span class="note">any string literals </span> to write our regex, including the <a href="">row string</a> syntax.</dt>
+		</dl>
+	</section>
+	<section><h3>Matching backslash</h3>
+		<dl class="fa">
+			<dt>The <span class="note">raw string</span> syntax is most concise when we need to write a backslash in a regex.</dt>
+			<dt>The <a href="https://docs.python.org/2/reference/lexical_analysis.html#index-17">raw string</a> @docs:</dt>
+			<dd>When an 'r' or 'R' prefix is present, a character following a backslash is included in the string without change, and all backslashes are left in the string</dd>
+			<pre><code rel="Python" class="python">
+				# note that backslash in raw string is not escape sequence
+				print(r'\\') # \\
+				print('\\')  # \
+			</code></pre>
+			<dd>A raw string cannot end in a single backslash</dd>
+			<pre><code rel="Python" class="python">
+				print(r'\') # SyntaxError
+			</code></pre>
+		</dl>
+
+	</section>
+	<section><h3>Matching backslash</h3>
+		<pre><code rel="Python" class="python">
+			import re
+
+			text = '\\stop'
+			re1 = '\\stop'
+			re2 = '\\\\stop'
+			re3 = r'\\stop'
+
+			if re.match(re1, text):
+				# would not match, as '\' is a special character in regex and should be escaped, as well
+				print(f"/{re1}/ matched {text}!")
+			else:
+				print(f"/{re1}/ DID NOT MATCHED {text}!")
+
+			if re.match(re2, text):
+				print(f"/{re2}/ matched {text}!")
+			else:
+				print(f"/{re2}/ DID NOT MATCHED {text}!")
+
+			if re.match(re3, text):
+				print(f"/{re3}/ matched {text}!")
+			else:
+				print(f"/{re3}/ DID NOT MATCHED {text}!")
+		</code></pre>
+		<pre><code rel="Output" class="bash">
+			/\stop/ DID NOT MATCHED \stop!
+			/\\stop/ matched \stop!
+			/\\stop/ matched \stop!
+		</code></pre>
+	</section>
+</section>
+
+
+<section data-min="20"><h1>Regex Syntax</h1></section>
+<section><h2>Regex Syntax</h2>
+	<section><h3>The Grammar</h3>
+		<dl class="fa">
+			<dt>A regex grammar includes 2 types of symbols:</dt>
+			<dd><span class="note">Regular symbols</span>: they are matched literally on the matching string</dd>
+			<dd><span class="note">Meta-characters</span>: they have special meaning and gives the power of regex</dd>
+		</dl>
+	</section>
+	<section><h3>Special Characters</h3>
+		<p>Only next characters has special meaning in Regex:</p>
+		<code class="note">^ $ \ . * + ? ( ) [ ] { } |</code>
+		<p>They can be combined with ordinary characters to change their meaning too</p>
+		<p>If we want to match <b>literally</b> a special character we have to escape it with backslash <code>'\'</code></p>
+	</section>
+	<section><h3>Matching Special Characters - example</h3>
+		<pre><code rel="Python" class="python">
+			import re
+
+			text = "try to match: 2+3"
+			rx = re.compile('2\+3')
+
+			res = rx.search(text)
+			if res:
+				print( res.group())
+		</code></pre>
+	</section>
+</section>
+
+<section data-min="5"><h1>Quantifiers</h1></section>
+<section><h2>Quantifiers</h2>
+	<section><h3>Overview</h3>
+		<table style="font-size: .9em">
+			<tr><th>Quantifier</th><th>Description</th></tr>
+			<tr><td><i>r</i> <b class="note">*</b></td><td><i>r</i> match <b>0</b> or <b>more times</b></td></tr>
+			<tr><td><i>r</i> <b class="note">+</b></td><td><i>r</i> match <b>1</b> or <b>more times</b></td></tr>
+			<tr><td><i>r</i> <b class="note">?</b></td><td><i>r</i> match <b>0</b> or <b>1</b>time</td></tr>
+			<tr><td><i>r</i> <b class="note">{n}</b></td><td><i>r</i> match <b>exactly <i>n</i> times</b></td></tr>
+			<tr><td><i>r</i> <b class="note">{n,m}</b></td><td><i>r</i> match between <b>n</b> and <b>m</b> times (n, m are positive)</td></tr>
+		</table>
+		<p class="note"><code>r</code> can be any regex!</p>
+	</section>
+	<section><h3>Quantifiers (greedy and non-greedy match)</h3>
+		<dl class="fa">
+			<dt>The quantifiers are <span class="note">greedy</span>, meaning they will match the maximum part of the string they can:</dt>
+			<pre><code rel="Python" class="python">
+				matched = re.search(r'a.*a','ala bala' );
+				print(matched)
+				# match='ala bala', but not 'ala'
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Quantifiers (greedy and non-greedy match)</h3>
+		<dl class="fa">
+			<dt>We can make them <span class="note">non-greedy</span>, if we suffix them with '<code class="note">?</code>'</dt>
+			<pre><code rel="Python" class="python">
+				matched = re.search(r'a.*?a','ala bala' );
+				print(matched)
+				#match='ala'
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>'*'quantifier - example</h3>
+		<pre><code rel="Python" class="python">
+			import re
+
+			string = 'ala bala'
+
+			matched = re.findall(r'a.*a',string ) # greedy
+			print(matched)
+			#OUTPUT: ['ala bala']
+
+			matched = re.findall(r'a.*?a',string ) # non-greedy
+			print(matched)
+			#OUTPUT: ['ala', 'ala']
+
+			matched = re.findall(r'.*?',string ) # non-gready
+			print(matched)
+			#OUTPUT: ['', '', '', '', '', '', '', '', ''
+		</code></pre>
+	</section>
+	<section><h3>{n,m} quantifier - example</h3>
+		<pre><code rel="Python" class="python">
+			import re
+
+			matched = re.findall(r'\d{2,4}','123456789' ) # gready
+			print(matched)
+			# OUTPUT: ['1234', '5678']
+
+			matched = re.findall(r'\d{2,4}?','123456789' ) # non-gready
+			print(matched)
+			#OUTPUT: ['12', '34', '56', '78']
+		</code></pre>
+	</section>
+</section>
+
+<section data-min="5"><h1>Character Sets</h1></section>
+<section><h2>Character Sets</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+				<dt>The square brackets are used to define a character set. Like: <code><b>[</b>abc<b>]</b></code> (will match 'a' or 'b' or 'c').</dt>
+				<dt class="note">The character set itself match only one symbol!</dt>
+				<dt>Symbols inside brackets are the elements of set.</dt>
+				<dt>Special characters lose their special meaning inside sets</dt>
+				<dt>The hyphen (<code>-</code>), when it is between 2 symbols, has special meaning inside the character class  - it defines a range. Like: <code>[0-9]</code>. If it is in the end, it is considered as a hyphen.</dt>
+		</dl>
+	</section>
+	<section><h3>Character Sets Description</h3>
+		<table>
+			<tr><th>Character set</th><th>Description</th></tr>
+			<tr><td><code class="note">[abc]</code></td><td>Match any one of the symbols listed ('a' or 'b' or 'c')</td></tr>
+			<tr><td><code class="note">[a-z]</code></td><td>Match any symbol, from 'a' till 'z' (i.e. any lower Latin letter)</td></tr>
+			<tr><td><code class="note">[^abc]</code></td><td>Match any symbol, except 'a or 'b' or 'c' (i.e. the <code><b>^</b></code> negates the characters in the set)</td></tr>
+		</table>
+	</section>
+	<section><h3>Character Sets examples</h3>
+		<pre><code rel="Python" class="python">
+			import re
+
+			# match any one of the vocals
+			matched = re.findall(r'[aeiouy]','astroid' );
+			print(matched)
+			#OUTPUT: ['a', 'o', 'i']
+
+			# match any consecutive vocals - one or more times
+			matched = re.findall(r'[aeiouy]+','astroid' );
+			print(matched)
+			#OUTPUT: ['a', 'oi']
+
+			# match bg mobile phone numbers
+			matched = re.findall('\+3598[7-9][0-9]{7}', '+359888123456');
+			print(matched)
+			#OUTPUT: ['+359888123456']
+
+			# match digit or hyphen:
+			matched = re.findall('[1-5-]', '12-34');
+			print(matched)
+			#OUTPUT: ['1', '2', '-', '3', '4']
+		</code></pre>
+	</section>
+	<section><h3>Character Sets Negation - examples</h3>
+		<pre><code rel="Python" class="python">
+			import re
+
+			# match any non-vocal:
+			matched = re.findall(r'[^aeiouy]','astroid' );
+			print(matched)
+			#OUTPUT: ['s', 't', 'r', 'd']
+		</code></pre>
+	</section>
+</section>
+
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
