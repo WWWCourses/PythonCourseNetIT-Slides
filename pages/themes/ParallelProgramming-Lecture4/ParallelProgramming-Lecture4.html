@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>ParallelProgramming-Lecture4</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+        <div><span>N/Space</span><span>next slide</span></div>
+        <div><span>P</span><span>previous slide</span></div>
+        <div><span>O</span><span>overview slides</span></div>
+        <div><span>ctrl+left click</span><span>zoom element</span></div>
+      </div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Паралелно Програмиране - лекция 4</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="http://progressbg.net/програмиране-с-python-2/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="logo">
+			</a>
+		</div>
+
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+<section data-min="5"><h1>Проблема "Производител-Потребител"</h1></section>
+<section><h2>Проблема "Производител-Потребител"</h2>
+	<section><h3>Описание</h3>
+		<dl class="fa">
+			<dt>Две нишки, producer() и consumer(), които споделят общ ресурс, който е някакъв артикул. </dt>
+			<dt>Задачата на producer() е да генерира артикула, докато задачата на consumer() е да използва произведената стока.</dt>
+			<dt>Ако артикулът все още не е произведен, то потребителската нишка, трябва да изчака. </dt>
+			<dt>Веднага след като артикулът е произведен, нишката на producer() уведомява потребителя, че ресурсът трябва да бъде използван.</dt>
+			<dt>Забележете, че производителя и потребителя трябва да бъдат синхронизирани.</dt>
+		</dl>
+	</section>
+	<section><h3>"Производител-Потребител" - решение чрез "опашка"</h3>
+		<pre><code rel="JS" class="python3">
+			import threading
+			import time
+			import random
+			from queue import Queue
+
+			BUF_SIZE = 3
+			q = Queue(BUF_SIZE)
+
+
+			class ProducerThread(threading.Thread):
+				def __init__(self,name):
+					threading.Thread.__init__(self)
+					self.name = name
+
+				def run(self):
+					while True:
+						if not q.full():
+							item = random.randint(1,10)
+							q.put(item)
+							print(f"Put item: {item} in queue")
+							time.sleep(random.random())
+					return
+
+			class ConsumerThread(threading.Thread):
+				def __init__(self, name):
+					threading.Thread.__init__(self)
+					self.name = name
+
+				def run(self):
+					while True:
+						if not q.empty():
+							item = q.get()
+							print(f"Get item: {item} from queue")
+							time.sleep(random.random())
+					return
+
+			if __name__ == '__main__':
+				p = ProducerThread(name='producer')
+				c = ConsumerThread(name='consumer')
+
+				p.start()
+				# time.sleep(2)
+				c.start()
+				# time.sleep(2)
+		</code></pre>
+	</section>
+</section>
+
+<section><h1>Паралелно Програмиране - "Мъртва Хватка"</h1></section>
+<section><h2>Паралелно Програмиране - "Мъртва Хватка"</h2>
+	<section><h3>Какво е "Мъртва Хватка"</h3>
+		<dl class="fa">
+			<dt>В практиката, когато Нишки или Процеси използват общи ресурси може да се получи т.нар. <span class="note">мъртва хватка</span>.</dt>
+			<dt>В най-простия случай, мъртва хватка се получава когато един Процес/Нишка очаква достъп до ресурс, който е "заключен" от друг Процес/Нишка, и същевренно втория Процес/Нишка очаква достъп до ресурс, "заключен" от първия Процес/Нишка.</dt>
+		</dl>
+		<a href="./images/DeadLock_1.png"><img src="./images/DeadLock_1.png" alt="DeadLock_1.png"></a>
+		<dl class="fa">
+			<dt>Процес 1 очаква достъп до Ресурс2, преди да продължи работата си</dt>
+			<dt>Процес 2 очаква достъп до Ресурс1, преди да продължи работата си</dt>
+			<dt>Настъпва "мъртва хвата" - и двата процеса остават взаимно блокирани</dt>
+		</dl>
+	</section>
+	<section><h3>"Мъртва Хватка" - Пример</h3>
+		<pre><code rel="deadlock_simple_demo.py" class="python3">
+			import threading
+			import time
+
+			l1=threading.Lock()
+			l2 = threading.Lock()
+
+			def f1(name):
+				with l1:
+					print('thread',name,'has lock l1')
+					time.sleep(0.5)
+					with l2:
+						print('thread',name,'has lock l2')
+						print('thread',name,'run into deadLock,\nthis line will never run')
+
+			def f2(name):
+				with l2:
+					print('thread',name,'has lock l2')
+					time.sleep(0.3)
+					with l1:
+						print('thread',name,'has lock l1')
+						print('thread',name,'run into deadLock,\nthis line will never run')
+
+			if __name__ == '__main__':
+				t1=threading.Thread(target=f1, args=['t1',])
+				t2=threading.Thread(target=f2, args=['t2',])
+
+				t1.start()
+				t2.start()
+		</code></pre>
+	</section>
+	<section><h3>Използване на with оператора за получаване/освобождаване на лок</h3>
+		<dl class="fa">
+			<dt>Всички lock обекти, които има <code>acquire()</code>/<code>release()</code> методи могат да се използват с оператора <code>with</code> като контекст мениджъри.</dt>
+		</dl>
+		<pre><code rel="Python" class="python3">
+			# записът:
+			with some_lock:
+				# do something...
+
+			# е еквивалентно по функционалност на:
+			some_lock.acquire()
+				try:
+					# do something...
+				finally:
+					some_lock.release()
+		</code></pre>
+	</section>
+</section>
+
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
