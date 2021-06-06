@@ -71,8 +71,49 @@
 	</section> -->
 </section>
 
-<section data-min="20"><h1>Regex Match Methods</h1></section>
-<section><h2>Regex Match Methods</h2>
+
+<section data-min="20"><h1>Using Regexes in Python - going deep</h1></section>
+<section><h2>Using Regexes in Python - going deep</h2>
+  <section><h3>Regex object and re module</h3>
+    <dl class="fa">
+      <dt>We can use various <code>re</code> module methods which accept the regex string as first argument.</dt>
+      <dt>We can <span class="note">pre-compile</span> the regex string into pattern object, and then to perform matches on it. I.e. to use methods on the precompiled pattern object itself</dt>
+      <pre><code rel="Syntax" class="bash">
+        # re module level methods call
+        re.method_name(regex, str_to_match)
+
+        # regex object methods call
+        regex_obj.method_name(str_to_match)
+      </code></pre>
+      <dt>Note, that module level methods and regex object methods are the same</dt>
+    </dl>
+  </section>
+  <section><h3>Compiling Regular Expressions</h3>
+    <dl class="fa">
+      <dt>we can precompile a regex object by <code><a href="https://docs.python.org/3/library/re.html#re.compile">re.compile</a></code> method</dt>
+    </dl>
+    <pre><code rel="Python" class="python">
+      import re
+
+      str = "this"
+
+      # next 2 lines:
+      regex = re.compile(r"[aeiouy]+")
+      m = regex.search(str)
+
+      # are equivalent to:
+      # m = re.search(r"[aeiouy]+", str)
+
+
+      print(m)
+    </code></pre>
+  </section>
+  <section><h3>When to use Compiled Regex Methods?</h3>
+    <dl class="fa">
+      <dt>The modlule-level match functions compile the given regex string, and keep it in its cache. So future calls using the same RE won’t need to parse the pattern again</dt>
+      <dt>But when you use the match function in a loop, the function itself will be needlessly called, that's why in loops, it is better to use the precompiled regex.</dt>
+    </dl>
+  </section>
   <section><h3><a href="https://docs.python.org/3/library/re.html#re.regex.search">regex.search(string[, start[, end]]))</a></h3>
     <dl class="fa">
       <dt>Scan through string looking where this regular expression produces a match.</dt>
@@ -138,23 +179,7 @@
       <dt><a href="https://docs.python.org/3/library/re.html#re.regex.subn">regex.subn(repl, string, count=0)</a></dt>
     </dl>
   </section>
-  <section><h3>re module-level matching methods</h3>
-    <dl class="fa">
-      <dt>The methods described above, was methods of an Regular Expression Objects</dt>
-      <dt>Python has the same methods defined for re module, like:</dt>
-      <dd><a href="https://docs.python.org/3/library/re.html#re.search">re.search(pattern, string, flags=0)</a></dd>
-      <dd>and so on...</dd>
-      <dt>The difference is that we must pass the pattern string as first argument, and optional flags at the end.</dt>
-    </dl>
-  </section>
-  <section><h3>When to use Regex Match Methods?</h3>
-    <dl class="fa">
-      <dt>The modlule-level match functions compile the given regex string, and keep it in its cache. So future calls using the same RE won’t need to parse the pattern again</dt>
-      <dt>But when you use the function in a loop, the function itself will be needlessly called, that's why in loops, it is better to use the precompiled regex.</dt>
-    </dl>
-  </section>
 </section>
-
 
 
 <section data-min="5"><h1>Character classes</h1></section>
@@ -180,9 +205,26 @@
       import re
 
       # match bg mobile phone numbers
-      matched = re.findall('\+3598[7-9]\d{7}', '+359888123456');
-      print(matched)
-      #OUTPUT: ['+359888123456']
+      # regex = r"\+359\s?8[7-9]\s?\d{7}"
+      regex = re.compile(r"\+359\s?8[7-9]\s?\d{7}")
+      phones = [
+        "+359888123456",
+        "359888123456",
+        "+359 88 8123456"
+      ]
+
+      for phone in phones:
+        m = regex.match(phone)
+        if m:
+          print(f"{phone} => OK")
+        else:
+          print(f"{phone} => no match")
+
+    </code></pre>
+    <pre><code rel="Output" class="bash">
+      +359888123456 => OK
+      359888123456 => no match
+      +359 88 8123456 => OK
     </code></pre>
   </section>
   <section><h3>Character classes example</h3>
@@ -220,10 +262,20 @@
   <section><h3>Modifiers/Flags</h3>
     <dl class="fa">
       <dt>Flags reflects how the regular expression is executed.</dt>
-      <dt>They are available in the re module with a long name such as re.IGNORECASE or with a short, one-letter form such as re.I.</dt>
+      <dt>They are available in the re module with a long name such as <code>re.IGNORECASE</code> or with a short, one-letter form such as <code>re.I</code>.</dt>
       <dt>Multiple flags can be specified by bitwise OR-ing them. For example <code>re.I|re.M</code> sets both the I and M flags.</dt>
       <dt>These flags are set by passing the <i>flags</i> argument to the re.compile() method</dt>
-      <dt>Flags can be also set in the regular expression itself, using (?aiLmsux) syntax at the beginning of the regex</dt>
+      <pre><code rel="Python" class="python">
+        regex_with_flags_arg= re.compile(r"[aeiouy]+",re.I)
+      </code></pre>
+      <dt>Or as a third argument on re module methods</dt>
+      <pre><code rel="Python" class="python">
+        m = re.search(r"[aeiouy]+", str, re.I)
+      </code></pre>
+      <dt>Flags can be also set in the regular expression itself, using (?aiLmsux) syntax at the beginning of the regex string</dt>
+      <pre><code rel="Terminal" class="bash">
+        regex_with_flags_prefix= re.compile(r"(?i)[aeiouy]+")
+      </code></pre>
     </dl>
   </section>
   <section><h3>Modifiers/Flags list</h3>
@@ -234,6 +286,7 @@
       <tr><td>(?s)</td><td>re.S</td><td>Make the '<b>.</b>' to match any character at all, including a newline</td></tr>
       <tr><td>(?x)</td><td>re.X</td><td>Allows to write readable regexes by using spaces and comments('#') in the regex. More on: <a href="https://docs.python.org/3/library/re.html#re.X">re.X</a></td></tr>
     </table>
+    <p>Reference: <a href="https://docs.python.org/3/howto/regex.html#compilation-flags">Compilation flags</a></p>
   </section>
   <section><h3>Modifiers/Flags example</h3>
     <pre><code rel="Python" class="python">
