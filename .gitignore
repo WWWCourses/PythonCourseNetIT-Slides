@@ -11,6 +11,7 @@ venv/
 ENV/
 
 Pipfile
+Pipfile.lock
 
 #custom hiden files
 **/_*
