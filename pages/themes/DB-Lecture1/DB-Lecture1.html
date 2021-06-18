@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>DBMS-Lecture1</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture1" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>DataBase Management Systems (DBMS)</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+
+<section><h1>DBMS - Introduction</h1></section>
+<section><h2>DBMS - Introduction</h2>
+	<section><h3>Why we need DataBase systems?</h3>
+		<a href="./images/DBMS_Overview.png" title="click for bigger image" title="click for bigger image"><img src="./images/DBMS_Overview.png" alt="DBMS_Overview.png" style="min-height:80vh ;"></a>
+		<p>Can you imagine such a workflow using only files to store data?</p>
+	</section>
+</section>
+
+<section data-min="50"><h1>Relational vs Non-Relational DataBases</h1><br><h2>or <span class="note">SQL vs NoSQL DataBases</span></h2></section>
+<section><h2>SQL vs NoSQL DataBases</h2>
+	<section>
+		<dl class="fa">
+			<dt><strong>Relational DataBases (SQL DataBases)</strong></dt>
+			<dd>Relational databases were developed in the 1970s.</dd>
+			<dd>Data are stored as <span class="note">relational tables</span></dd>
+			<dd>Data manipulations are done by <span class="note">Structured Query Language (SQL)</span>, based on Edgar Frank Codd’s work on the relational model for database management</dd>
+			<dt><strong>No-SQL DataBases ("non SQL" or "not only SQL")</strong></dt>
+			<dd>Developed in the late 2000s</dd>
+			<dd>Have flexible data models</dd>
+			<dd>Focus on scaling, fast queries, allowing for frequent application changes, and making programming simpler for developers.</dd>
+		</dl>
+		<br>
+		<p>Reference: <a href="https://www.mongodb.com/nosql-explained/nosql-vs-sql#differences-between-sql-and-nosql">Differences between SQL and NoSQL</a></p>
+	</section>
+	<section>
+		<a href="./images/documentDB_vs_RDMS.png" title="click for bigger image" title="click for bigger image"><img src="./images/documentDB_vs_RDMS.png" alt="documentDB_vs_RDMS.png" style="min-height: 70vh;"></a>
+	</section>
+</section>
+
+<section data-min="50"><h1>NoSQL common data structures</h1></section>
+<section><h2>NoSQL common data structures</h2>
+	<section><h3>Key-Value Store Databases</h3>
+		<dl class="fa">
+			<dt>data is represented as a collection of <span class="note">Key-Value pairs</span>,  an attribute name and a value, eg &lt;department, sales&gt; or &lt;salary, 2300&gt;.</dt>
+			<a href="./images/KeyValue.png" title="click for bigger image" title="click for bigger image"><img src="./images/KeyValue.png" alt="KeyValue.png"></a>
+			<dt>Adavantages:</dt>
+			<dd>Flexibility, use far less memory</dd>
+			<dt>Popular systems</dt>
+			<dd>Redis, memcached, Berkeley DB</dd>
+		</dl>
+	</section>
+	<section><h3>Wide Column Store Databases</h3>
+		<dl class="fa">
+			<dt>uses tables, rows and columns like in a relational database, but unlike a relational database, the names and formats of the columns can vary from row to row in the same table.  A wide column store can be interpreted as a 2 dimensional key-value store..</dt>
+			<a href="./images/wide-column-store.png" title="click for bigger image"><img src="./images/wide-column-store.png" alt="wide-column-store.png" style="height: 50vh;"></a>
+			<dt>Popular systems</dt>
+			<dd>Apache Cassandra, Azure Tables, Bigtable</dd>
+		</dl>
+	</section>
+	<section><h3>Graph Databases</h3>
+		<dl class="fa">
+			<dt>Focuses on the relationships between data.</dt>
+			<dt>A graph is composed of 2 elements - a node and a relationship.  A node represents an entity, and a relationship represents how 2 nodes are associated. In the graph world these relationships are more important than the individual nodes or data points.</dt>
+			<a href="./images/GraphDatabase_PropertyGraph.png" title="click for bigger image" title="click for bigger image"><img src="./images/GraphDatabase_PropertyGraph.png" alt="GraphDatabase_PropertyGraph.png"></a>
+			<dt>The underlying storage mechanism of graph databases can vary: some uses the relational model and stores the graph as tables, others use a key-value store or document-oriented database</dt>
+			<dt>Popular systems</dt>
+			<dd>Neo4j, Ontotext GraphDB</dd>
+
+		</dl>
+	</section>
+	<section><h3>Document Store Databases</h3>
+		<dl class="fa">
+			<dt>data is encapsulated in a 'document' which is a standard format or encoding, eg XML, YAML or JSON.</dt>
+			<dt> Each document has a unique 'key' to identify it.</dt>
+			<dt>Documents can be grouped using Collections, Tags, Metadata or directory hierarchies.  Collections are similar to tables on a relation database, and documents similar to records.  But they differ in that every record in a relational database has the same sequence of fields, whereas documents in a collection can have an array of different fields.</dt>
+			<dt>Popular systems</dt>
+			<dd>MongoDB, CouchDB, Elasticsearch</dd>
+		</dl>
+	</section>
+
+</section>
+
+
+<section data-min="50"><h1>Mongodb - getting started</h1></section>
+<section><h2>Mongodb - getting started</h2>
+	<section><h3>What is Mongodb</h3>
+		<dl class="fa">
+			<dt>Mongodb is a <span class="note">document-orientated</span> database</dt>
+			<dt>One of the most popular NoSQL databases</dt>
+			<dt>The name comes from hu<span class="note">mongo</span>us (<i>huge; enormous.</i> )</dt>
+			<dt>Mongodb saves data in BSON (Binary JSON) format, which was modeled after the JSON format (JavaScript Object Notation)</dt>
+			<dt style="font-size: 1.2em;">Mongo Official site is: <a href="https://www.mongodb.com/">mongodb.com</a></dt>
+		</dl>
+	</section>
+	<section><h3>Installation</h3>
+		<dl class="fa">
+			<dt>Install from: </dt>
+			<dd><a href="https://www.mongodb.com/try/download/community">MongoDB Community Server</a></dd>
+			<dt>But its better to follow the docs:</dt>
+			<dd><a href="https://docs.mongodb.com/manual/administration/install-community/">Install MongoDB Community Server @docs.mongodb.com</a></dd>
+		</dl>
+	</section>
+	<section><h3>Run MongoDB Community Edition</h3>
+		<dl class="fa">
+			<dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#run-mongodb-community-edition">Linux (Ubuntu based)</a></dt>
+			<dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#run-mongodb-community-edition-as-a-windows-service">Windows</a></dt>
+			<dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb-community-edition">MacOS</a></dt>
+		</dl>
+	</section>
+	<section><h3>Test the local installation</h3>
+		<pre><code rel="Terminal" class="bash">
+			mongo
+		</code></pre>
+		<p>If you receve similar output => you're good to go</p>
+		<pre><code rel="Output" class="bash">
+			MongoDB shell version v4.4.6
+			connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&amp;gssapiServiceName=mongodb
+			Implicit session: session { &quot;id&quot; : UUID(&quot;19ddf9a3-dd9d-4253-b9d8-747256409d54&quot;) }
+			MongoDB server version: 4.4.6
+			---
+			The server generated these startup warnings when booting:
+			2021-06-18T04:03:12.281+03:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+			2021-06-18T04:03:14.051+03:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+			---
+			---
+			Enable MongoDB&#39;s free cloud-based monitoring service, which will then receive and display
+			metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+			The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+			and anyone you share the URL with. MongoDB may use this information to make product
+			improvements and to suggest MongoDB products and deployment options to you.
+
+			To enable free monitoring, run the following command: db.enableFreeMonitoring()
+			To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+			---
+			&gt;
+		</code></pre>
+	</section>
+	<section><h3>MongoDB Atlas - the Mongo's Cloud DataBase</h3>
+		<dl class="fa">
+			<dt>MongoDB Atlas is a fully-managed cloud database developed by the same people that build MongoDB</dt>
+			<dt> Atlas handles all the complexity of deploying, managing, and healing your deployments on the cloud service provider of your choice (AWS, Azure, and GCP)</dt>
+		</dl>
+	</section>
+	<section><h3>MongoDB Atlas - TASK</h3>
+		<dl class="fa">
+			<dt>Register to MongoDB Atlas and create <i>python_course_atlas</i> DB with 1 collection: <i>todos</i>, as shown</dt>
+			<a href="./images/Atlas_collection_created_screenshot.png" title="click for bigger image"><img src="./images/Atlas_collection_created_screenshot.png" alt="Atlas_collection_created_screenshot.png" style="max-height: 70vh;"></a>
+			<dd>Docs: <a href="https://docs.atlas.mongodb.com/getting-started/">Get Started with Atlas @docs.atlas.mongodb.com</a></dd>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5"><h1>Mongodb data model</h1></section>
+<section><h2>Mongodb data model</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>A Mongodb <span class="note">databases</span> is a set of <span class="note">collections</span> of <span class="note">documents</span></dt>
+			<a href="./images/mongodb_collection.svg" title="click for bigger image"><img src="./images/mongodb_collection.svg" alt="mongodb_collection.svg"></a>
+			<dt>The data are stored in a document using <a href="https://docs.mongodb.com/v4.2/core/document/#bson-document-format">BSON Format</a>, which is a is a binary representation of JSON documents,</dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="10"><h1>MongoDB Shell</h1></section>
+<section><h2>MongoDB Shell</h2>
+	<section><h3></h3>
+		<dl class="fa">
+			<dt>Start the Mongodb Shell and check help for all commands</dt>
+			<pre><code rel="Terminal" class="bash">
+				mongo
+				# ---
+				> help
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Basic commands</h3>
+		<pre><code rel="Terminal" class="bash">
+			db.help()                    help on db methods
+			db.mycoll.help()             help on collection methods
+
+			show dbs                     show database names
+			show collections             show collections in current database
+			show users                   show users in current database
+			use &lt;db_name&gt;		     set current database (create a new one, if there isn't any)
+			db.mycoll.find()             list objects in collection mycoll
+
+		</code></pre>
+	</section>
+	<section><h3>Work with Database</h3>
+		<dl class="fa">
+			<dt>Create Database</dt>
+			<dd>There is no “create” command in the MongoDB shell. We can use the commenad <code>use database</code> on non-existing database</dd>
+			<dt><code>db.dropDatabase()</code></dt>
+			<dd>Removes the current database, deleting the associated data files</dd>
+			<dt>Show current database</dt>
+			<dd><code>db</code> </dd>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+
+		</code></pre>
+	</section>
+	<section><h3>Work with document collections</h3>
+		<dl class="fa">
+			<dt>Collections can be created just like databases, by writing a document to them.</dt>
+			<pre><code rel="Terminal" class="bash">
+				use python_course
+				db.todos.insert({title: "Learn Python", completed: false})
+			</code></pre>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5"><h1>MongoDB Compass</h1></section>
+<section><h2>MongoDB Compass</h2>
+	<section><h3></h3>
+		<dl class="fa">
+			<dt>MongoDB Compass is a the official GUI (Graphical User Interface) to explore, analyze, and interact with Mongodb Database</dt>
+			<dt><a href="https://docs.mongodb.com/compass/current/install/">Download and Install Compass: </a></dt>
+		</dl>
+	</section>
+</section>
+
+
+
+
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section> -->
+
+<!-- <section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: DB-Lecture1">ivawebcourses@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
