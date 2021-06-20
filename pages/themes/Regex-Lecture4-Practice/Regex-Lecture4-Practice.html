@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section><h1>Regular Expressions - Lecture 4 -Practice</h1></section>
+<section><h1>Regular Expressions - Lecture 4 - Practice</h1></section>
 <section data-transition="zoom">
 	<!-- linkedin badge -->
 
@@ -205,38 +205,30 @@
 		</ol>
 	</section>
 	<section><h3>Test cases and Output</h3>
-		<p>You can use next list with a usernames to test your program</p>
+		<p>You can use next list with a passwords to test your program</p>
 		<pre><code rel="Python" class="python">
-			user_names = [
-				"ada", 	# yes
-				"a__", 	# yes
-				"a12345", # yes
-				"a1234567890", # no (rule 1)
-				"1aaaaaaa", # no (rule 3)
-				"-a-", 	# no (rule 3)
-				"a", 	# no
+			passwords = [
+				"___a_____1", #yes
+				"___1_____a", #yes
+				"___1_____!", # no (no letter)
+				"_____1a", #no ( Rule 1)
 			]
 		</code></pre>
 		<p>The expected output should be:</p>
 		<pre><code rel="EXPECTED OUTPUT" class="bash">
-			ada is valid!
-			a__ is valid!
-			a12345 is valid!
-			a1234567890 is NOT valid!
-			1aaaaaaa is NOT valid!
-			-a- is NOT valid!
-			a is NOT valid!
+			___a_____1 is valid!
+			___1_____a is valid!
+			___1_____! is NOT valid!
+			_____1a is valid!
 		</code></pre>
 	</section>
 	<section><h3>Solution</h3>
 		<pre><code rel="Python" class="python" style="min-height: 100vh;">
-			def validate_name(string):
-				# "x" flag ignores spaces and comments in a regex
-				rx = re.compile(r'''(?x)
-				^			# beginning of string
-					[a-zA-Z]  		# rule 3
-					[\w-]{2,9}		# rule 1 and 2
-				$			# end of string
+			def validate_password(string):
+				rx = re.compile(r'''(?xi)
+				(?=.*\d) 		# test for number, anywhere in string
+				(?=.*[a-z])		# test for letter, anywhere in string
+				{8,}			# test for length (all characters)
 				''')
 
 				m = rx.search(string)
@@ -245,18 +237,70 @@
 				else:
 					print(f'{string} is NOT valid!')
 
-			tests = [
-				"ada", 	# yes
-				"a__", 	# yes
-				"a12345", # yes
-				"a1234567890", # no (rule 1)
-				"1aaaaaaa", # no (rule 3)
-				"-a-", 	# no (rule 3)
-				"a", 	# no
+
+			passwords = [
+				"___a_____1", #yes
+				"___1_____a", #yes
+				"___1_____!", # no (no letter)
+				"_____1a", #no ( Rule 1)
 			]
 
-			for t in tests:
-				validate_name(t)
+			for t in passwords:
+				validate_password(t)
+		</code></pre>
+	</section>
+</section>
+
+<section data-min="5"><h1>HTML cleaning</h1></section>
+<section><h2>HTML cleaning</h2>
+	<section><h3>Description</h3>
+		<dl class="fa">
+			<dt>From an HTML code we want to remove tags, and repeated whitespaces, in order to extract the text only.</dt>
+			<pre><code rel="Python" class="python">
+				html = '''<div class="ac-head">
+					<button class="btn btn-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+						<span>
+						02                          </span>
+					<div>Променливи в Питон. (семестър 1)  (12.03.2020 в 18:30 ч.)</div>
+					<div style="font-size:14px;">Модул: Основи на Питон, Продължителност: <b>3 учебни часа</b></div>
+					</button>
+					</div>
+				'''
+
+			</code></pre>
+			<dt>Note that we must use the Python's <a href="https://docs.python.org/3/library/re.html#re.sub"><code>re.sub()</code></a> method in order to substitute the matched tags with nothing</dt>
+		</dl>
+	</section>
+	<section><h3>Solution</h3>
+		<pre><code rel="Python" class="python" style="min-height: 100vh;">
+			import re
+
+			def strip_all_tags(html):
+				rx = re.compile(r'(?s)<.+?>')
+				return rx.sub('',html)
+
+			def strip_mult_spaces(data,count):
+				rx = re.compile(r'\s{'+str(count)+',}')
+				return rx.sub('',data)
+
+			html = '''<div class="ac-head">
+						<button class="btn btn-link" data-toggle="collapse" data-target="#collapse2"
+						aria-expanded="true" aria-controls="collapse2">
+							<span>
+							02                          </span>
+						<div>Променливи в Питон. (семестър 1)  (12.03.2020 в 18:30 ч.)</div>
+						<div style="font-size:14px;">Модул: Основи на Питон, Продължителност: <b>3 учебни часа</b></div>
+						</button>
+					</div>
+			'''
+
+			data = strip_all_tags(html)
+			print('\n', '~'*10, 'after stripped tags', '~'*10)
+			print(data)
+
+			data_cleaned=strip_mult_spaces(data,3)
+			print('\n', '~'*10,'after space cleaning', '~'*10)
+			print(data_cleaned)
 		</code></pre>
 	</section>
 </section>
@@ -287,7 +331,7 @@
  -->
 
 
-<section data-min="5"><h1>Resources</h1></section>
+<!-- <section data-min="5"><h1>Resources</h1></section>
 <section>
 	<section><h3>Video</h3>
 		<p>Reg(exp){2}lained/: Demystifying Regular Expressions by Lea Verou</p>
@@ -299,7 +343,7 @@
 			<dt><a href="https://regex101.com/">regex101.com - Online regex tester and debugger: PHP, PCRE, Python, Golang ...</a></dt>
 		</dl>
 	</section>
-</section>
+</section> -->
 
 
 
