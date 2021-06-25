@@ -1,0 +1,23 @@
+[
+	{
+	  "date": "2021-05-27 21:43:13.069922",
+	  "user": "vladimir",
+	  "ordered_parts": "BRAKE DISC",
+	  "total_costs": 65.5,
+	  "profit": 19.619999999999997
+	},
+	{
+	  "date": "2021-05-27 21:44:04.966025",
+	  "user": "dimitar",
+	  "ordered_parts": "BRAKE DISC,FRONT BRAKE PADS SET,CRANKSHAFT POSITION SENSOR",
+	  "total_costs": 285.36,
+	  "profit": 90.00999999999999
+	},
+	{
+	  "date": "2021-05-27 21:50:39.212503",
+	  "user": "vladimir",
+	  "ordered_parts": "SPARK PLUG",
+	  "total_costs": 27.2,
+	  "profit": 13.639999999999999
+	}
+  ]

@@ -1,0 +1,92 @@
+[
+	{
+	  "role": "admin",
+	  "first_name": "dimitar",
+	  "last_name": "hristov",
+	  "email": "d@abv.bg",
+	  "phone_number": "0884156033",
+	  "password":  "1234",
+	  "created": "2021-05-24 21:30:37.397451"
+	},
+	{
+	  "role": "user",
+	  "first_name": "vladimir",
+	  "last_name": "hristov",
+	  "email": "v@mail.bg",
+	  "phone_number": 8888889999,
+	  "password":  "2222",
+	  "created": "2021-05-24 21:38:40.624541"
+	},
+	{
+	  "role": "admin",
+	  "first_name": "sonya",
+	  "last_name": "hristova",
+	  "email": "sss@abv.bg",
+	  "phone_number": 122222,
+	  "password":  "666",
+	  "created": "2021-05-24 21:42:55.790872"
+	},
+	{
+	  "role": "user",
+	  "first_name": "ivan",
+	  "last_name": "simeonov",
+	  "email": "i@abv.bg",
+	  "phone_number": 4569876321,
+	  "password":  "6395",
+	  "created": "2021-05-24 21:44:59.797622"
+	},
+	{
+	  "role": "user",
+	  "first_name": "ilia",
+	  "last_name": "petkov",
+	  "email": "iiiid@abv.bg",
+	  "phone_number": "0888888888",
+	  "password":  "5558",
+	  "created": "2021-06-14 13:32:11.157105"
+	},
+	{
+	  "role": "user",
+	  "first_name": "petranka",
+	  "last_name": "pavlova",
+	  "email": "aaa@abv.bg",
+	  "phone_number": "123365874532.",
+	  "password":  "9698",
+	  "created": "2021-06-14 10:35:50.143717"
+	},
+	{
+	  "role": "user",
+	  "first_name": "lop",
+	  "last_name": "hop",
+	  "email": "kiro@awe.com",
+	  "phone_number": 458955,
+	  "password":  "4785",
+	  "created": "14/06/2021"
+	},
+	{
+	  "role": "user",
+	  "first_name": "mkii",
+	  "last_name": "lnjkbgukn",
+	  "email": "ijbyuikl",
+	  "phone_number": "kkbiubujnlkl",
+	  "password": "ihiohio",
+	  "created": "14.06.2021/Jun/06in"
+	},
+	{
+	  "role": "knkl",
+	  "first_name": "knbiyfyukjl",
+	  "last_name": "byuhvvkuygkhl",
+	  "email": "lkjiugyutcyg",
+	  "phone_number": "huyjkl",
+	  "password": "oinubihujkl;",
+	  "created": "14.06.2021/13/47"
+	},
+	{
+	  "role": "dsad",
+	  "first_name": "ds",
+	  "last_name": "a",
+	  "email": "",
+	  "phone_number": "saf",
+	  "password": "s",
+	  "created": "14.06.2021/13:48:30"
+	}
+]
