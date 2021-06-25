@@ -76,7 +76,7 @@
 <section><h2>Relational DB Model Overview</h2>
 	<section><h3>Definition</h3>
 		<dl class="fa">
-			<dt>A database is a collection of one or more <span class="keyconcept">tables</span>, where each tables is a relation between rows and columns.</dt>
+			<dt>A database is a collection of one or more <span class="keyconcept">tables</span>, where each <span class="note">table is a relation between rows and columns</span>.</dt>
 			<dt>A relation consists of a <span class="keyconcept">relation schema</span> and a <span class="keyconcept">relation instance</span>.</dt>
 			<dt><span class="keyconcept">Relation instance</span> - a table with rows and columns.</dt>
 			<dt><span class="keyconcept">Relation schema</span> - describes the column heads for the table.</dt>
@@ -123,7 +123,7 @@
 			<dt>Commercial:</dt>
 				<dd>Oracle, Microsoft SQL Server, SAP SyBase</dd>
 			<dt>Free (under GPL)</dt>
-				<dd>MySQL/MariDB, PostgreSQL, SQLite</dd>
+				<dd>MySQL/MariaDB, PostgreSQL, SQLite</dd>
 		</dl>
 	</section>
 </section>
@@ -321,7 +321,24 @@
 
 <section><h1>Manage databases</h1></section>
 <section id="Manage_databases"><h2>Manage databases</h2>
-	<section><h3>Setup Test Databas</h3>
+	<section><h3>List/Create/Delete/ databases</h3>
+		<pre><code rel="mysql" class="mysql">
+			### List all databases
+			##  only those databases for which the user have some kind of privilege (or if the user have the global SHOW DATABASES privilege)
+			SHOW DATABASES
+
+			### Create  a database
+			CREATE DATABASE employees;
+
+			### Delete a database
+			DROP DATABASE employees;
+
+			### Selecting a Database
+			##  Before performing any table manipulations, you need to select the database on which they will be performed
+			USE employees;
+		</code></pre>
+	</section>
+	<section><h3>Setup Test Database</h3>
 		<dl class="fa">
 			<dt>Download the test db and load it </dt>
 			<dd><a href="https://github.com/datacharmer/test_db/">Employees Sample Database</a></dd>
@@ -340,42 +357,42 @@
 			# ...
 		</code></pre>
 	</section>
-	<section><h3>List/Create/Delete/ databases</h3>
-		<pre><code rel="mysql" class="mysql">
-			### List all databases
-			##  only those databases for which the user have some kind of privilege (or if the user have the global SHOW DATABASES privilege)
-			SHOW DATABASES
-
-			### Create  a database
-			CREATE DATABASE employees;
-
-			### Delete a database
-			DROP DATABASE employees;
-
-			### Selecting a Database
-			##  Before performing any table manipulations, you need to select the database on which they will be performed
-			USE employees;
+	<section><h3>Export DB to external sql file:</h3>
+		<pre><code rel="Syntax" class="bash">
+			mysqldump -u username -p databasename > filename.sql
 		</code></pre>
+	</section>
+	<section><h3>Reference</h3>
+		<dl class="fa">
+			<dt><a href=""></a></dt>
+		</dl>
 	</section>
 </section>
 
+<section><h1>Manage users</h1></section>
 <section id="Manage_users"><h2>Manage users</h2>
     <section><h3>Create a New User</h3>
-        <pre><code>
+        <pre><code rel="sql" class="mysql"></code>
 			CREATE USER 'employees_db_admin'@'localhost' IDENTIFIED BY '1234';
         </code></pre>
-        <p>If user exists, an error will be thrown.</p>
+        <p>If user exists, an error will be thrown. To prevent this error we can use:</p>
+		<pre><code rel="sql" class="mysql"></code>
+			CREATE USER IF NOT EXISTS 'employees_db_admin'@'localhost' IDENTIFIED BY '1234';
+        </code></pre>
     </section>
 	<section><h3>Show Users</h3>
-		<pre><code rel="mysql" class="bash">
+		<pre><code rel="sql" class="mysql">
 			SELECT user,host FROM mysql.user;
 		</code></pre>
 	</section>
     <section><h3>Delete user</h3>
-        <pre><code>
+        <pre><code rel="sql" class="mysql">
 			DROP USER 'employees_db_admin'@'localhost';
         </code></pre>
-        <p>If user did not exists, an error will be thrown.</p>
+        <p>If user did not exists, an error will be thrown. To prevent this error we can use:</p>
+		<pre><code rel="sql" class="mysql">
+			DROP USER IF EXISTS 'employees_db_admin'@'localhost';
+        </code></pre>
     </section>
     <section><h3>User privileges types</h3>
         <dl class="fa">
@@ -390,30 +407,67 @@
         </dl>
     </section>
     <section><h3>Grant privileges to a user</h3>
-        <code>
+        <pre><code rel="syntax" class="mysql">
 			GRANT [type of permission]
 				ON [database name].[table name]
-				TO ‘[username]’@'host’;</code>
-        <p></p>
-        <pre><code>
+				TO ‘[username]’@'host’;
+		</code></pre>
+		<pre><code rel="sql" class="mysql">
 			GRANT ALL PRIVILEGES ON employees.* TO 'employees_db_admin'@'localhost';
         </code></pre>
     </section>
     <section><h3>Revoke privileges</h3>
+		<pre><code rel="syntax" class="mysql">
+			REVOKE [type of permission]
+				ON [database name].[table name]
+				FROM ‘[username]’@'host’;
+		</code></pre>
         <pre><code>REVOKE [type of permission] ON [database name].[table name] FROM ‘[username]’@‘localhost’;</code></pre>
     </section>
     <section><h3>Reload all the privileges</h3>
         <p>Always be sure to reload all the privileges.</p>
-        <pre><code>
+        <pre><code rel="sql" class="mysql"></code>
 			FLUSH PRIVILEGES;
         </code></pre>
     </section>
+	<section><h3>How to Reset the Root Password</h3>
+		<dl class="fa">
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html">https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html</a></dt>
+		</dl>
+		<p>Reset the Root Password on Ubuntu based linux, step-by-step:</p>
+		<pre><code rel="Terminal" class="bash">
+			# stop mysql service
+			sudo systemctl stop mysql
+
+			# if you don't have '/var/run/mysqld' create it with proper user wrights:
+			sudo mkdir -p /var/run/mysqld
+			sudo chown mysql:mysql /var/run/mysqld
+
+			# start the server, passwordless
+			sudo /usr/sbin/mysqld --skip-grant-tables --skip-networking &
+
+			# connect as root without password:
+			mysql -u root
+
+
+			# now in mysql shell, run next commands
+			# do not forget to change the password '1234' with yours
+			> FLUSH PRIVILEGES;
+			> USE mysql;
+			> ALTER USER 'root'@'localhost' IDENTIFIED BY '1234';
+			> quit
+		</code></pre>
+	</section>
+	<section><h3>Reference</h3>
+		<dl class="fa">
+			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/account-management-statements.html">Account management statements @dev.mysql.com</a></dt>
+		</dl>
+	</section>
 </section>
 
-
 <section><h1>Manage Tables</h1></section>
-<section id="create_table"><h2>Create table</h2>
-    <section><h3>The minimal syntax</h3>
+<section id="manageTables"><h2>Manage Tables</h2>
+    <section><h3>CREATE TABLE - minimal syntax</h3>
         <pre><code>
 			CREATE TABLE table_name(
 				column_name1 data_type,
@@ -423,7 +477,7 @@
         </code></pre>
         <p>Column names should not be MySQL <a href="https://dev.mysql.com/doc/refman/5.6/en/keywords.html" class="note">reserved words</a>. If you really want to use them (which is a <span class="note">bad practice</span>), you have to put them in backticks(``)</p>
     </section>
-    <section><h3>Create table - example</h3>
+    <section><h3>CREATE TABLE - example</h3>
         <pre><code class="sql">
 			CREATE TABLE artist (
 				artist_id SMALLINT(5) NOT NULL DEFAULT 0,
@@ -457,118 +511,74 @@
         </code></pre>
         <p>This allows us to see the create statement that MySQL engine had used. It shows even the default options, which we did not state explicitly.</p>
     </section>
+	<section><h3>SHOW TABLES</h3>
+		<dl class="fa">
+			<dt>We can list all tables in a DB with:</dt>
+		</dl>
+		<pre><code>
+			SHOW TABLES;
+		</code></pre>
+		<p>Results in:</p>
+		<pre><code>
+			+----------------------+
+			| Tables_in_music_db   |
+			|----------------------|
+			| artist               |
+			+----------------------+
+		</code></pre>
+	</section>
+	<section><h3>DESC table</h3>
+		<dl class="fa">
+			<dt>To show the structure of a table: </dt>
+		</dl>
+			<pre><code>
+				DESC artist;
+			</code></pre>
+			<p>Results in:</p>
+			<pre><code>
+				+-----------+-------------+--------+-------+-----------+---------+
+				| Field     | Type        | Null   | Key   |   Default | Extra   |
+				|-----------+-------------+--------+-------+-----------+---------|
+				| artist_id | smallint(5) | NO     | PRI   |         0 |         |
+				| fname     | varchar(20) | YES    |       |    &lt;null&gt; |         |
+				| lname     | varchar(20) | NO     |       |    &lt;null&gt; |         |
+				+-----------+-------------+--------+-------+-----------+---------+
+			</code></pre>
+		</section>
+	<section><h3>DROP TABLE</h3>
+		<dl class="fa">
+			<dt>To delete a table:</dt>
+		</dl>
+		<pre><code>
+			DROP TABLE artist;
+		</code></pre>
+		<p>If table do not exists, an error is thrown:</p>
+		<pre><code>
+			ERROR 1051 (42S02): Unknown table 'music_db.artist'
+		</code></pre>
+	</section>
 </section>
-<section><h2>List All Tables</h2>
-    <pre><code>
-		SHOW TABLES;
-    </code></pre>
-    <p>Results in:</p>
-    <pre><code>
-		+----------------------+
-		| Tables_in_music_db   |
-		|----------------------|
-		| artist               |
-		+----------------------+
-    </code></pre>
-</section>
-<section><h2>Show Table Structure</h2>
-        <pre><code>
-			DESC artist;
-        </code></pre>
-        <p>Results in:</p>
-        <pre><code>
-			+-----------+-------------+--------+-------+-----------+---------+
-			| Field     | Type        | Null   | Key   |   Default | Extra   |
-			|-----------+-------------+--------+-------+-----------+---------|
-			| artist_id | smallint(5) | NO     | PRI   |         0 |         |
-			| fname     | varchar(20) | YES    |       |    &lt;null&gt; |         |
-			| lname     | varchar(20) | NO     |       |    &lt;null&gt; |         |
-			+-----------+-------------+--------+-------+-----------+---------+
-        </code></pre>
-    </section>
-<section><h2>Delete a Table</h2>
-    <pre><code>
-		DROP TABLE artist;
-    </code></pre>
-    <p>If table do not exists, an error is thrown:</p>
-    <pre><code>
-		ERROR 1051 (42S02): Unknown table 'music_db.artist'
-    </code></pre>
-</section>
+
+<section><h1>Alter tables</h1></section>
 <section><h2>Alter tables</h2>
     <section><h3>Add column</h3>
-        <pre><code>
+        <pre><code rel="Syntax" class="sql">
 			ALTER TABLE table_name
-			ADD new_column_name column_definition
-			[ FIRST | AFTER column_name ]; # optional
+				ADD new_column_name column_definition
+				[ FIRST | AFTER column_name ]; # optional
         </code></pre>
-        <pre><code>
+        <pre><code rel="SQL" class="sql">
 			ALTER TABLE artist
 				ADD birth_date TINYINT
 				AFTER lname;
         </code></pre>
     </section>
     <section><h3>Remove column</h3>
-        <pre><code>
+        <pre><code rel="SQL" class="sql">
 			ALTER TABLE artist DROP birth_date;
         </code></pre>
     </section>
-	<section><h3>Export DB to external sql file:</h3>
-		<pre><code rel="Syntax" class="bash">
-			mysqldump -u username -p databasename > filename.sql
-		</code></pre>
-	</section>
 </section>
-<section><h2>Exercises</h2>
-    <section><h3>Create DB schema dumped in external file</h3>
-        <dl class="fa">
-        <dt>Create a simple DB: music_db, using the SQL statements provided in the file <a href="code/music_db_schema.sql">music_db_schema.sql</a>.</dt>
-            <dd>You can use the MySQL Workbench to execute the statements by: <code>'File' => 'Run SQL script...' and selecting the 'music_db.sql' file you have downloaded</code>.
-            </dd>
-        </dl>
-    </section>
-    <section><h3>Create table as music_db_admin</h3>
-        <dl class="fa">
-            <dt>Reconnect to the <span class="note">music_db</span> as <span class="note">music_db_admin</span> user.</dt>
-            <dt>Create new table <span class="note">producer</span> with following scheme:</dt>
-            <pre><code>
-+---------------+-------------+------+-----+---------+
-| Field         | Type        | Null | Key | Default |
-+---------------+-------------+------+-----+---------+
-| producer_id   | smallint(5) | NO   | PRI | 0       |
-| artist_id     | smallint(5) | NO   | PRI | 0       |
-| album_id      | smallint(5) | NO   | PRI | 0       |
-| fname         | varchar(20) | YES  |     | NULL    |
-| lname         | varchar(20) | NO   |     | NULL    |
-| current_label | varchar(20) | YES  |     | NULL    |
-+---------------+-------------+------+-----+---------+
-            </code></pre>
-        </dl>
-    </section>
-</section>
-<section id="load_external_sql"><h2>Executing SQL Statements stored in external file</h2>
-    <section><h3>While connecting with MySQL client</h3>
-        <pre><code>
-mysql -u user_name -p [db_name] < full_file_name
-        </code></pre>
-        <ul>
-            <li><span class="note">[db_name]</span> is optional (if not set, you'll have to state 'use db_name' later)</li>
-            <li><span class="note">text_file</span> is an ASCII file, which contains SQL statements</li>
-        </ul>
-    </section>
-    <section><h3>In MySQL client</h3>
-        <pre><code>
-mysql> source full_file_name
-        </code></pre>
-    </section>
-    <section><h3>Using MySQL Workbench</h3>
-        <ul>
-            <li><p>Go to <code class="note">'File'</code>=><code class="note">'Run SQL script...'</code> and browse to select the file, which contains the SQL statements you want to execute.</p></li>
-            <li><p>You can do the same by <code class="note">'File'</code>=><code class="note">'Open SQL script...'</code> and execute the statements in Workbench editor.</p></li>
-        </ul>
-    </section>
-</section>
-
 
 
 
