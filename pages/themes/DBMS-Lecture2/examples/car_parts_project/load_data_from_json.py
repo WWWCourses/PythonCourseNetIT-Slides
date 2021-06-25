@@ -316,10 +316,11 @@ orders = [
 ]
 
 
-# for cp in car_parts:
-# 	cp['__auto_convert'] = True
-# 	obj = CarParts(**cp)
-# 	save_doc(obj)
+# Load data
+for cp in car_parts:
+	cp['__auto_convert'] = True
+	obj = CarParts(**cp)
+	save_doc(obj)
 
 for u in users:
 	u['__auto_convert'] = True
