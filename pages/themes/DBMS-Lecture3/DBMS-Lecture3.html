@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>DBMS-Lecture3</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Relational DBMS Overview. MySQL intro.</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+<section><h1>Relational DB Model Overview</h1></section>
+<section><h2>Relational DB Model Overview</h2>
+	<section><h3>Definition</h3>
+		<dl class="fa">
+			<dt>A database is a collection of one or more <span class="keyconcept">tables</span>, where each tables is a relation between rows and columns.</dt>
+			<dt>A relation consists of a <span class="keyconcept">relation schema</span> and a <span class="keyconcept">relation instance</span>.</dt>
+			<dt><span class="keyconcept">Relation instance</span> - a table with rows and columns.</dt>
+			<dt><span class="keyconcept">Relation schema</span> - describes the column heads for the table.</dt>
+		</dl>
+	</section>
+	<section><h3>Key Concepts</h3>
+		<dl class="fa">
+			<dt><span class="keyconcept">Relational DataBase</span></dt>
+				<dd>A collection of <span class="keyconcept">tables</span>, with related data.</dd>
+			<dt><span class="keyconcept">Tables</span> - represents a <span class="keyconcept">Relation</span>.</dt>
+				<dd><span class="keyconcept">Table</span> and <span class="keyconcept">relations</span> are synonymous in DB context.</dd>
+				<dd class="note">A <span class="keyconcept">relation</span> is different from <span class="keyconcept">relationship between tables</span>.</dd>
+				<dd>A <span class="keyconcept">table</span> consists of <span class="keyconcept">rows</span> and <span class="keyconcept">columns</span>, like a simple spreadsheet.</dd>
+				<dd>Each <span class="keyconcept">table</span> is a set of <span class="note">unique</span> <span class="keyconcept">rows</span>.</dd>
+			<dt><span class="keyconcept">Row</span> (Tuple, Record)</dt>
+				<dd>Represents a collection of related values (characteristic) of an entity.</dd>
+			<dt><span class="keyconcept">Column</span> (Field, Attribute )</dt>
+				<dd>One column contains data of one and the same type, as defined in schema.</dd>
+		</dl>
+	</section>
+	<section><h3>Key Concepts</h3>
+		<a href="./images/RDB_BasicConcepts.png"><img src="./images/RDB_BasicConcepts.png" alt="RDB_BasicConcepts.png"></a>
+	</section>
+	<section><h3>Tables Relationships</h3>
+		<dl class="fa">
+			<dt class="keyconcept">One to one relationship</dt>
+				<dd>Example: Customer -> Address</dd>
+			<dt class="keyconcept">One to Many/Many to One relationship</dt>
+				<dd>Example: Customer -> Orders</dd>
+			<dt class="keyconcept">Many to Many relationship</dt>
+				<dd>Examples: Orders -> Items</dd>
+			<dt class="keyconcept">Self Referencing relationship</dt>
+				<dd>Customer -> Customer (like in referral program)</dd>
+		</dl>
+	</section>
+	<section><h3>ExampleDatabase</h3>
+		<img src="images/ExampleDatabase_ShowTables.png">
+	</section>
+	<section><h3>Example Table</h3>
+		<img src="images/ExampleDatabase_DescTable.png">
+	</section>
+	<section><h3>Popular Relationship Database Management System (RDBMS)</h3>
+		<dl class="fa">
+			<dt>Commercial:</dt>
+				<dd>Oracle, Microsoft SQL Server, SAP SyBase</dd>
+			<dt>Free (under GPL)</dt>
+				<dd>MySQL/MariDB, PostgreSQL, SQLite</dd>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5"><h1>RDBMS - Basic Concepts</h1></section>
+<section><h2>RDBMS - Basic Concepts</h2>
+	<section><h3>Data Definition Language (DDl)</h3>
+		<dl class="fa">
+			<dt>DDL helps you to define the <span class="note">database structure or schema</span></dt>
+			<dt>Some common DDL Commands are</dt>
+			<dd>CREATE, ALTER, DROP, TRUNCATE, etc.</dd>
+			<dt>Changes are saved in the database immediately and permanently.</dt>
+		</dl>
+	</section>
+	<section><h3>Data Manipulation Language (DML)</h3>
+		<dl class="fa">
+			<dt>The DML is the programming language used to express operations that interrogate or update <span class="note">the data</span> in the database</dt>
+			<dt>DML commands are used to manage the data stored in the database, like</dt>
+			<dd>INSERT, UPDATE, DELETE, MERGE, CALL, etc.</dd>
+		</dl>
+	</section>
+</section>
+
+<section><h1>SQL Introduction</h1></section>
+<section><h2>SQL Introduction</h2>
+	<section><h3>What is SQL?</h3>
+	<dl class="fa">
+		<dt><abbr>SQL</abbr><dfn id="SQL"><span>Structured</span><span>Query</span><span>Language</span></dfn></dt>
+		<dt>The standard language for relational database management systems.</dt>
+		<dt>Not a procedural language(C, Java etc.).</dt>
+		<dt>A declarative language!</dt>
+			<dd>Tell with SQL <b>what</b> you want instead of telling the system how to get it.</dd>
+		<dt>Case insensitive!</dt>
+	</dl>
+	</section>
+	<section><h3>SQL statements</h3>
+	<dl class="fa">
+		<dt>A set of commands you use to <span class="keyconcept">query</span> or <span class="keyconcept">manipulate</span> the DB.</dt>
+		<dt>Some RDBMS require a semicolon at the end of each SQL statement.</dt>
+	</dl>
+	</section>
+	<section><h3>Example SQL commands</h3>
+		<p><span class="keyconcept">SELECT</span>, <span class="keyconcept">UPDATE</span>, <span class="keyconcept">DELETE</span></p>
+		<p><span class="keyconcept">INSERT INTO</span>, <span class="keyconcept">CREATE DATABASE</span>, <span class="keyconcept">ALTER DATABASE</span></p>
+		<p><span class="keyconcept">CREATE TABLE</span>, <span class="keyconcept">ALTER TABLE</span>, <span class="keyconcept">DROP TABLE</span></p>
+		<p><span class="keyconcept">CREATE INDEX</span>, <span class="keyconcept">DROP INDEX</span></p>
+	</section>
+</section>
+
+<section data-min="5"><h1>Setup MySQL</h1></section>
+<section><h2>Setup MySQL</h2>
+	<section><h3>Install on Windows</h3>
+		<dl class="fa">
+			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html">Installing MySQL on Microsoft Windows @https://dev.mysql.com/</a></dt>
+		</dl>
+	</section>
+	<section><h3>Install on MacOS</h3>
+		<dl class="fa">
+			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/macos-installation.html">Installing MySQL on MacOS @https://dev.mysql.com/</a></dt>
+		</dl>
+	</section>
+	<section><h3>Install on Linux</h3>
+		<dl class="fa">
+			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/binary-installation.html">Installing MySQL on Linux @https://dev.mysql.com/</a></dt>
+			<dt>APT repos for all mysql-apt-config versions: <a href="https://repo.mysql.com/apt/ubuntu/pool/mysql-apt-config/m/mysql-apt-config/">https://repo.mysql.com/apt/ubuntu/pool/mysql-apt-config/m/mysql-apt-config/</a></dt>
+			<dt>If you have problems on old linux version, you can try installing MariaDB</dt>
+			<dd><a href="https://downloads.mariadb.org/mariadb/repositories/#mirror=mva">https://downloads.mariadb.org/mariadb/repositories</a></dd>
+			<dt>Check the instalation:</dt>
+			<pre><code rel="Terminal" class="bash">
+				systemctl status mysql
+
+				# ● mariadb.service - MariaDB 10.2.38 database server
+				# 	Loaded: loaded (/lib/systemd/system/mariadb.service; enabled; vendor preset: enabled)
+				# Drop-In: /etc/systemd/system/mariadb.service.d
+				# 									└─migrated-from-my.cnf-settings.conf
+
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>MySQL Workbench</h3>
+		<dl class="fa">
+			<dt>MySQL Workbench is a unified visual tool for database architects, developers, and DBAs.</dt>
+			<dt>Official site: <a href="https://www.mysql.com/products/workbench/">www.mysql.com/products/workbench</a></dt>
+			<dt>If after installation of mysql server you don't have  MySQL Workbench, you can download it from: </dt>
+			<dd><a href="http://dev.mysql.com/downloads/workbench/">Download MySQL Workbench</a></dd>
+		</dl>
+    </section>
+    <section><h3>mycli (optional)</h3>
+        <p><a href="https://github.com/dbcli/mycli">mycli</a>: A Terminal Client for MySQL with AutoCompletion and Syntax Highlighting.</p>
+        <p><a href=""><img src="https://github.com/dbcli/mycli/raw/master/screenshots/tables.png"></a></p>
+        <span class="note">Requires python</span>
+    </section>
+</section>
+
+<section data-min="50"><h1>Test the instalations</h1></section>
+<section><h2>Test the instalations</h2>
+	<section><h3>MySQL Client</h3>
+        <pre><code rel="Terminal" class="bash" style="min-height: 90vh;">
+			### the client:
+			mysql --version
+
+			# mysql  Ver 14.14 Distrib 5.7.11, for Linux (x86_64) using  EditLine wrapper
+
+			### the server:
+			mysqld --version
+
+			# mysqld  Ver 5.7.11 for Linux on x86_64 (MySQL Community Server (GPL))
+
+
+			### the workbench
+			mysql-workbench --version
+
+			# Found /usr/lib/x86_64-linux-gnu/libproj.so.9
+			# MySQL Workbench CE (GPL) 6.3.10 CE build 12092614
+		</code></pre>
+    </section>
+
+</section>
+
+<section data-min="5"><h1>Start/stop MySQL Server</h1></section>
+<section><h2>Start/stop MySQL Server</h2>
+	<section><h3>Windows</h3>
+		<dl class="fa">
+			<dt>Open Run Window by Winkey + R</dt>
+			<dt>Type services.msc</dt>
+			<dt>Search MySQL service based on version installed.</dt>
+			<dt>Click stop, start or restart the service option.</dt>
+			<dt>Or you can start/stop MySQL from the command prompt:</dt>
+			<pre><code rel="Terminal" class="bash">
+				C:\> "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld"
+				C:\> "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqladmin" -u root shutdown
+			</code></pre>
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/windows-start-service.html">Starting MySQL as a Windows Service</a></dt>
+		</dl>
+	</section>
+	<section><h3>Linux</h3>
+		<pre><code rel="Terminal" class="bash">
+			service mysql start
+			service mysql stop
+			service mysql restart
+		</code></pre>
+		<dl class="fa">
+			<dt>Or if you have the old init.d</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			/etc/init.d/mysqld start
+			/etc/init.d/mysqld stop
+			/etc/init.d/mysqld restart
+		</code></pre>
+	</section>
+</section>
+
+
+<section data-min="5"><h1>Connect to MySQL Server</h1></section>
+<section><h2>Connect to MySQL Server</h2>
+	<section><h3>MySQL client</h3>
+		<pre><code rel="Terminal" class="bash">
+			# connect to local mysql, using the root account:
+			mysql -u root -p
+
+			# Enter password:
+			# ...
+
+			# Welcome to the MariaDB monitor.  Commands end with ; or \g.
+			# Your MariaDB connection id is 14
+			# Server version: 10.2.38-MariaDB-10.2.38+maria~xenial-log mariadb.org binary distribution
+
+			# Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+			# Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+			# MariaDB [(none)]>
+		</code></pre>
+	</section>
+
+	<section><h3>MySQL server - where my DB are stored?</h3>
+		<dl class="fa">
+			<dt>All MySQL databases are stored in directories inside a MySQL DATADIR directory.</dt>
+			<dt>E.g. myExampleDB’s files would be stored inside ‘$DATADIR/myExampleDB’ directory.</dt>
+			<dt>MySQl DATADIR is specified in the config file, but can be easilly retrieved by: </dt>
+		</dl>
+		<pre><code rel="mysql cli" class="bash">
+			mariadb root@localhost:(none)> select @@datadir
+			+-----------------+
+			| @@datadir       |
+			|-----------------|
+			| /var/lib/mysql/ |
+			+-----------------+
+			1 row in set
+			Time: 0.002s
+
+		</code></pre>
+	</section>
+</section>
+
+<section><h1>Manage databases</h1></section>
+<section id="Manage_databases"><h2>Manage databases</h2>
+	<section><h3>Setup Test Databas</h3>
+		<dl class="fa">
+			<dt>Download the test db and load it </dt>
+			<dd><a href="https://github.com/datacharmer/test_db/">Employees Sample Database</a></dd>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			git clone https://github.com/datacharmer/test_db/
+
+			cd test.db
+
+			mysql -u root -p < employees.sql
+
+			# Enter password:
+			# INFO
+			# CREATING DATABASE STRUCTURE
+			# INFO
+			# ...
+		</code></pre>
+	</section>
+	<section><h3>List/Create/Delete/ databases</h3>
+		<pre><code rel="mysql" class="mysql">
+			### List all databases
+			##  only those databases for which the user have some kind of privilege (or if the user have the global SHOW DATABASES privilege)
+			SHOW DATABASES
+
+			### Create  a database
+			CREATE DATABASE employees;
+
+			### Delete a database
+			DROP DATABASE employees;
+
+			### Selecting a Database
+			##  Before performing any table manipulations, you need to select the database on which they will be performed
+			USE employees;
+		</code></pre>
+	</section>
+</section>
+
+<section id="Manage_users"><h2>Manage users</h2>
+    <section><h3>Create a New User</h3>
+        <pre><code>
+			CREATE USER 'employees_db_admin'@'localhost' IDENTIFIED BY '1234';
+        </code></pre>
+        <p>If user exists, an error will be thrown.</p>
+    </section>
+	<section><h3>Show Users</h3>
+		<pre><code rel="mysql" class="bash">
+			SELECT user,host FROM mysql.user;
+		</code></pre>
+	</section>
+    <section><h3>Delete user</h3>
+        <pre><code>
+			DROP USER 'employees_db_admin'@'localhost';
+        </code></pre>
+        <p>If user did not exists, an error will be thrown.</p>
+    </section>
+    <section><h3>User privileges types</h3>
+        <dl class="fa">
+            <dt>ALL PRIVILEGES- this would allow a MySQL users all access to a designated database (or if no database is selected, across the system)</dt>
+            <dt>CREATE- allows them to create new tables or databases</dt>
+            <dt>DROP- allows them to them to delete tables or databases</dt>
+            <dt>DELETE- allows them to delete rows from tables</dt>
+            <dt>INSERT- allows them to insert rows into tables</dt>
+            <dt>SELECT- allows them to use the Select command to read through databases</dt>
+            <dt>UPDATE- allow them to update table rows</dt>
+            <dt>GRANT OPTION- allows them to grant or remove other users' privileges</dt>
+        </dl>
+    </section>
+    <section><h3>Grant privileges to a user</h3>
+        <code>
+			GRANT [type of permission]
+				ON [database name].[table name]
+				TO ‘[username]’@'host’;</code>
+        <p></p>
+        <pre><code>
+			GRANT ALL PRIVILEGES ON employees.* TO 'employees_db_admin'@'localhost';
+        </code></pre>
+    </section>
+    <section><h3>Revoke privileges</h3>
+        <pre><code>REVOKE [type of permission] ON [database name].[table name] FROM ‘[username]’@‘localhost’;</code></pre>
+    </section>
+    <section><h3>Reload all the privileges</h3>
+        <p>Always be sure to reload all the privileges.</p>
+        <pre><code>
+			FLUSH PRIVILEGES;
+        </code></pre>
+    </section>
+</section>
+
+
+<section><h1>Manage Tables</h1></section>
+<section id="create_table"><h2>Create table</h2>
+    <section><h3>The minimal syntax</h3>
+        <pre><code>
+			CREATE TABLE table_name(
+				column_name1 data_type,
+				column_name2 data_type,
+				....
+			);
+        </code></pre>
+        <p>Column names should not be MySQL <a href="https://dev.mysql.com/doc/refman/5.6/en/keywords.html" class="note">reserved words</a>. If you really want to use them (which is a <span class="note">bad practice</span>), you have to put them in backticks(``)</p>
+    </section>
+    <section><h3>Create table - example</h3>
+        <pre><code class="sql">
+			CREATE TABLE artist (
+				artist_id SMALLINT(5) NOT NULL DEFAULT 0,
+				fname VARCHAR(20) DEFAULT NULL,
+				lname VARCHAR(20) NOT NULL,
+				PRIMARY KEY  (artist_id)
+			);
+        </code></pre>
+        <p>Results in:</p>
+        <pre><code class="basic">
+			Query OK, 0 rows affected
+			Time: 0.280s
+        </code></pre>
+        <p>If table exists an error will be thrown!</p>
+    </section>
+    <section><h3>Show CREATE TABLE</h3>
+        <pre><code class="bash">
+			# '\G' modifier is used instead of ';' to display wide results in vertical form
+			show CREATE TABLE artist\G
+        </code></pre>
+        <p>Results in:</p>
+        <pre><code>
+			***************************[ 1. row ]***************************
+			Table        | artist
+			Create Table | CREATE TABLE `artist` (
+			`artist_id` smallint(5) NOT NULL DEFAULT '0',
+			`fname` varchar(20) DEFAULT NULL,
+			`lname` varchar(20) NOT NULL,
+			PRIMARY KEY (`artist_id`)
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1
+        </code></pre>
+        <p>This allows us to see the create statement that MySQL engine had used. It shows even the default options, which we did not state explicitly.</p>
+    </section>
+</section>
+<section><h2>List All Tables</h2>
+    <pre><code>
+		SHOW TABLES;
+    </code></pre>
+    <p>Results in:</p>
+    <pre><code>
+		+----------------------+
+		| Tables_in_music_db   |
+		|----------------------|
+		| artist               |
+		+----------------------+
+    </code></pre>
+</section>
+<section><h2>Show Table Structure</h2>
+        <pre><code>
+			DESC artist;
+        </code></pre>
+        <p>Results in:</p>
+        <pre><code>
+			+-----------+-------------+--------+-------+-----------+---------+
+			| Field     | Type        | Null   | Key   |   Default | Extra   |
+			|-----------+-------------+--------+-------+-----------+---------|
+			| artist_id | smallint(5) | NO     | PRI   |         0 |         |
+			| fname     | varchar(20) | YES    |       |    &lt;null&gt; |         |
+			| lname     | varchar(20) | NO     |       |    &lt;null&gt; |         |
+			+-----------+-------------+--------+-------+-----------+---------+
+        </code></pre>
+    </section>
+<section><h2>Delete a Table</h2>
+    <pre><code>
+		DROP TABLE artist;
+    </code></pre>
+    <p>If table do not exists, an error is thrown:</p>
+    <pre><code>
+		ERROR 1051 (42S02): Unknown table 'music_db.artist'
+    </code></pre>
+</section>
+<section><h2>Alter tables</h2>
+    <section><h3>Add column</h3>
+        <pre><code>
+			ALTER TABLE table_name
+			ADD new_column_name column_definition
+			[ FIRST | AFTER column_name ]; # optional
+        </code></pre>
+        <pre><code>
+			ALTER TABLE artist
+				ADD birth_date TINYINT
+				AFTER lname;
+        </code></pre>
+    </section>
+    <section><h3>Remove column</h3>
+        <pre><code>
+			ALTER TABLE artist DROP birth_date;
+        </code></pre>
+    </section>
+	<section><h3>Export DB to external sql file:</h3>
+		<pre><code rel="Syntax" class="bash">
+			mysqldump -u username -p databasename > filename.sql
+		</code></pre>
+	</section>
+</section>
+<section><h2>Exercises</h2>
+    <section><h3>Create DB schema dumped in external file</h3>
+        <dl class="fa">
+        <dt>Create a simple DB: music_db, using the SQL statements provided in the file <a href="code/music_db_schema.sql">music_db_schema.sql</a>.</dt>
+            <dd>You can use the MySQL Workbench to execute the statements by: <code>'File' => 'Run SQL script...' and selecting the 'music_db.sql' file you have downloaded</code>.
+            </dd>
+        </dl>
+    </section>
+    <section><h3>Create table as music_db_admin</h3>
+        <dl class="fa">
+            <dt>Reconnect to the <span class="note">music_db</span> as <span class="note">music_db_admin</span> user.</dt>
+            <dt>Create new table <span class="note">producer</span> with following scheme:</dt>
+            <pre><code>
++---------------+-------------+------+-----+---------+
+| Field         | Type        | Null | Key | Default |
++---------------+-------------+------+-----+---------+
+| producer_id   | smallint(5) | NO   | PRI | 0       |
+| artist_id     | smallint(5) | NO   | PRI | 0       |
+| album_id      | smallint(5) | NO   | PRI | 0       |
+| fname         | varchar(20) | YES  |     | NULL    |
+| lname         | varchar(20) | NO   |     | NULL    |
+| current_label | varchar(20) | YES  |     | NULL    |
++---------------+-------------+------+-----+---------+
+            </code></pre>
+        </dl>
+    </section>
+</section>
+<section id="load_external_sql"><h2>Executing SQL Statements stored in external file</h2>
+    <section><h3>While connecting with MySQL client</h3>
+        <pre><code>
+mysql -u user_name -p [db_name] < full_file_name
+        </code></pre>
+        <ul>
+            <li><span class="note">[db_name]</span> is optional (if not set, you'll have to state 'use db_name' later)</li>
+            <li><span class="note">text_file</span> is an ASCII file, which contains SQL statements</li>
+        </ul>
+    </section>
+    <section><h3>In MySQL client</h3>
+        <pre><code>
+mysql> source full_file_name
+        </code></pre>
+    </section>
+    <section><h3>Using MySQL Workbench</h3>
+        <ul>
+            <li><p>Go to <code class="note">'File'</code>=><code class="note">'Run SQL script...'</code> and browse to select the file, which contains the SQL statements you want to execute.</p></li>
+            <li><p>You can do the same by <code class="note">'File'</code>=><code class="note">'Open SQL script...'</code> and execute the statements in Workbench editor.</p></li>
+        </ul>
+    </section>
+</section>
+
+
+
+
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section> -->
+
+<!-- <section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: DB-Lecture2">ivawebcourses@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
