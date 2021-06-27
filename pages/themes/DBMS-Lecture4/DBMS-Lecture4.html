@@ -1,0 +1,1140 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>DBMS-Lecture4</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>MySQl - goind deep</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+
+<section data-min="5"><h1>MySQL Storage Engines</h1></section>
+<section><h2>MySQL Storage Engines</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>Storage engines are MySQL components that handle the SQL operations for different table types.</dt>
+			<dt>InnoDB is the default and most general-purpose storage engine, and Oracle recommends using it for tables except for specialized use cases.</dt>
+			<dt>In MySQL 8.0 the The CREATE TABLE statement created InnoDB tables by default.</dt>
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html">storage-engines</a></dt>
+		</dl>
+		<pre><code rel="mysql" class="sql">
+			SHOW ENGINES
+		</code></pre>
+		<pre><code rel="Output" class="bash">
+			+--------------------+-----------+----------------------------------------------
+			| Engine             | Support   | Comment
+			|--------------------+-----------+----------------------------------------------
+			| CSV                | YES       | Stores tables as CSV files
+			| MRG_MyISAM         | YES       | Collection of identical MyISAM tables
+			| SEQUENCE           | YES       | Generated tables filled with sequential value
+			| MyISAM             | YES       | Non-transactional engine with good performanc
+			| MEMORY             | YES       | Hash based, stored in memory, useful for temp
+			| PERFORMANCE_SCHEMA | YES       | Performance Schema
+			| Aria               | YES       | Crash-safe tables with MyISAM heritage
+			| InnoDB             | DEFAULT   | Supports transactions, row-level locking, for
+			+--------------------+-----------+----------------------------------------------
+		</code></pre>
+	</section>
+	<section><h3>What is a Transaction?</h3>
+		<dl class="fa">
+			<dt>A transaction is a logical unit of work that contains one or more SQL statements.</dt>
+			<dt>A transaction is an atomic unit.</dt>
+			<dt>The effects of all the SQL statements in a transaction can be <span class="note">either all committed</span> (applied to the database) <span class="note">or all rolled back</span> (undone from the database).</dt>
+			<dt>Reference: <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14220/transact.htm#i1666">Introduction to Transactions</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="1"><h1>MySQL Data Types</h1></section>
+<section><h2>MySQL Data Types</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html">Data Types</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5"><h1>Numeric Data Types</h1></section>
+<section><h2>Numeric Data Types</h2>
+	<section><h3>Numeric Data Types - Overview</h3>
+		<dl class="fa">
+			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/numeric-types.html">Numeric Data Types</a></dt>
+			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html#data-types-storage-reqs-numeric">Numeric Type Storage Requirements
+			</a></dt>
+		</dl>
+	</section>
+	<section><h3>Integer Types - Overview</h3>
+		<dl class="fa">
+			<dt>SQL standard integer types:</dt>
+				<dd>INTEGER (or INT)</dd>
+				<dd>SMALLINT</dd>
+			<dt>MySQL extension:</dt>
+				<dd>TINYINT</dd>
+				<dd>MEDIUMINT</dd>
+				<dd>BIGINT</dd>
+		</dl>
+	</section>
+	<section><h3>Integer Types - Comparison Table</h3>
+		<img src="images/IntegerDataTypes.png">
+	</section>
+	<section><h3>Integer Types - Examples</h3>
+		<p>Create datatypes table</p>
+		<pre><code rel="mysql" class="bash">
+			CREATE TABLE IF NOT EXISTS datatypes(
+				id int(10) unsigned NOT NULL AUTO_INCREMENT,
+				tinyint_data tinyint(4) DEFAULT NULL,
+				smallint_data smallint(6) DEFAULT NULL,
+				mediumint_data mediumint(9) DEFAULT NULL,
+				int_data int(11) DEFAULT NULL,
+				bigint_data bigint(20) DEFAULT NULL,
+				PRIMARY KEY (id)
+			);
+		</code></pre>
+		<p>And now insnert some numeric data</p>
+		<pre><code>
+			INSERT INTO integer_datatypes (tinyint_data,smallint_data,mediumint_data,int_data,bigint_data )
+			VALUES (100, 20000, 3000000, 100000000, 10000000000000000 );
+		</code></pre>
+	</section>
+	<section><h3>Fixed-Point Types</h3>
+		<dl class="fa">
+			<dt>DECIMAL</dt>
+				<dd>Standard SQL requires that DECIMAL(X,Y) be able to store any value with X digits and Y decimals.</dd>
+				<pre><code rel="mysql" class="bash">
+					salary DECIMAL(6,2)
+				</code></pre>
+				<dd>Values that can be stored in the salary column range from -9999.99 to 9999.99.</dd>
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/fixed-point-types.html">Fixed-Point Types</a></dt>
+			<dt>Example</dt>
+			<pre><code rel="mysql" class="bash">
+				ALTER TABLE integer_datatypes ADD decimal_data DECIMAL(6,2)
+
+				INSERT INTO integer_datatypes (decimal_data) VALUES (10000.99)
+				# (1264, "Out of range value for column 'decimal_data' at row 1")
+
+				INSERT INTO integer_datatypes (decimal_data) VALUES (9999.99)
+				Query OK, 1 row affected
+			</code></pre>
+		</dl>
+
+	</section>
+	<section><h3>Floating-Point Types</h3>
+		<a href="http://dev.mysql.com/doc/refman/8.0/en/floating-point-types.html">Floating-Point Types</a>
+	</section>
+	<section><h3>Numeric Type Attributes</h3>
+		<dl class="fa">
+			<dt><span class="note">(X)</span> - an optional extension in parentheses following the base keyword for the type, which <span class="note">specifies the display width</span> of integer data types.</dt>
+			<dt><span class="note">ZEROFILL</span> - when used in conjunction with the optional (nonstandard) attribute ZEROFILL, the default padding of spaces is replaced with zeros. For example, for a column declared as <code>INT(4) ZEROFILL</code>, a value of 3 is retrieved as 0003.</dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="10"><h1>String Data Types</h1></section>
+<section><h2>String Data Types</h2>
+	<section><h3>The CHAR Data Type</h3>
+		<dl class="fa">
+			<dt><span class="code">CHAR(M)</span></dt>
+				<dd>Can store <span class="note">fixed</span> length strings.</dd>
+				<dd>The length is specified by M (defaults to 1).</dd>
+				<dd>The length can be any value from <span class="note">0</span> to <span class="note">255</span>.</dd>
+				<dd>If a value entered is with length < M, then<br>the string is <span class="note">right</span> padded with spaces.</dd>
+			<dt>Examples:</dt>
+				<pre><code>
+					first_name CHAR(4),
+				</code></pre>
+				<dd>Defines that <span class="code">first_name</span> column will contains 4 character strings.</dd>
+		</dl>
+	</section>
+	<section><h3>The VARCHAR Data Type</h3>
+		<dl class="fa">
+			<dt><span class="code">VARCHAR(M)</span></dt>
+				<dd>Can store <span class="note">variable</span> length strings.</dd>
+				<dd>The length is specified by M - <span class="note">cannot by empty</span>!</dd>
+				<dd>The length can be any value from <span class="note">0</span> to <span class="note">65,535</span>.</dd>
+				<dd>VARCHAR values are stored as a 1-byte or 2-byte length <span class="note">prefix</span> plus data. The length prefix indicates the number of bytes in the value. A column uses one length byte if values require no more than 255 bytes, two length bytes if values may require more than 255 bytes.</dd>
+			<dt>Examples:</dt>
+				<pre><code>
+					short_notes VARCHAR(50000),
+				</code></pre>
+				<dd>Defines that <span class="code">short_notes</span> column will contains 50000 character strings.</dd>
+				<dd>The real size taken on disk will be 50000+2 bytes.</dd>
+		</dl>
+	</section>
+	<section><h3>CHAR<->VARCHAR differences</h3>
+		<img src="images/CHAR_VARCHAR_diff.png">
+	</section>
+	<section><h3>BLOB and TEXT Data Types</h3>
+		<dl class="fa">
+			<dt><abbr>BLOB</abbr><dfn><span>Binary</span> <span>Large</span> <span>O</span><span>Bject</span></dfn></dt>
+				<dd>Stores large amounts of binary data, such as images, PDF or other types of files.</dd>
+				<dd>BLOB values are treated as binary strings - they have no character set!</dd>
+			<dt><span class="code">TEXT</span></dt>
+				<dd>TEXT values are treated as character strings - they have a character set!</dd>
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/blob.html">The BLOB and TEXT Types</a></dt>
+		</dl>
+	</section>
+	<section><h3>ENUM</h3>
+		<dl class="fa">
+			<dt><span class="code">ENUM</span> (from ENUMeration)</dt>
+			<dt>Defines a <span class="note">list</span> of predefined values. Like: ('yes', 'no')</dt>
+			<dt>The value entered must be selected from that list (or it can be NULL)</dt>
+			<dt>The elements listed in the column specification are assigned index numbers, beginning with <span class="note">1</span></dt>
+			<dt>Pros:</dt>
+				<dd>Compact data storage in situations where a column has a limited set of possible values.</dd>
+				<dd>The strings you specify as input values are automatically encoded as numbers</dd>
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/enum.html">ENUM</a></dt>
+		</dl>
+		<p>Example</p>
+			<pre><code>
+				smoker ENUM('yes','no')
+			</code></pre>
+	</section>
+</section>
+
+<section><h1>Date and Time Types</h1></section>
+<section><h2>Date and Time Types</h2>
+	<section><h3>The DATE Data Type</h3>
+		<dl class="fa">
+			<dt>A date in <span class="code">YYYY-MM-DD</span> format</dt>
+			<dt>Values range: between <span class="code">1000-01-01</span> and <span class="code">9999-12-31</span>.</dt>
+			<dt>A date can be entered in several formats.</dt>
+				<dd><code>'YYYY-MM-DD'</code> or <code>'YY-MM-DD'</code>, like '2016-03-28' or '16-03-28'</dd>
+			<dt>Any punctuation character may be used as the delimiter between date parts.</dt>
+				<dd>'2016/03/28' or '16/03/28'</dd>
+		</dl>
+	</section>
+	<section><h3>The DATETIME Date Type</h3>
+		<dl class="fa">
+			<dt>A date and time in <span class="code">YYYY-MM-DD HH:MM:SS</span> format</dt>
+			<dt>Values range: between <span class="code">1000-01-01 00:00:00</span> and <span class="code">9999-12-31 23:59:59</span>.</dt>
+			<dt>A DATETIME can be entered in several formats.</dt>
+				<dd><code>'YYYY-MM-DD HH:MM:SS'</code> or <code>'YY-MM-DD HH:MM:SS'</code>, like '2016-03-28 09:54:10' or '16-03-28 09:54:10'</dd>
+			<dt>Any punctuation character may be used as the delimiter between date parts.</dt>
+				<dd>'2016/03/28 09.54.10' or '16/03/28 09.54.10'</dd>
+			<dt>The date and time parts can be separated by T rather than a space.</dt>
+				<dd>'2016-03-28 09:54:10' and '2016-03-28T09:54:10' are equivalent.</dd>
+		</dl>
+	</section>
+	<section><h3>The TIMESTAMP Date Type</h3>
+		<dl class="fa">
+			<dt>A date and time in <span class="code">YYYY-MM-DD HH:MM:SS</span> format</dt>
+			<dt>Values range: between <span class="code">1970-01-01 00:00:01</span> UTC and <span class="code">2038-01-19 03:14:07</span> UTC.</dt>
+			<dt>MySQL converts TIMESTAMP values from the current time zone to UTC for storage, and back from UTC to the current time zone for retrieval</dt>
+				<dd>By default, the current time zone for each connection is the <span class="note">server</span> time.</dd>
+			<dt>A TIMESTAMP value can be inserted in MYSQL the same way as a DATETIME value.</dt>
+		</dl>
+	</section>
+	<section><h3>The TIME Date Type</h3>
+		<dl class="fa">
+			<dt>A time in <span class="code">HH:MM:SS</span> format</dt>
+			<dt>Values range: between <span class="code">-838:59:59</span> UTC and <span class="code">838:59:59</span> UTC.</dt>
+			<dt>Can represent a time, or time interval.</dt>
+			<dt>Can be inserted As a string in 'D HH:MM:SS' format. You can also use one of the following “relaxed” syntaxes: 'HH:MM:SS', 'HH:MM', 'D HH:MM', 'D HH', or 'SS'. Here D represents days and can have a value from 0 to 34.</dt>
+		</dl>
+	</section>
+	<section><h3>Reference</h3>
+		<dl class="fa">
+			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html">Date and Time Data Types</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5"><h1>MySQL_Indexes</h1></section>
+<section id="intro"><h2>Introduction</h2>
+	<section><h3>What and Why?</h3>
+		<dl class="fa">
+		   <dt>A database index is added to a table <span class="note">to speed up the search</span> operation.</dt>
+		   <dt>An index is used by the Database Search Engine to locate records very fast.</dt>
+		   <dt>Indexes can be created for one or more columns.</dt>
+		   <dt>Indexes are implemented as a type of tables, which keep index field and a pointer to each record into the actual table.</dt>
+		   <dt>While adding index to a table will speed the SELECT queries, it will <span class="note">slow down</span> the INSERT and UPDATE statement.</dt>
+		</dl>
+	</section>
+	<section><h3>Types of indexes</h3>
+		<dl class="fa">
+			<dt>A regular INDEX</dt>
+			<dt>PRIMARY KEY</dt>
+			<dt>FULLTEXT</dt>
+		</dl>
+	</section>
+</section>
+<section id="regular_indexes"><h2>Regular index</h2>
+	<section><h3>Considerations</h3>
+		<dl class="fa">
+			<dt>Consider data in which columns will be searched most often.</dt>
+		</dl>
+	</section>
+	<section id="add_index"><h3>Add regular Index to a table</h3>
+		<p>The syntax:</p>
+		<pre><code>
+			ALTER TABLE table_name ADD INDEX(column_name(index_length));
+		</code></pre>
+		<dl class="fa">
+			<dt>The <span class="code">index_length</span> could be specified to minimize the size of the index, and to optimize database access speed.</dt>
+		<dt>If <span class="code">index_length</span> is specified, it should be long enough, because if MySQL finds two indexes with the same contents, it will have to waste time going to the table itself and checking the column that was indexed to find out which rows really matched.</dt>
+		</dl>
+	</section>
+	<section id="add_index_example"><h3>Example</h3>
+		<p>Let's have the <span class="code">artist</span> table, defined as:</p>
+		<pre>
+			mysql music_db_admin@localhost:music_db> desc artist;
+			+---------+-------------+--------+-------+-----------+---------+
+			| Field   | Type        | Null   | Key   |   Default | Extra   |
+			|---------+-------------+--------+-------+-----------+---------|
+			| fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
+			| lname   | varchar(20) | NO     |       |    &lt;null&gt; |         |
+			+---------+-------------+--------+-------+-----------+---------+
+					</pre>
+					<p>An index could be added as:</p>
+					<pre><code>
+			ALTER TABLE artist ADD INDEX(lname(10));
+					</code></pre>
+					<p>Resulting in:</p>
+					<pre>
+			mysql music_db_admin@localhost:music_db> desc artist;
+			+---------+-------------+--------+-------+-----------+---------+
+			| Field   | Type        | Null   | Key   |   Default | Extra   |
+			|---------+-------------+--------+-------+-----------+---------|
+			| fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
+			| lname   | varchar(20) | NO     | <span class="note">MUL</span>   |    &lt;null&gt; |         |
+			+---------+-------------+--------+-------+-----------+---------+
+		</pre>
+		<p>The <span class="note">MUL</span> key means that multiple occurrences of a value may occur within that column.</p>
+	</section>
+	<section id="create_index"><h3>Using CREATE INDEX</h3>
+		<p>The syntax:</p>
+		<pre><code>
+			CREATE INDEX column_name ON table_name (column_name(index_length));
+		</code></pre>
+		<dl class="fa">
+			<dt>It is an alternative to adding an index with ALTER TABLE.</dt>
+			<dt><span class="note">NB!</span> They are equivalent, except that CREATE INDEX cannot be used to create a PRIMARY KEY</dt>
+		</dl>
+	</section>
+	<section id="on_create_table"><h3>Adding indexes when creating tables</h3>
+		<p>You should be aware that adding an index to a large table can take a very long time.</p>
+		<p>That's why is better to add the index when creating the table!</p>
+		<pre><code>
+			CREATE TABLE artist (
+				fname VARCHAR(20) DEFAULT NULL,
+				lname VARCHAR(20) NOT NULL,
+				INDEX(lname(10))
+			);
+		</code></pre>
+	</section>
+</section>
+<section id="primary_key"><h2>Primary key</h2>
+	<section><h3>Why?</h3>
+		<p>Regular indexes do not impose the values to be unique!</p>
+		<p>The importance of having a key with a unique value for each row will come up when we start to combine data from different tables.</p>
+	</section>
+	<section id="primary_key_create"><h3>Create</h3>
+		<p>By adding the PRIMARY KEY(column_name) at the end of CREATE TABLE.</p>
+		<pre><code>
+			CREATE TABLE artist (
+				id MEDIUMINT(4) NOT NULL AUTO_INCREMENT,
+				fname VARCHAR(20) DEFAULT NULL,
+				lname VARCHAR(20) NOT NULL,
+				PRIMARY KEY(id)
+			);
+		</code></pre>
+		<p>Resulting in:</p>
+		<pre>
+			+---------+--------------+--------+-------+-----------+----------------+
+			| Field   | Type         | Null   | Key   |   Default | Extra          |
+			|---------+--------------+--------+-------+-----------+----------------|
+			| id      | mediumint(4) | NO     | PRI   |    &lt;null&gt; | auto_increment |
+			| fname   | varchar(20)  | YES    |       |    &lt;null&gt; |                |
+			| lname   | varchar(20)  | NO     |       |    &lt;null&gt; |                |
+			+---------+--------------+--------+-------+-----------+----------------+
+		</pre>
+		<p><span class="note">NB!</span> As PRIMARY KEY requires unique values, the <span class="code">NOT NULL</span> and/or <span class="code">AUTO_INCREMENT</span> attribute should be present.</p>
+	</section>
+</section>
+<section id="auto_increment"><h2>The AUTO_INCREMENT attribute</h2>
+	<section id="auto_increment"><h3>The AUTO_INCREMENT attribute</h3>
+		<dl class="fa">
+			<dt>The AUTO_INCREMENT attribute can be used to generate a unique identity for new rows.</dt>
+			<dt>A column defined with that attribute will set the value of its contents to that of the column entry in the previously inserted row, plus 1.</dt>
+		</dl>
+	</section>
+	<section id="auto_increment"><h3>AUTO_INCREMENT - example</h3>
+		<pre><code>
+			CREATE TABLE artist (
+			artist_id SMALLINT(5) NOT NULL AUTO_INCREMENT KEY,
+			fname VARCHAR(20) DEFAULT NULL,
+			lname VARCHAR(20) NOT NULL
+			);
+		</code></pre>
+		<p><span class="note">The KEY attribute should also be defined!</span></p>
+		<p>If it is not present, MySQL raises an error: <span class="code">'Incorrect table definition; there can be only one auto column and it must be defined as a key'</span>.</p>
+	</section>
+</section>
+
+<section data-min="5"><h1>SQL Constraints and Foreign Key</h1></section>
+<section id="constraints"><h2>SQL Constraints</h2>
+	<section><h3>The syntax in CREATE TABLE</h3>
+		<p>Constraint on single column:</p>
+		<pre><code class="sql">
+			CREATE TABLE table_name(
+				column_name data_type(size) constraint_name,
+				...
+			);
+		</code></pre>
+		<p>you can define constraints on more than one column, by using constraint on table, like:</p>
+		<pre><code>
+			CREATE TABLE author(
+				id int(4) key auto_increment,
+				fname varchar(200),
+				lname varchar(200),
+				UNIQUE(fname,lname)
+			)
+		</code></pre>
+	</section>
+	<section><h3>NOT NULL</h3>
+		<p>Indicates that a column cannot store NULL value</p>
+		<pre><code>
+			CREATE TABLE book (
+				id SMALLINT(3) UNSIGNED NOT NULL,
+				...
+			);
+		</code></pre>
+	</section>
+	<section><h3>DEFAULT</h3>
+		<p>Specifies a default value for a column</p>
+		<pre><code>
+			CREATE TABLE book (
+				pub_year MEDIUMINT(4) DEFAULT NULL,
+				...
+			);
+	</code></pre>
+	</section>
+	<section><h3>UNIQUE</h3>
+		<p>Ensures that each row for a column must have a <span class="note">unique</span> value</p>
+		<pre><code>
+			CREATE TABLE book (
+				book_name VARCHAR(250) NOT NULL UNIQUE,
+				...
+			);
+		</code></pre>
+		<p>Some vendors, MySQL as well, allows a UNIQUE column to be set with <span class="keyword">DEFAULT NULL</span> values, as by definition a NULL value is not equal to a NULL value. Anyway, it is not recommended to have UNIQUE and DEFAULT NULL column.</p>
+	</section>
+	<section><h3>CHECK</h3>
+	   <p><i class="ionicons ion-university img fs-normal"></i> self-learning section:</p>
+	   <a href="http://www.w3schools.com/sql/sql_check.asp">w3schools: SQL CHECK Constraint</a>
+	</section>
+	<section><h3>PRIMARY KEY</h3>
+		<p>A combination of a NOT NULL and UNIQUE. Ensures that a column (or combination of two or more columns) have a unique identity which helps to find a particular record in a table more easily and quickly</p>
+		<pre><code>
+			CREATE TABLE book (
+				id SMALLINT(3) UNSIGNED NOT NULL PRIMARY KEY,
+				...
+			);
+		</code></pre>
+	</section>
+</section>
+<section id="foreign_key"><h2>FOREIGN KEY constraints</h2>
+	<section><h3>What is a FOREIGN KEY?</h3>
+		<dl class="fa fs-small">
+			<dt>A FOREIGN KEY in one table points to a PRIMARY KEY in another table.</dt>
+			<dt>FOREIGN KEY relationships involve a <span class="note">parent table</span> that holds the central data values, and a <span class="note">child table</span> with identical values pointing back to its parent.</dt>
+			<dt>The FOREIGN KEY clause is specified in the child table. The parent and child tables must use the same storage engine. They must not be TEMPORARY tables.</dt>
+		</dl>
+		<pre><code>
+			CREATE TABLE author (
+				id SMALLINT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+				...
+			);
+		</code></pre>
+		<pre><code>
+			CREATE TABLE book (
+				id SMALLINT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+				author_id SMALLINT(3) UNSIGNED NOT NULL,
+				...
+			);
+		</code></pre>
+		<p><span class="code">book.author_id</span> will be used as a FOREIGN KEY to <span class="code">author.id</span></p>
+	</section>
+	<section><h3>FOREIGN KEY Constraint</h3>
+		<p>Ensure the <span class="keyword">referential integrity</span> of the data in one table to match values in another table</p>
+		<p>MySQL supports FOREIGN KEY Constraint only for <a href="http://dev.mysql.com/doc/refman/8.0/en/using-innodb-tables.html">InnoDB tables</a></p>
+	</section>
+	<section><h3>FOREIGN KEY Constraint</h3>
+		<p>The syntax</p>
+		<pre><code class="fs-big bash">
+			[CONSTRAINT constraint_name]
+			FOREIGN KEY [fk_name] (index_columns)
+			REFERENCES tbl_name (index_columns)
+			[ON DELETE action]
+			[ON UPDATE action]
+			[MATCH FULL | MATCH PARTIAL | MATCH SIMPLE]
+					</code></pre>
+					<dl class="fa fs-small">
+						<dt>The CONSTRAINT clause, if given, supplies a name for the foreign key constraint. If you omit it, InnoDB creates a name.</dt>
+						<dt>FOREIGN KEY indicates the indexed columns in the child table that must match index values in the parent table. fk_name is the foreign key ID. If given, it is ignored unless InnoDB automatically creates an index for the foreign key; in that case, fk_name becomes the index name.</dt>
+						<dt>REFERENCES names the parent table and the index columns in that table to which the foreign key in the child table refers. The index_columns part of the REFERENCES clause must have the same number of columns as the index_columns that follows the FOREIGN KEY keywords.</dt>
+
+					</dl>
+				</section>
+				<section><h3>FOREIGN KEY Constraint: ON DELETE</h3>
+					<dl class="fa fs-small">
+						<dt>ON DELETE specifies what happens to the child table when parent table rows are deleted.</dt>
+							<dd>For MySQL InnoDB tables ON DELETE NO ACTION and ON DELETE RESTRICT are the same as omitting the ON DELETE clause, as the foreign key constraints are checked immediately.</dd>
+							<dd>ON DELETE CASCADE causes matching child rows to be deleted when the corresponding parent row is deleted. In essence, the effect of the delete is cascaded from the parent to the child. This enables you to perform multiple-table deletes by deleting rows only from the parent table and letting InnoDB delete the corresponding rows from the child table.</dd>
+							<dd>ON DELETE SET NULL causes index columns in matching child rows to be set to NULL when the parent row is deleted. If you use this option, all the indexed child table columns named in the foreign key definition must be defined to permit NULL values</dd>
+					</dl>
+				</section>
+				<section><h3>FOREIGN KEY Constraint: ON UPDATE</h3>
+					<dl class="fa fs-small">
+						<dt>ON UPDATE enables you to specify what happens to the child table when parent table rows are updated.</dt>
+						<dt>If ON UPDATE clause is not present, the default behaviour is to reject any inserts or updates in the child table that result in foreign key values that don’t have any match in the parent table index, and to prevent updates to parent table index values to which child rows point. </dt>
+						<dt>The possible action values are the same as for ON DELETE and have similar effects.</dt>
+					</dl>
+				</section>
+				<section><h3>FOREIGN KEY Constraint: Guidelines</h3>
+					<dl class="fa fs-small">
+						<dt>You must create the parent table index explicitly before defining the foreign key relationship.</dt>
+						<dt>InnoDB automatically creates an index on foreign key columns (the referencing columns) in the child table if the CREATE TABLE statement does not include such an index.</dt>
+						<dd>The automatically created index will be a <span class="note">non unique</span> index and will include only the foreign key columns.</dd>
+						<dd>You should define the index in the child table explicitly if you want it to be a PRIMARY KEY or UNIQUE index, or if it should include other columns in addition to those in the foreign key.</dd>
+						<dt>Corresponding columns in the parent and child indexes must have compatible types.</dt>
+							<dd>Corresponding <span class="note">character columns</span> must be <span class="note">the same length</span>.</dd>
+							<dd>Corresponding <span class="note">integer columns</span> must have <span class="note">the same size</span> and <span class="note">same range</span> (signed or unsigned).</dd>
+						<dt>For string columns, you must index the entire column, not just a leading prefix of it.</dt>
+					</dl>
+				</section>
+				<section><h3>FOREIGN KEY Constraint: Examples</h3>
+					<dl class="fa fs-small">
+						<dt>books_db schema</dt>
+							<dd><a href="slides_examples/books_db_schema.sql.txt">View</a> or <a href="slides_examples/books_db_schema.sql">Download</a></dd>
+						<dt>books_db sample data</dt>
+							<dd><a href="slides_examples/books_db_sample_data.sql.txt">View</a> or <a href="slides_examples/books_db_sample_data.sql">Download</a></dd>
+						<dt>Now let's delete an author from the <span class="code">author</span> table:</dt>
+						<pre><code class="SQL">
+			DELETE FROM author WHERE lname='Vonnegut' and fname='Kurt';
+		</code></pre>
+		<dt>And check what happens with the books in <span class="code">book</span> table:</dt>
+		<pre><code>
+			SELECT author.fname, author.lname, book_name FROM book, author WHERE book.author_id=author.id;
+		</code></pre>
+		<p>Yes, we see (<a href="slides_examples/books_db_results_on_delete_constraint.txt">view</a>) that all Vonnegut's books records are automatically deleted from <span class="code">book</span> table, because of the constraint we've set.</p>
+		</dl>
+	</section>
+	<section><h3>FOREIGN KEY Constraint: Exercises</h3>
+		<dl class="fa fs-small">
+			<dt>Create the next <a href="slides_examples/books_db_schema.sql">books_db schema</a> and insert the <a href="slides_examples/books_db_sample_data.sql">books_db sample data</a></dt>
+			<dt>Set <span class="note">ON UPDATE</span> constraint on <span class="code">fk_AuthorID</span> which will force the MySQL to automatically update all rows in <span class="code">book</span> table, when a corresponding row in <span class="code">author</span> table has changed.</dt>
+			<dt>Set the <span class="code">author.id</span> to be 100 for Charles Dodgson author row.</dt>
+			<dt>Check what happens with <span class="code">author_id</span> in the respective rows in <span class="code">book</span> table.</dt>
+		</dl>
+	</section>
+</section>
+
+
+<section data-min="5"><h1>Basic Data Manipulation Statements</h1></section>
+<section><h2>INSERT INTO table</h2>
+    <section><h3>The syntax</h3>
+        <pre><code>
+			INSERT INTO table_name [(column, ...)]
+			VALUES (value, ...)[, (...), ...];
+        </code></pre>
+        <dl class="fa">
+            <dt>Column list is optional!</dt>
+                <dd>If not present, you should list in VALUES values for all columns, following the order in table definition.</dd>
+            <dt>You can insert more than 1 row at a time, by using a list of values arrays.</dt>
+        </dl>
+    </section>
+    <section><h3>Examples</h3>
+        <p>Without specifying columns</p>
+        <pre><code>
+			INSERT INTO artist
+			VALUES (0,'Robert', 'Smith');
+        </code>
+			Query OK, 1 row affected
+        </pre>
+        <p>But:</p>
+        <pre><code>
+			INSERT INTO artist
+			VALUES ('Madonna');
+        </code>
+			(1136, u"Column count doesn't match value count at row 1")
+        </pre>
+        <p>With explicit column specification</p>
+        <pre><code>
+			INSERT INTO artist(lname)
+			VALUES ('Piazzolla');
+        </code>
+			Query OK, 1 row affected
+        </pre>
+    </section>
+    <section><h3>Examples</h3>
+         <p>Insert more than 1 row at a time</p>
+        <pre><code>
+			INSERT INTO artist( lname, fname )
+			VALUES ( 'Schnittke', 'Alfred' ),
+				( 'Pärt', 'Arvo' ),
+				( 'Shostakovich', 'Dmitri' );
+        </code>
+			Query OK, 3 rows affected
+        </pre>
+    </section>
+</section>
+<section><h2>Delete</h2>
+    <section><h3>The Syntax</h3>
+        <pre><code>
+			DELETE FROM table_name
+			[WHERE where_condition]
+			[ORDER BY ...]
+			[LIMIT row_count]
+        </code></pre>
+        <dl class="fa">
+            <dt>The conditions in the optional WHERE clause identify which rows to delete. With no WHERE clause, <span class="note">all rows are deleted</span>.</dt>
+            <dt>The LIMIT clause places a limit on the number of rows that can be deleted.</dt>
+            <dt>If the ORDER BY clause is specified, the rows are deleted in the order that is specified.</dt>
+        </dl>
+    </section>
+    <section><h3>Examples</h3>
+        <pre><code>
+			DELETE FROM artist WHERE
+				artist_id BETWEEN 9 AND 13;
+        </code>
+			Query OK, 5 rows affected
+        </pre>
+    </section>
+</section>
+<section><h2>Update</h2>
+    <section><h3>The Syntax</h3>
+        <pre><code>
+			UPDATE table_name
+			SET column1=value, column2=value2,...
+			[WHERE where_clause]
+			[ORDER BY ...]
+			[LIMIT row_count]
+        </code></pre>
+        <dl class="fa">
+        <dt>The WHERE clause, if given, specifies the conditions that identify which rows to update</dt>
+            <dd>With no WHERE clause, all rows are updated!</dd>
+        <dt>If the ORDER BY clause is specified, the rows are updated in the order that is specified.</dt>
+        <dt>The LIMIT clause places a limit on the number of rows that can be updated.</dt>
+        </dl>
+    </section>
+    <section><h3>Examples</h3>
+    <pre><code>
+		UPDATE artist
+		SET fname='Test', lname='Test'
+		WHERE artist_id >= 14;
+    </code>
+		Query OK, 2 rows affected
+    </pre>
+    </section>
+</section>
+
+<section><h2>SELECT and WHERE Clauses</h2>
+	<section><h3>Syntax</h3>
+		<pre><code rel="Basic Syntax" class="bash">
+			SELECT [select_option]
+			{select_expression}
+			[
+				FROM
+						JOIN
+						ON
+						WHERE
+						GROUP BY
+						HAVING
+						ORDER BY
+						LIMIT
+						INTO
+			]
+		</code></pre>
+		<dl class="fa">
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html">SELECT Statement</a></dt>
+			<dt>WHERE clause requires at least one condition. And, if multiple conditions, connect them using AND or OR logic operators.</dt>
+			<dt><a href="http://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html">Comparison Functions and Operators</a> to use in <span class="impotant">WHERE Clause</span></dt>
+		</dl>
+	</section>
+	<dl class="fa">
+
+	</dl>
+</section>
+
+
+<section data-min="5"><h1>MySQL JOINS</h1></section>
+<section><h2>MySQL JOINS</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>MySQL JOINS are used to retrieve data from multiple tables.</dt>
+			<dt><a href="./images/JOINS_SET_Diagram.jpeg"><img src="./images/JOINS_SET_Diagram.jpeg" alt="./images/JOINS_SET_Diagram.jpeg"></a></dt>
+			<dt><a href="http://pixelcount.com/MySQL_Joins.pdf">MySQL JOIN Types (Cheet Sheet)</a></dt>
+			<dt><a href="https://dataschool.com/how-to-teach-people-sql/sql-join-types-explained-visually/">SQL Join Types Explained Visually</a></dt>
+		</dl>
+	</section>
+
+</section>
+
+
+<section data-min="5"><h1>MySQL and Python</h1></section>
+<section><h2>MySQL and Python</h2>
+	<section><h3>Python DB-API</h3>
+		<dl class="fa">
+			<dt><a href="https://www.python.org/dev/peps/pep-0249/">Python Database API</a> is a set of standards recommended by a Special Interest Group for database module standardization</dt>
+			<dt>Standard Python distribution has in-built support for SQLite database connectivity by the sqlite3 module</dt>
+			<dt>Other RDBMS products (Oracle, PostgreSQL, MySQL,...) also have DB-API compliant drivers</dt>
+			<dd>A database driver is a software that allows an application (like Python program) to connect and interact with a database system</dd>
+		</dl>
+	</section>
+	<section><h3>MySQL Connector/Python</h3>
+		<dl class="fa">
+			<dt>Reference: <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector/Python Developer Guide</a></dt>
+			<dd>Note, that MySQL’s official documentation uses the term connector instead of driver.</dd>
+			<dt>Instalation:</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			# make sure you're in the venv
+			pip install mysql-connector-python
+		</code></pre>
+	</section>
+</section>
+
+
+<section><h1>What is an ORM?</h1></section>
+<section><h2>What is an ORM?</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt><a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object-Relational Mapping (ORM)</a> is a technique that lets you query and manipulate data from a database using an object-oriented paradigm.</dt>
+			<dt>Brings an abstraction level in communication with different databases, by wrapping DB actions in an idiomatic APIs.</dt>
+			<dt>Provides automation and DRY</dt>
+			<dt>Allow expression of DB/SQL tasks using declarative patterns</dt>
+		</dl>
+	</section>
+	<section><h3>Analogy between Tables and Classes</h3>
+		<pre><code rel="SQL" class="sql" data-noescape>
+			CREATE TABLE users (
+				id serial primary key,
+				name character varying,
+				address character varying
+			)
+		</code></pre>
+		<pre><code rel="Python" class="python">
+			class Users:
+				def __init__(self, name, address):
+					self.name = name
+					self.address = address
+		</code></pre>
+	</section>
+</section>
+
+
+<section><h1>SQLAlchemy - the Python ORM</h1></section>
+<section><h2>SQLAlchemy - the Python ORM</h2>
+	<section><h3>SimpleCompanyDB - the Model</h3>
+		<dl class="fa">
+			<dt>In next slides, in order to illustrate SQLAlchemy, I'll use a very simple model: SimpleCompanyDB</dt>
+			<dt>You can download the MySQL dump: <a href="examples/slides/real/SimpleCompanyDB/model/SimpleCompanyDB_dump.sql">SimpleCompanyDB_dump</a></dt>
+		</dl>
+		<a href="examples/slides/real/SimpleCompanyDB/model/model.png"><img src="examples/slides/real/SimpleCompanyDB/model/model.png"></a>
+	</section>
+	<section><h3>SimpleCompanyDB - the data</h3>
+		<dl class="fa">
+			<dt>DB engine used is <a href="https://mariadb.org/">MariaDB</a></dt>
+			<dt>Next sample data are pre-populated into the database:</dt>
+		</dl>
+		<pre><code rel="SQL" class="sql" data-noescape style="font-size: .9em; height: 70vh;">
+			 root@localhost:SimpleCompanyDB> SELECT * from company;
+			+--------------+----------------+
+			|   company_id | company_name   |
+			|--------------+----------------|
+			|            1 | Google         |
+			|            2 | Facebook       |
+			|            4 | Microsoft      |
+			|            5 | Microsoft      |
+			+--------------+----------------+
+			4 rows in set
+			Time: 0.002s
+			mariadb root@localhost:SimpleCompanyDB> SELECT * from employee;
+			+---------------+-----------------+
+			|   employee_id | employee_name   |
+			|---------------+-----------------|
+			|             1 | Ivan Petrov     |
+			|             2 | Maria Popova    |
+			|             3 | Georgi Ivanov   |
+			+---------------+-----------------+
+			3 rows in set
+			Time: 0.005s
+			mariadb root@localhost:SimpleCompanyDB> SELECT * from company_employee
+			+---------------+--------------+
+			|   employee_id |   company_id |
+			|---------------+--------------|
+			|             1 |            2 |
+			|             2 |            1 |
+			|             3 |            1 |
+			|             3 |            2 |
+			+---------------+--------------+
+			4 rows in set
+		</code></pre>
+	</section>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>SQLAlchemy is the Python SQL Toolkit and ORM</dt>
+			<dd>Official site <a href="https://www.sqlalchemy.org/">www.sqlalchemy.org</a></dd>
+		</dl>
+		<a href="images/SQLAlchemy_layers.png"><img src="images/SQLAlchemy_layers.png"></a>
+	</section>
+	<section><h3>Overview</h3>
+		<p>The SQLAlchemy flow:</p>
+		<a href="images/sqla_engine_arch.png"><img src="images/sqla_engine_arch.png"></a>
+	</section>
+	<section><h3>SQLAlchemy Engines</h3>
+		<dl class="fa" style="font-size: .8em">
+			<dt>An <em>Engine</em> allows SQLAlchemy to interact with a database</dt>
+			<dt>The typical usage of create_engine() is once per particular database URL, held globally for the lifetime of a single application process</dt>
+		</dl>
+		<pre><code rel="Syntax" class="shell" data-noescape>
+			engine = create_engine(
+				dialect+driver://username:password@host:port/database)
+		</code></pre>
+		<pre><code rel="Python" class="python" style="font-size: 1em;">
+			from sqlalchemy import create_engine
+
+			# connect to Mysql/MariaDB:
+			mysql_engine = create_engine(
+			  "mysql+pymysql://user:pass@localhost/test")
+
+			# connect to PostgreSQL:
+			pg_engine = create_engine('postgresql://usr:pass@localhost/sqlalchemy')
+		</code></pre>
+		<a href="http://docs.sqlalchemy.org/en/rel_1_1/core/engines.html">Engine Configuration @http://docs.sqlalchemy.org</a>
+	</section>
+	<section><h3>Supported Databases/Dialects</h3>
+		<dl class="fa">
+			<dt>SQLAlchemy includes many Dialect implementations for various backends. Many other are available as external projects</dt>
+			<dt>List and more information about dialects can be found on: <a href="http://docs.sqlalchemy.org/en/rel_1_1/dialects/index.html">Dialects</a></dt>
+		</dl>
+	</section>
+	<section><h3>Create an engine to SimpleCompanyDB</h3>
+		<pre><code rel="base.py" class="python" data-noescape>
+			from sqlalchemy import create_engine
+
+			#Create engine with MySQL dialect:
+			engine = create_engine(
+			    'mysql+pymysql://pythontest:123@localhost/SimpleCompanyDB?charset=utf8',
+			    connect_args = {
+			        # 'port': 3306
+			    },
+			    # echo='debug',
+			    echo_pool=True
+			)
+
+			# test the connection - get tables names:
+			print("Tables in SimpleCompanyDB: ",engine.table_names())
+			# Tables in SimpleCompanyDB:  ['company', 'company_employee', 'employee']
+		</code></pre>
+	</section>
+	<section><h3>The Declarative system </h3>
+		<dl class="fa">
+			<dt>SQLAlchemy uses a system known as Declarative, which allows us to create classes that include directives to describe the actual database table they will be mapped to.</dt>
+			<dt>Classes mapped using the Declarative system are defined in terms of a base class which maintains a catalog of classes and tables relative to that base - this is known as the declarative base class.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from sqlalchemy.ext.declarative import declarative_base
+
+			Base = declarative_base()
+		</code></pre>
+	</section>
+	<section><h3>SQLAlchemy Data Types</h3>
+		<dl class="fa">
+			<dt>SQLAlchemy provides abstraction for various data types used in most RBMS.</dt>
+			<dd><a href="http://docs.sqlalchemy.org/en/latest/core/types.html">Column and Data Types</a></dd>
+		</dl>
+		<pre><code rel="Python" class="python">
+			class Address(Base):
+			    __tablename__ = 'address'
+			    # define columns for the table address.
+			    id = Column(Integer, primary_key=True)
+			    street_name = Column(String(250))
+			    street_number = Column(String(250))
+			    post_code = Column(String(250), nullable=False)
+			    person_id = Column(Integer, ForeignKey('person.id'))
+			    person = relationship(Person)
+		</code></pre>
+	</section>
+	<section><h3>The Table object</h3>
+		<dl class="fa">
+			<dt>A table in a database is represented by an object of class Table</dt>
+		</dl>
+	</section>
+	<section><h3>Create a table into SimpleCompanyDB</h3>
+
+	</section>
+	<section><h3>SQLAlchemy Relationships</h3>
+		<dl class="fa">
+			<dt>SQLAlchemy supports four types of relationships: One To Many, Many To One, One To One, and Many To Many</dt>
+		</dl>
+		<p>Example of <em>One To Many</em> relationship:</p>
+		<pre><code rel="Python" class="python">
+			class Person(Base):
+			    __tablename__ = 'person'
+			    id = Column(Integer, primary_key=True)
+			    pets = relationship("Pet")
+
+
+			class Pet(Base):
+			    __tablename__ = 'pet'
+			    id = Column(Integer, primary_key=True)
+			    person_id = Column(Integer, ForeignKey('person.id'))
+		</code></pre>
+	</section>
+	<section><h3>Example of <em>Many To Many</em> relationship</h3>
+		<pre><code rel="Python" class="python">
+			company_employee = Table('company_employee', Base.metadata,
+			    Column('employee_id', Integer, ForeignKey('employee.employee_id')),
+			    Column('company_id', Integer, ForeignKey('company.company_id'))
+			)
+
+			class Employee(Base):
+			    __tablename__ = 'employee'
+			    employee_id = Column(Integer, primary_key=True)
+			    companies = relationship("Company", secondary=company_employee)
+
+			class Company(Base):
+			    __tablename__ = 'company'
+			    id = Column(Integer, primary_key=True)
+		</code></pre>
+	</section>
+	<!-- <section><h3>SQLAlchemy ORM (Mappers)</h3>
+		<dl class="fa">
+			<dt>Mappers are responsible for moving data between objects and a database while keeping them independent of each other</dt>
+		</dl>
+	</section> -->
+	<section><h3>SQLAlchemy Sessions</h3>
+		<dl class="fa">Table
+			<dt>Sessions are used to guarantee the database consistency.</dt>
+			<dt>All modifications tracked by Sessions (Units of Works) will be applied to the underlying database together, or none of them will.</dt>
+			<dt>More on Sessions: <a href="http://docs.sqlalchemy.org/en/rel_1_1/orm/session_basics.html">Session Basics @docs.sqlalchemy.org</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section><h1>Reflecting Database Objects</h1></section>
+<section><h2>Reflecting Database Objects</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>If a table already exists, SQLAlchemy can read its column definitions directly from the database.</dt>
+			<dt>This processes is called <span class="note">reflecting the table</span>.</dt>
+		</dl>
+	</section>
+</section>
+
+<!-- <section><h1>Connect, Declare a Mapping,Create a Schema</h1></section>
+<section><h2>Connect, Declare a Mapping,Create a Schema</h2>
+	<section><h3>___MainSectionSubTitle___</h3></section>
+</section> -->
+
+
+<!-- <section><h1>Demo example with SQLAlchemy and SQLite3</h1></section>
+<section><h2>Demo example with SQLAlchemy and SQLite3</h2>
+	<section><h3>___MainSectionSubTitle___</h3></section>
+</section> -->
+
+<section data-min="20"><h1>Pandas and DB</h1></section>
+<section><h2>Pandas and DB</h2>
+  <section><h3>DataFrame from MySQL table</h3>
+    <pre><code rel="Python" class="python">
+      import MySQLdb
+      mysql_cn= MySQLdb.connect(host='myhost',
+                      port=3306,user='myusername', passwd='mypassword',
+                      db='information_schema')
+      df_mysql = pd.read_sql('select * from VIEWS;', con=mysql_cn)
+      print 'loaded dataframe from MySQL. records:', len(df_mysql)
+      mysql_cn.close()
+    </code></pre>
+  </section>
+</section>
+
+
+<section><h1>References</h1></section>
+<section><h2>References</h2>
+	<section><h3>Readings</h3>
+		<dl class="fa">
+			<dt><a href="https://www.python.org/dev/peps/pep-0249/">PEP 249 -- Python Database API Specification v2.0</a></dt>
+			<dt><a href="http://docs.sqlalchemy.org/en/latest/orm/tutorial.html">Object Relational Tutoria</a> <a href="http://docs.sqlalchemy.org/en/latest/">@docs.sqlalchemy.org</a></dt>
+			<dt><a href="http://docs.sqlalchemy.org/en/latest/core/reflection.html">Reflecting Database Objects</a></dt>
+			<dt><a href="https://www.pythonsheets.com/notes/python-sqlalchemy.html">Python SQLAlchemy Cheatsheet</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>books_db</h2>
+	<section>
+		<ol class="fs-small">
+			<li>CONNECT TO MySQL as ROOT</li>
+			<li>CRETE DB: <span class="note">books_db</span></li>
+			<li>CREATE user <span class="note">books_db_admin</span></li>
+			<li>GRANT all privileges to <span class="note">books_db_admin</span> on <span class="note">books_db</span></li>
+			<li>CONNECT to <span class="note">books_db</span> as <span class="note">books_db_admin</span></li>
+		</ol>
+	</section>
+	<section>
+					<ol start="6">
+									<li>Create next tables, using the appropriate data types for columns:
+									<dd>table <span class="note">author</span>:</dd>
+									<pre class="fs-smaller">
+		Columns:
+		--------------------------------
+		id (primary key, auto_increment)
+		fname,
+		lname,
+		birth_year,
+		death_year;
+									</pre>
+									<dd>table <span class="note">book</span>:</dd>
+									<pre class="fs-smaller">
+		Columns:
+		--------------------------------
+		id (primary key, auto_increment)
+		author_id,
+		book_name,
+		pub_year;
+									</pre>
+									</li>
+					</ol>
+					<p><span class="note">If you need to store years less than 1900, you have to use some integer type for that - SMALLINT(4) should be enough for most cases</span>.</p>
+	</section>
+	<section>
+					<dl class="fa">
+									<dt>You can examine the sample DataBase <span class="note">books_db</span>:</dt>
+									<dd>Download the <a href="slides_examples/books_db_schema.sql">books_db_schema.sql</a></dd>
+									<dd>Download the <a href="slides_examples/books_db_sample_data.sql">books_db_sample_data.sql</a></dd>
+									<dt>Use the 'INSERT', 'UPDATE' and 'DELETE' statements to modify the data in the example (or in your) data base.</dt>
+					</dl>
+	</section>
+</section>
+
+
+
+<!-- <section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: DB-Lecture2">ivawebcourses@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
