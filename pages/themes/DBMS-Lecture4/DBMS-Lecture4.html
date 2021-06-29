@@ -389,9 +389,12 @@
 	</section>
 </section>
 <section id="primary_key"><h2>Primary key</h2>
-	<section><h3>Why?</h3>
-		<p>Regular indexes do not impose the values to be unique!</p>
-		<p>The importance of having a key with a unique value for each row will come up when we start to combine data from different tables.</p>
+	<section><h3>Why using Primary Key?</h3>
+		<dl class="fa">
+			<dt>Regular indexes do not impose the values to be unique!</dt>
+			<dt>The importance of having a key with a unique value for each row will come up when we start to combine data from different tables.</dt>
+		</dl>
+
 	</section>
 	<section id="primary_key_create"><h3>Create</h3>
 		<p>By adding the PRIMARY KEY(column_name) at the end of CREATE TABLE.</p>
@@ -504,21 +507,38 @@
 			<dt>A FOREIGN KEY in one table points to a PRIMARY KEY in another table.</dt>
 			<dt>FOREIGN KEY relationships involve a <span class="note">parent table</span> that holds the central data values, and a <span class="note">child table</span> with identical values pointing back to its parent.</dt>
 			<dt>The FOREIGN KEY clause is specified in the child table. The parent and child tables must use the same storage engine. They must not be TEMPORARY tables.</dt>
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">FOREIGN KEY Constraints</a></dt>
 		</dl>
 		<pre><code>
-			CREATE TABLE author (
-				id SMALLINT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
-				...
-			);
+			# define the Parent Table
+			CREATE TABLE `customers` (
+				`id` int NOT NULL AUTO_INCREMENT,
+				`first_name` varchar(45) NOT NULL,
+				`last_name` varchar(45) NOT NULL,
+				`email` varchar(100) DEFAULT NULL,
+				PRIMARY KEY (`id`)
+			) DEFAULT CHARSET=utf8;
+
 		</code></pre>
 		<pre><code>
-			CREATE TABLE book (
-				id SMALLINT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
-				author_id SMALLINT(3) UNSIGNED NOT NULL,
-				...
-			);
+			# define the Child Table
+			CREATE TABLE `orders` (
+				`id` int NOT NULL AUTO_INCREMENT,
+				`customer_id` int NOT NULL,
+				`order_date` datetime NOT NULL,
+				PRIMARY KEY (`id`),
+				FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
+			) DEFAULT CHARSET=utf8;
+
 		</code></pre>
-		<p><span class="code">book.author_id</span> will be used as a FOREIGN KEY to <span class="code">author.id</span></p>
+	</section>
+	<section><h3>customersdb ER Diagram</h3>
+		<p><a href="./images/customers_db_ERDiagram.png"><img src="./images/customers_db_ERDiagram.png" alt="customers_db_ERDiagram.png" style="height: 60vh;"></a></p>
+		<dl class="fa">
+			<dt>This implements <span class="note">"one to many"</span> relation!</dt>
+			<dd><span class="note">One</span> customer can have <span class="note">many</span> orders.</dd>
+			<dt>If we need <span class="note">"many to many"</span> relation we could make third table: <code>customers_orders</code> which will store foreign keys to <code>customers(id)</code> and <code>orders(id)</code> </dt>
+		</dl>
 	</section>
 	<section><h3>FOREIGN KEY Constraint</h3>
 		<p>Ensure the <span class="keyword">referential integrity</span> of the data in one table to match values in another table</p>
@@ -584,6 +604,17 @@
 		</code></pre>
 		<p>Yes, we see (<a href="slides_examples/books_db_results_on_delete_constraint.txt">view</a>) that all Vonnegut's books records are automatically deleted from <span class="code">book</span> table, because of the constraint we've set.</p>
 		</dl>
+	</section>
+	<section><h3></h3>
+		<dl class="fa">
+			<dt>Note, that if we try to insert into orders the id of a customer, who does not exists, MySQL will through an error</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			INSERT INTO orders (customer_id,order_date)
+				VALUES (1, "2020-01-20 21:00:00");
+
+			# Cannot add or update a child row: a foreign key constraint fails
+		</code></pre>
 	</section>
 	<section><h3>FOREIGN KEY Constraint: Exercises</h3>
 		<dl class="fa fs-small">
