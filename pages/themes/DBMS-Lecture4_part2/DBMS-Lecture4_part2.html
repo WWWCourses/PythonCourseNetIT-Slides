@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>DBMS-Lecture4_part2</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>MySQl - goind deep</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+
+<!-- TODO: More example on SELECT -->
+
+<section data-min="5"><h1>MySQL JOINS</h1></section>
+<section><h2>MySQL JOINS</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>MySQL JOINS are used to retrieve data from multiple tables.</dt>
+			<dt><a href="./images/JOINS_SET_Diagram.jpeg"><img src="./images/JOINS_SET_Diagram.jpeg" alt="./images/JOINS_SET_Diagram.jpeg"></a></dt>
+			<dt><a href="http://pixelcount.com/MySQL_Joins.pdf">MySQL JOIN Types (Cheet Sheet)</a></dt>
+			<dt><a href="https://dataschool.com/how-to-teach-people-sql/sql-join-types-explained-visually/">SQL Join Types Explained Visually</a></dt>
+		</dl>
+	</section>
+
+</section>
+
+
+<section data-min="5"><h1>MySQL and Python</h1></section>
+<section><h2>MySQL and Python</h2>
+	<section><h3>Python DB-API</h3>
+		<dl class="fa">
+			<dt><a href="https://www.python.org/dev/peps/pep-0249/">Python Database API</a> is a set of standards recommended by a Special Interest Group for database module standardization</dt>
+			<dt>Standard Python distribution has in-built support for SQLite database connectivity by the sqlite3 module</dt>
+			<dt>Other RDBMS products (Oracle, PostgreSQL, MySQL,...) also have DB-API compliant drivers</dt>
+			<dd>A database driver is a software that allows an application (like Python program) to connect and interact with a database system</dd>
+		</dl>
+	</section>
+	<section><h3>MySQL Connector/Python</h3>
+		<dl class="fa">
+			<dt>Reference: <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector/Python Developer Guide</a></dt>
+			<dd>Note, that MySQL’s official documentation uses the term connector instead of driver.</dd>
+			<dt>Instalation:</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			# make sure you're in the venv
+			pip install mysql-connector-python
+		</code></pre>
+	</section>
+	<section><h3>MySQL Connector - Create connection</h3>
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
+			import mysql.connector
+			from mysql.connector import connection
+
+			def make_connection(user, password, db, host="localhost", port=3306):
+				try:
+					cnx = mysql.connector.connect(
+						user=user,
+						password=password,
+						db=db,
+						host=host,
+						port=port
+					)
+
+				except mysql.connector.Error as e:
+					print(e)
+
+				print('Connection Established')
+				return cnx
+
+
+			# Connect to server
+			cnx = make_connection (user="root", password="1234", db='customers')
+
+			# Get a cursor
+			cur = cnx.cursor()
+
+			# Execute a query
+			cur.execute("SELECT CURDATE()")
+
+			# Fetch one result
+			row = cur.fetchone()
+			print("Current date is: {0}".format(row[0]))
+
+			# fetch Multiple results
+			with cnx.cursor() as cursor:
+				cursor.execute(f'SHOW TABLES')
+
+				results = cursor.fetchall()
+				# print(results)
+				for r in results:
+					print(r)
+
+			# Close connection
+			cnx.close()
+		</code></pre>
+	</section>
+</section>
+
+
+<section><h1>What is an ORM?</h1></section>
+<section><h2>What is an ORM?</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt><a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object-Relational Mapping (ORM)</a> is a technique that lets you query and manipulate data from a database using an object-oriented paradigm.</dt>
+			<dt>Brings an abstraction level in communication with different databases, by wrapping DB actions in an idiomatic APIs.</dt>
+			<dt>Provides automation and DRY</dt>
+			<dt>Allow expression of DB/SQL tasks using declarative patterns</dt>
+		</dl>
+	</section>
+	<section><h3>Analogy between Tables and Classes</h3>
+		<pre><code rel="SQL" class="sql" data-noescape>
+			CREATE TABLE users (
+				id serial primary key,
+				name character varying,
+				address character varying
+			)
+		</code></pre>
+		<pre><code rel="Python" class="python">
+			class Users:
+				def __init__(self, name, address):
+					self.name = name
+					self.address = address
+		</code></pre>
+	</section>
+</section>
+
+
+<section><h1>SQLAlchemy - the Python ORM</h1></section>
+<section><h2>SQLAlchemy - the Python ORM</h2>
+	<section><h3>SimpleCompanyDB - the Model</h3>
+		<dl class="fa">
+			<dt>In next slides, in order to illustrate SQLAlchemy, I'll use a very simple model: SimpleCompanyDB</dt>
+			<a href="./examples/slides/SimpleCompanyDB/model/model.png"><img src="./examples/slides/SimpleCompanyDB/model/model.png" style="min-height: 50vh;"></a>
+			<dt>You can download the MySQL dump: <a href="examples/slides/SimpleCompanyDB/model/SimpleCompanyDB_dump.sql">SimpleCompanyDB_dump</a></dt>
+		</dl>
+
+	</section>
+	<section><h3>SimpleCompanyDB - the data</h3>
+		<dl class="fa">
+			<dt>DB engine used is <a href="https://mariadb.org/">MariaDB</a></dt>
+			<dt>Next sample data are pre-populated into the database:</dt>
+		</dl>
+		<pre><code rel="SQL" class="sql" data-noescape style="font-size: .9em; height: 70vh;">
+			 root@localhost:SimpleCompanyDB> SELECT * from company;
+			+--------------+----------------+
+			|   company_id | company_name   |
+			|--------------+----------------|
+			|            1 | Google         |
+			|            2 | Facebook       |
+			|            3 | Microsoft      |
+			+--------------+----------------+
+			4 rows in set
+			Time: 0.002s
+			mariadb root@localhost:SimpleCompanyDB> SELECT * from employee;
+			+---------------+-----------------+
+			|   employee_id | employee_name   |
+			|---------------+-----------------|
+			|             1 | Ivan Petrov     |
+			|             2 | Maria Popova    |
+			|             3 | Georgi Ivanov   |
+			+---------------+-----------------+
+			3 rows in set
+			Time: 0.005s
+			mariadb root@localhost:SimpleCompanyDB> SELECT * from company_employee
+			+---------------+--------------+
+			|   employee_id |   company_id |
+			|---------------+--------------|
+			|             1 |            2 |
+			|             2 |            1 |
+			|             3 |            1 |
+			|             3 |            2 |
+			+---------------+--------------+
+			4 rows in set
+		</code></pre>
+	</section>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>SQLAlchemy is the Python SQL Toolkit and ORM</dt>
+			<dd>Official site <a href="https://www.sqlalchemy.org/">www.sqlalchemy.org</a></dd>
+		</dl><br>
+		<a href="images/SQLAlchemy_layers.png"><img src="images/SQLAlchemy_layers.png"></a>
+	</section>
+	<section><h3>Overview</h3>
+		<p>The SQLAlchemy flow:</p>
+		<a href="images/sqla_engine_arch.png"><img src="images/sqla_engine_arch.png"></a>
+	</section>
+	<section><h3>SQLAlchemy Engines</h3>
+		<dl class="fa" style="font-size: .8em">
+			<dt>An <em>Engine</em> allows SQLAlchemy to interact with a database</dt>
+			<dt>The typical usage of create_engine() is once per particular database URL, held globally for the lifetime of a single application process</dt>
+		</dl>
+		<pre><code rel="Syntax" class="shell" data-noescape>
+			engine = create_engine(
+				dialect+driver://username:password@host:port/database)
+		</code></pre>
+		<pre><code rel="Python" class="python" style="font-size: 1em;">
+			from sqlalchemy import create_engine
+
+			# connect to Mysql/MariaDB:
+			mysql_engine = create_engine(
+			  "mysql+pymysql://user:pass@localhost/test")
+
+			# connect to PostgreSQL:
+			pg_engine = create_engine('postgresql://usr:pass@localhost/sqlalchemy')
+		</code></pre>
+		<a href="http://docs.sqlalchemy.org/en/rel_1_1/core/engines.html">Engine Configuration @http://docs.sqlalchemy.org</a>
+	</section>
+	<section><h3>Supported Databases/Dialects</h3>
+		<dl class="fa">
+			<dt>SQLAlchemy includes many Dialect implementations for various backends. Many other are available as external projects</dt>
+			<dt>List and more information about dialects can be found on: <a href="http://docs.sqlalchemy.org/en/rel_1_1/dialects/index.html">Dialects</a></dt>
+		</dl>
+	</section>
+	<section><h3>Create an engine to SimpleCompanyDB</h3>
+		<pre><code rel="base.py" class="python" data-noescape>
+			from sqlalchemy import create_engine
+
+			#Create engine with MySQL dialect:
+			engine = create_engine(
+			    'mysql+pymysql://pythontest:123@localhost/SimpleCompanyDB?charset=utf8',
+			    connect_args = {
+			        # 'port': 3306
+			    },
+			    # echo='debug',
+			    echo_pool=True
+			)
+
+			# test the connection - get tables names:
+			print("Tables in SimpleCompanyDB: ",engine.table_names())
+			# Tables in SimpleCompanyDB:  ['company', 'company_employee', 'employee']
+		</code></pre>
+	</section>
+	<section><h3>The Declarative system </h3>
+		<dl class="fa">
+			<dt>SQLAlchemy uses a system known as Declarative, which allows us to create classes that include directives to describe the actual database table they will be mapped to.</dt>
+			<dt>Classes mapped using the Declarative system are defined in terms of a base class which maintains a catalog of classes and tables relative to that base - this is known as the declarative base class.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from sqlalchemy.ext.declarative import declarative_base
+
+			Base = declarative_base()
+		</code></pre>
+	</section>
+	<section><h3>SQLAlchemy Data Types</h3>
+		<dl class="fa">
+			<dt>SQLAlchemy provides abstraction for various data types used in most RBMS.</dt>
+			<dd><a href="http://docs.sqlalchemy.org/en/latest/core/types.html">Column and Data Types</a></dd>
+		</dl>
+		<pre><code rel="Python" class="python">
+			class Address(Base):
+			    __tablename__ = 'address'
+			    # define columns for the table address.
+			    id = Column(Integer, primary_key=True)
+			    street_name = Column(String(250))
+			    street_number = Column(String(250))
+			    post_code = Column(String(250), nullable=False)
+			    person_id = Column(Integer, ForeignKey('person.id'))
+			    person = relationship(Person)
+		</code></pre>
+	</section>
+	<section><h3>SQLAlchemy Relationships</h3>
+		<dl class="fa">
+			<dt>SQLAlchemy supports four types of relationships: One To Many, Many To One, One To One, and Many To Many</dt>
+		</dl>
+		<p>Example of <em>One To Many</em> relationship:</p>
+		<pre><code rel="Python" class="python">
+			class Person(Base):
+			    __tablename__ = 'person'
+			    id = Column(Integer, primary_key=True)
+			    pets = relationship("Pet")
+
+
+			class Pet(Base):
+			    __tablename__ = 'pet'
+			    id = Column(Integer, primary_key=True)
+			    person_id = Column(Integer, ForeignKey('person.id'))
+		</code></pre>
+	</section>
+	<section><h3>Example of <em>Many To Many</em> relationship</h3>
+		<pre><code rel="Python" class="python">
+			company_employee = Table('company_employee', Base.metadata,
+			    Column('employee_id', Integer, ForeignKey('employee.employee_id')),
+			    Column('company_id', Integer, ForeignKey('company.company_id'))
+			)
+
+			class Employee(Base):
+			    __tablename__ = 'employee'
+			    employee_id = Column(Integer, primary_key=True)
+			    companies = relationship("Company", secondary=company_employee)
+
+			class Company(Base):
+			    __tablename__ = 'company'
+			    id = Column(Integer, primary_key=True)
+		</code></pre>
+	</section>
+	<!-- <section><h3>SQLAlchemy ORM (Mappers)</h3>
+		<dl class="fa">
+			<dt>Mappers are responsible for moving data between objects and a database while keeping them independent of each other</dt>
+		</dl>
+	</section> -->
+	<section><h3>SQLAlchemy Sessions</h3>
+		<dl class="fa">
+			<dt>Sessions are used to guarantee the database consistency.</dt>
+			<dt>All modifications tracked by Sessions (Units of Works) will be applied to the underlying database together, or none of them will.</dt>
+			<dt>More on Sessions: <a href="http://docs.sqlalchemy.org/en/rel_1_1/orm/session_basics.html">Session Basics @docs.sqlalchemy.org</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section><h1>Reflecting Database Objects</h1></section>
+<section><h2>Reflecting Database Objects</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>If a table already exists, SQLAlchemy can read its column definitions directly from the database.</dt>
+			<dt>This processes is called <span class="note">reflecting the table</span>.</dt>
+		</dl>
+	</section>
+	<section><h3>example</h3>
+		<pre><code rel="Python" class="bash">
+			from sqlalchemy import create_engine
+			from sqlalchemy import MetaData
+			from sqlalchemy import Table, sql
+
+
+			# connect to Mysql/MariaDB:
+			engine = create_engine("mysql+pymysql://root:1234@localhost/SimpleCompanyDB")
+
+
+			# Create a MetaData instance
+			metadata = MetaData()
+			print(metadata.tables)
+
+			# reflect db schema to MetaData
+			metadata.reflect(bind=engine)
+			print(metadata.tables)
+		</code></pre>
+	</section>
+</section>
+
+<!-- <section><h1>Connect, Declare a Mapping,Create a Schema</h1></section>
+<section><h2>Connect, Declare a Mapping,Create a Schema</h2>
+	<section><h3>___MainSectionSubTitle___</h3></section>
+</section> -->
+
+
+<!-- <section><h1>Demo example with SQLAlchemy and SQLite3</h1></section>
+<section><h2>Demo example with SQLAlchemy and SQLite3</h2>
+	<section><h3>___MainSectionSubTitle___</h3></section>
+</section> -->
+
+<section data-min="20"><h1>Pandas and DB</h1></section>
+<section><h2>Pandas and DB</h2>
+  <section><h3>DataFrame from MySQL table</h3>
+    <pre><code rel="Python" class="python">
+      import MySQLdb
+      mysql_cn= MySQLdb.connect(host='myhost',
+                      port=3306,user='myusername', passwd='mypassword',
+                      db='information_schema')
+      df_mysql = pd.read_sql('select * from VIEWS;', con=mysql_cn)
+      print 'loaded dataframe from MySQL. records:', len(df_mysql)
+      mysql_cn.close()
+    </code></pre>
+  </section>
+</section>
+
+
+<section><h1>References</h1></section>
+<section><h2>References</h2>
+	<section><h3>Readings</h3>
+		<dl class="fa">
+			<dt><a href="https://www.python.org/dev/peps/pep-0249/">PEP 249 -- Python Database API Specification v2.0</a></dt>
+			<dt><a href="http://docs.sqlalchemy.org/en/latest/orm/tutorial.html">Object Relational Tutoria</a> <a href="http://docs.sqlalchemy.org/en/latest/">@docs.sqlalchemy.org</a></dt>
+			<dt><a href="http://docs.sqlalchemy.org/en/latest/core/reflection.html">Reflecting Database Objects</a></dt>
+			<dt><a href="https://www.pythonsheets.com/notes/python-sqlalchemy.html">Python SQLAlchemy Cheatsheet</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>books_db</h2>
+	<section>
+		<ol class="fs-small">
+			<li>CONNECT TO MySQL as ROOT</li>
+			<li>CRETE DB: <span class="note">books_db</span></li>
+			<li>CREATE user <span class="note">books_db_admin</span></li>
+			<li>GRANT all privileges to <span class="note">books_db_admin</span> on <span class="note">books_db</span></li>
+			<li>CONNECT to <span class="note">books_db</span> as <span class="note">books_db_admin</span></li>
+		</ol>
+	</section>
+	<section>
+					<ol start="6">
+									<li>Create next tables, using the appropriate data types for columns:
+									<dd>table <span class="note">author</span>:</dd>
+									<pre class="fs-smaller">
+		Columns:
+		--------------------------------
+		id (primary key, auto_increment)
+		fname,
+		lname,
+		birth_year,
+		death_year;
+									</pre>
+									<dd>table <span class="note">book</span>:</dd>
+									<pre class="fs-smaller">
+		Columns:
+		--------------------------------
+		id (primary key, auto_increment)
+		author_id,
+		book_name,
+		pub_year;
+									</pre>
+									</li>
+					</ol>
+					<p><span class="note">If you need to store years less than 1900, you have to use some integer type for that - SMALLINT(4) should be enough for most cases</span>.</p>
+	</section>
+	<section>
+					<dl class="fa">
+									<dt>You can examine the sample DataBase <span class="note">books_db</span>:</dt>
+									<dd>Download the <a href="slides_examples/books_db_schema.sql">books_db_schema.sql</a></dd>
+									<dd>Download the <a href="slides_examples/books_db_sample_data.sql">books_db_sample_data.sql</a></dd>
+									<dt>Use the 'INSERT', 'UPDATE' and 'DELETE' statements to modify the data in the example (or in your) data base.</dt>
+					</dl>
+	</section>
+</section>
+
+
+
+<!-- <section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: DB-Lecture2">ivawebcourses@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
