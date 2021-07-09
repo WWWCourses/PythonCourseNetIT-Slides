@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>PyQT-Lecture2</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>PyQT && Tools - Hands On</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/" title="click for bigger image">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+<section data-min="5"><h1>Hands on QtDesigner</h1></section>
+<section><h2>Hands on QtDesigner</h2>
+	<section><h3>Creating Simple Calculator UI</h3>
+		<dl class="fa">
+			<dt>Live Demo</dt>
+		</dl><br>
+		<a href="./images/CalculatorUI.png"><img src="./images/CalculatorUI.png" alt=""></a>
+	</section>
+	<section><h3>Simple Login Form</h3>
+		<dl class="fa">
+			<dt>Live Demo</dt>
+		</dl><br>
+		<a href="./images/simple_login_form.png"><img src="./images/simple_login_form.png" alt=""></a>
+	</section>
+	<section><h3>Using <code>pyuic5</code> to convert the <code>ui</code> file to Python code</h3>
+		<dl class="fa">
+			<dt><code>pyuic5</code> (PYthon User Interface Compiler) tool can compile the <code>ui</code> file to Python code</dt>
+		</dl>
+		<pre><code rel="Syntax" class="bash">
+			pyuic5 [options] file.ui
+		</code></pre>
+		<dl class="fa">
+			<dt>you can see available options by typing</dt>
+		</dl>
+		<pre><code rel="Terminal" class="ascii">
+			pyuic5 --help
+
+			Options:
+			--version             show program's version number and exit
+			-h, --help            show this help message and exit
+			-p, --preview         show a preview of the UI instead of generating code
+			-o FILE, --output=FILE
+														write generated code to FILE instead of stdout
+			-x, --execute         generate extra code to test and display the class
+			-d, --debug           show debug output
+			-i N, --indent=N      set indent width to N spaces, tab if N is 0 [default:
+																								4]
+		</code></pre>
+		<dl class="fa">
+			<dt><span class="note">If we do not specify an output file (using <code>-o</code>) option, the generated python code will be sent to console's output</span>. That's why we must use the <code>-o</code> option</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			pyuic5 -o simpleLoginForm.py simpleLoginForm.ui
+		</code></pre>
+	</section>
+	<section><h3>The problem of manipulating pyuic5 generated files</h3>
+		<dl class="fa">
+			<dt>Yes, we can automatically create a Python file from a QtDesigner <code>.ui</code> file, we can even use the <code>-x</code> option to generate extra code to run and display the class. But we should never write our functionality in this file</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			ls -l
+			# simpleLoginForm.ui
+
+			# note, the use of '-x' option
+			pyuic5 -x -o simpleLoginForm.py simpleLoginForm.ui
+
+			ls -l
+			# simpleLoginForm.py
+			# simpleLoginForm.ui
+
+			python simpleLoginForm.py
+		</code></pre>
+		<dl class="fa">
+			<dt>But note the commented warning in generated file:</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			# WARNING: Any manual changes made to this file will be lost when pyuic5 is
+			# run again
+		</code></pre>
+	</section>
+	<section><h3>The problem of manipulating pyuic5 generated files</h3>
+		<dl class="fa">
+			<dt>Also, the class generated by pyuic5 inherits from the Python's <code>object</code> object, not from the QWidget, and that make the code more obscure</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			Form = QtWidgets.QWidget()
+			ui = Ui_Form()
+			ui.setupUi(Form)
+		</code></pre>
+	</section>
+	<section><h3>The right way of using UI Compiled files</h3>
+		<dl class="fa">
+			<dt>The QtDesigner program is deigned to speed the work in huge and complicate GUI apps. As Qt itself, it is fitted to OOP style of programming.</dt>
+			<dt>The write way to use pyuic5 generated files is to use them as modules, which we'll import in our main app</dt>
+		</dl>
+	</section>
+	<section><h3>Recap class inheritance in Python </h3>
+		<pre><code rel="Python" class="python">
+			# the base class
+			class Parent:
+				def __init__(self,*args, **kwargs):
+					print(f'{self} constructor execute')
+					print(args)
+					print(kwargs)
+
+			# the derived class, which inherits from base class:
+			class Child(Parent):
+				def __init__(self, *args, **kwargs):
+					super().__init__(*args, **kwargs)
+
+			p1 = Parent(1,2,a=3,b=4)
+			c = Child(5,6,c=7,d=8)
+		</code></pre>
+	</section>
+</section>
+
+
+
+<section data-min="5"><h1>Understand the structure of a PyQt Application</h1></section>
+<section><h2>Understand the structure of a PyQt Application</h2>
+	<section><h3>Minimal structure of a PyQt App</h3>
+		<pre><code rel="Python" class="python">
+			# 1. import QtWidgets classes
+			from PyQt5.QtWidgets import QApplication, QWidget
+
+			# 2. the main app instance for our application.
+			app = QApplication([])
+
+			# 3. Create Qt widget, which will be our main window.
+			window = QWidget()
+
+			# 4. show the window
+			window.show()
+
+			# 5. Start the event loop
+			app.exec_()
+
+		</code></pre>
+		<dl class="fa">
+			<dt>The QtWidgets module provides a set of classes corresponding to UI elements which we can use to create our GUI app.</dt>
+			<dt>The QWidget class is the base class of all user interface objects.</dt>
+			<dd><span class="note">widget</span> is a generic name for any kind of GUI item, like window, button, label, checkbox...</dd>
+			<dt>We need one (and only one) QApplication instance per application.</dt>
+			<dt style="font-weight: bold;">The QApplication instantiation <span class="note">must be set before</span> any kind of widget or window creation!</dt>
+		</dl>
+	</section>
+	<section><h3>QWidget Class</h3>
+		<pre><code rel="Python" class="python">
+			window = QWidget()
+			window.show()
+		</code></pre>
+		<dl class="fa">
+			<dt>The QWidget class is the base class of all user interface objects</dt>
+			<dt>The show method will show the widget in its own (as a standalone container). If we want to create a widget which will be used inside other widget (i.e. a child widget) we would not call the show method on it.</dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-5/qwidget.html#details">QWidget Class</a></dt>
+		</dl>
+	</section>
+	<section><h3>QApplication Class</h3>
+		<pre><code rel="Python" class="python">
+			app = QApplication(sys.argv)
+		</code></pre>
+		<dl class="fa">
+			<dt>The QApplication class manages the GUI application's control flow and main settings. It handles widget specific initialization, finalization, etc.</dt>
+			<dt class="note">For any GUI application using Qt, there is precisely one QApplication object, no matter whether the application has 0, 1, 2 or more windows at any given time.</dt>
+			<dt>This application object must be constructed before any paint devices (including widgets, pixmaps, bitmaps etc.).</dt>
+			<dt><a href="https://doc.qt.io/qt-5/qapplication.html#QApplication">QApplication() constructor</a> initializes the window system and constructs an application object. It accepts a list with <code>argv</code> command-line arguments.</dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-5/qapplication.html">QApplication Class</a></dt>
+		</dl>
+	</section>
+	<section><h3>QApplication exec()</h3>
+		<pre><code rel="Python" class="python">
+			app.exec_()
+
+			# best practice:
+			sys.exit(app.exec_())
+		</code></pre>
+		<dl class="fa">
+			<dt><code>app.exec()</code> begins the QApplication <span class="note">event loop</span> which process our user interactions with the GUI.</dt>
+			<dd>The main event loop receives events from the window system and dispatches these to the application widgets.</dd>
+			<dt class="note">The event loop will run forever until the application quits.</dt>
+			<dt>In python both <code>app.exec()</code> and <code>app.exec_()</code> methods are implemented, because <code>exec</code> is a reserved word in Python2</dt>
+			<dt>It's a good practice our Python script to exit with the same exit status as app.exec_() status. That's why we use <code>sys.exit(app.exec_())</code> </dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-5/qapplication.html#exec">QApplication::exec()</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section data-min="5"><h1>Create PyQt App template (OOP style)</h1></section>
+<section><h2>Create PyQt App template (OOP style)</h2>
+	<section><h3>Core Qt modules</h3>
+		<p>For now, in our "dummy" Qt App, we've used only the QtWidgets module. But any Qt App will use (and must include) next three modules:</p>
+		<dl class="fa">
+			<dt><a href="https://doc.qt.io/qt-5/qtcore-index.html">QtCore</a> - contains low-level data wrapper classes, utility functions, and non-GUI core functionality</dt>
+			<dt><a href="https://doc.qt.io/qt-5/qtgui-index.html">QtGui</a> - contains GUI-specific data wrapper classes and utilities</dt>
+			<dt><a href="https://doc.qt.io/qt-5/qtwidgets-index.html">QtWidgets</a> - defines GUI widgets, layouts, and other high-level GUI components</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from PyQt5 import QtWidgets as qtw
+			from PyQt5 import QtCore as qtc
+			from PyQt5 import QtGui as qtg
+		</code></pre>
+		<p class="note">Never use <code>*</code> imports with Qt modules, as you risk to overwhelm your namespace with hundreds of names</p>
+	</section>
+
+</section>
+
+
+
+<section data-min="5"><h1>References && Self-Learning</h1></section>
+<section><h2>References && Self-Learning</h2>
+	<section><h3>PyQt Official Documentation</h3>
+		<dl class="fa">
+			<dt><a href="https://doc.qt.io/">Qt Documentation</a> - <span>note,that this documentation covers Qt framework, i.e. C++ classes.</span></dt>
+			<dt><a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/">PyQt5 Reference Guide</a> - <span>the officail PyQt5 documentation from <a href="riverbankcomputing.com">riverbankcomputing.com</a></span></dt>
+			<dt><a href="https://doc-snapshots.qt.io/qtforpython/#documentation">Qt for Python Documentation</a> - <span>this is the documentation for PySide2, but it's more usefull than the sparse docs for PyQt</span></dt>
+			<dt>PyQt's documentation covers only the Python-specific differences
+				and lacks comprehensive class reference, tutorials and example code which can be find in Qt's
+				documentation.</dt>
+		</dl>
+	</section>
+</section>
+<!-- <section data-min="5"><h1>Exercises</h1></section>
+<section><h2>Exercises</h2>
+	<section id="HW_Calculator"><h3>Task1: Calculator GUI</h3>
+		<dl class="fa">
+			<dt>Create the UI of a calculator, like the one shown in next image.</dt>
+			<a href="./images/task_calculator_ui.png" title="click for bigger image"><img src="./images/task_calculator_ui.png" alt="./images/task_calculator_ui.png" style="min-height: 60vh;"></a>
+			<dt>Use the Qt Designer and save the file as <code>calculator.ui</code></dt>
+			<dt>Convert the generated <code>calculator.ui</code> file to python code, using the <code>pyuic5</code> tool</dt>
+		</dl><br>
+
+	</section>
+</section> -->
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
