@@ -156,33 +156,16 @@
 		<dl class="fa">
 			<dt>The QtDesigner program is deigned to speed the work in huge and complicate GUI apps. As Qt itself, it is fitted to OOP style of programming.</dt>
 			<dt>The write way to use pyuic5 generated files is to use them as modules, which we'll import in our main app</dt>
+			<dt>But before starting to use the auto-generated classes from QtDesigner, we must understand the the structure of a  Qt App!</dt>
 		</dl>
 	</section>
-	<section><h3>Recap class inheritance in Python </h3>
-		<pre><code rel="Python" class="python">
-			# the base class
-			class Parent:
-				def __init__(self,*args, **kwargs):
-					print(f'{self} constructor execute')
-					print(args)
-					print(kwargs)
-
-			# the derived class, which inherits from base class:
-			class Child(Parent):
-				def __init__(self, *args, **kwargs):
-					super().__init__(*args, **kwargs)
-
-			p1 = Parent(1,2,a=3,b=4)
-			c = Child(5,6,c=7,d=8)
-		</code></pre>
-	</section>
 </section>
-
 
 
 <section data-min="5"><h1>Understand the structure of a PyQt Application</h1></section>
 <section><h2>Understand the structure of a PyQt Application</h2>
 	<section><h3>Minimal structure of a PyQt App</h3>
+		<p></p>
 		<pre><code rel="Python" class="python">
 			# 1. import QtWidgets classes
 			from PyQt5.QtWidgets import QApplication, QWidget
@@ -248,28 +231,6 @@
 		</dl>
 	</section>
 </section>
-
-
-<section data-min="5"><h1>Create PyQt App template (OOP style)</h1></section>
-<section><h2>Create PyQt App template (OOP style)</h2>
-	<section><h3>Core Qt modules</h3>
-		<p>For now, in our "dummy" Qt App, we've used only the QtWidgets module. But any Qt App will use (and must include) next three modules:</p>
-		<dl class="fa">
-			<dt><a href="https://doc.qt.io/qt-5/qtcore-index.html">QtCore</a> - contains low-level data wrapper classes, utility functions, and non-GUI core functionality</dt>
-			<dt><a href="https://doc.qt.io/qt-5/qtgui-index.html">QtGui</a> - contains GUI-specific data wrapper classes and utilities</dt>
-			<dt><a href="https://doc.qt.io/qt-5/qtwidgets-index.html">QtWidgets</a> - defines GUI widgets, layouts, and other high-level GUI components</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			from PyQt5 import QtWidgets as qtw
-			from PyQt5 import QtCore as qtc
-			from PyQt5 import QtGui as qtg
-		</code></pre>
-		<p class="note">Never use <code>*</code> imports with Qt modules, as you risk to overwhelm your namespace with hundreds of names</p>
-	</section>
-
-</section>
-
-
 
 <section data-min="5"><h1>References && Self-Learning</h1></section>
 <section><h2>References && Self-Learning</h2>
