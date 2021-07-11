@@ -173,45 +173,64 @@
 			pyuic5 helloWorld.ui -o helloWorld.py
 		</code></pre>
 	</section>
+</section>
 
+<section data-min="5" id="setupPyCharmForPyQt5"><h1>Setup PyCharm for PyQt5</h1></section>
+<section><h2>Setup PyCharm for PyQt5</h2>
 	<section><h3>PyCharm - Basic Configuration</h3>
 		<dl class="fa">
-			<dt>Create a new project</dt>
-			<dt>Set the default Project Interpreter.</dt>
-			<a href="./images/pycharm-python-version.png" title="click for bigger image"><img src="./images/pycharm-python-version.png" alt=""></a>
+			<dt>Create/open a new project</dt>
+			<dt>Make sure you have installed the needed project dependencies:</dt>
+			<dd>You need <code>PyQt5</code>, <code>PyQt5-sip</code> and <code>pyqt5-tools</code></dd>
+			<a href="./images/PyCharm_CheckProjectDependancies.png" title="click for bigger image"><img src="./images/PyCharm_CheckProjectDependancies.png" alt="" style="height: 100vh;"></a>
 		</dl>
 	</section>
-	<section><h3>PyCharm - add pyqt5 libs</h3>
+	<section><h3>PyCharm - add missing dependencies</h3>
+		<p class="note">You need to perform next steps only if you don't have <code>PyQt5</code>, <code>PyQt5-sip</code> and <code>pyqt5-tools</code> packages</p>
 		<dl class="fa">
 			<dt>In Project Interpreter interface click the <code>+</code> and install pyqt5, pyqt5-sip, pyqt5-tools</dt>
-			<dd>Of course, if you have not installed them yet.</dd>
-			<a href="./images/pycharm-install-pyqt.png" title="click for bigger image"><img src="./images/pycharm-install-pyqt.png" alt="./images/pycharm-install-pyqt.png"></a>
+			<a href="./images/PyCharm_InstallMissingDependencies.png" title="click for bigger image"><img src="./images/PyCharm_InstallMissingDependencies.png" alt="./images/PyCharm_InstallMissingDependencies.png"></a>
 		</dl>
 	</section>
-	<section><h3>PyCharm - Configure QtDesigner Tool</h3>
+	<section><h3>PyCharm - Configure StartQtDesigner Tool</h3>
 		<dl class="fa">
-			<dt>From <code>File | Settings | Tools | PyCharm. External Tools</code> click <code>+ New Tools</code></dt>
-			<dt>Create QTdesigner Tool</dt>
+			<dt>From <code>File => Settings => Tools => External Tools</code> click the <code>+</code> button</dt>
+			<dt>Create StartQtDesigner Tool with next settings:</dt>
 		</dl>
-		<a href="./images/pycharm-configure-qtdesigner.png" title="click for bigger image"><img src="./images/pycharm-configure-qtdesigner.png" alt="" style="height: 90vh;"></a>
+		<a href="./images/PyCharm_StartQTDesignerTool.png" title="click for bigger image"><img src="./images/PyCharm_StartQTDesignerTool.png" alt="" style="height: 90vh;"></a>
+		<br>
+		<dl class="fa">
+			<dt>Now you can start QtDesigner from PyCharm</dt>
+		</dl>
+	</section>
+	<section><h3>PyCharm - Configure OpenWithQtDesigner Tool</h3>
+		<dl class="fa">
+			<dt>From <code>File => Settings => Tools => External Tools</code> click the <code>+</code> button</dt>
+			<dt>Create OpenWithQtDesigner Tool with next settings:</dt>
+		</dl>
+		<a href="./images/PyCharm_OpenWithQTDesignerTool.png" title="click for bigger image"><img src="./images/PyCharm_OpenWithQTDesignerTool.png" alt="" style="height: 90vh;"></a>
+		<br>
+		<dl class="fa">
+			<dt>Now you can open and edit a <code>ui</code> file with QtDesigner</dt>
+		</dl>
 	</section>
 	<section><h3>PyCharm - Configure PyUIC</h3>
 		<dl class="fa">
-			<a href="./images/pycharm-pyuic.png" title="click for bigger image"><img src="./images/pycharm-pyuic.png"" alt="./images/pycharm-pyuic.png""></a>
-			<dt><b>Program</b>: set python.exe path, like: <code>C:\\xxxx\AppData\\Local\Programs\Python\Python35-32\python.</code></dt>
+			<a href="./images/PyCharm_PyUICTool.png" title="click for bigger image"><img src="./images/PyCharm_PyUICTool.png"" alt="./images/PyCharm_PyUICTool.png""></a>
+			<dt><b>Program</b>: Select python3 interpreter from your virtual environment:</dt>
 			<dt><b>Arguments</b>: <code>-m PyQt5.uic.pyuic $FileName$ -o $FileNameWithoutExtension$.py</code></dt>
-			<dt><b>Working directory</b>: <code>$ProjectFileDir$</code></dt>
+			<dt><b>Working directory</b>: <code>$FileDir$</code></dt>
 		</dl>
 	</section>
 	<section><h3>Reference</h3>
 		<dl class="fa">
-			<dt><a href="https://www.programmersought.com/article/18407263993/">How to install QT Designer+PyUIC in Pycharm</a></dt>
+			<dt><a href="https://www.jetbrains.com/help/pycharm/configuring-third-party-tools.html">External tools @jetbrains.com</a></dt>
+			<!-- <dt><a href="https://www.programmersought.com/article/18407263993/">How to install QT Designer+PyUIC in Pycharm</a></dt> -->
 			<!-- <dt><a href="https://www.programmersought.com/article/35548368831/">Pycharm Install PYQT5, PyQt5-Tools and Tools under VENV</a></dt> -->
 			<!-- <dt>Note, that you don't need to setup Pyrcc, as it is not maintained anymore.</dt> -->
 		</dl>
 	</section>
 </section>
-
 <section data-min="50"><h1>Build your Qt App</h1></section>
 <section><h2>Build your Qt App</h2>
 	<section>
