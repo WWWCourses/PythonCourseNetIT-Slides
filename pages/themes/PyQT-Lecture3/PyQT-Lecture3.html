@@ -203,88 +203,22 @@
 				def __init__(self, *args, **kwargs):
 					super().__init__(*args, **kwargs)
 					# --------------------------- your code starts here -------------------------- #
-					# self.setWindowTitle('Hello World!')
 
 					# ---------------------------- your code ends here --------------------------- #
 					self.show();
 
+				create your methods here
 			if __name__ == '__main__':
 				app = qtw.QApplication(sys.argv);
 
 				window = MainWindow()
 
 				sys.exit(app.exec_())
-
 		</code></pre>
 	</section>
 </section>
 
-<section data-min="5"><h1>Hand Code our Login Form Widget</h1></section>
-<section><h2>Hand Code our Login Form Widget</h2>
-	<section><h3>Why?</h3>
-		<dl class="fa">
-			<dt>The code produced by pyuic5 is overwhelmed and not clean</dt>
-			<dt>We can only <span class="note">learn</span> Qt App methodology only if we have hand-coded a simple GUI App.</dt>
-			<dt>For next examples, we'll be using <a href="#pyqtAppTemplate">the template</a> we've already created</dt>
-		</dl>
-	</section>
-	<section><h3>Create user input and button widgets</h3>
-		<pre><code rel="Python" class="python">
-			# --------------------------- your code starts here -------------------------- #
-			# create user input widgets:
-			user_name_input = qtw.QLineEdit()
-			password_input = qtw.QLineEdit()
-			password_input.setEchoMode(qtw.QLineEdit.Password)
 
-			# create the submit button:
-			btn_submit = qtw.QPushButton('Login')
-
-
-			# ---------------------------- your code ends here --------------------------- #
-		</code></pre>
-		<dl class="fa">
-			<dt>Of course, we did not see the created widgets, because they are still not attached to our main window</dt>
-			<dt>References: </dt>
-			<dd><a href="https://doc.qt.io/qt-5/qlineedit.html">QLineEdit Class</a></dd>
-			<dd><a href="https://doc.qt.io/qt-5/qpushbutton.html">QPushButton Class</a></dd>
-			<dd><a href="https://doc.qt.io/qt-5/qlineedit.html#echoMode-prop">EchoMode Property</a></dd>
-		</dl>
-	</section>
-	<section><h3>Create the Form Layout</h3>
-		<dl class="fa">
-			<dt class="note">For most widgets, in order to attach them into another widgets we must use a layout</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			# --------------------------- your code starts here -------------------------- #
-			# create user input widgets:
-			user_name_input = qtw.QLineEdit()
-			password_input = qtw.QLineEdit()
-			password_input.setEchoMode(qtw.QLineEdit.Password)
-
-			# create the submit button:
-			btn_submit = qtw.QPushButton('Login')
-
-			# create Form Layout and layout widgets in it
-			form_layout = qtw.QFormLayout()
-			form_layout.addRow('User name: ', user_name_input)
-			form_layout.addRow('Password: ', password_input)
-			form_layout.addRow(btn_submit)
-
-
-			# apply the form_layout to our widget
-			# this will attach our form widget's into main window
-			self.setLayout(form_layout)
-
-			# ---------------------------- your code ends here --------------------------- #
-		</code></pre>
-		<dl class="fa">
-			<dt>References:</dt>
-			<dd><a href="https://doc.qt.io/qt-5/layout.html">Layout Management</a></dd>
-			<dd><a href="https://doc.qt.io/qt-5/qformlayout.html">QFormLayout Class</a></dd>
-		</dl>
-	</section>
-</section>
-<!--
 <section data-min="5"><h1>References && Self-Learning</h1></section>
 <section><h2>References && Self-Learning</h2>
 	<section><h3>PyQt Official Documentation</h3>
@@ -297,46 +231,8 @@
 				documentation.</dt>
 		</dl>
 	</section>
-</section> -->
-
-
-
-<section data-min="5"><h1>Add GUI feature to your app</h1></section>
-<section><h2>Add GUI feature to your app</h2>
-	<section><h3>Create/Clone repos</h3>
-		<dl class="fa">
-			<dt>Create your github repo, or clone someone's else (if you want to contribute to the project)</dt>
-			<dt>References:</dt>
-			<dd><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">Create a repo @docs.github.com</a></dd>
-			<dd><a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository">Cloning a repository @docs.github.com</a></dd>
-		</dl>
-	</section>
-	<section><h3>Create a branch for <code>GUI</code> of your app</h3>
-		<dl class="fa">
-			<dt>If you already have a working application with console IO, and you want to refactor your app to work with GUI, it's best to separate your work in a different branch.</dt>
-			<pre><code rel="Terminal" class="bash">
-				# make sure you're in root project folder, and type:
-				git checkout -b GUI
-
-				# your prompt should change and show the branch name (GUI)
-			</code></pre>
-			<dd><a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Git branching branches in a nutshell</a> </dd>
-			<dd><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">Git Feature Branch Workflow @atlassian.com</a></dd>
-		</dl>
-	</section>
 </section>
-<!-- <section data-min="5"><h1>Exercises</h1></section>
-<section><h2>Exercises</h2>
-	<section id="HW_Calculator"><h3>Task1: Calculator GUI</h3>
-		<dl class="fa">
-			<dt>Create the UI of a calculator, like the one shown in next image.</dt>
-			<a href="./images/task_calculator_ui.png" title="click for bigger image"><img src="./images/task_calculator_ui.png" alt="./images/task_calculator_ui.png" style="min-height: 60vh;"></a>
-			<dt>Use the Qt Designer and save the file as <code>calculator.ui</code></dt>
-			<dt>Convert the generated <code>calculator.ui</code> file to python code, using the <code>pyuic5</code> tool</dt>
-		</dl><br>
 
-	</section>
-</section> -->
 
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
 <!--
