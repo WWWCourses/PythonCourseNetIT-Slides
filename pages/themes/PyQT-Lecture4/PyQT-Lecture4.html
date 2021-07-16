@@ -213,7 +213,7 @@
 			<dd><a href="https://doc.qt.io/qt-5/qformlayout.html">QFormLayout Class</a></dd>
 		</dl>
 	</section>
-	<section><h3>TASK: add Submit and Cancel buttons to our login form</h3>
+	<section id="Task_add_buttons_in_layout"><h3>TASK: add Submit and Cancel buttons to our login form</h3>
 		<dt>Create and layout the buttons as shown:</dt>
 		<a href="./images/TASK_login_form_handcoded.png"><img src="./images/TASK_login_form_handcoded.png" alt="TASK_login_form_handcoded.png"></a>
 		<dt>Reference:</dt>
@@ -223,144 +223,23 @@
 	</section>
 </section>
 
-<section data-min="5"><h1>Introduction to Signals And Slots</h1></section>
-<section><h2>Preliminary: how a GUI app works </h2>
-	<section><h3>Procedural app (batch-processing application)</h3>
-		<pre><code rel="Python" class="python">
-			def sub_task_1():
-				pass
-
-			def sub_task_2():
-				pass
-
-			#....
-
-			def sub_task_N():
-				pass
-
-			if __name__ == "__main__":
-				sub_task_1()
-				sub_task_2()
-				# ...
-				sub_task_N()
-		</code></pre>
-	</section>
-	<section><h3>A GUI App (event-driven) processing</h3>
-		<dl class="fa">
-			<dt>A GUI App processing model is <span class="note">event-driven</span></dt>
-			<a href="./images/event-driven_programming_diagram.png"><img src="./images/event-driven_programming_diagram.png" alt="event-driven_programming_diagram.png"></a>
-			<dt>An event can be any user action, like <span class="note">click, scroll, input</span> etc.</dt>
-			<dt>An event handler is a function which defines the actions that must be executed after an event is triggered.</dt>
-		</dl>
-	</section>
-	<section><h3>The Event Loop</h3>
-		<dl class="fa">
-			<dt>Event-driven programming relies on <span class="note">event-loop</span> to process events</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			def start_event_loop():
-				while True:
-					if event_queue_not_empty:
-						if terminate_signal:
-							exit()
-						else:
-							process event()
-					else:
-						wait for event
-		</code></pre>
-		<a href="./images/batch_processing_vs_GUI_event_loop.png"><img src="./images/batch_processing_vs_GUI_event_loop.png" alt="batch_processing_vs_GUI_event_loop.png"></a>
-	</section>
-</section>
-
-<section><h2>What are Signals And Slots?</h2>
-	<section>
-		<dl class="fa">
-			<!-- <dt>Qt library provides two parallel mechanisms to define and process events.</dt>
-			<ol>
-				<li>Using <code>QEvent</code> class - which is appropriate for implementing custom widgets</li>
-				<li><code>Signals</code> when we just using widgets already defined in QWidget hierarchy.</li>
-			</ol> -->
-			<dt>Signals and slots are used for communication between objects.</dt>
-			<dt>For example, if a user clicks a Close button, we probably want the window's close() function to be called.</dt>
-			<dt>A signal is s notification that the event has happened</dt>
-			<dt>A slot is a function that is called, when that event occurs.</dt>
-			<dt>In order to establish communication between objects, we connect a signal to a slot to achieve the desired action</dt>
-		</dl>
-		<a href="./images/signals_and_slots.png"><img src="./images/signals_and_slots.png" alt="signals_and_slots.png" style="min-height: 100vh;"></a>
-	</section>
-	<section><h3>different combinations of signals and slots</h3>
-		<dl class="fa">
-			<dt>One signal can be connected to one or many slots</dt>
-			<dt>Many signals can be connected to the same slot</dt>
-			<dt>A signal can be connected to other signals</dt>
-			<dt>Connections can be removed</dt>
-		</dl>
-	</section>
-	<section><h3>Signals and Slots Example</h3>
-		<dt>A QPushButton has a clicked signal that is emitted whenever the button is clicked by a user. </dt>
-		<dt>The QWidget class has a close() slot that causes it to close if it's a top-level window. </dt>
-		<dt>We could connect the two like this:</dt>
-		<pre><code rel="Python" class="python">
-			self.btn_cancel = qtw.QPushButton('Cancel')
-			self.btn_cancel.clicked.connect(self.close)
-		</code></pre>
-	</section>
-</section>
 
 
-<!--
 <section data-min="5"><h1>References && Self-Learning</h1></section>
 <section><h2>References && Self-Learning</h2>
 	<section><h3>PyQt Official Documentation</h3>
 		<dl class="fa">
-			<dt><a href="https://doc.qt.io/">Qt Documentation</a> - <span>note,that this documentation covers Qt framework, i.e. C++ classes.</span></dt>
-			<dt><a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/">PyQt5 Reference Guide</a> - <span>the officail PyQt5 documentation from <a href="riverbankcomputing.com">riverbankcomputing.com</a></span></dt>
-			<dt><a href="https://doc-snapshots.qt.io/qtforpython/#documentation">Qt for Python Documentation</a> - <span>this is the documentation for PySide2, but it's more usefull than the sparse docs for PyQt</span></dt>
+			<dt><a href="https://doc.qt.io/">Qt Documentation</a> - <span>note,that this documentation covers Qt framework, i.e. C++ classes, but it's most comprehensive and useful.</span></dt>
+			<dt><a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/">PyQt5 Reference Guide</a> - <span>the official PyQt5 documentation from <a href="riverbankcomputing.com">riverbankcomputing.com</a></span></dt>
+			<dt><a href="https://doc-snapshots.qt.io/qtforpython/#documentation">Qt for Python Documentation</a> - <span>this is the documentation for PySide2, but it's more useful than the sparse docs in official PyQt</span></dt>
 			<dt>PyQt's documentation covers only the Python-specific differences
 				and lacks comprehensive class reference, tutorials and example code which can be find in Qt's
 				documentation.</dt>
 		</dl>
 	</section>
-</section> -->
-
-
-
-<section data-min="5"><h1>Add GUI feature to your app</h1></section>
-<section><h2>Add GUI feature to your app</h2>
-	<section><h3>Create/Clone repos</h3>
-		<dl class="fa">
-			<dt>Create your github repo, or clone someone's else (if you want to contribute to the project)</dt>
-			<dt>References:</dt>
-			<dd><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">Create a repo @docs.github.com</a></dd>
-			<dd><a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository">Cloning a repository @docs.github.com</a></dd>
-		</dl>
-	</section>
-	<section><h3>Create a branch for <code>GUI</code> of your app</h3>
-		<dl class="fa">
-			<dt>If you already have a working application with console IO, and you want to refactor your app to work with GUI, it's best to separate your work in a different branch.</dt>
-			<pre><code rel="Terminal" class="bash">
-				# make sure you're in root project folder, and type:
-				git checkout -b GUI
-
-				# your prompt should change and show the branch name (GUI)
-			</code></pre>
-			<dd><a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Git branching branches in a nutshell</a> </dd>
-			<dd><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">Git Feature Branch Workflow @atlassian.com</a></dd>
-		</dl>
-	</section>
 </section>
-<!-- <section data-min="5"><h1>Exercises</h1></section>
-<section><h2>Exercises</h2>
-	<section id="HW_Calculator"><h3>Task1: Calculator GUI</h3>
-		<dl class="fa">
-			<dt>Create the UI of a calculator, like the one shown in next image.</dt>
-			<a href="./images/task_calculator_ui.png" title="click for bigger image"><img src="./images/task_calculator_ui.png" alt="./images/task_calculator_ui.png" style="min-height: 60vh;"></a>
-			<dt>Use the Qt Designer and save the file as <code>calculator.ui</code></dt>
-			<dt>Convert the generated <code>calculator.ui</code> file to python code, using the <code>pyuic5</code> tool</dt>
-		</dl><br>
 
-	</section>
-</section> -->
+
 
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
 <!--
