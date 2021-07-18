@@ -122,8 +122,9 @@
 	</section>
 </section>
 
-<section><h2>What are Signals And Slots?</h2>
-	<section>
+<section><h2>Signals And Slots Overview</h2>
+	<section><h3>What are Signals And Slots?</h3>
+		<a href="./images/signals_and_slots.png"><img src="./images/signals_and_slots.png" alt="signals_and_slots.png" style="min-height: 80vh;"></a>
 		<dl class="fa">
 			<!-- <dt>Qt library provides two parallel mechanisms to define and process events.</dt>
 			<ol>
@@ -136,9 +137,8 @@
 			<dt>A slot is a function that is called, when that event occurs.</dt>
 			<dt>In order to establish communication between objects, we <span class="note">connect</span> a signal to a slot to achieve the desired action</dt>
 		</dl>
-		<a href="./images/signals_and_slots.png"><img src="./images/signals_and_slots.png" alt="signals_and_slots.png" style="min-height: 100vh;"></a>
 	</section>
-	<section><h3>Signals and Slots</h3>
+	<section><h3>What are Signals And Slots?</h3>
 		<dl class="fa">
 			<dt>A <span class="note">Signal is a special object property</span> that can be emitted in response to a event.</dt>
 			<dt>Usually, we emit signals when the object's internal state has changed.</dt>
@@ -147,7 +147,7 @@
 			<dt>When a signal is emitted, the slots connected to it are usually executed immediately</dt>
 		</dl>
 	</section>
-	<section><h3>different combinations of signals and slots</h3>
+	<section><h3>Different combinations of signals and slots</h3>
 		<dl class="fa">
 			<dt>One signal can be connected to one or many slots</dt>
 			<dt>Many signals can be connected to the same slot</dt>
@@ -157,14 +157,23 @@
 		<p class="note">If several slots are connected to one signal, the slots will be executed one after the other, in the order they have been connected, when the signal is emitted.</p>
 	</section>
 	<section><h3>Signals and Slots Example</h3>
-		<dt>A QPushButton has a clicked signal that is emitted whenever the button is clicked by a user. </dt>
-		<dt>The QWidget class has a close() slot that causes it to close if it's a top-level window. </dt>
-		<dt>We could connect the two like this:</dt>
+		<dl class="fa">
+			<dt>A QPushButton has a clicked signal that is emitted whenever the button is clicked by a user. </dt>
+			<dt>The QWidget class has a close() slot that causes it to close if it's a top-level window. </dt>
+			<dt>We could connect the two like this:</dt>
+		</dl>
 		<pre><code rel="Python" class="python">
 			self.btn_cancel = qtw.QPushButton('Cancel')
 			self.btn_cancel.clicked.connect(self.close)
 		</code></pre>
 		<dt>All classes descended from QObject (including all QWidget classes) can send and receive signals.</dt>
+	</section>
+	<section><h3>Common predefined Signals and Slots</h3>
+		<dl class="fa">
+			<dt>All buttons have next signals and slots: <a href="https://doc.qt.io/qt-5/qabstractbutton.html#public-slots">QAbstractButton Slots and Signals</a></dt>
+			<dt>QLineEdit object has: <a href="https://doc.qt.io/qt-5/qlineedit.html#public-slots">QLineEdit Slots And Signals</a></dt>
+			<dt>All QWidget objects have next <a href="https://doc.qt.io/qt-5/qwidget.html#public-slots">QWidget Slots</a> and <a href="https://doc.qt.io/qt-5/qwidget.html#signals">QWidget Signals</a></dt>
+		</dl>
 	</section>
 </section>
 
@@ -177,84 +186,88 @@
 			<dt>The QLineEdit object also has a <code>setText()</code> slot that accepts a string argument. We could connect them like this:</dt>
 			<pre><code rel="Python" class="python">
 				self.line_edit1 = qtw.QLineEdit()
-				self.line-edit2 = qtw.QLineEdit()
+				self.line_edit2 = qtw.QLineEdit()
+
 				self.layout().addWidget(self.line_edit1)
-				self.layout().addWidget(self.line-edit2)
-				self.line_edit1.textChanged.connect(self.line-edit2.setText)
+				self.layout().addWidget(self.line_edit2)
+
+				self.line_edit1.textChanged.connect(self.line_edit2.setText)
 			</code></pre>
 		</dl>
 	</section>
-	<section><h3>Task: Print in console the text in a </h3>
+	<section><h3>Task: Print in console the text in a lineEdit</h3>
 		<dl class="fa">
 			<dt>Create a Widget with  1 QLineEdit object  (<code>line_edit1</code>) in it</dt>
 			<dt>We want on every change to the content of <code>line_edit1</code> that content to be printed in the console.</dt>
 		</dl>
+	</section>
+	<section><h3>Solution</h3>
+		<p>Click on "view raw" link at gitst's bottom right corner to view the code, ready for copy-paste :)</p>
+		<script src="https://gist.github.com/WWWCourses/d5d3a00efa22eccd9b8b88ed75343a6b.js"></script>
 	</section>
 	<section>
 		<dl class="fa">
 			<dt>Signals can even be connected to other signals, for example:</dt>
 			<pre><code rel="Python" class="python">
 				self.line_edit1.editingFinished.connect(lambda: print('Edit Done'))
-				self.line-edit2.returnPressed.connect(self.line_edit1.editingFinished)
+				self.line_edit2.returnPressed.connect(self.line_edit1.editingFinished)
 			</code></pre>
 			<dt>When you connect a signal to another signal, the event and data are passed from one signal to the next</dt>
 		</dl>
 	</section>
-	<section><h3>Signals and Slots Type-safety</h3>
-		<dl class="fa">
-			<dt>Unlike Python, C++ is <span class="note">a statically typed language</span>, which means that all variables and function parameters must be given a type ( string , integer , float ,...) on declaration time and any value stored in the variable or passed to that function must have a matching type.</dt>
-			<dt>Native Qt signals and slots are type-safe.</dt>
-			<dt>If we tried to connect a line edit's textChanged signal to a button's clicked signal, we'll get an error, because textChanged emits a string, and clicked on button emits a Boolean, but we use it as a slot, so ot expects to receive a Boolean, not string.</dt>
-			<pre><code rel="Python" class="python">
-				self.line_edit1.textChanged.connect(self.btn_cancel.clicked)
-
-				# QObject::connect: Incompatible sender/receiver arguments
-				# ...
-			</code></pre>
-			<dt></dt>
-		</dl>
-	</section>
-</section>
-
-<section data-min="5"><h1>Custom signals and slots</h1></section>
-<section><h2>Custom signals and slots</h2>
-	<section>
-		<dl class="fa">
-			<dt>At its core, the signals and slots mechanism can be seen as a way for any two objects in an application to communicate while remaining <a href="https://en.wikipedia.org/wiki/Loose_coupling#:~:text=In%20computing%20and%20systems%20design,the%20opposite%20of%20tight%20coupling.">loosely coupled</a></dt>
-		</dl>
-	</section>
-	<section><h3>Why?</h3>
-		<dt>Suppose you have a program that pops up a form window.</dt>
-		<dt>When the user finish filling the form and submits it, we need to get the entered data back to the main application class for processing.</dt>
-		<dt>There are a few ways we could approach this. One is the main application to watch for click events on the pop-up window's Submit button, then grab the data from its fields before destroying the dialog </dt>
-		<dt> But that approach requires the main form to know all about the pop-up dialog's widgets and any refactoring of the popup would risk breaking code in the main application.</dt>
-
-	</section>
 </section>
 
 
-<section data-min="5"><h1>Add GUI feature to your app</h1></section>
-<section><h2>Add GUI feature to your app</h2>
-	<section><h3>Create/Clone repos</h3>
+<section data-min="5"><h1>Add GUI feature to your app as separate git branch</h1></section>
+<section><h2>Add GUI feature to your app as separate git branch</h2>
+	<!-- <section><h3>Create/Clone repos</h3>
 		<dl class="fa">
 			<dt>Create your github repo, or clone someone's else (if you want to contribute to the project)</dt>
 			<dt>References:</dt>
 			<dd><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">Create a repo @docs.github.com</a></dd>
 			<dd><a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository">Cloning a repository @docs.github.com</a></dd>
 		</dl>
-	</section>
-	<section><h3>Create a branch for <code>GUI</code> of your app</h3>
+	</section> -->
+	<section><h3>Git Branch Overview</h3>
 		<dl class="fa">
 			<dt>If you already have a working application with console IO, and you want to refactor your app to work with GUI, it's best to separate your work in a different branch.</dt>
-			<pre><code rel="Terminal" class="bash">
-				# make sure you're in root project folder, and type:
-				git checkout -b GUI
-
-				# your prompt should change and show the branch name (GUI)
-			</code></pre>
+			<dt>Readings:</dt>
 			<dd><a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Git branching branches in a nutshell</a> </dd>
 			<dd><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">Git Feature Branch Workflow @atlassian.com</a></dd>
 		</dl>
+	</section>
+	<section><h3>Git Branch Overview - Video</h3>
+		<p><a href="https://www.youtube.com/watch?v=QV0kVNvkMxc">Git & GitHub Tutorial for Beginners #8 - Branches</a></p>
+		<iframe width="912" height="513" src="https://www.youtube.com/embed/QV0kVNvkMxc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</section>
+	<section><h3>Create and work in a branch for <code>GUI</code> of your app</h3>
+
+		<pre><code rel="Terminal" class="bash" style="min-height: 80vh;">
+			### make sure you're in the git project folder and that you git status is clear:
+			git status
+			#On branch main
+			#nothing to commit, working tree clean
+
+			### create new branch, named "GUI"
+			git checkout -b GUI
+			# your prompt should change and show the branch name (GUI)
+
+			# do some hard work on your GUI app...
+
+			# commit your work:
+			git add -A
+			git commit -m'hard work done'
+
+			### switching between branches
+			# go back to you main branch
+			git checkout main
+			# this command will return you to the main branch
+
+			# do some stuff on main, but remember - to commit
+
+			# swithch back to GUI branch:
+			git checkout GUI
+		</code></pre>
 	</section>
 </section>
 <!-- <section data-min="5"><h1>Exercises</h1></section>
