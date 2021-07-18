@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>PyQT-Lecture5</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>PyQT - Lecture 5</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/" title="click for bigger image">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+
+<section data-min="5"><h1>Introduction to Signals And Slots</h1></section>
+<section><h2>Preliminary: how a GUI app works </h2>
+	<section><h3>Procedural app (batch-processing application)</h3>
+		<pre><code rel="Python" class="python">
+			def sub_task_1():
+				pass
+
+			def sub_task_2():
+				pass
+
+			#....
+
+			def sub_task_N():
+				pass
+
+			if __name__ == "__main__":
+				sub_task_1()
+				sub_task_2()
+				# ...
+				sub_task_N()
+		</code></pre>
+	</section>
+	<section><h3>A GUI App (event-driven) processing</h3>
+		<dl class="fa">
+			<dt>A GUI App processing model is <span class="note">event-driven</span></dt>
+			<a href="./images/event-driven_programming_diagram.png"><img src="./images/event-driven_programming_diagram.png" alt="event-driven_programming_diagram.png"></a>
+			<dt>An event can be any user action, like <span class="note">click, scroll, input</span> etc.</dt>
+			<dt>An event handler is a function which defines the actions that must be executed after an event is triggered.</dt>
+		</dl>
+	</section>
+	<section><h3>The Event Loop</h3>
+		<dl class="fa">
+			<dt>Event-driven programming relies on <span class="note">event-loop</span> to process events</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def start_event_loop():
+				while True:
+					if event_queue_not_empty:
+						if terminate_signal:
+							exit()
+						else:
+							process event()
+					else:
+						wait for event
+		</code></pre>
+		<a href="./images/batch_processing_vs_GUI_event_loop.png"><img src="./images/batch_processing_vs_GUI_event_loop.png" alt="batch_processing_vs_GUI_event_loop.png"></a>
+	</section>
+</section>
+
+<section><h2>What are Signals And Slots?</h2>
+	<section>
+		<dl class="fa">
+			<!-- <dt>Qt library provides two parallel mechanisms to define and process events.</dt>
+			<ol>
+				<li>Using <code>QEvent</code> class - which is appropriate for implementing custom widgets</li>
+				<li><code>Signals</code> when we just using widgets already defined in QWidget hierarchy.</li>
+			</ol> -->
+			<dt>Signals and slots are used for communication between objects.</dt>
+			<dt>For example, if a user clicks a Close button, we probably want the window's close() function to be called.</dt>
+			<dt>A signal is s notification that the event has happened</dt>
+			<dt>A slot is a function that is called, when that event occurs.</dt>
+			<dt>In order to establish communication between objects, we <span class="note">connect</span> a signal to a slot to achieve the desired action</dt>
+		</dl>
+		<a href="./images/signals_and_slots.png"><img src="./images/signals_and_slots.png" alt="signals_and_slots.png" style="min-height: 100vh;"></a>
+	</section>
+	<section><h3>Signals and Slots</h3>
+		<dl class="fa">
+			<dt>A <span class="note">Signal is a special object property</span> that can be emitted in response to a event.</dt>
+			<dt>Usually, we emit signals when the object's internal state has changed.</dt>
+			<dt>A <span class="note">Slot is an object method</span> that can receive a signal and act in response to it.</dt>
+			<dt>Infact, a slot can be not only a Qt object method, <span class="note">it can be any Python callable</span>.</dt>
+			<dt>When a signal is emitted, the slots connected to it are usually executed immediately</dt>
+		</dl>
+	</section>
+	<section><h3>different combinations of signals and slots</h3>
+		<dl class="fa">
+			<dt>One signal can be connected to one or many slots</dt>
+			<dt>Many signals can be connected to the same slot</dt>
+			<dt>A signal can be connected to other signals</dt>
+			<dt>Connections can be removed</dt>
+		</dl>
+		<p class="note">If several slots are connected to one signal, the slots will be executed one after the other, in the order they have been connected, when the signal is emitted.</p>
+	</section>
+	<section><h3>Signals and Slots Example</h3>
+		<dt>A QPushButton has a clicked signal that is emitted whenever the button is clicked by a user. </dt>
+		<dt>The QWidget class has a close() slot that causes it to close if it's a top-level window. </dt>
+		<dt>We could connect the two like this:</dt>
+		<pre><code rel="Python" class="python">
+			self.btn_cancel = qtw.QPushButton('Cancel')
+			self.btn_cancel.clicked.connect(self.close)
+		</code></pre>
+		<dt>All classes descended from QObject (including all QWidget classes) can send and receive signals.</dt>
+	</section>
+</section>
+
+<section data-min="50"><h1>Passing data between signals and slots</h1></section>
+<section><h2>Passing data between signals and slots</h2>
+	<section>
+		<dl class="fa">
+			<dt>Signals can also pass data the slots they are connected.</dt>
+			<dt>For example, QLineEdit object has a <code>textChanged</code> signal that sends the text entered into the widget along with the signal</dt>
+			<dt>The QLineEdit object also has a <code>setText()</code> slot that accepts a string argument. We could connect them like this:</dt>
+			<pre><code rel="Python" class="python">
+				self.line_edit1 = qtw.QLineEdit()
+				self.line-edit2 = qtw.QLineEdit()
+				self.layout().addWidget(self.line_edit1)
+				self.layout().addWidget(self.line-edit2)
+				self.line_edit1.textChanged.connect(self.line-edit2.setText)
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Task: Print in console the text in a </h3>
+		<dl class="fa">
+			<dt>Create a Widget with  1 QLineEdit object  (<code>line_edit1</code>) in it</dt>
+			<dt>We want on every change to the content of <code>line_edit1</code> that content to be printed in the console.</dt>
+		</dl>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>Signals can even be connected to other signals, for example:</dt>
+			<pre><code rel="Python" class="python">
+				self.line_edit1.editingFinished.connect(lambda: print('Edit Done'))
+				self.line-edit2.returnPressed.connect(self.line_edit1.editingFinished)
+			</code></pre>
+			<dt>When you connect a signal to another signal, the event and data are passed from one signal to the next</dt>
+		</dl>
+	</section>
+	<section><h3>Signals and Slots Type-safety</h3>
+		<dl class="fa">
+			<dt>Unlike Python, C++ is <span class="note">a statically typed language</span>, which means that all variables and function parameters must be given a type ( string , integer , float ,...) on declaration time and any value stored in the variable or passed to that function must have a matching type.</dt>
+			<dt>Native Qt signals and slots are type-safe.</dt>
+			<dt>If we tried to connect a line edit's textChanged signal to a button's clicked signal, we'll get an error, because textChanged emits a string, and clicked on button emits a Boolean, but we use it as a slot, so ot expects to receive a Boolean, not string.</dt>
+			<pre><code rel="Python" class="python">
+				self.line_edit1.textChanged.connect(self.btn_cancel.clicked)
+
+				# QObject::connect: Incompatible sender/receiver arguments
+				# ...
+			</code></pre>
+			<dt></dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5"><h1>Custom signals and slots</h1></section>
+<section><h2>Custom signals and slots</h2>
+	<section>
+		<dl class="fa">
+			<dt>At its core, the signals and slots mechanism can be seen as a way for any two objects in an application to communicate while remaining <a href="https://en.wikipedia.org/wiki/Loose_coupling#:~:text=In%20computing%20and%20systems%20design,the%20opposite%20of%20tight%20coupling.">loosely coupled</a></dt>
+		</dl>
+	</section>
+	<section><h3>Why?</h3>
+		<dt>Suppose you have a program that pops up a form window.</dt>
+		<dt>When the user finish filling the form and submits it, we need to get the entered data back to the main application class for processing.</dt>
+		<dt>There are a few ways we could approach this. One is the main application to watch for click events on the pop-up window's Submit button, then grab the data from its fields before destroying the dialog </dt>
+		<dt> But that approach requires the main form to know all about the pop-up dialog's widgets and any refactoring of the popup would risk breaking code in the main application.</dt>
+
+	</section>
+</section>
+
+
+<section data-min="5"><h1>Add GUI feature to your app</h1></section>
+<section><h2>Add GUI feature to your app</h2>
+	<section><h3>Create/Clone repos</h3>
+		<dl class="fa">
+			<dt>Create your github repo, or clone someone's else (if you want to contribute to the project)</dt>
+			<dt>References:</dt>
+			<dd><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">Create a repo @docs.github.com</a></dd>
+			<dd><a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository">Cloning a repository @docs.github.com</a></dd>
+		</dl>
+	</section>
+	<section><h3>Create a branch for <code>GUI</code> of your app</h3>
+		<dl class="fa">
+			<dt>If you already have a working application with console IO, and you want to refactor your app to work with GUI, it's best to separate your work in a different branch.</dt>
+			<pre><code rel="Terminal" class="bash">
+				# make sure you're in root project folder, and type:
+				git checkout -b GUI
+
+				# your prompt should change and show the branch name (GUI)
+			</code></pre>
+			<dd><a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Git branching branches in a nutshell</a> </dd>
+			<dd><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">Git Feature Branch Workflow @atlassian.com</a></dd>
+		</dl>
+	</section>
+</section>
+<!-- <section data-min="5"><h1>Exercises</h1></section>
+<section><h2>Exercises</h2>
+	<section id="HW_Calculator"><h3>Task1: Calculator GUI</h3>
+		<dl class="fa">
+			<dt>Create the UI of a calculator, like the one shown in next image.</dt>
+			<a href="./images/task_calculator_ui.png" title="click for bigger image"><img src="./images/task_calculator_ui.png" alt="./images/task_calculator_ui.png" style="min-height: 60vh;"></a>
+			<dt>Use the Qt Designer and save the file as <code>calculator.ui</code></dt>
+			<dt>Convert the generated <code>calculator.ui</code> file to python code, using the <code>pyuic5</code> tool</dt>
+		</dl><br>
+
+	</section>
+</section> -->
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
