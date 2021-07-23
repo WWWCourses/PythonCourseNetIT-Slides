@@ -168,7 +168,7 @@
 <section data-min="5"><h1>Hands on: Using Mysql With PyQt5 Widgets</h1></section>
 <section><h2>Hands on: Using Mysql With PyQt5 Widgets</h2>
 	<section><h3>The <code>users</code> tbale</h3>
-		<pre><code rel="Terminal" class="sql">
+		<pre><code rel="SQL" class="sql">
 			DROP TABLE IF EXISTS `users`;
 			/*!40101 SET @saved_cs_client     = @@character_set_client */;
 			/*!40101 SET character_set_client = utf8 */;
@@ -184,11 +184,22 @@
 		</code></pre>
 	</section>
 	<section><h3>Insert some data</h3>
-		<pre><code rel="Terminal" class="sql">
-			INSERT INTO `users` VALUES (1,'Maria','maria@gmail.com','maria123'),(2,'Pesho','peho@gmail.com','pesho123'),(3,'Ivan','ivan@gmail.com','ivan123');
+		<pre><code rel="SQL" class="sql">
+			INSERT INTO `users` VALUES
+				(1,'Maria','maria@gmail.com','maria123'),
+				(2,'Pesho','peho@gmail.com','pesho123'),
+				(3,'Ivan','ivan@gmail.com','ivan123');
 		</code></pre>
 	</section>
-	<section><h3>Select data</h3></section>
+	<section><h3>login_demo_with_native_mysql_for_python.py</h3>
+		<script src="https://gist.github.com/WWWCourses/d1766798e16467af3c6619a28c776b82.js"></script>
+	</section>
+	<section><h3>References</h3>
+		<dl class="fa">
+			<dt><a href="https://wwwcourses.github.io/PythonCourseNetIT-Slides/pages/themes/DBMS-Lecture4_part2/DBMS-Lecture4_part2.html#/5/1">MySQL and Python</a></dt>
+			<dt><a href="https://wwwcourses.github.io/PythonCourseNetIT-Slides/pages/themes/DBMS-Lecture4/DBMS-Lecture4.html#/20">Basic Data Manipulation Statements</a></dt>
+		</dl>
+	</section>
 </section>
 
 
