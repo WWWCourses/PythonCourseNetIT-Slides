@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>PyQT-Lecture9</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>PyQT - Lecture 9 : Hands On CarParts Project with PyQT and Mysql (Part 2)</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/" title="click for bigger image">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+<section data-min="10"><h1>PyQT Tables</h1></section>
+<section><h2>PyQT Tables</h2>
+	<section><h3>QTableWidget Overview</h3>
+		<dl class="fa">
+			<dt>The QTableWidget class of PyQt can be used in Python to display data in tabular form, like excell's spreadsheets.</dt>
+			<dt>The table content can be generated from different types of storage, such as:</dt>
+			<dd>two-dimensional lists</dd>
+			<dd>CSV files</dd>
+			<dd>JSON files</dd>
+			<dd>database tables</dd>
+		</dl>
+	</section>
+	<section><h3>QTableWidget Basic Methods</h3>
+		<table>
+			<tr><th>Method Name</th><th>Purpose</th></tr>
+			<tr>
+				<td>setRowCount()</td>
+				<td>define the number of rows.</td>
+			</tr>
+			<tr>
+				<td>setColumnCount()</td>
+				<td>define the number of columns.</td>
+			</tr>
+			<tr>
+				<td>setHorizontalHeaderLabels()</td>
+				<td>set the header labels of the table.</td>
+			</tr>
+			<tr>
+				<td>setItem()</td>
+				<td>set the cell value of the table.</td>
+			</tr>
+			<tr>
+				<td>resizeColumnsToContents()</td>
+				<td>resize the columns of the table based on the content.</td>
+			</tr>
+			<tr>
+				<td>resizeRowsToContents()</td>
+				<td>resize the rows of the table based on the content.</td>
+			</tr>
+			<tr>
+				<td>setMinimumWidth()</td>
+				<td>set the minimum width of the table.</td>
+			</tr>
+			<tr>
+				<td>setMinimumHeight()</td>
+				<td>set the minimum height of the table.</td>
+			</tr>
+			<tr>
+				<td>show()</td>
+				<td>display the table.</td>
+			</tr>
+		</table>
+	</section>
+	<section><h3>Create Simple Table - Example</h3>
+		<dl class="fa">
+			<dt>Create a file with the PyQt App template, and in constructor call the <code>uiCreateTable</code> method. The code is given bellow:</dt>
+		</dl>
+
+		<pre><code rel="simle_table_static_values.py" class="python" style="min-height: 60vh;">
+			def uiCreateTable(self):
+				rows = 4
+				cols = 3
+
+				# init table
+				table = qtw.QTableWidget(self);
+				table.setRowCount(rows);
+				table.setColumnCount(cols);
+				table.setHorizontalHeaderLabels(['Heading1', 'Heading2', 'Heading3']);
+				table.setMinimumHeight(cols*100);
+				table.setMinimumWidth(rows*100);
+
+				# set table values
+				for row in range(rows):
+					for col in range(cols):
+						table.setItem(row, col, qtw.QTableWidgetItem(f'Cell {row+1},{col+1}'))
+
+				# resize cells to content:
+				table.resizeColumnsToContents();
+				table.resizeRowsToContents();
+
+				table.show()
+		</code></pre>
+	</section>
+	<section><h3>Task: </h3>
+		<a href="./images/TASK_simple_table_and_styles.gif"><img src="./images/TASK_simple_table_and_styles.gif" alt="TASK_simple_table_and_styles.gif"></a>
+	</section>
+</section>
+
+<section data-min="50"><h1>Working With SQLite DB</h1></section>
+<section><h2>Working With SQLite DB</h2>
+	<section><h3>PyQt’s classes for working with relational database</h3>
+		<dl class="fa">
+			<dt>use QSqlDatabase to connect to databases and QSqlQuery for creating queries</dt>
+			<dt>We will setup all DB related operations into a sepatate class:</dt>
+		</dl>
+		<pre><code rel="manage_user_db.py" class="python" style="min-height: 80vh;">
+			import sys, random
+			from PyQt5.QtSql import QSqlDatabase, QSqlQuery
+
+			class ManageUserDB:
+				def __init__(self):
+					# Create connection to database. If db file does not exist,
+					# a new db file will be created.
+					database = QSqlDatabase.addDatabase("QSQLITE")
+					database.setDatabaseName("./users.db")
+					if not database.open():
+									print("Unable to open data source file.")
+									sys.exit(1) # Error code 1 - signifies error
+
+					self.query = QSqlQuery()
+
+					self.createTables()
+		</code></pre>
+	</section>
+	<section><h3>Create User and Orders Table</h3>
+		<pre><code rel="manage_user_db.py" class="python">
+			def createTables(self):
+				self.query.exec_("DROP TABLE orders")
+				self.query.exec_("DROP TABLE users")
+
+				# Create users table
+				self.query.exec_("""CREATE TABLE users (
+								id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
+								first_name VARCHAR(30) NOT NULL,
+								last_name VARCHAR(30) NOT NULL,
+								email VARCHAR(40) NOT NULL,
+								order_id VARCHAR(20) REFERENCES orders(id))
+								""")
+
+				# Positional binding to insert records into the database
+				self.query.prepare("""INSERT INTO
+									users (first_name, last_name, email, order_id)
+									VALUES (?, ?, ?, ?)
+								""")
+
+				first_names = ["Maria", "Ivan", "Stoyan"]
+				last_names = ["Marinova", "Ivanov", "Stoyanov"]
+
+				orders = {
+					"1":"TV",
+					"2":"mobile phone"
+				}
+				order_codes = list(orders.keys())
+				order_names = list(orders.values())
+
+				# Add the values to the query to be inserted in users
+				for f_name in first_names:
+					l_name = last_names.pop()
+					email = (f"{l_name}_{f_name[0].lower()}@abv.bg")
+
+					order_id = random.choice(order_codes)
+
+					self.query.addBindValue(f_name)
+					self.query.addBindValue(l_name)
+					self.query.addBindValue(email)
+					self.query.addBindValue(order_id)
+					self.query.exec_()
+
+				# Create the orders table
+				order_query = QSqlQuery()
+				order_query.exec_("""CREATE TABLE orders (
+								id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
+								order VARCHAR(20) NOT NULL)""")
+
+				order_query.prepare("INSERT INTO orders (order) VALUES (?)")
+				# Add the values to the query to be inserted in orders
+				for name in order_names:
+					order_query.addBindValue(name)
+					order_query.exec_()
+				print("[INFO] Database successfully created.")
+
+		</code></pre>
+	</section>
+</section>
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
