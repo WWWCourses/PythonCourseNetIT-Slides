@@ -155,97 +155,43 @@
 				table.show()
 		</code></pre>
 	</section>
-	<section><h3>Task: </h3>
-		<a href="./images/TASK_simple_table_and_styles.gif"><img src="./images/TASK_simple_table_and_styles.gif" alt="TASK_simple_table_and_styles.gif"></a>
-	</section>
-</section>
-
-<section data-min="50"><h1>Working With SQLite DB</h1></section>
-<section><h2>Working With SQLite DB</h2>
-	<section><h3>PyQt’s classes for working with relational database</h3>
+	<section><h3>Custom Context Menu</h3>
 		<dl class="fa">
-			<dt>use QSqlDatabase to connect to databases and QSqlQuery for creating queries</dt>
-			<dt>We will setup all DB related operations into a sepatate class:</dt>
+			<dt>Context menus are usually invoked by right-clicking or some special keyboard key.</dt>
+			<dt>In order to implement a custom context menu we must create our custom QActions and <span class="note">we must re-implement</span> QWidget's <a href="https://doc.qt.io/qt-5/qwidget.html#contextMenuEvent">contextMenuEvent()</a> function to receive the context menu events for our widget.</dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-5/qtwidgets-mainwindows-menus-example.html">Menus Example @doc.qt.io</a>, check especially: <a href=""></a></dt>
 		</dl>
-		<pre><code rel="manage_user_db.py" class="python" style="min-height: 80vh;">
-			import sys, random
-			from PyQt5.QtSql import QSqlDatabase, QSqlQuery
+		<pre><code rel="Python" class="python">
+			def createTableAction(self):
+				#  create our custom QActions
+				self.add_above_action = qtw.QAction("Add row above", self)
+				self.add_above_action.triggered.connect(lambda: self.insertRow(self.currentRow()
 
-			class ManageUserDB:
-				def __init__(self):
-					# Create connection to database. If db file does not exist,
-					# a new db file will be created.
-					database = QSqlDatabase.addDatabase("QSQLITE")
-					database.setDatabaseName("./users.db")
-					if not database.open():
-									print("Unable to open data source file.")
-									sys.exit(1) # Error code 1 - signifies error
+			def contextMenuEvent(self, event):
+				context_menu = qtw.QMenu(self)
+				context_menu.addAction(self.add_above_action)
 
-					self.query = QSqlQuery()
+				#HW: imlement add row below custom action
+				context_menu.addAction("Add row bellow")
 
-					self.createTables()
-		</code></pre>
+				# By passing the event's position as argument we ensure that the context menu appears at the expected position.
+				context_menu.exec_(event.globalPos())
+			</code></pre>
 	</section>
-	<section><h3>Create User and Orders Table</h3>
-		<pre><code rel="manage_user_db.py" class="python">
-			def createTables(self):
-				self.query.exec_("DROP TABLE orders")
-				self.query.exec_("DROP TABLE users")
-
-				# Create users table
-				self.query.exec_("""CREATE TABLE users (
-								id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
-								first_name VARCHAR(30) NOT NULL,
-								last_name VARCHAR(30) NOT NULL,
-								email VARCHAR(40) NOT NULL,
-								order_id VARCHAR(20) REFERENCES orders(id))
-								""")
-
-				# Positional binding to insert records into the database
-				self.query.prepare("""INSERT INTO
-									users (first_name, last_name, email, order_id)
-									VALUES (?, ?, ?, ?)
-								""")
-
-				first_names = ["Maria", "Ivan", "Stoyan"]
-				last_names = ["Marinova", "Ivanov", "Stoyanov"]
-
-				orders = {
-					"1":"TV",
-					"2":"mobile phone"
-				}
-				order_codes = list(orders.keys())
-				order_names = list(orders.values())
-
-				# Add the values to the query to be inserted in users
-				for f_name in first_names:
-					l_name = last_names.pop()
-					email = (f"{l_name}_{f_name[0].lower()}@abv.bg")
-
-					order_id = random.choice(order_codes)
-
-					self.query.addBindValue(f_name)
-					self.query.addBindValue(l_name)
-					self.query.addBindValue(email)
-					self.query.addBindValue(order_id)
-					self.query.exec_()
-
-				# Create the orders table
-				order_query = QSqlQuery()
-				order_query.exec_("""CREATE TABLE orders (
-								id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
-								order VARCHAR(20) NOT NULL)""")
-
-				order_query.prepare("INSERT INTO orders (order) VALUES (?)")
-				# Add the values to the query to be inserted in orders
-				for name in order_names:
-					order_query.addBindValue(name)
-					order_query.exec_()
-				print("[INFO] Database successfully created.")
-
-		</code></pre>
+	<section id="Task_StyledTableWithCustomActions"><h3>Task: </h3>
+		<dl class="fa">
+			<dt>Apply styles to table and create custom context menu actions for adding a row above/bellow the selected row. </dt>
+			<dt>To stretch the table rows and columns to current table size, you can use:</dt>
+			<pre><code rel="Python" class="python">
+				table.horizontalHeader().setSectionResizeMode(qtw.QHeaderView.Stretch)
+				table.verticalHeader().setSectionResizeMode(qtw.QHeaderView.Stretch)
+			</code></pre>
+			<dt>Try to make your table to look and behave as close as possible to the example in gif bellow: </dt>
+		</dl>
+		<a href="./images/TASK_simple_table_and_styles.gif" title="click for bigger image"><img src="./images/TASK_simple_table_and_styles.gif" alt="TASK_simple_table_and_styles.gif" style="width: 50%;"></a>
 	</section>
 </section>
+
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
 <!--
 ########################################################
