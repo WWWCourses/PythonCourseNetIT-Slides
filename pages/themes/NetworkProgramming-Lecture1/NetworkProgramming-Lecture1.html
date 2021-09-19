@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>NetworkProgramming-Lecture1</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+
+<section><h1>NetworkProgramming-Lecture1</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/" title="click for bigger image">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+<section data-min="5"><h1>Въведение</h1></section>
+<section><h2>Въведение</h2>
+	<section><h3>Интернет</h3>
+		<dl class="fa">
+			<dt>Интернет е глобална мрежа от свързани мрежи</dt>
+		</dl>
+		<br>
+		<a href="./images/internet_diagram.png"><img src="./images/internet_diagram.png" alt="internet_diagram.png"></a>
+	</section>
+	<section><h3>Локална Мрежа</h3>
+		<a href="./images/creating_a_local_standalone_local_network.png"><img src="./images/creating_a_local_standalone_local_network.png" alt="local" style="height: 80vh;"></a>
+	</section>
+	<section><h3>Свързване на локални мрежи чрез Рутер</h3>
+		<a href="./images/two_local_networks_interconnected_throgh_a_router-2-1024x745.png"><img src="./images/two_local_networks_interconnected_throgh_a_router-2-1024x745.png" alt=""></a>
+	</section>
+	<section><h3>TCP/IP мрежи</h3>
+		<p>Или как "пътува" информацията в Интернет</p>
+		<a href="./images/journey_of_a_tcp_ip_packet_across_networks-5.png"><img src="./images/journey_of_a_tcp_ip_packet_across_networks-5.png" alt="./images/ journey_of_a_tcp_ip_packet_across_networks-5.png" style="height: 70vh;"></a>
+	</section>
+</section>
+
+<section data-min="10"><h1>Основи на TCP/IP мрежите</h1></section>
+<section><h2>Основи на TCP/IP мрежите</h2>
+	<section>
+		<dl class="fa">
+			<dt>“TCP/IP protocol suite” не е протокол, а наименованието на пакета от
+				протоколи, с които работи световната мрежа Интернет.</dt>
+			<dt>В този пакет се включват протоколите IP, TCP, UDP, ICMP и IGMP. </dt>
+			<dt>Локалните мрежи, работещи с протоколите от пакета TCP/IP се наричат Интранет мрежи.</dt>
+		</dl>
+	</section>
+	<section><h3>7-слоен OSI модел на компютърните мрежи</h3>
+		<a href="./images/OSI-Layer.png"><img src="./images/OSI-Layer.png" alt="OSI-Layer.jpg" style="height: 70vh;"></a>
+	</section>
+	<section><h3>7-слоен OSI модел на компютърните мрежи</h3>
+		<table style="font-size: .8em;">
+			<tr><th>#</th><th>Ниво</th><th>Протоколи</th></tr>
+			<tr>
+				<td>1</td>
+				<td>Physical
+					(физическо ниво)
+				</td>
+				<td>Осигурява физическото пренасяне на информацията. Може да се реализира от
+					радиовълни, оптични кабели, лазери и др.</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Data Link
+					(свързващо ниво)</td>
+				<td>Осигурява директно пренасяне на информация между две мрежови комуникационни
+					устройства (например две мрежови карти или два модема). Управлява физическото
+					ниво и се грижи за корекция на грешки възникнали в него. Типични протоколи са
+					Ethernet, Token ring, PPP, Frame relay, ISDN и др.</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Network
+					(мрежово ниво)</td>
+				<td>Осигурява пренасяне на единици информация (пакети) между две машини в дадена
+					мрежа, всяка от които има уникален мрежов адрес. Не е задължително двете машини
+					да са пряко свързани една с друга и затова мрежовото ниво осигурява маршрутизиране
+					на пакетите от една машина към друга с цел достигане на крайната цел. Типични
+					протоколи на това ниво са IP, IPv6, IPv4, ICMP, IGMP, X.25, IPX и др.</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>Transport
+					(транспортно ниво)</td>
+				<td>Осигурява поддръжката на комуникационни канали за данни между две машини.
+					Позволява пренасяне не само на отделни пакети, но и на по-големи обеми данни.
+					Осигурява прозрачност и надеждност на преноса на данни. Грижи се за започване,
+					поддръжка и прекратяване на комуникацията между машините участнички. Типични протоколи: TCP, UDP,SCTP </td>
+			</tr>
+		</table>
+	</section>
+	<section>7-слоен OSI модел на компютърните мрежи
+		<table>
+			<tr><th>#</th><th>Ниво</th><th>Протоколи</th></tr>
+			<tr>
+				<td>5</td>
+				<td>Session
+					(сесийно ниво)</td>
+				<td>Организира и синхронизира прозрачната обмяна на информация между два процеса в
+					операционните системи на комуникиращите машини. Типични протоколи от това ниво
+					са: RPC, NetBIOS, CCITT X.225 и др.</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>Presentation
+					(представително
+					ниво)</td>
+				<td>Осигурява общ формат, унифицирано канонично представяне на пренасяните данни,
+					което е еднакво за всички платформи и е разбираемо за по-долните слоеве. Типични
+					протоколи или по-точно схеми за унифицирано представяне на данни от това ниво са
+					XDR, ASN.1, SMB, AFP.</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>Application
+					(приложно ниво)</td>
+				<td>Осигурява на приложните програмисти интерфейс към мрежовата инфраструктура,
+					осигурена от по-долните слоеве. Протоколите от това ниво задават форматите и
+					правилата за обмяна на данни между комуникиращите приложения. Типични
+					протоколи на това ниво са: HTTP, SMTP, POP3, FTP, SNMP, DNS, NFS и др.</td>
+			</tr>
+		</table>
+		<hr>
+	</section>
+	<section><h3>7-слоен OSI модел на компютърните мрежи</h3>
+		<dl class="fa">
+			<dt>Всяко от 7-те нива използва за работата си по-долните нива и не се интересува от това как точно те работят, а само
+				от това какво те осигуряват. Това позволява на разработчиците да се абстрахират от ненужните детайли и да се
+				концентрират върху работата само на нивата, които ги засягат.</dt>
+		</dl>
+	</section>
+	<section><h3>4-слоен модел на TCP/IP мрежите</h3>
+		<dl class="fa">
+			<dt>Класическият 7-слоен OSI модел засяга всички страни на организацията на
+				комуникацията между две приложения, но често пъти с цел избягване на излишни
+				детайли при Интернет и Интранет мрежи се използва опростен модел, т. нар. 4-
+				слоен модел на TCP/IP мрежите. При него най-горните 3 слоя от OSI модела са
+				обединени в един, защото реално се отнасят до организацията на комуникацията
+				на ниво приложни програми. Най-долните 2 слоя също са обединени, защото те
+				заедно изпълняват една обща задача – осигуряват пренасянето на информация
+				между две машини, които са директно свързани с някаква комуникационна линия.
+				На практика TCP/IP моделът е опростен частен случай на OSI модела, при който на
+				мрежово и транспортно ниво се използват протоколите от пакета TCP/IP. </dt>
+		</dl>
+	</section>
+	<section><h3>4-слоен модел на TCP/IP мрежите</h3>
+		<a href="./images/TCPIPvsOSIM1.png"><img src="./images/TCPIPvsOSIM1.png" alt="TCPIPvsOSIM1.png"></a>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>Когато пишем Python програми, които комуникират по мрежата, ние програмираме
+				най-горния слой от TCP/IP модела, така нареченият Application слой.</dt>
+			<dt>Преносът на данни, предизвикан от нашите Python програми, се осъществява от транспортния слой посредством протоколите TCP или UDP.</dt>
+			<dt>Транспортният слой използва по- долния мрежов слой за прехвърляне на малки количества информация, наречени IP пакети, от един компютър на друг, а тези пакети се прехвърлят чрез мрежови протоколи и връзки на още по-ниски нива. Като програмисти на Python, не е необходимо да знаем в детайли за всичко това, но все пак трябва да имаме представа поне от TCP и UDP протоколите дотолкова, доколкото е необходимо да преценим кога кой от тях да използваме и от IP протокола дотолкова, доколкото е необходимо да знаем, че всеки компютър в Интернет и Интранет мрежи си има уникален IP адрес, по който можем да се обръщаме към него.</dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="10"><h1>Основни Понятия в TCP/IP мрежите</h1></section>
+<section><h2>Основни Понятия в TCP/IP мрежите</h2>
+	<section><h3>IP Address</h3>
+		<dl class="fa">
+			<dt>Основно понятие в Интернет и всички други TCP/IP мрежи е IP адрес.</dt>
+			<dt>IP адресите представляват уникални 32-битови номера на компютри и се записват като четири 8-битови числа (в десетична бройна система), разделени по между си с точки.</dt>
+			<dt>Всеки компютър, работещ в Интернет или Интранет мрежа, има IP адрес. Пример за IP адрес е записът: 212.39.1.17.</dt>
+			<dt>Машините в TCP/IP базирани мрежи, които имат IP адрес, се наричат хостове (hosts). </dt>
+			<dt>Чрез проста сметка може да се прецени, че адресното пространство на Интернет се състои от около 4 милиарда IP адреса, но това не е съвсем така, защото няколко големи области от това пространство са резервирани за специални цели.</dt>
+			<dt>Разпределението на IP адресното пространство на Интернет се управлява от световната организация IANA.</dt>
+		</dl>
+	</section>
+	<section><h3>DNS</h3>
+		<dl class="fa">
+			<dt>За улеснение на потребителите някои машини в Интернет освен IP адрес могат да имат и имена.</dt>
+			<dt>Съответствията между IP адресите и имената на компютрите (хостовете в Интернет) се поддържат от специални DNS сървъри.</dt>
+			<dt>При заявка DNS сървърите могат да намират IP адрес по име на машина и обратното.</dt>
+			<dt>На едно име на хост в Интернет могат да съответстват няколко IP адреса, а също и на един IP адрес може да съответства повече от едно име.</dt>
+		</dl>
+	</section>
+	<section><h3>TCP</h3>
+		<dl class="fa">
+			<dt>TCP (Transmission Control Protocol) е протокол, който осигурява надежден двупосочен комуникационен канал между две приложения.</dt>
+			<dt>Можем да сравним този канал с канала, по който се осъществява при обикновен телефонен разговор. Например, ако искаме да се обадим на приятел, ние набираме неговия номер и когато той вдигне, се осъществява връзка между нас двамата. Използвайки тази връзка, ние можем да изпращаме и получаваме данни от нашия приятел, до момента, в който един от двамата затвори телефона и прекрати връзката. </dt>
+			<dt>Подобно на телефонните линии, TCP протоколът гарантира, че данните, изпратени от едната страна на линията, ще се получат от другата страна на линията без изменение и то в същия ред, в който са изпратени. Ако това е невъзможно по някаква причина, ще възникне грешка (след определено време, наречено timeout) и ние ще разберем, че има някакъв проблем с комуникационния канал.</dt>
+			<dt>Именно заради тази своя надеждност, TCP е най-често използваният протокол за трансфер на информация по Интернет.</dt>
+			<dt>Примери за приложения, които комуникират по TCP са Web-браузърите, Web-сървърите, FTP клиентите и сървърите, Mail клиентите и сървърите – приложения, за които редът на изпращане и пристигане на данните е много важен.</dt>
+		</dl>
+	</section>
+	<section><h3>UDP</h3>
+		<dl class="fa">
+			<dt>UDP (User Datagram Protocol) е протокол, който позволява изпращане и получаване на малки независими един от друг пакети с данни, наречени дейтаграми, от един компютър на друг.</dt>
+			<dt>За разлика от TCP, UDP не гарантира нито реда на пристигане на изпратените последователно дейтаграми, нито гарантира, че те ще пристигнат въобще.</dt>
+			<dt> Изпращането на дейтаграма е като изпращане на обикновено писмо по пощата: редът на пристигане на писмата не е важен и всяко писмо е независимо от останалите.</dt>
+			<dt>UDP се използва значително по-рядко от TCP заради това, че не осигурява комуникационен канал за данни, а позволява само изпращане на единични независими кратки съобщения (UDP пакети).</dt>
+		</dl>
+	</section>
+	<section><h3>Портове – какво представляват и защо за необходими</h3>
+		<dl class="fa">
+			<dt>Както TCP, така и UDP протоколът позволява едновременно да се осъществяват няколко независими връзки между два компютъра.</dt>
+			<dt>Например можем да зареждаме няколко различни Web-сайта чрез нашия Web-браузър и същевременно да теглим през FTP няколко различни файла от един и същ или няколко различни FTP сървъра. Реално погледнато едно и също приложение (например нашият Web- браузър) отваря едновременно няколко независими комуникационни канала до един или няколко различни сървъра, като по всеки от тях прехвърля някаква информация.</dt>
+			<dt>За да е възможно няколко приложения да комуникират по мрежата едновременно, е необходимо пакетите информация, предназначени за всяко едно от тях да бъдат обработени от съответното приложение, а не от някое друго. Така всяко приложение изпраща и получава своите данни независимо от другите, така сякаш те не съществуват.</dt>
+			<dt>Именно за решаване на този конфликт се използват портовете в протоколите TCP и UDP.</dt>
+		</dl>
+	</section>
+	<section><h3>Порт</h3>
+		<dl class="fa">
+			<dt>Портът е число между 0 и 65536 и задава уникален идентификатор на връзката в рамките на машината.</dt>
+			<dt>Всеки TCP или UDP пакет, освен данните, които пренася, съдържа в себе си още 4 полета, описващи от кого до кого е изпратен пакета: source IP, source port, destination IP и destination port.</dt>
+			<dt>По IP адресите се разпознават компютрите, отговорни за изпращане и получаване на съответните пакети, а по портовете се разпознават съответните приложения, работещи на тези компютри, които изпращат или трябва да получат информацията от тези пакети. </dt>
+			<dt>Всяка TCP връзка в даден момент се определя еднозначно от 4 числа: IP източник, порт източник, IP получател и порт получател.</dt>
+		</dl>
+	</section>
+	<section><h3>Сокет (Socket)</h3>
+		<dl class="fa">
+			<dt>Сокет наричаме двойката (IP адрес; номер на порт).</dt>
+			<dt>Комуникационният канал, който предоставя една TCP връзка наричаме сокет връзка (socket connection). Често пъти сокет връзките се наричат за краткост само сокети.</dt>
+			<dt>Например нека нашият IP адрес е 212.50.1.81 и сме стартирали Google Chrome и Outlook Express. С Google Chrome браузваме някакъв сайт при което той е отворил няколко сокета към IP адрес 212.50.1.1 на порт 80 и тегли през тях някакви Web- страници и картинки. В същото време с Outlook Express си теглим новопристигналата поща и за целта той е отворил сокет към 192.92.129.4 на порт 110. В този момент имаме няколко едновременно отворени TCP сокета (няколко независими една от друга комуникационни линии), чрез които нашият компютър комуникира с други два компютъра. Можем да ги представим схематично по следния начин:</dt>
+			<dd>Google Chrome = 212.50.1.81:1033 « 212.50.1.1:80 = Apache Web Server</dd>
+			<dd>Google Chrome = 212.50.1.81:1037 « 212.50.1.1:80 = Apache Web Server</dd>
+			<dd>Outlook Express = 212.50.1.81:1042 «192.92.129.4:110 = Microsoft Exchange POP3 Server</dd>
+		</dl>
+	</section>
+	<section><h3>Live Demo : TCP Dump</h3>
+		<pre><code rel="Terminal" class="bash">
+			# list all interfaces:
+			tcpdump --list-interfaces
+
+			# Capture all packets in any interface:
+			sudo tcpdump --interface any
+		</code></pre>
+	</section>
+	<section><h3>Сървъри и клиенти</h3>
+		<dl class="fa">
+			<dt>Съществуват два вида приложения, които комуникират по TCP протокола – клиентски и сървърни</dt>
+			<dt>Клиентските приложения (наричани още клиенти) се свързват към сървърните като отварят сокет връзка към тях. За целта те предварително знаят техните IP адреси и портове.</dt>
+			<dt>Сървърните приложения (наричани още сървъри) “слушат на определен порт” и чакат клиентско приложение да се свърже към тях. При пристигане на заявка за връзка от някой клиент на порта, на който сървърът слуша, се създава сокет за връзка между клиента на неговия порт източник и сървъра на неговия порт получател.</dt>
+			<dt>Клиентите отварят сокети към сървърите, а сървърите създават сокети само по клиентска заявка, т.е. те не отварят сокети.</dt>
+		</dl>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>Можем да си представим едно клиент/сървър приложение като магазин с няколко щанда и клиенти, които пазаруват в него.</dt>
+			<dt>Сървърът може да се сравни с магазин, а портът, на който слуша този сървър – с определен щанд вътре в магазина. Когато дойде клиентът, той се допуска, само ако иска да отиде на някой от щандовете, които работят (допуска се връзка само на отворен порт /порт на който слуша някое сървърско приложение/).</dt>
+			<dt> Когато клиентът отиде на съответния щанд, той започва да си говори с продавача (осъществява комуникационна линия и прехвърля данни по нея в двете посоки) на определен език, който и двамата разбират (предварително известен протокол за комуникация).</dt>
+			<dt>Както магазинът, така и щандът могат да обслужват няколко клиента едновременно, без да си пречат един на друг.</dt>
+			<dt>След приключване на комуникацията клиентът си тръгва (и затваря сокета). Междувременно продавачът може да изгони клиента от магазина, ако той се държи невъзпитано или няма пари (сървърът може да затвори сокета по всяко време).</dt>
+			<dt>За повечето операции със сокети имаме аналог с нашия пример с магазина и затова взаимодействието „клиент/сървър” лесно може да се интерпретира като взаимодействие от вида „потребител на услуга/извършител на услуга”.</dt>
+		</dl>
+	</section>
+	<section><h3>Протоколи</h3>
+		<dl class="fa">
+			<dt>Комуникационните канали, наречени сокети, не са достатъчни за осъществяване на комуникация между две приложения.</dt>
+			<dt>Ако се върнем на ситуацията в магазина, клиентът трябва да комуникира с продавачката на известен и за двамата език. По същия начин при клиент/сървър комуникация клиентът и сървърът могат да си общуват само ако знаят един и същ език.</dt>
+			<dt>Формални езици, които се използват за комуникация в компютърни мрежи, се наричат протоколи.</dt>
+			<dt>Протоколите представляват системи от правила, които задават по какъв начин клиентът и сървърът могат да общуват и описват кои са валидните действия, които клиентът и сървърът могат да извършат във всеки един момент от комуникацията.</dt>
+		</dl>
+	</section>
+	<section><h3>Услуги в Интернет и стандартни номера на портове</h3>
+		<dl class="fa">
+			<dt>В Интернет работят много стандартни протоколи за комуникация между приложения, като всеки от тях е свързан с някаква услуга</dt>
+			<dt>Всяка услуга работи с някакъв протокол, предварително известен на клиентските и сървърските приложения. Например услугата достъп за Web-ресурси работи по протокола HTTP, услугата за изпращане на e-mail работи по протокола SMTP, а услугата за достъп до файл от FTP сървър работи по протокола FTP.</dt>
+			<dt>За всяка от тези стандартни Интернет услуги (well-known services) има и асоциирани стандартни номера на портове (well- known ports), на които тези услуги се предлагат.</dt>
+			<dt>Стандартните портове са въведени за да се улесни създаването на клиентски приложения, понеже всяко клиентско приложение трябва да знае не само IP адреса или името на сървъра, на който се предлага услугата, до която то иска достъп, но също и порта, на който тази услуга е достъпна. Някои стандартни портове, протоколи и услуги са дадени в таблицата по- долу:</dt>
+		</dl>
+		<table>
+			<tr><th>Порт</th><th>Протокол</th><th>Услуга</th></tr>
+			<tr>
+				<td>21</td>
+				<td>FTP</td>
+				<td>Услуга за достъп до отдалечени файлове. Използва се от FTP
+					клиенти (например Internet Explorer, GetRight, CuteFTP, wget)</td>
+			</tr>
+			<tr>
+				<td>25</td>
+				<td>SMTP</td>
+				<td>Услуга за изпращане на E-mail. Използва се от E-mail клиенти
+					(например Outlook Express, Mozilla Mail, pine)</td>
+			</tr>
+			<tr>
+				<td>80/443</td>
+				<td>HTTP/HTTPS</td>
+				<td>Услуга за достъп до Web-ресурси. Използва се от Web-
+					браузъри (например Internet Explorer, Mozilla, lynx)</td>
+			</tr>
+			<tr>
+				<td>110</td>
+				<td>POP3</td>
+				<td>Услуга за извличане на E-mail от пощенска кутия. Използва се
+					от E-mail клиенти (например Outlook Express, Mozilla Mail,
+					pine)</td>
+			</tr>
+		</table>
+	</section>
+</section>
+
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
