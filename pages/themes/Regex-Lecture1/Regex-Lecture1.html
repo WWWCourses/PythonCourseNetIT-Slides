@@ -83,14 +83,32 @@
 			<dd data-tooltip="/\breg(?:ular\s*)?exp?(?:ression)?\b/i">Regex, RegEx, RegExp</dd>
 		</dl>
 	</section>
-	<section><h3>Example</h3>
+	<section><h3>Example @regex101.com</h3>
+		<p>An example of <a href="https://regex101.com/r/o2sdSl">regex, matching strings with at leas 8 symbols</a>, at the <a href="https://regex101.com/">regex101.com</a> tool:</p>
+		<a href="https://regex101.com/r/o2sdSl" title="click for bigger picture"><img src="./images/regex101_at_least8chars.png" alt="png" style="height: 50vh;"></a>
+	</section>
+	<section><h3>the language</h3>
+		<dl class="fa">
+			<dt>You can think of Regular Expressions as a separate language, with its own rules and specs.</dt>
+			<dt>In fact, the Regular Expressions are coming from the <span class="note">regular language</span> defined by <a href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene">Kleene</a> in the early 1950s</dt>
+			<dt>Nowadays, almost all programming languages implements the concept of Regex.</dt>
+		</dl>
+	</section>
+	<section><h3>The Language</h3>
+		<dl class="fa">
+			<dt>You can think of Regular Expressions as a separate language, with its own rules and specs.</dt>
+			<dt>In fact, the Regular Expressions are coming from the <span class="note">regular language</span> defined by <a href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene">Kleene</a> in the early 1950s</dt>
+			<dt>Nowadays, almost all programming languages implements the concept of Regex.</dt>
+		</dl>
+	</section>
+	<section><h3>Regex example in Python</h3>
 		<pre><code rel="JS" class="js">
 			import re
 
-			user_pass = "qazwsx";
+			user_pass = "qazwsxedc";
 
-			#the RegEx to find if the user_pass contains at least 3 symbols:
-			pattern = r".{3,}";
+			#the RegEx to find if the user_pass contains at least 8 symbols:
+			pattern = r"^.{8,}$";
 
 			# do the test:
 			match = re.search(pattern,user_pass)
@@ -100,13 +118,6 @@
 			else:
 				print("No match!")
 		</code></pre>
-	</section>
-	<section><h3>The Language</h3>
-		<dl class="fa">
-			<dt>You can think of Regular Expressions as a separate language, with its own rules and specs.</dt>
-			<dt>In fact, the Regular Expressions are coming from the <span class="note">regular language</span> defined by <a href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene">Kleene</a> in the early 1950s</dt>
-			<dt>Nowadays, almost all programming languages implements the concept of Regex.</dt>
-		</dl>
 	</section>
 	<section>
 		<dl class="fa">
@@ -154,7 +165,7 @@
 	<section><h3>How to write regex</h3>
 		<dl class="fa">
 			<dt><span class="note">Regex in Python are written as string</span>, which can be passed to re.compile() method or directly to other matching methods, like re.search(), re.match(). These topics will be discussed deeply later in the course</dt>
-			<dt>We can use <span class="note">any string literals </span> to write our regex, including the <a href="">row string</a> syntax.</dt>
+			<dt>We can use <span class="note">any string literals </span> to write our regex, including the <span class="note">row string</span> syntax.</dt>
 		</dl>
 	</section>
 	<section><h3>Matching backslash</h3>
@@ -175,34 +186,27 @@
 
 	</section>
 	<section><h3>Matching backslash</h3>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height:42vh">
 			import re
 
-			text = '\\stop'
-			re1 = '\\stop'
-			re2 = '\\\\stop'
-			re3 = r'\\stop'
+			test_string = '\\stop'
+			patterns = [
+				'\\stop',
+				'\\\\stop',
+				r'\\stop'
+			]
 
-			if re.match(re1, text):
-				# would not match, as '\' is a special character in regex and should be escaped, as well
-				print(f"/{re1}/ matched {text}!")
-			else:
-				print(f"/{re1}/ DID NOT MATCHED {text}!")
+			for pattern in patterns:
+				if re.match(pattern, test_string):
+					print(f"Pattern /{pattern}/ MATCHED string {test_string}!")
+				else:
+					print(f"Pattern /{pattern}/ DID NOT MATCHED string {test_string}!")
 
-			if re.match(re2, text):
-				print(f"/{re2}/ matched {text}!")
-			else:
-				print(f"/{re2}/ DID NOT MATCHED {text}!")
-
-			if re.match(re3, text):
-				print(f"/{re3}/ matched {text}!")
-			else:
-				print(f"/{re3}/ DID NOT MATCHED {text}!")
 		</code></pre>
 		<pre><code rel="Output" class="bash">
-			/\stop/ DID NOT MATCHED \stop!
-			/\\stop/ matched \stop!
-			/\\stop/ matched \stop!
+			Pattern /\stop/ DID NOT MATCHED string \stop!
+			Pattern /\\stop/ MATCHED string \stop!
+			Pattern /\\stop/ MATCHED string \stop!
 		</code></pre>
 	</section>
 </section>

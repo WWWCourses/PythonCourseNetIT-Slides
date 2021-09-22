@@ -75,6 +75,117 @@
 </section>
 
 
+<section data-min="5"><h1>Modifiers/Flags</h1></section>
+<section><h2>Modifiers/Flags</h2>
+	<section><h3>Modifiers/Flags</h3>
+		<dl class="fa">
+			<dt>Flags reflects how the regular expression is executed.</dt>
+			<dt>They are available in the re module with a long name such as <code>re.IGNORECASE</code> or with a short, one-letter form such as <code>re.I</code>.</dt>
+			<dt>Multiple flags can be specified by bitwise OR-ing them. For example <code>re.I|re.M</code> sets both the I and M flags.</dt>
+			<dt>These flags are set by passing the <i>flags</i> argument to the re.compile() method</dt>
+			<pre><code rel="Python" class="python">
+				regex_with_flags_arg= re.compile(r"[aeiouy]+",re.I)
+			</code></pre>
+			<dt>Or as a third argument on re module methods</dt>
+			<pre><code rel="Python" class="python">
+				m = re.search(r"[aeiouy]+", str, re.I)
+			</code></pre>
+			<dt>Flags can be also set in the regular expression itself, using (?aiLmsux) syntax at the beginning of the regex string</dt>
+			<pre><code rel="Terminal" class="bash">
+				regex_with_flags_prefix= re.compile(r"(?i)[aeiouy]+")
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Modifiers/Flags list</h3>
+		<table >
+			<tr><th>In reges</th><th>As param</th><th>Description</th></tr>
+			<tr><td>(?i)</td><td>re.I</td><td>case-<b>i</b>nsensitive matching</td></tr>
+			<tr><td>(?m)</td><td>re.M</td><td><b>m</b>ultiline matching</td></tr>
+			<tr><td>(?s)</td><td>re.S</td><td>Make the '<b>.</b>' to match any character at all, including a newline</td></tr>
+			<tr><td>(?x)</td><td>re.X</td><td>Allows to write readable regexes by using spaces and comments('#') in the regex. More on: <a href="https://docs.python.org/3/library/re.html#re.X">re.X</a></td></tr>
+		</table>
+		<p>Reference: <a href="https://docs.python.org/3/howto/regex.html#compilation-flags">Compilation flags</a></p>
+	</section>
+	<section><h3>Modifiers/Flags example</h3>
+		<pre><code rel="Python" class="python">
+			import re
+
+			text = """123
+			ABC
+			456"""
+			rx = re.compile('(?is)123.abc')
+
+			res = rx.search(text)
+			if res:
+				print(res.group(0))
+			else:
+				print("No match!")
+		</code></pre>
+	</section>
+</section>
+
+<section data-min="5"><h1>Anchors and Boundaries</h1></section>
+<section><h2>Anchors and Boundaries</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>They specify a <b>position</b> in the string where a match should occurs.</dt>
+			<dt>They are zero-width, i.e.when matched they do NOT consume characters from the string.</dt>
+		</dl>
+	</section>
+	<section><h3>Anchors and Boundaries</h3>
+		<table style="font-size: .9em">
+			<tr><th>Anchor</th><th>Description</th></tr>
+			<tr><td class="note">^</td><td>Matches the <span class="note">beginning</span> of the string (or the line, if <b>m</b> flag is used)</td></tr>
+			<tr><td class="note">$</td><td>Matches the <span class="note">end</span> of the string (or the line, if <b>m</b> flag is used)</td></tr>
+			<tr><td class="note">\b</td><td>Matches on word boundaries, i.e. between <i>word</i>(\w) and <i>non-word</i>(\W) characters.<br>Note that the <b>start</b> and <b>end</b> of string are considered as non-word characters.</td></tr>
+			<tr><td class="note">\Z</td><td>Matches only at the end of the string.</td></tr>
+		</table>
+	</section>
+	<section><h3>Anchors and Boundaries example</h3>
+		<pre><code rel="Python" class="python">
+			import re
+
+			strings = [
+				'',
+				'a',
+				'@',
+				'@a',
+				'aa',
+				'a!',
+				'a,a',
+			]
+			rx = re.compile(r'\b');
+
+			for string in strings:
+				res = rx.findall(string)
+				print("{} word bounders counted in {}".format(len(res), string))
+			#OUTPUT
+			#0 word bounders counted in
+			#2 word bounders counted in a
+			#0 word bounders counted in @
+			#2 word bounders counted in @a
+			#2 word bounders counted in aa
+			#2 word bounders counted in a!
+			#4 word bounders counted in a,a
+		</code></pre>
+	</section>
+	<section><h3>Anchors and Boundaries example</h3>
+		<pre><code rel="Python" class="python">
+			strings = [
+				'ana',
+				'ana bel',
+			]
+			rx = re.compile(r'^a\w+a$');
+
+			for string in strings:
+				res = rx.findall(string)
+				print("{} matches in {}".format(len(res), string))
+			#OUTPUT:
+			#1 matches in ana
+			#0 matches in ana bel
+		</code></pre>
+	</section>
+</section>
 
 <section data-min="5"><h1>Alternation</h1></section>
 <section><h2>Alternation</h2>
@@ -317,7 +428,6 @@
 		</code></pre>
 	</section> -->
 </section>
-
 
 
 <section data-min="10"><h1><a href="https://docs.python.org/3/library/re.html#match-objects">The Match Object</a></h1></section>

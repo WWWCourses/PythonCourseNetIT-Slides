@@ -1,17 +1,14 @@
 import re
 
-str = "hEBllo this "
+# march strings containing word-chars followed by digits:
+strings = [
+	'petrov42', # ok
+	'42petrov',	# not ok (no digits after letters)
+	'ivan_pterov2' # ok ('_' is a word character)
+]
+rx = re.compile('\w+\d+')
 
-# next 2 lines:
-# regex = re.compile(r"[aeiouy]+",re.I)
-# regex_with_flags_arg= re.compile(r"[aeiouy]+",re.I)
-regex_with_flags_prefix= re.compile(r"(?i)[aeiouy]+")
-
-# m = regex_with_flags_arg.findall(str)
-m = regex_with_flags_prefix.findall(str)
-
-# are equivalent to:
-# m = re.search(r"[aeiouy]+", str, re.I)
-
-
-print(m)
+for string in strings:
+	match = rx.search(string);
+	if match:
+		print(f"{match[0]} matched in {string}" )
