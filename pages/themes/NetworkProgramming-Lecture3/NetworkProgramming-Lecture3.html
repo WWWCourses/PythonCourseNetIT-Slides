@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>NetworkProgramming-Lecture3</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+
+<section><h1>NetworkProgramming-Lecture3</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/" title="click for bigger image">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+
+<section data-notes="5min"><h1>Client-Server Communications on HTTP</h1></section>
+<section><h2>Client-Server Communications on HTTP</h2>
+	<a href="images/big/HTTP_ClientServerSystem.png"><img src="images/big/HTTP_ClientServerSystem.png"></a>
+</section>
+
+<section data-notes="5min"><h1>HTTP protocol overview</h1></section>
+<section><h2>HTTP protocol overview</h2>
+	<section><h3>in brief</h3>
+		<dl class="fa">
+			<dt>HTTP = HyperText Transfer Protocol</dt>
+			<dt>HTTP is a <span class="note">request-response</span> protocol.</dt>
+			<dt>the client sends a <span class="note">request message</span> to the server</dt>
+			<dt>the server returns a <span class="note">response message</span></dt>
+		</dl>
+	</section>
+	<section><h3>message format</h3>
+		<img class="" src="images/small/HTTP_MessageFormat.png"><br>
+		<dl class="fa">
+			<dt>each message (request/response) consists of two parts:</dt>
+			<dd><span class="note">Header</span> - information about the message</dd>
+			<dd><span class="note">Body</span> - message content</dd>
+		</dl>
+	</section>
+</section>
+
+<section data-notes="5min"><h1>Request Message Format</h1></section>
+<section><h2>Request Message Format</h2>
+	<section>
+		<img src="images/small/HTTP_RequestMessage.png">
+	</section>
+	<section><h3>Request Line</h3>
+		<pre><code rel="Syntax" class="ascii">
+			request-method-name request-URI HTTP-version
+		</code></pre>
+		<dl class="fa">
+			<dt><span class="note">request-method</span>: defines how to send the request (GET, POST, HEAD etc)</dt>
+			<dt><span class="note">request-URI</span>: the URI of the resource requested</dt>
+			<dt><span class="note">HTTP-version</span>: latest version is <a href="https://en.wikipedia.org/wiki/HTTP/2">HTTP/2</a></dt>
+		</dl>
+		<pre><code rel="JS" class="js">
+			GET /search?q=apple HTTP/1.1
+			HEAD /query.html HTTP/1.1
+			POST /index.html HTTP/1.1
+		</code></pre>
+	</section>
+	<section><h3>Request Headers</h3>
+		<pre><code rel="Syntax" class="ascii">
+			field-name: field-value1[, field-value2, ...]
+		</code></pre>
+		<p>The request-header fields allow the client to pass additional information about the request, and about the client itself, to the server</p>
+		<pre><code rel="Examples" class="js">
+			Host: google.com
+			User-Agent: curl/7.47.0
+			Accept: */*
+		</code></pre>
+	</section>
+	<section><h3>Request Body</h3>
+		<p>Optional</p>
+	</section>
+</section>
+
+<section data-notes="5min"><h1>Response Message Format</h1></section>
+<section><h2>Response Message Format</h2>
+	<section>
+		<a href="images/small/HTTP_ResponseMessage.png"><img src="images/small/HTTP_ResponseMessage.png"></a>
+	</section>
+	<section><h3>Status Line</h3>
+		<pre><code rel="Syntax" class="ascii">
+			HTTP-version status-code reason-phrase
+		</code></pre>
+		<dl class="fa">
+			<dt><span class="note">HTTP-version</span>: The HTTP version used in this session.</dt>
+			<dt><span class="note">status-code</span>: a 3-digit number generated by the server to reflect the outcome of the request</dt>
+			<dt><span class="note">reason-phrase</span>: gives a short explanation to the status code.</dt>
+		</dl>
+		<pre><code rel="Examples" class="ascii">
+			HTTP/1.1 200 OK
+			HTTP/1.1 301 Moved Permanently
+			HTTP/1.1 404 Not Found
+		</code></pre>
+		<p><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">List of HTTP status codes</a></p>
+	</section>
+	<section><h3>Response Headers</h3>
+		<pre><code rel="Syntax" class="http">
+			field-name: field-value1[, field-value2, ...]
+		</code></pre>
+		<p></p>
+		<pre><code rel="Examples" class="ascii">
+			HTTP/1.1 200 OK
+			cache-control: no-cache
+			content-encoding: gzip
+			content-language: en-US
+			content-type: text/html;charset=UTF-8
+			date: Sat, 25 Sep 2021 08:48:45 GMT
+			pragma: no-cache
+			server: nginx
+			strict-transport-security: max-age=31536000; includeSubDomains
+			vary: Accept-Encoding
+			x-frame-options: SAMEORIGIN
+		</code></pre>
+	</section>
+	<section><h3>Response Body</h3>
+		<p>The response message body contains the resource data requested</p>
+	</section>
+</section>
+
+<section data-notes="5min"><h1>HTTP Request Methods</h1></section>
+<section><h2>HTTP Request Methods</h2>
+	<p>HTTP protocol defines a set of request methods, which a client can use to request a server resource.</p>
+</section>
+<section><h2>The "GET" Request Method</h2>
+	<section>
+		<dl class="fa">
+			<dt>Used to request data from a specified resource</dt>
+			<dt class="note">The query string is sent in the URL</dt>
+		</dl>
+		<pre><code rel="Example" class="http">
+			https://duckduckgo.com/?q=http+get+request&t=hz&ia=web
+		</code></pre>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>GET requests should be used only to retrieve data, and not to change the server state</dt>
+			<dt>GET requests should NEVER be used with sensitive data</dt>
+			<dt>GET requests have length restrictions</dt>
+			<dt>GET requests can be cached</dt>
+			<dt>GET requests remain in the browser history</dt>
+			<dt>GET requests can be bookmarked</dt>
+		</dl>
+	</section>
+</section>
+<section><h2>The "POST" Request Method</h2>
+	<section>
+		<dl class="fa">
+			<dt>POST request method is used to sent data to the server, like customer information, file upload etc.</dt>
+			<dt>POST request should change the server state</dt>
+			<dt>the query string will be sent in the body of the request message</dt>
+			<dt>the request headers Content-Type and Content-Length are used to notify the server the type and the length of the query string</dt>
+		</dl>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>POST requests are never cached</dt>
+			<dt>POST requests do not remain in the browser history</dt>
+			<dt>POST requests cannot be bookmarked</dt>
+			<dt>POST requests have no restrictions on data length</dt>
+		</dl>
+	</section>
+	<section>
+		<p>Simply putted, POST is used to <span class="note">create</span> content on the server!</p>
+	</section>
+</section>
+<section><h2>Other HTTP Request Methods</h2>
+	<section><h3>HEAD</h3>
+		<p>Same as GET, but transfers the status line and header section only. No document body is returned!</p>
+	</section>
+	<section><h3>PUT</h3>
+		<p>Replaces all current representations of the target resource with the uploaded content.</p>
+		<p>In oder words, PUT is used to <span class="note">create or update</span> content on server</p>
+	</section>
+	<section><h3>DELETE</h3>
+		<p>Deletes the specified resource</p>
+	</section>
+	<section><h3>OPTIONS</h3>
+		<p>Ask the server to return the list of request methods it supports</p>
+	</section>
+	<section><h3>CONNECT</h3>
+		<p>Establishes a transparent TCP/IP tunnel to the server.</p>
+	</section>
+</section>
+
+
+<section data-min="10"><h1>Socket Programming</h1></section>
+<section><h2>Socket Programming</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>Socket communication is everywhere. So before going deeply onto HTTP Client/Server Communication, we'll look at simple demo of client/server socket communication.</dt>
+			<dt>The client application (your browser, for example) uses “client” sockets exclusively. The Web server it’s talking to uses both “server” sockets and “client” sockets.</dt>
+			<dt>Sockets are widely use for any IPC (Inter-Process Communication), especially for cross-platform communication.</dt>
+		</dl>
+	</section>
+	<section><h3>Python socket module</h3>
+		<dl class="fa">
+			<dt>The	<a href="https://docs.python.org/3/library/socket.html">socket module</a> is a Python's standard interface for the	transport layer, and it provides functions for interacting with TCP and UDP, as well as for looking up hostnames through	DNS</dt>
+   			<dt>A socket is defined by the IP address of the machine, the port on which it listens, and the protocol it uses.</dt>
+			<pre><code rel="Python" class="python">
+				socket.socket(family=AF_INET, type=SOCK_STREAM)¶
+			</code></pre>
+			<dt>There are several sockets address families like:</dt>
+			<dd><code>socket.AF_UNIX</code> - used to communicate between processes on the same machine efficiently (specified by UNIX pathname)</dd>
+			<dd><code>socket.AF_INET</code> - used to </dd>
+			<dt>Sockets are classified into several types, as well:</dt>
+			<dd>stream sockets(socket.SOCK_STREAM) for TCP</dd>
+			<dd>datagram sockets(socket.SOCK_DGRAM) for UDP and others</dd>
+
+		</dl>
+	</section>
+	<section><h3>Creating a Socket</h3>
+		<dl class="fa">
+			<dt>When you clicked on the link that brought you to this page, your browser did something like the following:</dt>
+		</dl>
+		<pre><code rel="client.py" class="python">
+
+		</code></pre>
+	</section>
+</section>
+
+
+
+
+
+
+ <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
