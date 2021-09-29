@@ -98,7 +98,7 @@
 		</code></pre>
 	</section>
 	<section><h3>Solution</h3>
-		<pre><code rel="Python" class="python" style="min-height: 100vh;">
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
 			import re
 
 			file_content = '''
@@ -128,6 +128,7 @@
 		</code></pre>
 	</section>
 </section>
+
 
 <section data-min="50"><h1>Validate User Name</h1></section>
 <section><h2>Validate User Name</h2>
@@ -164,13 +165,13 @@
 		</code></pre>
 	</section>
 	<section><h3>Solution</h3>
-		<pre><code rel="Python" class="python" style="min-height: 100vh;">
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
 			def validate_name(string):
 				# "x" flag ignores spaces and comments in a regex
 				rx = re.compile(r'''(?x)
 				^			# beginning of string
 					[a-zA-Z]  		# rule 3
-					[\w-]{2,9}		# rule 1 and 2
+					[\w-]{3,9}		# rule 1 and 2
 				$			# end of string
 				''')
 
@@ -186,7 +187,7 @@
 				"a12345",		# yes
 				"a1234567890",	# no (rule 1)
 				"1aaaaaaa",		# no (rule 3)
-				"aaa#",		# no (rule 3)
+				"aaa#",		# no (rule 2)
 				"a",			# no (rule 1)
 			]
 
@@ -197,7 +198,7 @@
 </section>
 
 <section data-min="50"><h1>Validate Password</h1></section>
-<section><h2>Validate Password</h2>
+<section><h2 class="advanced">Validate Password</h2>
 	<section><h3>Description</h3>
 		<p>Password must follow next rules:</p>
 		<ol>
@@ -222,14 +223,19 @@
 			___1_____! is NOT valid!
 			_____1a is valid!
 		</code></pre>
+		<p style="font-style: italic;">Hint: the easiest solution is to use <a href="https://www.regular-expressions.info/lookaround.html">positive look-ahead</a></p>
 	</section>
 	<section><h3>Solution</h3>
-		<pre><code rel="Python" class="python" style="min-height: 100vh;">
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
+			import re
+
 			def validate_password(string):
 				rx = re.compile(r'''(?xi)
-				(?=.*\d) 		# test for number, anywhere in string
-				(?=.*[a-z])		# test for letter, anywhere in string
-				{8,}			# test for length (all characters)
+					^
+					(?=.*\d) 		# test for number, anywhere in string
+					(?=.*[a-z])		# test for letter, anywhere in string
+					.{8,}		# test for length (all characters)
+					$
 				''')
 
 				m = rx.search(string)
@@ -243,11 +249,11 @@
 				"___a_____1", #yes
 				"___1_____a", #yes
 				"___1_____!", # no (no letter)
-				"_____1a", #no ( Rule 1)
+				"123abc", #no ( rule 2)
 			]
 
 			for t in passwords:
-				validate_password(t)
+				validate_password(t))
 		</code></pre>
 	</section>
 </section>
@@ -273,7 +279,7 @@
 		</dl>
 	</section>
 	<section><h3>Solution</h3>
-		<pre><code rel="Python" class="python" style="min-height: 100vh;">
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
 			import re
 
 			def strip_all_tags(html):
@@ -313,7 +319,7 @@
 	</section>
 	<section><h3>Test cases and Output</h3></section>
 	<section><h3>Solution</h3>
-		<pre><code rel="Python" class="python" style="min-height: 100vh;">
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
 
 		</code></pre>
 	</section>

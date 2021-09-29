@@ -12,7 +12,7 @@ def validate_password(string):
 	rx = re.compile(r'''(?xi)
 	(?=.*\d) 		# test for number, anywhere in string
 	(?=.*[a-z])		# test for letter, anywhere in string
-	{8,}			# test for length (all characters)
+	.{8,}			# test for length (all characters)
 	''')
 
 	m = rx.search(string)
