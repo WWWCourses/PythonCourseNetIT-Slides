@@ -208,7 +208,7 @@
 			<dt> Atlas handles all the complexity of deploying, managing, and healing your deployments on the cloud service provider of your choice (AWS, Azure, and GCP)</dt>
 		</dl>
 	</section>
-	<section><h3>MongoDB Atlas - TASK</h3>
+	<section id="TASK_MongoDB_Atlas"><h3>MongoDB Atlas - TASK</h3>
 		<dl class="fa">
 			<dt>Register to MongoDB Atlas and create <i>python_course_atlas</i> DB with 1 collection: <i>todos</i>, as shown</dt>
 			<a href="./images/Atlas_collection_created_screenshot.png" title="click for bigger image"><img src="./images/Atlas_collection_created_screenshot.png" alt="Atlas_collection_created_screenshot.png" style="max-height: 70vh;"></a>
@@ -256,22 +256,23 @@
 	<section><h3>Work with Database</h3>
 		<dl class="fa">
 			<dt>Create Database</dt>
-			<dd>There is no “create” command in the MongoDB shell. We can use the commenad <code>use database</code> on non-existing database</dd>
+			<dd>There is no “create” command in the MongoDB shell. We can use the command: <code>use <i>database</i></code> on non-existing database and it will be created. If the database exist it will be set as current.</dd>
 			<dt><code>db.dropDatabase()</code></dt>
-			<dd>Removes the current database, deleting the associated data files</dd>
+			<dd>Removes the current database, deleting the associated data files.</dd>
 			<dt>Show current database</dt>
 			<dd><code>db</code> </dd>
 		</dl>
-		<pre><code rel="Terminal" class="bash">
 
-		</code></pre>
 	</section>
 	<section><h3>Work with document collections</h3>
 		<dl class="fa">
 			<dt>Collections can be created just like databases, by writing a document to them.</dt>
 			<pre><code rel="Terminal" class="bash">
-				use python_course
-				db.todos.insert({title: "Learn Python", completed: false})
+				> use python_course
+				switched to db python_course
+				> db.todos.insert({title: "Learn Python", completed: false})
+				WriteResult({ "nInserted" : 1 })
+
 			</code></pre>
 		</dl>
 	</section>
@@ -287,6 +288,73 @@
 	</section>
 </section>
 
+<section data-min="5"><h1>Connect to MongoDB</h1></section>
+<section><h2>Connect to MongoDB</h2>
+	<section><h3>MongoDB URI (connection string)</h3>
+		<dl class="fa">
+			<dt>In order to connect to MongoDB, you will need a URI string.</dt>
+			<dd>A URI (Uniform Resource Identifier) is similar to a URL.</dd>
+			<dt>MongoDB URI must be supplied as a parameter when connecting to the mongo shell, Compass, and the MongoDB drivers</dt>
+			<dt>The MongoDB URI have two forms:</dt>
+			<ul style="line-height: 1.2em;">
+				<li><b>Standard connecting string</b>:<br>
+					<ul>
+						<li><code>mongodb://<i>username</i>:<i>password</i>@localhost:27017/<i>dbname</i></code></li>
+						<li>where <i>username</i>, <i>password</i> and <i>dbname</i> are optional</li>
+					</ul>
+				</li>
+				<li><b>DNS Seed List</b>:<br>
+					<ul>
+						<li><code>mongodb+srv://server.example.com/</code></li>
+					</ul>
+				</li>
+			</ul>
+		</dl>
+	</section>
+	<section><h3>Connect Compass to Atlas MongoDB</h3>
+		<dl class="fa">
+			<dt>Login to you Atlas MongoDB Cluster</dt>
+			<dt>Click connect button</dt>
+			<a href="./images/atlas_connect_button.png"><img src="./images/atlas_connect_button.png" alt=""></a>
+			<dt>Then select "I have MongoDB Compass"</dt>
+			<dt>Choose your Compass version</dt>
+		</dl>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>Copy the connection string</dt>
+			<a href="./images/atlas_copy_conn_string.png"><img src="./images/atlas_copy_conn_string.png" alt=""></a>
+		</dl>
+
+	</section>
+</section>
+
+<section data-min="5"><h1>Use Python with MongoDB</h1></section>
+<section><h2>PyMongo - a Mongodb Python's driver</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>To access a MongoDB from our Python application we need a MongoDB Python driver</dt>
+			<dt>The official ones are:</dt>
+			<dd><a href="https://docs.mongodb.com/drivers/pymongo/">pymongo</a> is the recommended driver to work with MongoDB using Python.</dd>
+			<dd><a href="https://docs.mongodb.com/drivers/motor/">motor</a> is the recommended driver for when you need <span class="note">non-blocking, asynchronous</span> access to MongoDB using Python.
+			</dd>
+			<dt>In these course we'll be using <span class="note">pymongo</span></dt>
+			<dt>We'll also need the <a href="https://www.dnspython.org/">dnspython</a> - a DNS toolkit for Python for queries, zone transfers, dynamic updates, nameserver testing. I.e. for using <code>mongodb+srv://</code> URIs</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			# install pymongo driver
+			pip install pymongo
+
+			# install dnspython
+			pip install dnspython
+		</code></pre>
+	</section>
+	<section><h3>Connect to Mongodb</h3>
+		<pre><code rel="Python" class="python" style="min-height: 70vh;">
+			from pymongo import MongoClient&#10;&#10;&#9;&#9;&#9;def connect_to_local_cluster():&#10;&#9;&#9;&#9;&#9;# connect using connection string:&#10;&#9;&#9;&#9;&#9;# &apos;mongodb://&lt;username?&gt;:&lt;password?&gt;@localhost:27017/&lt;dbname?&gt;&#10;&#9;&#9;&#9;&#9;connection_string = &apos;mongodb://localhost:27017/python_course&apos;&#10;&#10;&#9;&#9;&#9;&#9;return MongoClient(connection_string)&#10;&#10;&#10;&#9;&#9;&#9;def connect_to_atlas_cluster():&#10;&#9;&#9;&#9;&#9;# connect using connection string:&#10;&#9;&#9;&#9;&#9;# mongodb+srv://&lt;username&gt;:&lt;password&gt;@cluster0.xm0yw.mongodb.net/&lt;dbname?&gt;&#10;&#9;&#9;&#9;&#9;connection_string = &apos;mongodb+srv://power_user:q1a2z3@cluster0.xm0yw.mongodb.net/&apos;&#10;&#10;&#9;&#9;&#9;&#9;return MongoClient(connection_string)&#10;&#10;&#9;&#9;&#9;atlas_client = connect_to_atlas_cluster()&#10;&#9;&#9;&#9;local_client = connect_to_local_cluster()&#10;&#10;&#9;&#9;&#9;# list databases&#10;&#9;&#9;&#9;print(atlas_client.list_database_names())&#10;&#9;&#9;&#9;print(local_client.list_database_names())
+		</code></pre>
+	</section>
+</section>
 
 
 
