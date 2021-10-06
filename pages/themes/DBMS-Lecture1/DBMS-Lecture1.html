@@ -179,27 +179,10 @@
 		</code></pre>
 		<p>If you receve similar output => you're good to go</p>
 		<pre><code rel="Output" class="bash">
-			MongoDB shell version v4.4.6
-			connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&amp;gssapiServiceName=mongodb
-			Implicit session: session { &quot;id&quot; : UUID(&quot;19ddf9a3-dd9d-4253-b9d8-747256409d54&quot;) }
-			MongoDB server version: 4.4.6
-			---
-			The server generated these startup warnings when booting:
-			2021-06-18T04:03:12.281+03:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
-			2021-06-18T04:03:14.051+03:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
-			---
-			---
-			Enable MongoDB&#39;s free cloud-based monitoring service, which will then receive and display
-			metrics about your deployment (disk utilization, CPU, operation statistics, etc).
-
-			The monitoring data will be available on a MongoDB website with a unique URL accessible to you
-			and anyone you share the URL with. MongoDB may use this information to make product
-			improvements and to suggest MongoDB products and deployment options to you.
-
-			To enable free monitoring, run the following command: db.enableFreeMonitoring()
-			To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
-			---
-			&gt;
+			MongoDB shell version v4.4.9
+			connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+			Implicit session: session { "id" : UUID("84365a48-2b99-48e7-a5a0-8598ad39b06a") }
+			MongoDB server version: 4.4.9
 		</code></pre>
 	</section>
 	<section><h3>MongoDB Atlas - the Mongo's Cloud DataBase</h3>
@@ -226,6 +209,15 @@
 			<dt>The data are stored in a document using <a href="https://docs.mongodb.com/v4.2/core/document/#bson-document-format">BSON Format</a>, which is a is a binary representation of JSON documents,</dt>
 		</dl>
 	</section>
+	<section><h3>Document structure</h3>
+		<dl class="fa">
+			<dt>MongoDB stores data records as BSON documents (Binary representation of JSON documents, though it contains more data types than JSON.</dt>
+			<dd>Reference: <a href="https://docs.mongodb.com/manual/reference/bson-types/">BSON data types</a></dd>
+			<dt>MongoDB documents are composed of field-and-value pairs, separated by coma.</dt>
+			<dt>The value of a field can be any of the BSON data types, including other documents, arrays, and arrays of documents</dt>
+			<a href="./images/document_structure.svg"><img src="./images/document_structure.svg" alt="document_structure.svg" style="width: 50vw;"></a>
+		</dl>
+	</section>
 </section>
 
 <section data-min="10"><h1>MongoDB Shell</h1></section>
@@ -250,7 +242,6 @@
 			show users                   show users in current database
 			use &lt;db_name&gt;		     set current database (create a new one, if there isn't any)
 			db.mycoll.find()             list objects in collection mycoll
-
 		</code></pre>
 	</section>
 	<section><h3>Work with Database</h3>
@@ -272,8 +263,9 @@
 				switched to db python_course
 				> db.todos.insert({title: "Learn Python", completed: false})
 				WriteResult({ "nInserted" : 1 })
-
 			</code></pre>
+			<dt>Note that db refers to current database being selected with <code>use</code> command. In example above, this is "python_course" db.</dt>
+			<dt>The collection into which the document is inserted is "todos". If it did not exists it will be created. </dt>
 		</dl>
 	</section>
 </section>

@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section><h1>Use Python with MongoDB</h1></section>
+<section><h1>Basic Operations with MongoDB (using pymongo)</h1></section>
 <section data-transition="zoom">
 	<!-- linkedin badge -->
 	<section class="copyright" data-transition="zoom">
@@ -72,46 +72,6 @@
 	</section> -->
 </section>
 
-<!-- <section data-min="5"><h1>Connect to MongoDB</h1></section>
-<section><h2>Connect to MongoDB</h2>
-	<section><h3>MongoDB URI (connection string)</h3>
-		<dl class="fa">
-			<dt>In order to connect to MongoDB, you will need a URI string.</dt>
-			<dd>A URI (Uniform Resource Identifier) is similar to a URL.</dd>
-			<dt>MongoDB URI must be supplied as a parameter when connecting to the mongo shell, Compass, and the MongoDB drivers</dt>
-			<dt>The MongoDB URI have two forms:</dt>
-			<ul style="line-height: 1.2em;">
-				<li><b>Standard connecting string</b>:<br>
-					<ul>
-						<li><code>mongodb://<i>username</i>:<i>password</i>@localhost:27017/<i>dbname</i></code></li>
-						<li>where <i>username</i>, <i>password</i> and <i>dbname</i> are optional</li>
-					</ul>
-				</li>
-				<li><b>DNS Seed List</b>:<br>
-					<ul>
-						<li><code>mongodb+srv://server.example.com/</code></li>
-					</ul>
-				</li>
-			</ul>
-		</dl>
-	</section>
-	<section><h3>Connect Compass to Atlas MongoDB</h3>
-		<dl class="fa">
-			<dt>Login to you Atlas MongoDB Cluster</dt>
-			<dt>Click connect button</dt>
-			<a href="./images/atlas_connect_button.png"><img src="./images/atlas_connect_button.png" alt=""></a>
-			<dt>Then select "I have MongoDB Compass"</dt>
-			<dt>Choose your Compass version</dt>
-		</dl>
-	</section>
-	<section>
-		<dl class="fa">
-			<dt>Copy the connection string</dt>
-			<a href="./images/atlas_copy_conn_string.png"><img src="./images/atlas_copy_conn_string.png" alt=""></a>
-		</dl>
-
-	</section>
-</section>
 
 <section data-min="5"><h1>PyMongo - a Mongodb Python's driver</h1></section>
 <section><h2>PyMongo - a Mongodb Python's driver</h2>
@@ -134,53 +94,238 @@
 		</code></pre>
 	</section>
 	<section><h3>Connect to Mongodb</h3>
-		<pre><code rel="Python" class="python" style="min-height: 90vh;">
+		<dl class="fa">
+			<dt>Before doing any DB operations with PyMongo, we need to create a MongoClient to the running mongod instance:</dt>
+			<pre><code rel="Python" class="python">
+				# connect to default host and port:
+				client = MongoClient()
+
+				# connect to host at given port:
+				client = MongoClient('localhost', 27017)
+
+				# connect to host at given port with specified username and password:
+				client = MongoClient('localhost', 27017, username='username', password='password')
+
+				# connect using connection string in MongoDB URI format:
+				client = MongoClient('mongodb://localhost:27017')
+
+				# connect using connection string in MongoDB URI format with specified username and password:
+				client = MongoClient('mongodb://username:password@localhost:27017')
+
+			</code></pre>
+			<dt>Reference: <a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/mongo_client.html?highlight=MongoClient#pymongo.mongo_client.MongoClient">MongoClient Class</a></dt>
+		</dl>
+	</section>
+	<section><h3>Connect to MongoDB - Example</h3>
+		<pre><code rel="Python" class="python" style="min-height: 70vh;">
 			from pymongo import MongoClient&#10;&#10;&#9;&#9;&#9;def connect_to_local_cluster():&#10;&#9;&#9;&#9;&#9;# connect using connection string:&#10;&#9;&#9;&#9;&#9;# &apos;mongodb://&lt;username?&gt;:&lt;password?&gt;@localhost:27017/&lt;dbname?&gt;&#10;&#9;&#9;&#9;&#9;connection_string = &apos;mongodb://localhost:27017/python_course&apos;&#10;&#10;&#9;&#9;&#9;&#9;return MongoClient(connection_string)&#10;&#10;&#10;&#9;&#9;&#9;def connect_to_atlas_cluster():&#10;&#9;&#9;&#9;&#9;# connect using connection string:&#10;&#9;&#9;&#9;&#9;# mongodb+srv://&lt;username&gt;:&lt;password&gt;@cluster0.xm0yw.mongodb.net/&lt;dbname?&gt;&#10;&#9;&#9;&#9;&#9;connection_string = &apos;mongodb+srv://power_user:q1a2z3@cluster0.xm0yw.mongodb.net/&apos;&#10;&#10;&#9;&#9;&#9;&#9;return MongoClient(connection_string)&#10;&#10;&#9;&#9;&#9;atlas_client = connect_to_atlas_cluster()&#10;&#9;&#9;&#9;local_client = connect_to_local_cluster()&#10;&#10;&#9;&#9;&#9;# list databases&#10;&#9;&#9;&#9;print(atlas_client.list_database_names())&#10;&#9;&#9;&#9;print(local_client.list_database_names())
 		</code></pre>
 	</section>
+	<section><h3>Show Collections</h3>
+		<dl class="fa">
+			<dt>First, we need to set the context to a database we want to work with. I.e. to get a db object which will allows us to perform operations on that database:</dt>
+			<pre><code rel="Python" class="python">
+				import pymongo
+
+				# ------------------------- Connect to MongoDB Server ------------------------ #
+				client = pymongo.MongoClient("mongodb://localhost:27017")
+
+				# ----------------------- Switch context to a database ----------------------- #
+				# get "python_course" database:
+				db = client.python_course
+
+				# ------------------- Show all Collections in the database: ------------------ #
+				# get all collections in "python_course ":
+				collections = db.list_collection_names()
+				print(collections)
+			</code></pre>
+		</dl>
+	</section>
 </section>
- -->
+
+<section data-min="5"><h1>Mongodb data model</h1></section>
+<section><h2>Mongodb data model</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>A Mongodb <span class="note">databases</span> is a set of <span class="note">collections</span> of <span class="note">documents</span></dt>
+			<a href="./images/mongodb_collection.svg" title="click for bigger image"><img src="./images/mongodb_collection.svg" alt="mongodb_collection.svg"></a>
+			<dt>The data are stored in a document using <a href="https://docs.mongodb.com/v4.2/core/document/#bson-document-format">BSON Format</a>, which is a is a binary representation of JSON documents,</dt>
+		</dl>
+	</section>
+	<section><h3>Document structure</h3>
+		<dl class="fa">
+			<dt>MongoDB stores data records as BSON documents (Binary representation of JSON documents, though it contains more data types than JSON.</dt>
+			<dd>Reference: <a href="https://docs.mongodb.com/manual/reference/bson-types/">BSON data types</a></dd>
+			<dt>MongoDB documents are composed of field-and-value pairs, separated by coma.</dt>
+			<dt>The value of a field can be any of the BSON data types, including other documents, arrays, and arrays of documents</dt>
+			<a href="./images/document_structure.svg"><img src="./images/document_structure.svg" alt="document_structure.svg" style="width: 50vw;"></a>
+		</dl>
+	</section>
+</section>
+
+
 
 <section data-min="20"><h1>CRUD Operations with Mongodb</h1></section>
 <section><h2>CRUD Operations with Mongodb</h2>
 	<section><h3>Overview</h3>
 		<dl class="fa">
-			<dt><span class="note">CRUD = Create, Read, Update, and Delete</span> are the four basic operations of a database</dt>
-			<dt>Live demo: <a href="https://docs.mongodb.com/manual/crud/">MongoDB CRUD Operations</a></dt>
+			<dt><span class="note">CRUD = Create, Read, Update, and Delete</span> are the four basic operations performed on a database</dt>
+			<dt>Reference: <a href="https://docs.mongodb.com/manual/crud/">MongoDB CRUD Operations</a></dt>
+			<dt>In next sections we'll see how to perform CRUD operations using pymongo.</dt>
 		</dl>
 	</section>
-	<section><h3>Read</h3>
-		<pre><code rel="Python" class="python">
-			# Read all documents:
-			docs = todos.find()
-			for d in docs:
-				print(d)
-		</code></pre>
+</section>
+
+<section data-min="50"><h1>Create Documents</h1></section>
+<section><h2>Create Documents</h2>
+	<section><h3>Create (insert) Document/s</h3>
+		<dl class="fa">
+			<dt>To insert a document into a collection we can use the <a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one">insert_one()</a> method</dt>
+			<dt>When a document is inserted a special key, "_id", is automatically added if the document doesn’t already contain an "_id" key.</dt>
+			<pre><code rel="Python" class="python">
+				# insert a new document into "todos" collection:
+				res = db.todos.insert_one({"title": "Learn MongoDB", "done": False})
+				# get the id of the inserted document:
+				print(res.inserted_id)
+			</code></pre>
+			<dt>Create (insert) multiple documents</dt>
+			<dt>We can insert many documents by passing a list of documents as first argument to <a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many">insert_many()</a> method</dt>
+			<pre><code rel="Python" class="python">
+				# insert multiple documents into "todos" collection:
+				res = db.todos.insert_many([
+					{"title": "Learn Python", "done": True},
+					{"title": "Learn Flask", "done": False},
+					{"title": "Learn Flask-MongoDB", "done": False}
+				])
+				print(res.inserted_ids)
+			</code></pre>
+		</dl>
 	</section>
-	<section><h3>Create</h3>
+	<section><h3>Note:  MongoDB is schema-free.</h3>
+		<dl class="fa">
+			<dt>As we've discussed MongoDB is a schema-free DB. That means that we can insert into collection documents with different shape:</dt>
+		</dl>
 		<pre><code rel="Python" class="python">
-			todos.insert_one({
-				'title':'Sleep',
-				'completed': False
-			})
+			res = db.todos.insert_many([
+				{"title": "Learn Python", "done": True},
+				{"title": "Learn Flask", "description":"Learn Flask to develop quick and easy web applications with the ability to scale up."},
+				{"title": "Learn MongoDB", "due": "2021-12-31"}
+			])
 		</code></pre>
+		<dl class="fa">
+			<dt>Note that the 3 documents we've inserted have different structure (schema) and this is no problem for Mongo</dt>
+		</dl>
 	</section>
-	<section><h3>Update</h3>
-		<pre><code rel="Python" class="python">
-			res = todos.update_one(
-				{'title':r'(?i)sleep'},
-				{'$set':{'completed':True}}
-			)
-		</code></pre>
+</section>
+
+<section data-min="50"><h1>Query (Read) Document/s</h1></section>
+<section><h2>Query (Read) Document/s</h2>
+	<section><h3>Create sample "todos" collection</h3>
+		<script src="https://gist.github.com/WWWCourses/03b5bcb0366d9596186af454b7cd2430.js"></script>
 	</section>
+	<section><h3>Find Document/s</h3>
+		<dl class="fa">
+			<dt>The most basic type of query that can be performed in MongoDB is to find one document by <a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one">find_one()</a> method.</dt>
+			<dt>find_one() method <span class="note">returns a single document</span> matching a query (or None if there are no matches).</dt>
+			<dt>It is useful when you know there is only one matching document, or are only interested in the first match.</dt>
+			<pre><code rel="Python" class="python">
+				# find first document in "todos" collection:
+				print(db.todos.find_one())
+			</code></pre>
+			<dt class="note">Note that unlike JavaScript objects, the fields in a BSON document are <a href="Unlike JavaScript objects, the fields in a BSON document are ordered.">ordered</a>.</dt>
+			<hr>
+			<dt>We can read (i.e. find) all documents in a collection by <a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find">find()</a> method</dt>
+			<dt>find() <span class="note">returns a Cursor instance</span>, which allows us to iterate over all matching documents</dt>
+			<pre><code rel="Python" class="python">
+				# find all documents in "todos" collection:
+				for todo in db.todos.find():
+					print(todo)
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Query and projection</h3>
+		<dl class="fa">
+			<dt>The <a href="https://docs.mongodb.com/manual/reference/method/db.collection.find/#mongodb-method-db.collection.find">find()</a> method has the following syntax:</dt>
+			<pre><code rel="Mongo" class="mongo">
+				db.collection.find(query, projection)
+			</code></pre>
+			<dt><span class="note">query</span>: a document which specifies selection filter using query operators. To return all documents in a collection, omit this parameter or pass an empty document ({}).</dt>
+			<dt><span class="note">projection</span>: a document which specifies the fields to return in the documents that match the query filter. To return all fields in the matching documents, omit this parameter.</dt>
+			<dt>Or shortly, the query specifies which documents to retrieve, while the projection defines which fields of matching documents to be returned</dt>
+		</dl>
+	</section>
+	<section><h3>Query Filter Documents</h3>
+		<dl class="fa">
+			<dt>Query filter documents specify the conditions that determine which documents to select for read, as well as for  update, and delete operations.</dt>
+			<dt>We can use <code>&lt;field&gt;:&lt;value&gt;</value></code> expressions to specify the equality condition and query operator expressions.</dt>
+			<dt>Reference: <a href="https://docs.mongodb.com/manual/reference/operator/query/#query-selectors">Query Selectors</a></dt>
+		</dl>
+	</section>
+	<section><h3>Query Filter Examples</h3>
+		<dl class="fa">
+			<dt>find all documents in "todos" which are completed:</dt>
+			<pre><code rel="Python" class="python">
+				todos = db.todos.find({"completed":True})
+			</code></pre>
+			<dt>find all documents in "todos" with due date in the past</dt>
+			<pre><code rel="Python" class="python">
+				todos = db.todos.find({"dueDate":{"$lt":datetime.now()}})
+			</code></pre>
+			<dt>find all documents in "todos" which are completed and "priority" is greater than or equal to 2:</dt>
+			<pre><code rel="Python" class="python">
+				todos = db.todos.find({"$and":[
+					{"completed":True},
+					{"priority":{"$gte":2}}]
+				})
+			</code></pre>
+		</dl>
+	</section>
+	<!-- <section><h3>Projection</h3>
+		<dl class="fa">
+			<dt></dt>
+		</dl>
+	</section> -->
+
+</section>
+
+<section data-min="50"><h1>Update Document/s</h1></section>
+<section><h2>Update Document/s</h2>
+	<section><h3>Update Document/s</h3>
+		<dl class="fa">
+			<dt>To update a document in a collection we can use the <a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.update_one">update_one()</a> method</dt>
+			<dt>The update_one() method updates a single document matching the query.</dt>
+			<pre><code rel="Python" class="python">
+				# update first document in "todos" collection:
+				db.todos.update_one({"title": "Learn MongoDB"}, {"$set": {"done": True}})
+			</code></pre>
+			<dt>Update multiple documents</dt>
+			<dt>To update multiple documents in a collection we can use the <a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.update_many">update_many()</a> method</dt>
+			<pre><code rel="Python" class="python">
+				# update all documents in "todos" collection:
+				db.todos.update_many({"done": False}, {"$set": {"done": True}})
+			</code></pre>
+		</dl>
+	</section>
+</section>
+
+<section data-min="50"><h1>Delete document/s</h1></section>
+<section><h2>Delete document/s</h2>
 	<section><h3>Delete</h3>
+		<dt><a href="https://docs.mongodb.com/manual/reference/method/db.collection.deleteOne/">deleteOne</a></dt>
 		<pre><code rel="Python" class="python">
 			todos.delete_one(
-				{"title":"Sleep"}
+				{"title": "Learn Python"}
+			)
+		</code></pre>
+		<dt><a href="https://docs.mongodb.com/manual/reference/method/db.collection.deleteMany/">deleteMany</a></dt>
+		<pre><code rel="Python" class="python">
+			todos.delete_many(
+				{"priority":{"$gte":2}}
 			)
 		</code></pre>
 	</section>
 </section>
+
 
 <section data-min="5"><h1>Text Search</h1></section>
 <section><h2>Text Search</h2>
