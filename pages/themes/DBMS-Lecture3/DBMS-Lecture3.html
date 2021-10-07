@@ -128,51 +128,6 @@
 	</section>
 </section>
 
-<section data-min="5"><h1>RDBMS - Basic Concepts</h1></section>
-<section><h2>RDBMS - Basic Concepts</h2>
-	<section><h3>Data Definition Language (DDl)</h3>
-		<dl class="fa">
-			<dt>DDL helps you to define the <span class="note">database structure or schema</span></dt>
-			<dt>Some common DDL Commands are</dt>
-			<dd>CREATE, ALTER, DROP, TRUNCATE, etc.</dd>
-			<dt>Changes are saved in the database immediately and permanently.</dt>
-		</dl>
-	</section>
-	<section><h3>Data Manipulation Language (DML)</h3>
-		<dl class="fa">
-			<dt>The DML is the programming language used to express operations that interrogate or update <span class="note">the data</span> in the database</dt>
-			<dt>DML commands are used to manage the data stored in the database, like</dt>
-			<dd>INSERT, UPDATE, DELETE, MERGE, CALL, etc.</dd>
-		</dl>
-	</section>
-</section>
-
-<section><h1>SQL Introduction</h1></section>
-<section><h2>SQL Introduction</h2>
-	<section><h3>What is SQL?</h3>
-	<dl class="fa">
-		<dt><abbr>SQL</abbr><dfn id="SQL"><span>Structured</span><span>Query</span><span>Language</span></dfn></dt>
-		<dt>The standard language for relational database management systems.</dt>
-		<dt>Not a procedural language(C, Java etc.).</dt>
-		<dt>A declarative language!</dt>
-			<dd>Tell with SQL <b>what</b> you want instead of telling the system how to get it.</dd>
-		<dt>Case insensitive!</dt>
-	</dl>
-	</section>
-	<section><h3>SQL statements</h3>
-	<dl class="fa">
-		<dt>A set of commands you use to <span class="keyconcept">query</span> or <span class="keyconcept">manipulate</span> the DB.</dt>
-		<dt>Some RDBMS require a semicolon at the end of each SQL statement.</dt>
-	</dl>
-	</section>
-	<section><h3>Example SQL commands</h3>
-		<p><span class="keyconcept">SELECT</span>, <span class="keyconcept">UPDATE</span>, <span class="keyconcept">DELETE</span></p>
-		<p><span class="keyconcept">INSERT INTO</span>, <span class="keyconcept">CREATE DATABASE</span>, <span class="keyconcept">ALTER DATABASE</span></p>
-		<p><span class="keyconcept">CREATE TABLE</span>, <span class="keyconcept">ALTER TABLE</span>, <span class="keyconcept">DROP TABLE</span></p>
-		<p><span class="keyconcept">CREATE INDEX</span>, <span class="keyconcept">DROP INDEX</span></p>
-	</section>
-</section>
-
 <section data-min="5"><h1>Setup MySQL</h1></section>
 <section><h2>Setup MySQL</h2>
 	<section><h3>Install on Windows</h3>
@@ -191,7 +146,7 @@
 			<dt>APT repos for all mysql-apt-config versions: <a href="https://repo.mysql.com/apt/ubuntu/pool/mysql-apt-config/m/mysql-apt-config/">https://repo.mysql.com/apt/ubuntu/pool/mysql-apt-config/m/mysql-apt-config/</a></dt>
 			<dt>If you have problems on old linux version, you can try installing MariaDB</dt>
 			<dd><a href="https://downloads.mariadb.org/mariadb/repositories/#mirror=mva">https://downloads.mariadb.org/mariadb/repositories</a></dd>
-			<dt>Check the instalation:</dt>
+			<dt>Check the installation:</dt>
 			<pre><code rel="Terminal" class="bash">
 				systemctl status mysql
 
@@ -218,8 +173,8 @@
     </section>
 </section>
 
-<section data-min="50"><h1>Test the instalations</h1></section>
-<section><h2>Test the instalations</h2>
+<section data-min="50"><h1>Test the installations</h1></section>
+<section><h2>Test the installations</h2>
 	<section><h3>MySQL Client</h3>
         <pre><code rel="Terminal" class="bash" style="min-height: 90vh;">
 			### the client:
@@ -276,7 +231,6 @@
 	</section>
 </section>
 
-
 <section data-min="5"><h1>Connect to MySQL Server</h1></section>
 <section><h2>Connect to MySQL Server</h2>
 	<section><h3>MySQL client</h3>
@@ -303,7 +257,7 @@
 		<dl class="fa">
 			<dt>All MySQL databases are stored in directories inside a MySQL DATADIR directory.</dt>
 			<dt>E.g. myExampleDB’s files would be stored inside ‘$DATADIR/myExampleDB’ directory.</dt>
-			<dt>MySQl DATADIR is specified in the config file, but can be easilly retrieved by: </dt>
+			<dt>MySQl DATADIR is specified in the config file, but can be easily retrieved by: </dt>
 		</dl>
 		<pre><code rel="mysql cli" class="bash">
 			mariadb root@localhost:(none)> select @@datadir
@@ -316,6 +270,55 @@
 			Time: 0.002s
 
 		</code></pre>
+	</section>
+</section>
+
+<section data-min="5"><h1>RDBMS - Basic Concepts</h1></section>
+<section><h2>RDBMS - Basic Concepts</h2>
+	<section><h3>Data Definition Language (DDl)</h3>
+		<dl class="fa">
+			<dt>DDL helps you to define the <span class="note">database structure or schema</span></dt>
+			<dt>Some common DDL Commands are</dt>
+			<dd>CREATE, ALTER, DROP, TRUNCATE, etc.</dd>
+			<dt>Changes are saved in the database immediately and permanently.</dt>
+		</dl>
+	</section>
+	<section><h3>Data Manipulation Language (DML)</h3>
+		<dl class="fa">
+			<dt>The DML is the programming language used to express operations that interrogate or update <span class="note">the data</span> in the database</dt>
+			<dt>DML commands are used to manage the data stored in the database, like</dt>
+			<dd>INSERT, UPDATE, DELETE, MERGE, CALL, etc.</dd>
+		</dl>
+	</section>
+</section>
+
+<section><h1>SQL Introduction</h1></section>
+<section><h2>SQL Introduction</h2>
+	<section><h3>What is SQL?</h3>
+	<dl class="fa">
+		<dt><abbr>SQL</abbr><dfn id="SQL"><span>Structured</span><span>Query</span><span>Language</span></dfn></dt>
+		<dt>The standard language for relational database management systems.</dt>
+		<dt>Not a procedural language(C, Java etc.).</dt>
+		<dt>A declarative language!</dt>
+			<dd>Tell with SQL <b>what</b> you want instead of telling the system how to get it.</dd>
+		<dt>Case insensitive!</dt>
+	</dl>
+	</section>
+	<section><h3>SQL statements and queries</h3>
+	<dl class="fa">
+		<dt>SQL provides a set of commands you can use to <span class="keyconcept">query</span> or <span class="keyconcept">manipulate</span> the DB.</dt>
+		<dt class="note">SQL is case insensitive.</dt>
+		<dd><code>show databases;</code> and <code>SHOW DATABASES;</code> are the same.</dd>
+		<dt>Database and table names are not case sensitive in Windows, but are case sensitive in most varieties of Unix or Linux.</dt>
+		<dd><code>desc mysql.user;</code> will work but <code>desc mysql.USER;</code> will return an error ((1146, "Table 'mysql.USER' doesn't exist")) on Linux/MacOS</dd>
+		<dt>Some RDBMS require a semicolon at the end of each SQL statement.</dt>
+	</dl>
+	</section>
+	<section><h3>Example SQL commands</h3>
+		<p><span class="keyconcept">SELECT</span>, <span class="keyconcept">UPDATE</span>, <span class="keyconcept">DELETE</span></p>
+		<p><span class="keyconcept">INSERT INTO</span>, <span class="keyconcept">CREATE DATABASE</span>, <span class="keyconcept">ALTER DATABASE</span></p>
+		<p><span class="keyconcept">CREATE TABLE</span>, <span class="keyconcept">ALTER TABLE</span>, <span class="keyconcept">DROP TABLE</span></p>
+		<p><span class="keyconcept">CREATE INDEX</span>, <span class="keyconcept">DROP INDEX</span></p>
 	</section>
 </section>
 
@@ -338,7 +341,7 @@
 			USE employees;
 		</code></pre>
 	</section>
-	<section><h3>Setup Test Database</h3>
+	<section><h3>Import database (Setup Test Database)</h3>
 		<dl class="fa">
 			<dt>Download the test db and load it </dt>
 			<dd><a href="https://github.com/datacharmer/test_db/">Employees Sample Database</a></dd>
@@ -361,16 +364,22 @@
 		<pre><code rel="Syntax" class="bash">
 			mysqldump -u username -p databasename > filename.sql
 		</code></pre>
-	</section>
-	<section><h3>Reference</h3>
 		<dl class="fa">
-			<dt><a href=""></a></dt>
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html">mysqldump — A Database Backup Program</a></dt>
 		</dl>
 	</section>
 </section>
 
 <section><h1>Manage users</h1></section>
 <section id="Manage_users"><h2>Manage users</h2>
+	<section><h3>List All Users in a MySQL Database Server</h3>
+		<dl class="fa">
+			<dt>All mysql users are stored into <code>mysql.user</code> table</dt>
+			<pre><code rel="Terminal" class="bash">
+				SELECT user,host FROM mysql.user;
+			</code></pre>
+		</dl>
+	</section>
     <section><h3>Create a New User</h3>
         <pre><code rel="sql" class="mysql"></code>
 			CREATE USER 'employees_db_admin'@'localhost' IDENTIFIED BY '1234';
@@ -380,11 +389,6 @@
 			CREATE USER IF NOT EXISTS 'employees_db_admin'@'localhost' IDENTIFIED BY '1234';
         </code></pre>
     </section>
-	<section><h3>Show Users</h3>
-		<pre><code rel="sql" class="mysql">
-			SELECT user,host FROM mysql.user;
-		</code></pre>
-	</section>
     <section><h3>Delete user</h3>
         <pre><code rel="sql" class="mysql">
 			DROP USER 'employees_db_admin'@'localhost';
