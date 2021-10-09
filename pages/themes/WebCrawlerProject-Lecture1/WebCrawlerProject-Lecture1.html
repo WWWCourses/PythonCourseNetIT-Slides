@@ -73,7 +73,71 @@
 	</section> -->
 </section>
 
+<section data-min="50"><h1>WebCrawling - Overview</h1></section>
+<section><h2>WebCrawling - Overview</h2>
+	<section><h3>What is Web Crawling?</h3>
+		<dl class="fa">
+			<dt>A Web crawler (aka <i>spider</i>, <i>internet bot</i>), is a program that systematically browses the World Wide Web, typically operated by search engines for the purpose of Web indexing (web spidering)</dt>
+			<dt>WebCrawling is a part (subsystem) of <i>WebScraping</i>, <i>Web Data Mining/Extraction</i> software systems.</dt>
+			<dt>Reference:</dt>
+			<dd><a href="https://en.wikipedia.org/wiki/Web_crawler">Web Crawler @wikipedia</a></dd>
+			<dd><a href="https://en.wikipedia.org/wiki/Web_scraping">Web Scraping @wikipedia</a></dd>
+		</dl>
+	</section>
+	<section><h3>How a WebCrawler Works?</h3>
+		<dl class="fa">
+			<dt>A web crawler starts with a list of URLs to visit, called the seed.</dt>
+			<dt>For each URL, the crawler finds links in the HTML, filters those links based on some criteria and adds the new links to a queue.</dt>
+			<dt>All the HTML or some specific information is extracted to be processed by a different pipeline.</dt>
+		</dl>
+		<a href="./images/WebCrawlerArchitecture.svg.png"><img src="./images/WebCrawlerArchitecture.svg.png" alt="WebCrawlerArchitecture.svg.png"></a>
+	</section>
+	<section><h3>Popular web crawler use cases</h3>
+		<dl class="fa">
+			<dt>Search engines (Googlebot, Bingbot, Yandex Bot…) collect all the HTML for a significant part of the Web. This data is indexed to make it searchable.</dt>
+			<dt>SEO analytics tools on top of collecting the HTML also collect metadata like the response time, response status to detect broken pages and the links between different domains to collect backlinks.</dt>
+			<dt>Price monitoring tools crawl e-commerce websites to find product pages and extract metadata, notably the price. Product pages are then periodically revisited.</dt>
+			<dt>Social Network data extraction, Sentiment Analyses, ...</dt>
+		</dl>
+	</section>
+	<section><h3>Web Crawling Legal/Ethical Concerns</h3>
+		<dl class="fa">
+			<dt>Crawlers consume resources on visited systems and often visit sites without approval.</dt>
+			<dt>Issues of schedule, load, and "politeness" come into play when large collections of pages are accessed.</dt>
+			<dt>Mechanisms exist for public sites not wishing to be crawled to make this known to the crawling agent. For example, including a <code>robots.txt</code> file can request bots to index only parts of a website, or nothing at all.</dt>
+		</dl>
+	</section>
 
+
+</section>
+
+<section data-min="50"><h1>Web Crawling with Python</h1></section>
+<section><h2>Web Crawling with Python</h2>
+	<section><h3>The Process</h3>
+		<dl class="fa">
+			<dt>Visual inspection: Figure out what to extract</dt>
+			<dd>Tools: Browser Dev Tools</dd>
+			<dt>Make an HTTP request to the webpage and parse it</dt>
+			<dd>Tools: python library like: <a href="https://docs.python-requests.org/en/master/">Requests</a>, <a href="https://docs.python.org/2/library/urllib.html#module-urllib">urllib</a></dd>
+			<dt>Parse the HTML to get the relevant data</dt>
+			<dd><a href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a></dd>
+		</dl>
+	</section>
+	<section><h3>Using Chrome DevTools to inspect a WebPage</h3>
+		<dl class="fa">
+			<dt>Live Demo</dt>
+			<dd>Inspect <a href="rottentomatoes.com">rottentomatoes.com</a></dd>
+		</dl>
+	</section>
+	<section><h3>Using <code>Requests</code> to get page content</h3>
+		<dl class="fa">
+			<dt>Reference: <a href="https://docs.python-requests.org/en/latest/">Requests: HTTP for Humans</a></dt>
+			<dt>Live Demo</dt>
+			<dd>get HTML content of a web site</dd>
+			<dd>Use JSON APIs: <a href="https://api.chucknorris.io/">Chuck Norris Jokes</a> or <a href="https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/">List of Free and Open Public APIs</a></dd>
+		</dl>
+	</section>
+</section>
 
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
 <!--
