@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section><h1>MySQl - goind deep</h1></section>
+<section><h1>MySQl - going deep</h1></section>
 <section data-transition="zoom">
 	<!-- linkedin badge -->
 	<section class="copyright" data-transition="zoom">
@@ -79,26 +79,24 @@
 		<dl class="fa">
 			<dt>Storage engines are MySQL components that handle the SQL operations for different table types.</dt>
 			<dt>InnoDB is the default and most general-purpose storage engine, and Oracle recommends using it for tables except for specialized use cases.</dt>
-			<dt>In MySQL 8.0 the The CREATE TABLE statement created InnoDB tables by default.</dt>
+			<dt class="note">In MySQL 8.0 the The CREATE TABLE statement created InnoDB tables by default.</dt>
 			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html">storage-engines</a></dt>
 		</dl>
-		<pre><code rel="mysql" class="sql">
+		<pre style="margin-left:0em"><code rel="mysql" class="sql">
 			SHOW ENGINES
 		</code></pre>
-		<pre><code rel="Output" class="bash">
-			+--------------------+-----------+----------------------------------------------
-			| Engine             | Support   | Comment
-			|--------------------+-----------+----------------------------------------------
-			| CSV                | YES       | Stores tables as CSV files
-			| MRG_MyISAM         | YES       | Collection of identical MyISAM tables
-			| SEQUENCE           | YES       | Generated tables filled with sequential value
-			| MyISAM             | YES       | Non-transactional engine with good performanc
-			| MEMORY             | YES       | Hash based, stored in memory, useful for temp
-			| PERFORMANCE_SCHEMA | YES       | Performance Schema
-			| Aria               | YES       | Crash-safe tables with MyISAM heritage
-			| InnoDB             | DEFAULT   | Supports transactions, row-level locking, for
-			+--------------------+-----------+----------------------------------------------
-		</code></pre>
+		<section data-markdown style="font-size: .7em;margin-left: -7em;">
+			| Engine             | Support   | Comment                                                                          | Transactions   | XA   | Savepoints   |
+			|--------------------|-----------|----------------------------------------------------------------------------------|----------------|------|--------------|
+			| CSV                | YES       | Stores tables as CSV files                                                       | NO             | NO   | NO           |
+			| MRG_MyISAM         | YES       | Collection of identical MyISAM tables                                            | NO             | NO   | NO           |
+			| SEQUENCE           | YES       | Generated tables filled with sequential values                                   | YES            | NO   | YES          |
+			| MyISAM             | YES       | Non-transactional engine with good performance and small data footprint          | NO             | NO   | NO           |
+			| MEMORY             | YES       | Hash based, stored in memory, useful for temporary tables                        | NO             | NO   | NO           |
+			| PERFORMANCE_SCHEMA | YES       | Performance Schema                                                               | NO             | NO   | NO           |
+			| Aria               | YES       | Crash-safe tables with MyISAM heritage                                           | NO             | NO   | NO           |
+			| InnoDB             | DEFAULT   | Supports transactions, row-level locking, foreign keys and encryption for tables | YES            | YES  | YES          |
+		</section>
 	</section>
 	<section><h3>What is a Transaction?</h3>
 		<dl class="fa">
@@ -304,329 +302,6 @@
 	</section>
 </section>
 
-<section data-min="5"><h1>MySQL_Indexes</h1></section>
-<section id="intro"><h2>Introduction</h2>
-	<section><h3>What and Why?</h3>
-		<dl class="fa">
-		   <dt>A database index is added to a table <span class="note">to speed up the search</span> operation.</dt>
-		   <dt>An index is used by the Database Search Engine to locate records very fast.</dt>
-		   <dt>Indexes can be created for one or more columns.</dt>
-		   <dt>Indexes are implemented as a type of tables, which keep index field and a pointer to each record into the actual table.</dt>
-		   <dt>While adding index to a table will speed the SELECT queries, it will <span class="note">slow down</span> the INSERT and UPDATE statement.</dt>
-		</dl>
-	</section>
-	<section><h3>Types of indexes</h3>
-		<dl class="fa">
-			<dt>A regular INDEX</dt>
-			<dt>PRIMARY KEY</dt>
-			<dt>FULLTEXT</dt>
-		</dl>
-	</section>
-</section>
-<section id="regular_indexes"><h2>Regular index</h2>
-	<section><h3>Considerations</h3>
-		<dl class="fa">
-			<dt>Consider data in which columns will be searched most often.</dt>
-		</dl>
-	</section>
-	<section id="add_index"><h3>Add regular Index to a table</h3>
-		<p>The syntax:</p>
-		<pre><code>
-			ALTER TABLE table_name ADD INDEX(column_name(index_length));
-		</code></pre>
-		<dl class="fa">
-			<dt>The <span class="code">index_length</span> could be specified to minimize the size of the index, and to optimize database access speed.</dt>
-		<dt>If <span class="code">index_length</span> is specified, it should be long enough, because if MySQL finds two indexes with the same contents, it will have to waste time going to the table itself and checking the column that was indexed to find out which rows really matched.</dt>
-		</dl>
-	</section>
-	<section id="add_index_example"><h3>Example</h3>
-		<p>Let's have the <span class="code">artist</span> table, defined as:</p>
-		<pre>
-			mysql music_db_admin@localhost:music_db> desc artist;
-			+---------+-------------+--------+-------+-----------+---------+
-			| Field   | Type        | Null   | Key   |   Default | Extra   |
-			|---------+-------------+--------+-------+-----------+---------|
-			| fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
-			| lname   | varchar(20) | NO     |       |    &lt;null&gt; |         |
-			+---------+-------------+--------+-------+-----------+---------+
-					</pre>
-					<p>An index could be added as:</p>
-					<pre><code>
-			ALTER TABLE artist ADD INDEX(lname(10));
-					</code></pre>
-					<p>Resulting in:</p>
-					<pre>
-			mysql music_db_admin@localhost:music_db> desc artist;
-			+---------+-------------+--------+-------+-----------+---------+
-			| Field   | Type        | Null   | Key   |   Default | Extra   |
-			|---------+-------------+--------+-------+-----------+---------|
-			| fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
-			| lname   | varchar(20) | NO     | <span class="note">MUL</span>   |    &lt;null&gt; |         |
-			+---------+-------------+--------+-------+-----------+---------+
-		</pre>
-		<p>The <span class="note">MUL</span> key means that multiple occurrences of a value may occur within that column.</p>
-	</section>
-	<section id="create_index"><h3>Using CREATE INDEX</h3>
-		<p>The syntax:</p>
-		<pre><code>
-			CREATE INDEX column_name ON table_name (column_name(index_length));
-		</code></pre>
-		<dl class="fa">
-			<dt>It is an alternative to adding an index with ALTER TABLE.</dt>
-			<dt><span class="note">NB!</span> They are equivalent, except that CREATE INDEX cannot be used to create a PRIMARY KEY</dt>
-		</dl>
-	</section>
-	<section id="on_create_table"><h3>Adding indexes when creating tables</h3>
-		<p>You should be aware that adding an index to a large table can take a very long time.</p>
-		<p>That's why is better to add the index when creating the table!</p>
-		<pre><code>
-			CREATE TABLE artist (
-				fname VARCHAR(20) DEFAULT NULL,
-				lname VARCHAR(20) NOT NULL,
-				INDEX(lname(10))
-			);
-		</code></pre>
-	</section>
-</section>
-<section id="primary_key"><h2>Primary key</h2>
-	<section><h3>Why using Primary Key?</h3>
-		<dl class="fa">
-			<dt>Regular indexes do not impose the values to be unique!</dt>
-			<dt>The importance of having a key with a unique value for each row will come up when we start to combine data from different tables.</dt>
-		</dl>
-
-	</section>
-	<section id="primary_key_create"><h3>Create</h3>
-		<p>By adding the PRIMARY KEY(column_name) at the end of CREATE TABLE.</p>
-		<pre><code>
-			CREATE TABLE artist (
-				id MEDIUMINT(4) NOT NULL AUTO_INCREMENT,
-				fname VARCHAR(20) DEFAULT NULL,
-				lname VARCHAR(20) NOT NULL,
-				PRIMARY KEY(id)
-			);
-		</code></pre>
-		<p>Resulting in:</p>
-		<pre>
-			+---------+--------------+--------+-------+-----------+----------------+
-			| Field   | Type         | Null   | Key   |   Default | Extra          |
-			|---------+--------------+--------+-------+-----------+----------------|
-			| id      | mediumint(4) | NO     | PRI   |    &lt;null&gt; | auto_increment |
-			| fname   | varchar(20)  | YES    |       |    &lt;null&gt; |                |
-			| lname   | varchar(20)  | NO     |       |    &lt;null&gt; |                |
-			+---------+--------------+--------+-------+-----------+----------------+
-		</pre>
-		<p><span class="note">NB!</span> As PRIMARY KEY requires unique values, the <span class="code">NOT NULL</span> and/or <span class="code">AUTO_INCREMENT</span> attribute should be present.</p>
-	</section>
-</section>
-<section id="auto_increment"><h2>The AUTO_INCREMENT attribute</h2>
-	<section id="auto_increment"><h3>The AUTO_INCREMENT attribute</h3>
-		<dl class="fa">
-			<dt>The AUTO_INCREMENT attribute can be used to generate a unique identity for new rows.</dt>
-			<dt>A column defined with that attribute will set the value of its contents to that of the column entry in the previously inserted row, plus 1.</dt>
-		</dl>
-	</section>
-	<section id="auto_increment"><h3>AUTO_INCREMENT - example</h3>
-		<pre><code>
-			CREATE TABLE artist (
-			artist_id SMALLINT(5) NOT NULL AUTO_INCREMENT KEY,
-			fname VARCHAR(20) DEFAULT NULL,
-			lname VARCHAR(20) NOT NULL
-			);
-		</code></pre>
-		<p><span class="note">The KEY attribute should also be defined!</span></p>
-		<p>If it is not present, MySQL raises an error: <span class="code">'Incorrect table definition; there can be only one auto column and it must be defined as a key'</span>.</p>
-	</section>
-</section>
-
-<section data-min="5"><h1>SQL Constraints and Foreign Key</h1></section>
-<section id="constraints"><h2>SQL Constraints</h2>
-	<section><h3>The syntax in CREATE TABLE</h3>
-		<p>Constraint on single column:</p>
-		<pre><code class="sql">
-			CREATE TABLE table_name(
-				column_name data_type(size) constraint_name,
-				...
-			);
-		</code></pre>
-		<p>you can define constraints on more than one column, by using constraint on table, like:</p>
-		<pre><code>
-			CREATE TABLE author(
-				id int(4) key auto_increment,
-				fname varchar(200),
-				lname varchar(200),
-				UNIQUE(fname,lname)
-			)
-		</code></pre>
-	</section>
-	<section><h3>NOT NULL</h3>
-		<p>Indicates that a column cannot store NULL value</p>
-		<pre><code>
-			CREATE TABLE book (
-				id SMALLINT(3) UNSIGNED NOT NULL,
-				...
-			);
-		</code></pre>
-	</section>
-	<section><h3>DEFAULT</h3>
-		<p>Specifies a default value for a column</p>
-		<pre><code>
-			CREATE TABLE book (
-				pub_year MEDIUMINT(4) DEFAULT NULL,
-				...
-			);
-	</code></pre>
-	</section>
-	<section><h3>UNIQUE</h3>
-		<p>Ensures that each row for a column must have a <span class="note">unique</span> value</p>
-		<pre><code>
-			CREATE TABLE book (
-				book_name VARCHAR(250) NOT NULL UNIQUE,
-				...
-			);
-		</code></pre>
-		<p>Some vendors, MySQL as well, allows a UNIQUE column to be set with <span class="keyword">DEFAULT NULL</span> values, as by definition a NULL value is not equal to a NULL value. Anyway, it is not recommended to have UNIQUE and DEFAULT NULL column.</p>
-	</section>
-	<section><h3>CHECK</h3>
-	   <p><i class="ionicons ion-university img fs-normal"></i> self-learning section:</p>
-	   <a href="http://www.w3schools.com/sql/sql_check.asp">w3schools: SQL CHECK Constraint</a>
-	</section>
-	<section><h3>PRIMARY KEY</h3>
-		<p>A combination of a NOT NULL and UNIQUE. Ensures that a column (or combination of two or more columns) have a unique identity which helps to find a particular record in a table more easily and quickly</p>
-		<pre><code>
-			CREATE TABLE book (
-				id SMALLINT(3) UNSIGNED NOT NULL PRIMARY KEY,
-				...
-			);
-		</code></pre>
-	</section>
-</section>
-<section id="foreign_key"><h2>FOREIGN KEY constraints</h2>
-	<section><h3>What is a FOREIGN KEY?</h3>
-		<dl class="fa fs-small">
-			<dt>A FOREIGN KEY in one table points to a PRIMARY KEY in another table.</dt>
-			<dt>FOREIGN KEY relationships involve a <span class="note">parent table</span> that holds the central data values, and a <span class="note">child table</span> with identical values pointing back to its parent.</dt>
-			<dt>The FOREIGN KEY clause is specified in the child table. The parent and child tables must use the same storage engine. They must not be TEMPORARY tables.</dt>
-			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">FOREIGN KEY Constraints</a></dt>
-		</dl>
-		<pre><code>
-			# define the Parent Table
-			CREATE TABLE `customers` (
-				`id` int NOT NULL AUTO_INCREMENT,
-				`first_name` varchar(45) NOT NULL,
-				`last_name` varchar(45) NOT NULL,
-				`email` varchar(100) DEFAULT NULL,
-				PRIMARY KEY (`id`)
-			) DEFAULT CHARSET=utf8;
-
-		</code></pre>
-		<pre><code>
-			# define the Child Table
-			CREATE TABLE `orders` (
-				`id` int NOT NULL AUTO_INCREMENT,
-				`customer_id` int NOT NULL,
-				`order_date` datetime NOT NULL,
-				PRIMARY KEY (`id`),
-				FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
-			) DEFAULT CHARSET=utf8;
-
-		</code></pre>
-	</section>
-	<section><h3>customersdb ER Diagram</h3>
-		<p><a href="./images/customers_db_ERDiagram.png"><img src="./images/customers_db_ERDiagram.png" alt="customers_db_ERDiagram.png" style="height: 60vh;"></a></p>
-		<dl class="fa">
-			<dt>This implements <span class="note">"one to many"</span> relation!</dt>
-			<dd><span class="note">One</span> customer can have <span class="note">many</span> orders.</dd>
-			<dt>If we need <span class="note">"many to many"</span> relation we could make third table: <code>customers_orders</code> which will store foreign keys to <code>customers(id)</code> and <code>orders(id)</code> </dt>
-		</dl>
-	</section>
-	<section><h3>FOREIGN KEY Constraint</h3>
-		<p>Ensure the <span class="keyword">referential integrity</span> of the data in one table to match values in another table</p>
-		<p>MySQL supports FOREIGN KEY Constraint only for <a href="http://dev.mysql.com/doc/refman/8.0/en/using-innodb-tables.html">InnoDB tables</a></p>
-	</section>
-	<section><h3>FOREIGN KEY Constraint</h3>
-		<p>The syntax</p>
-		<pre><code class="fs-big bash">
-			[CONSTRAINT constraint_name]
-			FOREIGN KEY [fk_name] (index_columns)
-			REFERENCES tbl_name (index_columns)
-			[ON DELETE action]
-			[ON UPDATE action]
-			[MATCH FULL | MATCH PARTIAL | MATCH SIMPLE]
-					</code></pre>
-					<dl class="fa fs-small">
-						<dt>The CONSTRAINT clause, if given, supplies a name for the foreign key constraint. If you omit it, InnoDB creates a name.</dt>
-						<dt>FOREIGN KEY indicates the indexed columns in the child table that must match index values in the parent table. fk_name is the foreign key ID. If given, it is ignored unless InnoDB automatically creates an index for the foreign key; in that case, fk_name becomes the index name.</dt>
-						<dt>REFERENCES names the parent table and the index columns in that table to which the foreign key in the child table refers. The index_columns part of the REFERENCES clause must have the same number of columns as the index_columns that follows the FOREIGN KEY keywords.</dt>
-
-					</dl>
-				</section>
-				<section><h3>FOREIGN KEY Constraint: ON DELETE</h3>
-					<dl class="fa fs-small">
-						<dt>ON DELETE specifies what happens to the child table when parent table rows are deleted.</dt>
-							<dd>For MySQL InnoDB tables ON DELETE NO ACTION and ON DELETE RESTRICT are the same as omitting the ON DELETE clause, as the foreign key constraints are checked immediately.</dd>
-							<dd>ON DELETE CASCADE causes matching child rows to be deleted when the corresponding parent row is deleted. In essence, the effect of the delete is cascaded from the parent to the child. This enables you to perform multiple-table deletes by deleting rows only from the parent table and letting InnoDB delete the corresponding rows from the child table.</dd>
-							<dd>ON DELETE SET NULL causes index columns in matching child rows to be set to NULL when the parent row is deleted. If you use this option, all the indexed child table columns named in the foreign key definition must be defined to permit NULL values</dd>
-					</dl>
-				</section>
-				<section><h3>FOREIGN KEY Constraint: ON UPDATE</h3>
-					<dl class="fa fs-small">
-						<dt>ON UPDATE enables you to specify what happens to the child table when parent table rows are updated.</dt>
-						<dt>If ON UPDATE clause is not present, the default behaviour is to reject any inserts or updates in the child table that result in foreign key values that don’t have any match in the parent table index, and to prevent updates to parent table index values to which child rows point. </dt>
-						<dt>The possible action values are the same as for ON DELETE and have similar effects.</dt>
-					</dl>
-				</section>
-				<section><h3>FOREIGN KEY Constraint: Guidelines</h3>
-					<dl class="fa fs-small">
-						<dt>You must create the parent table index explicitly before defining the foreign key relationship.</dt>
-						<dt>InnoDB automatically creates an index on foreign key columns (the referencing columns) in the child table if the CREATE TABLE statement does not include such an index.</dt>
-						<dd>The automatically created index will be a <span class="note">non unique</span> index and will include only the foreign key columns.</dd>
-						<dd>You should define the index in the child table explicitly if you want it to be a PRIMARY KEY or UNIQUE index, or if it should include other columns in addition to those in the foreign key.</dd>
-						<dt>Corresponding columns in the parent and child indexes must have compatible types.</dt>
-							<dd>Corresponding <span class="note">character columns</span> must be <span class="note">the same length</span>.</dd>
-							<dd>Corresponding <span class="note">integer columns</span> must have <span class="note">the same size</span> and <span class="note">same range</span> (signed or unsigned).</dd>
-						<dt>For string columns, you must index the entire column, not just a leading prefix of it.</dt>
-					</dl>
-				</section>
-				<section><h3>FOREIGN KEY Constraint: Examples</h3>
-					<dl class="fa fs-small">
-						<dt>books_db schema</dt>
-							<dd><a href="slides_examples/books_db_schema.sql.txt">View</a> or <a href="slides_examples/books_db_schema.sql">Download</a></dd>
-						<dt>books_db sample data</dt>
-							<dd><a href="slides_examples/books_db_sample_data.sql.txt">View</a> or <a href="slides_examples/books_db_sample_data.sql">Download</a></dd>
-						<dt>Now let's delete an author from the <span class="code">author</span> table:</dt>
-						<pre><code class="SQL">
-			DELETE FROM author WHERE lname='Vonnegut' and fname='Kurt';
-		</code></pre>
-		<dt>And check what happens with the books in <span class="code">book</span> table:</dt>
-		<pre><code>
-			SELECT author.fname, author.lname, book_name FROM book, author WHERE book.author_id=author.id;
-		</code></pre>
-		<p>Yes, we see (<a href="slides_examples/books_db_results_on_delete_constraint.txt">view</a>) that all Vonnegut's books records are automatically deleted from <span class="code">book</span> table, because of the constraint we've set.</p>
-		</dl>
-	</section>
-	<section><h3></h3>
-		<dl class="fa">
-			<dt>Note, that if we try to insert into orders the id of a customer, who does not exists, MySQL will through an error</dt>
-		</dl>
-		<pre><code rel="Terminal" class="bash">
-			INSERT INTO orders (customer_id,order_date)
-				VALUES (1, "2020-01-20 21:00:00");
-
-			# Cannot add or update a child row: a foreign key constraint fails
-		</code></pre>
-	</section>
-	<section><h3>FOREIGN KEY Constraint: Exercises</h3>
-		<dl class="fa fs-small">
-			<dt>Create the next <a href="slides_examples/books_db_schema.sql">books_db schema</a> and insert the <a href="slides_examples/books_db_sample_data.sql">books_db sample data</a></dt>
-			<dt>Set <span class="note">ON UPDATE</span> constraint on <span class="code">fk_AuthorID</span> which will force the MySQL to automatically update all rows in <span class="code">book</span> table, when a corresponding row in <span class="code">author</span> table has changed.</dt>
-			<dt>Set the <span class="code">author.id</span> to be 100 for Charles Dodgson author row.</dt>
-			<dt>Check what happens with <span class="code">author_id</span> in the respective rows in <span class="code">book</span> table.</dt>
-		</dl>
-	</section>
-</section>
-
-
 <section data-min="5"><h1>Basic Data Manipulation Statements</h1></section>
 <section><h2>INSERT INTO table</h2>
     <section><h3>The syntax</h3>
@@ -758,14 +433,341 @@
 </section>
 
 
-<section data-min="5"><h1>MySQL JOINS</h1></section>
-<section><h2>MySQL JOINS</h2>
+<section data-min="5"><h1>MySQL_Indexes</h1></section>
+<section id="intro"><h2>Introduction</h2>
+	<section><h3>What and Why?</h3>
+		<dl class="fa">
+		   <dt>A database index is added to a table <span class="note">to speed up the search</span> operation.</dt>
+		   <dt>An index is used by the Database Search Engine to locate records very fast.</dt>
+		   <dt>Indexes can be created for one or more columns.</dt>
+		   <dt>Indexes are implemented as a type of tables, which keep index field and a pointer to each record into the actual table.</dt>
+		   <dt>While adding index to a table will speed the SELECT queries, it will <span class="note">slow down</span> the INSERT and UPDATE statement.</dt>
+		</dl>
+	</section>
+	<section><h3>Types of indexes</h3>
+		<dl class="fa">
+			<dt>A regular INDEX</dt>
+			<dt>PRIMARY KEY</dt>
+			<dt>FULLTEXT</dt>
+		</dl>
+	</section>
+</section>
+<section id="regular_indexes"><h2>Regular index</h2>
+	<section id="add_index"><h3>Add regular Index to a table</h3>
+		<p>The syntax:</p>
+		<pre><code>
+			ALTER TABLE table_name ADD INDEX(column_name(index_length));
+		</code></pre>
+		<dl class="fa">
+			<dt>The <span class="code">index_length</span> could be specified to minimize the size of the index, and to optimize database access speed.</dt>
+			<dt>If <span class="code">index_length</span> is specified, it should be long enough, because if MySQL finds two indexes with the same contents, it will have to waste time going to the table itself and checking the column that was indexed to find out which rows really matched.</dt>
+			<dt class="note">Consider adding Regular Index to  columns will be searched most often</dt>
+			<dt>An index is typically created on columns used in JOIN, WHERE, and ORDER BY clauses.</dt>
+		</dl>
+	</section>
+	<section id="add_index_example"><h3>Example</h3>
+		<p>Let's have the <span class="code">artist</span> table, defined as:</p>
+		<pre>
+			mysql music_db_admin@localhost:music_db> desc artist;
+			+---------+-------------+--------+-------+-----------+---------+
+			| Field   | Type        | Null   | Key   |   Default | Extra   |
+			|---------+-------------+--------+-------+-----------+---------|
+			| fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
+			| lname   | varchar(20) | NO     |       |    &lt;null&gt; |         |
+			+---------+-------------+--------+-------+-----------+---------+
+					</pre>
+					<p>An index could be added as:</p>
+					<pre><code>
+			ALTER TABLE artist ADD INDEX(lname(10));
+					</code></pre>
+					<p>Resulting in:</p>
+					<pre>
+			mysql music_db_admin@localhost:music_db> desc artist;
+			+---------+-------------+--------+-------+-----------+---------+
+			| Field   | Type        | Null   | Key   |   Default | Extra   |
+			|---------+-------------+--------+-------+-----------+---------|
+			| fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
+			| lname   | varchar(20) | NO     | <span class="note">MUL</span>   |    &lt;null&gt; |         |
+			+---------+-------------+--------+-------+-----------+---------+
+		</pre>
+		<p>The <span class="note">MUL</span> key means that multiple occurrences of a value may occur within that column.</p>
+	</section>
+	<section id="create_index"><h3>Using CREATE INDEX</h3>
+		<p>The syntax:</p>
+		<pre><code>
+			CREATE INDEX column_name ON table_name (column_name(index_length));
+		</code></pre>
+		<dl class="fa">
+			<dt>It is an alternative to adding an index with ALTER TABLE.</dt>
+			<dt><span class="note">NB!</span> They are equivalent, except that CREATE INDEX cannot be used to create a PRIMARY KEY</dt>
+		</dl>
+	</section>
+	<section id="on_create_table"><h3>Adding indexes when creating tables</h3>
+		<p>You should be aware that adding an index to a large table can take a very long time.</p>
+		<p>That's why is better to add the index when creating the table!</p>
+		<pre><code>
+			CREATE TABLE artist (
+				fname VARCHAR(20) DEFAULT NULL,
+				lname VARCHAR(20) NOT NULL,
+				INDEX(lname(10))
+			);
+		</code></pre>
+	</section>
+</section>
+<section id="primary_key"><h2>Primary key</h2>
+	<section><h3>Why using Primary Key?</h3>
+		<dl class="fa">
+			<dt>Regular indexes do not impose the values to be unique!</dt>
+			<dt>The importance of having a key with a unique value for each row will come up when we start to combine data from different tables.</dt>
+		</dl>
+
+	</section>
+	<section id="primary_key_create"><h3>Create</h3>
+		<p>By adding the PRIMARY KEY(column_name) at the end of CREATE TABLE.</p>
+		<pre><code>
+			CREATE TABLE artist (
+				id MEDIUMINT(4) NOT NULL AUTO_INCREMENT,
+				fname VARCHAR(20) DEFAULT NULL,
+				lname VARCHAR(20) NOT NULL,
+				PRIMARY KEY(id)
+			);
+		</code></pre>
+		<p>Resulting in:</p>
+		<pre>
+			+---------+--------------+--------+-------+-----------+----------------+
+			| Field   | Type         | Null   | Key   |   Default | Extra          |
+			|---------+--------------+--------+-------+-----------+----------------|
+			| id      | mediumint(4) | NO     | PRI   |    &lt;null&gt; | auto_increment |
+			| fname   | varchar(20)  | YES    |       |    &lt;null&gt; |                |
+			| lname   | varchar(20)  | NO     |       |    &lt;null&gt; |                |
+			+---------+--------------+--------+-------+-----------+----------------+
+		</pre>
+		<p><span class="note">NB!</span> As PRIMARY KEY requires unique values, the <span class="code">NOT NULL</span> and/or <span class="code">AUTO_INCREMENT</span> attribute should be present.</p>
+	</section>
+</section>
+<section id="auto_increment"><h2>The AUTO_INCREMENT attribute</h2>
+	<section id="auto_increment"><h3>The AUTO_INCREMENT attribute</h3>
+		<dl class="fa">
+			<dt>The AUTO_INCREMENT attribute can be used to generate a unique identity for new rows.</dt>
+			<dt>A column defined with that attribute will set the value of its contents to that of the column entry in the previously inserted row, plus 1.</dt>
+		</dl>
+		<pre><code rel="Example" class="mysql">
+			CREATE TABLE artist (
+				artist_id SMALLINT(5) NOT NULL AUTO_INCREMENT KEY,
+				fname VARCHAR(20) DEFAULT NULL,
+				lname VARCHAR(20) NOT NULL
+			);
+		</code></pre>
+		<dl class="fa">
+			<dt class="note"><span>The KEY attribute should also be defined!</span></dt>
+			<dt>KEY and INDEX are synonyms in MySQL</dt>
+			<dt>If it is not present, MySQL raises an error: <span class="code">'Incorrect table definition; there can be only one auto column and it must be defined as a key'</span>.</dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5"><h1>SQL Constraints and Foreign Key</h1></section>
+<section id="constraints"><h2>SQL Constraints</h2>
 	<section><h3>Overview</h3>
 		<dl class="fa">
-			<dt>MySQL JOINS are used to retrieve data from multiple tables.</dt>
-			<dt><a href="./images/JOINS_SET_Diagram.jpeg"><img src="./images/JOINS_SET_Diagram.jpeg" alt="./images/JOINS_SET_Diagram.jpeg"></a></dt>
-			<dt><a href="http://pixelcount.com/MySQL_Joins.pdf">MySQL JOIN Types (Cheet Sheet)</a></dt>
-			<dt><a href="https://dataschool.com/how-to-teach-people-sql/sql-join-types-explained-visually/">SQL Join Types Explained Visually</a></dt>
+			<dt>MySQL constraints are used to define rules to allow or restrict what values can be stored in columns. The purpose of inducing constraints is to enforce the integrity of a database</dt>
+			<dt>Constraints are used to limit the type of data that can be inserted into a table</dt>
+			<dt>MySQL supports next constraints:, "<code>NOT NULL</code>", "<code>UNIQUE</code>", "<code>PRIMARY KEY</code>", "<code>FOREIGN KEY</code>", "<code>CHECK</code>", "<code>DEFAULT</code>"
+			</dt>
+			<dt>Reference: <a href="https://www.w3resource.com/mysql/creating-table-advance/constraint.php">MySQL Constraint @w3resource</a></dt>
+		</dl>
+	</section>
+	<section><h3>The syntax in CREATE TABLE</h3>
+		<p>Constraint on single column:</p>
+		<pre><code class="sql">
+			CREATE TABLE table_name(
+				column_name data_type(size) constraint_name,
+				...
+			);
+		</code></pre>
+		<p>you can define constraints on more than one column, by using constraint on table, like:</p>
+		<pre><code>
+			CREATE TABLE author(
+				id int(4) key auto_increment,
+				fname varchar(200),
+				lname varchar(200),
+				UNIQUE(fname,lname)
+			)
+		</code></pre>
+	</section>
+	<section><h3>NOT NULL</h3>
+		<p>Indicates that a column cannot store NULL value</p>
+		<pre><code>
+			CREATE TABLE book (
+				id SMALLINT(3) UNSIGNED NOT NULL,
+				...
+			);
+		</code></pre>
+	</section>
+	<section><h3>DEFAULT</h3>
+		<p>Specifies a default value for a column</p>
+		<pre><code>
+			CREATE TABLE book (
+				pub_year MEDIUMINT(4) DEFAULT NULL,
+				...
+			);
+	</code></pre>
+	</section>
+	<section><h3>UNIQUE</h3>
+		<p>Ensures that each row for a column must have a <span class="note">unique</span> value</p>
+		<pre><code>
+			CREATE TABLE book (
+				book_name VARCHAR(250) NOT NULL UNIQUE,
+				...
+			);
+		</code></pre>
+		<p>Some vendors, MySQL as well, allows a UNIQUE column to be set with <span class="keyword">DEFAULT NULL</span> values, as by definition a NULL value is not equal to a NULL value. Anyway, it is not recommended to have UNIQUE and DEFAULT NULL column.</p>
+	</section>
+	<section><h3>CHECK</h3>
+	   <p class="advanced">Self-learning section:</p>
+	   <a href="http://www.w3schools.com/sql/sql_check.asp">w3schools: SQL CHECK Constraint</a>
+	</section>
+	<section><h3>PRIMARY KEY</h3>
+		<dl class="fa">
+			<dt>Primary Key is a combination of a NOT NULL and UNIQUE.</dt>
+			<dt>Primary Key ensures that a column (or combination of two or more columns) have a unique identity which helps to find a particular record in a table more easily and quickly</dt>
+			<dt>We can add Primary Key within the column definition, like:</dt>
+			<pre><code rel="Example" class="mysql">
+				CREATE TABLE book (
+					id SMALLINT(3) UNSIGNED NOT NULL PRIMARY KEY,
+					...
+				);
+			</code></pre>
+			<dt>We can also add Primary Key within table definition, which allows us to set multiple columns as Primary Key:</dt>
+			<pre><code rel="Example" class="mysql">
+				CREATE TABLE book (
+					id SMALLINT(3) UNSIGNED NOT NULL,
+					isbn SMALLINT(3) UNSIGNED NOT NULL,
+					author VARCHAR(10) NOT NULL,
+					PRIMARY KEY (id,isbn)
+				);
+			</code></pre>
+		</dl>
+	</section>
+</section>
+<section id="foreign_key"><h2>FOREIGN KEY constraints</h2>
+	<section><h3>What is a FOREIGN KEY?</h3>
+		<dl class="fa fs-small">
+			<dt>A FOREIGN KEY in one table points to a PRIMARY KEY in another table.</dt>
+			<dt>FOREIGN KEY relationships involve a <span class="note">parent table</span> that holds the central data values, and a <span class="note">child table</span> with identical values pointing back to its parent.</dt>
+			<dt>The FOREIGN KEY clause is specified in the child table. The parent and child tables must use the same storage engine. They must not be TEMPORARY tables.</dt>
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">FOREIGN KEY Constraints</a></dt>
+		</dl>
+		<pre><code>
+			# define the Parent Table
+			CREATE TABLE `customers` (
+				`id` int NOT NULL AUTO_INCREMENT,
+				`first_name` varchar(45) NOT NULL,
+				`last_name` varchar(45) NOT NULL,
+				`email` varchar(100) DEFAULT NULL,
+				PRIMARY KEY (`id`)
+			) DEFAULT CHARSET=utf8;
+
+		</code></pre>
+		<pre><code>
+			# define the Child Table
+			CREATE TABLE `orders` (
+				`id` int NOT NULL AUTO_INCREMENT,
+				`customer_id` int NOT NULL,
+				`order_date` datetime NOT NULL,
+				PRIMARY KEY (`id`),
+				FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
+			) DEFAULT CHARSET=utf8;
+
+		</code></pre>
+	</section>
+	<section><h3>Example on child table insert</h3>
+		<dl class="fa">
+			<dt>Note, that if we try to insert into orders the id of a customer, who does not exists, MySQL will through an error</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			INSERT INTO orders (customer_id,order_date)
+				VALUES (1, "2020-01-20 21:00:00");
+
+			# Cannot add or update a child row: a foreign key constraint fails
+		</code></pre>
+	</section>
+	<section><h3>customersdb ER Diagram</h3>
+		<p><a href="./images/customers_db_ERDiagram.png"><img src="./images/customers_db_ERDiagram.png" alt="customers_db_ERDiagram.png" style="height: 60vh;"></a></p>
+		<dl class="fa">
+			<dt>This implements <span class="note">"one to many"</span> relation!</dt>
+			<dd><span class="note">One</span> customer can have <span class="note">many</span> orders.</dd>
+			<dt>If we need <span class="note">"many to many"</span> relation we could make third table: <code>customers_orders</code> which will store foreign keys to <code>customers(id)</code> and <code>orders(id)</code> </dt>
+		</dl>
+	</section>
+	<section><h3>FOREIGN KEY Constraint</h3>
+		<p>Ensure the <span class="keyword">referential integrity</span> of the data in one table to match values in another table</p>
+		<p>MySQL supports FOREIGN KEY Constraint only for <a href="http://dev.mysql.com/doc/refman/8.0/en/using-innodb-tables.html">InnoDB tables</a></p>
+	</section>
+	<section><h3>FOREIGN KEY Constraint</h3>
+		<p>The syntax</p>
+		<pre><code class="fs-big bash">
+			[CONSTRAINT constraint_name]
+			FOREIGN KEY [fk_name] (index_columns)
+			REFERENCES tbl_name (index_columns)
+			[ON DELETE action]
+			[ON UPDATE action]
+			[MATCH FULL | MATCH PARTIAL | MATCH SIMPLE]
+		</code></pre>
+		<dl class="fa fs-small">
+			<dt>The CONSTRAINT clause, if given, supplies a name for the foreign key constraint. If you omit it, InnoDB creates a name.</dt>
+			<dt>FOREIGN KEY indicates the indexed columns in the child table that must match index values in the parent table. fk_name is the foreign key ID. If given, it is ignored unless InnoDB automatically creates an index for the foreign key; in that case, fk_name becomes the index name.</dt>
+			<dt>REFERENCES names the parent table and the index columns in that table to which the foreign key in the child table refers. The index_columns part of the REFERENCES clause must have the same number of columns as the index_columns that follows the FOREIGN KEY keywords.</dt>
+
+		</dl>
+	</section>
+	<section><h3>FOREIGN KEY Constraint: ON DELETE</h3>
+		<dl class="fa fs-small">
+			<dt>ON DELETE specifies what happens to the child table when parent table rows are deleted.</dt>
+			<dt class="note">ON DELETE CASCADE causes matching child rows to be deleted when the corresponding parent row is deleted. In essence, the effect of the delete is cascaded from the parent to the child. This enables you to perform multiple-table deletes by deleting rows only from the parent table and letting InnoDB delete the corresponding rowsfrom the child table.</dt>
+			<dt>For MySQL InnoDB tables ON DELETE NO ACTION and ON DELETE RESTRICT are the same as omitting the ON DELETE clause,as the foreign key constraints are checked immediately.</dt>
+			<dt>ON DELETE SET NULL causes index columns in matching child rows to be set to NULL when the parent row is deleted. If you use this option, all the indexed child table columns named in the foreign key definition must be defined topermit NULL values</dt>
+		</dl>
+	</section>
+	<section><h3>FOREIGN KEY Constraint: ON UPDATE</h3>
+		<dl class="fa fs-small">
+			<dt>ON UPDATE enables you to specify what happens to the child table when parent table rows are updated.</dt>
+			<dt>If ON UPDATE clause is not present, the default behaviour is to reject any inserts or updates in the child table that result in foreign key values that don’t have any match in the parent table index, and to prevent updates to parent table index values to which child rows point. </dt>
+			<dt>The possible action values are the same as for ON DELETE and have similar effects.</dt>
+		</dl>
+	</section>
+	<section><h3>FOREIGN KEY Constraint: Guidelines</h3>
+		<dl class="fa fs-small">
+			<dt>You must create the parent table index explicitly before defining the foreign key relationship.</dt>
+			<dt>InnoDB automatically creates an index on foreign key columns (the referencing columns) in the child table if the CREATE TABLE statement does not include such an index.</dt>
+			<dd>The automatically created index will be a <span class="note">non unique</span> index and will include only the foreign key columns.</dd>
+			<dd>You should define the index in the child table explicitly if you want it to be a PRIMARY KEY or UNIQUE index, or if it should include other columns in addition to those in the foreign key.</dd>
+			<dt>Corresponding columns in the parent and child indexes must have compatible types.</dt>
+				<dd>Corresponding <span class="note">character columns</span> must be <span class="note">the same length</span>.</dd>
+				<dd>Corresponding <span class="note">integer columns</span> must have <span class="note">the same size</span> and <span class="note">same range</span> (signed or unsigned).</dd>
+			<dt>For string columns, you must index the entire column, not just a leading prefix of it.</dt>
+		</dl>
+	</section>
+	<section><h3>FOREIGN KEY Constraint: Examples</h3>
+		<dl class="fa fs-small">
+			<dt>Download <a href="slides_examples/books_db_schema.sql">books_db schema</a></dt>
+			<dt>Download <a href="slides_examples/books_db_sample_data.sql">books_db sample data</a></dt>
+			<dt>Now let's delete an author from the <span class="code">author</span> table:</dt>
+			<pre><code class="SQL">
+				DELETE FROM author WHERE lname='Vonnegut' and fname='Kurt';
+			</code></pre>
+			<dt>And check what happens with the books in <span class="code">book</span> table:</dt>
+			<pre><code>
+				SELECT author.fname, author.lname, book_name FROM book, author WHERE book.author_id=author.id;
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>FOREIGN KEY Constraint: Exercises</h3>
+		<dl class="fa fs-small">
+			<dt>Create the next <a href="slides_examples/books_db_schema.sql">books_db schema</a> and insert the <a href="slides_examples/books_db_sample_data.sql">books_db sample data</a></dt>
+			<dt>Set <span class="note">ON UPDATE</span> constraint on <span class="code">fk_AuthorID</span> which will force the MySQL to automatically update all rows in <span class="code">book</span> table, when a corresponding row in <span class="code">author</span> table has changed.</dt>
+			<dt>Set the <span class="code">author.id</span> to be 100 for Charles Dodgson author row.</dt>
+			<dt>Check what happens with <span class="code">author_id</span> in the respective rows in <span class="code">book</span> table.</dt>
 		</dl>
 	</section>
 </section>
