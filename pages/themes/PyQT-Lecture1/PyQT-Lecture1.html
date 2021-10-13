@@ -77,7 +77,8 @@
 	<section><h3>What is PyQT?</h3>
 		<dl class="fa">
 			<dt><a href="https://riverbankcomputing.com/software/pyqt/intro">PyQt</a> is a set of Python bindings for <a href="https://www.qt.io/">Qt application framework</a> for building <span class="note">traditional Graphical User Interface (GUI) desktop applications</span></dt>
-			<dt>Qt framework also includes powerful features for networking, threads, regular expressions, SQL databases, SVG, OpenGL, XML, and many other</dt>
+			<dd><q>Qt (pronounced "cute") framework is a widget toolkit for creating GUIs as well as cross-platform applications that run on various software and hardware platforms such as Linux, Windows, macOS, Android or embedded systems with little or no change in the underlying codebase while still being a native application with native capabilities and speed.</q>	 [Reference: <a href="https://en.wikipedia.org/wiki/Qt_(software)">Qt @wikipediq</a>]</dd>
+			<dd>Qt includes powerful features for networking, threads, regular expressions, SQL databases, SVG, OpenGL, XML, and many other</dd>
 			<dt>PyQt is available in two editions:</dt>
 			<dd><span class="note">PyQt4</span>: built against Qt 4.x and 5.x</dd>
 			<dd><span class="note">PyQt5</span>: built against only for Qt 5.x (<i>this is the edition used in the course</i>).</dd>
@@ -96,7 +97,8 @@
 				pip show PyQt5
 			</code></pre>
 			<dt>Reference: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/installation.html?highlight=installation">Installing PyQt5</a></dt>
-			<dt>On Linux/Ubuntu you can use your software package manager. Note that this will make a system-wide install.</dt>
+			<br>
+			<dt class="advanced">On Linux/Ubuntu, if you have problems with standard installation, you can use your software package manager. Note that this will make a system-wide install.</dt>
 			<pre><code rel="Terminal" class="bash">
 				sudo apt install python3-pyqt5
 			</code></pre>
@@ -135,6 +137,7 @@
 	</section>
 	<section><h3>QtDesigner Installation</h3>
 		<dl class="fa">
+			<p>Qt Designer normally ships as a part of <a href="https://www.qt.io/product/development-tools">Qt Creator</a>. This is Qt's official editor and lets you do a lot more than just graphically design user interfaces. It is a full-fledged and very powerful C++ IDE. But <span class="note">For PyQT development you don't need the whole Qt Creator (which is huge)</span>.<br>You can install only the Qt Designer in two ways:</p>
 			<dt>As python package <a href="https://pypi.org/project/pyqt5-tools/">pyqt5-tools</a> (<span class="note">the recommended way</span>):</dt>
 			<pre><code rel="Terminal" class="bash">
 				# make sure you're on activated virtual environment:
@@ -143,23 +146,25 @@
 				# check install info:
 				pip show pyqt5-tools
 			</code></pre>
-			<dt>Download for Windows/MacOS (use it only if you have problems with python packages):</dt>
+			<dt>Or as standalone application for Windows/MacOS (use it only if you have problems with python packages):</dt>
 			<dd><a href="https://build-system.fman.io/qt-designer-download">Install Qt Designer on Windows or Mac</a></dd>
-			<dt>On Linux/Ubuntu you can use your software package manager:</dt>
+			<dd >On Linux/Ubuntu you can use your software package manager:</dd >
 			<pre><code rel="Terminal" class="bash">
 				sudo apt-get install qttools5-dev-tools
 				sudo apt-get install qttools5-dev
 			</code></pre>
 		</dl>
 	</section>
-	<section><h3>QtDesigner - hello world UI</h3>
+	<section><h3>QtDesigner - "HelloWorld" GUI</h3>
 		<dl class="fa">
-			<dt>Start QtDesigner and create your first UI</dt>
-			<dd>If you can not find the icon, just write in your activated virt. environment:</dd>
+			<dt>Start QtDesigner:</dt>
+			<dd>If you installed QtDesigner as Python package, just write in your activated virt. environment</dd>
 			<pre><code rel="Terminal" class="bash">
 				pyqt5-tools designer
 			</code></pre>
-			<a href="./images/QtDesignerHelloWorld.gif" title="click to see bigger image"><img src="./images/QtDesignerHelloWorld.gif" alt="./images/QtDesignerHelloWorld.gif" style="height: 80vh;"></a>
+			<dd>If you have installed the QtDesigner as standalone app, you should have an icon for it</dd>
+			<dt>Now you can create your first "HelloWorld" app GUI:</dt>
+			<a href="./images/QtDesignerHelloWorld.gif" title="click to see bigger image"><img src="./images/QtDesignerHelloWorld.gif" alt="./images/QtDesignerHelloWorld.gif" style="height: 60vh;"></a>
 		</dl>
 	</section>
 	<section><h3>Qt Tools: pyuic</h3>
@@ -168,6 +173,7 @@
 			<dt>The pyuic reads a user interface definition file (.ui) in XML as  generated  by Qt Designer and creates corresponding Python class</dt>
 			<dt>Reference: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/designer.html#pyuic5">pyuic5</a></dt>
 			<dt>Note, that <code>pyuic5</code> is included in the <code>pyqt5-tools</code>, so you do not need to install it. Just use it.</dt>
+			<dt>Let's compile our .ui file  created by QtDesigner into Python code:</dt>
 		</dl>
 		<pre><code rel="Terminal" class="bash">
 			pyuic5 helloWorld.ui -o helloWorld.py
@@ -182,7 +188,7 @@
 			<dt>Create/open a new project</dt>
 			<dt>Make sure you have installed the needed project dependencies:</dt>
 			<dd>You need <code>PyQt5</code>, <code>PyQt5-sip</code> and <code>pyqt5-tools</code></dd>
-			<a href="./images/PyCharm_CheckProjectDependancies.png" title="click for bigger image"><img src="./images/PyCharm_CheckProjectDependancies.png" alt="" style="height: 100vh;"></a>
+			<a href="./images/PyCharm_CheckProjectDependancies.png" title="click for bigger image"><img src="./images/PyCharm_CheckProjectDependancies.png" alt="" style="height: 80vh;"></a>
 		</dl>
 	</section>
 	<section><h3>PyCharm - add missing dependencies</h3>
