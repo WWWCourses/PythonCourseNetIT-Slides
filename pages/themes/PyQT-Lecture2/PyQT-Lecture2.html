@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section><h1>PyQT && Tools - Hands On</h1></section>
+<section><h1>PyQT-Lecture2</h1></section>
 <section data-transition="zoom">
 	<!-- linkedin badge -->
 	<section class="copyright" data-transition="zoom">
@@ -72,20 +72,162 @@
 	</section> -->
 </section>
 
+
+
+<section data-min="5"><h1>How a GUI app works?</h1></section>
+<section><h2>How a GUI app works?</h2>
+	<section><h3>A GUI App (event-driven) processing</h3>
+		<dl class="fa">
+			<dt>A GUI App processing model is <span class="note">event-driven</span></dt>
+			<a href="./images/event-driven_programming_diagram.png"><img src="./images/event-driven_programming_diagram.png" alt="event-driven_programming_diagram.png" style="max-height: 50vh;"></a>
+			<dt>An event can be any user action, like <span class="note">click, scroll, input</span> etc.</dt>
+			<dt>An event handler is a function which defines the actions that must be executed after an event is triggered.</dt>
+		</dl>
+	</section>
+	<section><h3>Procedural app VS Event-driven app</h3>
+		<dl class="fa">
+			<dt>Procedural app</dt>
+			<pre><code rel="Python" class="python">
+				def sub_task_1():
+					pass
+
+				def sub_task_2():
+					pass
+
+				#....
+
+				def sub_task_N():
+					pass
+
+				if __name__ == "__main__":
+					sub_task_1()
+					sub_task_2()
+					# ...
+					sub_task_N()
+			</code></pre>
+			<dt>Event-driven programming relies on <span class="note">event-loop</span> to process events</dt>
+			<pre><code rel="Python" class="python">
+				def start_event_loop():
+					while True:
+						if event_queue_not_empty:
+							if terminate_signal:
+								exit()
+							else:
+								process event()
+						else:
+							wait for event
+
+				if __name__ == "__main__":
+					start_event_loop( )
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Procedural app VS Event-driven app - Diagram</h3>
+		<a href="./images/batch_processing_vs_GUI_event_loop.png"><img src="./images/batch_processing_vs_GUI_event_loop.png" alt="batch_processing_vs_GUI_event_loop.png" style="min-height: 70vh;"></a>
+	</section>
+</section>
+
+<section data-min="5"><h1>Understand the structure of a PyQt Application</h1></section>
+<section><h2>Understand the structure of a PyQt Application</h2>
+	<section><h3>Minimal structure of a PyQt App</h3>
+		<p></p>
+		<pre><code rel="Python" class="python">
+			# 1. import needed QtWidgets classes
+			from PyQt5.QtWidgets import QApplication, QWidget
+
+			# 2. the main app instance for our application.
+			app = QApplication([])
+
+			# 3. Create Qt widget, which will be our main window.
+			window = QWidget()
+
+			# 4. show the window
+			window.show()
+
+			# 5. Start the event loop
+			app.exec_()
+
+		</code></pre>
+		<dl class="fa">
+			<dt>The QApplication class manages the GUI application's control flow and main settings</dt>
+			<dt>We need one (and only one) QApplication instance per application.</dt>
+			<dt style="font-weight: bold;">The QApplication instantiation <span class="note">must be set before</span> any kind of widget or window creation!</dt>
+			<dt>The QtWidgets module provides a set of classes corresponding to UI elements which we can use to create our GUI app.</dt>
+			<dt>The QWidget class is the base class of all user interface objects.</dt>
+			<dd><span class="note">widget</span> is a generic name for any kind of GUI item, like window, button, label, checkbox...</dd>
+		</dl>
+	</section>
+	<section><h3>QApplication Class</h3>
+		<pre><code rel="Python" class="python">
+			app = QApplication(sys.argv)
+		</code></pre>
+		<dl class="fa">
+			<dt>The QApplication class manages the GUI application's control flow and main settings. It handles widget specific initialization, finalization, etc.</dt>
+			<dt class="note">For any GUI application using Qt, there is precisely one QApplication object, no matter whether the application has 0, 1, 2 or more windows at any given time.</dt>
+			<dt>This application object must be constructed before any paint devices (including widgets, pixmaps, bitmaps etc.).</dt>
+			<dt><a href="https://doc.qt.io/qt-5/qapplication.html#QApplication">QApplication() constructor</a> initializes the window system and constructs an application object. It accepts a list with <code>argv</code> command-line arguments.</dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-5/qapplication.html">QApplication Class</a></dt>
+		</dl>
+	</section>
+	<section><h3>QApplication exec()</h3>
+		<pre><code rel="Python" class="python">
+			app.exec_()
+
+			# best practice:
+			sys.exit(app.exec_())
+		</code></pre>
+		<dl class="fa">
+			<dt><code>app.exec()</code> begins the QApplication <span class="note">event loop</span> which process our user interactions with the GUI.</dt>
+			<dd>The main event loop receives events from the window system and dispatches these to the application widgets.</dd>
+			<dt class="note">The event loop will run forever until the application quits.</dt>
+			<dt>In python both <code>app.exec()</code> and <code>app.exec_()</code> methods are implemented, because <code>exec</code> is a reserved word in Python2</dt>
+			<dt>It's a good practice our Python script to exit with the same exit status as app.exec_() status. That's why we use <code>sys.exit(app.exec_())</code> </dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-5/qapplication.html#exec">QApplication::exec()</a></dt>
+		</dl>
+	</section>
+	<section><h3>QWidget Class</h3>
+		<pre><code rel="Python" class="python">
+			window = QWidget()
+			window.show()
+		</code></pre>
+		<dl class="fa">
+			<dt>The QWidget class is the base class of all user interface objects</dt>
+			<dt>The show method will show the widget in its own (as a standalone container). If we want to create a widget which will be used inside other widget (i.e. a child widget) we would not call the show method on it.</dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-5/qwidget.html#details">QWidget Class</a></dt>
+		</dl>
+	</section>
+	<section><h3>Widgets Example</h3>
+		<a href="./images/WidgetsExample.png"><img src="./images/WidgetsExample.png" alt="./images/WidgetsExample.png" style="min-height: 70vh ;"></a>
+	</section>
+</section>
+
+
+<section data-min="10"><h1>Qt Class Heirarchy</h1></section>
+<section><h2>Qt Class Heirarchy</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>Qt widely uses inheritance, especially in the Widgets module. The following graph shows some of these inheritances:</dt>
+		</dl>
+		<a href="./images/Qt-Class-Hierarchy.jpg"><img src="./images/Qt-Class-Hierarchy.jpg" alt="./images/Qt-Class-Hierarchy.jpg" style="min-height:70vh;"></a>
+	</section>
+</section>
+
 <section data-min="5"><h1>Hands on QtDesigner</h1></section>
 <section><h2>Hands on QtDesigner</h2>
-	<section><h3>Creating Simple Calculator UI</h3>
+	<section><h3>Simple Login Form GUI - Live Demo</h3>
 		<dl class="fa">
-			<dt>Live Demo</dt>
-		</dl><br>
-		<a href="./images/CalculatorUI.png"><img src="./images/CalculatorUI.png" alt=""></a>
-	</section>
-	<section><h3>Simple Login Form</h3>
-		<dl class="fa">
-			<dt>Live Demo</dt>
+			<dt>Get familiar with QtDesigner</dt>
+			<dt>Get familiar with widgets using "Widget Box"</dt>
+			<dt>Inspect Widgets's Objects using "Object Inspector"</dt>
+			<dt>Inspect Object Properties using "Property Editor"</dt>
 		</dl><br>
 		<a href="./images/simple_login_form.png"><img src="./images/simple_login_form.png" alt=""></a>
 	</section>
+</section>
+
+
+<section data-min="10"><h1>Using UI Compiled files</h1></section>
+<section><h2>Using UI Compiled files</h2>
 	<section><h3>Using <code>pyuic5</code> to convert the <code>ui</code> file to Python code</h3>
 		<dl class="fa">
 			<dt><code>pyuic5</code> (PYthon User Interface Compiler) tool can compile the <code>ui</code> file to Python code</dt>
@@ -156,81 +298,83 @@
 		<dl class="fa">
 			<dt>The QtDesigner program is deigned to speed the work in huge and complicate GUI apps. As Qt itself, it is fitted to OOP style of programming.</dt>
 			<dt>The write way to use pyuic5 generated files is to use them as modules, which we'll import in our main app</dt>
-			<dt>But before starting to use the auto-generated classes from QtDesigner, we must understand the the structure of a  Qt App!</dt>
 		</dl>
 	</section>
 </section>
 
-
-<section data-min="5"><h1>Understand the structure of a PyQt Application</h1></section>
-<section><h2>Understand the structure of a PyQt Application</h2>
-	<section><h3>Minimal structure of a PyQt App</h3>
-		<p></p>
+<section data-min="5"><h1>Using UI Compiled files as modules</h1></section>
+<section><h2>Using UI Compiled files as modules</h2>
+	<section><h3>Direct Approach - the worst variant</h3>
 		<pre><code rel="Python" class="python">
-			# 1. import QtWidgets classes
-			from PyQt5.QtWidgets import QApplication, QWidget
+			import sys
+			from PyQt5 import QtWidgets as qtw
+			from ui.Ui_btnWidget import Ui_Form
 
-			# 2. the main app instance for our application.
-			app = QApplication([])
+			if __name__ == "__main__":
+				app = qtw.QApplication(sys.argv)
 
-			# 3. Create Qt widget, which will be our main window.
-			window = QWidget()
+				w = qtw.QWidget() # we must know the exact class, generated by QtDesigner
+				gw = Ui_Form()
+				gw.setupUi(w)
 
-			# 4. show the window
-			window.show()
+				w.show()
 
-			# 5. Start the event loop
-			app.exec_()
-
+				sys.exit(app.exec())
 		</code></pre>
 		<dl class="fa">
-			<dt>The QtWidgets module provides a set of classes corresponding to UI elements which we can use to create our GUI app.</dt>
-			<dt>The QWidget class is the base class of all user interface objects.</dt>
-			<dd><span class="note">widget</span> is a generic name for any kind of GUI item, like window, button, label, checkbox...</dd>
-			<dt>We need one (and only one) QApplication instance per application.</dt>
-			<dt style="font-weight: bold;">The QApplication instantiation <span class="note">must be set before</span> any kind of widget or window creation!</dt>
+			<dt>Cons:</dt>
+			<dd>This Approach is not flexible, nor loosely coupled</dd>
 		</dl>
 	</section>
-	<section><h3>QWidget Class</h3>
+	<section><h3>Multiple Inheritance - the best variant</h3>
 		<pre><code rel="Python" class="python">
-			window = QWidget()
-			window.show()
-		</code></pre>
-		<dl class="fa">
-			<dt>The QWidget class is the base class of all user interface objects</dt>
-			<dt>The show method will show the widget in its own (as a standalone container). If we want to create a widget which will be used inside other widget (i.e. a child widget) we would not call the show method on it.</dt>
-			<dt>Reference: <a href="https://doc.qt.io/qt-5/qwidget.html#details">QWidget Class</a></dt>
-		</dl>
-	</section>
-	<section><h3>QApplication Class</h3>
-		<pre><code rel="Python" class="python">
-			app = QApplication(sys.argv)
-		</code></pre>
-		<dl class="fa">
-			<dt>The QApplication class manages the GUI application's control flow and main settings. It handles widget specific initialization, finalization, etc.</dt>
-			<dt class="note">For any GUI application using Qt, there is precisely one QApplication object, no matter whether the application has 0, 1, 2 or more windows at any given time.</dt>
-			<dt>This application object must be constructed before any paint devices (including widgets, pixmaps, bitmaps etc.).</dt>
-			<dt><a href="https://doc.qt.io/qt-5/qapplication.html#QApplication">QApplication() constructor</a> initializes the window system and constructs an application object. It accepts a list with <code>argv</code> command-line arguments.</dt>
-			<dt>Reference: <a href="https://doc.qt.io/qt-5/qapplication.html">QApplication Class</a></dt>
-		</dl>
-	</section>
-	<section><h3>QApplication exec()</h3>
-		<pre><code rel="Python" class="python">
-			app.exec_()
+			import sys
+			from PyQt5 import QtWidgets as qtw
+			from ui.Ui_btnWidget import Ui_Form
 
-			# best practice:
-			sys.exit(app.exec_())
+			class MainWindow(qtw.QWidget, Ui_Form):
+				def __init__(self):
+					super().__init__()
+					self.setupUi(self)
+
+					# add as any properties here...
+					self.setWindowTitle('The title of main window')
+
+
+			if __name__ == "__main__":
+				app = qtw.QApplication(sys.argv)
+
+				w = MainWindow()
+				w.show()
+
+				sys.exit(app.exec())
 		</code></pre>
 		<dl class="fa">
-			<dt><code>app.exec()</code> begins the QApplication <span class="note">event loop</span> which process our user interactions with the GUI.</dt>
-			<dd>The main event loop receives events from the window system and dispatches these to the application widgets.</dd>
-			<dt class="note">The event loop will run forever until the application quits.</dt>
-			<dt>In python both <code>app.exec()</code> and <code>app.exec_()</code> methods are implemented, because <code>exec</code> is a reserved word in Python2</dt>
-			<dt>It's a good practice our Python script to exit with the same exit status as app.exec_() status. That's why we use <code>sys.exit(app.exec_())</code> </dt>
-			<dt>Reference: <a href="https://doc.qt.io/qt-5/qapplication.html#exec">QApplication::exec()</a></dt>
+			<dt>The base class needs to match the base class we chose when we initially designed the form</dt>
 		</dl>
+	</section>
+	<section><h3>Recap class inheritance in Python </h3>
+		<p>Make sure you really understand the concept of inheritance in Python</p>
+		<pre><code rel="Python" class="python">
+			# the base class
+			class Parent:
+				def __init__(self,*args, **kwargs):
+					print(f'{self} constructor execute')
+					print(args)
+					print(kwargs)
+
+			# the derived class, which inherits from base class:
+			class Child(Parent):
+				def __init__(self, *args, **kwargs):
+					super().__init__(*args, **kwargs)
+
+			p1 = Parent(1,2,a=3,b=4)
+			c = Child(5,6,c=7,d=8)
+		</code></pre>
 	</section>
 </section>
+
+
 
 <section data-min="5"><h1>References && Self-Learning</h1></section>
 <section><h2>References && Self-Learning</h2>

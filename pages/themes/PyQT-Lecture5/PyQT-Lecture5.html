@@ -74,53 +74,6 @@
 
 
 <section data-min="5"><h1>Introduction to Signals And Slots</h1></section>
-<section><h2>Preliminary: how a GUI app works </h2>
-	<section><h3>Procedural app (batch-processing application)</h3>
-		<pre><code rel="Python" class="python">
-			def sub_task_1():
-				pass
-
-			def sub_task_2():
-				pass
-
-			#....
-
-			def sub_task_N():
-				pass
-
-			if __name__ == "__main__":
-				sub_task_1()
-				sub_task_2()
-				# ...
-				sub_task_N()
-		</code></pre>
-	</section>
-	<section><h3>A GUI App (event-driven) processing</h3>
-		<dl class="fa">
-			<dt>A GUI App processing model is <span class="note">event-driven</span></dt>
-			<a href="./images/event-driven_programming_diagram.png"><img src="./images/event-driven_programming_diagram.png" alt="event-driven_programming_diagram.png"></a>
-			<dt>An event can be any user action, like <span class="note">click, scroll, input</span> etc.</dt>
-			<dt>An event handler is a function which defines the actions that must be executed after an event is triggered.</dt>
-		</dl>
-	</section>
-	<section><h3>The Event Loop</h3>
-		<dl class="fa">
-			<dt>Event-driven programming relies on <span class="note">event-loop</span> to process events</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			def start_event_loop():
-				while True:
-					if event_queue_not_empty:
-						if terminate_signal:
-							exit()
-						else:
-							process event()
-					else:
-						wait for event
-		</code></pre>
-		<a href="./images/batch_processing_vs_GUI_event_loop.png"><img src="./images/batch_processing_vs_GUI_event_loop.png" alt="batch_processing_vs_GUI_event_loop.png"></a>
-	</section>
-</section>
 
 <section><h2>Signals And Slots Overview</h2>
 	<section><h3>What are Signals And Slots?</h3>
