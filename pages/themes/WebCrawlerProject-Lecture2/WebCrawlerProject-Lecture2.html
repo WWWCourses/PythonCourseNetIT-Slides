@@ -75,12 +75,49 @@
 
 <section data-min="50"><h1>Using requests lib</h1></section>
 <section><h2>Using requests lib</h2>
-	<section><h3>Reference:</h3>
+	<section><h3>Syntax:</h3>
+		<dl class="fa">
+			<dt>The requests module allows us to send HTTP requests using Python.</dt>
+			<pre><code rel="Syntax" class="python">
+				requests.methodname(params)
+			</code></pre>
+			<section data-markdown>
+				<textarea data-template>
+					|Method     				| Description                                |
+					|---------------------------| -------------------------------------------|
+					|delete(url, args)     		| Sends a DELETE request to the specified url 	|
+					|get(url, params, args)		| Sends a GET request to the specified url 		|
+					|head(url, args)			| Sends a HEAD request to the specified url 	|
+					|patch(url, data, args)		| Sends a PATCH request to the specified url 	|
+					|post(url, data, json, args)| Sends a POST request to the specified url 	|
+					|put(url, data, args)		| Sends a PUT request to the specified url 		|
+					|request(method, url, args)	| Sends a request of the specified method to the specified url|
+				</textarea>
+			</section>
+			<dt>Where:</dt>
+			<dd><span class="note">params</span> – (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.</dd>
+			<dd><span class="note">data</span> – (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the Request.</dd>
+			<dd><span class="note">json</span> – (optional) A JSON serializable Python object to send in the body of the Request.</dd>
+			<dt>Reference: <a href="https://docs.python-requests.org/en/latest/api/#requests.request">request() method main interface</a></dt>
+		</dl>
+	</section>
+	<section><h3>References</h3>
 		<dl class="fa">
 			<dt><a href="https://docs.python-requests.org/en/master/user/quickstart/">Quickstart</a></dt>
 			<dt><a href="https://docs.python-requests.org/en/master/user/advanced/#advanced">Advanced</a></dt>
 			<dt><a href="https://docs.python-requests.org/en/latest/api/">API reference</a></dt>
 			<dt><a href="https://docs.python-requests.org/en/master/api/#requests.Response">Response Object</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section data-min="5"><h1>Make GET Requests</h1></section>
+<section><h2>Make GET Requests</h2>
+	<section><h3>Simple GET request</h3>
+		<dl class="fa">
+			<dt></dt>
+
 		</dl>
 	</section>
 </section>
