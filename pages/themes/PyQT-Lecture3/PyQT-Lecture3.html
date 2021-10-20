@@ -176,7 +176,7 @@
 			<dt><span class="note">Tip:</span> you can setup a custom snippet with this template in your editor. See <a href="https://www.jetbrains.com/help/pycharm/tutorial-creating-and-applying-live-templates-code-snippets.html">Tutorial: Creating and Applying Live Templates (Code Snippets)</a></dt>
 		</dl>
 	</section>
-	<section><h3><code>QWidget</code> class</h3>
+	<section id="QWidgetClass"><h3><code>QWidget</code> class</h3>
 		<dl class="fa">
 			<dt>QWidget is the parent class of all other widgets (including QMainWindow)</dt>
 			<dt>All properties and methods of <code>QWidget</code> class will be also available in any other widget.</dt>
@@ -195,7 +195,7 @@
 			<dt>Reference: <a href="https://doc.qt.io/qt-5/qwidget.html">QWidget Class</a></dt>
 		</dl>
 	</section>
-	<section><h3>Primary and Child Widgets</h3>
+	<section id="PrimaryAndChildWidgets"><h3>Primary and Child Widgets</h3>
 		<dl class="fa">
 			<dt>Any QWidget that <span class="note">has no parent</span> will become a window, and on most platforms will be listed in the desktop's task bar.</dt>
 			<dt>Such window is called <span class="note">primary window</span></dt>
@@ -203,114 +203,6 @@
 			<dt>If we pass a parent argument when we create new widget, that widget will be <span class="note">a child of the prent</span> widget and will become a part of its parent.</dt>
 			<dt>Reference: <dd><a href="https://doc.qt.io/qt-5/application-windows.html#primary-and-secondary-windows">Primary and secondary windows</a></dt>
 		</dl>
-	</section>
-	<section><h3>Create user input widgets</h3>
-		<dl class="fa">
-			<pre><code rel="Python" class="python">
-				# --------------------------- your code starts here -------------------------- #
-				# create user input widgets:
-				user_name_input = qtw.QLineEdit()
-				password_input = qtw.QLineEdit()
-				#
-				password_input.setEchoMode(qtw.QLineEdit.Password)
-				# ---------------------------- your code ends here --------------------------- #
-			</code></pre>
-			<dt>Of course, we did not see the created widgets, because they are not attached to our main window</dt>
-			<dt>We can attach them directly to out main window by passing it as parent argument to QLineEdit() constructor :</dt>
-			<pre><code rel="Python" class="python">
-				# create user input widgets:
-				user_name_input = qtw.QLineEdit(self)
-				password_input = qtw.QLineEdit(self)
-			</code></pre>
-			<dt>But we did not set the geometry of our main windows, so the result is not what we want.</dt>
-			<dt>References: </dt>
-			<dd><a href="https://doc.qt.io/qt-5/qlineedit.html">QLineEdit Class</a></dd>
-			<dd><a href="https://doc.qt.io/qt-5/qlineedit.html#echoMode-prop">EchoMode Property</a></dd>
-		</dl>
-	</section>
-	<section><h3>Window Geometry</h3>
-		<a href="./images/window_geometry.png"><img src="./images/window_geometry.png" alt="window_geometry.png"></a>
-		<dl class="fa">
-			<dt>To set our window geometry we can use the <code>geometry</code> property or its accessor method: <code>setGeometry</code></dt>
-			<pre><code rel="Python" class="python">
-				class MainWindow(qtw.QWidget):
-
-				def __init__(self , *args, **kwargs):
-					super().__init__(*args, **kwargs)
-
-					#set window geometry
-					self.setGeometry(300, 200, 500, 300)
-
-					...
-			</code></pre>
-			<dt>Reference: <a href="https://doc.qt.io/qt-5/application-windows.html#window-geometry">Window Geometry</a></dt>
-		</dl>
-	</section>
-	<section><h3>Widget Position</h3>
-		<dl class="fa">
-			<dt>In order to set a widget position within its parent widget, we can use the <code>move(int x, int y)</code> QWidget widget method </dt>
-			<pre><code rel="Python" class="python">
-				class MainWindow(qtw.QWidget):
-
-				def __init__(self , *args, **kwargs):
-					super().__init__(*args, **kwargs)
-
-					#set window geometry
-					self.setGeometry(300, 200, 500, 300)
-
-					# create user input widgets:
-					user_name_input = qtw.QLineEdit(self)
-					password_input = qtw.QLineEdit(self)
-					user_name_input.move(20, 10)
-					password_input.move(20,50)
-			</code></pre>
-			<dt class="note">But there is a better approach - to use a Layout for children  positioning</dt>
-			<dt>Reference: <a href="https://doc.qt.io/qt-5/qwidget.html#pos-prop">pos : QPoint</a></dt>
-		</dl>
-	</section>
-	<section><h3>Create the Form Layout</h3>
-		<dl class="fa">
-			<dt>The Qt layout system provides a simple and powerful way of automatically arranging child widgets within a widget to ensure that they make good use of the available space</dt>
-			<dt>Qt provides many <a href="https://doc.qt.io/qt-5/layout.html#qt-s-layout-classes">Layout Classes</a> useful for different use-cases.</dt>
-			<dt>For our Login Form Wdget is best to use the <a href="https://doc.qt.io/qt-5/qformlayout.html">QFormLayout Class</a></dt>
-			<dt>The QFormLayout class manages forms of input widgets and their associated labels.</dt>
-
-			<pre><code rel="Python" class="python">
-				# --------------------------- your code starts here -------------------------- #
-				# create user input widgets:
-				user_name_input = qtw.QLineEdit()
-				password_input = qtw.QLineEdit()
-				password_input.setEchoMode(qtw.QLineEdit.Password)
-
-				# create the submit button:
-				btn_submit = qtw.QPushButton('Login')
-
-				# create Form Layout and layout widgets in it
-				form_layout = qtw.QFormLayout()
-				form_layout.addRow('User name: ', user_name_input)
-				form_layout.addRow('Password: ', password_input)
-				form_layout.addRow(btn_submit)
-
-
-				# apply the form_layout to our widget
-				# this will attach our form widget's into main window
-				self.setLayout(form_layout)
-
-				# ---------------------------- your code ends here --------------------------- #
-			</code></pre>
-
-			<dt>References:</dt>
-			<dd><a href="https://doc.qt.io/qt-5/layout.html">Layout Management</a></dd>
-			<dd><a href="https://doc.qt.io/qt-5/qformlayout.html">QFormLayout Class</a></dd>
-		</dl>
-	</section>
-	<section id="Task_add_buttons_in_layout"><h3>TASK: add Submit and Cancel buttons to our login form</h3>
-		<dt>Create and layout the buttons as shown:</dt>
-		<a href="./images/TASK_login_form_handcoded.png"><img src="./images/TASK_login_form_handcoded.png" alt="TASK_login_form_handcoded.png"></a>
-		<dt>Reference:</dt>
-		<dd><a href="https://doc.qt.io/qt-5/qpushbutton.html">QPushButton Class</a></dd>
-		<dd><a href="https://doc.qt.io/qt-5/qhboxlayout.html">QHBoxLayout Class</a></dd>
-		<dd><a href="https://doc.qt.io/qt-5/qboxlayout.html">QBoxLayout Class</a></dd>
 	</section>
 </section>
 
