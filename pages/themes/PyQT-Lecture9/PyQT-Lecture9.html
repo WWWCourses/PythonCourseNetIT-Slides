@@ -181,12 +181,16 @@
 	<section id="Task_StyledTableWithCustomActions"><h3>Task: </h3>
 		<dl class="fa">
 			<dt>Apply styles to table and create custom context menu actions for adding a row above/bellow the selected row. </dt>
+			<dt>Try to make your table to look and behave as close as possible to the example in gif bellow</dt>
 			<dt>To stretch the table rows and columns to current table size, you can use:</dt>
 			<pre><code rel="Python" class="python">
 				table.horizontalHeader().setSectionResizeMode(qtw.QHeaderView.Stretch)
 				table.verticalHeader().setSectionResizeMode(qtw.QHeaderView.Stretch)
 			</code></pre>
-			<dt>Try to make your table to look and behave as close as possible to the example in gif bellow: </dt>
+			<dt>Style hints:</dt>
+			<dd>use <code>QTableWidget::item::selected</code> to select cells which are currently selected.</dd>
+			<dd>use <code></code></dd>
+
 		</dl>
 		<a href="./images/TASK_simple_table_and_styles.gif" title="click for bigger image"><img src="./images/TASK_simple_table_and_styles.gif" alt="TASK_simple_table_and_styles.gif" style="width: 50%;"></a>
 	</section>
