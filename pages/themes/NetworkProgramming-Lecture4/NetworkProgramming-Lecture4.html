@@ -75,146 +75,54 @@
 
 
 
-<section data-min="10"><h1>Socket Programming</h1></section>
-<section><h2>Socket Programming</h2>
-	<section><h3>Overview</h3>
+<section data-min="50"><h1>Using requests lib</h1></section>
+<section><h2>Using requests lib</h2>
+	<section><h3>Syntax:</h3>
 		<dl class="fa">
-			<dt>Socket communication is everywhere. So before going deeply onto HTTP Client/Server Communication, we'll look at simple demo of client/server socket communication.</dt>
-			<dt>The client application (your browser, for example) uses “client” sockets exclusively. The Web server it’s talking to uses both “server” sockets and “client” sockets.</dt>
-			<dt>Sockets are widely use for any IPC (Inter-Process Communication), especially for cross-platform communication.</dt>
-		</dl>
-	</section>
-	<section><h3>Python socket module</h3>
-		<dl class="fa">
-			<dt>The	<a href="https://docs.python.org/3/library/socket.html">socket module</a> is a Python's standard interface for the	transport layer, and it provides functions for interacting with TCP and UDP, as well as for looking up hostnames through	DNS</dt>
-   			<dt>A socket is defined by the IP address of the machine, the port on which it listens, and the protocol it uses.</dt>
-			<pre><code rel="Python" class="python">
-				socket.socket(family=AF_INET, type=SOCK_STREAM)¶
+			<dt>The requests module allows us to send HTTP requests using Python.</dt>
+			<pre><code rel="Syntax" class="python">
+				requests.methodname(params)
 			</code></pre>
-			<dt>There are several sockets address families like:</dt>
-			<dd><code>socket.AF_UNIX</code> - used to communicate between processes on the same machine efficiently (specified by UNIX pathname)</dd>
-			<dd><code>socket.AF_INET</code> - used for network connections (IPv4) </dd>
-			<dt>Sockets are classified into several types, as well:</dt>
-			<dd>stream sockets(socket.SOCK_STREAM) for TCP</dd>
-			<dd>datagram sockets(socket.SOCK_DGRAM) for UDP and others</dd>
-
+			<section data-markdown>
+				<textarea data-template>
+					|Method     				| Description                                |
+					|---------------------------| -------------------------------------------|
+					|delete(url, args)     		| Sends a DELETE request to the specified url 	|
+					|get(url, params, args)		| Sends a GET request to the specified url 		|
+					|head(url, args)			| Sends a HEAD request to the specified url 	|
+					|patch(url, data, args)		| Sends a PATCH request to the specified url 	|
+					|post(url, data, json, args)| Sends a POST request to the specified url 	|
+					|put(url, data, args)		| Sends a PUT request to the specified url 		|
+					|request(method, url, args)	| Sends a request of the specified method to the specified url|
+				</textarea>
+			</section>
+			<dt>Where:</dt>
+			<dd><span class="note">params</span> – (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.</dd>
+			<dd><span class="note">data</span> – (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the Request.</dd>
+			<dd><span class="note">json</span> – (optional) A JSON serializable Python object to send in the body of the Request.</dd>
+			<dt>Reference: <a href="https://docs.python-requests.org/en/latest/api/#requests.request">request() method main interface</a></dt>
 		</dl>
 	</section>
-	<section><h3>Creating a Socket</h3>
+	<section><h3>References</h3>
 		<dl class="fa">
-			<dt>On Client side:</dt>
-			<pre><code rel="client.py" class="python" style="min-width: 50vw;">
-				PORT = 5050
-				SERVER_NAME = 'x230'
-				SERVER_IP = socket.gethostbyname(SERVER
-
-				# create an INET (i.e. IPv4), STREAMing (i.e. TCP) socket:
-				client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-				# now connect to the server given with (SERVER_IP, PORT) tupple:
-				client.connect((SERVER_IP, PORT))
-				print(f'Client is connected to {(SERVER_IP, PORT)} ')
-			</code></pre>
-			<dt>On Server side:</dt>
-			<pre><code rel="client.py" class="python" style="min-width: 50vw;">
-				PORT = 5050
-				SERVER_IP = socket.gethostbyname(socket.gethostnam
-
-				CT_MESSAGE = "!DISCONNECT"
-
-				# create an INET (i.e. IPv4), STREAMing (i.e. TCP) socket:
-				server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-				# bind the socket to the host
-				server.bind((SERVER_IP, PORT))
-
-				server.listen()
-				print(f"Server is listening on {SERVER_IP}")
-			</code></pre>
+			<dt><a href="https://docs.python-requests.org/en/master/user/quickstart/">Quickstart</a></dt>
+			<dt><a href="https://docs.python-requests.org/en/master/user/advanced/#advanced">Advanced</a></dt>
+			<dt><a href="https://docs.python-requests.org/en/latest/api/">API reference</a></dt>
+			<dt><a href="https://docs.python-requests.org/en/master/api/#requests.Response">Response Object</a></dt>
 		</dl>
-
-	</section>
-
-	<section><h3>Using Sockets on Server</h3>
-		<pre><code rel="client.py" class="python" style="min-height: 70vh;">
-			def handle_client(conn, addr):
-				print(f"[NEW CONNECTION] {addr} connected.")
-				connected = True
-
-				while connected:
-					msg_length = conn.recv(BUFF_SIZE)
-
-					if msg_length:
-					msg_length = int(msg_length)
-					msg = conn.recv(msg_length).decode(FORMAT)
-					if msg == DISCONNECT_MESSAGE:
-					connected = False
-
-					print(f"[{addr}] {msg}")
-					conn.send("Msg received".encode(FORMAT))
-
-					conn.close()
-
-			while True:
-				conn, addr = s.accept()
-				# better to do with threading
-				handle_client(conn, addr)
-
-				print(f"[ACTIVE CONNECTIONS] {threading.activeCount() - 1}")
-		</code></pre>
-	</section>
-	<section><h3>Using Sockets on Server</h3>
-		<dl class="fa">
-			<dt>s.listen() enables a server to s.accept() connections</dt>
-			<dt>accept() blocks and waits for an incoming connection. When a client connects, <span class="note">it returns a new socket object</span> representing the connection and a tuple ((host, port) for IPv4 ) holding the address of the client.</dt>
-			<dt>The newly created socket by s.accept() is used only to communicate with the client. It’s distinct from the listening socket that the server is using to accept new connections</dt>
-		</dl>
-	</section>
-	<section><h3>Using Sockets on Client</h3>
-		<pre><code rel="client.py" class="python" style="min-height: 70vh;">
-			def send(msg):
-				message = msg.encode(FORMAT)
-				msg_length = len(message)
-				send_length = str(msg_length).encode(FORMAT)
-
-				# pad message to be send to BUFF_SIZE
-				send_length += b' ' * (BUFF_SIZE - len(send_length))
-
-				s.send(send_length)
-				s.send(message)
-				print(s.recv(BUFF_SIZE)
-
-			# send some messages:
-			while True:
-				msg = input("Enter a message:")
-				if msg == '':
-					send(DISCONNECT_MESSAGE)
-				else:
-					send(msg)
-
-		</code></pre>
-	</section>
-
-</section>
-
-
-<section data-min="5"><h1>Monitoring TCP connection</h1></section>
-<section><h2>Monitoring TCP connection</h2>
-	<section><h3>netstat</h3>
-		<dl class="fa">
-			<dt>If we want to see all TCP connections we can use the <code>netstat</code> command (available on <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/netstat">Windows</a> and <a href="https://www.howtogeek.com/513003/how-to-use-netstat-on-linux/">Linux</a> )</dt>
-			<dt>Useful options:</dt>
-			<dd><code>-a</code>: Show both listening and non-listening sockets.</dd>
-			<dd><code>-n</code>: Show numerical addresses instead of trying to determine symbolic host, port or user names.</dd>
-			<dd><code>-t</code>: Show only TCP connections.</dd>
-			<dd><code>-p</code>: Show the PID and name of the program to which each socket belongs.</dd>
-		</dl>
-		<pre><code rel="Terminal" class="bash">
-			netstat -antp
-		</code></pre>
 	</section>
 </section>
 
 
+<section data-min="5"><h1>Making Requests</h1></section>
+<section><h2>Make Requests</h2>
+	<section><h3>Live Demos</h3>
+		<dl class="fa">
+			<dt>Make GET request demo</dt>
+			<dt>Make POST request demo</dt>
+		</dl>
+	</section>
+</section>
 
 
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
