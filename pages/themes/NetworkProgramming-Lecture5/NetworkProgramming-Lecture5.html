@@ -122,6 +122,10 @@
 
 				# create an INET (i.e. IPv4), STREAMing (i.e. TCP) socket:
 				server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+				# reuse address (optional, only for test purposes)
+				server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
 				# bind the socket to the host
 				server.bind((SERVER_IP, PORT))
 
@@ -131,6 +135,14 @@
 		</dl>
 
 	</section>
+
+	<section><h3>Host Name</h3>
+		<dl class="fa">
+			<dt><code>socket.gethostname()</code> - returns the host name of the current system under which the Python interpreter is executed.</dt>
+			<dt><code>socket.gethostbyname(hostname)</code> - returns the IP address of the given host</dt>
+		</dl>
+	</section>
+
 
 	<section><h3>Using Sockets on Server</h3>
 		<pre><code rel="client.py" class="python" style="min-height: 70vh;">
@@ -190,6 +202,12 @@
 					send(msg)
 
 		</code></pre>
+	</section>
+	<section><h3>Send and Recieve</h3>
+		<dl class="fa">
+			<dt><code>socket.recv(bufsize[, flags])</code> - <a href="https://docs.python.org/3/library/socket.html#socket.socket.recv">socket.recv() @python.org</a></dt>
+			<dt><code>socket.send(bytes[, flags])</code> - <a href="https://docs.python.org/3/library/socket.html#socket.socket.send">socket.send() @python.org</a></dt>
+		</dl>
 	</section>
 
 </section>
