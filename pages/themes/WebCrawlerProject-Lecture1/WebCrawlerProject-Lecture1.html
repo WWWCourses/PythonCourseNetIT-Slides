@@ -105,10 +105,23 @@
 			<dt>Crawlers consume resources on visited systems and often visit sites without approval.</dt>
 			<dt>Issues of schedule, load, and "politeness" come into play when large collections of pages are accessed.</dt>
 			<dt>Mechanisms exist for public sites not wishing to be crawled to make this known to the crawling agent. For example, including a <code>robots.txt</code> file can request bots to index only parts of a website, or nothing at all.</dt>
+
 		</dl>
 	</section>
+	<section><h3>robots.txt - example</h3>
+		<pre><code rel="http://example.com/robots.txt" class="bash">
+			# The user agent named Googlebot is not allowed to crawl any URL that starts with http://example.com/search/.
+			User-agent: Googlebot
+			Disallow: /search/
 
-
+			# All other user agents are allowed to crawl the entire site.
+			User-agent: *
+			Allow: /
+		</code></pre>
+		<dl class="fa">
+			<dt>Reference: <a href="https://developers.google.com/search/docs/advanced/robots/create-robots-txt#create_rules">robots.txt syntax</a></dt>
+		</dl>
+	</section>
 </section>
 
 <section data-min="50"><h1>Web Crawling with Python</h1></section>
@@ -116,7 +129,7 @@
 	<section><h3>The Process</h3>
 		<dl class="fa">
 			<dt>Visual inspection: Figure out what to extract</dt>
-			<dd>Tools: Browser Dev Tools</dd>
+			<dd>Tools: Browser's Dev Tools, like <a href="https://developer.chrome.com/docs/devtools/overview/">Chrome DevTools</a></dd>
 			<dt>Make an HTTP request to the webpage and parse it</dt>
 			<dd>Tools: python library like: <a href="https://docs.python-requests.org/en/master/">Requests</a>, <a href="https://docs.python.org/2/library/urllib.html#module-urllib">urllib</a></dd>
 			<dt>Parse the HTML to get the relevant data</dt>
@@ -125,8 +138,11 @@
 	</section>
 	<section><h3>Using Chrome DevTools to inspect a WebPage</h3>
 		<dl class="fa">
-			<dt>Live Demo</dt>
-			<dd>Inspect <a href="rottentomatoes.com">rottentomatoes.com</a></dd>
+			<dt>Live Demo on:</dt>
+			<dd><a href="https://www.rottentomatoes.com/browse/in-theaters/">https://www.rottentomatoes.com/browse/in-theaters/</a></dd>
+			<dd><a href="https://bnr.bg/lyubopitno/list">https://bnr.bg/lyubopitno/list</a></dd>
+			<dd><a href="https://www.jobs.bg/front_job_search.php?add_sh=1&from_hp=1&keywords%5B%5D=python">https://www.jobs.bg/front_job_search.php</a></dd>
+			<dd><a href="https://www.jarcomputers.com/Laptopi_cat_2.html?ref=c_1">https://www.jarcomputers.com/Laptopi_cat_2.html?ref=c_1</a></dd>
 		</dl>
 	</section>
 	<section><h3>Using <code>Requests</code> to get page content</h3>
