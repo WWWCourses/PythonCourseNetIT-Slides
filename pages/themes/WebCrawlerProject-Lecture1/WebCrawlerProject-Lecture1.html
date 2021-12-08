@@ -145,15 +145,185 @@
 			<dd><a href="https://www.jarcomputers.com/Laptopi_cat_2.html?ref=c_1">https://www.jarcomputers.com/Laptopi_cat_2.html?ref=c_1</a></dd>
 		</dl>
 	</section>
-	<section><h3>Using <code>Requests</code> to get page content</h3>
+	<!-- <section><h3>Using <code>Requests</code> to get page content</h3>
 		<dl class="fa">
 			<dt>Reference: <a href="https://docs.python-requests.org/en/latest/">Requests: HTTP for Humans</a></dt>
 			<dt>Live Demo</dt>
 			<dd>get HTML content of a web site</dd>
 			<dd>Use JSON APIs: <a href="https://api.chucknorris.io/">Chuck Norris Jokes</a> or <a href="https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/">List of Free and Open Public APIs</a></dd>
 		</dl>
+	</section> -->
+</section>
+
+<section><h1>HTML syntax</h1></section>
+<section><h2>HTML syntax</h2>
+	<section>
+		<dl class="fa">
+			<dt>An HTML document consists of HTML elements!</dt>
+			<dt>Each element has:</dt>
+			<dd><pre class="inline"><code>&lt;opening tag&gt; content &lt;/closing tag&gt;</code></pre>
+			</dd>
+			<img src="images/HTML_elements_syntax.png">
+			<dt>The content can be text, or another HTML element</dt>
+			<dt>Some HTML elements are empty - they have no content, and according to HTML5 - no closing tag. For example:</dt>
+			<dd><pre class="inline"><code>&lt;img src=&quot;images/cats.png&quot;&gt;</code></pre></dd>
+		</dl>
+	</section>
+	<section><h3>Examples</h3>
+		<pre><code rel="HTML">
+			<!-- Element H1 with text content -->
+			&lt;h1&gt;Hello World&lt;/h1&gt;
+
+			<!-- Element H1 with nested element (EM) content -->
+			&lt;h1&gt;Hello &lt;em&gt;World&lt;/em&gt;&lt;/h1&gt;
+
+			<!-- Element H1 with text content and one attribute: class with value "primary"-->
+			&lt;h1 class="primary"&gt;Hello World&lt;/h1&gt;
+
+			<!-- Element H1 with text content and two attributes: class and id -->
+			&lt;h1 class="primary" id="first"&gt;Hello World&lt;/h1&gt;
+		</code></pre>
+	</section>
+	<section><h3>HTML document structure</h3>
+		<dl class="fa">
+			<dt>Each HTML document must follow next structure: </dt>
+		</dl>
+		<pre><code rel="HTML">
+			<!-- Specifies the language and the version -->
+			&lt;!DOCTYPE html&gt;
+			&lt;html&gt;
+				<!-- Meta information -->
+				&lt;head&gt;
+				...
+				&lt;/head&gt;
+				<!-- Page content -->
+				&lt;body&gt;
+				...
+				&lt;/body&gt;
+			&lt;/html&gt;
+	   </code></pre>
 	</section>
 </section>
+
+<section data-min="10"><h1>Basic HTML Elements</h1></section>
+<section><h2>div и span елементи</h2>
+	<dl class="fa">
+		<dt><code>div</code> element defines division or a section in an HTML document and  is used as a container for HTML elements</dt>
+		<dt><code>span</code> element defines inline container used to mark up a part of a text</dt>
+	</dl>
+</section>
+<section><h2>Хипервръзки</h2>
+    <section><h3>HTML елемент <code>a</code> (anchor)</h3>
+        <pre><code rel="Syntax" class="shell" data-noescape>
+            &lt;a href=&quot;<i>URL</i>&quot;&gt;<i>content</i>&lt;/a&gt;
+        </code></pre>
+        <dl class="fa">
+            <dt><i>URL</i> – идентификатор на ресурс в WWW или на локален файл. Задължителен атрибут!</dt>
+            <dt><i>content</i> – това, което ще се изобрази в страницата като линк. Може да бъде текст, изображение или друг HTML елемент.</dt>
+            <dd class="note">Ако пропуснете <i>content</i>, то браузърът няма да изобрази линка!</dd>
+            <dt>Браузърите слагат дефоултен CSS за посетени/непосетени линкове. Детайлното им оформление ще разгледаме в частта за CSS.</dt>
+        </dl>
+    </section>
+    <section><h3>Атрибут <code>target</code></h3>
+        <pre><code rel="Syntax" class="shell" data-noescape>
+            &lt;a href=&quot;<i>URL</i>&quot; target="_blank"&gt;<i>content</i>&lt;/a&gt;
+        </code></pre>
+        <dl class="fa">
+            <dt>Атрибута <code class="note">target</code> задава <span class="note">къде</span> да се отвори ресурсът към който сочи линка.</dt>
+            <dt>Стойности:</dt>
+            <dd><code class="note">_self</code>: това е дефоултната стойност. Ресурсът ще се отвори в текущия таб/прозорец.</dd>
+            <dd><code class="note">_blank</code>: ресурсът ще се отвори в нов таб/прозрец на браузера</dd>
+            <dd><code class="note"><i>frame_id</i></code>: ресурсът ще се отвори в зададения фрейм. Ще разгледаме по-подробно в темата за iframes.</dd>
+        </dl>
+    </section>
+    <section><h3>Атрибут <code>title</code></h3>
+        <pre><code rel="Syntax" class="shell" data-noescape>
+            &lt;a href=&quot;<i>URL</i>&quot; title="more info"&gt;<i>content</i>&lt;/a&gt;
+        </code></pre>
+        <dl class="fa">
+            <dt><code>title</code> е <a href="https://www.w3schools.com/tags/ref_standardattributes.asp">глобален атрибут, който често се употребява при хипер-линкове.</a></dt>
+            <dt>В него можем да зададем допълнителна информация, която ще се изобрази като <a href="https://en.wikipedia.org/wiki/Tooltip">tooltip</a>, когато мишката е върху елемента.</dt>
+            <dt>Позиционирайте мишката върху долния линк, и вижте какво прави атрибута <code>title</code></dt>
+            <dd><a href="https://www.google.bg/search?ei=P5muWrLoEMGUmwXaho-AAQ&q=tooltip&oq=tooltip&gs_l=psy-ab.3..0i67k1l4j0i203k1l4j0l2.3960.4583.0.4917.5.5.0.0.0.0.108.468.3j2.5.0....0...1.1.64.psy-ab..0.5.467....0.Dp9GKCA_kVs" title="more info">what is tooltip</a></dd>
+        </dl>
+    </section>
+    <section><h3>Повече за HTML hyperlinks</h3>
+        <dl class="fa">
+            <dt>Общо описание за употребата на хипер-линкове в HTML: <a href="https://www.w3schools.com/html/html_links.asp">HTML Links@w3schools</a></dt>
+            <dt>Сбит справочник за HTML a елемента: <a href="https://www.w3schools.com/tags/tag_a.asp">HTML &lt;a&gt; Tag@w3schools</a></dt>
+
+        </dl>
+    </section>
+</section>
+
+<!-- HTML lists -->
+<section><h2>HTML lists</h2>
+	<section><h3>Unordered lists (<code><strong>UL</strong></code>)</h3>
+		<pre><code rel="HTML">
+			<ul>
+				<li>2 бр. яйца</li>
+				<li>1 ч.ч. прясно мляко или вода</li>
+				<li>1 ч.ч. брашно тип 500</li>
+				<li>1 с.л. краве масло</li>
+				<li>Щипка сол, щипка захар</li>
+			</ul>
+		</code></pre>
+		<dl class="fa">
+			<dt class="note">An <code><strong>UL</strong></code> element could contain <b>only</b> <code><strong>LI</strong></code> elements!</dt>
+			<dt class="note">A <code><strong>LI</strong></code> element could contains any HTML elements</dt>
+		</dl>
+	</section>
+	<section><h3>Ordered lists (<code><strong>OL</strong></code>)</h3>
+		<pre style="font-size: .5em"><code rel="HTML" class="html">
+			<ol>
+				<li>Яйцата се разбиват, докато се получи еднородна смес.</li>
+				<li>Добавя се млякото, щипка сол и щипка захар.</li>
+				<li>На малки порции се добавя пресятото брашно.</li>
+				<li>Разбъркваме до получаването на гъста смес,
+					с консистенция подобна на боза.</li>
+				<li>Намазваме с масло предварително нагрятия тиган
+					и поставяме черпак от сместа.</li>
+				<li>След няколко минути обръщаме палачинката.</li>
+			</ol>
+		</code></pre>
+		<dl class="fa">
+			<dt class="note">An <code><strong>OL</strong></code> element could contain <b>only</b> <code><strong>LI</strong></code> elements!</dt>
+			<dt class="note">A <code><strong>LI</strong></code> element could contains any HTML elements</dt>
+		</dl>
+	</section>
+</section>
+
+<section><h2>HTML Tables</h2>
+	<section><h3>Основни елементи</h3>
+		<p><a href="http://www.w3schools.com/html/html_tables.asp">w3schools - HTML Tables</a></p>
+		<ul>
+			<li><code><a href="http://www.w3schools.com/tags/tag_table.asp">table</a></code></li>
+			<li><code><a href="http://www.w3schools.com/tags/tag_caption.asp">caption</a></code></li>
+			<li><code><a href="http://www.w3schools.com/tags/tag_colgroup.asp">colgroup</a></code></li>
+			<li><code><a href="http://www.w3schools.com/tags/tag_tr.asp">tr</a></code></li>
+			<li><code><a href="http://www.w3schools.com/tags/tag_td.asp">td</a></code></li>
+			<li><code><a href="http://www.w3schools.com/tags/tag_th.asp">th</a></code></li>
+		</ul>
+	</section>
+	<section><h3>Пример:</h3>
+        <img class="norm" src="images/table_no-span.png">
+        <pre><code rel="HTML">
+            &lt;table border="1"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;Едно&lt;/td&gt;
+                    &lt;td&gt;Две&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt; Три &lt;/td&gt;
+                    &lt;td&gt; Четири &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        </code></pre>
+	</section>
+
+</section>
+
+
 
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
 <!--
