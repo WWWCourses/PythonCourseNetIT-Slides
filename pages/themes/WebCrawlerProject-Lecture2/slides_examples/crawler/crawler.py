@@ -1,6 +1,7 @@
 import requests
 import re
 import threading
+from bs4 import BeautifulSoup as bs
 
 class Crawler():
 	def __init__(self, seed):
@@ -54,6 +55,21 @@ class Crawler():
 			filename = self.make_filename(url)
 			self.write_to_file(filename, r.text)
 
+			self.extract_links(r.text)
+
+	def extract_links(self, html):
+		# create BeautifulSoup object, which represents the document as a nested data structure:
+		soup = bs(html, 'html.parser')
+
+		# get HTML element:
+		print(soup.title)
+
+		# # get HTML element's content as string:
+		print(soup.title.string)
+
+		articles = soup.find("div",id="module_1_1")
+		print(articles)
+
 	def run(self):
 		for url in self.seed:
 			tr = threading.Thread(target=self.get_html(url))
@@ -61,8 +77,9 @@ class Crawler():
 
 if __name__ == '__main__':
 	seed = [
-		'https://www.autokelly.bg/',
-		'https://www.imdb.com/chart/moviemeter/?ref_=nv_mv_mpm'
+		# 'https://www.autokelly.bg/',
+		# 'https://www.imdb.com/chart/moviemeter/?ref_=nv_mv_mpm'
+		'https://bnr.bg/hristobotev/radioteatre/list'
 	]
 	crawler = Crawler(seed)
 	crawler.run()

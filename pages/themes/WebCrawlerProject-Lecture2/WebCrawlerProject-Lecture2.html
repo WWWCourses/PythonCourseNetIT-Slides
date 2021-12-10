@@ -179,13 +179,52 @@
 	<section><h3>Overview</h3>
 		<dl class="fa">
 			<dt>Beautiful soup is one of the most widely-used Python libraries for web scraping.</dt>
+			<dt>It works with your favorite parser to provide idiomatic ways of navigating, searching, and modifying the parse tree.</dt>
+			<dt>Installation:</dt>
+			<pre><code rel="Python" class="python">
+				pip install beautifulsoup4
+			</code></pre>
 			<dt><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Official Documentation</a></dt>
 		</dl>
 	</section>
-	<section><h3>Scraper hands on</h3>
+	<section><h3>Beautiful soup hands on</h3>
 		<dl class="fa">
-			<dt>URL: <a href="https://bnr.bg/hristobotev/radioteatre/list">https://bnr.bg/hristobotev/radioteatre/list</a></dt>
+			<dt>Let's extract links for each publication in <a href="https://bnr.bg/hristobotev/radioteatre/list">https://bnr.bg/hristobotev/radioteatre/list</a></dt>
+			<dt>The inspection of the site shows that the links we needed are in div with id="module_1_1"</dt>
 		</dl>
+		<a href="./images/bnr_inspect.png" title="click for bigger image">
+			<img src="./images/bnr_inspect.png" alt="/bnr_inspect.png" style="height: 70vh;">
+		</a>
+	</section>
+	<section><h3>Create and navigate in the soup</h3>
+		<dl class="fa">
+			<dt>First we need to create a BeautifulSoup object, which will represents the document as a nested data structure.</dt>
+			<dt>Then using variety of properties and methods we can navigate into the tree in order to get the meaningful information</dt>
+			<dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-the-tree">Navigating the tree</a></dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from bs4 import BeautifulSoup as bs
+
+			# create BeautifulSoup object, which represents the document as a nested data structure:
+			soup = bs(html, 'html.parser')
+
+			# get HTML element:
+			print(soup.title)
+
+			# # get HTML element's content as string:
+			print(soup.title.string)
+		</code></pre>
+	</section>
+	<section><h3>Searching the tree</h3>
+		<dl class="fa">
+			<dt>Beautiful Soup defines a lot of methods for searching the parse tree, but they’re all very similar.</dt>
+			<dt>The two most popular methods are: find() and find_all()</dt>
+			<dt>Reference: <a href="">https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-the-tree</a>Searching the tree</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			# get the div with id="module_1_1"
+			articles = soup.find("div",id="module_1_1")
+		</code></pre>
 	</section>
 </section>
 
