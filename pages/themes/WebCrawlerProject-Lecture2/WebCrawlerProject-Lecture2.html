@@ -73,9 +73,9 @@
 	</section> -->
 </section>
 
-<section data-min="50"><h1>Using requests lib</h1></section>
-<section><h2>Using requests lib</h2>
-	<section><h3>Syntax:</h3>
+<section data-min="50"><h1>Crawl a web site using requests lib</h1></section>
+<section><h2>Crawl a web site using requests lib</h2>
+	<section><h3>request lib usage:</h3>
 		<dl class="fa">
 			<dt>The requests module allows us to send HTTP requests using Python.</dt>
 			<pre><code rel="Syntax" class="python">
@@ -109,25 +109,82 @@
 			<dt><a href="https://docs.python-requests.org/en/master/api/#requests.Response">Response Object</a></dt>
 		</dl>
 	</section>
+	<section><h3>Start the crawler code</h3>
+		<pre><code rel="crawler.py" class="python">
+
+		</code></pre>
+	</section>
 </section>
 
+<section data-min="5"><h1>Hands on crawler.py</h1></section>
+<section><h2>Hands on crawler.py</h2>
+	<section><h3>Crawler class template</h3>
+		<pre><code rel="Python" class="python">
+			class Crawler():
+				def __init__(self, seed):
+					pass
 
-<section data-min="5"><h1>Make GET Requests</h1></section>
-<section><h2>Make GET Requests</h2>
-	<section><h3>Simple GET request</h3>
-		<dl class="fa">
-			<dt></dt>
+				def make_filename(self,url):
+					""" Extracts domain from a url.
+						Prepend data_path and append '.html'
 
-		</dl>
+						:param url: string
+
+						return `domain`.html string
+					"""
+					pass
+
+				def write_to_file(self,filename, content):
+					""" Write string to given filename
+							:param filename: string
+							:param content: sring
+					"""
+					pass
+
+				def get_html(self,url):
+					""" Make GET request and save content to file
+						First try with SSL verification (default),
+						if error => disable SSL verification
+
+						:param url: string
+					"""
+					pass
+
+
+				def run(self):
+					""" run the crawler for each url in seed
+						Use multithreading for each GET request
+
+					"""
+					for url in self.seed:
+						self.get_html(url)
+
+			if __name__ == '__main__':
+				seed = [
+					'https://www.autokelly.bg/',
+					'https://www.imdb.com/chart/moviemeter/?ref_=nv_mv_mpm'
+				]
+				crawler = Crawler(seed)
+				crawler.run()
+
+
+
+		</code></pre>
 	</section>
 </section>
 
 
 <section data-min="50"><h1>Using BeautifulSoup</h1></section>
 <section><h2>Using BeautifulSoup</h2>
-	<section><h3>Reference</h3>
+	<section><h3>Overview</h3>
 		<dl class="fa">
+			<dt>Beautiful soup is one of the most widely-used Python libraries for web scraping.</dt>
 			<dt><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Official Documentation</a></dt>
+		</dl>
+	</section>
+	<section><h3>Scraper hands on</h3>
+		<dl class="fa">
+			<dt>URL: <a href="https://bnr.bg/hristobotev/radioteatre/list">https://bnr.bg/hristobotev/radioteatre/list</a></dt>
 		</dl>
 	</section>
 </section>
