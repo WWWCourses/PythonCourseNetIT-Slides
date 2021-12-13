@@ -73,6 +73,75 @@
 	</section> -->
 </section>
 
+<section data-min="50"><h1>Hands On WebCraweler Project</h1></section>
+<section><h2>Hands On WebCraweler Project</h2>
+	<section><h3>Create Project Folder structure</h3>
+		<dl class="fa">
+			<dt>Create your project folder structure</dt>
+			<dt>You may follow the one I use, or reorganize files as you wish</dt>
+			<pre><code rel="WebCrawler" class="bash">
+				WebCrawler
+				├── crawler_app.py
+				├── data
+				│   └── # fetched html pages
+				├── lib
+				│   ├── crawler.py
+				│   ├── __init__.py
+				│   └── scraper.py
+			</code></pre>
+		</dl>
+	</section>
+	<section id="createProjectSVirtualEnvironment"><h3>Create project's virtual environment</h3>
+		<p>If you don't use PyCharm, or if you want to understand what's PyCharm is doing...:</p>
+		<dl class="fa">
+			<dt>Create the root project folder</dt>
+			<pre><code rel="Terminal" class="bash">
+				# navigate to your root project folder:
+				cd CarParts
+			</code></pre>
+			<dt>Create a virtual environment and activate it:</dt>
+			<pre><code rel="Terminal" class="bash">
+				# create a virtualenv named ".venv" in current working folder:
+				python3 -m venv ./.venv
+
+				# activate the ".venv" environment:
+				source .venv/bin/activate
+
+				# your command prompt should be prefixed with "(.venv)" now
+			</code></pre>
+			<dt>You can deactivate a virtual environment by typing “deactivate” in your shell.</dt>
+			<dt>Reference: <a href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">Creating a virtual environment @python.org</a></dt>
+		</dl>
+	</section>
+	<section id="installPackages"><h3>Install packages needed for your project</h3>
+		<pre><code rel="Terminal" class="bash">
+			pip install requests
+			pip install beautifulsoup4
+		</code></pre>
+	</section>
+	<section id="freezingDependencies"><h3>Freezing dependencies</h3>
+		<dl class="fa">
+			<dt>When you want to share your project, you must provide <a href="https://pip.pypa.io/en/latest/user_guide/#requirements-files">Requirements File</a> which allows to re-create the exact versions of all packages installed in your environment.</dt>
+			<dt>Pip can export a list of all installed packages and their versions using the freeze command</dt>
+			<pre><code rel="Terminal" class="bash">
+				# just list the installed packages
+				pip freeze
+
+				# save the list into "requirements.txt" file:
+				pip freeze > requirements.txt
+			</code></pre>
+		</dl>
+	</section>
+	<section id="initGit"><h3>Init project git repo and add the project to Github</h3>
+		<dl class="fa">
+			<dt>Init your git repo</dt>
+			<dt>Create <a href="https://git-scm.com/docs/gitignore">.gitignore</a> file and add in it files/folders to be ignored by git</dt>
+			<dd>You can use next template for Python provided by GitHub: <a href="https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore">Python.gitignore</a> :</dd>
+			<dt>To add your project ot GitHub, follow <a href="https://docs.github.com/en/github/importing-your-projects-to-github/importing-source-code-to-github/adding-an-existing-project-to-github-using-the-command-line#adding-a-project-to-github-without-github-cli">the github's instructions</a></dt>
+		</dl>
+	</section>
+</section>
+
 
 
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>

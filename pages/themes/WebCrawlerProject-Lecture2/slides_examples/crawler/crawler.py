@@ -22,7 +22,7 @@ class Crawler():
 			return self.data_path + m[1]  + '.html'
 		else:
 			print(f'Can not get domain from {url}')
-			exit(0)
+			exit(-1)
 
 	def write_to_file(self,filename, content):
 		""" Write string to given filename
@@ -35,7 +35,8 @@ class Crawler():
 		except FileNotFoundError:
 			print(f'File {filename} does not exists!')
 		except Exception as e:
-			print(f'Ooops, something went wrong ({e.__class__})')
+			print(f'Can not write to file: {filename}: {str(e)}')
+			exit(-1)
 
 	def get_html(self,url):
 		# GET request without SSL verification:
@@ -46,16 +47,20 @@ class Crawler():
 			# this is just a dirty workaraound
 			# check https://levelup.gitconnected.com/solve-the-dreadful-certificate-issues-in-python-requests-module-2020d922c72f
 			r = requests.get(url,verify=False)
+		except Exception as e:
+			print('Ca not get url: {url}: {str(e)}!')
+			exit(-1)
 
 		# set content encoding explicitely
 		r.encoding="utf-8"
 
 		# if we have the html => save it into file
 		if r.ok:
-			filename = self.make_filename(url)
-			self.write_to_file(filename, r.text)
+			content = r.text
 
-			self.extract_links(r.text)
+		filename = self.make_filename(url)
+		self.write_to_file(filename, content)
+		self.extract_links(r.text, content)
 
 	def extract_links(self, html):
 		# create BeautifulSoup object, which represents the document as a nested data structure:
@@ -71,15 +76,22 @@ class Crawler():
 		print(articles)
 
 	def run(self):
+		""" run the crawler for each url in seed
+			Use multithreading for each GET request
+
+		"""
 		for url in self.seed:
 			tr = threading.Thread(target=self.get_html(url))
 			tr.start()
 
 if __name__ == '__main__':
 	seed = [
-		# 'https://www.autokelly.bg/',
-		# 'https://www.imdb.com/chart/moviemeter/?ref_=nv_mv_mpm'
-		'https://bnr.bg/hristobotev/radioteatre/list'
+		'https://www.autokelly.bg/',
+		'https://www.imdb.com/chart/moviemeter/?ref_=nv_mv_mpm',
+		'https://bnr.bg/hristobotev/radioteatre/list',
+		'https://bnr.bg/lyubopitno/list',
+		'https://www.jobs.bg/front_job_search.php?add_sh=1&from_hp=1&keywords%5B%5D=python',
+		'https://bnr.bg/lyubopitno/list'
 	]
 	crawler = Crawler(seed)
 	crawler.run()
