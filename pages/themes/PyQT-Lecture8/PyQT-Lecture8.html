@@ -176,6 +176,145 @@
 		</dl>
 	</section>
 </section>
+
+<section data-min="5"><h1>Handling SQL Databases With PyQt</h1></section>
+<section><h2>Handling SQL Databases With PyQt</h2>
+	<section><h3>Connecting PyQt to an SQL Database</h3>
+		<pre><code rel="Syntax" class="python">
+			QSqlDatabase.addDatabase(
+				driver, connectionName=QSqlDatabase.defaultConnection
+			)
+		</code></pre>
+		<dl class="fa">
+			<dt><span class="note">driver</span> - required argument that holds a string containing the name of a <a href="https://doc.qt.io/qt-5/sql-driver.html#supported-databases">PyQt-supported SQL driver</a></dt>
+			<dt><span class="note">connectionName</span> - an optional argument that holds a string with the name of the connection</dt>
+			<dt>Once you’ve created a connection, you might need to set several attributes on it. The specific set of attributes will depend on the driver you’re using. In general, you’ll need to set attributes such as the database name, the username, and the password for accessing the database</dt>
+			<table class="table table-hover">
+				<thead>
+				<tr>
+				<th>Method</th>
+				<th>Description</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				<td><code>.setDatabaseName(name)</code></td>
+				<td>Sets the database name to <code>name</code>, which is a <a href="https://realpython.com/python-strings/">string</a> representing a valid database name</td>
+				</tr>
+				<tr>
+				<td><code>.setHostName(host)</code></td>
+				<td>Sets the hostname to <code>host</code>, which is a string representing a valid hostname</td>
+				</tr>
+				<tr>
+				<td><code>.setUserName(username)</code></td>
+				<td>Sets the username to <code>username</code>, which is a string representing a valid user name</td>
+				</tr>
+				<tr>
+				<td><code>.setPassword(password)</code></td>
+				<td>Sets the password to <code>password</code>, which is a string representing a valid password</td>
+				</tr>
+				</tbody>
+			</table>
+		</dl>
+	</section>
+	<section><h3>Example</h3>
+		<pre><code rel="Python" class="python" style="min-height: 90vh;">
+			from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel
+			from PyQt5.QtWidgets import QTableView, QApplication
+			import sys
+
+
+			class DB:
+				def __init__(self) -> None:
+					self.conn()
+
+				def conn(self):
+					db = QSqlDatabase.addDatabase('QSQLITE')
+					db.setDatabaseName('bnr.db')
+
+					if not db.open():
+						QtGui.QMessageBox.critical(None, QtGui.qApp.tr("Cannot open database"),
+							QtGui.qApp.tr("Unable to establish a database connection.\n"),
+							QtGui.QMessageBox.Cancel)
+
+						return False
+
+					self.query = QSqlQuery()
+					return True
+
+			if __name__ == '__main__':
+				app = QApplication(sys.argv)
+				db = DB()
+
+		</code></pre>
+	</section>
+	<section><h3>Create Tables</h3>
+		<pre><code rel="Python" class="python">
+			def createTable(self):
+				q = QSqlQuery()
+				q.exec_(f"""
+					CREATE TABLE radiotheaters(
+						id int primary key,
+						title varchar(20),
+						content varchar(100),
+						date TEXT
+					)
+				""")
+		</code></pre>
+	</section>
+	<section><h3>Executing Dynamic Queries with Placeholder Parameters</h3>
+		<dl class="fa">
+			<dt>PyQt supports two parameter placeholder styles:</dt>
+			<dd>Oracle style uses named placeholders such as :name or :address.</dd>
+			<dd>ODBC style uses a question mark (?) as a positional placeholder.</dd>
+			<dt>To create this kind of dynamic query in PyQt, you first create a template with a placeholder for each query parameter and then pass that template as an argument to <code>.prepare()</code>, which parses, compiles, and prepares the query template for execution</dt>
+			<dt>If the preparation process succeeds, then <code>prepare()</code> returns True. After that, you can pass a specific value to each parameter using <code>.bindValue()</code> with named or positional parameters or using <code>.addBindValue()</code> with positional parameters.</dt>
+			<dt>.bindValue() has the following two variations:</dt>
+			<dd><code>.bindValue(placeholder, val)</code></dd>
+			<dd><code>.bindValue(pos, val)</code></dd>
+		</dl>
+	</section>
+	<section><h3>Example</h3>
+		<pre><code rel="Python" class="python" style="min-height: 90vh;">
+			def insertRow(self, **kwargs):
+				# Creating a query for later execution using .prepare()
+				q = QSqlQuery()
+				q.exec_()
+				q.prepare(
+							"""
+							INSERT INTO radiotheaters (
+											title,
+											content,
+											date
+							)
+							VALUES (?, ?, ?)
+							"""
+				)
+
+				q.addBindValue(kwargs['title'])
+				q.addBindValue(kwargs['content'])
+				q.addBindValue(kwargs['date'])
+				q.exec()
+
+
+			if __name__ == '__main__':
+				app = QApplication(sys.argv)
+				db = DB()
+
+				# Sample data
+				data = [
+					("Theater1", "Content1", "2021-01-01"),
+					("Theater2", "Content2", "2021-01-02"),
+					("Theater3", "Content3", "2021-01-03"),
+					("Theater4", "Content4", "2021-01-04"),
+				]
+
+				for title, content, date in data:
+					db.insertRow(title=title, content=content, date=date)
+		</code></pre>
+
+	</section>
+</section>
 <!--
 <section data-min="5"><h1>Add GUI feature to your app</h1></section>
 <section><h2>Add GUI feature to your app</h2>
