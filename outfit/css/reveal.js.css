@@ -220,9 +220,6 @@ a.home_link::before{
   display: inline-block;
 }
 
-
-
-
 .reveal .help_text{
   display: none;
   position: absolute;
