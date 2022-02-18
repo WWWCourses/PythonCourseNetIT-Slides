@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>InstalationAndSyntax</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#InstalationAndSyntax" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Installation and Syntax</h1></section>
+<section data-transition="zoom">
+	<!-- linkedin badge -->
+
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+	</section>
+	<!-- <section class="copyright" data-transition="zoom" style="margin-top: -2em;">
+		<div class="company">
+			 <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ivapopova"><a class="LI-simple-link" href='https://bg.linkedin.com/in/ivapopova?trk=profile-badge'>Iva E. Popova on LinkedIn</a></div>
+		</div>
+	</section> -->
+</section>
+
+
+<section data-min="10"><h1>Basic Programming Concepts Overview</h1></section>
+<section><h2>Basic Programming Concepts Overview</h2>
+	<section><h3>How a computer program works?</h3>
+		<a href="./images/how_a_program_works.png"><img src="./images/how_a_program_works.png" alt="./images/how_a_program_works.png"></a>
+	</section>
+	<section><h3>Video - How do computers read code?</h3>
+		<iframe width="1280" height="720" src="https://www.youtube.com/embed/QXjU9qTsYCc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</section>
+	<section><h3>Hello World in various programming languages</h3>
+		<a href="https://rosettacode.org/wiki/Hello_world/Text">Hello World @rosettacode.org</a>
+
+	</section>
+</section>
+
+<section><h1>Get familiar with Python Language</h1></section>
+<section><h2>Get familiar with Python Language</h2>
+	<section><h3></h3>
+		<a href="images/Python_vs_Java-programming_lang_as_an_essay.jpg"><img src="images/Python_vs_Java-programming_lang_as_an_essay.jpg" style="height: 60vh;"></a>
+		<p class="fontsize_06">picture source: <a href="http://i.imgur.com/ZyeCO.jpg">@imgur.com</a><br>
+		from <a href="https://www.reddit.com/r/programming/comments/fqtqk/if_programming_languages_were_essays/">If programming languages were essays...</a></p>
+	</section>
+	<section><h3>History</h3>
+		<dl class="fa">
+			<dt>Creator: <a href="https://en.wikipedia.org/wiki/Guido_van_Rossum">Guido van Rossum</a></dt>
+			<dt>Named after <a href="https://en.wikipedia.org/wiki/Monty_Python%27s_Flying_Circus">Monty Python's Flying Circus</a> comedy show.</dt>
+			<dt>Python 1.0 - January 1994</dt>
+			<dt>Python 2.0 - October 2000</dt>
+			<dt>Python 3.0 - December 2008</dt>
+		</dl>
+	</section>
+	<section><h3>What's the use of Python?</h3>
+		<dl class="fa">
+			<dt>Python is a general-purpose programming language, used for:</dt>
+			<dd>Web and Internet Development</dd>
+			<dd>System administration (incl. cloud)</dd>
+			<dd>Data Science, Big Data, Machine Learning</dd>
+			<dd>Scientific computing</dd>
+			<dd>Education</dd>
+			<dd>Mobile apps development</dd>
+			<dd>Embedded devices (incl. Raspberry Pi, Arduino, ...)</dd>
+		</dl>
+	</section>
+	<section><h3>Python Interpreter</h3>
+		<dl class="fa">
+			<dt>Python is an interpreted language</dt>
+			<dt>An interpreter is a program that directly executes the instructions in a high-level language, without converting it into machine code</dt>
+			<dt>A compiler is a program that translates the source code into byte/machine code, and then execute it.</dt>
+			<dt>Contemporary interpreters, like Python, use internal compiler to optimize their work.</dt>
+		</dl>
+		<a href="./images/InterpreterVSCompiler.png"><img src="./images/InterpreterVSCompiler.png" alt="InterpreterVSCompiler.png"></a>
+	</section>
+	<section><h3 class="advanced">Python implementations/distributions</h3>
+		<p>Python is an open source project: <a href="https://github.com/python">Python's github</a></p>
+		<dl class="fa">
+			<dt><a href="https://www.python.org/">CPython</a> - the official Python distribution.</dt>
+			<dt><a href="https://pypy.org/">PyPy</a> - faster and compliant with Python2 and Python 3</dt>
+			<dt><a href="http://www.jython.org/">Jython</a> - Python for the Java Platform.</dt>
+			<dt><a href="http://ironpython.net/">IronPython</a> - the Python programming language for the .NET Framework.</dt>
+			<dt><a href="http://pyjs.org/">Pyjs</a> - contains a Python-to-JavaScript compiler, an AJAX framework and more.</dt>
+		</dl>
+	</section>
+</section>
+
+<section><h1>Setting up Python</h1></section>
+<section><h2>Setting up Python (on Windows, Mac, Linux)</h2>
+	<section><h3>Install Python on Windows - HowTo</h3>
+		<dl class="fa">
+			<dt>Download the <span class="note">Python3</span> Installer:</dt>
+			<dd><a href="https://www.python.org/downloads/windows/">Python Releases for Windows</a></dd>
+			<dd>Select 32-bit and 64-bit versions according to your system</dd>
+			<dt>Customize installation:</dt>
+			<dd>installation location:
+				<code>C:/Python310</code></dd>
+			<dd class="note">Select "Add Python to PATH"</dd>
+			<dt>Reference: <a href="https://docs.python.org/3/using/windows.html#installation-steps">Using Python on Windows - installation-steps @docs.python.org</a></dt>
+		</dl>
+	</section>
+	<section><h3>Install Git (and Git BASH) for Windowss</h3>
+		<dl class="fa">
+			<dt><a href="https://gitforwindows.org/">Git for Windows</a> provides a BASH emulation terminal used to run Git from the command line. </dt>
+		</dl>
+	</section>
+	<section><h3>Install Python on Mac - more info</h3>
+		<dl class="fa">
+			<dt><a href="https://docs.python.org/3/using/mac.html">Using Python on a Macintosh @docs.python.org</a></dt>
+		</dl>
+	</section>
+	<section><h3>Install Python on Linux</h3>
+		<dl class="fa">
+			<dt><a href="https://docs.python.org/3/using/unix.html#on-linux">Using Python on Linux @docs.python.org</a></dt>
+		</dl>
+	</section>
+	<section><h3>Verify installation:</h3>
+		<dl class="fa">
+			<dt>Open a Terminal/Command Prompt and type:
+				<pre><code rel="Terminal" class="shell">
+					# check for python installed version:
+					python3 --version
+
+					# check for pip installed version:
+					pip --version
+				</code></pre>
+			</dt>
+		</dl>
+	</section>
+</section>
+
+<!-- <section><h2>Let's get dirty - write your first Python script (using IDLE).</h2>
+	<section><h3></h3>
+		<dl class="fa">
+			<dt>Open your Python's <a href="https://en.wikipedia.org/wiki/IDLE">IDLE</a></dt>
+			<dd>It's bundled with Python installation, so it's already in your machine.</dd>
+			<dt>Write down next code (<span class="note">put your names in the quotes</span>) and hit <kbd>enter</kbd>:</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			first_name = "Iva"
+			last_name = "Popova"
+			print(first_name + last_name)
+		</code></pre>
+	</section>
+</section> -->
+
+<section><h2>Python IDEs and code editors</h2>
+	<section>
+		<dl class="fa">
+			<dt><a href="https://code.visualstudio.com/">Visual Studio Code</a></dt>
+			<dd>a <span class="note">cross platform</span> code editor that supports <span class="note">multiple programming languages</span>.</dd>
+			<dd>Free and <span class="note">open source</span> ( <a href="https://github.com/microsoft/vscode">vscode @github</a> )</dd>
+			<dd>Large and <span class="note">vivid community</span>, supported by Microsoft</dd>
+			<dd>Combines the simplicity of a code editor with what developers need for their core edit-build-debug cycle through <span class="note">many extensions</span>.</dd>
+			<dd>VS Code in the browser: <a href="https://vscode.dev/">vscode.dev</a></dd>
+			<dt><a href="https://www.jetbrains.com/pycharm/">JetBrains' PyCharm</a> - The Python IDE
+				for Professional Developers</dt>
+			<dt><a href="https://www.sublimetext.com/">Sublime Text</a> - Text Editing, Done Right</dt>
+			<!-- <dt><a href="https://www.sublimetext.com/">Sublime Text</a></dt> -->
+		</dl>
+		<hr>
+		<p class="note">During the course, I'll be using VSCode.</p>
+	</section>
+</section>
+
+<section><h1>Write Python in VS Code</h1></section>
+<section><h2>Write Python in VS Code</h2>
+	<section><h3>VSCode intro</h3>
+		<dl class="fa">
+			<dt><a href="https://code.visualstudio.com/docs/getstarted/userinterface">User Interface</a></dt>
+			<dt><a href="https://code.visualstudio.com/docs/getstarted/themes">Color Themes</a></dt>
+			<dt><a href="https://code.visualstudio.com/docs/introvideos/extend">Using extensions in Visual Studio Code</a></dt>
+		</dl>
+	</section>
+	<section><h3>Useful Extensions</h3>
+		<dl class="fa">
+			<dt><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python Extension from Microsoft</a></dt>
+			<dt><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance">Pylance Exception from Microsoft</a></dt>
+		</dl>
+	</section>
+	<section><h3>Useful Keyboard Shortcuts</h3>
+		<p class="note">Command Palette gives you access to all VS commands in the given context.</p>
+		<table>
+			<tr>
+				<th>Keys</th><th>Action</th>
+			</tr>
+			<tr class="note">
+				<td><kbd>ctrl+shift+p</kbd></td><td>Opens Command Palette</td>
+			</tr>
+			<tr>
+				<td><kbd>ctrl+s</kbd></td><td>Save file</td>
+			</tr>
+			<tr>
+				<td><kbd>ctrl+`</kbd></td><td>Toggle Terminal/Output panel</td>
+			</tr>
+			<tr>
+				<td><kbd>ctrl+z</kbd></td><td>Undo what you've typed</td>
+			</tr>
+			<tr><td><kbd>ctrl+l</kbd></td><td>While in terminal will clear the output</td></tr>
+		</table>
+		<!-- <dl class="fa">
+			<dt>More on using VS Code with Python: <a href="https://code.visualstudio.com/docs/languages/python">Python in Visual Studio Code</a></dt>
+		</dl> -->
+		<dl class="fa">
+			<dt><a href="https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_keyboard-reference-sheets">keyboard shortcut reference sheet for your platform (macOS, Windows, Linux).</a></dt>
+		</dl>
+	</section>
+	<section><h3>VSCode Workspace</h3>
+		<dl class="fa">
+			<dt>A Visual Studio Code "workspace" is the collection of one or more folders that are opened in a VS Code window (instance).</dt>
+			<dt>The concept of a workspace enables VS Code to:</dt>
+			<dd>Configure settings that only apply to a specific folder or folders but not others.</dd>
+			<dd>Store and restore UI state associated with that workspace (for example, the files that are opened).</dd>
+			<dd>Selectively enable or disable extensions only for that workspace.</dd>
+			<dd>Persist task and debugger launch configurations that are only valid in the context of that workspace.</dd>
+		</dl>
+	</section>
+	<section><h3>Prepare your Workspace</h3>
+		<dl class="fa">
+			<dt>Make a root folder for your python projects.</dt>
+			<dt>Open vscode.</dt>
+			<dt>Select "Add folder" and choose the folder you've made.</dt>
+			<dt>In the sidebar, the "Explorer" will show your folder.</dt>
+			<!-- <dt>Save your workspace (you can use the same name as the project)</dt> -->
+			<!-- <dd>Menu=>File=>save Workspace As...</dd> -->
+			<!-- <dd><kbd>CTRL+SHIFT+P</kbd>=>save Workspace As...</dd> -->
+		</dl>
+	</section>
+	<section><h3>Prepare your Workspace - demo</h3>
+		<p>Your Workspace should look like: </p>
+		<a href="images/vsCode/PrepareWorkspaceWhite.png"><img src="images/vsCode/PrepareWorkspaceWhite.png" style="height: 70vh;"></a>
+	</section>
+	<section><h3 class="advanced">Workspace settings</h3>
+		<dl class="fa">
+			<dt>Press <kbd>CTRL+SHIFT+P</kbd> and type <code>Workspace Settings</code></dt>
+			<dt>Here you can change the default settings, as you wish in order to customize your experience with your project.</dt>
+		</dl>
+	</section>
+	<section><h3>Create and execute a Python file</h3>
+		<dl class="fa">
+			<dt>Right click on the root folder in VS Code Sidebar.</dt>
+			<dt>Select: "New File", enter the name: <code>say_hello.py</code> and press enter.</dt>
+			<dt>Write down this code (<span class="note">put your name in the quotes</span>):</dt>
+			<pre><code rel="Python" class="python">
+				my_name = "Iva"
+				print("Hello " + my_name)
+			</code></pre>
+			<dt>Right click anywhere on the editor window and select "<strong>Run Python File in Terminal</strong>".<br><span class="note">Note, this command will be present, only if you've been installed the extension: <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">python by microsoft</a></span></dt>
+		</dl>
+	</section>
+	<section><h3>Create and execute a Python file - demo</h3>
+		<dl class="fa">
+			<dt>A terminal panel should be opened in your editor showing the python script execution and its output:</dt>
+			<a href="images/vsCode/CreateAndExecutePythohnFile.gif"><img src="images/vsCode/CreateAndExecutePythohnFile.gif"></a>
+		</dl>
+	</section>
+	<section><h3>Setup 'Run with Python' Task</h3>
+		<dl class="fa">
+			<dt><a href="https://code.visualstudio.com/docs/editor/tasks">tasks @vscode</a></dt>
+			<script src="https://gist.github.com/WWWCourses/b0dcd6c2f052ae19a79006e496aa53e6.js"></script>
+		</dl>
+	</section>
+	<section><h3>Select Python version</h3>
+		<p><kbd>ctrl+shift+p</kbd> and find <code>Python: Select interpreter</code></p>
+	</section>
+	<!-- <section><h3>Useful videos</h3>
+		<p><a href="https://www.youtube.com/watch?v=s30KQESSEYk">How to Install Python with Visual Studio Code [2018]</a> by <a href="https://www.youtube.com/channel/UCk8Kq6bH0fcmk9_wmlP50lg">Jason E.</a></p>
+		<iframe src="https://www.youtube.com/embed/s30KQESSEYk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+	</section> -->
+	<section><h3>Useful videos</h3>
+		<p><a href="https://www.youtube.com/watch?v=SYRwSyjD8oI">VS Code - Setup and Basics</a> by <a href="https://www.youtube.com/channel/UCs5Y5_7XK8HLDX0SLNwkd3w">Visual Studio Code</a></p>
+		<iframe src="https://www.youtube.com/embed/SYRwSyjD8oI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+	</section>
+	<section><h3>Useful Readings</h3>
+		<dl class="fa">
+			<dt><a href="https://code.visualstudio.com/docs/languages/python">Python in Visual Studio Code @code.visualstudio.com</a></dt>
+			<dt><a href="https://stackoverflow.com/questions/42606837/how-to-use-bash-on-windows-from-visual-studio-code-integrated-terminal">How to use bash on Windows from visual studio code integrated terminal?</a> @stackoverflow</dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5"><h1>Python design philosophy and syntax</h1></section>
+<section><h2>Python design philosophy and syntax</h2>
+	<section><h3>The Zen of Python</h3>
+		<pre><code rel="Terminal" class="ascii">
+			$ python -m this
+			The Zen of Python, by Tim Peters
+
+			Beautiful is better than ugly.
+			Explicit is better than implicit.
+			Simple is better than complex.
+			Complex is better than complicated.
+			Flat is better than nested.
+			Sparse is better than dense.
+			Readability counts.
+			Special cases aren't special enough to break the rules.
+			Although practicality beats purity.
+			Errors should never pass silently.
+			Unless explicitly silenced.
+			In the face of ambiguity, refuse the temptation to guess.
+			There should be one-- and preferably only one --obvious way to do it.
+			Although that way may not be obvious at first unless you're Dutch.
+			Now is better than never.
+			Although never is often better than *right* now.
+			If the implementation is hard to explain, it's a bad idea.
+			If the implementation is easy to explain, it may be a good idea.
+			Namespaces are one honking great idea -- let's do more of those!
+		</code></pre>
+	</section>
+	<section><h3>Clean syntax</h3>
+		<dl class="fa">
+			<dt>Statements are terminated by <span class="note">EOL</span> ("End Of Line symbol"), not by semicolons</dt>
+			<dd>Though, you can use semicolons if you wish</dd>
+			<dt>Block of statements is wrapped by the <span class="note">same indentation</span>, not by curly braces</dt>
+			<dd>You can use <span class="note">spaces or tabs</span> for indent.</dd>
+			<dd>Mixing spaces with tabs can lead to errors or bugs.</dd>
+		</dl>
+	</section>
+	<section><h3>Python syntax vs JavaScript syntax demo</h3>
+		<dl class="fa">
+			<dt>Both programs deal with same task: to find the sum and product of array</dt>
+		</dl>
+		<pre style="width: 50vw; height: 40vh; display: inline-block; vertical-align: top; margin-right: 1em;"><code rel="Python" class="python" style="height: 95%;">
+			numbers = [1, 2, 3, 4]
+			product = 1
+
+			for i in numbers:
+						product *= i
+
+			total = sum(numbers)
+			print(total, product)
+		</code></pre>
+		<pre style="width: 50vw; height: 40vh; display: inline-block; vertical-align: top"><code rel="JavaScript" class="js" style="height: 95%;">
+			var numbers = [1, 2, 3, 4],
+						total = 0,
+						product = 1;
+
+			for (i = 0; i < numbers.length; i += 1) {
+						total += numbers[i];
+						product *= numbers[i];
+			}
+			console.log(total, product)
+		</code></pre>
+		<dl class="fa">
+			<dt>Other examples for comparing Python vs other languages you can find: <a href="https://www.rosettacode.org/wiki/Category:Programming_Tasks">rosettacode.org</a> </dt>
+		</dl>
+	</section>
+	<section><h3>Do not mix space and tabs</h3>
+		<a href="images/mixed_indent_c.png"><img src="images/mixed_indent_c.png"></a>
+		<p>That code will lead to</p>
+		<p><span class="note">TabError: inconsistent use of tabs and spaces in indentation</span></p>
+	</section>
+	<section><h3>Same indent!</h3>
+		<a href="images/IndentationError.png"><img src="images/IndentationError.png"></a>
+		<p>That code will lead to</p>
+		<p><span class="note">IndentationError: unexpected indent</span></p>
+	</section>
+	<section><h3>Wrong indentation can cause bugs!</h3>
+		<a href="images/indentation_bug.png"><img src="images/indentation_bug.png"></a>
+		<p>Can you spot the bug?</p>
+	</section>
+</section>
+
+
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section> -->
+
+<!-- <section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: InstalationAndSyntax">ivawebcourses@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
