@@ -66,100 +66,24 @@
 		<div class="author">
 			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2021-2022,</span>
 			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
 		</div>
 	</section>
 </section>
 
-
-
-<section data-min="5"><h1>Python design philosophy and syntax</h1></section>
-<section><h2>Python design philosophy and syntax</h2>
-	<section><h3>The Zen of Python</h3>
-		<pre><code rel="Terminal" class="ascii">
-			$ python -m this
-			The Zen of Python, by Tim Peters
-
-			Beautiful is better than ugly.
-			Explicit is better than implicit.
-			Simple is better than complex.
-			Complex is better than complicated.
-			Flat is better than nested.
-			Sparse is better than dense.
-			Readability counts.
-			Special cases aren't special enough to break the rules.
-			Although practicality beats purity.
-			Errors should never pass silently.
-			Unless explicitly silenced.
-			In the face of ambiguity, refuse the temptation to guess.
-			There should be one-- and preferably only one --obvious way to do it.
-			Although that way may not be obvious at first unless you're Dutch.
-			Now is better than never.
-			Although never is often better than *right* now.
-			If the implementation is hard to explain, it's a bad idea.
-			If the implementation is easy to explain, it may be a good idea.
-			Namespaces are one honking great idea -- let's do more of those!
-		</code></pre>
-	</section>
-	<section><h3>Clean syntax</h3>
-		<dl class="fa">
-			<dt>Statements are terminated by <span class="note">EOL</span> ("End Of Line symbol"), not by semicolons</dt>
-			<dd>Though, you can use semicolons if you wish</dd>
-			<dt>Block of statements is wrapped by the <span class="note">same indentation</span>, not by curly braces</dt>
-			<dd>You can use <span class="note">spaces or tabs</span> for indent.</dd>
-			<dd>Mixing spaces with tabs can lead to errors or bugs.</dd>
-		</dl>
-	</section>
-	<section><h3>Python syntax vs JavaScript syntax demo</h3>
-		<dl class="fa">
-			<dt>Both programs deal with same task: to find the sum and product of array</dt>
-		</dl>
-		<pre style="width: 50vw; height: 40vh; display: inline-block; vertical-align: top; margin-right: 1em;"><code rel="Python" class="python" style="height: 95%;">
-			numbers = [1, 2, 3, 4]
-			product = 1
-
-			for i in numbers:
-						product *= i
-
-			total = sum(numbers)
-			print(total, product)
-		</code></pre>
-		<pre style="width: 50vw; height: 40vh; display: inline-block; vertical-align: top"><code rel="JavaScript" class="js" style="height: 95%;">
-			var numbers = [1, 2, 3, 4],
-						total = 0,
-						product = 1;
-
-			for (i = 0; i < numbers.length; i += 1) {
-						total += numbers[i];
-						product *= numbers[i];
-			}
-			console.log(total, product)
-		</code></pre>
-		<dl class="fa">
-			<dt>Other examples for comparing Python vs other languages you can find: <a href="https://www.rosettacode.org/wiki/Category:Programming_Tasks">rosettacode.org</a> </dt>
-		</dl>
-	</section>
-	<section><h3>Do not mix space and tabs</h3>
-		<a href="images/mixed_indent_c.png"><img src="images/mixed_indent_c.png"></a>
-		<p>That code will lead to</p>
-		<p><span class="note">TabError: inconsistent use of tabs and spaces in indentation</span></p>
-	</section>
-	<section><h3>Same indent!</h3>
-		<a href="images/IndentationError.png"><img src="images/IndentationError.png"></a>
-		<p>That code will lead to</p>
-		<p><span class="note">IndentationError: unexpected indent</span></p>
-	</section>
-	<section><h3>Wrong indentation can cause bugs!</h3>
-		<a href="images/indentation_bug.png"><img src="images/indentation_bug.png"></a>
-		<p>Can you spot the bug?</p>
-	</section>
-</section>
 
 <section data-min="5"><h1>Data Types Introduction</h1></section>
 <section><h2>Data Types Introduction</h2>
 	<dl class="fa">
 		<dt>Programming is about manipulating <b>data</b></dt>
 		<dt>Each programming language defines its data types and the corresponding operations which can be performed on each data type.</dt>
-		<dt>In Python, each data type literal is represented internally as <b>object</b></dt>
+		<pre><code rel="Python" class="python">
+			print( 1 + 2 ) # 3
+			print( '1' + '2' ) # 12
+			print( True + True ) # 2
+			print( 3 * 4 ) # 12
+			print( 3 * '4' ) # 444
+		</code></pre>
 	</dl>
 </section>
 
@@ -168,7 +92,6 @@
 	<section>
 		<dl class="fa">
 			<dt>In Python we can use <span class="keyword">integer</span>, <span class="keyword">floating point</span> and <span class="keyword">complex</span> numbers</dt>
-			<dt>Numbers are <span class="note">immutable</span> data type!</dt>
 			<dt>Most arithmetic operations are natively defined in Python.</dt>
 			<dt>More complex math functions are defined in the <a href="https://docs.python.org/3/library/math.html">math module</a></dt>
 		</dl>
@@ -318,11 +241,12 @@
 	</section>
 </section>
 
+
 <section data-min="20"><h1>Strings in Python</h1></section>
 <section><h2>Strings in Python</h2>
 	<section><h3>definition</h3>
 		<dl class="fa">
-			<dt>Strings are <b>immutable</b> sequences of Unicode code points <span style="font-size: 0.8em">(will be discussed further)</span>.</dt>
+			<dt>Strings are sequences of Unicode code points <span style="font-size: 0.8em">(will be discussed deeply further)</span>.</dt>
 			<dt>Single-line strings literal should be closed in single or double quotes</dt>
 			<dd><i>No difference between single or double quoted strings!</i></dd>
 			<dt>Multi-line strings literal should be closed in triple single or double quotes</dt>
@@ -421,11 +345,9 @@
 		<dl class="fa">
 			<dt>A <span class="note">name</span> (identifier) for "container" (placed in RAM) in which values can be stored and retrieved</dt>
 			<dt>When we say that we <b>set</b> value in a variable, it should be understood as 	to <b>write</b> a value into the corresponding container.</dt>
-			<dt>In Python we speak about <span class="note">name binding</span>, when we assign a value to variable.</dt>
+			<!-- <dt>In Python we speak about <span class="note">name binding</span>, when we assign a value to variable.</dt> -->
 			<dt>We can <b>get</b> the variable value, i.e. to <b>read</b> the content of the corresponding container</dt>
 		</dl>
-	</section>
-	<section><h3>A very simplified view of variables in RAM</h3>
 		<pre><code rel="Python" class="python">
 			x = 99
 			y = 3.141516
@@ -433,134 +355,60 @@
 			sur_name = "byron"
 			num_list = [1,2,3,4,5]
 		</code></pre>
-		<a href="images/python_variables_in_RAM.png"><img src="images/python_variables_in_RAM.png" style="height: 70vh;"></a>
+		<a href="images/python_variables_in_RAM.png"><img src="images/python_variables_in_RAM.png" style="height: 50vh;"></a>
 	</section>
 	<section><h3>Identifiers rules</h3>
-		<dl class="fa" style="width: 100%">
+		<dl class="fa">
 			<dt>Variables names should follow next rules:</dt>
 			<dd>Start with <span class="note">letter or underscore</span></dd>
 			<dd>Followed by zero or more <span class="note">letters, underscores and digits</span></dd>
+			<pre><code rel="Python" class="python">
+				x1 = 5 # ok
+				1x = 5 # error
+				_  = 5 # ok
+				__x__ = 5 # ok
+				my-var =5 # error
+			</code></pre>
 			<dt>Variable names <span class="note">are case-sensitive</span></dt>
+			<pre><code rel="Python" class="python">
+				a = 5
+				print(a)	# 5
+				print(A)	# NameError: name 'A' is not defined. Did you mean: 'a'?
+			</code></pre>
 			<dt><a href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers">Identifiers and keywords</a> @python docs</dt>
 		</dl>
 	</section>
 	<section><h3>Naming Conventions</h3>
 		<dl class="fa">
-			<dt>Function names should be lowercase, with words separated by underscores as necessary to improve readability.</dt>
-			<dt>Variable names follow the same convention as function names.</dt>
-			<dt>mixedCase is allowed only in contexts where that's already the prevailing style (e.g. threading.py), to retain backwards compatibility.</dt>
-			<dt><a href="https://www.python.org/dev/peps/pep-0008/#function-and-variable-names">PEP 8 (Function and Variable Names)</a></dt>
+			<dt>Naming convention is not a rule, but a generally agreed scheme for naming things.</dt>
+			<dt>Naming conventions make programs more understandable by making them easier to read.</dt>
+			<dt>Different programming languages uses <a href="https://en.wikipedia.org/wiki/Naming_convention_(programming)#Examples_of_multiple-word_identifier_formats">different naming conventions</a></dt>
+			<dt>Python uses snake_case naming convention for naming variables</dt>
+			<dd>variable names should be lowercase, with words separated by underscores. That naming convention is known as snake-case.</dd>
+
+			<pre><code rel="Python" class="python">
+				user_name = 'Ada' # snake_case -> used in Python
+				userName = 'Ada'  # camelCase -> not used in Python for simple variable names
+			</code></pre>
 		</dl>
 	</section>
-	<section><h3>example</h3>
-		<pre><code rel="Python" class="python">
-			x = 99
-			print("x = ", x)
 
-			first_name = "ada"
-			print("first_name = ", first_name)
-
-			print("first_name = ", First_name) #NameError: name 'First_name' is not defined
-
-			sur-name = "byron" #SyntaxError: can't assign to operator
-
-		</code></pre>
-	</section>
-	<section><h3>Name binding</h3>
+	<section><h3>Assignment Operation (Name binding)</h3>
 		<dl class="fa">
-			<dt>Name binding is the association between a name and an a value</dt>
-			<dd>Note, that all values in Python are represented as objects</dd>
+			<dt>Name binding is the association between a name and a value</dt>
 			<dt>We can bind a value to a name with the <code>assignment</code> operator (<code>=</code>)</dt>
-			<dt>We can check the unique identity of an object by the <code>id()</code> built-in function.</dt>
-			<dd>CPython uses the object's memory address for the unique id</dd>
+			<dt>We can check the unique identity of a value by the <code>id()</code> built-in function.</dt>
 			<pre><code rel="Python" class="python">
 				a = 2
 				print(id(a))
 
-				# 9413216
+				# 140168672297232
 			</code></pre>
 		</dl>
 	</section>
 	<section><h3>Name binding</h3>
 		<a href="images/variables_bounding.png"><img src="images/variables_bounding.png"></a>
 	</section>
-
-	<section><h3>Name Binding</h3>
-		<dl class="fa">
-			<dt>Python reuses the immutable objects instead of creating copies</dt>
-			<dd>That's true only for small immutable objects (implementation dependant, so don't rely on that)</dd>
-
-			<pre><code rel="Python" class="python" style="min-height: 60vh;">
-				# only one object will be created
-				a = 1
-				b = 1
-				print(id(a))
-				# 9413184
-				print(id(b))
-				#9413184
-
-				# two different objects will be created
-				c = 1_000_000
-				d = 1_000_000
-				print(id(c))
-				# 140418111214320
-				print(id(d))
-				# 140418111215440
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>Name binding</h3>
-		<pre><code rel="Python" class="python" style="min-height: 60vh;">
-			a = 5
-			b = 2+3
-			c = b
-
-			print(id(a))
-			#9413312
-
-			print(id(b))
-			#9413312
-
-			print(id(c))
-			# 9413312
-		</code></pre>
-		<dl class="fa">
-			<dt>Note, that in memory there is exactly one object (id: 9413312, value:5) after execution of the above code.</dt>
-		</dl>
-	</section>
-	<section><h3>Name binding - aliasing</h3>
-		<dl class="fa">
-			<dt>When the right-hand side of the assignment is an existing variable, Python did not create a new object, but gives that object another name, an alias.</dt>
-			<pre><code rel="Python" class="python">
-				a = 1_000_000
-				b = a
-				print(id(a))
-				# 140418111916176
-
-				print(id(b))
-				# 140418111916176
-
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3 class="advanced">Garbage collection</h3>
-		<dl class="fa">
-			<dt>Garbage Collection is a process of reclaiming the unused runtime memory automatically.</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			a = 5
-			print(id(a))
-			# 9413312
-
-			# Now we create a new object, and bind it to 'a'
-			a = 6
-			print(id(a))
-			# 9413344
-
-			# the object [id:9413312, value:5] will be deleted by the garbage collector, as nothing points to it
-		</code></pre>
-	</section>
-
 </section>
 
 <section data-min="5"><h1>Comments</h1></section>
@@ -577,7 +425,7 @@
 	<section><h3>How to comment our code?</h3>
 		<dl class="fa">
 			<dt>Single line comment: <code class="note">#</code></dt>
-			<dd>every line which starts with <code class="note">#</code>(hash tag) is a comment and is ignored py Python interpreter</dd>
+			<dd>every line which starts with <code class="note">#</code> (hash tag) is a comment and is ignored py Python interpreter</dd>
 			<pre><code rel="Python" class="python3">
 				# this is a just a comment: no print("whatever") will happens
 				print("this will be printed, of course")
@@ -593,22 +441,114 @@
 	</section>
 </section>
 
-<!--
-<section id="hw"><h1>Exercises</h1></section>
-<section><h2>Task1</h2>
-	<section><h3>The Task</h3>
 
+
+<section id="hw">
+	<h1>Exercises</h1>
+</section>
+<section><h2><b>Academical to Astronomical hours converter</b></h2>
+	<section><h3>The task</h3>
+		<dl class="fa">
+			<dt>Given that:</dt>
+			<dd>An astronomical hour consists of 60 minutes</dd>
+			<dd>An academical hour consists of 40 minutes</dd>
+			<dd>For each 3 academical hours there are 15 minutes brake</dd>
+			<dt>Write a Python program, that will print out how many astronomical hours a python course should take, if it consists of 64 academical hours, including the respective brakes</dt>
+			<dt>Try to think of a solution, which will be readable enough and easy to maintain in future</dt>
+			<dt>Write your code in <code>HW/acad_to_astro_hours.py</code> file</dt>
+		</dl>
+		<!-- <hr> -->
+		<!-- <pre><code rel="Expected Output" class="shell">
+			Total course astronomical hours are: 48.0
+		</code></pre> -->
 	</section>
-</section> -->
+	<!-- <section><h3>solution - without variables</h3>
+		<pre><code rel="Python" class="python3">
+			"""
+			acad_to_astro_hours.py
 
-<!-- <section><h3>Submission</h3>
+			Solution without using variables to store values
+			"""
+
+			print((64*40 + 64/3*15)/60)
+		</code></pre>
+	</section>
+	<section><h3>solution: too many variables</h3>
+		<pre><code rel="Python" class="python3">
+			"""
+			acad_to_astro_hours_with_vars.py
+
+			An example of too many variables, with too long names.
+			"""
+
+			# given:
+			# variables declaration
+			minutes_in_astro_hour = 60
+			minutes_in_acad_hour = 40
+			course_total_acad_hours = 64
+			acad_hours_in_a_day = 3
+			minutes_in_break = 15
+
+			# program logic:
+			course_days = course_total_acad_hours/acad_hours_in_a_day
+			total_breaks_minutes = course_days * minutes_in_break
+
+			total_course_minutes = course_total_acad_hours * minutes_in_acad_hour + total_breaks_minutes
+			total_course_astro_hours = total_course_minutes / minutes_in_astro_hour
+
+			print(f'Total course astronomical hours are: {total_course_astro_hours}')
+		</code></pre>
+	</section> -->
+</section>
+
+<section id="hw_bmi"><h2><b>Body Mass Index calculator</b></h2>
+	<section><h3>The problem</h3>
+		<dl class="fa" style="font-size: 0.8em;">
+			<dt>Calculate your body mass index (BMI) with Python, given the formula:<br>
+			<code class="note">BMI = W / (H*H)</code><br>
+			where:
+			</dt>
+			<dd>W = weight_in_kilogram</dd>
+			<dd>H = height_in_meters</dd>
+			<dt>Your program should outputs the result rounded to 2 digits after the decimal point).</dt>
+			<dt>Try to think of a solution, which will be readable enough and easy to maintain in future (you can use comments and semantic variable names)</dt>
+			<dt>write your code in <code>HW/BMI.py</code> file</dt>
+			<hr>
+			<dt><span class="note">Tip</span>: You can use the python's build-in <a href="https://www.tutorialspoint.com/python/number_round.htm">round()</a> function, like:</dt>
+			<pre><code rel="Python" class="python3">
+				>>> round(2.1457, 2)
+				2.15
+
+				>>> round(1.4234,2)
+				1.42
+
+				>>> round(1.4284,2)
+				1.43
+			</code></pre>
+		</dl>
+	</section>
+	<!-- <section><h3>solution</h3>
+		<pre><code rel="Python" class="python3">
+			"""
+			Solution without using variables to store values,
+
+			and given that W = 53, H = 1.67:
+			"""
+			print(round(53/(1.67*1.67), 2))
+
+			# 19.0
+
+		</code></pre>
+	</section> -->
+</section>
+
+<section><h2>HW Submition</h2>
 	<dl class="fa">
-		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
-		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_VariablesSimpleDataTypes">ivawebcourses@gmail.com</a></dt>
+		<dt>You can submit your files either by:</dt>
+		<dd>upload to your Github account</dd>
+		<dd>Or sending as email attachment</dd></dt>
 	</dl>
-</section> -->
-
+</section>
 
 
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
