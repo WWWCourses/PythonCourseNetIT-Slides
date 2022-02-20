@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>PythonBasics_VariablesSimpleDataTypes</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_VariablesSimpleDataTypes" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Variables. Simple data types and operations.</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="www.linkedin.com/in/ivapopova">Iva E. Popova</a>, 2021-2022,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+
+
+<section data-min="5"><h1>Python design philosophy and syntax</h1></section>
+<section><h2>Python design philosophy and syntax</h2>
+	<section><h3>The Zen of Python</h3>
+		<pre><code rel="Terminal" class="ascii">
+			$ python -m this
+			The Zen of Python, by Tim Peters
+
+			Beautiful is better than ugly.
+			Explicit is better than implicit.
+			Simple is better than complex.
+			Complex is better than complicated.
+			Flat is better than nested.
+			Sparse is better than dense.
+			Readability counts.
+			Special cases aren't special enough to break the rules.
+			Although practicality beats purity.
+			Errors should never pass silently.
+			Unless explicitly silenced.
+			In the face of ambiguity, refuse the temptation to guess.
+			There should be one-- and preferably only one --obvious way to do it.
+			Although that way may not be obvious at first unless you're Dutch.
+			Now is better than never.
+			Although never is often better than *right* now.
+			If the implementation is hard to explain, it's a bad idea.
+			If the implementation is easy to explain, it may be a good idea.
+			Namespaces are one honking great idea -- let's do more of those!
+		</code></pre>
+	</section>
+	<section><h3>Clean syntax</h3>
+		<dl class="fa">
+			<dt>Statements are terminated by <span class="note">EOL</span> ("End Of Line symbol"), not by semicolons</dt>
+			<dd>Though, you can use semicolons if you wish</dd>
+			<dt>Block of statements is wrapped by the <span class="note">same indentation</span>, not by curly braces</dt>
+			<dd>You can use <span class="note">spaces or tabs</span> for indent.</dd>
+			<dd>Mixing spaces with tabs can lead to errors or bugs.</dd>
+		</dl>
+	</section>
+	<section><h3>Python syntax vs JavaScript syntax demo</h3>
+		<dl class="fa">
+			<dt>Both programs deal with same task: to find the sum and product of array</dt>
+		</dl>
+		<pre style="width: 50vw; height: 40vh; display: inline-block; vertical-align: top; margin-right: 1em;"><code rel="Python" class="python" style="height: 95%;">
+			numbers = [1, 2, 3, 4]
+			product = 1
+
+			for i in numbers:
+						product *= i
+
+			total = sum(numbers)
+			print(total, product)
+		</code></pre>
+		<pre style="width: 50vw; height: 40vh; display: inline-block; vertical-align: top"><code rel="JavaScript" class="js" style="height: 95%;">
+			var numbers = [1, 2, 3, 4],
+						total = 0,
+						product = 1;
+
+			for (i = 0; i < numbers.length; i += 1) {
+						total += numbers[i];
+						product *= numbers[i];
+			}
+			console.log(total, product)
+		</code></pre>
+		<dl class="fa">
+			<dt>Other examples for comparing Python vs other languages you can find: <a href="https://www.rosettacode.org/wiki/Category:Programming_Tasks">rosettacode.org</a> </dt>
+		</dl>
+	</section>
+	<section><h3>Do not mix space and tabs</h3>
+		<a href="images/mixed_indent_c.png"><img src="images/mixed_indent_c.png"></a>
+		<p>That code will lead to</p>
+		<p><span class="note">TabError: inconsistent use of tabs and spaces in indentation</span></p>
+	</section>
+	<section><h3>Same indent!</h3>
+		<a href="images/IndentationError.png"><img src="images/IndentationError.png"></a>
+		<p>That code will lead to</p>
+		<p><span class="note">IndentationError: unexpected indent</span></p>
+	</section>
+	<section><h3>Wrong indentation can cause bugs!</h3>
+		<a href="images/indentation_bug.png"><img src="images/indentation_bug.png"></a>
+		<p>Can you spot the bug?</p>
+	</section>
+</section>
+
+<section data-min="5"><h1>Data Types Introduction</h1></section>
+<section><h2>Data Types Introduction</h2>
+	<dl class="fa">
+		<dt>Programming is about manipulating <b>data</b></dt>
+		<dt>Each programming language defines its data types and the corresponding operations which can be performed on each data type.</dt>
+		<dt>In Python, each data type literal is represented internally as <b>object</b></dt>
+	</dl>
+</section>
+
+<section data-min="10"><h1>Numeric Data Types</h1></section>
+<section><h2>Numeric Data Types</h2>
+	<section>
+		<dl class="fa">
+			<dt>In Python we can use <span class="keyword">integer</span>, <span class="keyword">floating point</span> and <span class="keyword">complex</span> numbers</dt>
+			<dt>Numbers are <span class="note">immutable</span> data type!</dt>
+			<dt>Most arithmetic operations are natively defined in Python.</dt>
+			<dt>More complex math functions are defined in the <a href="https://docs.python.org/3/library/math.html">math module</a></dt>
+		</dl>
+	</section>
+	<section><h3>integer numbers</h3>
+		<p>we can use positive and negative integers:</p>
+		<pre><code rel="Python" class="python3">
+			# positive integer literal:
+			>>> 42
+			42
+
+			>>> +42
+			42
+
+			# negative integer literal:
+			>>> -42
+			-42
+		</code></pre>
+	</section>
+	<section><h3>floating point numbers</h3>
+		<p>we can use positive and negative floating point numbers</p>
+		<pre><code rel="Python" class="python3">
+			>>> 3.1234
+			3.1234
+
+			>>> -0.255
+			-0.255
+
+			# leading zero can be skipped:
+			>>> .44
+			0.44
+			>>> -.55
+			-0.55
+			>>>
+		</code></pre>
+	</section>
+	<section><h3>Underscores in Numeric Literals</h3>
+		<dl class="fa">
+			<dt>As of <span class="note">Python 3.6</span> you can use underscores in numeric literals to improve readability of long numbers</dt>
+			<pre><code rel="Python" class="python3">
+				>>> 1_000_000 + 2_000_000
+				3000000
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>arithmetic operations</h3>
+		<dl class="fa">
+			<dt>Python supports the standard arithmetic operations:</dt>
+			<dd><a href="https://docs.python.org/3/library/stdtypes.html?highlight=arithmetic%20operation#numeric-types-int-float-complex">Numeric Types</a>@python docs</dd>
+		</dl>
+		<p class="note">The division operator "<code>/</code>" in python2 returns the integer part(i.e. works like Floor division), while in python3 it returns the float result</p>
+	</section>
+	<section><h3>Example: arithmetic operations</h3>
+		<pre><code rel="Python" class="python3">
+				>>> 5-3
+				2
+				>>> 5*3
+				15
+				>>> 5/3
+				1.6666666666666667
+				>>> 5//3
+				1
+				>>> 5%3
+				2
+		</code></pre>
+	</section>
+	<section><h3>Example: python3 vs python2 division</h3>
+		<pre><code rel="Python2" class="python3">
+			>>> 5/3
+			1
+		</code></pre>
+		<pre><code rel="Python3" class="python3">
+			>>> 5/3
+			1.6666666666666667
+
+			>>> 5//3
+			1
+		</code></pre>
+		<p class="note">Python3 adds the "<code>//</code>" operator for Integer division</p>
+	</section>
+	<section><h3>Floating Point Arithmetic: Issues and Limitations</h3>
+		<dl class="fa">
+			<dt>Decimal numbers are represented in binary system.</dt>
+			<dt>Most decimal fractions cannot be represented exactly as binary fractions, which leads to peculiar results</dt>
+			<dt>Reference: <a href="https://docs.python.org/3/tutorial/floatingpoint.html">Floating Point Arithmetic: Issues and Limitations @python.org</a></dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			print(0.1+0.2)
+
+			# OUTPUT:
+			# 0.30000000000000004
+		</code></pre>
+	</section>
+	<section><h3>the <code>math</code> module</h3>
+		<dl class="fa">
+			<dt>math module is native to every python distribution.</dt>
+			<dt>to use its functions you only have to import it in your program:</dt>
+			<pre><code rel="Python" class="python3">
+				import math
+				# do something with math
+			</code></pre>
+			<dt><a href="https://docs.python.org/3/library/math.html">math — Mathematical functions</a> @python docs</dt>
+		</dl>
+	</section>
+	<section><h3>Built-in math functions</h3>
+		<dl class="fa">
+			<dt>Python interpreter has a number of built-in functions which can be used without any imports.</dt>
+			<dt>Part of them, concerning Math are: <code><a href="https://docs.python.org/3/library/functions.html#abs">abs()</a></code>, <code><a href="https://docs.python.org/3/library/functions.html#max">max()</a></code>, <code><a href="https://docs.python.org/3/library/functions.html#min">min()</a></code>, <code><a href="https://docs.python.org/3/library/functions.html#round">round()</a></code></dt>
+		</dl>
+	</section>
+	<section><h3>Example: math module methods</h3>
+		<pre><code rel="Python" class="python3">
+			>>> import math
+			>>>
+			>>> math.pi
+			3.141592653589793
+			>>> math.floor(math.pi)
+			3
+			>>> math.pow(2,3)
+			8.0
+			>>> math.sqrt(9)
+			3.0
+			>>> math.ceil(2.9)
+			3
+			>>> math.ceil(2.1)
+			3
+			>>> math.floor(2.9)
+			2
+			>>> math.floor(2.1)
+
+		</code></pre>
+	</section>
+	<section><h3>Example: math built-in functions</h3>
+		<pre><code rel="Python" class="python3">
+			>>> round(2.51)
+			3
+			>>> round(2.49)
+			2
+			>>> max(1,2,3)
+			3
+			>>> min(1,2,3)
+			1
+			>>> abs(2-5)
+			3
+
+		</code></pre>
+	</section>
+</section>
+
+<section data-min="20"><h1>Strings in Python</h1></section>
+<section><h2>Strings in Python</h2>
+	<section><h3>definition</h3>
+		<dl class="fa">
+			<dt>Strings are <b>immutable</b> sequences of Unicode code points <span style="font-size: 0.8em">(will be discussed further)</span>.</dt>
+			<dt>Single-line strings literal should be closed in single or double quotes</dt>
+			<dd><i>No difference between single or double quoted strings!</i></dd>
+			<dt>Multi-line strings literal should be closed in triple single or double quotes</dt>
+		</dl>
+	</section>
+	<section><h3>Examples</h3>
+		<pre><code rel="Python" class="python3">
+			>>> "this is a single line string"
+			'this is a single line string'
+
+			>>> 'another single line string with UTF charactes like 🍷'
+			'another single line string with UTF charactes like 🍷'
+
+			>>> 'but can not be spred in multiple lines
+		  File "<stdin>", line 1
+		    'but can not be spred in multiple lines
+		                                         ^
+			SyntaxError: EOL while scanning string literal
+		</code></pre>
+	</section>
+	<section><h3>Examples</h3>
+		<pre><code rel="Python" class="python3">
+			>>> """infact you can -
+			... if you use these triple quotes"""
+			'infact you can - \nif you use these triple quotes'
+
+			>>> '''or these triple quotes
+			... can separate multiline without errors'''
+			'or these triple quotes\ncan separate multiline without errors'
+
+
+		</code></pre>
+	</section>
+</section>
+
+<section data-min="10"><h1>Strings operations</h1></section>
+<section><h2>Strings operations</h2>
+	<section><h3>concatenation: <code>+</code></h3>
+		<p>The operation is defined only when <span class="note">both operands are string</span>, I.e. Python can not concatenate apples with oranges:</p>
+		<pre><code rel="Python" class="python3">
+			#string concatenation with '+':
+			>>> "ala" + "bala"
+			'alabala
+
+			>>> "1" + "2"
+			'12'
+
+			>>> "1" + 3
+			Traceback ...
+			TypeError: cannot concatenate 'str' and 'int' objects
+		</code></pre>
+	</section>
+	<section><h3>repetition: <code>*</code></h3>
+		<p>One of the operands must be <span class="note">string</span>, the other - <span class="note">integer</span></p>
+		<pre><code rel="Python" class="python3">
+			>>> "-" * 10
+			'----------'
+
+			>>> "1" * 10
+			'1111111111'
+
+			>>> ">hello<" * 3
+			'>hello<>hello<>hello<'
+
+			>>> "a" * "3"
+			Traceback ...
+			TypeError: can't multiply sequence by non-int of type 'str'
+		</code></pre>
+	</section>
+	<section><h3>String Methods</h3>
+		<pre><code rel="Python" class="python3">
+			# string methods:
+			>>> "ada".capitalize()
+			'Ada'
+			>>> "alabala".count("a")
+			4
+			>>> "Alabala".count("a")
+			3
+			>>> "AlabAla".find("a")
+			2
+			>>> "alabala".replace("a", "o")
+			'olobolo'
+			>>> "one,two,three".split(",")
+			['one', 'two', 'three']
+
+
+		</code></pre>
+		<p style="opacity: 0.7; font-size: 0.9em">What a method is will be discussed further!</p>
+		<p>For now, you can try to look at the docs: <a href="https://docs.python.org/3/library/stdtypes.html#string-methods">String Methods @docs.python.org</a></p>
+	</section>
+</section>
+
+<section data-min="5"><h1>Variables/Value Names</h1></section>
+<section><h2>Variables in Python</h2>
+	<section><h3>What is a variable in Python?</h3>
+		<dl class="fa">
+			<dt>A <span class="note">name</span> (identifier) for "container" (placed in RAM) in which values can be stored and retrieved</dt>
+			<dt>When we say that we <b>set</b> value in a variable, it should be understood as 	to <b>write</b> a value into the corresponding container.</dt>
+			<dt>In Python we speak about <span class="note">name binding</span>, when we assign a value to variable.</dt>
+			<dt>We can <b>get</b> the variable value, i.e. to <b>read</b> the content of the corresponding container</dt>
+		</dl>
+	</section>
+	<section><h3>A very simplified view of variables in RAM</h3>
+		<pre><code rel="Python" class="python">
+			x = 99
+			y = 3.141516
+			first_name = "ada"
+			sur_name = "byron"
+			num_list = [1,2,3,4,5]
+		</code></pre>
+		<a href="images/python_variables_in_RAM.png"><img src="images/python_variables_in_RAM.png" style="height: 70vh;"></a>
+	</section>
+	<section><h3>Identifiers rules</h3>
+		<dl class="fa" style="width: 100%">
+			<dt>Variables names should follow next rules:</dt>
+			<dd>Start with <span class="note">letter or underscore</span></dd>
+			<dd>Followed by zero or more <span class="note">letters, underscores and digits</span></dd>
+			<dt>Variable names <span class="note">are case-sensitive</span></dt>
+			<dt><a href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers">Identifiers and keywords</a> @python docs</dt>
+		</dl>
+	</section>
+	<section><h3>Naming Conventions</h3>
+		<dl class="fa">
+			<dt>Function names should be lowercase, with words separated by underscores as necessary to improve readability.</dt>
+			<dt>Variable names follow the same convention as function names.</dt>
+			<dt>mixedCase is allowed only in contexts where that's already the prevailing style (e.g. threading.py), to retain backwards compatibility.</dt>
+			<dt><a href="https://www.python.org/dev/peps/pep-0008/#function-and-variable-names">PEP 8 (Function and Variable Names)</a></dt>
+		</dl>
+	</section>
+	<section><h3>example</h3>
+		<pre><code rel="Python" class="python">
+			x = 99
+			print("x = ", x)
+
+			first_name = "ada"
+			print("first_name = ", first_name)
+
+			print("first_name = ", First_name) #NameError: name 'First_name' is not defined
+
+			sur-name = "byron" #SyntaxError: can't assign to operator
+
+		</code></pre>
+	</section>
+	<section><h3>Name binding</h3>
+		<dl class="fa">
+			<dt>Name binding is the association between a name and an a value</dt>
+			<dd>Note, that all values in Python are represented as objects</dd>
+			<dt>We can bind a value to a name with the <code>assignment</code> operator (<code>=</code>)</dt>
+			<dt>We can check the unique identity of an object by the <code>id()</code> built-in function.</dt>
+			<dd>CPython uses the object's memory address for the unique id</dd>
+			<pre><code rel="Python" class="python">
+				a = 2
+				print(id(a))
+
+				# 9413216
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Name binding</h3>
+		<a href="images/variables_bounding.png"><img src="images/variables_bounding.png"></a>
+	</section>
+
+	<section><h3>Name Binding</h3>
+		<dl class="fa">
+			<dt>Python reuses the immutable objects instead of creating copies</dt>
+			<dd>That's true only for small immutable objects (implementation dependant, so don't rely on that)</dd>
+
+			<pre><code rel="Python" class="python" style="min-height: 60vh;">
+				# only one object will be created
+				a = 1
+				b = 1
+				print(id(a))
+				# 9413184
+				print(id(b))
+				#9413184
+
+				# two different objects will be created
+				c = 1_000_000
+				d = 1_000_000
+				print(id(c))
+				# 140418111214320
+				print(id(d))
+				# 140418111215440
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Name binding</h3>
+		<pre><code rel="Python" class="python" style="min-height: 60vh;">
+			a = 5
+			b = 2+3
+			c = b
+
+			print(id(a))
+			#9413312
+
+			print(id(b))
+			#9413312
+
+			print(id(c))
+			# 9413312
+		</code></pre>
+		<dl class="fa">
+			<dt>Note, that in memory there is exactly one object (id: 9413312, value:5) after execution of the above code.</dt>
+		</dl>
+	</section>
+	<section><h3>Name binding - aliasing</h3>
+		<dl class="fa">
+			<dt>When the right-hand side of the assignment is an existing variable, Python did not create a new object, but gives that object another name, an alias.</dt>
+			<pre><code rel="Python" class="python">
+				a = 1_000_000
+				b = a
+				print(id(a))
+				# 140418111916176
+
+				print(id(b))
+				# 140418111916176
+
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3 class="advanced">Garbage collection</h3>
+		<dl class="fa">
+			<dt>Garbage Collection is a process of reclaiming the unused runtime memory automatically.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			a = 5
+			print(id(a))
+			# 9413312
+
+			# Now we create a new object, and bind it to 'a'
+			a = 6
+			print(id(a))
+			# 9413344
+
+			# the object [id:9413312, value:5] will be deleted by the garbage collector, as nothing points to it
+		</code></pre>
+	</section>
+
+</section>
+
+<section data-min="5"><h1>Comments</h1></section>
+<section><h2>Comments</h2>
+	<section><h3>Why to comment our code?</h3>
+		<dl class="fa">
+			<dt>Python interpreter ignores every part of a program, which is marked as a "comment"</dt>
+			<dt>Comments are used to explain and/or summarize a part of our program in a more readable manner</dt>
+			<dt>For debugging purposes - when we need fast to ignore a block of code</dt>
+			<dt>For other meta information about the program (programme name, author, date, etc.)</dt>
+			<dt>A well commented program is more readable and maintainable</dt>
+		</dl>
+	</section>
+	<section><h3>How to comment our code?</h3>
+		<dl class="fa">
+			<dt>Single line comment: <code class="note">#</code></dt>
+			<dd>every line which starts with <code class="note">#</code>(hash tag) is a comment and is ignored py Python interpreter</dd>
+			<pre><code rel="Python" class="python3">
+				# this is a just a comment: no print("whatever") will happens
+				print("this will be printed, of course")
+
+				### a more semantic example for comment:
+				# check if a triangle with sides (3,4,5) is a Pythagorean:
+				print(3**2 + 4**2 == 5**2)
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Reference</h3>
+		<a href="https://www.python.org/dev/peps/pep-0008/#comments">PEP8 - Comments</a>
+	</section>
+</section>
+
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section> -->
+
+<!-- <section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_VariablesSimpleDataTypes">ivawebcourses@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
