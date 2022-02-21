@@ -141,24 +141,43 @@
 		<dl class="fa">
 			<dt>Python supports the standard arithmetic operations:</dt>
 			<dd><a href="https://docs.python.org/3/library/stdtypes.html?highlight=arithmetic%20operation#numeric-types-int-float-complex">Numeric Types</a>@python docs</dd>
-		</dl>
-		<p class="note">The division operator "<code>/</code>" in python2 returns the integer part(i.e. works like Floor division), while in python3 it returns the float result</p>
-	</section>
-	<section><h3>Example: arithmetic operations</h3>
-		<pre><code rel="Python" class="python3">
+			<pre><code rel="Python" class="python3" style="min-height: 90vh; font-size: 1.2em;">
+				# Addition (Събиране)
+				>>> 5+3
+				8
+
+				# Subtraction (Изваждане)
 				>>> 5-3
 				2
+
+				# Multiplication (Умножение)
 				>>> 5*3
-				15
+				8
+
+				# Division (Делене)
 				>>> 5/3
 				1.6666666666666667
+
+				# Floor division (целочислено делене)
 				>>> 5//3
 				1
+
+				# Modulus (делене по модул)
 				>>> 5%3
 				2
-		</code></pre>
+
+				# Exponentiation (Степенуване)
+				>>> 5**3
+				125
+			</code></pre>
+		</dl>
+
 	</section>
-	<section><h3>Example: python3 vs python2 division</h3>
+
+	<section><h3>python3 vs python2 division</h3>
+		<dl class="fa">
+			<dt>Note that the division operator "<code>/</code>" in python2 returns the integer part(i.e. works like Floor division), while in python3 it returns the float result</dt>
+		</dl>
 		<pre><code rel="Python2" class="python3">
 			>>> 5/3
 			1
@@ -170,7 +189,6 @@
 			>>> 5//3
 			1
 		</code></pre>
-		<p class="note">Python3 adds the "<code>//</code>" operator for Integer division</p>
 	</section>
 	<section><h3>Floating Point Arithmetic: Issues and Limitations</h3>
 		<dl class="fa">
@@ -203,7 +221,7 @@
 		</dl>
 	</section>
 	<section><h3>Example: math module methods</h3>
-		<pre><code rel="Python" class="python3">
+		<pre><code rel="Python" class="python3" style="min-height: 70vh;">
 			>>> import math
 			>>>
 			>>> math.pi
@@ -242,9 +260,9 @@
 </section>
 
 
-<section data-min="20" id="StringsInPython"><h1>Strings in Python</h1></section>
-<section><h2>Strings in Python</h2>
-	<section><h3>definition</h3>
+<section data-min="20" id="StringsInPython"><h1>String data type</h1></section>
+<section><h2>String data type</h2>
+	<section><h3>Definition</h3>
 		<dl class="fa">
 			<dt>Strings are sequences of Unicode code points <span style="font-size: 0.8em">(will be discussed deeply further)</span>.</dt>
 			<dt>Single-line strings literal should be closed in single or double quotes</dt>
@@ -280,11 +298,7 @@
 
 		</code></pre>
 	</section>
-</section>
-
-<section data-min="10" id="StringsOperations"><h1>Strings operations</h1></section>
-<section><h2>Strings operations</h2>
-	<section><h3>concatenation: <code>+</code></h3>
+	<section><h3>Concatenation operation: <code>+</code></h3>
 		<p>The operation is defined only when <span class="note">both operands are string</span>, I.e. Python can not concatenate apples with oranges:</p>
 		<pre><code rel="Python" class="python3">
 			#string concatenation with '+':
@@ -299,7 +313,7 @@
 			TypeError: cannot concatenate 'str' and 'int' objects
 		</code></pre>
 	</section>
-	<section><h3>repetition: <code>*</code></h3>
+	<section><h3>Repetition operation: <code>*</code></h3>
 		<p>One of the operands must be <span class="note">string</span>, the other - <span class="note">integer</span></p>
 		<pre><code rel="Python" class="python3">
 			>>> "-" * 10
@@ -315,27 +329,6 @@
 			Traceback ...
 			TypeError: can't multiply sequence by non-int of type 'str'
 		</code></pre>
-	</section>
-	<section><h3>String Methods</h3>
-		<pre><code rel="Python" class="python3">
-			# string methods:
-			>>> "ada".capitalize()
-			'Ada'
-			>>> "alabala".count("a")
-			4
-			>>> "Alabala".count("a")
-			3
-			>>> "AlabAla".find("a")
-			2
-			>>> "alabala".replace("a", "o")
-			'olobolo'
-			>>> "one,two,three".split(",")
-			['one', 'two', 'three']
-
-
-		</code></pre>
-		<p style="opacity: 0.7; font-size: 0.9em">What a method is will be discussed further!</p>
-		<p>For now, you can try to look at the docs: <a href="https://docs.python.org/3/library/stdtypes.html#string-methods">String Methods @docs.python.org</a></p>
 	</section>
 </section>
 
