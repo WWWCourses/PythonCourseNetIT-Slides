@@ -262,7 +262,7 @@
 
 <section data-min="20" id="StringsInPython"><h1>String data type</h1></section>
 <section><h2>String data type</h2>
-	<section><h3>Definition</h3>
+	<section id="Definition"><h3>Definition</h3>
 		<dl class="fa">
 			<dt>Strings are sequences of Unicode code points <span style="font-size: 0.8em">(will be discussed deeply further)</span>.</dt>
 			<dt>Single-line strings literal should be closed in single or double quotes</dt>
@@ -270,7 +270,7 @@
 			<dt>Multi-line strings literal should be closed in triple single or double quotes</dt>
 		</dl>
 	</section>
-	<section><h3>Examples</h3>
+	<section id="SingleLineStringsExamples"><h3>Single-line strings examples</h3>
 		<pre><code rel="Python" class="python3">
 			>>> "this is a single line string"
 			'this is a single line string'
@@ -285,7 +285,7 @@
 			SyntaxError: EOL while scanning string literal
 		</code></pre>
 	</section>
-	<section><h3>Examples</h3>
+	<section id="MultiLineStringsExamples"><h3>Multi-line strings examples</h3>
 		<pre><code rel="Python" class="python3">
 			>>> """infact you can -
 			... if you use these triple quotes"""
@@ -298,7 +298,7 @@
 
 		</code></pre>
 	</section>
-	<section><h3>Concatenation operation: <code>+</code></h3>
+	<section id="ConcatenationOperation"><h3>Concatenation operation: <code>+</code></h3>
 		<p>The operation is defined only when <span class="note">both operands are string</span>, I.e. Python can not concatenate apples with oranges:</p>
 		<pre><code rel="Python" class="python3">
 			#string concatenation with '+':
@@ -313,7 +313,7 @@
 			TypeError: cannot concatenate 'str' and 'int' objects
 		</code></pre>
 	</section>
-	<section><h3>Repetition operation: <code>*</code></h3>
+	<section id="RepetitionOperation"><h3>Repetition operation: <code>*</code></h3>
 		<p>One of the operands must be <span class="note">string</span>, the other - <span class="note">integer</span></p>
 		<pre><code rel="Python" class="python3">
 			>>> "-" * 10
