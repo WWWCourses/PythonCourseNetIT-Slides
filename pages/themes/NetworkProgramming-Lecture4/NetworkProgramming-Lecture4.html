@@ -74,8 +74,28 @@
 
 
 
-<section data-min="50"><h1>Using requests lib</h1></section>
-<section><h2>Using requests lib</h2>
+<section data-min="50" id="UsingRequestsLib"><h1>HTTP Client with requests lib</h1></section>
+<section><h2>HTTP Client with requests lib</h2>
+	<section><h3>Prerequisites</h3>
+		<dl class="fa">
+			<dt>Make sure you have latest version of requests installed</dt>
+			<pre><code rel="Terminal" class="bash">
+				$ pip show requests
+					Name: requests
+					Version: 2.27.1
+					Summary: Python HTTP for Humans.
+					Home-page: https://requests.readthedocs.io
+					Author: Kenneth Reitz
+			</code></pre>
+			<dt>Else:</dt>
+			<pre><code rel="Install" class="bash">
+				pip install requests
+			</code></pre>
+			<pre><code rel="Upgrade" class="bash">
+				pip install --upgrade requests
+			</code></pre>
+		</dl>
+	</section>
 	<section><h3>Syntax:</h3>
 		<dl class="fa">
 			<dt>The requests module allows us to send HTTP requests using Python.</dt>
@@ -110,16 +130,108 @@
 			<dt><a href="https://docs.python-requests.org/en/master/api/#requests.Response">Response Object</a></dt>
 		</dl>
 	</section>
+	<section><h3>Example: GET Request</h3>
+
+		<pre><code rel="Python" class="python" style="min-height: 60vh;">
+			# base url
+			url = 'https://httpbin.org/get'
+
+			# prepare headers
+			headers = {
+				'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36'
+			}
+
+			# prepare query params
+			query = {
+				'param1':'value1',
+				'param2':'value2',
+			}
+
+			# send request
+			response = requests.get(url, headers=headers, params=query)
+
+			# print response
+			if response.ok:
+				print(response.text)
+				print(response.headers)
+		</code></pre>
+	</section>
 </section>
 
 
-<section data-min="5"><h1>Making Requests</h1></section>
-<section><h2>Make Requests</h2>
-	<section><h3>Live Demos</h3>
+<section data-min="50"><h1>Simple HTTP Server with <code>http.server</code></h1></section>
+<section><h2>Simple HTTP Server with <code>http.server</code></h2>
+	<section><h3>Create and run the server</h3>
 		<dl class="fa">
-			<dt>Make GET request demo</dt>
-			<dt>Make POST request demo</dt>
+			<dt>Python's built-in module <a href="https://docs.python.org/3/library/http.server.html">http.server</a> defines classes for implementing HTTP servers</dt>
+			<pre><code rel="Python" class="python">
+				from http.server import HTTPServer,BaseHTTPRequestHandler
+
+				# make server address
+				ip = '127.0.0.1'
+				port = 8080
+				server_address = (ip, port)
+
+				# instantiate the server
+				httpd = HTTPServer(server_address, BaseHTTPRequestHandler)
+
+				# start server to listen for client's connections
+				print(f'HTTP Server is listening on {ip}:{port}')
+				httpd.serve_forever()
+			</code></pre>
+			<dt><span class="note">server_address</span><span>- The address on which the server is listening. For internet protocols this is a tuple containing a string for server IP or name, and an integer port number</span></dt>
+			<dt>Note that the code above will only run the server, but it will not be able to answer any requests.</dt>
 		</dl>
+	</section>
+	<section><h3>Create requests handler class</h3>
+		<dl class="fa">
+			<dt>To handle any requests, the serve must subclass the <a href="https://docs.python.org/3/library/http.server.html#http.server.BaseHTTPRequestHandler">BaseHTTPRequestHandler</a> and respective methods</dt>
+			<pre><code rel="Python" class="python">
+				class RequestHandler(BaseHTTPRequestHandler):
+					def do_GET(self):
+						# setup header
+						self.send_response(200)
+						self.send_header("Content-type", "text/html")
+						self.end_headers()
+
+						# setup body and send the response
+						response_body = '<h1>Server is working!</h1>'.encode('utf-8')
+						self.wfile.write(response_body)
+			</code></pre>
+			<dt>The handler will parse the request and the headers, then call a method specific to the request type, like <code>do_GET</code>, <code>do_POST</code>, <code>do_PUT</code>, <code>do_DELETE</code> and so on.</dt>
+			<dt>Note, that we must encode the response body to bytes before sending the response.</dt>
+
+		</dl>
+
+	</section>
+	<section><h3>The full code </h3>
+		<pre><code rel="Python" class="python">
+			from http.server import HTTPServer,BaseHTTPRequestHandler
+
+			class RequestHandler(BaseHTTPRequestHandler):
+				def do_GET(self):
+					# setup header
+					self.send_response(200)
+					self.send_header("Content-type", "text/html")
+					self.end_headers()
+
+					# setup body and send the response
+					response_body = '<h1>Server is working!</h1>'.encode('utf-8')
+					self.wfile.write(response_body)
+
+			if __name__=='__main__':
+				# make server address
+				ip = '127.0.0.1'
+				port = 8080
+				server_address = (ip, port)
+
+				# instantiate the server
+				httpd = HTTPServer(server_address, RequestHandler)
+
+				# start server to listen for client's connections
+				print(f'HTTP Server is listening on {ip}:{port}')
+				httpd.serve_forever()
+		</code></pre>
 	</section>
 </section>
 
