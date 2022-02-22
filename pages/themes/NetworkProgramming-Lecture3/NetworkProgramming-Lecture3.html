@@ -78,7 +78,7 @@
 	<a href="images/big/HTTP_ClientServerSystem.png"><img src="images/big/HTTP_ClientServerSystem.png"></a>
 </section>
 
-<section data-notes="5min"><h1>HTTP protocol overview</h1></section>
+<section data-notes="5min" id="HttpProtocolOverview"><h1>HTTP protocol overview</h1></section>
 <section><h2>HTTP protocol overview</h2>
 	<section><h3>in brief</h3>
 		<dl class="fa">
@@ -98,7 +98,7 @@
 	</section>
 </section>
 
-<section data-notes="5min"><h1>Request Message Format</h1></section>
+<section data-notes="5min" id="RequestMessageFormat"><h1>Request Message Format</h1></section>
 <section><h2>Request Message Format</h2>
 	<section>
 		<img src="images/small/HTTP_RequestMessage.png">
@@ -134,7 +134,7 @@
 	</section>
 </section>
 
-<section data-notes="5min"><h1>Response Message Format</h1></section>
+<section data-notes="5min" id="ResponseMessageFormat"><h1>Response Message Format</h1></section>
 <section><h2>Response Message Format</h2>
 	<section>
 		<a href="images/small/HTTP_ResponseMessage.png"><img src="images/small/HTTP_ResponseMessage.png"></a>
@@ -184,16 +184,7 @@
 	<p>HTTP protocol defines a set of request methods, which a client can use to request a server resource.</p>
 </section>
 <section><h2>The "GET" Request Method</h2>
-	<section>
-		<dl class="fa">
-			<dt>Used to request data from a specified resource</dt>
-			<dt class="note">The query string is sent in the URL</dt>
-		</dl>
-		<pre><code rel="Example" class="http">
-			https://duckduckgo.com/?q=http+get+request&t=hz&ia=web
-		</code></pre>
-	</section>
-	<section>
+	<section id="TheGetRequestMethod">
 		<dl class="fa">
 			<dt>GET requests should be used only to retrieve data, and not to change the server state</dt>
 			<dt>GET requests should NEVER be used with sensitive data</dt>
@@ -201,45 +192,45 @@
 			<dt>GET requests can be cached</dt>
 			<dt>GET requests remain in the browser history</dt>
 			<dt>GET requests can be bookmarked</dt>
+			<dt class="note">The query string is sent in the URL</dt>
+			<pre><code rel="Example" class="http">
+				https://duckduckgo.com/?q=http+get+request&t=hz&ia=web
+			</code></pre>
 		</dl>
 	</section>
 </section>
 <section><h2>The "POST" Request Method</h2>
-	<section>
+	<section id="ThePostRequestMethod">
 		<dl class="fa">
+			<p>Simply putted, POST is used to <span class="note">create</span> content on the server!</p>
 			<dt>POST request method is used to sent data to the server, like customer information, file upload etc.</dt>
 			<dt>POST request should change the server state</dt>
-			<dt>the query string will be sent in the body of the request message</dt>
-			<dt>the request headers Content-Type and Content-Length are used to notify the server the type and the length of the query string</dt>
-		</dl>
-	</section>
-	<section>
-		<dl class="fa">
 			<dt>POST requests are never cached</dt>
 			<dt>POST requests do not remain in the browser history</dt>
 			<dt>POST requests cannot be bookmarked</dt>
 			<dt>POST requests have no restrictions on data length</dt>
+			<dt>the query string will be sent in the body of the request message</dt>
+			<dt>the request headers Content-Type and Content-Length are used to notify the server the type and the length of the query string</dt>
 		</dl>
-	</section>
-	<section>
-		<p>Simply putted, POST is used to <span class="note">create</span> content on the server!</p>
 	</section>
 </section>
 <section><h2>Other HTTP Request Methods</h2>
-	<section><h3>HEAD</h3>
+	<section id="HEAD"><h3>HEAD</h3>
 		<p>Same as GET, but transfers the status line and header section only. No document body is returned!</p>
 	</section>
-	<section><h3>PUT</h3>
-		<p>Replaces all current representations of the target resource with the uploaded content.</p>
-		<p>In oder words, PUT is used to <span class="note">create or update</span> content on server</p>
+	<section id="PUT"><h3>PUT</h3>
+		<dl class="fa">
+			<dt>Replaces all current representations of the target resource with the uploaded content.</dt>
+			<dt>In oder words, PUT is used to <span class="note">create or update</span> content on server</dt>
+		</dl>
 	</section>
-	<section><h3>DELETE</h3>
+	<section id="DELETE"><h3>DELETE</h3>
 		<p>Deletes the specified resource</p>
 	</section>
-	<section><h3>OPTIONS</h3>
+	<section id="OPTIONS"><h3>OPTIONS</h3>
 		<p>Ask the server to return the list of request methods it supports</p>
 	</section>
-	<section><h3>CONNECT</h3>
+	<section id="CONNECT"><h3>CONNECT</h3>
 		<p>Establishes a transparent TCP/IP tunnel to the server.</p>
 	</section>
 </section>
