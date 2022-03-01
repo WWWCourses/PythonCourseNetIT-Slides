@@ -76,14 +76,14 @@
 <section><h2>Socket Programming</h2>
 	<section><h3>Overview</h3>
 		<dl class="fa">
-			<dt>Socket communication is everywhere. So before going deeply onto HTTP Client/Server Communication, we'll look at simple demo of client/server socket communication.</dt>
+			<dt>Socket communication is everywhere. Every HTTP Client/Server Communication rely on socket communication.</dt>
 			<dt>The client application (your browser, for example) uses “client” sockets exclusively. The Web server it’s talking to uses both “server” sockets and “client” sockets.</dt>
 			<dt>Sockets are widely use for any IPC (Inter-Process Communication), especially for cross-platform communication.</dt>
 		</dl>
 	</section>
 	<section><h3>Python socket module</h3>
 		<dl class="fa">
-			<dt>The	<a href="https://docs.python.org/3/library/socket.html">socket module</a> is a Python's standard interface for the	transport layer, and it provides functions for interacting with TCP and UDP, as well as for looking up hostnames through	DNS</dt>
+			<dt>The	<a href="https://docs.python.org/3/library/socket.html">socket module</a> is a Python's standard interface for the	transport layer, and it provides functions for interacting with TCP and UDP, as well as for looking up hostnames through DNS</dt>
    			<dt>A socket is defined by the IP address of the machine, the port on which it listens, and the protocol it uses.</dt>
 			<pre><code rel="Python" class="python">
 				socket.socket(family=AF_INET, type=SOCK_STREAM)¶
@@ -137,7 +137,7 @@
 
 	</section>
 
-	<section><h3>Host Name</h3>
+	<section><h3>Host Name Related Methods</h3>
 		<dl class="fa">
 			<dt><code>socket.gethostname()</code> - returns the host name of the current system under which the Python interpreter is executed.</dt>
 			<dt><code>socket.gethostbyname(hostname)</code> - returns the IP address of the given host</dt>
@@ -146,7 +146,7 @@
 
 
 	<section><h3>Using Sockets on Server</h3>
-		<pre><code rel="client.py" class="python" style="min-height: 70vh;">
+		<pre><code rel="server.py" class="python" style="min-height: 70vh;">
 			def handle_client(conn, addr):
 				print(f"[NEW CONNECTION] {addr} connected.")
 				connected = True
@@ -243,12 +243,150 @@
 	</section>
 </section>
 
-<!--
+
 <section data-min="5"><h1>Simple HTTP Server with Python</h1></section>
 <section><h2>Simple HTTP Server with Python</h2>
-	<section><h3>Live Demo</h3>
+	<section><h3>Project structure</h3>
+		simple_HTTP_server/
+		├── back-end
+		│   └── server.py
+		└── front-end
+					├── about.html
+					└── index.html
 	</section>
-</section> -->
+	<section><h3>front-end/index.html</h3>
+		<pre><code rel="index.html" class="html5">
+			&lt;!DOCTYPE html&gt;
+			&lt;html lang=&quot;en&quot;&gt;
+			&lt;head&gt;
+				&lt;meta charset=&quot;UTF-8&quot;&gt;
+				&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+				&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+				&lt;title&gt;Document&lt;/title&gt;
+			&lt;/head&gt;
+			&lt;body&gt;
+				&lt;h1&gt;HI&lt;/h1&gt;
+				&lt;a href=&quot;about.html&quot;&gt;about&lt;/a&gt;
+
+				&lt;form action=&quot;index.html&quot; method=&quot;POST&quot;&gt;
+					&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;
+					&lt;button&gt;Send&lt;/button&gt;
+				&lt;/form&gt;
+			&lt;/body&gt;
+			&lt;/html&gt;
+		</code></pre>
+	</section>
+	<section><h3>front-end/about.html</h3>
+		<pre><code rel="about.html" class="html5">
+			&lt;!DOCTYPE html&gt;
+			&lt;html lang=&quot;en&quot;&gt;
+			&lt;head&gt;
+				&lt;meta charset=&quot;UTF-8&quot;&gt;
+				&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+				&lt;title&gt;about &lt;/title&gt;
+			&lt;/head&gt;
+			&lt;body&gt;
+				&lt;h1&gt;about us&lt;/h1&gt;
+				&lt;a href=&quot;index.html&quot;&gt;go home&lt;/a&gt;
+			&lt;/body&gt;
+			&lt;/html&gt;
+		</code></pre>
+	</section>
+	<section><h3>back-end/server.py</h3>
+		<pre><code rel="server.py" class="python" style="min-height: 90vh;">
+			import socket
+			from inspect import getsourcefile
+			import os
+			import re
+
+			PORT = 5050
+			SERVER_NAME = socket.gethostname()
+			SERVER_IP = socket.gethostbyname(SERVER_NAME)
+			BUF_SIZE = 1024
+			ENCODING = "utf-8"
+
+			SCRIPT_PATH = os.path.dirname(getsourcefile(lambda:0))
+			SERVER_BASE_FOLDER = os.path.dirname(SCRIPT_PATH)
+			HTTPDOCS = SERVER_BASE_FOLDER+"/front-end"
+
+
+			def process_request(request):
+				# ------------------------------- parse request ------------------------------ #
+				req_header = request.split('\n')
+				first_line=req_header[0].split()
+				method=first_line[0]
+				path=first_line[1]
+
+				# ------------------------------- make response ------------------------------ #
+				if path=='/':
+					path="/index.html"
+
+				# mimic that the server is setup to return files only from HTTPDOCS folder:
+				resource_path = HTTPDOCS+path
+
+				if method=="GET":
+					if not os.path.exists(resource_path):
+						status_line = "HTTP/1.1 404 Not Found\n"
+						body=""
+					else:
+						with open(HTTPDOCS+path,'r') as fh:
+							content = fh.read()
+							status_line = "HTTP/1.1 200 OK\n"
+							body = content
+
+
+				if method=="POST":
+					# get data from request body
+					data = re.split(r'(?:\r?\n){2}', request)[1]
+					print(data)
+					user_name=data.split("=")[1]
+
+					# do something with data
+
+					# return response
+					status_line = "HTTP/1.1 200 OK\n"
+					body = f"<h2>Welcome {user_name}</h2>"
+
+				resp_headers = [
+					f"Server: Fake Python Server",
+					f"Content-Length:{len(body)}",
+					f"Content-Type: text/html; charset=UTF-8"
+				]
+				response = status_line + "\n".join(resp_headers) + "\n\n" + body
+				return response
+
+
+			# ----------------------- init server listening socket ----------------------- #
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+			s.bind((SERVER_IP, PORT))
+			s.listen()
+
+			print(f"Server is listening on {SERVER_IP}:{PORT}")
+
+			# ---------------------------- listen for clients ---------------------------- #
+			while True:
+				(conn, addr) = s.accept()
+				print(f'Client:{addr} connected!')
+
+				# ----------------------- get client's request message: ---------------------- #
+				msg_bytes = conn.recv(BUF_SIZE)
+				request = msg_bytes.decode(ENCODING)
+				print(f'request: {request} ')
+
+				# ----------------------- return HTTP formatted response ---------------------- #
+				response = process_request(request)
+				# print(f'RESPONSE:{response}')
+				conn.send(response.encode(ENCODING))
+
+
+				# ------------------------- close client's connection ------------------------ #
+				conn.close()
+				# if using HTTP1.1 and keep-alive header then make persistent connection
+
+		</code></pre>
+	</section>
+</section>
 
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
 <!--
