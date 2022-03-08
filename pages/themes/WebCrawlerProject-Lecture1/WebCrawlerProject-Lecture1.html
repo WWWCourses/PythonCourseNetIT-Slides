@@ -331,7 +331,343 @@
 
 </section>
 
+<section><h2>CSS правила - синтаксис</h2>
+	<section>
+			<p>Общ синтаксис на едно CSS правило:</p>
+			<pre><code rel="Formal Syntax">
+					selector {
+							property1: value1;
+							property2: value2;
+									...
+					}
+			</code></pre>
+			<p>Пример:</p>
+			<pre><code rel="CSS">
+					h1{
+							background-color: red;
+							color: white;
+					}
+			</code></pre>
+	</section>
+	<section><p>Общ синтаксис на едно CSS правило:</p>
+			<img class="norm" src="images/CSS_syntax_image.png">
+	</section>
+	<section>
+			<p>Селекторите могат да се групират - отделят се със запетайка</p>
+			<pre><code rel="CSS">
+					h2,h4 {
+							color: white;
+					}
+			</code></pre>
+	</section>
+	<section>
+			<p>Декларациите също могат да се групират – отделят се с точка и запетая ‘ ; ’</p>
+			<pre><code rel="CSS">
+					h4 {
+							background-color: red;
+							color: white;
+							border: 5px solid gray;
+					}
+			</code></pre>
+			<p>' ; ' след последна декларация не е задължителна, но е добра практика да се поставя винаги – улеснява редактирането на кода.</p>
+	</section>
 
+	<section style="font-size: .7em">
+			<p>Пример</p>
+			<pre><code rel="HTML">
+					<div class="flag bg">
+							<span>Бяло</span><span>Зелено</span><span>Червено</span>
+					</div>
+			</code></pre>
+			<a  href="examples/flag_without_css.html">резултат (без CSS)...</a>
+			<pre class="fragment"><code rel="CSS" style="height: 40vh">
+				.flag{
+						display: inline-block;
+						line-height: 2em;
+						width: 20em;
+						border: .2em solid #333;
+				}
+				.flag>span{
+						display: block;
+				}
+				.bg>span:nth-child(1){
+						background: white;
+						color: #CCC;
+				}
+				.bg>span:nth-child(2){
+						background: green;
+						color: #CCC;
+				}
+				.bg>span:nth-child(3){
+						background: red;
+						color: #CCC;
+				}
+			</code></pre>
+			<a class="fragment" href="examples/flag_with_css.html">резултат (със CSS)...</a>
+	</section>
+	<section><h3>Коментари в CSS</h3>
+			<dl>
+					<dt><code>/*</code> - за начало на коментар</dt>
+					<dt><code>*/</code> - за край на коментар</dt>
+			</dl>
+			<p>Пример:</p>
+			<pre><code rel="CSS">
+					/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+						Пример за многоредов коментар
+					~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+					/*Main_Sections_Title*/
+					section>h2{
+							font-size: 1em;
+							-webkit-border-radius: 12px;  /* Safari 3-4 */
+							-moz-border-radius: 12px;     /* Firefox 3.6 and below */
+							border-radius: 12px;          /* modern browsers */
+							/*background: red;*/
+					}
+			</code></pre>
+	</section>
+</section>
+
+
+<section><h2>Какво са CSS селекторите?</h2>
+	<section>
+		<dl class="fa">
+			<dt>Шаблони, които определят над кои HTML елементи ще се приложи зададеният стил в декларациите.</dt>
+			<dt>Могат да бъдат съвсем прости, като '<code>*</code>' или '<code>p</code>' или доста по-сложни като:
+			<pre><code>a[href^="https://"]:hover</code></pre></dt>
+		</dl>
+		<p class="advanced text_left">Списък със всички дефинирани в стандарта (CSS1 – CSS3) селектори: <a href="http://www.w3schools.com/cssref/css_selectors.asp">css_selectors</a></p>
+		<p>В момента се разработва спецификацията<br><a href="https://drafts.csswg.org/selectors-4/#subject">CSS Selectors Level 4</a></p>
+	</section>
+</section>
+
+<section><h2>Селектори за елементи</h2>
+	<section class="text_left"><h3>Element (type) selectors</h3>
+		<pre><code rel="CSS">
+			/* Всички параграфи в документа ще бъдат с червен шрифт */
+			p {
+				color: red;
+			}
+		</code></pre>
+		<p><u>Действие</u>: селектира всички HTML елементи от дадения тип.</p>
+		<p><a href="slides_examples/type_selectors_example/type_selectors_example.html">Пример: "Цитати на известни личности"</a></p>
+	</section>
+	<section><h3>Универсален селектор (Universal selector)</h3>
+		<pre><code rel="CSS">
+			* {
+				marging: 0;
+				padding: 0
+			}
+		</code></pre>
+		<p><u>Действие</u>: селектира всички HTML елементи в документа.</p>
+		<p class="note">Не се препоръчва да се използва, тъй като забавя обработката на страницата.</p>
+	</section>
+	<!-- <section><h3>Универсален селектор - пример</h3>
+		<pre><code rel="HTML" class="html">
+			&lt;body&gt;
+				&lt;h1&gt;Heading 1&lt;/h1&gt;
+				&lt;section&gt;&lt;h2&gt;Section 1 Heading&lt;/h2&gt;
+					&lt;p&gt;Paragraph 1&lt;/p&gt;
+					&lt;p&gt;Paragraph 2&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/body&gt;
+		</code></pre>
+	</section> -->
+</section>
+
+<section><h2>Селектори за class и id</h2>
+	<section><h3>HTML атрибути: class и id</h3>
+		<dl class="fa">
+			<dt><span class="code note">class</span> - можем да зададем един и същи клас на <span class="note">множество</span> елементи в HTML. Така лесно можем да селектираме всички тях.</dt>
+			<dt><span class="code note  ">id</span> - само <span class="note">един</span> елемент в документа може да има дадено id. T.e. чрез <span class="code">id</span> селектираме само един елемент.</dt>
+		</dl>
+		<pre><code rel="HTML">
+			<p class="odd">Параграф 1</p>
+			<p class="even" id="vip">Параграф 2</p>
+			<p class="odd">Параграф 3</p>
+			<p class="even">Параграф 4</p>
+			<p class="odd">Параграф 5</p>
+		</code></pre>
+	</section>
+	<section><h3>Стойности за class и id</h3>
+		<dl class="fa">
+			<dt>Стойностите на атрибутите <b>class</b> и <b>id</b> са по избор на програмиста, но задължително започват с буква, след която може да има произволна съвкупност от букви, цифри, '_' и '-'.</dt>
+			<dt>Можем да зададем <span class="note">няколко класа</span> за един елемент, като ги разделяме със <span class="note">спейс</span>.</dt>
+			<pre><code rel="HTML" style="width: 105%; margin-left: -2em;">
+				<!--Параграфът ще принадлежи към 2 класа: 'odd' и 'red'-->
+				<p class="odd red">Параграф 3</p>
+			</code></pre>
+			<dt><span class="note">В атрибута <b>id</b> не можем да имаме спейс!</span></dt>
+		</dl>
+	</section>
+	<section><h3>Стойности за class и id: добри практики</h3>
+		<p>Slef-learning Section</p>
+
+		<dl class="fa">
+			<dt><a href="https://cssguidelin.es/#naming-conventions">Naming Conventions @cssguidelin.es</a></dt>
+			<dt class="advanced"><a href="https://cssguidelin.es/#bem-like-naming">BEM-like Naming @cssguidelin.es</a></dt>
+		</dl>
+	</section>
+	<section><h3>Селектор за class</h3>
+		<dl class="fa" style="font-size: .9em">
+			<dt>Записва се с точка ("<b>.</b>") последвана от стойност на class.</dt>
+			<dt>Може да бъде специфициран допълнително, като пред него непосредствено се запише тип на елемент.</dt>
+			<pre><code rel="CSS">
+				/* Селектира всички HTML елементи, които са дефинирали class="blue" */
+				.blue{
+					color: blue;
+				}
+				/* Селектира всички HTML елементи, от тип 'p', които са дефинирали class="red" */
+				p.red{
+					color: red;
+				}
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Селектор за id</h3>
+		<dl class="fa">
+			<dt>Записва се с диез (хаш таг) - "<b>#</b>", последван от стойност на атрибута <b>id</b>.</dt>
+			<pre><code rel="CSS">
+				/* Селектира елементът с id="main_title" */
+				#main_title{
+					color: red;
+				}
+			</code></pre>
+			<dt>Тъй като с дадено <b>id</b> можем да обозначим само един единствен елемент от  цялото HTML дърво, то е безсмислен записът с тип на елемент отпред.</dt>
+			<dt> Например: <code>p#vip{...}</code> няма смисъл и не се препоръчва да се използва.</dt>
+		</dl>
+	</section>
+	<section><h3>Пример</h3>
+		<pre><code rel="CSS" style="width: 120%; height: 30vh; margin-left: -2em;">
+		/* Селектира всички HTML елементи, които са дефинирали class="c1" */
+		.c1{
+			color: purple;
+		}
+		/* Селектира всички H1 елементи, които са дефинирали class="c1" */
+		h1.c1{
+			font-style: italic;
+		}
+		/* Селектор по id */
+		#vip{
+			color: #aa3333;
+			font-size: 2em;
+			text-shadow:
+				2px 2px #a000a0,
+				2px 2px #c000c0;
+		}
+		</code></pre>
+		<pre><code rel="HTML" style="width: 120%; height: 20vh; margin-left: -2em;">
+			<p>Purple Section:</p>
+			<h1 class="c1">Заглавие</h1>
+			<p class="c1">Параграф</p>
+			<h2 class="c1">Под заглавие</h2>
+			<p class="c1">Параграф</p>
+			<p id="vip">Параграф с id="vip"</p>
+		</code></pre>
+		<a href="slides_examples/class_selectors.html">резултат</a>
+	</section>
+</section>
+
+<section><h2>CSS Комбинатори (<a href="https://www.w3schools.com/css/css_combinators.asp">CSS Combinators</a>)</h2>
+	<section>
+		<p>Чрез комбинаторите съставяме селектори, които отчитат позицията (контекста) на елементите в HTML дървото.</p>
+	</section>
+	<section><h3>Видове HTML възли</h3>
+		<dl class="fa">
+			<dt>Родител (Parent)</dt>
+			<dt>Дете (Child)</dt>
+			<dt>Наследници (Descendants)</dt>
+			<dt>Братя (Siblings)</dt>
+		</dl>
+	</section>
+	<!-- <section style="font-size: .7em"><h3>Видове HTML възли</h3>
+		<div class="html_block">
+			<div class="parent">
+			<p>DIV1</p>
+			<div class="parent child">
+				<p>DIV2</p>
+				<div class="child">
+					<p>DIV3</p>
+				</div>
+			</div>
+			</div>
+			<hr>
+			<ul>
+				<li>DIV3: Child of DIV2; Descendant of DIV2 and DIV1</li>
+				<li><a href="slides_examples/html_nodes_types_code_and_preview.html">Пример</a></li>
+			</ul>
+		</div>
+	</section> -->
+	<section>
+		<p>Селекторите, чрез които можем да избираме елементи според позицията им в HTML дървото се образуват чрез <span class="note">комбинатори</span>:</p>
+		<p>Комбинаторите, са символи, чрез които се задава връзка между селектори и така чрез тях се образува съставен селектор.</p>
+	</section>
+	<section>
+		<pre><code rel="Syntax">
+			selector1&lt;combinator&gt;selector2
+		</code></pre>
+		<table>
+			<tr>
+				<th>Комбинатор</th>
+				<th>Селектор</th>
+			</tr>
+			<tr>
+				<td>'&nbsp;&nbsp;' (<span class="note">спейс</span>)</td>
+				<td><a href="https://www.w3schools.com/cssref/sel_element_element.asp" title="">parentSelector &nbsp; descendantsSelector</a></td>
+			</tr>
+			<tr>
+				<td>'<span class="note">></span>'</td>
+				<td><a href="https://www.w3schools.com/cssref/sel_element_gt.asp" title="">parentSelector <span class="note">&gt;</span> childrenSelector</a></td>
+			</tr>
+			<tr>
+				<td>'<span class="note">~</span>'</td>
+				<td><a href="https://www.w3schools.com/cssref/sel_gen_sibling.asp" title="">previousSelector<span class="note">~</span>generalSiblingSelector</a></td>
+			</tr>
+			<tr>
+				<td>'<span class="note">+</span>'</td>
+				<td><a href="https://www.w3schools.com/cssref/sel_element_pluss.asp" title="">previousSelector<span class="note">+</span>adjacentSiblingSelector</a></td>
+			</tr>
+		</table>
+	</section>
+	<section><h3>Видове HTML възли и съответстващи комбинатори - Диаграма</h3>
+		<a href="images/CSS_CombinatorsDepictionInTree.png"><img src="images/CSS_CombinatorsDepictionInTree.png" style="min-height: 60vh"></a>
+	</section>
+	<section><h3>Task: Combinators</h3>
+		<p>Стилизирайте елементите както е показано, без да променяте HTML и без да гледате решението ;)</p>
+		<p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="dQJzem/" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS Selectrors - Combinators (labs)">
+		<span>See the Pen <a href='https://codepen.io/webdesigncourse/pen/dQJzem/'>CSS Selectrors - Combinators (labs)</a> by Iva Popova (<a href='https://codepen.io/webdesigncourse'>@webdesigncourse</a>) on <a href='https://codepen.io'>CodePen</a>.
+		</span>
+		</p>
+	</section>
+	<section><h3>Task: Combinators </h3>
+		<p>Стилизирайте елементите както е показано, без да променяте HTML и без да гледате решението ;)</p>
+		<p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="XyVaxR/" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Combinators Siblings - demo">
+		<span>See the Pen <a href='https://codepen.io/webdesigncourse/pen/XyVaxR/'>Combinators Siblings - demo</a> by Iva Popova (<a href='https://codepen.io/webdesigncourse'>@webdesigncourse</a>) on <a href='https://codepen.io'>CodePen</a>.
+		</span>
+		</p>
+	</section>
+	<section><h3>Task: Combinators</h3>
+		<p>Стилизирайте елементите както е показано, без да променяте HTML и без да гледате решението ;)</p>
+		<p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="GRoabPz" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Task: ComplexCombinators">
+		<span>
+		See the Pen <a href='https://codepen.io/webdesigncourse/pen/GRoabPz'>Task: ComplexCombinators</a> by Iva Popova
+		(<a href='https://codepen.io/webdesigncourse'>@webdesigncourse</a>) on <a href='https://codepen.io'>CodePen</a>.
+		</span>
+		</p>
+	</section>
+	<section><h3>Parent Selector?</h3>
+		<p>Поради съображения за сигурност/производителност, засега, не можем да селектираме елементи <span class="note">нагоре</span> и в <span class="note">ляво</span> по  дървото. Поради това <span class="note">няма селектор за родител/предшественик</span>.</p>
+	</section>
+	<section><h3>Parent Slector ;)</h3>
+		<p class="advanced"><a href="https://perishablepress.com/awesome-new-css3-selectors/" title="">awesome-new-css3-selectors ?</a> - ако се зачетете в това, то моля прегледайте и коментарите в темата : ))))</p>
+	</section>
+	<section><h3>Parent Slector?</h3>
+		<p class="advanced">Въпреки, че в черновата на Selectors Level 4 има специфициран <a href="https://drafts.csswg.org/selectors-4/#relational" title=""><code>:has</code> селектор</a>, то все още не е официално приет и <a href="http://caniuse.com/#search=%3Ahas" title="">не се поддържа от нито един браузер</a>.</p>
+	</section>
+	<section style="font-size: .8em"><h3>Parent Slector : )</h3>
+		<p><a href="https://www.reddit.com/r/ProgrammerHumor/comments/6qwe5o/the_real_reason_behind_the_rejection_of_css/">The real reason behind the rejection of CSS parent selector</a></p>
+		<a href="images/parent_selector.gif" title="click to see bigger image"><img src="images/parent_selector.gif" alt="parent selector" ></a>
+	</section>
+</section>
 
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
 <!--
