@@ -141,6 +141,54 @@
 	</section>
 </section>
 
+<section data-min="50" id="usingConfigFileForDbConnectionString"><h1>Using Config File For DB Connection String</h1></section>
+<section><h2>Using Config File For DB Connection String</h2>
+	<section>
+		<dl class="fa">
+			<dt>The DB connection string contains sensitive information. To prevent security vulnerabilities and maintenance problems we do not want to embed it in our application code, but rather to put that information in a separate config file.</dt>
+			<dt>Create the application <code>config.ini</code> file using the example code bellow:</dt>
+			<pre><code rel="config.ini" class="python">
+				[mysql]
+				HOST     = 127.0.0.1
+				USER     = test
+				PASSWORD = qazwsxedc
+				DATABASE = bnrdb
+				PORT=3306
+			</code></pre>
+			<dt>In order to parse the <code>config.ini</code> file we can use the <a href="https://docs.python.org/3/library/configparser.html">configparser</a> module</dt>
+			<pre><code rel="db_config.py" class="python">
+				from configparser import ConfigParser
+
+
+				def read_db_config(filename='config.ini', section='mysql'):
+					""" Read database configuration file and return a dictionary object
+						:param filename: name of the configuration file
+						:param section: section of database configuration
+						:return: a dictionary of database parameters
+					"""
+					# create parser and read the configuration file
+					parser = ConfigParser()
+					parser.read(filename)
+
+
+					db_config = {}
+					if parser.has_section(section):
+						items = parser.items(section)
+						for item in items:
+							db_config[item[0]] = item[1]
+					else:
+						raise Exception(f'{section} not found in the {filename} file')
+
+					return db_config
+
+				db_config = read_db_config()
+				print(db_config)
+			</code></pre>
+		</dl>
+	</section>
+</section>
+
+
 
 <section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
 <!--
