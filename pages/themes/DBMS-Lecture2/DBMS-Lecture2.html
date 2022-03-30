@@ -187,7 +187,6 @@
 				# get the id of the inserted document:
 				print(res.inserted_id)
 			</code></pre>
-			<dt>Create (insert) multiple documents</dt>
 			<dt>We can insert many documents by passing a list of documents as first argument to <a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many">insert_many()</a> method</dt>
 			<pre><code rel="Python" class="python">
 				# insert multiple documents into "todos" collection:
@@ -198,6 +197,11 @@
 				])
 				print(res.inserted_ids)
 			</code></pre>
+			<dt>References:</dt>
+			<dd><a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_one">insert_one @pymongo</a></dd>
+			<dd><a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.insert_many">insert_many @pymongo</a></dd>
+			<dd><a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne">db.collection.insertOne() @mongodb</a></dd>
+			<dd><a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany">db.collection.insertMany() @mongodb</a></dd>
 		</dl>
 	</section>
 	<section><h3>Note:  MongoDB is schema-free.</h3>
@@ -219,19 +223,19 @@
 
 <section data-min="50"><h1>Query (Read) Document/s</h1></section>
 <section><h2>Query (Read) Document/s</h2>
-	<section><h3>Create sample "todos" collection</h3>
+	<section><h3>Prerequisites: create sample "todos" collection</h3>
 		<script src="https://gist.github.com/WWWCourses/03b5bcb0366d9596186af454b7cd2430.js"></script>
 	</section>
 	<section><h3>Find Document/s</h3>
 		<dl class="fa">
 			<dt>The most basic type of query that can be performed in MongoDB is to find one document by <a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find_one">find_one()</a> method.</dt>
 			<dt>find_one() method <span class="note">returns a single document</span> matching a query (or None if there are no matches).</dt>
-			<dt>It is useful when you know there is only one matching document, or are only interested in the first match.</dt>
 			<pre><code rel="Python" class="python">
 				# find first document in "todos" collection:
-				print(db.todos.find_one())
+				doc = db.todos.find_one()
+				print(doc)
 			</code></pre>
-			<dt class="note">Note that unlike JavaScript objects, the fields in a BSON document are <a href="Unlike JavaScript objects, the fields in a BSON document are ordered.">ordered</a>.</dt>
+			<dd class="note">Note that the fields in a BSON document are <a href="Unlike JavaScript objects, the fields in a BSON document are ordered.">ordered</a>.</dd>
 			<hr>
 			<dt>We can read (i.e. find) all documents in a collection by <a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find">find()</a> method</dt>
 			<dt>find() <span class="note">returns a Cursor instance</span>, which allows us to iterate over all matching documents</dt>
@@ -240,6 +244,9 @@
 				for todo in db.todos.find():
 					print(todo)
 			</code></pre>
+			<dt>References:</dt>
+			<dd><a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.find/">db.collection.find() @mongodb</a></dd>
+			<dd><a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.find/">find() @pymongo</a></dd>
 		</dl>
 	</section>
 	<section><h3>Query and projection</h3>
@@ -253,14 +260,14 @@
 			<dt>Or shortly, the query specifies which documents to retrieve, while the projection defines which fields of matching documents to be returned</dt>
 		</dl>
 	</section>
-	<section><h3>Query Filter Documents</h3>
+	<section><h3>Query Filter</h3>
 		<dl class="fa">
-			<dt>Query filter documents specify the conditions that determine which documents to select for read, as well as for  update, and delete operations.</dt>
+			<dt>Query filter specify the conditions that determine which documents to select for read, as well as for  update, and delete operations.</dt>
 			<dt>We can use <code>&lt;field&gt;:&lt;value&gt;</value></code> expressions to specify the equality condition and query operator expressions.</dt>
 			<dt>Reference: <a href="https://docs.mongodb.com/manual/reference/operator/query/#query-selectors">Query Selectors</a></dt>
 		</dl>
 	</section>
-	<section><h3>Query Filter Examples</h3>
+	<section><h3>Query Filter Example1</h3>
 		<dl class="fa">
 			<dt>find all documents in "todos" which are completed:</dt>
 			<pre><code rel="Python" class="python">
@@ -279,11 +286,40 @@
 			</code></pre>
 		</dl>
 	</section>
-	<!-- <section><h3>Projection</h3>
+	<section><h3>Query Filter Example2</h3>
 		<dl class="fa">
-			<dt></dt>
+			<dt>find all documents in "todos" which are completed and "title" contains "python"</dt>
+			<pre><code rel="Python" class="python">
+				python_completed = db.todos.find(
+					{
+						'$and':[
+							{'done':True},
+							{'title':{'$regex': 'learn', '$options': 'i' }}
+						]
+					}
+				)
+				print(list(python_completed))
+			</code></pre>
 		</dl>
-	</section> -->
+	</section>
+	<section><h3>Projection</h3>
+		<dl class="fa">
+			<dt>By default, queries in MongoDB return all fields in matching documents.</dt>
+			<dt>To limit the amount of data that MongoDB sends to applications, you can include a projection document to specify or restrict fields to return.</dt>
+			<dt>Reference: <a href="https://www.mongodb.com/docs/manual/reference/operator/query/#projection-operators">Projection Operators</a></dt>
+			<dt>Examples:</dt>
+			<pre><code rel="Python" class="python">
+				# get all completed tasks and return all fields, except "_id"
+				completed1 = db.todos.find({'completed':False}, {"_id":0})
+
+				# get all completed tasks and return only "title" field
+				completed2 = db.todos.find({'completed':False}, {"title":1,"_id":0})
+
+				print(list(completed1))
+				print(list(completed2))
+			</code></pre>
+		</dl>
+	</section>
 
 </section>
 
@@ -325,22 +361,41 @@
 	</section>
 </section>
 
-
-<section data-min="5"><h1>Text Search</h1></section>
-<section><h2>Text Search</h2>
+<section data-min="5"><h1>Text Indexes and Search</h1></section>
+<section><h2>Text Indexes and Search</h2>
 	<section><h3></h3>
 		<dl class="fa">
 			<dt>MongoDB provides <a href="https://docs.mongodb.com/manual/core/index-text/#std-label-index-feature-text">Text indexes</a> to support text search queries on string content.</dt>
+			<dt>text indexes can include any field whose value is a string or an array of string elements.</dt>
+			<dt class="note">A collection can only have one text search index, but that index can cover multiple fields.</dt>
+			<dt>To index a field as a <code>text index</code>, include the field and specify the string literal "text"</dt>
 			<pre><code rel="Syntax" class="python">
-				db.collectionName.createIndex( { field: “text” } )
+				# mongodb
+				db.collectionName.createIndex( { field: "text" } )
+
+				# pymongo
+				create_index(keys, session=None, **kwargs)
 			</code></pre>
-			<dt>Live demo: <a href="https://docs.mongodb.com/manual/text-search/">Text Search</a></dt>
+			<dt>Example:</dt>
+			<pre><code rel="Python" class="python">
+				db.todos.create_index([
+					("title","text")
+				])
+
+				res = db.todos.find({ "$text": { "$search": "python" } })
+
+				print(list(res))
+			</code></pre>
+			<dt>Reference:</dt>
+			<dd><a href="https://www.mongodb.com/docs/manual/core/index-text/">Text Indexes @mongodb</a></dd>
+			<dd><a href="https://pymongo.readthedocs.io/en/stable/api/pymongo/collection.html#pymongo.collection.Collection.create_index">create_index() @pymongo</a></dd>
+			<dd><a href="https://www.mongodb.com/docs/manual/reference/operator/query/text/">Text Search @mongodb</a></dd>
 		</dl>
 	</section>
 </section>
 
 <section data-min="5"><h1>MongoEngine</h1></section>
-<section><h2>MongoEngine</h2>
+<section><h2 class="advanced">MongoEngine</h2>
 	<section><h3>Overview</h3>
 		<dl class="fa">
 			<dt>MongoEngine is an Object-Document Mapper, written in Python for working with MongoDB.</dt>
