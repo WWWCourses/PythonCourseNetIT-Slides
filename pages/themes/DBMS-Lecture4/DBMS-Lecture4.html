@@ -302,6 +302,39 @@
 </section>
 
 <section data-min="5"><h1>Basic Data Manipulation Statements</h1></section>
+
+<section><h2>SELECT and WHERE Clauses</h2>
+	<section><h3>Syntax</h3>
+		<pre><code rel="Basic Syntax" class="bash">
+			SELECT [select_option]
+			{select_expression}
+			[
+				FROM
+					JOIN
+					ON
+					WHERE
+					GROUP BY
+					HAVING
+					ORDER BY
+					LIMIT
+					INTO
+			]
+		</code></pre>
+		<dl class="fa">
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html">SELECT Statement</a></dt>
+			<dt>WHERE clause requires at least one condition. If multiple conditions are needed, connect them using AND or OR logic operators.</dt>
+			<dt><a href="http://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html">Comparison Functions and Operators</a> to use in <span class="impotant">WHERE Clause</span></dt>
+		</dl>
+	</section>
+	<section><h3>Example</h3>
+		<pre><code rel="mysql" class="sql">
+			SELECT first_name, order_date
+				FROM customers.customers as customers, orders
+					WHERE customers.id=orders.customer_id
+		</code></pre>
+	</section>
+</section>
+
 <section><h2>INSERT INTO table</h2>
     <section><h3>The syntax</h3>
         <pre><code>
@@ -397,38 +430,6 @@
 		Query OK, 2 rows affected
     </pre>
     </section>
-</section>
-
-<section><h2>SELECT and WHERE Clauses</h2>
-	<section><h3>Syntax</h3>
-		<pre><code rel="Basic Syntax" class="bash">
-			SELECT [select_option]
-			{select_expression}
-			[
-				FROM
-					JOIN
-					ON
-					WHERE
-					GROUP BY
-					HAVING
-					ORDER BY
-					LIMIT
-					INTO
-			]
-		</code></pre>
-		<dl class="fa">
-			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html">SELECT Statement</a></dt>
-			<dt>WHERE clause requires at least one condition. If multiple conditions are needed, connect them using AND or OR logic operators.</dt>
-			<dt><a href="http://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html">Comparison Functions and Operators</a> to use in <span class="impotant">WHERE Clause</span></dt>
-		</dl>
-	</section>
-	<section><h3>Example</h3>
-		<pre><code rel="mysql" class="sql">
-			SELECT first_name, order_date
-				FROM customers.customers as customers, orders
-					WHERE customers.id=orders.customer_id
-		</code></pre>
-	</section>
 </section>
 
 
