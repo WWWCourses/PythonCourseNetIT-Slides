@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Functions</title>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+		<!-- css & themes include -->
+		<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		<!-- CUSTOM -->
+		<base target="_blank">
+	</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+	<div class="top_links">
+		<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
+		<span class="help_link"><i class="fa fa-question"></i></span>
+		<div class="help_text">
+			<div class="note">Keyboard shortcuts:</div>
+			<div><span>N/Спейс</span><span>Next Slide</span></div>
+			<div><span>P</span><span>Previous Slide</span></div>
+			<div><span>O</span><span>Slides Overview</span></div>
+			<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+			<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+			Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+		</div>
+	</div>
+	<div class="footer theme_switch">
+		<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+		<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+		<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+	</div>
+	<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Functions in Python</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg//програмиране-с-python-2/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2021-2022,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+<section id="WhatAreFunctions"><h1>What are Functions?</h1></section>
+<section><h2>What are Functions?</h2>
+	<section>
+		<dl class="fa">
+			<dt>A function is a <span class="note">named block of statements</span> (i.e. a sequence of instructions) which perform one conceptual task.</dt>
+			<dt>A typical example for a function in the real life, is a recipe in a cooking book.</dt>
+			<dt>The statements in the function are performed <span class="note">only after the function is called</span>.</dt>
+			<dt>Functions help us to organize our code (<span class="note">break a task into sub-tasks</span>)</dt>
+			<pre><code rel="Python" class="python">
+				def task_1():
+					pass
+
+				def task_2():
+					pass
+
+				...
+
+				def task_n():
+					pass
+			</code></pre>
+		</dl>
+	</section>
+</section>
+
+<section id="FunctionDefinition"><h1>Function Definition</h1></section>
+<section><h2>Function Definition</h2>
+	<section>
+		<pre><code rel="Syntax" class="python" data-noescape>
+			<b>def</b> <b>function_name(</b><em>param_list</em><b>)</b><b>:</b>
+				<em>'''docstring'''</em>
+				statements
+				<em>return [expression]</em>
+		</code></pre>
+		<dl class="fa" style="font-size: 1em">
+			<dt>def</dt>
+			<dd>A keyword that starts the function definition</dd>
+			<dt>function_name</dt>
+			<dd>Should be valid <a href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers">variable name</a>.</dd>
+			<dt><em>param_list</em></dt>
+			<dd>Optional. A list of function parameters. The <span class="note">braces around it are required</span>, even if the list is empty.</dd>
+			<dt><em>'''docstring'''</em></dt>
+			<dd>Optional. A string for function documentation.</dd>
+			<dt>statements</dt>
+			<dd>block of statements, also called <span class="note">function body</span>. Must have at least 1 statement.</dd>
+			<dt><em>return [expression]</em></dt>
+			<dd>Optional. Specify what t<span class="note">he return value of the function</span> should be.</dd>
+		</dl>
+	</section>
+	<section><h3>The pass statement</h3>
+		<dl class="fa">
+			<dt>Sometimes you need to define a function which body will be written later, but <span class="note">Python did not allows empty blocks</span>!</dt>
+			<dt>In such cases, you can use the <code>pass</code> statement for function body:</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def do_task1():
+				pass
+
+			def do_task2():
+				pass
+
+			def do_task3():
+				pass
+		</code></pre>
+		<p>You can use the <code>pass</code> statement anywhere in your code, where you need a "do nothing" block!</p>
+	</section>
+	<section><h3>simplest example</h3>
+		<pre><code rel="Python" class="python">
+			def greet():
+				"""Just prints hello"""
+
+				print("Hello!")
+		</code></pre>
+		<dl class="fa">
+			<dt class="note">Note, this code will not print anything if you try to run it as is</dt>
+			<dt>This is just the function's definition</dt>
+			<dt>In order to execute the statements in it, <span class="note">the function should be called</span>!</dt>
+		</dl>
+	</section>
+</section>
+
+<section id="FunctionCall"><h1>Function Call</h1>
+	<br><p class="note" style="font-size: 1.6em">Synonyms: Function Execution; Function Invocation</p>
+</section>
+<section><h2>Function Call</h2>
+	<section>
+		<dl class="fa">
+			<dt>The statements in the body of a function will be executed only when the function is called:</dt>
+			<pre><code rel="Syntax" class="python" data-noescape>
+				<b>function_name(</b><em>opt_arg_list</em><b>)</b>
+			</code></pre>
+			<dt><i>opt_arg_list</i> is optional, but <span class="note">braces are required</span></dt>
+			<pre><code rel="Python" class="python">
+				### define greet() function
+				def greet():
+					"""Just prints hello"""
+
+					print("Hello!")
+
+				### execute the greet() function:
+				greet()
+			</code></pre>
+			<dt>Note, that the braces after the function name are present!</dt>
+		</dl>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt class="note">A function must be defined before you call it, or a <b>NameError</b> will be raised!</dt>
+			<pre><code rel="Python" class="python">
+				# execute the greet() function:
+				greet()
+
+				# define greet() function:
+				def greet():
+				  print("Hello!")
+
+				# NameError: name 'greet' is not defined
+			</code></pre>
+			<dt>function call - the right way:</dt>
+			<pre><code rel="Python" class="python">
+				# define greet() function:
+				def greet():
+				  print("Hello!")
+
+				# execute the greet() function:
+				greet()
+
+				# Hello!
+			</code></pre>
+		</dl>
+	</section>
+</section>
+
+
+<section id="Function Parameters"><h1>Function Parameters</h1></section>
+<section><h2>Function Parameters</h2>
+	<section>
+		<dl class="fa">
+			<dt>A function is not very useful if it operates on same values</dt>
+			<pre><code rel="Python" class="python">
+				def add():
+					print(2+3)
+
+				add()
+				add()
+				add()
+
+				# 5
+				# 5
+				# 5
+			</code></pre>
+			<dt>It will be better if we could do:</dt>
+			<pre><code rel="Python" class="python">
+				# call add with different arguments:
+				add(20, 22)
+				add(123, 321)
+				add(16, 10)
+
+				# DESIRED OUTPUT:
+				# 42
+				# 444
+				# 26
+			</code></pre>
+		</dl>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt class="note">Parameters are local function variables which get values when the function is called with the respective arguments.</dt>
+			<a href="images/passing_arguments.png"><img src="images/passing_arguments.png"></a>
+			<dt>You can define a function to use parameters by listing them in the braces.</dt>
+			<dt>Parameters names should be valid variable names.</dt>
+			<dt>When you call a function, you list in the braces the respective parameters values (called <span class="note">arguments</span>)</dt>
+		</dl>
+	</section>
+	<section><h3>Positional Arguments</h3>
+		<dl class="fa">
+			<dt>Passing arguments values to parameters can be done by position. In this case, we speak about <span class="note">positional arguments/parameters</span>:</dt>
+			<dd>first parameter gets the value of first argument</dd>
+			<dd>second parameter - the value of second argument</dd>
+			<dd>and so on...</dd>
+			<a href="images/passing_arguments_2.png"><img src="images/passing_arguments_2.png"></a>
+		</dl>
+	</section>
+	<section><h3>Positional Arguments</h3>
+		<dl class="fa">
+			<dt>The number of arguments passed must be equal to the number of parameters</em>!</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def sub(x,y):
+				""" subtracts y from x and prints the result """
+				print(x - y)
+
+			sub(99)
+			# TypeError: sub() missing 1 required positional argument: 'y'
+
+			sub(99, 3, 3)
+			# TypeError: sub() takes 2 positional arguments but 3 were given
+		</code></pre>
+		<!-- <p>But you can use <em>default parameters values</em>.</p> -->
+	</section>
+	<section><h3>Default Parameters Values</h3>
+		<dl class="fa">
+			<dt>A default value to the "trailing" parameters can be defined, and that value will be used if no argument for that parameter is passed.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def greet(name="Nobody"):
+				""" greets a user """
+				print("Hello", name)
+
+			greet("Maria")
+			greet()
+
+			# Hello Maria
+			# Hello Nobody
+
+		</code></pre>
+	</section>
+	<section><h3>Default Parameters Values</h3>
+		<p class="note">Default parameters must follow the non-default parameters!</p>
+		<pre><code rel="Python" class="python">
+			def greet(msg="Hi", name):
+				print(f"{msg} {name}!")
+
+			greet("Maria")
+			# SyntaxError: non-default argument follows default argument
+		</code></pre>
+		<pre><code rel="Python" class="python">
+			def greet(name, msg="Hi"):
+				print(f"{msg} {name}!")
+
+			greet("Maria")
+			# Hi Maria!
+		</code></pre>
+	</section>
+	<section><h3>Keyword (named) Arguments</h3>
+		<dl class="fa">
+			<dt>If you explicitly state the parameter name in the argument list, that parameter will get its value, no matter of where it is positioned.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def greet(msg, name):
+				print(f"{msg} {name}!")
+
+			greet(name="Maria",  msg="Hi")
+		</code></pre>
+	</section>
+	<section><h3>Keyword (named) Arguments</h3>
+		<p class="note">Named arguments must follows the positional arguments!</p>
+		<pre><code rel="Python" class="python">
+			def greet(msg, name):
+				print(f"{msg} {name}!")
+
+			greet(name="Maria", "Hi")
+			# SyntaxError: positional argument follows keyword argument
+		</code></pre>
+	</section>
+	<section id="args"><h3>Variable Number of Positional Arguments (*args)</h3>
+		<dl class="fa">
+			<dt>You can define a function to take <span class="note">variable number of arguments</span> if you use the <span class="note">*</span> (star) operator in front a parameter name.</dt>
+			<dt>Thus, the parameter will receive the arguments in a <span class="note">tuple</span>:</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def foo(*args):
+			  print(args)
+
+			foo(1)
+			foo(1,2)
+			foo(1,2,3)
+
+			#(1,)
+			#(1, 2)
+			#(1, 2, 3)
+		</code></pre>
+		<p>The name <code>args</code> can be any valid variable name, but its a convention to use <code>*args</code> to denote that it contains the packed arguments</p>
+	</section>
+	<section><h3>Variable Number of Positional Arguments (*args)</h3>
+		<p class="note">Variable arguments must follow the positional arguments:</p>
+		<pre><code rel="Python" class="python">
+			def add(p1, *args):
+				print(p1, end=", ")
+				print(args)
+
+			add(1, 2)
+			add(1, 2, 3)
+			add(1, 2, 3, 4)
+
+			# 1, (2,)
+			# 1, (2, 3)
+			# 1, (2, 3, 4)
+		</code></pre>
+	</section>
+	<section><h3>Variable Number of Positional Arguments (*args) - Task</h3>
+		<dl class="fa">
+			<dt>Define the <code>add_num()</code> function, which will print the sum of variable number of numerical arguments</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			# add_num() definition
+
+			# test your code:
+			add_num(1)
+			#should print 1
+
+			add_num(1,2)
+			#should print 3
+
+			add_num(1,2,3)
+			#should print 6
+		</code></pre>
+	</section>
+	<section id="kwargs"><h3>Variable Number of Keyword Arguments (**kwargs)</h3>
+		<dl class="fa">
+			<dt>You can use <code class="note">**</code> (double stars) in front of parameter name which will receive a variable number of <span class="note">keyword arguments</span> into a <span class="note">dictionary</span>.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def foo(**kwargs):
+			  print(kwargs)
+
+			foo(a=1, b=2)
+
+			# {'a': 1, 'b': 2}
+		</code></pre>
+	</section>
+	<section><h3>Variable Number of Keyword Arguments (**kwargs) - example</h3>
+		<pre><code rel="Python" class="python">
+			def signup(**kwargs):
+			  for k,v in kwargs.items():
+			    print("{} - {}".format(k,v))
+
+
+			signup(user="ada", age=28)
+			signup(user="ada", age=28, town="london")
+		</code></pre>
+	</section>
+	<section><h3 class="advanced">Unpacking sequence into positional parameters</h3>
+		<dl class="fa">
+			<dt>You can unpack a list/tuple passed as argument into listed positional parameters with the <code>*</code> operator</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def my_func(p1,p2,p3):
+				print(p1, p2, p3)
+
+			args = [1,2,3]
+			my_func(*args)
+			# 1 2 3
+		</code></pre>
+		<p>Note, that if you miss the star in <code>my_func(*[1,2,3])</code>, Python will assign the whole list <code>[1,2,3]</code> to <code>p1</code>, and the rest of parameters will receive no value. That will throw an error!</p>
+	</section>
+	<section><h3 class="advanced">Unpacking dictionary into named arguments</h3>
+		<dl class="fa">
+			<dt>You can use <code class="note">**</code> (double stars) to unpack dictionary into named arguments.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def menu_print(fruit, price):
+				print("{:.&lt;20s}{:.2f}".format(fruit,price))
+
+
+			menu_print(**{
+				"price": 2.5,
+				"fruit": "apple"
+			})
+
+			# apple...............2.50
+		</code></pre>
+	</section>
+</section>
+
+
+<section id="FunctionReturnValues"><h1>Function Return Values</h1></section>
+<section><h2>Function Return Values</h2>
+	<section><h3><code class="note">return</code> statement</h3>
+		<dl class="fa">
+			<dt>Functions in Python can return values, using the <code class="note">return</code> statement:</dt>
+		</dl>
+		<pre><code rel="Syntax" class="python" data-noescape>
+			def f():
+				<em>statements</em>
+				return [<em>expression</em>]
+		</code></pre>
+		<pre><code rel="Python" class="python" data-noescape>
+			def add(x,y):
+				return x+y
+
+			print(<b>add(2,4)</b>**2)
+
+			# 36
+		</code></pre>
+	</section>
+	<section>
+		<p>The return statement exit the function! Any code after <code>return</code> will never be executed:</p>
+		<pre><code rel="Python" class="python">
+			def add(x,y):
+				return x+y
+				# next line will never be executed:
+				print("After return")
+
+			print(add(2,4))
+		</code></pre>
+	</section>
+	<section><h3>Default return value</h3>
+		<dl class="fa">
+			<dt>If a function did not have an explicit <code>return</code> statement, then <span class="note">the function return value is <b>None</b></span>.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def foo():
+				print("foo() was executed!")
+
+			def bar():
+				print("bar() was executed!")
+				return "End"
+
+			print( foo() )
+			print( bar() )
+
+			# OUTPUT:
+			# foo() was executed!
+			# None
+			# bar() was executed!
+			# End
+		</code></pre>
+		<p>In Python each function returns a value, being it None!</p>
+	</section>
+</section>
+
+<section id="ScopeAndNamespaces"><h1>Scope and Namespaces</h1></section>
+<section><h2>Scope and Namespaces</h2>
+	<section><h3>What?</h3>
+		<dl class="fa">
+			<dt>A <span class="note">namespace</span> stores the mapping from names to objects. Usually implemented internally by a dictionary.</dt>
+			<dt>A <span class="note">scope</span> is a lexical (textual) region of the program, where a namespace is directly accessible (i.e. without a prefix).</dt>
+			<dt>You can think of the scope as part of your program where a variable can be accessed (used, visible).</dt>
+		</dl>
+		<a href="images/scope.png"><img src="images/scope.png"></a>
+	</section>
+	<section><h3>Local Scope</h3>
+		<dl class="fa">
+			<dt>Names created <span class="note">inside a function</span> are <span class="note">local</span> to the function and are visible only inside that function</dt>
+			<dt>Function parameters are also defined in local function namespace. I.e. they are local to that function.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def f1():
+			  y = 2
+			  print(f"y = {y} inside f1")
+
+			f1()
+			# y = 2 inside f1
+
+			print(f"y = {y} outside f1")
+			# NameError: name 'y' is not defined
+		</code></pre>
+	</section>
+	<section><h3>Global Scope</h3>
+		<dl class="fa">
+			<dt>A name defined outside any functions is <span class="note">global</span> to the file/module, and can be accessed after its definition from any place in that file/module.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			x = 10
+
+			def foo():
+				print("x = {} inside foo()".format(x))
+
+			foo()
+			# x = 10 inside foo()
+			print("x = {} outside foo()".format(x))
+			# x = 10 outside foo()
+		</code></pre>
+	</section>
+	<section><h3>Names Resolution</h3>
+		<dl class="fa">
+			<dt style="font-size: .8em">When a name is assigned a value inside function body, that name is created in function local scope (if the global keyword is not used), even if the same name is already defined in global scope</dt>
+			<pre><code rel="Python" class="python">
+				x = 1
+
+				def foo():
+				  x = 99
+				  print(f"x = {x} inside foo")
+
+				foo()
+				# x = 99 inside foo
+
+				print(f"x = {x} outside foo")
+				# x = 1 outside foo
+			</code></pre>
+		</dl>
+		<p class="note">Variables with same name, defined in different scopes are considered as different variables!</p>
+	</section>
+	<section><h3>Names Resolution - nested functions</h3>
+		<pre><code rel="Python" class="python">
+			def outer():
+			  x=2
+
+			  def inner():
+			    x = 3
+			    print(f'x = {x} in inner')
+
+			  inner()
+			  print(f'x = {x} in outer')
+
+			x = 1
+			outer()
+			print(f'x = {x} in global')
+
+			#x = 3 in inner
+			#x = 2 in outer
+			#x = 1 in global
+		</code></pre>
+	</section>
+	<section><h3 class="advanced">the <code>nonlocal</code> statement</h3>
+		<dl class="fa">
+			<dt>We can declare a name with the <code>nonlocal</code> statement prefix</dt>
+			<dt>The nonlocal statement causes the listed names to refer to previously bound variables in the nearest enclosing scope excluding globals.</dt>
+			<pre><code rel="Python" class="python">
+				def outer():
+				  x=2
+
+				  def inner():
+					nonlocal x
+					x = 3
+					print(f'x = {x} in inner')
+
+				  inner()
+				  print(f'x = {x} in outer')
+
+				x = 1
+				outer()
+				print(f'x = {x} in global')
+
+				#x = 3 in inner
+				#x = 3 in outer
+				#x = 1 in global
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3 class="advanced">the <code>global</code> statement</h3>
+		<dl class="fa">
+			<dt>We can declare a name with the <code>global</code> statement prefix</dt>
+			<dt>The <code>global</code> statement causes the listed names to be interpreted as global names.</dt>
+			<pre><code rel="Python" class="python">
+				def outer():
+				  x=2
+
+				  def inner():
+					global x
+					x = 3
+					print(f'x = {x} in inner')
+
+				  inner()
+				  print(f'x = {x} in outer')
+
+				x = 1
+				outer()
+				print(f'x = {x} in global')
+
+				#x = 3 in inner
+				#x = 2 in outer
+				#x = 3 in global
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Names Resolution - rules</h3>
+		<p>Although scopes are determined statically, they are used dynamically. I.e. a name is resolved searching in: </p>
+		<ol class="fa">
+			<li>The <b>local</b> (innermost) scope</li>
+			<li>The scopes of any <b>enclosing</b> functions, which are searched starting with the nearest enclosing scope, contains non-local, but also non-global names</li>
+			<li>The current module’s <b>global</b> names</li>
+			<li>The outermost scope is the namespace containing <b>built-in</b> names</li>
+		</ol>
+		<br><br>
+		<a href="./images/LEGB_Namespaces_Rules.png"><img src="./images/LEGB_Namespaces_Rules.png" alt="LEGB_Namespaces_Rules.png"></a>
+	</section>
+</section>
+
+<section><h1>References</h1></section>
+<section><h2>References</h2>
+	<section>
+		<dl class="fa">
+			<dt><a href="https://docs.python.org/3/tutorial/controlflow.html#defining-functions">Defining Functions</a> @python.org/3/tutoria</dt>
+			<dt><a href="https://www.python-course.eu/python3_functions.php">Functions</a> @python-course.eu</dt>
+			<dt><a href="https://realpython.com/python-namespaces-scope/">Namespaces and Scope in Python @realpython</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>Task1: BMI with functions</h2>
+	<section><h3>Task</h3>
+		<dl class="fa">
+			<dt>Write a program which will calculate a user BMI.</dt>
+			<dt>Split your logic into functions, and organise your program as given bellow:</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			def get_user_data():
+				"""retrieves user data from the command line
+
+				Returns:
+					[dictionary] of the form:
+						{
+							"name" : "user_name",
+							"height": "user heigth in meters",
+							"weight": "user weight in kilograms"
+						}
+				"""
+				pass
+
+			def calc_BMI(w,h):
+				"""calculates the BMI
+
+				Arguments:
+					w {[float]} -- [weight]
+					h {[float]} -- [height]
+
+				Returns:
+					[float] -- [calculated BMI = w / (h*h)]
+				"""
+				pass
+
+			def calc_BMI_category(bmi):
+				"""Calculates the BMI category
+
+				Arguments:
+					bmi {[float]} -- [the bmi number index]
+
+				Returns:
+					[string] -- [bmi category]
+				"""
+				pass
+
+			def print_results(bmi_category):
+				"""[Prints the BMI category to the user ]
+
+				Arguments:
+					bmi_category {[string]} -- []
+				"""
+				pass
+
+			def cm_to_meters(cm):
+				"""converts centimetres to meters
+
+				Arguments:
+					cm {[int]}
+
+				Returns:
+					[float]
+				"""
+				pass
+
+			user_data = get_user_data()
+			bmi = calc_BMI(user_data["weight"],user_data["height"] )
+			bmi_category = calc_BMI_category(bmi)
+			print_results(bmi_category)
+
+		</code></pre>
+	</section>
+</section>
+<section><h2>Task2: Check user input</h2>
+	<dl class="fa">
+		<dt>Improve the function <code>get_user_data()</code> defined in Task1, adding a check for valid user data:</dt>
+		<dd>User name must be at least 2 characters long</dd>
+		<dd>User's height must be in the range: [50 - 250]</dd>
+		<dd>User's weight must be in the range: [5 - 300]</dd>
+		<dt>If the user enters wrong data, ask for input again.</dt>
+		<dt class="advanced">Advanced task: define a separate function for each check (<em>validate_name(), validate_height(), validate_weight()</em>) which will return True if the user input is valid, and False - otherwise.</dt>
+	</dl>
+</section>
+<!-- <section><h3>Submition</h3>
+	<dl class="fa">
+		<dt>You can write both of the tasks in one file: <b><em>prefix</em>_bmi_with_functions.py</b></dt>
+		<dd>where <em>prefix</em> is your name initials</dd>
+			<dd>For instance: <b>iep_bmi_with_functions.py</b></dd>
+			<dt>Send it to <a href="mailto:progressbg.python.course@gmail.com?Subject=HW:acad_to_astro_hours">progressbg.python.course@gmail.com</a></dt>
+	</dl>
+</section> -->
+<!-- <section><h3>"Guess the number" - full version</h3>
+	<dl class="fa">
+		<dt>Write the full version of the "Guess the number" game, implementing the same rules as given in <a href="http://127.0.0.1:1111/ProgressBG-Python-UniCredit-Slides/pages/themes/beginners/logicalExpressionsAndConditionalStatements/logicalExpressionsAndConditionalStatements.html#/hw_guess_the_number">Guess the number game - the beginning</a>, but giving the user the chance to try more than once.</dt>
+		<dt>The user now will have 5 tries to guess.</dt>
+		<dt>If he/she could not manage to guess the number for 5 tries, the game stops, with a message:<br>"You lost! My number was X"</dt>
+		<dd>where X is the machine number</dd>
+	</dl>
+</section> -->
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
