@@ -128,7 +128,7 @@
 
 <section data-min="5"><h1>Understand the structure of a PyQt Application</h1></section>
 <section><h2>Understand the structure of a PyQt Application</h2>
-	<section><h3>Minimal structure of a PyQt App</h3>
+	<section id="minimalStructureOfAPyQtApp"><h3>Minimal structure of a PyQt App</h3>
 		<p></p>
 		<pre><code rel="Python" class="python">
 			# 1. import needed QtWidgets classes
@@ -179,7 +179,8 @@
 			<dt><code>app.exec()</code> begins the QApplication <span class="note">event loop</span> which process our user interactions with the GUI.</dt>
 			<dd>The main event loop receives events from the window system and dispatches these to the application widgets.</dd>
 			<dt class="note">The event loop will run forever until the application quits.</dt>
-			<dt>In python both <code>app.exec()</code> and <code>app.exec_()</code> methods are implemented, because <code>exec</code> is a reserved word in Python2</dt>
+			<dt>In Python3 both <code>app.exec()</code> and <code>app.exec_()</code> methods are implemented, because <code>exec</code> is a reserved word in Python2</dt>
+			<dd>Note that PyQt6, which supports only Python3, removes the <code>app.exec_()</code> method</dd>
 			<dt>It's a good practice our Python script to exit with the same exit status as app.exec_() status. That's why we use <code>sys.exit(app.exec_())</code> </dt>
 			<dt>Reference: <a href="https://doc.qt.io/qt-5/qapplication.html#exec">QApplication::exec()</a></dt>
 		</dl>
@@ -195,7 +196,8 @@
 			<dt>Reference: <a href="https://doc.qt.io/qt-5/qwidget.html#details">QWidget Class</a></dt>
 		</dl>
 	</section>
-	<section><h3>Widgets Example</h3>
+	<section id="widgetsExampleAndTask"><h3>Widgets Example and Task</h3>
+		<p>Try to make an app, which will have the widgets given on next picture:</p>
 		<a href="./images/WidgetsExample.png"><img src="./images/WidgetsExample.png" alt="./images/WidgetsExample.png" style="min-height: 70vh ;"></a>
 	</section>
 </section>
