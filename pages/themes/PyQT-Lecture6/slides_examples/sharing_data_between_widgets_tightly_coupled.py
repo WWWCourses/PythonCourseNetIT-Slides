@@ -4,30 +4,17 @@ from PyQt5 import QtCore as qtc
 from PyQt5 import QtGui as qtg
 
 class FormWindow(qtw.QWidget):
-	# cretate custom signal which will cary a string data type data:
-	submit = qtc.pyqtSignal(str);
-
-	def __init__(self , msg, *args, **kwargs):
+	def __init__(self , *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.setWindowTitle('My Form')
 
 		# ------------------------- create and atach widgets ------------------------- #
-		self.edit = qtw.QLineEdit(msg)
+		self.edit = qtw.QLineEdit()
 		self.btn_submit = qtw.QPushButton('Submit')
 
 		self.setLayout(qtw.QVBoxLayout())
 		self.layout().addWidget(self.edit)
 		self.layout().addWidget(self.btn_submit)
-
-
-		# ---------------------------------- signals --------------------------------- #
-		self.btn_submit.clicked.connect(self.onSubmit)
-
-
-	@qtc.pyqtSlot(bool)
-	def onSubmit(self):
-		self.submit.emit(self.edit.text())
-		self.close()
 
 class MainWindow(qtw.QWidget):
 	def __init__(self , *args, **kwargs):
@@ -49,10 +36,18 @@ class MainWindow(qtw.QWidget):
 		self.show()
 
 	def onChangeClicked(self):
-		# loosly-coupled approach: we don't care about form's implementation, just pass and receive data
-		self.form = FormWindow(self.label.text())
-		self.form.submit.connect(self.label.setText)
+		# tightly-coupled approach: we must know form's implementation
+		self.form = FormWindow()
+
+		self.form.edit.setText(self.label.text())
+		self.form.btn_submit.clicked.connect(self.on_form_text_changed)
+
 		self.form.show()
+
+
+	def on_form_text_changed(self):
+		self.label.setText(self.form.edit.text())
+		self.form.close()
 
 
 if __name__ == '__main__':

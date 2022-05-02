@@ -159,8 +159,13 @@
 			<dt> But that approach requires the main form to know all about the pop-up dialog's widgets and any refactoring of the popup would risk breaking code in the main application.</dt>
 		</dl>
 	</section>
-	<section><h3>Demo</h3>
-		<script src="https://gist.github.com/WWWCourses/4758e43f276509c74e9999634d1e8e16.js"></script>
+	<section><h3>Demo: tightly-coupled approach</h3>
+		<p>Note that MainWindow must know form's implementation</p>
+		<script src="https://gist.github.com/WWWCourses/85a71a944860e9b37f2b40a9f6ed8a7c.js"></script>
+	</section>
+	<section><h3>Demo: loosly-coupled approach</h3>
+		<p>Note that MainWindow don't care about form's implementation, it just pass and receive data</p>
+		<script src="https://gist.github.com/WWWCourses/4f5763c425ac129a9e232cfd11adb448.js"></script>
 	</section>
 </section>
 
