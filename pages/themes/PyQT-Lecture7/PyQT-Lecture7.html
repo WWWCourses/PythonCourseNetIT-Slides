@@ -78,8 +78,10 @@
 			<dt>Qt has QMainWindow and its related classes for main window management.</dt>
 			<dt>QMainWindow has its own layout to which you can add QToolBars, QDockWidgets, a QMenuBar, and a QStatusBar. </dt>
 			<dt>The Main Window of an application is created as instance of <a href="https://doc.qt.io/qt-5/qmainwindow.html">QMainWindow Class</a></dt>
+			<dt>Main windows have either a single (SDI) or multiple (MDI) Document Interface.</dt>
+			<dd>You can create MDI applications by using a <a href="https://doc.qt.io/qt-5/qmdiarea.html">QMdiArea</a> as the central widget.</dd>
 		</dl><br>
-		<a href="./images/mainwindowlayout.png"><img src="./images/mainwindowlayout.png" alt="./images/mainwindowlayout.png" style="height: 80vh;"></a>
+		<a href="./images/mainwindowlayout.png"><img src="./images/mainwindowlayout.png" alt="./images/mainwindowlayout.png" style="height: 70vh;"></a>
 	</section>
 	<section><h3>MainWindow Central Widget</h3>
 		<dl class="fa">
@@ -95,9 +97,14 @@
 	<section><h3>MenuBar</h3>
 		<dl class="fa">
 			<dt>A menu bar consists of a list of pull-down menu items</dt>
+			<dt>QMainWindow provides an empty QMenuBar object by default.</dt>
+			<dt>To get access to this menu bar, you need to call .menuBar() on your QMainWindow object.</dt>
 			<dt>You add menu items with addMenu()</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
+			# get the menu bar
+			menubar = self.menuBar()
+
 			# add menu items
 			file_menu = menubar.addMenu('File')
 			edit_menu = menubar.addMenu('Edit')
@@ -117,6 +124,7 @@
 		<dl class="fa">
 			<dt>The QToolBar class provides a movable panel that contains a set of controls.</dt>
 			<dt>You add toolbars to a MainWindow with addToolBar()</dt>
+			<dt>To add some toolbar buttons you can use PyQt actions, which are instances of QAction (discussed later)</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
 			toolbar = self.addToolBar('File')
@@ -249,6 +257,19 @@
 	</section>
 </section>
 
+<section data-min="10"><h1>Add image</h1></section>
+<section><h2>Add image</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>To add an image, first we must load the image using <a href="https://doc.qt.io/qt-5/qpixmap.html">QPixmap</a></dt>
+			<dt>A QPixmap can easily be displayed on the screen using QLabel or one of QAbstractButton's subclasses (such as QPushButton and QToolButton). QLabel has a pixmap property, whereas QAbstractButton has an icon property.</dt>
+			<dt>Optionally, we may want to resize the label according to the image dimensions.</dt>
+		</dl>
+	</section>
+	<section><h3>Example</h3>
+		<script src="https://gist.github.com/WWWCourses/60d192b3f26b2f85696a02b20497190e.js"></script>
+	</section>
+</section>
 
 <section data-min="5"><h1>Style Widgets with Style Sheets</h1></section>
 <section><h2>Style Widgets with Style Sheets</h2>
