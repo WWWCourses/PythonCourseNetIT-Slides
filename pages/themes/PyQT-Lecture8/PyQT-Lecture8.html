@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section><h1>PyQT - Lecture 8 : Hands On CarParts Project with PyQT and Mysql (Part 1)</h1></section>
+<section><h1>PyQT - Lecture 8 : Hands On QTsimpleLoginForm Project with PyQT and Mysql (Part 1)</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
 		<div class="note">
@@ -78,19 +78,25 @@
 		<dl class="fa">
 			<dt>Create the root project folder</dt>
 			<pre><code rel="Terminal" class="bash">
-				# make directory named "CarParts":
-				mkdir CarParts
+				# make directory named "QTsimpleLoginForm":
+				mkdir QTsimpleLoginForm
 
 				# navigate to your root project folder:
-				cd CarParts
+				cd QTsimpleLoginForm
 			</code></pre>
 			<dt>Create a virtual environment and activate it:</dt>
 			<pre><code rel="Terminal" class="bash">
-				# create a virtualenv named ".venv" in current working folder:
+				### create a virtualenv named ".venv" in current working folder:
+				# on Linux/MacOS:
 				python3 -m venv ./.venv
+				#  on Windows (CMD):
+				python -m venv ./.venv
 
-				# activate the ".venv" environment:
+				### activate the ".venv" environment:
+				# on Linux/MacOS:
 				source .venv/bin/activate
+				#  on Windows (CMD):
+				.\env\Scripts\activate
 
 				# your command prompt should be prefixed with "(.venv)" now
 			</code></pre>
@@ -124,7 +130,8 @@
 			<dt>Init your git repo</dt>
 			<dt>Create <a href="https://git-scm.com/docs/gitignore">.gitignore</a> file and add in it files/folders to be ignored by git</dt>
 			<dd>You can use next template for Python provided by GitHub: <a href="https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore">Python.gitignore</a> :</dd>
-			<dt>To add your project ot GitHub, follow <a href="https://docs.github.com/en/github/importing-your-projects-to-github/importing-source-code-to-github/adding-an-existing-project-to-github-using-the-command-line#adding-a-project-to-github-without-github-cli">the github's instructions</a></dt>
+			<dd>Make sure that you have <span class="note">uncomment</span> ignore sections related to your environment (like PyCharm's .idea).</dd>
+			<dt>To add your project to GitHub, follow <a href="https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git">the github's instructions</a></dt>
 		</dl>
 	</section>
 </section>

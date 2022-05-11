@@ -233,14 +233,12 @@
 			<dt>the showMessage() slot is used to display a temporary message:</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
-			# The long way
-			#status_bar = qtw.QStatusBar()
-			#self.setStatusBar(status_bar)
-			#status_bar.showMessage('Welcome to My Text Editor')
+			# create status bar widget and atach it to main window:
+			status_bar = qtw.QStatusBar()
+			self.setStatusBar(status_bar)
 
-			# same as above, but shorter
-			self.StatusBar().showMessage('Welcome to My Text Editor')
-
+			# show temporary message for 1 second:
+			s.showMessage('Welcome to My Text Editor',1000)
 		</code></pre>
 	</section>
 	<section><h3>Adding Permanent Message to StatusBar</h3>
