@@ -76,7 +76,8 @@
 <section><h2>Directory Manipulations</h2>
 	<section><h3>Get and set the current working directory </h3>
 		<dl class="fa">
-			<dt>CWD stands for <b>C</b>urrent <b>W</b>orking <b>D</b>irectory). All filesystem operations will be relative to that folder, unless you specify an absolute (full) path.</dt>
+			<dt>CWD stands for <b>C</b>urrent <b>W</b>orking <b>D</b>irectory. In Python, the Current Working Directory is set to the directory location from where the python script is executed.</dt>
+			<dt>All filesystem operations will be relative to CWD, unless you specify an absolute (full) path.</dt>
 			<dt>Get CWD: <code>os.getcwd()</code></dt>
 			<dd>Return a string representing the CWD</dd>
 			<pre><code rel="Python" class="python">
@@ -86,13 +87,12 @@
 			<dt>Set CWD: <code>os.chdir(path)</code></dt>
 			<dd>Change the current working directory to the specified path.</dd>
 			<pre><code rel="Python" class="python">
-				>>> os.chdir("Seventeen Seconds")
+				>>> os.chdir("SeventeenSeconds")
 				>>> os.getcwd()
-				'/data/python_demos/music/The Cure/Seventeen Seconds'
+				'/data/python_demos/music/The Cure/SeventeenSeconds'
 			</code></pre>
 		</dl>
 	</section>
-
 	<section><h3>List entries in a directory</h3>
 		<dl class="fa">
 			<dt><code>os.listdir(path='dirname')</code></dt>
@@ -102,23 +102,23 @@
 		</dl>
 		<pre><code rel="Python" class="python">
 			>>> os.listdir()
-			['Seventeen Seconds', 'Disintegration']
+			['SeventeenSeconds', 'Disintegration']
 		</code></pre>
 	</section>
 
 	<section><h3>Make directory</h3>
 		<dl class="fa">
-			<dt><code>os.mkdir(path)</code></dt>
+			<dt><code><a href="https://docs.python.org/3/library/os.html#os.mkdir">os.mkdir(path)</a></code></dt>
 			<dd>Create a directory with given path name</dd>
+			<dd>If the directory already exists, FileExistsError is raised.</dd>
+			<dd>If a parent directory in the path does not exist, FileNotFoundError is raised.</dd>
 		</dl>
 		<pre><code rel="Python" class="python">
-			>>> os.listdir()
-			['Seventeen Seconds', 'Disintegration']
+			os.mkdir("TheCure")
+			# folder 'TheCure' is created in CWD
 
-			>>> os.mkdir("lyrics")
-
-			>>> os.listdir()
-			['lyrics', 'Seventeen Seconds', 'Disintegration']
+			os.mkdir("A/B/C")
+			# FileNotFoundError: [Errno 2] No such file or directory: 'A/B/C'
 		</code></pre>
 	</section>
 	<section><h3>Make directory tree</h3>
@@ -128,15 +128,14 @@
 			<dd>Recursive directory creation.</dd>
 		</dl>
 		<pre><code rel="Python" class="python">
-			>>> os.listdir("The Cure")
-			['lyrics', 'Seventeen Seconds', 'Disintegration']
+			path = os.path.join('TheCure','Disintegration', 'Plainsong')
+			os.makedirs(path)
+		</code></pre>
+		<pre><code rel="Output Tree" class="bash">
+			TheCure/
+			└── Disintegration
+						└── Plainsong
 
-			>>> os.makedirs("The Cure/test/subtest")
-
-			>>> os.listdir("The Cure")
-			['test', 'lyrics', 'Seventeen Seconds', 'Disintegration']
-			>>> os.listdir("The Cure/test/")
-			['subtest']
 		</code></pre>
 	</section>
 	<section><h3>Rename file or directory</h3>
@@ -145,13 +144,19 @@
 			<dd>Rename the source file or directory to given destination</dd>
 		</dl>
 		<pre><code rel="Python" class="python">
-			os.listdir("The Cure")
-			['test', 'lyrics', 'Seventeen Seconds', 'Disintegration']
+			# Lets create folder 'TheCure/Seventeen Seconds'
+			os.makedirs(os.path.join('TheCure','Seventeen Seconds'))
+			print(os.listdir("TheCure"))
+			# ['Seventeen Seconds', 'Disintegration']
 
-			>>> os.rename("The Cure/test", "The Cure/TEST")
+			# Rename 'TheCure/Seventeen Seconds' to 'TheCure/SeventeenSeconds'
+			old_name = os.path.join('TheCure','Seventeen Seconds')
+			new_name = os.path.join('TheCure','SeventeenSeconds')
+			os.rename(old_name,new_name)
 
-			>>> os.listdir("The Cure")
-			['TEST', 'lyrics', 'Seventeen Seconds', 'Disintegration']
+			print(os.listdir("TheCure"))
+			# ['SeventeenSeconds', 'Disintegration']
+
 		</code></pre>
 	</section>
 	<section><h3>Remove directory</h3>
@@ -162,13 +167,11 @@
 			<dd class="note">This is safer than os.removedirs(), which will delete even non-empty directories.</dd>
 		</dl>
 		<pre><code rel="Python" class="python">
-			>>> os.listdir("The Cure/TEST/")
-			['subtest']
+			os.rmdir(os.path.join('TheCure','SeventeenSeconds'))
+			# 'TheCure/SeventeenSeconds' is removed, because it was empty
 
-			>>> os.rmdir("The Cure/TEST/subtest/")
-
-			>>> os.listdir("The Cure/TEST/")
-			[]
+			os.rmdir(os.path.join('TheCure','Disintegration'))
+			# OSError: [Errno 39] Directory not empty: 'TheCure/Disintegration'
 		</code></pre>
 	</section>
 </section>
@@ -177,7 +180,7 @@
 <section><h2>Files Manipulations</h2>
 	<section><h3>Overview</h3>
 		<dl class="fa">
-			<dt>For basic files operations, like reading, writing and appending to files we can use the built-in <code>file</code> object and its methods.</dt>
+			<dt>For basic files operations, like reading, writing and appending to files we can use the built-in <a href="https://docs.python.org/3/glossary.html#term-file-object">file object</a> and its methods.</dt>
 			<dt>To get a corresponding file object we must use the <a href="https://docs.python.org/3/library/functions.html#open">open()</a> built-in function.</dt>
 		</dl>
 	</section>
