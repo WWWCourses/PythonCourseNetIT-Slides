@@ -82,7 +82,22 @@
 		<a href="./images/internet_diagram.png"><img src="./images/internet_diagram.png" alt="internet_diagram.png"></a>
 	</section>
 	<section><h3>Локална Мрежа</h3>
-		<a href="./images/creating_a_local_standalone_local_network.png"><img src="./images/creating_a_local_standalone_local_network.png" alt="local" style="height: 80vh;"></a>
+		<a href="./images/creating_a_local_standalone_local_network.png"><img src="./images/creating_a_local_standalone_local_network.png" alt="local" style="width:30vw;vertical-align: middle; margin-right: 1em;"></a>
+		<dl class="fa">
+			<dt>Листване на включените към локалната мрежа устройства (Linux/MacOS):</dt>
+			<pre><code rel="Terminal" class="bash">
+				# install nmap
+				sudo apt-get install nmap
+
+				# Get IP range of the network (like inet addr:192.168.1.20)
+				ifconfig -a
+
+				# Scan to find devices connected to your network
+				sudo nmap -sn 192.168.1.0/24
+			</code></pre>
+		</dl>
+
+
 	</section>
 	<section><h3>Свързване на локални мрежи чрез Рутер</h3>
 		<a href="./images/two_local_networks_interconnected_throgh_a_router-2-1024x745.png"><img src="./images/two_local_networks_interconnected_throgh_a_router-2-1024x745.png" alt=""></a>
@@ -277,13 +292,16 @@
 			<dd>Outlook Express = 212.50.1.81:1042 «192.92.129.4:110 = Microsoft Exchange POP3 Server</dd>
 		</dl>
 	</section>
-	<section><h3>Live Demo : TCP Dump</h3>
+	<section><h3>Live Demo</h3>
 		<pre><code rel="Terminal" class="bash">
 			# list all interfaces:
 			tcpdump --list-interfaces
 
 			# Capture all packets in any interface:
 			sudo tcpdump --interface any
+
+			# List all TCP Ports connections
+			netstat -antp
 		</code></pre>
 	</section>
 	<section><h3>Сървъри и клиенти</h3>
