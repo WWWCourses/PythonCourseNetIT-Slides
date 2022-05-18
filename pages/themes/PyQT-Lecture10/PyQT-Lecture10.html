@@ -81,14 +81,8 @@
 		</dl>
 		<a href="./images/MVC-Process.svg.png"><img src="./images/MVC-Process.svg.png" alt="MVC-Process.svg.png" style="height: 50vh;"></a>
 	</section>
-	<section><h3>The Components of the Model/View Architecture</h3>
-		<dl class="fa">
-			<dt>Model/view programming separates the logic between three components,
-				but combines the view and the controller objects, and introduces a new element - a
-				delegate.</dt>
-		</dl>
-	</section>
-	<section><h3>The Components of the Model/View Architecture</h3>
+
+	<section><h3>The Components of the Model/View Architecture in QT Framework</h3>
 		<dl class="fa">
 			<dt><span class="note">Model</span> - The class that communicates with the data source, accessing
 				the data, and provides a point of connection between the data and the view and delegate.</dt>
@@ -102,16 +96,16 @@
 		<dl class="fa">
 			<dt>An abstract class is a class that is designed to be specifically used as a base class. It provides functionality and default implementation of features.</dt>
 			<dt>In Qt there are abstract classes to create custom models, views, or delegates.</dt>
-			<dt>Models – All models are based on the QAbstractItemModel class, defining the interface used by both views and delegates to access data, and can be used to handle lists, tables, or trees. Data can come form different sources, including Python data structures, separate classes, files, or databases.</dt>
+			<dt>Models - All models are based on the QAbstractItemModel class, defining the interface used by both views and delegates to access data, and can be used to handle lists, tables, or trees. Data can come form different sources, including Python data structures, separate classes, files, or databases.</dt>
 			<dd>Reference: <a href="https://doc.qt.io/qt-5/model-view-programming.html#model-classes">Model Classes</a></dd>
-			<dt>Views – All views are based on QAbstractItemView and are used to display data items from a data source, including QListView, QTableView, and QTreeView.</dt>
-			<dd><a href="https://doc.qt.io/qt-5/model-view-programming.html#view-classes">View Classes</a></dd>
-			<dt>Delegates – The base class is QAbstractItemDelegate, responsible for drawing items from the model and providing an editor widget for modifying items.</dt>
-			<dd><a href="https://doc.qt.io/qt-5/model-view-programming.html#delegate-classes">Delegate Classes</a></dd>
+			<dt>Views - All views are based on QAbstractItemView and are used to display data items from a data source, including QListView, QTableView, and QTreeView.</dt>
+			<dd>Reference: <a href="https://doc.qt.io/qt-5/model-view-programming.html#view-classes">View Classes</a></dd>
+			<dt>Delegates - The base class is QAbstractItemDelegate, responsible for drawing items from the model and providing an editor widget for modifying items.</dt>
+			<dd>Reference: <a href="https://doc.qt.io/qt-5/model-view-programming.html#delegate-classes">Delegate Classes</a></dd>
 		</dl>
 	</section>
-	<section>
-		<dl class="fa"><h3></h3>
+	<section><h3>Model/View Communication</h3>
+		<dl class="fa">
 			<dt>Models, views, and delegates communicate with each other using signals and slots:</dt>
 			<dd>Signals from the model inform the view about changes to the data held by the data source.</dd>
 			<dd>Signals from the view provide information about the user's interaction with the items being displayed.</dd>
@@ -187,13 +181,24 @@
 
 
 
-<section data-min="50"><h1>Working With SQLite DB</h1></section>
-<section><h2>Working With SQLite DB</h2>
-	<section><h3>PyQt’s classes for working with relational database</h3>
+<section data-min="50"><h1>PyQT: working With SQL</h1></section>
+<section><h2>PyQT: working With SQL</h2>
+	<section><h3>PyQt has classes for working with relational database</h3>
 		<dl class="fa">
-			<dt>use QSqlDatabase to connect to databases and QSqlQuery for creating queries</dt>
-			<dt>We will setup all DB related operations into a separate class:</dt>
+			<dt>In QT we can use QSqlDatabase to connect to databases and QSqlQuery for creating queries</dt>
+			<dt>Qt offers three higher-level classes for accessing databases. These classes are <code>QSqlQueryModel</code>, <code>QSqlTableModel</code>, and <code>QSqlRelationalTableModel</code>.</dt>
+			<dd>Reference: <a href="https://doc.qt.io/qt-5/sql-model.html">Using the SQL Model Classes</a></dd>
 		</dl>
+	</section>
+	<section><h3>PyQT SQLite Demo</h3>
+		<p>View code in <a href="https://gist.github.com/WWWCourses/17e7d9ec8b4ff322d783006d4c2bfa53">Gist</a></p>
+		<script src="https://gist.github.com/WWWCourses/17e7d9ec8b4ff322d783006d4c2bfa53.js"></script>
+	</section>
+	<section><h3>Model View Demo</h3>
+		<p>View code in <a href="https://gist.github.com/WWWCourses/05613c170ae6c10983ea5caac899a4ab">Gist</a></p>
+		<script src="https://gist.github.com/WWWCourses/05613c170ae6c10983ea5caac899a4ab.js"></script>
+	</section>
+	<!-- <section><h3>Create  ManageUserDB class</h3>
 		<pre><code rel="manage_user_db.py" class="python" style="min-height: 80vh;">
 			import sys, random
 			from PyQt5.QtSql import QSqlDatabase, QSqlQuery
@@ -212,8 +217,8 @@
 
 					self.createTables()
 		</code></pre>
-	</section>
-	<section><h3>Create User and Orders Table</h3>
+	</section> -->
+	<!-- <section><h3>Create User and Orders Table</h3>
 		<pre><code rel="manage_user_db.py" class="python">
 			def createTables(self):
 				self.query.exec_("DROP TABLE orders")
@@ -271,7 +276,7 @@
 				print("[INFO] Database successfully created.")
 
 		</code></pre>
-	</section>
+	</section> -->
 </section>
 
 
