@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Date and Time support</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+	<div class="top_links">
+		<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture1" target="_top"></a>
+		<span class="help_link"><i class="fa fa-question"></i></span>
+		<div class="help_text">
+			<div class="note">Keyboard shortcuts:</div>
+			<div><span>N/Спейс</span><span>Next Slide</span></div>
+			<div><span>P</span><span>Previous Slide</span></div>
+			<div><span>O</span><span>Slides Overview</span></div>
+			<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+			<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+			Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+		</div>
+	</div>
+	<div class="footer theme_switch">
+		<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+		<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+		<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+	</div>
+	<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section><h1>Date and Time support</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2021-2022,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+<section><h1>Overview</h1></section>
+<section><h2>Overview</h2>
+	<dl class="fa" style="font-size:.8em">
+		<dt>The <a href="https://docs.python.org/3/library/datetime.html">datetime module</a> supplies classes for manipulating dates and times in both simple and complex ways</dt>
+		<dt>A <span class="note">naive (unaware) object</span> does not contain enough information to unambiguously locate itself relative to other date/time objects</dt>
+		<dt>For applications requiring <span class="note">aware objects</span>, datetime and time objects have an optional time zone information attribute, tzinfo</dt>
+		<dd><a href="https://docs.python.org/3/library/datetime.html#tzinfo-objects">datetime.tzinfo</a> is an abstract base class and Python's standard libraries don't include any tzinfo classes. For such cases, it's convenient to use the <a href="http://pytz.sourceforge.net/">pytz</a> module</dd>
+	</dl>
+	<pre><code rel="Python" class="python">
+		import datetime,pytz
+
+		unaware = datetime.datetime(2018, 11, 21, 9, 12, 32, 0)
+		aware = datetime.datetime(2018, 11, 21, 9, 12, 32, 0, pytz.UTC)
+	</code></pre>
+</section>
+
+<section><h1>class datetime.time</h1></section>
+<section><h2>class datetime.time</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>A time object represents a (local) time of day, independent of any particular day</dt>
+			<dt><a href="https://docs.python.org/3/library/datetime.html#time-objects">time object @python3 docs</a></dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			import datetime as dt
+
+			lunch_time = dt.time(hour=12, minute=0, second=0)
+		</code></pre>
+	</section>
+</section>
+
+<section><h1>class datetime.date</h1></section>
+<section><h2>class datetime.date</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>A date object represents a date (year, month and day)</dt>
+			<dt><a href="https://docs.python.org/3/library/datetime.html#date-objects">date object @python3 docs</a></dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+		import datetime as dt
+
+		due_date = dt.date(2019, 3, 7)
+	</code></pre>
+	</section>
+</section>
+
+<section><h1>class datetime.datetime</h1></section>
+<section><h2>class datetime.datetime</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>A datetime object is a single object containing all the information from a date object and a time object.</dt>
+			<dt>Supports multiple constructors, some of which are</dt>
+			<dd><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime.datetime()</a></dd>
+			<dd><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.today">datetime.datetime.today()</a></dd>
+			<dd><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.now">datetime.datetime.now()</a></dd>
+			<dt><a href="https://docs.python.org/3/library/datetime.html#datetime-objects">datetime object @python3 docs</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section><h1>class datetime.timedelta</h1></section>
+<section><h2>class datetime.timedelta</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>A timedelta object represents a duration, the difference between two dates or times.</dt>
+			<dt>Supports multiple operations on date, time and datetime objects</dt>
+			<dt><a href="https://docs.python.org/3/library/timedelta.html">timedelta object @python3 docs</a></dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			due_date = dt.date(2019, 3, 7)
+			current_date = dt.datetime.now().date()
+
+			print(due_date - current_date)
+		</code></pre>
+	</section>
+</section>
+
+<section><h1>class datetime.tzinfo</h1></section>
+<section><h2>class datetime.tzinfo</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>An abstract base class. Capture information about the offset from UTC time, the time zone name, and whether Daylight Saving Time is in effect.</dt>
+			<dt><a href="https://docs.python.org/3/library/datetime.html#tzinfo-objects">timedelta object @python3 docs</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section><h1>Extensions to the standard datetime module</h1></section>
+<section><h1>Extensions to the standard datetime module</h1>
+	<section><h3>The <code>dateutil</code> module</h3>
+		<dl class="fa">
+			<dt><a href="https://pypi.org/project/python-dateutil/">dateutil</a>  module provides powerful extensions, good documentation and recent updates</dt>
+		</dl>
+	</section>
+</section>
+
+<section><h1>Examples</h1></section>
+<section><h2>Examples</h2>
+		<section><h3>Get current local and UTC datetimes</h3>
+			<pre><code rel="Python" class="python">
+				import datetime
+
+				# returns naive datetime object
+				today = datetime.datetime.today()
+
+				# equivalent to datetime.today(), when no tzinfo object is passed
+				now = datetime.datetime.now()
+
+				# returns the UTC time
+				utcnow = datetime.datetime.utcnow()
+
+				print(today)
+				print(now)
+				print(utcnow)
+
+				#2018-04-18 18:04:11.148224
+				#2018-04-18 18:04:11.148232
+				#2018-04-18 15:04:11.148234
+			</code></pre>
+		</section>
+		<section><h3>Get current date and time</h3>
+			<pre><code rel="Python" class="python">
+				import datetime
+
+				# get current date
+				date_now = datetime.date.today()
+				# or:
+				# date_now = datetime.datetime.today().date()
+				print("Current date: ",date_now)
+
+				# get current time
+				time_now = datetime.datetime.today().time()
+				print("Current time: ",time_now)
+
+				#Current date:  2018-04-18
+				#Current time:  17:59:19.556068
+			</code></pre>
+		</section>
+
+		<section><h3>Format datetime object as string</h3>
+			<p>Check <a href="https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior">strftime() and strptime() Behavior</a>, where are published all formatting codes supported by Python</p>
+			<pre><code rel="Python" class="python">
+				import datetime
+
+				# get the date object
+				today = datetime.datetime.today()
+
+				# now, format it as string, using the format codes:
+				print("Year:", today.strftime("%Y"))
+				print("Month:", today.strftime("%m"))
+				print("Day:", today.strftime("%d"))
+				print("Hour:", today.strftime("%H"))
+				print("Minutes:", today.strftime("%M"))
+				print("Seconds:", today.strftime("%s"))
+			</code></pre>
+		</section>
+
+		<section><h3>Create datetime object from string</h3>
+			<pre><code rel="Python" class="python">
+				import datetime
+
+				dt = datetime.datetime.strptime("15/02/17 22:10", "%d/%m/%y %H:%M")
+				print(dt)
+				# 2017-02-15 22:10:00
+
+				bdate = datetime.datetime.strptime("18.12.31", "%y.%m.%d")
+				print(bdate)
+				# 2018-12-31 00:00:00
+			</code></pre>
+		</section>
+
+		<section><h3>Calculate time interval</h3>
+			<pre><code rel="Python" class="python">
+				from datetime import datetime
+
+				t1 = datetime.strptime("08:30", "%H:%M")
+				t2 = datetime.strptime("12:15", "%H:%M")
+				print(t2 - t1)
+
+				#3:45:00
+			</code></pre>
+		</section>
+		<section><h3>Timing your code</h3>
+			<p class="note">For better precision (to account only the CPU time of your process ) use <a href="https://docs.python.org/3/library/profile.html">Python profilers built-in modules</a></p>
+			<pre><code rel="Python" class="python">
+				import time
+				from functools import reduce
+
+				#start timer
+				start = time.time()
+
+				# do some time intensive stuff:
+				sum = reduce(lambda x,y:x+y, range(1,1_000_001))
+				print("The sum of numbers from 1 to 1_000_000 is: ", sum)
+
+				#end timer
+				end = time.time()
+
+				print("[Finished in {:.6f}s]".format(end - start))
+
+				#The sum of numbers from 1 to 1_000_000 is:  500000500000
+				#[Finished in 0.087371s]
+			</code></pre>
+		</section>
+	</section>
+
+<section><h1>Live Demos</h1></section>
+<section><h2>Live Demos</h2>
+	<section><h3>Get weekday name for today</h3>
+		<pre><code rel="Python" class="python">
+			import datetime
+
+			def get_weekday_name(date, lang):
+				named_wd = {
+					'bg':["понеделник", "вторник", "сряда", "четвъртък", "петък", "събота", "неделя"],
+					'en':["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+				}
+
+				wd_name = named_wd[lang][date.weekday()]
+				return wd_name
+
+			now = datetime.datetime.now()
+
+			print('Today is', get_weekday_name(now, "bg"))
+		</code></pre>
+	</section>
+	<section><h3>When will my birthday be on Sunday?</h3>
+		<pre><code rel="Python" class="python">
+			import datetime
+
+			def get_next_sunday_date(bdate, period):
+				"""get_next_sunday_date
+
+				Args:
+				    bdate (datetime): Object representing the date
+				    period (tuple): (start_year,end_year) interval to look into
+
+				Returns:
+				    list: years, on which a date will be on Sunday
+				"""
+				years = []
+
+				for y in range(*period):
+					bdate_weekday = datetime.date(y, bdate.month, bdate.day).weekday()
+
+					if bdate_weekday == 6:
+						years.append(y)
+
+				return years
+
+
+			birth_date = datetime.datetime.strptime("31/12/00", "%d/%m/%y")
+
+			sundays_years = get_next_sunday_date(birth_date, (2018,2100))
+			print(sundays_years)
+			#[2023, 2028, 2034, 2045, 2051, 2056, 2062, 2073, 2079, 2084, 2090]
+		</code></pre>
+	</section>
+	<section><h3>Calculates the Western Easter date for given period</h3>
+		<p>Using the Samuel Butcher Algorithm, published in <a href="https://en.wikipedia.org/wiki/Computus">Computus @ wikipedia</a>.</p>
+		<pre><code rel="Python" class="python">
+			import datetime
+
+			def butcher_easter(year):
+			    "Returns Easter as a date object."
+			    a = year % 19
+			    b = year // 100
+			    c = year % 100
+			    d = (19 * a + b - b // 4 - ((b - (b + 8) // 25 + 1) // 3) + 15) % 30
+			    e = (32 + 2 * (b % 4) + 2 * (c // 4) - d - (c % 4)) % 7
+			    f = d + e - 7 * ((a + 11 * d + 22 * e) // 451) + 114
+			    month = f // 31
+			    day = f % 31 + 1
+			    return datetime.date(year, month, day)
+
+			def easter_dates_between(start, end):
+			    for year in range(start, end+1):
+			        print( butcher_easter(year).strftime("%d.%m.%Y") )
+
+
+			easter_dates_between(2018, 2050)
+		</code></pre>
+		<p class="note">The <a href="https://pypi.org/project/python-dateutil/">dateutil</a> modules provides <a href="https://github.com/dateutil/dateutil/blob/master/dateutil/easter.py">easter.py</a> module, supporting Western, Ortodox and Julian Calendars.</p>
+	</section>
+</section>
+
+
+<section id="hw"><h1>Exercises</h1></section>
+<section><h2>days_until_my_birthday</h2>
+	<section><h3>The Task</h3>
+		<dl class="fa">
+			<dt>Write a function, that calculates the remaining days from current date to your next birthday day.</dt>
+			<dt>The output should be only the number of days.</dt>
+		</dl>
+	</section>
+	<section><h3>Hint</h3>
+		<dl class="fa">
+			<dt>To calculate difference between two date objects, t1 and t2, you can use: <code>t1-t2</code> which will return a <a href="https://docs.python.org/3/library/datetime.html#timedelta-objects">timedelta Object</a></dt>
+		</dl>
+	</section>
+</section>
+<section><h2>is_leap_year</h2>
+	<section><h3>The task</h3>
+		<dl class="fa">
+			<dt>Write a function, which returns True if a year is a leap year in the Gregorian calendar, and False if it's not.</dt>
+			<dt>Algorithm: <a href="https://en.wikipedia.org/wiki/Leap_year#Algorithm">Leap_year#Algorithm @wikipedia</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=dateAndTime">progressbg.python.course@gmail.com</a></dt>
+	</dl>
+</section>
+
+<section class="disclaimer" data-background="/ProgressBG-Python-UniCredit-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+	 <p>These slides are based on</p>
+	 <p>customised version of </p>
+	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
+	 <p>framework</p>
+</section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+</div>
+</div>
+<!-- Custom processing -->
+<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+<!-- external scripts -->
+<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+ <!-- init reveal -->
+<script>
+	// Full list of configuration options available at:
+	// https://github.com/hakimel/reveal.js#configuration
+	var highlightjsTabSize = '  ';
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		slideNumber: 'c/t',
+		keyboard: true,
+		history: true,
+		center: true,
+		width: 1920,
+		height: 1080,
+		// Bounds for smallest/largest possible scale to apply to content
+		// minScale: .5,
+		maxScale: 1,
+		// slide transition
+		transition: 'concave', // none/fade/slide/convex/concave/zoom
+		// Factor of the display size that should remain empty around the content
+		margin: 0.1,
+		// shift+left click to zoom in/out element
+		zoomKey: 'ctrl',
+		// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+		// transition: Reveal.getQueryHash().transition || 'default'
+		// Optional reveal.js plugins
+		dependencies: [
+			{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+			{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+			{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+		]
+	});
+</script>
+</body>
+</html>
