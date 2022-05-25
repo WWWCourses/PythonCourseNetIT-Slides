@@ -96,6 +96,32 @@
 			<dd>datagram sockets(socket.SOCK_DGRAM) for UDP and others</dd>
 		</dl>
 	</section>
+	<section><h3>Example: UDP Server</h3>
+		<dl class="fa">
+			<dt>Note that UDP is a <span class="note">connectionless</span> protocol, so each message send must include destination address</dt>
+		</dl>
+		<pre><code rel="server.py" class="python">
+			import socket
+
+			# open and bind server socket:
+			server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+			server.bind(('127.0.0.1', 9999))
+
+			# receive data from a client:
+			msg,address = server.recvfrom(1024)
+			print(f"Received from {address}: {msg.decode('utf-8')}")
+		</code></pre>
+		<pre><code rel="client.py" class="python">
+			import socket
+
+			# open client socket:
+			client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+			# send data to specific address:
+			client.sendto(b'Hello Server',('127.0.0.1', 9999))
+
+		</code></pre>
+	</section>
 	<section><h3>How TCP Connection Works</h3>
 		<a href="./images/how_TCP_works.png"><img src="./images/how_TCP_works.png" alt="how_TCP_works.png" style="height: 70vh;"></a>
 	</section>
