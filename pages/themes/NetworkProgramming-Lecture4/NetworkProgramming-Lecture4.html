@@ -76,8 +76,10 @@
 
 <section data-min="50" id="UsingRequestsLib"><h1>HTTP Client with requests lib</h1></section>
 <section><h2>HTTP Client with requests lib</h2>
-	<section><h3>Prerequisites</h3>
+	<section><h3>Getting Started</h3>
 		<dl class="fa">
+			<dt>Requests allows you to send HTTP/1.1 requests extremely easily. There’s no need to manually add query strings to your URLs, or to form-encode your POST data. Keep-alive and HTTP connection pooling are 100% automatic, thanks to urllib3.</dt>
+			<dd>Reference: <a href="https://requests.readthedocs.io/en/latest/">Requests lib official site</a></dd>
 			<dt>Make sure you have latest version of requests installed</dt>
 			<pre><code rel="Terminal" class="bash">
 				$ pip show requests
@@ -115,23 +117,30 @@
 					|request(method, url, args)	| Sends a request of the specified method to the specified url|
 				</textarea>
 			</section>
-			<dt>Where:</dt>
+			<!-- <dt>Where:</dt>
 			<dd><span class="note">params</span> – (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.</dd>
 			<dd><span class="note">data</span> – (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the Request.</dd>
-			<dd><span class="note">json</span> – (optional) A JSON serializable Python object to send in the body of the Request.</dd>
-			<dt>Reference: <a href="https://docs.python-requests.org/en/latest/api/#requests.request">request() method main interface</a></dt>
+			<dd><span class="note">json</span> – (optional) A JSON serializable Python object to send in the body of the Request.</dd> -->
+			<dt>Usage:</dt>
+			<pre><code rel="Python" class="python">
+				import requests
+
+				response = requests.get('https://softwareacademy.bg/')
+
+				print(response.content)
+			</code></pre>
+			<dt>Reference: <a href="https://requests.readthedocs.io/en/latest/api/#requests.request">request() method main interface</a></dt>
 		</dl>
 	</section>
 	<section><h3>References</h3>
 		<dl class="fa">
-			<dt><a href="https://docs.python-requests.org/en/master/user/quickstart/">Quickstart</a></dt>
-			<dt><a href="https://docs.python-requests.org/en/master/user/advanced/#advanced">Advanced</a></dt>
-			<dt><a href="https://docs.python-requests.org/en/latest/api/">API reference</a></dt>
-			<dt><a href="https://docs.python-requests.org/en/master/api/#requests.Response">Response Object</a></dt>
+			<dt><a href="https://requests.readthedocs.io/en/latest/user/quickstart/">Quickstart</a></dt>
+			<dt><a href="https://requests.readthedocs.io/en/latest/user/advanced/#advanced">Advanced</a></dt>
+			<dt><a href="https://requests.readthedocs.io/en/latest/api/">API reference</a></dt>
+			<dt><a href="https://requests.readthedocs.io/en/latest/api/#requests.Response">Response Object</a></dt>
 		</dl>
 	</section>
-	<section><h3>Example: GET Request</h3>
-
+	<section><h3>Example: Send GET Request</h3>
 		<pre><code rel="Python" class="python" style="min-height: 60vh;">
 			# base url
 			url = 'https://httpbin.org/get'
@@ -154,6 +163,20 @@
 			if response.ok:
 				print(response.text)
 				print(response.headers)
+		</code></pre>
+	</section>
+	<section><h3>Example: access Request object from Response</h3>
+		<pre><code rel="Python" class="python">
+			import requests
+
+			# requests.get() send the request and returns a Response Object:
+			response = requests.get('https://softwareacademy.bg/')
+
+			### We can access the request object from the response as:
+			print(response.request)
+
+			# Let's see the deafult headers sent:
+			print(response.request.headers)
 		</code></pre>
 	</section>
 </section>
@@ -264,7 +287,7 @@
 			width: 1920,
 			height: 1080,
 			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
+			minScale: .5,
 			maxScale: 1,
 			// slide transition
 			transition: 'concave', // none/fade/slide/convex/concave/zoom
