@@ -94,13 +94,15 @@
 			<dt>Sockets are classified into several types, as well:</dt>
 			<dd>stream sockets(socket.SOCK_STREAM) for TCP</dd>
 			<dd>datagram sockets(socket.SOCK_DGRAM) for UDP and others</dd>
-
 		</dl>
+	</section>
+	<section><h3>How TCP Connection Works</h3>
+		<a href="./images/how_TCP_works.png"><img src="./images/how_TCP_works.png" alt="how_TCP_works.png" style="height: 70vh;"></a>
 	</section>
 	<section><h3>Creating a Socket</h3>
 		<dl class="fa">
 			<dt>On Client side:</dt>
-			<pre><code rel="client.py" class="python" style="min-width: 50vw;">
+			<pre><code rel="client.py" class="python" style="min-width: 70vw;">
 				PORT = 5050
 				SERVER_NAME = 'localhost'
 				SERVER_IP = socket.gethostbyname(SERVER_NAME)
@@ -116,7 +118,7 @@
 				print(f'Client is connected to {(SERVER_IP, PORT)} ')
 			</code></pre>
 			<dt>On Server side:</dt>
-			<pre><code rel="client.py" class="python" style="min-width: 50vw;">
+			<pre><code rel="client.py" class="python" style="min-width: 70vw;">
 				PORT = 5050
 				SERVER_IP = socket.gethostbyname(socket.gethostname())
 

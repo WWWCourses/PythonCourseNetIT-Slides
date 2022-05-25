@@ -179,11 +179,41 @@
 			print(response.request.headers)
 		</code></pre>
 	</section>
+	<section><h3>Example: Send POST Request</h3>
+		<pre><code rel="Python" class="python">
+			# base url
+			url = 'http://127.0.0.1:8000/'
+
+			# prepare headers
+			headers = {
+				'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36'
+			}
+
+			data = {
+				'username':'python_course_test',
+				'password':'python_course_test123'
+			}
+
+			# send request
+			response = requests.post(url, headers=headers, data=data)
+
+			if response.ok:
+				# print(response.text)
+				with open('./res.html','w') as f:
+					f.write(response.text)
+		</code></pre>
+	</section>
 </section>
 
 
 <section data-min="50"><h1>Simple HTTP Server with <code>http.server</code></h1></section>
 <section><h2>Simple HTTP Server with <code>http.server</code></h2>
+	<section><h3></h3>
+		<dl class="fa">
+			<dt>When you need to test your http server, it's useful to use some REST client to easily send requests. </dt>
+			<dt>There are many desktop applications, like Postman, but for start, you can use the <a href="https://chrome.google.com/webstore/detail/yet-another-rest-client/ehafadccdcdedbhcbddihehiodgcddpl?hl=en">Yet Another REST Client</a> Chrome Extension</dt>
+		</dl>
+	</section>
 	<section><h3>Create and run the server</h3>
 		<dl class="fa">
 			<dt>Python's built-in module <a href="https://docs.python.org/3/library/http.server.html">http.server</a> defines classes for implementing HTTP servers</dt>
@@ -223,38 +253,11 @@
 			</code></pre>
 			<dt>The handler will parse the request and the headers, then call a method specific to the request type, like <code>do_GET</code>, <code>do_POST</code>, <code>do_PUT</code>, <code>do_DELETE</code> and so on.</dt>
 			<dt>Note, that we must encode the response body to bytes before sending the response.</dt>
-
 		</dl>
 
 	</section>
 	<section><h3>The full code </h3>
-		<pre><code rel="Python" class="python" style="min-height: 90vh;">
-			from http.server import HTTPServer,BaseHTTPRequestHandler
-
-			class RequestHandler(BaseHTTPRequestHandler):
-				def do_GET(self):
-					# setup header
-					self.send_response(200)
-					self.send_header("Content-type", "text/html")
-					self.end_headers()
-
-					# setup body and send the response
-					response_body = '<h1>Server is working!</h1>'.encode('utf-8')
-					self.wfile.write(response_body)
-
-			if __name__=='__main__':
-				# make server address
-				ip = '127.0.0.1'
-				port = 8080
-				server_address = (ip, port)
-
-				# instantiate the server
-				httpd = HTTPServer(server_address, RequestHandler)
-
-				# start server to listen for client's connections
-				print(f'HTTP Server is listening on {ip}:{port}')
-				httpd.serve_forever()
-		</code></pre>
+		<script src="https://gist.github.com/WWWCourses/bd3cd5f259cc1aa02888902c8a34b517.js"></script>
 	</section>
 </section>
 
