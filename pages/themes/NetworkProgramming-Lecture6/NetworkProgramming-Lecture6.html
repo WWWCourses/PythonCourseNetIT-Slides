@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>NetworkProgramming-Lecture6</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+
+<section><h1>NetworkProgramming-Lecture6</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2021-2022,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+<section data-min="10"><h1>TodoApp with FastAPI</h1></section>
+<section><h2>TodoApp with FastAPI</h2>
+	<section><h3>FastAPI Overview</h3>
+		<dl class="fa">
+			<dt>FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.</dt>
+			<dt>It is high-performance, easy to learn, fast to code, ready for production</dt>
+			<dt>Reference: <a href="https://fastapi.tiangolo.com/">FastAPI</a></dt>
+		</dl>
+	</section>
+	<section><h3>Create todoApp project</h3>
+		<dl class="fa">
+			<dt>Create project and virtenv:</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			mkdir simple_todoapp
+			cd simple_todoapp
+
+			# create virtenv:
+			python -m venv ./.venv
+
+			# activate virtualenv:
+			source ./venv/bin/activate
+		</code></pre>
+	</section>
+	<section><h3>Dependency installations</h3>
+		<dl class="fa">
+			<dt>Make sure you run next commands in main project folder and that your virtual env is activated</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash">
+			# fastapi && uvicorn
+			pip install "fastapi[all]"
+
+			# parser for the multipart/form-data and templates:
+			pip install python-multipart jinja2
+
+			# db packages:
+			pip install sqlalchemy
+		</code></pre>
+	</section>
+	<section><h3>Create project structure</h3>
+		<pre><code rel="Terminal" class="bash">
+			|simple_todoapp
+			└── src
+				├── app.py
+				├── db.py
+				├── models.py
+				└── templates
+					└── base.html
+		</code></pre>
+	</section>
+	<section><h3>./src/app.py</h3>
+		<pre><code rel="Python" class="python" style="min-height: 100vh;">
+			from fastapi import FastAPI, Depends, Request, Form, status
+
+			from starlette.responses import RedirectResponse
+			from starlette.templating import Jinja2Templates
+
+			from sqlalchemy.orm import Session
+			from db import SessionLocal, engine
+			import models
+
+			models.Base.metadata.create_all(bind=engine)
+
+			templates = Jinja2Templates(directory="templates")
+
+			app = FastAPI()
+
+			def get_db():
+				db = SessionLocal()
+				try:
+					yield db
+				finally:
+					db.close()
+
+			@app.get("/")
+			async def home(req: Request, db: Session = Depends(get_db)):
+				todos = db.query(models.Todo).all()
+				return templates.TemplateResponse("base.html", { "request": req, "todo_list": todos })
+
+			@app.post("/add")
+			def add(req: Request, title: str = Form(...), db: Session = Depends(get_db)):
+				new_todo = models.Todo(title=title)
+				db.add(new_todo)
+				db.commit()
+				url = app.url_path_for("home")
+				return RedirectResponse(url=url, status_code=status.HTTP_303_SEE_OTHER)
+
+			@app.get("/update/{todo_id}")
+			def add(req: Request, todo_id: int, db: Session = Depends(get_db)):
+				todo = db.query(models.Todo).filter(models.Todo.id == todo_id).first()
+				todo.complete = not todo.complete
+				db.commit()
+				url = app.url_path_for("home")
+				return RedirectResponse(url=url, status_code=status.HTTP_303_SEE_OTHER)
+
+
+			@app.get("/delete/{todo_id}")
+			def add(req: Request, todo_id: int, db: Session = Depends(get_db)):
+				todo = db.query(models.Todo).filter(models.Todo.id == todo_id).first()
+				db.delete(todo)
+				db.commit()
+				url = app.url_path_for("home")
+				return RedirectResponse(url=url, status_code=status.HTTP_303_SEE_OTHER)
+
+		</code></pre>
+	</section>
+	<section><h3>./src/models.py</h3>
+		<pre><code rel="Python" class="python" style="min-height: 70vh;">
+			from email.policy import default
+			from sqlalchemy import Boolean, Column, Integer, String
+			from db import Base
+
+			class Todo(Base):
+				__tablename__ = "todos"
+
+				id = Column(Integer, primary_key=True)
+				title = Column(String(100))
+				complete = Column(Boolean, default=False)
+		</code></pre>
+	</section>
+	<section><h3>./src/db.py</h3>
+		<pre><code rel="Python" class="python" style="min-height: 70vh;">
+			from sqlalchemy import create_engine
+			from sqlalchemy.orm import sessionmaker
+			from sqlalchemy.ext.declarative import declarative_base
+
+			DB_URL = "sqlite:///./db.sqlite"
+
+			engine = create_engine(DB_URL, connect_args = { "check_same_thread": False })
+
+			SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+			Base = declarative_base()
+		</code></pre>
+	</section>
+	<section><h3>Start the server</h3>
+		<pre><code rel="Terminal" class="bash">
+			cd src/
+			uvicorn app:app --reload
+		</code></pre>
+	</section>
+</section>
+
+
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
