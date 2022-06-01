@@ -207,6 +207,51 @@
 			Base = declarative_base()
 		</code></pre>
 	</section>
+	<section><h3>./src/templates/base.html</h3>
+		<pre><code rel="HTML" class="html" style="min-height: 70vh;">
+			&lt;!DOCTYPE html&gt;
+			&lt;html lang=&quot;en&quot;&gt;
+				&lt;head&gt;
+					&lt;meta charset=&quot;UTF-8&quot;&gt;
+					&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+					&lt;title&gt;Todo App&lt;/title&gt;
+					&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css&quot;&gt;
+					&lt;script src=&quot;https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js&quot;&gt;&lt;/script&gt;
+				&lt;/head&gt;
+				&lt;body&gt;
+					&lt;div style=&quot;margin-top: 50px;&quot; class=&quot;ui container&quot;&gt;
+						&lt;h1 class=&quot;ui center aligned header&quot;&gt;Fastapi ToDo App&lt;/h1&gt;
+
+						&lt;form class=&quot;ui form&quot; action=&quot;/add&quot; method=&quot;post&quot;&gt;
+							&lt;div class=&quot;field&quot;&gt;
+								&lt;label&gt;Todo Title&lt;/label&gt;
+								&lt;input type=&quot;text&quot; name=&quot;title&quot; placeholder=&quot;Enter ToDo task...&quot;&gt;
+								&lt;br&gt;
+							&lt;/div&gt;
+							&lt;button class=&quot;ui blue button&quot; type=&quot;submit&quot;&gt;Add&lt;/button&gt;
+						&lt;/form&gt;
+
+						&lt;hr&gt;
+
+						{% for todo in todo_list %}
+						&lt;div class=&quot;ui segment&quot;&gt;
+							&lt;p class=&quot;ui big header&quot;&gt;{{ todo.id }} | {{ todo.title }}&lt;/p&gt;
+
+							{% if todo.complete == False %}
+							&lt;span class=&quot;ui gray label&quot;&gt;Not Complete&lt;/span&gt;
+							{% else %}
+							&lt;span class=&quot;ui green label&quot;&gt;Complete&lt;/span&gt;
+							{% endif %}
+
+							&lt;a class=&quot;ui blue button&quot; href=&quot;/update/{{ todo.id }}&quot;&gt;Update&lt;/a&gt;
+							&lt;a class=&quot;ui red button&quot; href=&quot;/delete/{{ todo.id }}&quot;&gt;Delete&lt;/a&gt;
+						&lt;/div&gt;
+						{% endfor %}
+					&lt;/div&gt;
+				&lt;/body&gt;
+			&lt;/html&gt;
+		</code></pre>
+	</section>
 	<section><h3>Start the server</h3>
 		<pre><code rel="Terminal" class="bash">
 			cd src/
