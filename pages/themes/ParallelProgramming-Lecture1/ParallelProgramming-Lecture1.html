@@ -59,7 +59,7 @@
 <section class="presentation-title"><h1>Parallel programming - Overview. Threads.</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
-		<div class="note">
+		<div>
 			<p>Created for</p>
 		</div>
 		<div class="company">
@@ -68,23 +68,25 @@
 			</a>
 		</div>
 		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2021-2022,</span>
+			<span><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2021-2022,</span>
 			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
 			<!-- <i class="fa fa-linkedin"></i> -->
 		</div>
 	</section>
 </section>
 
-<section class="main-sesction-title"><h1>Shape the concepts</h1></section>
-<section class="sub-sections"><h2>Shape the concepts</h2>
-	<section><h3>Multitasking</h3>
+<section class="main-sesction-title"><h1>Основни понятия</h1></section>
+<section class="sub-sections"><h2>Основни понятия</h2>
+	<section><h3>Многозадачност (Multitasking)</h3>
 		<a href="images/driver_multitasking.jpg"><img src="images/driver_multitasking.jpg" alt="driver_multitasking.jpg"></a>
 		<a href="images/driver_multitasking_diagram.png"><img src="images/driver_multitasking_diagram.png" alt="driver_multitasking_diagram.png"></a>
 	</section>
-	<section><h3>Multitasking</h3>
+	<section><h3>Многозадачност (Multitasking)</h3>
 		<dl class="fa">
-			<dt>Multitasking is implemented in Python by threading and multiprocessing.</dt>
-			<dt>A hot topic, in the contest of rapid increase of the number of cores in contemporary microprocessors.</dt>
+			<dt>В компютърните системи, многозадачността е едновременното (concurrent) изпълнение на няколко задачи (наричани още процеси) в определен период от време.</dt>
+			<dt>Когато създаваме програми ние може да увеличим бързодействието им като <span class="note">разпаралелим</span> отделните части напрограмата. Т.е. няколко стъпки да се изпълняват паралелно, а не последователно.</dt>
+			<dt>С развитието на хардуера (процесори с множество ядра), паралелното програмиране набира все по-голямо приложение.</dt>
+			<dt>В Python, за паралелно програмиране, се използват вградените модули <code>threading</code> и <code>multiprocessing</code>.</dt>
 		</dl>
 	</section>
  	<section><h3>Von Neumann Architecture</h3>
@@ -131,6 +133,22 @@
 			<dd class="note">Only one thread can be executed at a time!</dd>
 			<dd class="note">Multiple processes can work simultaneous on different cores.</dd>
 		</dl>
+	</section>
+	<section><h3>Check running process and threads - Windows</h3>
+		<dl class="fa">
+			<dt>You can view the number of current running process and threads by:</dt>
+			<a href="./images/Task-Manager-Show-Thread-Count.webp"><img src="./images/Task-Manager-Show-Thread-Count.webp" alt="Task-Manager-Show-Thread-Count.webp"></a>
+			<dt>You may use  <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/process-explorer">Process Explorer</a> to see all the threads under a process.</dt>
+		</dl>
+	</section>
+	<section><h3>Check running process and threads - Linux/MacOS</h3>
+		<pre><code rel="Terminal" class="bash">
+			# view all processes:
+			top
+
+			# view all threads per process:
+			top -H -p &lt;pid&gt;
+		</code></pre>
 	</section>
 </section>
 
@@ -321,8 +339,8 @@
 			keyboard: true,
 			history: true,
 			center: true,
-			width: 1024,
-			height: 850,
+			width: 1920,
+			height: 1080,
 			// Bounds for smallest/largest possible scale to apply to content
 			// minScale: .5,
 			maxScale: 1,
