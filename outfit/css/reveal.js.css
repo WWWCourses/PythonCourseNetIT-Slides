@@ -1,11 +1,15 @@
 /*********************************************
  * IMPORTS
  *********************************************/
- @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css");
- @import url("https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css");
- /*@import url("https://cdn.linearicons.com/free/1.0.0/icon-font.min.css");*/
- @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css");
+/*@import url("https://cdn.linearicons.com/free/1.0.0/icon-font.min.css");*/
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
+
+.reveal>.slides{
+  font-size: 1.4 em;
+}
 
 
 /*********************************************
@@ -15,13 +19,24 @@
 .slides h5, .slides h6{
   text-transform: none;
 }
+.reveal>.slides .presentation-title h1{
+  margin: 0 auto;
+  margin-top: -3em;
+  width: 10em;
+  line-height: 1.8em;
+  /* border:1px solid red; */
+  color:#000;
+}
 /*the presentation title ( all slides )*/
 .reveal>.slides h1{
-  margin: 0;
+  margin-top:-2em;
   padding: 0;
-  font-size: 1.6em;
+  font-size: 2.5em;
   opacity: .8;
+  color: #FFF;
 }
+
+
 /*Main_Sections_Title*/
 .reveal>.slides>section>h2{
   position: relative;
@@ -39,7 +54,7 @@
 
 /*sub-section title*/
 .reveal>.slides>section>section>h3{
-  font-size: 1em;
+  font-size: 1.3 em;
 }
 .reveal>.slides>section>section>h3:after{
   display: block;
@@ -77,8 +92,13 @@
   box-shadow: 0 0 5em 5em rgb(0, 43, 64);
   /*width: 100vmax;*/
 }
+
+.reveal section p{
+  text-align: center;
+  /* text-indent: 2em; */
+}
 .reveal section dl.fa{
-  font-size: .8em;
+  font-size: 1em;
 }
 .reveal section dl.fa>dt{
   font-weight: normal;
@@ -186,6 +206,7 @@ i.top{
   color: #97DCDB;
   opacity: 1;
 }
+
 /*********************************************
  * LINKS
  *********************************************/
@@ -196,20 +217,43 @@ div.top_links{
   z-index: 100;
 }
 a.home_link{
-    /*display: inline-block;*/
-    z-index: 100;
-    /*margin: .5em;*/
-    /*background: green;*/
+  display: block;
+  width: 10vw;
+  /*display: inline-block;*/
+  z-index: 100;
+  /*margin: .5em;*/
+  /*background: green;*/
+}
+a.home_link>img{
+  /* display: block; */
+  /* border:1  px solid red; */
+  /* width: 10vw; */
+  /* float: left !important;
+  margin:0 1em 5em 0 !important;
+  z-index: 100; */
 }
 
 a.home_link::before{
-  content: url(/PythonCourseNetIT-Slides/outfit/images/logos/software-web@256x256.png);
+  content: "";
+  display: block;
+  background-image: url('/PythonCourseNetIT-Slides/outfit/images/logos/software-web@256x256.png');
+  background-size: 10vw 10vh;
+  background-repeat: no-repeat;
+  /* border: 1px solid red; */
+  width: 10vw;
+  height: 10vh;
+
+
+  /* float: left;
+  margin:0 1em 5em 0;
+  z-index: 100; */
 }
 
-.help_link{
+.help_link>i{
   position: absolute;
   right: 0; top: 0;
-  /*opacity: 1;*/
+  opacity: .5;
+  font-size: .8em;
   /*z-index: 102;*/
 }
 
@@ -250,7 +294,6 @@ a.home_link::before{
   font-style: italic;
 }
 
-
 .theme_switch a{
     opacity: 0.4;
     font-size: 12px;
@@ -268,7 +311,6 @@ a.home_link::before{
 }
 
 
-
 /*********************************************
  * CUSTOM .copyright
  *********************************************/
@@ -276,6 +318,8 @@ a.home_link::before{
     margin: 0 0 0 0;
     font-size: .7em;
     font-style: italic;
+    color:#FFF;
+
     /*width: 100%;
     text-align: center;
     vertical-align: middle;*/
@@ -286,31 +330,35 @@ a.home_link::before{
   margin: 0em 0 3em 0em;
 }
 .copyright>.company{
-   text-align: center;
-    /*margin: 0 0 2em 0;*/
-    font-size: 1em;
-    /*border: 1px solid red;*/
+  text-align: center;
+  /*margin: 0 0 2em 0;*/
+  font-size: 1em;
+  /*border: 1px solid red;*/
 }
 .copyright>.company img{
-    margin: 0;
-    background: #FFF;
-    vertical-align: middle;
-    border: none;
-    border-radius: 10%;
-    padding: 1em;
-    box-shadow: none;
+  display: inline-block;
+  background: #FFF !important;
+  border: none;
+  border-radius: 10%;
 }
 section.copyright>.author{
     text-align: center;
     vertical-align: middle;
+    line-height: 2em;
     margin: 1em 0em 0.5em 0;
-    font-size: 1.2em;
+    font-size: 1.5em;
+    color:#FFF;
+}
+section.copyright .year{
+  /* vertical-align: middle; */
 }
 section.copyright>.author a{
-  vertical-align: middle;
+  color:#FFF;
 }
 section.copyright>.author img{
-  margin: 0;
+  display: inline-block;
+  height: 1.1em;
+  vertical-align: middle;
 }
 
 section.copyright .LI-profile-badge{
@@ -336,9 +384,10 @@ section.copyright>.license{
 
 .reveal section iframe{
   display: block;
-  width: 80%;
-  height: 60vh;
+  /* width: 80%;
+  height: 90vh; */
   margin: 0 auto;
+  margin-top: 1em;
   text-align: center;
 }
 .reveal section iframe.resultFrame{
@@ -369,6 +418,12 @@ section.copyright>.license{
 .half{
   width: 50%;
 }
+.clearfix::after{
+  content:"";
+  display: block;
+  clear:both;
+  overflow: auto;
+}
 /* FONT-SIZES */
 .small_font{
   font-size: 12px !important;
@@ -396,6 +451,8 @@ section.copyright>.license{
 
 .reveal section img{
   border: 0;
+  display: block;
+  margin: 1em auto;
 }
 .reveal .inline{
   display: inline-block;
@@ -419,7 +476,7 @@ section.copyright>.license{
 
 /*marked for advanced*/
 .reveal section .advanced{
-  font-size: .7em;
+  /* font-size: 100%; */
 }
 .reveal section .advanced:before{
   /*fa style*/
@@ -511,3 +568,7 @@ section.copyright>.license{
   margin: 0 auto;
 }
 
+section iframe{
+  width: 80vw;
+  height: 70vh;
+}

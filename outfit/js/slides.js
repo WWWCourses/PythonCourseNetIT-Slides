@@ -1,6 +1,6 @@
 function themeSwitcher(themeName){
     alert("themeSwitcher ON");
-    document.getElementById('theme').setAttribute('href','/ProgressBG-Front-End-Dev/lib/reveal.js/css/theme/'+themeName+'.css');
+    document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/lib/reveal.js/css/theme/'+themeName+'.css');
 }
 function  PrettyPreCode(){
     var codeNodes = document.querySelectorAll('pre>code');
@@ -52,5 +52,28 @@ function  PrettyPreCodeOld(){
     }
 }
 
+function applyBackgrounds() {
+    const bgPath = '../../../outfit/images/for_slides/'
+    const mappings = {
+        'presentation-title': bgPath+'presentation_title_slide_bg.png',
+        'copyright': bgPath+'green_slide_bg.png',
+        'main-sesction-title':bgPath+'blue_slide_bg.png',
+        'sub-sections': bgPath+'normal_slide_bg.png',
+        'end-slide':bgPath+'end_slide_bd.png'
+    }
+
+    for (const prop in mappings) {
+        const nodes = document.querySelectorAll(`.${prop}`);
+        for(const node of nodes){
+            node.dataset.background = mappings[prop];
+            node.dataset.backgroundTransition='slide'
+        }
+
+    }
+
+
+}
+
 PrettyPreCode();
+applyBackgrounds()
 

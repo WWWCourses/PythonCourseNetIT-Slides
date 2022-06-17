@@ -7,7 +7,7 @@ var subThemes = document.querySelectorAll('.themes>article>section>ol');
 var toggleButtonsDiv = document.querySelector('.toggleButtons');
 let toggleButtonsTopOffset = toggleButtonsDiv.offsetTop;
 
-var hours_per_day = 4;
+var hours_per_day = 3;
 themes.shown = true;
 subThemes.shown = false;
 

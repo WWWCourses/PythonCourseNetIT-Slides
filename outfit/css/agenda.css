@@ -98,13 +98,12 @@ body{
 .themes>article>h1>span{
 
 }
-.themes>article>h1:before{
+/* .themes>article>h1:before{
 	counter-increment: section;
 	content: "Theme " counter(section) ". ";
 	color: #718EBA;
-	/*font-weight: 200;*/
 	font-size: .9em;
-}
+} */
 
 
 .themes>article>section{
