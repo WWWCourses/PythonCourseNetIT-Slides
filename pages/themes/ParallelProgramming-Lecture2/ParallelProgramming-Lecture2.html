@@ -83,7 +83,7 @@
 		</dl>
 	</section>
 	<section><h3>Пример 1</h3>
-		<pre><code rel="createThreadSubclass.py" class="python3">
+		<pre><code rel="createThreadSubclass.py" class="python3" style="min-height: 80vh;">
 			import threading
 			import time
 
@@ -137,7 +137,8 @@
 	<section><h3>Критична Секция - Пример</h3>
 		<dl class="fa">
 			<dt>Имаме 2 нишки и глобален брояч, който се увеличава от всяка една нишка по 10000000 пъти</dt>
-			<dt>В края на процеса, стойността на глобалният брояч би трябвало да е 2*10000000 пъти, но тъй като той е споделен ресурс, виждаме че резултата е непредсказуен.</dt>
+			<dt>В края на процеса, стойността на глобалният брояч би трябвало да е 2*10000000 пъти, но тъй като той е споделен ресурс, виждаме че резултата е непредсказуем.</dt>
+			<dd class="note">в Python 3.10 има недокументирана промяна, която предотвратява този race condition, дори и без да се използва lock.</dd>
 		</dl>
 		<pre><code rel="Python" class="python">
 			import threading
