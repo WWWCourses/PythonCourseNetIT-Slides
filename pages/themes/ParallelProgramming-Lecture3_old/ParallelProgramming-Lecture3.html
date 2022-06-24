@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>ParallelProgramming-Lecture3</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section class="main-sesction-title"><h1>Паралелно Програмиране - лекция 3</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2021-2022,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+<section class="main-sesction-title"><h1>Паралелно Програмиране с Процеси - Основни понятия</h1></section>
+<section class="sub-sections"><h2>Паралелно Програмиране с Процеси - Основни понятия</h2>
+	<section><h3>Характеристики на Процесите - преговор</h3>
+		<a href="images/Processes.png"><img src="images/Processes.png"></a>
+	</section>
+	<section><h3>Процесите не споделят обща памет - пример</h3>
+		<pre><code rel="global_variable_in_processes.py" class="python3">
+			import multiprocessing as mp
+
+			def increment(r):
+				global x
+
+				for _ in r:
+					x+=1
+
+
+				print(f"x in {mp.current_process().name}: {x}")
+
+
+			if __name__ == "__main__":
+				x = 0
+
+				pr1 = mp.Process(target=increment, args=(range(1000),))
+				pr2 = mp.Process(target=increment, args=(range(1000),))
+
+				pr1.start();pr2.start();
+				pr1.join();pr2.join();
+
+
+				print(f"x in {mp.current_process().name}: {x}")
+
+				#OUTPUT
+				# x in Process-1: 1000
+				# x in Process-2: 1000
+				# x in MainProcess: 0
+		</code></pre>
+		<p>Забележете, че всеки от процесите работи със собствено копие на <code>x</code>, което не е свързано с <code>x</code> в главния процес (главната програма).</p>
+	</section>
+	<section><h3>Комуникация между процеси (Inter-Process Communication)</h3>
+		<dl class="fa">
+			<dt>Когато използваме процеси, които работят с общи данни, обикновено се използват "съобщения" чрез които процесите обменят данните.</dt>
+			<dt>За целта в Python са имплементирани методите:</dt>
+			<dd><a href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Pipe">Pipe()</a> - осъществява връзка между <span class="note">два процеса</span> чрез която те могат да обменят съобщения.</dd>
+			<dd><a href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Queue">Queue()</a> - осъществява връзка между <span class="note">множество процеси</span>, разграничени на "производители" и "консуматори" чрез която те могат да обменят данни.</dd>
+			<dt>И двата метода използват FIFO (First-In, First-Out) структура</dt>
+		</dl>
+	</section>
+	<section><h3>Какво е FIFO структура от данни?</h3>
+		<dl class="fa">
+			<dt>Абстрактна структура от данни която изпълнява условието "първият влязъл е първият излязъл"</dt>
+			<dt>Tова означава, че след като е добавен един елемент в края на опашката, той ще може да бъде извлечен (премахнат) единствено след като бъдат премахнати всички елементи преди него в реда, в който са добавени.</dt>
+		</dl>
+		<a href="./images/FIFO_Diagram.png"><img src="./images/FIFO_Diagram.png" alt="FIFO_Diagram.png" style="height: 50vh;"></a>
+	</section>
+	<section><h3>Какво е FIFO структура от данни?</h3>
+		<dl class="fa">
+			<dt>В Python модулът <code>queue</code> предлага FIFO структура, чрез класа <code>queue.Queue()</code></dt>
+		</dl>
+		<pre><code rel="python_queue_demo.py" class="js">
+			import queue
+
+			queue = queue.Queue()
+
+			queue.put(1)
+			queue.put(2)
+			queue.put(3)
+
+
+			el1 = queue.get()
+			el2 = queue.get()
+			el3 = queue.get()
+
+			print(el1,el2,el3)
+
+			#OUTPUT
+			1 2 3
+		</code></pre>
+	</section>
+	<section><h3>Inter-Process Communication (IPC) чрез класа multiprocessing.Queue </h3>
+		<dl class="fa">
+			<dt>В multiprocessing модула е дефиниран клас Queue който предлага FIFO структура за комуникация между процесите.</dt>
+			<dt><code>multiprocessing.Queue</code> има методи подобни на <code>queue.Queue</code> класа но е оптимизиран за работа с процеси.
+			</dt>
+			<dt>Основни методи на <code>multiprocessing.Queue</code> са:</dt>
+			<dd><code>put()</code> - за запис на данни в опашката</dd>
+			<dd><code>get()</code> - за четене на данни от опашката</dd>
+		</dl>
+	</section>
+	<section><h3>Inter-Process Communication (IPC) чрез класа multiprocessing.Queue - Пример</h3>
+		<pre><code rel="mp_queue_simple_demo.py" class="python3">
+			import multiprocessing as mp
+
+			def worker(q):
+				# get data from queue:
+				x = q.get()
+
+				x+=1
+
+				# save data to the queue
+				q.put(x)
+				print(f'x in {mp.current_process().name} = {x}')
+
+			if __name__ == '__main__':
+				# create a Queue object which will be shared among all processes
+				queue = mp.Queue()
+
+				# set the initial value for queue
+				queue.put(0)
+
+				processes = []
+
+				# crate and start 3 processes:
+				for _ in range(3):
+					pr = mp.Process(target=worker, args=(queue,))
+					pr.start()
+					processes.append(pr)
+
+				# wait for processes to end:
+				for pr in processes:
+					pr.join()
+
+				# get element from queue:
+				x = queue.get()
+
+				print(f'x in {mp.current_process().name} = {x}')
+
+		</code></pre>
+		<p>Забележете, че обекта <code>queue</code> трябва да бъде споделен между процесите, които искат да имат достъп до тези данни.</p>
+	</section>
+</section>
+
+
+<section data-min="10" class="main-sesction-title"><h1>Паралелно Програмиране - Примери</h1></section>
+<section class="sub-sections"><h2>Паралелно Програмиране - Примери</h2>
+	<section><h3>Сваляне на множество файлове - requests library</h3>
+		<dl class="fa">
+			<dt>Чрез библиотеката <code>requests</code> можем да свали даден HTTP ресурс</dt>
+			<dt>Документация: <a href="https://docs.python-requests.org/en/master/">docs.python-requests.org</a></dt>
+		</dl>
+		<pre><code rel="requests_get_simple_demo.py" class="python3">
+			import requests
+
+			url = "https://unsplash.com/photos/CTflmHHVrBM/download?force=true"
+
+			file_name = url.split('/')[4]+".jpg"
+
+			# get image bytes
+			print(f"Start downloading {url}")
+			response = requests.get(url)
+
+			# write image to file
+			with open(file_name, 'wb') as fh:
+				fh.write(response.content)
+				print(f"File saved to {file_name}")
+		</code></pre>
+	</section>
+	<section><h3>Сваляне на множество файлове - задача</h3>
+		<dl class="fa">
+			<dt>Използвайки посочения пример, съставете програма която да свали всички изображения от посочените адреси</dt>
+		</dl>
+		<pre><code rel="Image URLs" class="ascii">
+			"https://unsplash.com/photos/CTflmHHVrBM/download?force=true"
+			"https://unsplash.com/photos/pWV8HjvHzk8/download?force=true"
+			"https://unsplash.com/photos/1jn_3WBp60I/download?force=true"
+			"https://unsplash.com/photos/8E5HawfqCMM/download?force=true"
+			"https://unsplash.com/photos/yTOkMc2q01o/download?force=true"
+		</code></pre>
+	</section>
+	<section><h3>Сваляне на множество файлове - решение</h3>
+		<pre><code rel="download_images.py" class="python3">
+			import requests
+			import os
+			import time
+
+
+			def download_file(url):
+				file_name=url.split('/')[4]+'.jpg'
+
+				full_file_name = os.path.join(download_path,file_name)
+
+				# get image bytes
+				print(f"Start downloading {url}")
+				response = requests.get(url, allow_redirects=True)
+
+				# write image to file
+				with open(full_file_name, 'wb') as fh:
+					fh.write(response.content)
+					print(f"File saved to {full_file_name}")
+
+			urls = [
+				"https://unsplash.com/photos/CTflmHHVrBM/download?force=true",
+				"https://unsplash.com/photos/pWV8HjvHzk8/download?force=true",
+				"https://unsplash.com/photos/1jn_3WBp60I/download?force=true",
+				"https://unsplash.com/photos/8E5HawfqCMM/download?force=true",
+				"https://unsplash.com/photos/yTOkMc2q01o/download?force=true"
+			]
+
+			download_path = os.path.join(os.getcwd(),"downloaded_images")
+
+			if __name__ == "__main__":
+				start= time.perf_counter()
+
+				for url in urls:
+					download_file(url)
+
+				end = time.perf_counter()
+
+				print(f"Procesing time:  {end-start}")
+		</code></pre>
+	</section>
+	<section><h3>Сваляне на множество файлове чрез нишки - задача</h3>
+		<dl class="fa">
+			<dt>Съставете програма, която да свали посочените изображения като използвате Нишки</dt>
+		</dl>
+	</section>
+	<section><h3>Сваляне на множество файлове чрез нишки - решение</h3>
+		<pre><code rel="download_images_with_threas.py" class="python3">
+			import threading
+			import requests
+			import os
+			import time
+
+
+			def download_file(url):
+				file_name=url.split('/')[4]+'.jpg'
+
+				full_file_name = os.path.join(download_path,file_name)
+
+				# get image bytes
+				print(f"Start downloading {url}")
+				response = requests.get(url, allow_redirects=True)
+
+				# write image to file
+				with open(full_file_name, 'wb') as fh:
+					fh.write(response.content)
+					print(f"File saved to {full_file_name}")
+
+			urls = [
+				"https://unsplash.com/photos/CTflmHHVrBM/download?force=true",
+				"https://unsplash.com/photos/pWV8HjvHzk8/download?force=true",
+				# "https://unsplash.com/photos/1jn_3WBp60I/download?force=true",
+				# "https://unsplash.com/photos/8E5HawfqCMM/download?force=true",
+				# "https://unsplash.com/photos/yTOkMc2q01o/download?force=true"
+			]
+
+			download_path = os.path.join(os.getcwd(),"downloaded_images")
+
+			if __name__ == "__main__":
+				start= time.time()
+
+				threads = []
+
+				# create and start a thread per each url
+				for url in urls:
+					tr = threading.Thread(target=download_file,args=(url,))
+					threads.append(tr)
+					tr.start()
+					# result= download_file(url)
+
+				# join all threads
+				for tr in threads:
+					tr.join()
+
+				end = time.time()
+
+				print(f"Procesing time:  {end-start}")
+		</code></pre>
+	</section>
+	<section><h3>Сваляне на множество файлове чрез ThreadPoolExecutor</h3>
+		<dl class="fa">
+			<dt>В python 3.2 се въвежда модула <a href="">concurrent.futures</a>, които предлага абстракция при работа с асинхронни задачи.</dt>
+			<dt><a href="https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor">ThreadPoolExecutor</a> e подклас на класа Executor в модула <code>concurrent.futures</code> който абстрахира работата със създаване и стартиране на множество нишки (а също така и процеси)</dt>
+		</dl>
+		<a href="./images/concurrent_features_Excecutor_classes.png"><img src="./images/concurrent_features_Excecutor_classes.png" alt="concurrent_features_Excecutor_classes.png"></a>
+	</section>
+	<section><h3>Сваляне на множество файлове чрез ThreadPoolExecutor</h3>
+		<dl class="fa">
+			<dt>В примера е използван метода <code>map()</code> на concurrent.futures.Executor класа, който работи по подобен начин на стандартната <a href="https://docs.python.org/3/library/functions.html#map"><code>map(func, *iterables)</code></a>  функция, с тази разлика, че</dt>
+			<dd>елементите в <code>iterables</code> се обработват незабавно, а не lazy.</dd>
+			<dd>подадената функция <code>func</code> се изпълнява асинхронно (чрез нишки или процеси)
+			</dd>
+		</dl>
+		<pre><code rel="JS" class="js">
+			import requests
+			import concurrent.futures
+			import os
+			import time
+
+
+			def download_file(url):
+				file_name=url.split('/')[4]+'.jpg'
+
+				full_file_name = os.path.join(download_path,file_name)
+
+				# get image bytes
+				print(f"Start downloading {url}")
+				response = requests.get(url, allow_redirects=True)
+
+				# write image to file
+				with open(full_file_name, 'wb') as fh:
+					fh.write(response.content)
+					print(f"File saved to {full_file_name}")
+
+			urls = [
+				"https://unsplash.com/photos/CTflmHHVrBM/download?force=true",
+				"https://unsplash.com/photos/pWV8HjvHzk8/download?force=true",
+				"https://unsplash.com/photos/1jn_3WBp60I/download?force=true",
+				"https://unsplash.com/photos/8E5HawfqCMM/download?force=true",
+				"https://unsplash.com/photos/yTOkMc2q01o/download?force=true"
+			]
+
+			download_path = os.path.join(os.getcwd(),"downloaded_images")
+
+			if __name__ == "__main__":
+				start= time.perf_counter()
+
+				with concurrent.futures.ThreadPoolExecutor() as executor:
+					executor.map(download_file, urls)
+
+
+				end = time.perf_counter()
+
+				print(f"Procesing time:  {end-start}")
+		</code></pre>
+	</section>
+
+</section>
+
+
+
+
+<section class="disclaimer end-slide"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>

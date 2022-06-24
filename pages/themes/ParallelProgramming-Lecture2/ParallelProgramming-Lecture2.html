@@ -218,12 +218,13 @@
 	<section><h3>Състояния на нишките</h3>
 		<dl class="fa">
 			<dt>Една нишка може да се намира в едно от съществуващите състояния:</dt>
-			<dd><span class="note">създадена</span> -нишката е създадена, но не е стартирана;</dd>
-			<dd><span class="note">стартирана</span> - нишката изпълнява дадената задача;</dd>
-			<dd><span class="note">блокирана</span> - изпълнява блокиращ метод;</dd>
-			<dd><span class="note">завършила</span> -“убита”- e приключила своето изпълнение.</dd>
+			<dd><span class="note">създадена (created,new)</span> -нишката е създадена, но не е стартирана (не използва никакви ресурси)</dd>
+			<dd><span class="note">готова за старт (runable)</span> -нишката разполага с необходимите ресурси, но изчаква да бъде стартирана</dd>
+			<dd><span class="note">стартирана (running)</span> - нишката изпълнява дадената задача. От това състояние може да премине "завършено" или в "изчакващо".</dd>
+			<dd><span class="note">изчакваща (waiting)</span> - работата на нишката е на пауза, поради изчакване на I/O или поради изчакване на друга стартирана нишка.</dd>
+			<dd><span class="note">"мъртва" (dead)</span> - нишката e приключила своето изпълнение или е "убита" поради други причини.</dd>
 		</dl>
-		<a href="./images/ThreadStates.png"><img src="./images/ThreadStates.png" alt="ThreadStates.png"></a>
+		<a href="./images/thread_states.jpg"><img src="./images/thread_states.jpg" alt="thread_states.jpg" style="height: 50vh;"></a>
 	</section>
 	<section><h3>Global Interpreted Lock (GIL)</h3>
 		<dl class="fa">
@@ -260,67 +261,13 @@
 		</dl>
 		<p><a href="./images/IOBound.webp"><img src="./images/IOBound.webp" alt="IOBound.webp" style="width: 70%;"></a></p>
 	</section>
-</section>
-
-<section class="main-sesction-title"><h1>Паралелно Програмиране с Процеси</h1></section>
-<section class="sub-sections"><h2>Паралелно Програмиране с Процеси</h2>
-	<section><h3>Характеристики на Процесите</h3>
+	<section><h3>Примери и упражнения</h3>
 		<dl class="fa">
-			<dt>Всеки процес има собствен сегмент памет, който не може да бъде достъпен от останалите процеси.</dt>
-			<dd>За да могат множество процеси да обменят данни се използват различни техники, известни с общото име <span class="note">Inter process communication</span> </dd>
-			<dt>При стартирането на една Python програма се стартира поне един процес и поне една нишка за главната програма.</dt>
-			<dt>Множество процеси могат да работят едновременно на различни ядра. За разлика от "паралелизмът" чрез нишки, в Python, паралелизмът чрез процеси не е засегнат от GIL.</dt>
-		</dl>
-	</section>
-	<section><h3>Характеристики на Процесите</h3>
-		<a href="images/Processes.png"><img src="images/Processes.png"></a>
-	</section>
-	<section><h3>Модулът Multiprocessing</h3>
-		<dl class="fa">
-			<dt><a href="https://docs.python.org/3.4/library/multiprocessing.html">multiprocessing</a> е вграден модул в Python чрез който може да разпаралелим програмата си в множество Процеси.</dt>
-			<dt>Процес се създава чрез <code class="note">Process</code> конструктора.</dt>
-			<dt>Веднъж създаден Процесът трябва да бъде стартиран чрез <code class="note">start()</code> метода</dt>
-			<dt>Ако искаме да блокираме работата на процеса, създал даден процес, то е необходимо да изпозлваме метода <code class="note">join()</code> </dt>
-			<dt>API-тата предоставени от <code>multiprocessing</code> модула са почти идентични с тези на <code>threding</code> модула, което прави използването на Процеси в Python изключително лесно.</dt>
-			<dt>Документация: <a href="https://docs.python.org/3/library/multiprocessing.html">multiprocessing — Process-based parallelism @docs.python.org</a></dt>
-		</dl>
-	</section>
-
-	<section><h3>Създаване и стартиране на процес - Пример</h3>
-		<pre><code rel="Python" class="python">
-			import multiprocessing as mp
-			import time
-
-			def worker(x):
-			  pid = mp.current_process().name;
-			  print("x = {} in {}".format(x, pid))
-			  time.sleep(2)
-
-
-			if __name__ == '__main__':
-			  # create the process
-			  p = mp.Process(target=worker, args=(42,))
-
-			  # start the process:
-			  p.start()
-
-			  # wait until process completes:
-			  p.join()
-
-			  print("Worker did its job as separate Process!")
-		</code></pre>
-	</section>
-	<section><h3>Programming guidelines for using multiprocessing</h3>
-		<dl class="fa">
-			<dt>There are certain guidelines and idioms which should be adhered to when using multiprocessing: <a href="https://docs.python.org/3.4/library/multiprocessing.html#multiprocessing-programming">Programming guidelines @python3 docs</a>.</dt>
-			<dt>But most important is to make sure that the main module can be safely imported by a new Python interpreter without causing unintended side effects (such as starting a new process)</dt>
-			<dt class="note">I.e. always use <code>if __name__ == '__main__':</code> when using processes!</dt>
+			<dt>Създаване на множество голями файлове</dt>
+			<dt>Доунлоад на множество Web страници</dt>
 		</dl>
 	</section>
 </section>
-
-
-
 
 
 <section class="main-sesction-title"><h1>References</h1></section>

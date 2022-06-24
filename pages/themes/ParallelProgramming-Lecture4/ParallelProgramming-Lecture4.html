@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ParallelProgramming-Lecture4</title>
+	<title>ParallelProgramming-Lecture3</title>
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -71,131 +71,385 @@
 	</section>
 </section>
 
-<section data-min="5" class="main-sesction-title"><h1>Проблема "Производител-Потребител"</h1></section>
-<section class="sub-sections"><h2>Проблема "Производител-Потребител"</h2>
-	<section><h3>Описание</h3>
+<section class="main-sesction-title"><h1>Паралелно Програмиране с Процеси - Основни понятия</h1></section>
+<section class="sub-sections"><h2>Паралелно Програмиране с Процеси - Основни понятия</h2>
+	<section><h3>Характеристики на Процесите</h3>
 		<dl class="fa">
-			<dt>Две нишки, producer() и consumer(), които споделят общ ресурс, който е някакъв артикул. </dt>
-			<dt>Задачата на producer() е да генерира артикула, докато задачата на consumer() е да използва произведената стока.</dt>
-			<dt>Ако артикулът все още не е произведен, то потребителската нишка, трябва да изчака. </dt>
-			<dt>Веднага след като артикулът е произведен, нишката на producer() уведомява потребителя, че ресурсът трябва да бъде използван.</dt>
-			<dt>Забележете, че производителя и потребителя трябва да бъдат синхронизирани.</dt>
+			<dt>Всеки процес има собствен сегмент памет, който не може да бъде достъпен от останалите процеси.</dt>
+			<dd>За да могат множество процеси да обменят данни се използват различни техники, известни с общото име <span class="note">Inter process communication</span> </dd>
+			<dt>При стартирането на една Python програма се стартира поне един процес и поне една нишка за главната програма.</dt>
+			<dt>Множество процеси могат да работят едновременно на различни ядра. За разлика от "паралелизмът" чрез нишки, в Python, паралелизмът чрез процеси не е засегнат от GIL.</dt>
 		</dl>
 	</section>
-	<section><h3>"Производител-Потребител" - решение чрез "опашка"</h3>
-		<pre><code rel="JS" class="python3">
-			import threading
+	<section><h3>Характеристики на Процесите</h3>
+		<a href="images/Processes.png"><img src="images/Processes.png"></a>
+	</section>
+	<section><h3>Модулът Multiprocessing</h3>
+		<dl class="fa">
+			<dt><a href="https://docs.python.org/3.4/library/multiprocessing.html">multiprocessing</a> е вграден модул в Python чрез който може да разпаралелим програмата си в множество Процеси.</dt>
+			<dt>Процес се създава чрез <code class="note">Process</code> конструктора.</dt>
+			<dt>Веднъж създаден Процесът трябва да бъде стартиран чрез <code class="note">start()</code> метода</dt>
+			<dt>Ако искаме да блокираме работата на процеса, създал даден процес, то е необходимо да изпозлваме метода <code class="note">join()</code> </dt>
+			<dt>API-тата предоставени от <code>multiprocessing</code> модула са почти идентични с тези на <code>threding</code> модула, което прави използването на Процеси в Python изключително лесно.</dt>
+			<dt>Документация: <a href="https://docs.python.org/3/library/multiprocessing.html">multiprocessing — Process-based parallelism @docs.python.org</a></dt>
+		</dl>
+	</section>
+
+	<section><h3>Създаване и стартиране на процес - Пример</h3>
+		<pre><code rel="Python" class="python">
+			import multiprocessing as mp
 			import time
-			import random
-			from queue import Queue
 
-			BUF_SIZE = 3
-			q = Queue(BUF_SIZE)
+			def worker(x):
+				pid = mp.current_process().name;
+				print("x = {} in {}".format(x, pid))
+				time.sleep(2)
 
-
-			class ProducerThread(threading.Thread):
-				def __init__(self,name):
-					threading.Thread.__init__(self)
-					self.name = name
-
-				def run(self):
-					while True:
-						if not q.full():
-							item = random.randint(1,10)
-							q.put(item)
-							print(f"Put item: {item} in queue")
-							time.sleep(random.random())
-					return
-
-			class ConsumerThread(threading.Thread):
-				def __init__(self, name):
-					threading.Thread.__init__(self)
-					self.name = name
-
-				def run(self):
-					while True:
-						if not q.empty():
-							item = q.get()
-							print(f"Get item: {item} from queue")
-							time.sleep(random.random())
-					return
 
 			if __name__ == '__main__':
-				p = ProducerThread(name='producer')
-				c = ConsumerThread(name='consumer')
+				# create the process
+				p = mp.Process(target=worker, args=(42,))
 
+				# start the process:
 				p.start()
-				# time.sleep(2)
-				c.start()
-				# time.sleep(2)
+
+				# wait until process completes:
+				p.join()
+
+				print("Worker did its job as separate Process!")
 		</code></pre>
 	</section>
-</section>
-
-<section class="main-sesction-title"><h1>Паралелно Програмиране - "Мъртва Хватка"</h1></section>
-<section class="sub-sections"><h2>Паралелно Програмиране - "Мъртва Хватка"</h2>
-	<section><h3>Какво е "Мъртва Хватка"</h3>
+	<section><h3>Programming guidelines for using multiprocessing</h3>
 		<dl class="fa">
-			<dt>В практиката, когато Нишки или Процеси използват общи ресурси може да се получи т.нар. <span class="note">мъртва хватка</span>.</dt>
-			<dt>В най-простия случай, мъртва хватка се получава когато един Процес/Нишка очаква достъп до ресурс, който е "заключен" от друг Процес/Нишка, и същевренно втория Процес/Нишка очаква достъп до ресурс, "заключен" от първия Процес/Нишка.</dt>
-		</dl>
-		<a href="./images/DeadLock_1.png"><img src="./images/DeadLock_1.png" alt="DeadLock_1.png"></a>
-		<dl class="fa">
-			<dt>Процес 1 очаква достъп до Ресурс2, преди да продължи работата си</dt>
-			<dt>Процес 2 очаква достъп до Ресурс1, преди да продължи работата си</dt>
-			<dt>Настъпва "мъртва хвата" - и двата процеса остават взаимно блокирани</dt>
+			<dt>There are certain guidelines and idioms which should be adhered to when using multiprocessing: <a href="https://docs.python.org/3.4/library/multiprocessing.html#multiprocessing-programming">Programming guidelines @python3 docs</a>.</dt>
+			<dt>But most important is to make sure that the main module can be safely imported by a new Python interpreter without causing unintended side effects (such as starting a new process)</dt>
+			<dt class="note">I.e. always use <code>if __name__ == '__main__':</code> when using processes!</dt>
 		</dl>
 	</section>
-	<section><h3>"Мъртва Хватка" - Пример</h3>
-		<pre><code rel="deadlock_simple_demo.py" class="python3">
-			import threading
-			import time
+	<section><h3>Процесите не споделят обща памет - пример</h3>
+		<pre><code rel="global_variable_in_processes.py" class="python3">
+			import multiprocessing as mp
 
-			l1=threading.Lock()
-			l2 = threading.Lock()
+			def increment(r):
+				global x
 
-			def f1(name):
-				with l1:
-					print('thread',name,'has lock l1')
-					time.sleep(0.5)
-					with l2:
-						print('thread',name,'has lock l2')
-						print('thread',name,'run into deadLock,\nthis line will never run')
+				for _ in r:
+					x+=1
 
-			def f2(name):
-				with l2:
-					print('thread',name,'has lock l2')
-					time.sleep(0.3)
-					with l1:
-						print('thread',name,'has lock l1')
-						print('thread',name,'run into deadLock,\nthis line will never run')
+
+				print(f"x in {mp.current_process().name}: {x}")
+
+
+			if __name__ == "__main__":
+				x = 0
+
+				pr1 = mp.Process(target=increment, args=(range(1000),))
+				pr2 = mp.Process(target=increment, args=(range(1000),))
+
+				pr1.start();pr2.start();
+				pr1.join();pr2.join();
+
+
+				print(f"x in {mp.current_process().name}: {x}")
+
+				#OUTPUT
+				# x in Process-1: 1000
+				# x in Process-2: 1000
+				# x in MainProcess: 0
+		</code></pre>
+		<p>Забележете, че всеки от процесите работи със собствено копие на <code>x</code>, което не е свързано с <code>x</code> в главния процес (главната програма).</p>
+	</section>
+	<section><h3>Комуникация между процеси (Inter-Process Communication)</h3>
+		<dl class="fa">
+			<dt>Когато използваме процеси, които работят с общи данни, обикновено се използват "съобщения" чрез които процесите обменят данните.</dt>
+			<dt>За целта в Python са имплементирани методите:</dt>
+			<dd><a href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Pipe">Pipe()</a> - осъществява връзка между <span class="note">два процеса</span> чрез която те могат да обменят съобщения.</dd>
+			<dd><a href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Queue">Queue()</a> - осъществява връзка между <span class="note">множество процеси</span>, разграничени на "производители" и "консуматори" чрез която те могат да обменят данни.</dd>
+			<dt>И двата метода използват FIFO (First-In, First-Out) структура</dt>
+		</dl>
+	</section>
+	<section><h3>Какво е FIFO структура от данни?</h3>
+		<dl class="fa">
+			<dt>Абстрактна структура от данни която изпълнява условието "първият влязъл е първият излязъл"</dt>
+			<dt>Tова означава, че след като е добавен един елемент в края на опашката, той ще може да бъде извлечен (премахнат) единствено след като бъдат премахнати всички елементи преди него в реда, в който са добавени.</dt>
+		</dl>
+		<a href="./images/FIFO_Diagram.png"><img src="./images/FIFO_Diagram.png" alt="FIFO_Diagram.png" style="height: 50vh;"></a>
+	</section>
+	<section><h3>Какво е FIFO структура от данни?</h3>
+		<dl class="fa">
+			<dt>В Python модулът <code>queue</code> предлага FIFO структура, чрез класа <code>queue.Queue()</code></dt>
+		</dl>
+		<pre><code rel="python_queue_demo.py" class="js">
+			import queue
+
+			queue = queue.Queue()
+
+			queue.put(1)
+			queue.put(2)
+			queue.put(3)
+
+
+			el1 = queue.get()
+			el2 = queue.get()
+			el3 = queue.get()
+
+			print(el1,el2,el3)
+
+			#OUTPUT
+			1 2 3
+		</code></pre>
+	</section>
+	<section><h3>Inter-Process Communication (IPC) чрез класа multiprocessing.Queue </h3>
+		<dl class="fa">
+			<dt>В multiprocessing модула е дефиниран клас Queue който предлага FIFO структура за комуникация между процесите.</dt>
+			<dt><code>multiprocessing.Queue</code> има методи подобни на <code>queue.Queue</code> класа но е оптимизиран за работа с процеси.
+			</dt>
+			<dt>Основни методи на <code>multiprocessing.Queue</code> са:</dt>
+			<dd><code>put()</code> - за запис на данни в опашката</dd>
+			<dd><code>get()</code> - за четене на данни от опашката</dd>
+		</dl>
+	</section>
+	<section><h3>Inter-Process Communication (IPC) чрез класа multiprocessing.Queue - Пример</h3>
+		<pre><code rel="mp_queue_simple_demo.py" class="python3">
+			import multiprocessing as mp
+
+			def worker(q):
+				# get data from queue:
+				x = q.get()
+
+				x+=1
+
+				# save data to the queue
+				q.put(x)
+				print(f'x in {mp.current_process().name} = {x}')
 
 			if __name__ == '__main__':
-				t1=threading.Thread(target=f1, args=['t1',])
-				t2=threading.Thread(target=f2, args=['t2',])
+				# create a Queue object which will be shared among all processes
+				queue = mp.Queue()
 
-				t1.start()
-				t2.start()
-		</code></pre>
-	</section>
-	<section><h3>Използване на with оператора за получаване/освобождаване на лок</h3>
-		<dl class="fa">
-			<dt>Всички lock обекти, които има <code>acquire()</code>/<code>release()</code> методи могат да се използват с оператора <code>with</code> като контекст мениджъри.</dt>
-		</dl>
-		<pre><code rel="Python" class="python3">
-			# записът:
-			with some_lock:
-				# do something...
+				# set the initial value for queue
+				queue.put(0)
 
-			# е еквивалентно по функционалност на:
-			some_lock.acquire()
-				try:
-					# do something...
-				finally:
-					some_lock.release()
+				processes = []
+
+				# crate and start 3 processes:
+				for _ in range(3):
+					pr = mp.Process(target=worker, args=(queue,))
+					pr.start()
+					processes.append(pr)
+
+				# wait for processes to end:
+				for pr in processes:
+					pr.join()
+
+				# get element from queue:
+				x = queue.get()
+
+				print(f'x in {mp.current_process().name} = {x}')
+
 		</code></pre>
+		<p>Забележете, че обекта <code>queue</code> трябва да бъде споделен между процесите, които искат да имат достъп до тези данни.</p>
 	</section>
 </section>
+
+
+<section data-min="10" class="main-sesction-title"><h1>Паралелно Програмиране - Примери</h1></section>
+<section class="sub-sections"><h2>Паралелно Програмиране - Примери</h2>
+	<section><h3>Сваляне на множество файлове - requests library</h3>
+		<dl class="fa">
+			<dt>Чрез библиотеката <code>requests</code> можем да свали даден HTTP ресурс</dt>
+			<dt>Документация: <a href="https://docs.python-requests.org/en/master/">docs.python-requests.org</a></dt>
+		</dl>
+		<pre><code rel="requests_get_simple_demo.py" class="python3">
+			import requests
+
+			url = "https://unsplash.com/photos/CTflmHHVrBM/download?force=true"
+
+			file_name = url.split('/')[4]+".jpg"
+
+			# get image bytes
+			print(f"Start downloading {url}")
+			response = requests.get(url)
+
+			# write image to file
+			with open(file_name, 'wb') as fh:
+				fh.write(response.content)
+				print(f"File saved to {file_name}")
+		</code></pre>
+	</section>
+	<section><h3>Сваляне на множество файлове - задача</h3>
+		<dl class="fa">
+			<dt>Използвайки посочения пример, съставете програма която да свали всички изображения от посочените адреси</dt>
+		</dl>
+		<pre><code rel="Image URLs" class="ascii">
+			"https://unsplash.com/photos/CTflmHHVrBM/download?force=true"
+			"https://unsplash.com/photos/pWV8HjvHzk8/download?force=true"
+			"https://unsplash.com/photos/1jn_3WBp60I/download?force=true"
+			"https://unsplash.com/photos/8E5HawfqCMM/download?force=true"
+			"https://unsplash.com/photos/yTOkMc2q01o/download?force=true"
+		</code></pre>
+	</section>
+	<section><h3>Сваляне на множество файлове - решение</h3>
+		<pre><code rel="download_images.py" class="python3">
+			import requests
+			import os
+			import time
+
+
+			def download_file(url):
+				file_name=url.split('/')[4]+'.jpg'
+
+				full_file_name = os.path.join(download_path,file_name)
+
+				# get image bytes
+				print(f"Start downloading {url}")
+				response = requests.get(url, allow_redirects=True)
+
+				# write image to file
+				with open(full_file_name, 'wb') as fh:
+					fh.write(response.content)
+					print(f"File saved to {full_file_name}")
+
+			urls = [
+				"https://unsplash.com/photos/CTflmHHVrBM/download?force=true",
+				"https://unsplash.com/photos/pWV8HjvHzk8/download?force=true",
+				"https://unsplash.com/photos/1jn_3WBp60I/download?force=true",
+				"https://unsplash.com/photos/8E5HawfqCMM/download?force=true",
+				"https://unsplash.com/photos/yTOkMc2q01o/download?force=true"
+			]
+
+			download_path = os.path.join(os.getcwd(),"downloaded_images")
+
+			if __name__ == "__main__":
+				start= time.perf_counter()
+
+				for url in urls:
+					download_file(url)
+
+				end = time.perf_counter()
+
+				print(f"Procesing time:  {end-start}")
+		</code></pre>
+	</section>
+	<section><h3>Сваляне на множество файлове чрез нишки - задача</h3>
+		<dl class="fa">
+			<dt>Съставете програма, която да свали посочените изображения като използвате Нишки</dt>
+		</dl>
+	</section>
+	<section><h3>Сваляне на множество файлове чрез нишки - решение</h3>
+		<pre><code rel="download_images_with_threas.py" class="python3">
+			import threading
+			import requests
+			import os
+			import time
+
+
+			def download_file(url):
+				file_name=url.split('/')[4]+'.jpg'
+
+				full_file_name = os.path.join(download_path,file_name)
+
+				# get image bytes
+				print(f"Start downloading {url}")
+				response = requests.get(url, allow_redirects=True)
+
+				# write image to file
+				with open(full_file_name, 'wb') as fh:
+					fh.write(response.content)
+					print(f"File saved to {full_file_name}")
+
+			urls = [
+				"https://unsplash.com/photos/CTflmHHVrBM/download?force=true",
+				"https://unsplash.com/photos/pWV8HjvHzk8/download?force=true",
+				# "https://unsplash.com/photos/1jn_3WBp60I/download?force=true",
+				# "https://unsplash.com/photos/8E5HawfqCMM/download?force=true",
+				# "https://unsplash.com/photos/yTOkMc2q01o/download?force=true"
+			]
+
+			download_path = os.path.join(os.getcwd(),"downloaded_images")
+
+			if __name__ == "__main__":
+				start= time.time()
+
+				threads = []
+
+				# create and start a thread per each url
+				for url in urls:
+					tr = threading.Thread(target=download_file,args=(url,))
+					threads.append(tr)
+					tr.start()
+					# result= download_file(url)
+
+				# join all threads
+				for tr in threads:
+					tr.join()
+
+				end = time.time()
+
+				print(f"Procesing time:  {end-start}")
+		</code></pre>
+	</section>
+	<section><h3>Сваляне на множество файлове чрез ThreadPoolExecutor</h3>
+		<dl class="fa">
+			<dt>В python 3.2 се въвежда модула <a href="">concurrent.futures</a>, които предлага абстракция при работа с асинхронни задачи.</dt>
+			<dt><a href="https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor">ThreadPoolExecutor</a> e подклас на класа Executor в модула <code>concurrent.futures</code> който абстрахира работата със създаване и стартиране на множество нишки (а също така и процеси)</dt>
+		</dl>
+		<a href="./images/concurrent_features_Excecutor_classes.png"><img src="./images/concurrent_features_Excecutor_classes.png" alt="concurrent_features_Excecutor_classes.png"></a>
+	</section>
+	<section><h3>Сваляне на множество файлове чрез ThreadPoolExecutor</h3>
+		<dl class="fa">
+			<dt>В примера е използван метода <code>map()</code> на concurrent.futures.Executor класа, който работи по подобен начин на стандартната <a href="https://docs.python.org/3/library/functions.html#map"><code>map(func, *iterables)</code></a>  функция, с тази разлика, че</dt>
+			<dd>елементите в <code>iterables</code> се обработват незабавно, а не lazy.</dd>
+			<dd>подадената функция <code>func</code> се изпълнява асинхронно (чрез нишки или процеси)
+			</dd>
+		</dl>
+		<pre><code rel="JS" class="js">
+			import requests
+			import concurrent.futures
+			import os
+			import time
+
+
+			def download_file(url):
+				file_name=url.split('/')[4]+'.jpg'
+
+				full_file_name = os.path.join(download_path,file_name)
+
+				# get image bytes
+				print(f"Start downloading {url}")
+				response = requests.get(url, allow_redirects=True)
+
+				# write image to file
+				with open(full_file_name, 'wb') as fh:
+					fh.write(response.content)
+					print(f"File saved to {full_file_name}")
+
+			urls = [
+				"https://unsplash.com/photos/CTflmHHVrBM/download?force=true",
+				"https://unsplash.com/photos/pWV8HjvHzk8/download?force=true",
+				"https://unsplash.com/photos/1jn_3WBp60I/download?force=true",
+				"https://unsplash.com/photos/8E5HawfqCMM/download?force=true",
+				"https://unsplash.com/photos/yTOkMc2q01o/download?force=true"
+			]
+
+			download_path = os.path.join(os.getcwd(),"downloaded_images")
+
+			if __name__ == "__main__":
+				start= time.perf_counter()
+
+				with concurrent.futures.ThreadPoolExecutor() as executor:
+					executor.map(download_file, urls)
+
+
+				end = time.perf_counter()
+
+				print(f"Procesing time:  {end-start}")
+		</code></pre>
+	</section>
+
+</section>
+
+
 
 
 <section class="disclaimer end-slide"></section>
