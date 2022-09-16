@@ -12,7 +12,7 @@ db = client.python_course
 # ------------------- Show all Collections in the database: ------------------ #
 # get all collections in the database:
 collections = db.list_collection_names()
-# print(collections)
+print(collections)
 
 # ---------------------------------- Create ---------------------------------- #
 # # insert a new document into "todos" collection:
@@ -94,10 +94,21 @@ collections = db.list_collection_names()
 # print(list(completed2))
 
 # -------------------------- Text Indexes and Search ------------------------- #
-db.todos.create_index([
-	("title","text")
-])
+# db.todos.create_index([
+# 	("title","text")
+# ])
 
-res = db.todos.find({ "$text": { "$search": "python" } })
+# res = db.todos.find({ "$text": { "$search": "python" } })
 
-print(list(res))
+# print(list(res))
+
+python_completed = db.todos.find(
+  {
+    '$and':[
+      {'completed':False},
+      {'title':{'$regex': 'learn', '$options': 'i' }}
+    ]
+  },
+  {"title":1}
+)
+print(list(python_completed))
