@@ -220,14 +220,29 @@
 
 <section data-min="10" class="main-sesction-title"><h1>MongoDB Shell</h1></section>
 <section class="sub-sections"><h2>MongoDB Shell</h2>
+	<section><h3><span class="note">mongo</span> vs. <span class="note">mongosh</span></h3>
+		<dl class="fa">
+			<dt>MongoDB Shell is the quickest way to connect to (and work with) MongoDB</dt>
+			<dt>There are two separate versions of the shell.</dt>
+			<dt>The <span class="note"><code>mongo</code></span> shell is the old one and it is included in the
+				MongoDB Server installation</dt>
+			<dt>The new <span class="note"><code>mongosh</code></span> shell is a standalone product, it’s developed separately from the MongoDB Server.</dt>
+			<dd>You can install mongosh from here: <a href="https://www.mongodb.com/try/download/shell">Download MongoDB Shell</a></dd>
+			<dd>Be sure to add the path to your mongosh.exe binary to your PATH environment variable during installation.</dd>
+			<dt>Reference: <a href="https://www.mongodb.com/blog/post/introducing-the-new-shell">
+				Introducing the new MongoDB Shell</a></dt>
+		</dl>
+	</section>
 	<section><h3></h3>
 		<dl class="fa">
 			<dt>Start the Mongodb Shell and check help for all commands</dt>
 			<pre><code rel="Terminal" class="bash">
-				mongo
+				mongosh
 				# ---
 				> help
 			</code></pre>
+			<dt>Windows users notes: if you haven't added mongosh to your PATH, then you can start it by navigating to "C:\Program Files\mongosh" and the execute "mongosh.exe"</dt>
+			<a href="./images/start_mongosh_windows_explorer.png"><img src="./images/start_mongosh_windows_explorer.png" alt="start_mongosh_windows_explorer.png" style="height: 50vh;"></a>
 		</dl>
 	</section>
 	<section><h3>Basic commands</h3>
@@ -313,9 +328,16 @@
 	<section>
 		<dl class="fa">
 			<dt>Copy the connection string</dt>
-			<a href="./images/atlas_copy_conn_string.png"><img src="./images/atlas_copy_conn_string.png" alt=""></a>
+			<a href="./images/atlas_copy_conn_string.png"><img src="./images/atlas_copy_conn_string.png" alt="atlas_copy_conn_string" style="height: 50vh; margin-left:1em;"></a>
+			<dt>Replace &lt;username&gt; and &lt;password&gt; with your Atlas credentials.</dt>
+			<dt>The connection string must looks like: <code>mongodb+srv://python_courses_test:12345678abv@cluster0.6oisd7l.mongodb.net/test</code></dt>
 		</dl>
-
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>Open MongoDB Compass and in "New Connection" window paste the connection string</dt>
+			<a href="./images/MongoDB Compass - Connect_001.png"><img src="./images/MongoDB Compass - Connect_001.png" alt="MongoDB Compass - Connect_001.png"></a>
+		</dl>
 	</section>
 </section>
 
