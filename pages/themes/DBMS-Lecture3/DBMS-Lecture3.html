@@ -110,6 +110,7 @@
 			<dt class="keyconcept">Self Referencing relationship</dt>
 				<dd>Customer -> Customer (like in referral program)</dd>
 		</dl>
+		<p class="note">These concepts will be discussed further.</p>
 	</section>
 	<section><h3>ExampleDatabase</h3>
 		<img src="images/ExampleDatabase_ShowTables.png">
@@ -132,9 +133,15 @@
 	<section><h3>Install on Windows</h3>
 		<dl class="fa">
 			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html">Installing MySQL on Microsoft Windows @https://dev.mysql.com/</a></dt>
-			<dt>You can use the installer defaults, or select the type 'Server only' to install only the server.</dt>
+			<dt>For start we need only <span class="note">MySQl Server</span>, <span class="note">MySQL Workbench</span> and <span class="note">MySQL Shell</span></dt>, so on "Choosing a Setup Type" window select "Custom".
 			<dd>reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-installer-setup.html">2.3.3.1 MySQL Installer Initial Setup</a></dd>
 		</dl>
+	</section>
+	<section><h3>Install on Windows - choose Setup Type</h3>
+		<a href="./images/MySQL_instal_wndows_setup_type.png"><img src="./images/MySQL_instal_wndows_setup_type.png" alt="MySQL_instal_wndows_setup_type.png"></a>
+	</section>
+	<section><h3>Install on Windows - Select Products</h3>
+		<a href="./images/MySQL_instal_wndows_minimal_products.png"><img src="./images/MySQL_instal_wndows_minimal_products.png" alt="MySQL_instal_wndows_minimal_products.png"></a>
 	</section>
 	<section><h3>Install on MacOS</h3>
 		<dl class="fa">
@@ -331,7 +338,7 @@
 <section class="main-sesction-title"><h1>Manage databases</h1></section>
 <section id="Manage_databases"><h2>Manage databases</h2>
 	<section><h3>List/Create/Delete/ databases</h3>
-		<pre><code rel="mysql" class="mysql">
+		<pre><code rel="mysql" class="mysql" style="min-height: 60vh;">
 			### List all databases
 			##  only those databases for which the user have some kind of privilege (or if the user have the global SHOW DATABASES privilege)
 			SHOW DATABASES
@@ -352,7 +359,7 @@
 			<dt>Download the test db and load it </dt>
 			<dd><a href="https://github.com/datacharmer/test_db/">Employees Sample Database</a></dd>
 		</dl>
-		<pre><code rel="Terminal" class="bash">
+		<pre><code rel="Terminal" class="bash" style="min-height: 50vh;">
 			git clone https://github.com/datacharmer/test_db/
 
 			cd test.db
@@ -387,11 +394,11 @@
 		</dl>
 	</section>
     <section><h3>Create a New User</h3>
-        <pre><code rel="sql" class="mysql"></code>
+        <pre><code rel="sql" class="mysql">
 			CREATE USER 'employees_db_admin'@'localhost' IDENTIFIED BY '1234';
         </code></pre>
         <p>If user exists, an error will be thrown. To prevent this error we can use:</p>
-		<pre><code rel="sql" class="mysql"></code>
+		<pre><code rel="sql" class="mysql">
 			CREATE USER IF NOT EXISTS 'employees_db_admin'@'localhost' IDENTIFIED BY '1234';
         </code></pre>
     </section>
@@ -425,6 +432,7 @@
 		<pre><code rel="sql" class="mysql">
 			GRANT ALL PRIVILEGES ON employees.* TO 'employees_db_admin'@'localhost';
         </code></pre>
+		<p class="note">Note, that asterisk (*) means <b>all</b> (tables, databases, ...)</p>
     </section>
     <section><h3>Revoke privileges</h3>
 		<pre><code rel="syntax" class="mysql">
@@ -436,16 +444,16 @@
     </section>
     <section><h3>Reload all the privileges</h3>
         <p>Always be sure to reload all the privileges.</p>
-        <pre><code rel="sql" class="mysql"></code>
+        <pre><code rel="sql" class="mysql">
 			FLUSH PRIVILEGES;
         </code></pre>
     </section>
-	<section><h3>How to Reset the Root Password</h3>
+	<section><h3 class="advanced">How to Reset the Root Password</h3>
 		<dl class="fa">
 			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html">https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html</a></dt>
 		</dl>
 		<p>Reset the Root Password on Ubuntu based linux, step-by-step:</p>
-		<pre><code rel="Terminal" class="bash">
+		<pre><code rel="Terminal" class="bash" style="min-height: 75vh;">
 			# stop mysql service
 			sudo systemctl stop mysql
 
