@@ -1,9 +1,10 @@
-INSERT INTO author(fname,lname,birth_year,death_year) VALUES
+USE books_db;
+INSERT INTO authors(fname,lname,birth_year,death_year) VALUES
     ('Kurt'   , 'Vonnegut', '1922','2007'),
     ('Douglas', 'Adams'   , '1952','2001'),
     ('Charles', 'Dodgson' , '1832','1898')
 ;
-INSERT INTO book(author_id, book_name,pub_year) VALUES
+INSERT INTO books(author_id, book_name,pub_year) VALUES
     (1, 'The Sirens of Titan', 1959),
     (1, 'Mother Night', 1961),
     (1, 'Cat\'s Cradle', 1963), # note: the single quote inside string should be escaped!

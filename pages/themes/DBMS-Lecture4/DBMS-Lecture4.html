@@ -460,14 +460,13 @@
 		</code></pre>
 		<dl class="fa">
 			<dt>The <span class="code">index_length</span> could be specified to minimize the size of the index, and to optimize database access speed.</dt>
-			<dt>If <span class="code">index_length</span> is specified, it should be long enough, because if MySQL finds two indexes with the same contents, it will have to waste time going to the table itself and checking the column that was indexed to find out which rows really matched.</dt>
-			<dt class="note">Consider adding Regular Index to  columns will be searched most often</dt>
-			<dt>An index is typically created on columns used in JOIN, WHERE, and ORDER BY clauses.</dt>
+
+			<dt class="note">Consider adding Regular Index to  columns which will be searched most often</dt>
 		</dl>
 	</section>
 	<section id="add_index_example"><h3>Example</h3>
 		<p>Let's have the <span class="code">artist</span> table, defined as:</p>
-		<pre>
+		<pre><code rel="SQl">
 			mysql music_db_admin@localhost:music_db> desc artist;
 			+---------+-------------+--------+-------+-----------+---------+
 			| Field   | Type        | Null   | Key   |   Default | Extra   |
@@ -475,21 +474,21 @@
 			| fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
 			| lname   | varchar(20) | NO     |       |    &lt;null&gt; |         |
 			+---------+-------------+--------+-------+-----------+---------+
-					</pre>
-					<p>An index could be added as:</p>
-					<pre><code>
+		</code></pre>
+		<p>An index could be added as:</p>
+		<pre><code>
 			ALTER TABLE artist ADD INDEX(lname(10));
-					</code></pre>
-					<p>Resulting in:</p>
-					<pre>
+		</code></pre>
+		<p>Resulting in:</p>
+		<pre><code rel="SQl">
 			mysql music_db_admin@localhost:music_db> desc artist;
 			+---------+-------------+--------+-------+-----------+---------+
 			| Field   | Type        | Null   | Key   |   Default | Extra   |
 			|---------+-------------+--------+-------+-----------+---------|
 			| fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
-			| lname   | varchar(20) | NO     | <span class="note">MUL</span>   |    &lt;null&gt; |         |
+			| lname   | varchar(20) | NO     | MUL   |    &lt;null&gt; |         |
 			+---------+-------------+--------+-------+-----------+---------+
-		</pre>
+		</code></pre>
 		<p>The <span class="note">MUL</span> key means that multiple occurrences of a value may occur within that column.</p>
 	</section>
 	<section id="create_index"><h3>Using CREATE INDEX</h3>
@@ -503,8 +502,11 @@
 		</dl>
 	</section>
 	<section id="on_create_table"><h3>Adding indexes when creating tables</h3>
-		<p>You should be aware that adding an index to a large table can take a very long time.</p>
-		<p>That's why is better to add the index when creating the table!</p>
+		<dl class="fa">
+			<dt>You should be aware that adding an index to a large table can take a very long time.</dt>
+			<dt class="note">That's why is better to add Regular Index when creating the table!</dt>
+		</dl>
+
 		<pre><code>
 			CREATE TABLE artist (
 				fname VARCHAR(20) DEFAULT NULL,
@@ -533,7 +535,7 @@
 			);
 		</code></pre>
 		<p>Resulting in:</p>
-		<pre>
+		<pre><code>
 			+---------+--------------+--------+-------+-----------+----------------+
 			| Field   | Type         | Null   | Key   |   Default | Extra          |
 			|---------+--------------+--------+-------+-----------+----------------|
@@ -541,7 +543,7 @@
 			| fname   | varchar(20)  | YES    |       |    &lt;null&gt; |                |
 			| lname   | varchar(20)  | NO     |       |    &lt;null&gt; |                |
 			+---------+--------------+--------+-------+-----------+----------------+
-		</pre>
+		</code></pre>
 		<p><span class="note">NB!</span> As PRIMARY KEY requires unique values, the <span class="code">NOT NULL</span> and/or <span class="code">AUTO_INCREMENT</span> attribute should be present.</p>
 	</section>
 </section>
@@ -551,18 +553,7 @@
 			<dt>The AUTO_INCREMENT attribute can be used to generate a unique identity for new rows.</dt>
 			<dt>A column defined with that attribute will set the value of its contents to that of the column entry in the previously inserted row, plus 1.</dt>
 		</dl>
-		<pre><code rel="Example" class="mysql">
-			CREATE TABLE artist (
-				artist_id SMALLINT(5) NOT NULL AUTO_INCREMENT KEY,
-				fname VARCHAR(20) DEFAULT NULL,
-				lname VARCHAR(20) NOT NULL
-			);
-		</code></pre>
-		<dl class="fa">
-			<dt class="note"><span>The KEY attribute should also be defined!</span></dt>
-			<dt>KEY and INDEX are synonyms in MySQL</dt>
-			<dt>If it is not present, MySQL raises an error: <span class="code">'Incorrect table definition; there can be only one auto column and it must be defined as a key'</span>.</dt>
-		</dl>
+
 	</section>
 </section>
 
@@ -574,10 +565,16 @@
 			<dt>Constraints are used to limit the type of data that can be inserted into a table</dt>
 			<dt>MySQL supports next constraints:, "<code>NOT NULL</code>", "<code>UNIQUE</code>", "<code>PRIMARY KEY</code>", "<code>FOREIGN KEY</code>", "<code>CHECK</code>", "<code>DEFAULT</code>"
 			</dt>
+			<pre><code class="syntax">
+				CREATE TABLE table_name(
+					column_name data_type(size) constraint_name,
+					...
+				);
+			</code></pre>
 			<dt>Reference: <a href="https://www.w3resource.com/mysql/creating-table-advance/constraint.php">MySQL Constraint @w3resource</a></dt>
 		</dl>
 	</section>
-	<section><h3>The syntax in CREATE TABLE</h3>
+	<!-- <section><h3>The syntax in CREATE TABLE</h3>
 		<p>Constraint on single column:</p>
 		<pre><code class="sql">
 			CREATE TABLE table_name(
@@ -594,7 +591,7 @@
 				UNIQUE(fname,lname)
 			)
 		</code></pre>
-	</section>
+	</section> -->
 	<section><h3>NOT NULL</h3>
 		<p>Indicates that a column cannot store NULL value</p>
 		<pre><code>
