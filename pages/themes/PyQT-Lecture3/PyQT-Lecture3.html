@@ -72,17 +72,18 @@
 </section>
 
 
-<section data-min="5" class="main-sesction-title"><h1>Auto-Compiling UI files</h1></section>
-<section class="sub-sections"><h2>Auto-Compiling UI files</h2>
-	<section><h3><code></code></h3>
+<section data-min="5" class="main-sesction-title"><h1 class="advanced">Auto-Compiling UI files</h1></section>
+<section class="sub-sections"><h2 class="advanced">Auto-Compiling UI files</h2>
+	<section>
 		<dl class="fa">
-			<dt>Reference: <a href="https://doc-snapshots.qt.io/qtforpython-5.15/PySide2/QtUiTools/ls.loadUiType.html">loadUiType</a>
-			</dt>
+			<dt>The Qt team provides a method <code>uic.loadUiType</code> which generates and loads a .ui file at runtime. It returns a tuple containing the reference to the Python class, and the base class</dt>
+			<dt>But note that this approach is not recommended.</dt>
+			<dd>Reference: <a href="https://doc-snapshots.qt.io/qtforpython-5.15/PySide2/QtUiTools/ls.loadUiType.html">loadUiType</a></dd>
 		</dl>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height: 62vh;">
 			import sys
-			from PyQt5 import QtWidgets as qtw
-			from PyQt5 import uic
+			from PyQt6 import QtWidgets as qtw
+			from PyQt6 import uic
 
 			generated_class, base_class = uic.loadUiType('./ui/btnWidget.ui')
 			print(generated_class, base_class)
@@ -97,6 +98,7 @@
 
 				sys.exit(app.exec())
 		</code></pre>
+
 	</section>
 </section>
 
@@ -110,9 +112,9 @@
 			<dt><a href="https://doc.qt.io/qt-5/qtwidgets-index.html">QtWidgets</a> - defines GUI widgets, layouts, and other high-level GUI components</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
-			from PyQt5 import QtWidgets as qtw
-			from PyQt5 import QtCore as qtc
-			from PyQt5 import QtGui as qtg
+			from PyQt6 import QtWidgets as qtw
+			from PyQt6 import QtCore as qtc
+			from PyQt6 import QtGui as qtg
 		</code></pre>
 		<p class="note">Never use <code>*</code> imports with Qt modules, as you risk to overwhelm your namespace with hundreds of names</p>
 	</section>
@@ -123,9 +125,9 @@
 		</dl>
 		<pre><code rel="Python" class="python" style="min-height: 90vh;">
 			import sys
-			from PyQt5 import QtWidgets as qtw
-			from PyQt5 import QtCore as qtc
-			from PyQt5 import QtGui as qtg
+			from PyQt6 import QtWidgets as qtw
+			from PyQt6 import QtCore as qtc
+			from PyQt6 import QtGui as qtg
 
 			class MainWindow(qtw.QWidget):
 				def __init__(self, *args, **kwargs):
@@ -142,7 +144,7 @@
 
 				window = MainWindow()
 
-				sys.exit(app.exec_())
+				sys.exit(app.exec())
 		</code></pre>
 	</section>
 </section>
@@ -153,7 +155,7 @@
 	<section><h3>PyQt Official Documentation</h3>
 		<dl class="fa">
 			<dt><a href="https://doc.qt.io/">Qt Documentation</a> - <span>note,that this documentation covers Qt framework, i.e. C++ classes.</span></dt>
-			<dt><a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/">PyQt5 Reference Guide</a> - <span>the officail PyQt5 documentation from <a href="riverbankcomputing.com">riverbankcomputing.com</a></span></dt>
+			<dt><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/">PyQt6 Reference Guide</a> - <span>the officail PyQt6 documentation from <a href="riverbankcomputing.com">riverbankcomputing.com</a></span></dt>
 			<dt><a href="https://doc-snapshots.qt.io/qtforpython/#documentation">Qt for Python Documentation</a> - <span>this is the documentation for PySide2, but it's more usefull than the sparse docs for PyQt</span></dt>
 			<dt>PyQt's documentation covers only the Python-specific differences
 				and lacks comprehensive class reference, tutorials and example code which can be find in Qt's
@@ -168,12 +170,14 @@
 <section class="sub-sections"><h2>Hand Code the UI of a Login Form Widget</h2>
 	<section><h3>Why?</h3>
 		<dl class="fa">
-			<dt>The code produced by pyuic5 is overwhelmed and not clean.</dt>
+			<dt>The code produced by pyuic6 is overwhelmed and not clean.</dt>
 			<dt>Hand-coding could be even faster (if you have know your IDE well) than using the QtDesigner.</dt>
 			<dt>You can really <span class="note">learn</span> Qt App methodology only if you have hand-coded a simple GUI App.</dt>
 			<dt>For next examples, we'll be using <a href="https://gist.githubusercontent.com/WWWCourses/25de793d78aa1fe43efe598f061a3dac/raw/d25028e95e42d1bfd6dcbef056f8044639a84b6c/pyqt5_app_template.py?ts=4">the template</a> we've already created:</dt><br>
 			<script src="https://gist.github.com/WWWCourses/25de793d78aa1fe43efe598f061a3dac.js"></script>
-			<dt><span class="note">Tip:</span> you can setup a custom snippet with this template in your editor. See <a href="https://www.jetbrains.com/help/pycharm/tutorial-creating-and-applying-live-templates-code-snippets.html">Tutorial: Creating and Applying Live Templates (Code Snippets)</a></dt>
+			<dt style="font-size: 0.8em"><span class="note">Tip:</span> you can setup a custom snippet with this template in your editor.</dt>
+			<dd style="font-size: 0.8em">For PyCharm see <a href="https://www.jetbrains.com/help/pycharm/tutorial-creating-and-applying-live-templates-code-snippets.html">Tutorial: Creating and Applying Live Templates (Code Snippets)</a></dd>
+			<dd style="font-size: 0.8em">For VSCode see: <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">Snippets in Visual Studio Code</a></dd>
 		</dl>
 	</section>
 	<section id="QWidgetClass"><h3><code>QWidget</code> class</h3>
@@ -183,16 +187,16 @@
 			<dt class="note">When a QWidget is created without a parent and its show() method is called, it becomes a top-level window</dt>
 			<dt>When we use it as a top-level window (as we did with in our template), there are some window-specific properties we can set.</dt>
 			<pre><code rel="Python" class="python">
-				window = MainWindow(cursor=qtc.Qt.WaitCursor)
+				window = MainWindow(cursor=qtc.Qt.CursorShape.WaitCursor)
 			</code></pre>
 			<dd>note, that the cursor value is an <span class="note">enum type</span>, defined in QtCore module</dd>
 			<dt>Every property of a <code>QWidget</code> object has its <span class="note">Access function</span>, which allows you to set that property after the object is created</dt>
 			<pre><code rel="Python" class="python">
 				# equivalent to example above
 				window = MainWindow()
-				window.setCursor(qtc.Qt.WaitCursor)
+				window.setCursor(qtc.Qt.CursorShape.WaitCursor)
 			</code></pre>
-			<dt>Reference: <a href="https://doc.qt.io/qt-5/qwidget.html">QWidget Class</a></dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-6/qwidget.html">QWidget Class</a></dt>
 		</dl>
 	</section>
 	<section id="PrimaryAndChildWidgets"><h3>Primary and Child Widgets</h3>
@@ -213,7 +217,7 @@
 	<section><h3>PyQt Official Documentation</h3>
 		<dl class="fa">
 			<dt><a href="https://doc.qt.io/">Qt Documentation</a> - <span>note,that this documentation covers Qt framework, i.e. C++ classes, but it's most comprehensive and useful.</span></dt>
-			<dt><a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/">PyQt5 Reference Guide</a> - <span>the official PyQt5 documentation from <a href="riverbankcomputing.com">riverbankcomputing.com</a></span></dt>
+			<dt><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/">PyQt6 Reference Guide</a> - <span>the official PyQt6 documentation from <a href="riverbankcomputing.com">riverbankcomputing.com</a></span></dt>
 			<dt><a href="https://doc-snapshots.qt.io/qtforpython/#documentation">Qt for Python Documentation</a> - <span>this is the documentation for PySide2, but it's more useful than the sparse docs in official PyQt</span></dt>
 			<dt>PyQt's documentation covers only the Python-specific differences
 				and lacks comprehensive class reference, tutorials and example code which can be find in Qt's
