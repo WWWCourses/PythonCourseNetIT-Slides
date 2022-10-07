@@ -82,7 +82,7 @@
 				user_name_input = qtw.QLineEdit()
 				password_input = qtw.QLineEdit()
 				#
-				password_input.setEchoMode(qtw.QLineEdit.Password)
+				password_input.setEchoMode(qtw.QLineEdit.EchoMode.Password)
 				# ---------------------------- your code ends here --------------------------- #
 			</code></pre>
 			<dt>Of course, we did not see the created widgets, because they are not attached to our main window</dt>
@@ -94,8 +94,8 @@
 			</code></pre>
 			<dt>But we did not set the geometry of our main windows, so the result is not what we want.</dt>
 			<dt>References: </dt>
-			<dd><a href="https://doc.qt.io/qt-5/qlineedit.html">QLineEdit Class</a></dd>
-			<dd><a href="https://doc.qt.io/qt-5/qlineedit.html#echoMode-prop">EchoMode Property</a></dd>
+			<dd><a href="https://doc.qt.io/qt-6/qlineedit.html">QLineEdit Class</a></dd>
+			<dd><a href="https://doc.qt.io/qt-6/qlineedit.html#echoMode-prop">EchoMode Property</a></dd>
 		</dl>
 	</section>
 	<section><h3>Window Geometry</h3>
@@ -113,7 +113,7 @@
 
 					...
 			</code></pre>
-			<dt>Reference: <a href="https://doc.qt.io/qt-5/application-windows.html#window-geometry">Window Geometry</a></dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-6/application-windows.html#window-geometry">Window Geometry</a></dt>
 		</dl>
 	</section>
 	<section><h3>Widget Position</h3>
@@ -135,22 +135,45 @@
 					password_input.move(20,50)
 			</code></pre>
 			<dt class="note">But there is a better approach - to use a Layout for children  positioning</dt>
-			<dt>Reference: <a href="https://doc.qt.io/qt-5/qwidget.html#pos-prop">pos : QPoint</a></dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-6/qwidget.html#pos-prop">pos : QPoint</a></dt>
+		</dl>
+	</section>
+	<section><h3>Layout Management</h3>
+		<dl class="fa">
+			<dt>The Qt layout system provides a simple and powerful way of automatically arranging child widgets within a widget to ensure that they make good use of the available space</dt>
+			<dt>Qt provides many <a href="https://doc.qt.io/qt-6/layout.html#qt-s-layout-classes">Layout Classes</a> useful for different use-cases.</dt>
+			<dt>The setLayout() method applies a layout to a widget. And the layout takes care of the following tasks:</dt>
+			<dd>Positioning of child widgets</dd>
+			<dd>Sensible default sizes for windows</dd>
+			<dd>Sensible minimum sizes for windows</dd>
+			<dd>Resize handling</dd>
+			<dd>Automatic updates when contents change:</dd>
+			<dt>To create more complex layouts, you can nest layouts inside each other.</dt>
+			<dt>References:</dt>
+			<dd><a href="https://doc.qt.io/qt-6/layout.html">Layout Management @Qt</a></dd>
+			<dd><a href="https://doc.qt.io/qtforpython/overviews/layout.html?highlight=layout%20management">Layout Management @Qt for Python</a></dd>
+		</dl>
+	</section>
+	<section><h3>QFormLayout Class</h3>
+		<dl class="fa">
+			<dt>For our Login Form Wdget is best to use the QFormLayout Class</dt>
+			<dt>The QFormLayout class manages forms of input widgets and their associated labels.</dt>
+			<a href="./images/QFormLayout.png"><img src="./images/QFormLayout.png" alt="QFormLayout.png" style="height: 40vh;"></a>
+			<dt>References:</dt>
+			<dd><a href="https://doc.qt.io/qtforpython/PySide6/QtWidgets/QFormLayout.html?highlight=qformlayout">QFormLayout @Qt for Python</a></dd>
+			<dd><a href="https://doc.qt.io/qt-6/qformlayout.html">QFormLayout Class @Qt</a></dd>
 		</dl>
 	</section>
 	<section><h3>Create the Form Layout</h3>
 		<dl class="fa">
-			<dt>The Qt layout system provides a simple and powerful way of automatically arranging child widgets within a widget to ensure that they make good use of the available space</dt>
-			<dt>Qt provides many <a href="https://doc.qt.io/qt-5/layout.html#qt-s-layout-classes">Layout Classes</a> useful for different use-cases.</dt>
-			<dt>For our Login Form Wdget is best to use the <a href="https://doc.qt.io/qt-5/qformlayout.html">QFormLayout Class</a></dt>
-			<dt>The QFormLayout class manages forms of input widgets and their associated labels.</dt>
+			<dt>For our Login Form Wdget is best to use the <a href="https://doc.qt.io/qt-6/qformlayout.html">QFormLayout Class</a></dt>
 
-			<pre><code rel="Python" class="python">
+			<pre><code rel="Python" class="python" style="min-height: 80vh;">
 				# --------------------------- your code starts here -------------------------- #
 				# create user input widgets:
 				user_name_input = qtw.QLineEdit()
 				password_input = qtw.QLineEdit()
-				password_input.setEchoMode(qtw.QLineEdit.Password)
+				password_input.setEchoMode(qtw.QLineEdit.EchoMode.Password)
 
 				# create the submit button:
 				btn_submit = qtw.QPushButton('Login')
@@ -168,34 +191,26 @@
 
 				# ---------------------------- your code ends here --------------------------- #
 			</code></pre>
-
-			<dt>References:</dt>
-			<dd><a href="https://doc.qt.io/qt-5/layout.html">Layout Management</a></dd>
-			<dd><a href="https://doc.qt.io/qt-5/qformlayout.html">QFormLayout Class</a></dd>
 		</dl>
 	</section>
 	<section id="Task_add_buttons_in_layout"><h3>TASK: add Submit and Cancel buttons to our login form</h3>
 		<dt>Create and layout the buttons as shown:</dt>
 		<a href="./images/TASK_login_form_handcoded.png"><img src="./images/TASK_login_form_handcoded.png" alt="TASK_login_form_handcoded.png"></a>
 		<dt>Reference:</dt>
-		<dd><a href="https://doc.qt.io/qt-5/qpushbutton.html">QPushButton Class</a></dd>
-		<dd><a href="https://doc.qt.io/qt-5/qhboxlayout.html">QHBoxLayout Class</a></dd>
-		<dd><a href="https://doc.qt.io/qt-5/qboxlayout.html">QBoxLayout Class</a></dd>
+		<dd><a href="https://doc.qt.io/qt-6/qpushbutton.html">QPushButton Class</a></dd>
+		<dd><a href="https://doc.qt.io/qt-6/qhboxlayout.html">QHBoxLayout Class</a></dd>
+		<dd><a href="https://doc.qt.io/qt-6/qboxlayout.html">QBoxLayout Class</a></dd>
 	</section>
 </section>
-
-
 
 <section data-min="5" class="main-sesction-title"><h1>References && Self-Learning</h1></section>
 <section class="sub-sections"><h2>References && Self-Learning</h2>
 	<section><h3>PyQt Official Documentation</h3>
 		<dl class="fa">
 			<dt><a href="https://doc.qt.io/">Qt Documentation</a> - <span>note,that this documentation covers Qt framework, i.e. C++ classes, but it's most comprehensive and useful.</span></dt>
-			<dt><a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/">PyQt5 Reference Guide</a> - <span>the official PyQt5 documentation from <a href="riverbankcomputing.com">riverbankcomputing.com</a></span></dt>
-			<dt><a href="https://doc-snapshots.qt.io/qtforpython/#documentation">Qt for Python Documentation</a> - <span>this is the documentation for PySide2, but it's more useful than the sparse docs in official PyQt</span></dt>
-			<dt>PyQt's documentation covers only the Python-specific differences
-				and lacks comprehensive class reference, tutorials and example code which can be find in Qt's
-				documentation.</dt>
+			<dt><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/">PyQt6 Reference Guide</a> - <span>the official PyQt6 documentation from <a href="riverbankcomputing.com">riverbankcomputing.com</a></span></dt>
+			<dt><a href="https://doc.qt.io/qtforpython/">Qt for Python Documentation</a> - <span>this is the documentation for PySide, but it's more useful than the sparse docs in official PyQt</span></dt>
+			<dt>PyQt's documentation covers only the Python-specific differences and lacks comprehensive class reference, tutorials and example code which can be find in Qt's documentation.</dt>
 		</dl>
 	</section>
 </section>
