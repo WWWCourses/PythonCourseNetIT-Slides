@@ -99,19 +99,10 @@
 			<dt>When a signal is emitted, the slots connected to it are usually executed immediately</dt>
 		</dl>
 	</section>
-	<section><h3>Different combinations of signals and slots</h3>
-		<dl class="fa">
-			<dt>One signal can be connected to one or many slots</dt>
-			<dt>Many signals can be connected to the same slot</dt>
-			<dt>A signal can be connected to other signals</dt>
-			<dt>Connections can be removed</dt>
-		</dl>
-		<p class="note">If several slots are connected to one signal, the slots will be executed one after the other, in the order they have been connected, when the signal is emitted.</p>
-	</section>
 	<section><h3>Signals and Slots Example</h3>
 		<dl class="fa">
-			<dt>A QPushButton has a clicked signal that is emitted whenever the button is clicked by a user. </dt>
-			<dt>The QWidget class has a close() slot that causes it to close if it's a top-level window. </dt>
+			<dt>A QPushButton has a <a href="https://doc.qt.io/qt-6/qabstractbutton.html#clicked">clicked signal</a> that is emitted whenever the button is clicked by a user. </dt>
+			<dt>The QWidget class has a <a href="https://doc.qt.io/qt-6/qwidget.html#close">close() slot</a> that causes it to close if it's a top-level window. </dt>
 			<dt>We could connect the two like this:</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
@@ -119,6 +110,15 @@
 			self.btn_cancel.clicked.connect(self.close)
 		</code></pre>
 		<dt>All classes descended from QObject (including all QWidget classes) can send and receive signals.</dt>
+	</section>
+	<section><h3>Different combinations of signals and slots</h3>
+		<dl class="fa">
+			<dt>One signal can be connected to one or many slots</dt>
+			<dd>If a signal is connected to several slots they will be executed one after the other, in the order they have been connected, when the signal is emitted.</dd>
+			<dt>Many signals can be connected to the same slot</dt>
+			<dt>A signal can be connected to other signals</dt>
+			<dt>Connections can be removed</dt>
+		</dl>
 	</section>
 	<section><h3>Common predefined Signals and Slots</h3>
 		<dl class="fa">
@@ -133,17 +133,20 @@
 <section class="sub-sections"><h2>Passing data between signals and slots</h2>
 	<section>
 		<dl class="fa">
-			<dt>Signals can also pass data the slots they are connected.</dt>
+			<dt>Signals can also pass data to the slots they are connected.</dt>
 			<dt>For example, QLineEdit object has a <code>textChanged</code> signal that sends the text entered into the widget along with the signal</dt>
 			<dt>The QLineEdit object also has a <code>setText()</code> slot that accepts a string argument. We could connect them like this:</dt>
 			<pre><code rel="Python" class="python">
 				self.line_edit1 = qtw.QLineEdit()
 				self.line_edit2 = qtw.QLineEdit()
 
-				self.layout().addWidget(self.line_edit1)
-				self.layout().addWidget(self.line_edit2)
-
 				self.line_edit1.textChanged.connect(self.line_edit2.setText)
+
+				self.mainLayout = qtw.QVBoxLayout()
+				self.mainLayout.addWidget(self.line_edit1)
+				self.mainLayout.addWidget(self.line_edit2)
+
+				self.setLayout(self.mainLayout)
 			</code></pre>
 		</dl>
 	</section>
