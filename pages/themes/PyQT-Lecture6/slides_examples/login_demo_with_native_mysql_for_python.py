@@ -41,7 +41,8 @@ def authenticate(cnx, user_name, password):
 		print('Authentication Failed')
 
 def main():
-	cnx = make_connection('root', '1234','car_shop_db')
+	# connect as user 'test' to 'pyqtDemo' db on  localhost:
+	cnx = make_connection('test', 'test1234','pyqtDemos')
 
 	# let's use some hard-coded values for test:
 	user_name = 'Maria'

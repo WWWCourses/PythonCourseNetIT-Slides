@@ -170,9 +170,17 @@
 </section>
 
 <section data-min="5" class="main-sesction-title"><h1>Hands on: Using MySQL With PyQt5 Widgets</h1></section>
-<section class="sub-sections"><h2>Hands on: Using MySQL With PyQt5 Widgets</h2>
-	<section><h3>The <code>users</code> tbale</h3>
-		<pre><code rel="SQL" class="sql">
+<section class="sub-sections"><h2>Hands on LoginForm: Using MySQL With PyQt5 Widgets</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>When we need our Qt app to work with database, we can use:</dt>
+			<dd>Python's <a href="https://peps.python.org/pep-0249/#introduction">DB-API</a> compliant modules, like <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector</a> - this is a kind of universal approach which works on any Python app.</dd>
+			<dd>Qt's SQL API, which is the preferred way for PyQt applications, especially when we use the Qt's model/view architecture (discussed later in these course). But note that to use MySQL with Qt SQL API you must <a href="https://doc.qt.io/qt-6/sql-driver.html#how-to-build-the-qmysql-plugin-on-windows">build QMYSQL Plugin yourself</a></dd>
+			<dt>In next examples, we will use the Python's <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector</a>, but later in the course we will discuss the Qt's approach. </dt>
+		</dl>
+	</section>
+	<section><h3>Create <code>users</code> table</h3>
+		<pre><code rel="SQL" class="sql" style="min-height: 62vh;">
 			DROP TABLE IF EXISTS `users`;
 			/*!40101 SET @saved_cs_client     = @@character_set_client */;
 			/*!40101 SET character_set_client = utf8 */;
@@ -195,7 +203,7 @@
 				(3,'Ivan','ivan@gmail.com','ivan123');
 		</code></pre>
 	</section>
-	<section><h3>Registration Form demo</h3>
+	<section><h3>Registration Form demo - CLI, no PyQt</h3>
 		<script src="https://gist.github.com/WWWCourses/d1766798e16467af3c6619a28c776b82.js"></script>
 	</section>
 	<section><h3>References</h3>
