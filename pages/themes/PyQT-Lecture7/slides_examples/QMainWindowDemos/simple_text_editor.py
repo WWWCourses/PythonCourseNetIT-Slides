@@ -1,11 +1,11 @@
+from json import tool
 import sys
 from PyQt6 import QtWidgets as qtw
 from PyQt6 import QtCore as qtc
 from PyQt6 import QtGui as qtg
-
+import re
 
 class MainWindow(qtw.QMainWindow):
-
 	def __init__(self , *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
@@ -19,22 +19,25 @@ class MainWindow(qtw.QMainWindow):
 		self.create_status_bar()
 
 		self.set_style()
+		self.setWindowTitle('My Simple Text Editor')
+		self.resize(800, 600)
 		self.show()
-
 
 	def create_menu_bar(self):
 		# add menu items
 		menubar = self.menuBar()
 		file_menu = menubar.addMenu('&File')
-		edit_menu = menubar.addMenu('&Edit')
-		help_menu = menubar.addMenu('&Help')
-		help_menu.addAction(self.help_action)
-
 		file_menu.addAction(self.openAction)
+
+		edit_menu = menubar.addMenu('&Edit')
+
+		help_menu = menubar.addMenu('&Help')
+		help_menu.addAction(self.about_action)
 
 	def create_toolbar(self):
 		toolbar = self.addToolBar('File')
 		toolbar.addAction(self.openAction)
+		toolbar.addAction(self.about_action)
 
 		toolbar.setMovable(True)
 		toolbar.setFloatable(False)
@@ -43,10 +46,8 @@ class MainWindow(qtw.QMainWindow):
 			qtc.Qt.ToolBarArea.BottomToolBarArea
 		)
 
-		toolbar.addAction(self.help_action)
-
 	def create_doc_widget(self):
-		dock = qtw.QDockWidget("Replace")
+		dock = qtw.QDockWidget("File actions")
 		self.addDockWidget(qtc.Qt.DockWidgetArea.LeftDockWidgetArea, dock)
 
 		# set dock widget to move and float (but not closeable)
@@ -92,17 +93,26 @@ class MainWindow(qtw.QMainWindow):
 	def create_actions(self):
 		self.openAction = qtg.QAction("&Open...", self)
 		self.openAction.triggered.connect(self.open_new_file)
+
 		self.saveAction = qtg.QAction("&Save", self)
+		self.saveAction.setShortcut("Ctrl+S")
+		self.saveAction.setStatusTip("Save your changes")
+
 		self.exitAction = qtg.QAction("&Exit", self)
 
-		self.help_action = qtg.QAction(
+		self.about_action = qtg.QAction(
 			self.style().standardIcon(qtw.QStyle.StandardPixmap.SP_DialogHelpButton),
-			'Help',
+			'&About',
 			self  # important to pass the parent!
 		)
 		# add signal
-		self.help_action.triggered.connect(lambda : qtw.QMessageBox.information(self,'Not Implemented','Sorry, no help yet!'))
+		self.about_action.triggered.connect(lambda : qtw.QMessageBox.information(
+			self,
+			'My Simple Text Editor',
+			'@2022, Created by ME, no rights reserved!')
+		)
 
+	@qtc.pyqtSlot()
 	def open_new_file(self):
 		self.file_path, filter_type = qtw.QFileDialog.getOpenFileName(self, "Open new file","", "All files (*)")
 		if self.file_path:
@@ -111,14 +121,27 @@ class MainWindow(qtw.QMainWindow):
 				self.setWindowTitle(self.file_path)
 				self.textedit.setText(file_contents)
 
+	@qtc.pyqtSlot(bool)
 	def search_and_replace(self):
 		print('search_and_replace')
+		search_text = self.search_text_input.text()
+		replace_text = self.replace_text_input.text()
+
+		text_to_search =  self.textedit.toPlainText()
+
+		regex = re.compile(fr'{search_text}')
+		replaced_text = regex.sub(replace_text,text_to_search)
+		self.textedit.setPlainText(replaced_text)
 
 	def set_style(self):
-		with open("./main.css") as f:
-			mainStyle = f.read()
-
-		self.setStyleSheet(mainStyle)
+		main_style = """
+			QTextEdit{
+				border:5px solid #F00;
+				background: #FFF;
+				color: #F00;
+			}
+		"""
+		self.setStyleSheet(main_style)
 
 
 if __name__ == '__main__':
