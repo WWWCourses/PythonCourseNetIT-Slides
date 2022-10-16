@@ -77,9 +77,9 @@
 		<dl class="fa">
 			<dt>Qt has QMainWindow and its related classes for main window management.</dt>
 			<dt>QMainWindow has its own layout to which you can add QToolBars, QDockWidgets, a QMenuBar, and a QStatusBar. </dt>
-			<dt>The Main Window of an application is created as instance of <a href="https://doc.qt.io/qt-5/qmainwindow.html">QMainWindow Class</a></dt>
+			<dt>The Main Window of an application is created as instance of <a href="https://doc.qt.io/qt-6/qmainwindow.html">QMainWindow Class</a></dt>
 			<dt>Main windows have either a single (SDI) or multiple (MDI) Document Interface.</dt>
-			<dd>You can create MDI applications by using a <a href="https://doc.qt.io/qt-5/qmdiarea.html">QMdiArea</a> as the central widget.</dd>
+			<dd>You can create MDI applications by using a <a href="https://doc.qt.io/qt-6/qmdiarea.html">QMdiArea</a> as the central widget.</dd>
 		</dl><br>
 		<a href="./images/mainwindowlayout.png"><img src="./images/mainwindowlayout.png" alt="./images/mainwindowlayout.png" style="height: 70vh;"></a>
 	</section>
@@ -97,7 +97,7 @@
 	<section><h3>MenuBar</h3>
 		<dl class="fa">
 			<dt>A menu bar consists of a list of pull-down menu items</dt>
-			<dt>QMainWindow provides an empty QMenuBar object by default.</dt>
+			<dt>QMainWindow provides an empty <a href="https://doc-snapshots.qt.io/qt6-dev/qmenubar.html">QMenuBar</a> object by default.</dt>
 			<dt>To get access to this menu bar, you need to call .menuBar() on your QMainWindow object.</dt>
 			<dt>You add menu items with addMenu()</dt>
 		</dl>
@@ -122,28 +122,37 @@
 	</section>
 	<section><h3>ToolBar</h3>
 		<dl class="fa">
-			<dt>The QToolBar class provides a movable panel that contains a set of controls.</dt>
+			<dt>The <a href="https://doc.qt.io/qt-6/qtoolbar.html">QToolBar</a> class provides a movable panel that contains a set of controls.</dt>
 			<dt>You add toolbars to a MainWindow with addToolBar()</dt>
 			<dt>To add some toolbar buttons you can use PyQt actions, which are instances of QAction (discussed later)</dt>
 		</dl>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
 			toolbar = self.addToolBar('File')
 
 			toolbar.setMovable(False)
 			toolbar.setFloatable(False)
+
+			# for Qt6:
 			toolbar.setAllowedAreas(
-				qtc.Qt.TopToolBarArea |
-				qtc.Qt.BottomToolBarArea
+				qtc.Qt.ToolBarArea.TopToolBarArea |
+				qtc.Qt.ToolBarArea.BottomToolBarArea
 			)
+
+			# for Qt5:
+			# toolbar.setAllowedAreas(
+			#	qtc.Qt.TopToolBarArea |
+			#	qtc.Qt.BottomToolBarArea
+			# )
 		</code></pre>
+
 	</section>
 	<section><h3>Menu Items and ToolBar Actions</h3>
 		<dl class="fa">
 			<dt>In applications many common commands can be invoked via menus, toolbar buttons, and keyboard shortcuts</dt>
 			<dt> Since the user expects each command to be performed in the same way, regardless of the user interface used, it is useful to represent each command as an action.</dt>
 			<dt class="note">Actions can be added to menus and toolbars, and will automatically keep them in sync</dt>
-			<dt>Actions can be created as independent objects, but they may also be created during the construction of menus</dt>
-			<dt>A QAction may contain an icon, menu text, a shortcut, status text, "What's This?" text, and a toolti</dt>
+			<dt>Actions can be created as independent <a href="https://doc.qt.io/qt-6/qaction.html">QAction</a> objects, but they may also be created during the construction of menus, as shown bellow.</dt>
+			<dt>A QAction may contain an icon, menu text, a shortcut, status text, "What's This?" text, and a tooltip.</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
 			# add actions
@@ -157,7 +166,7 @@
 			undo_action = edit_menu.addAction('Undo', self.textedit.undo)
 
 			# create a QAction manually
-			redo_action = qtw.QAction('Redo', self)
+			redo_action = qtg.QAction('Redo', self)
 			redo_action.triggered.connect(self.textedit.redo)
 
 			# Actions, which opens custom dialog
@@ -170,58 +179,73 @@
 	<section><h3>Custom ToolBar Actions</h3>
 		<dl class="fa">
 			<dt>We can create a custom QAction, as well</dt>
+			<dt>And we can use a <a href="https://doc.qt.io/qt-6/qstyle.html#StandardPixmap-enum">standard pixmap</a> for icon</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
-			help_action = qtw.QAction(
-				self.style().standardIcon(qtw.QStyle.SP_DialogHelpButton),
+			self.help_action = qtg.QAction(
+				self.style().standardIcon(qtw.QStyle.StandardPixmap.SP_DialogHelpButton),
 				'Help',
-				self,  # important to pass the parent!
-				# add signal
-				triggered=lambda: self.StatusBar().showMessage(
-					'Sorry, no help yet!'
-				)
+				self  # important to pass the parent!
 			)
+
+			# add signal
+			self.help_action.triggered.connect(lambda : qtw.QMessageBox.information(self,'Not Implemented','Sorry, no help yet!'))
+
 			toolbar.addAction(help_action)
 		</code></pre>
 	</section>
 	<section><h3>Dock Widgets</h3>
 		<dl class="fa">
-			<dt>A dock widget is a window that can be docked into the main window</dt>
+			<dt>A <a href="https://doc-snapshots.qt.io/qt6-dev/qdockwidget.html">QDockWidget</a> is a window that can be docked into the main window</dt>
 			<dt>You add dock widgets to a main window with addDockWidget()</dt>
+			<dt>A QDockWidget consists of a title bar and the content area. The title bar displays the dock widgets window title, a float button and a close button (depending on the DockWidget state)</dt>
 			<dt>There are four dock widget areas as given by the Qt::DockWidgetArea enum: left, right, top, and bottom</dt>
 		</dl>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height: 52vh;">
 			dock = qtw.QDockWidget("Replace")
 			self.addDockWidget(qtc.Qt.LeftDockWidgetArea, dock)
 
 			# set dock widget to move and float (but not closeable)
 			dock.setFeatures(
-				qtw.QDockWidget.DockWidgetMovable |
-				qtw.QDockWidget.DockWidgetFloatable
+				# for pyqt6
+				qtw.QDockWidget.DockWidgetFeature.DockWidgetMovable |
+				qtw.QDockWidget.DockWidgetFeature.DockWidgetFloatable
+
+				# for pyqt5
+				# qtw.QDockWidget.DockWidgetMovable |
+				# qtw.QDockWidget.DockWidgetFloatable
 			)
 		</code></pre>
 	</section>
 	<section><h3>Add widgets to Dock Widget</h3>
-		<pre><code rel="Python" class="python">
+		<dl class="fa">
+			<dt>A QDockWidget acts as a wrapper for its child widget, set with setWidget().</dt>
+		</dl>
+		<pre><code rel="Python" class="python" style="min-height: 75vh;">
 			replace_widget = qtw.QWidget()
 			replace_widget.setLayout(qtw.QVBoxLayout())
-			dock.setWidget(replace_widget)
 
-			self.search_text_input = qtw.QLineEdit(placeholderText='search')
-			self.replace_text_input = qtw.QLineEdit(placeholderText='replace')
+			self.search_text_input = qtw.QLineEdit()
+			self.search_text_input.setPlaceholderText('search')
+			self.replace_text_input = qtw.QLineEdit()
+			self.replace_text_input.setPlaceholderText('replace')
+
 			search_and_replace_btn = qtw.QPushButton(
 				"Search and Replace",
-				clicked=self.search_and_replace
 				)
+			search_and_replace_btn.clicked.connect(self.search_and_replace)
+
 			replace_widget.layout().addWidget(self.search_text_input)
 			replace_widget.layout().addWidget(self.replace_text_input)
 			replace_widget.layout().addWidget(search_and_replace_btn)
 			replace_widget.layout().addStretch()
+
+			dock.setWidget(replace_widget)
 		</code></pre>
 	</section>
 	<section><h3>The Status Bar</h3>
 		<dl class="fa">
-			<dt><code>StatusBar</code> is a widget (displayed as horizontal bar) that is used to display status information.</dt>
+		<dt><a href="https://doc.qt.io/qt-6/qstatusbar.html">QStatusBar</a> is a widget (displayed as horizontal bar) that is used to display status information.</dt>
 			<dt>Each status indicator falls into one of three categories:</dt>
 			<dd><span class="note">Temporary</span> - briefly occupies most of the status bar. Used to explain tool tip texts or menu entries, for example.</dd>
 			<dd><span class="note">Normal</span> - occupies part of the status bar and may be hidden by temporary messages. Used to display the page and line number in a word processor, for example.</dd>
@@ -234,11 +258,11 @@
 		</dl>
 		<pre><code rel="Python" class="python">
 			# create status bar widget and atach it to main window:
-			status_bar = qtw.QStatusBar()
-			self.setStatusBar(status_bar)
+			self.status_bar = qtw.QStatusBar()
+			self.setStatusBar(self.status_bar)
 
-			# show temporary message for 1 second:
-			s.showMessage('Welcome to My Text Editor',1000)
+			# show temporary message for 3 second:
+			self.status_bar.showMessage('Welcome to My Text Editor',3000)
 		</code></pre>
 	</section>
 	<section><h3>Adding Permanent Message to StatusBar</h3>
@@ -250,22 +274,23 @@
 			self.textedit.textChanged.connect(
 				lambda: charcount_label.setText( "chars: " + str(len(self.textedit.toPlainText())) )
 			)
-			self.StatusBar().addPermanentWidget(charcount_label)
+			self.status_bar.addPermanentWidget(charcount_label)
 		</code></pre>
 	</section>
 </section>
 
-<section data-min="10" class="main-sesction-title"><h1>Add image</h1></section>
-<section class="sub-sections"><h2>Add image</h2>
+<section data-min="10" class="main-sesction-title"><h1>Adding images</h1></section>
+<section class="sub-sections"><h2>Adding images</h2>
 	<section><h3>Overview</h3>
 		<dl class="fa">
-			<dt>To add an image, first we must load the image using <a href="https://doc.qt.io/qt-5/qpixmap.html">QPixmap</a></dt>
+			<dt>Qt provides four classes for handling image data: QImage, QPixmap, QBitmap and QPicture, where <span class="note">QPixmap is designed and optimized for showing images on screen</span></dt>
+			<dt>To add an image, first we must load the image using <a href="https://doc.qt.io/qt-6/qpixmap.html">QPixmap</a></dt>
 			<dt>A QPixmap can easily be displayed on the screen using QLabel or one of QAbstractButton's subclasses (such as QPushButton and QToolButton). QLabel has a pixmap property, whereas QAbstractButton has an icon property.</dt>
 			<dt>Optionally, we may want to resize the label according to the image dimensions.</dt>
 		</dl>
 	</section>
 	<section><h3>Example</h3>
-		<script src="https://gist.github.com/WWWCourses/60d192b3f26b2f85696a02b20497190e.js"></script>
+		<script src="https://gist.github.com/WWWCourses/b6f5c4f8992cc34ab3bb8f799ef38f9d.js"></script>
 	</section>
 </section>
 
@@ -274,7 +299,7 @@
 	<section>
 		<dl class="fa">
 			<dt>Qt Style Sheets support various properties, pseudo-states, and subcontrols that make it possible to customize the look of widgets.</dt>
-			<dt>Reference: <a href="https://doc.qt.io/qt-5/stylesheet-reference.html#list-of-property-types">Qt Style Sheets</a></dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-6/stylesheet-reference.html#list-of-property-types">Qt Style Sheets</a></dt>
 			<dt>StyleSheets can be written in separate <code>css</code> file and used as needed</dt>
 		</dl>
 		<pre><code rel="qWidget.css" class="css">
@@ -296,7 +321,7 @@
 		<br>
 		<dl class="fa">
 			<dt>Reference: </dt>
-			<dd><a href="https://doc.qt.io/qt-5/stylesheet-syntax.html">The Style Sheet Syntax @qt.io</a></dd>
+			<dd><a href="https://doc.qt.io/qt-6/stylesheet-syntax.html">The Style Sheet Syntax @qt.io</a></dd>
 			<dd><a href="https://www.w3schools.com/css/">CSS Tutorial @w3schools</a></dd>
 		</dl>
 	</section>

@@ -1,7 +1,7 @@
 import sys
-from PyQt5 import QtWidgets as qtw
-from PyQt5 import QtCore as qtc
-from PyQt5 import QtGui as qtg
+from PyQt6 import QtWidgets as qtw
+from PyQt6 import QtCore as qtc
+from PyQt6 import QtGui as qtg
 
 
 class MainWindow(qtw.QWidget):
@@ -9,23 +9,26 @@ class MainWindow(qtw.QWidget):
 	def __init__(self , *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
-		self.setWindowTitle('Image test')
+		# create widgets
+		self.main_label = qtw.QLabel('Main Window Components')
+		self.img_label = qtw.QLabel()
 
-		# create label
-		self.label = qtw.QLabel(self)
-
-		# load image
+		# load image from given path
 		pixmap = qtg.QPixmap('../images/MainWindowComponents.png')
 
-		# add image to label
-		self.label.setPixmap(pixmap)
+		# set image to label
+		self.img_label.setPixmap(pixmap)
 
 		# Optional, resize label to image size
-		self.label.resize(pixmap.width(),
+		self.img_label.resize(pixmap.width(),
 						  pixmap.height())
 
+		self.main_layout = qtw.QVBoxLayout(self)
+		self.main_layout.addWidget(self.main_label)
+		self.main_layout.addWidget(self.img_label)
 
-		self.show();
+		self.setWindowTitle('Image test')
+		self.show()
 
 
 
@@ -34,4 +37,4 @@ if __name__ == '__main__':
 
 	window = MainWindow()
 
-	sys.exit(app.exec_())
+	sys.exit(app.exec())
