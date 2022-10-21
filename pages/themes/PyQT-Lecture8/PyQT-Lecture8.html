@@ -362,7 +362,7 @@
 		<pre><code rel="Python" class="python">
 			def createTable(self):
 				q = QSqlQuery()
-				q.exec_(f"""
+				q.exec(f"""
 					CREATE TABLE radiotheaters(
 						id int primary key,
 						title varchar(20),
@@ -389,7 +389,7 @@
 			def insertRow(self, **kwargs):
 				# Creating a query for later execution using .prepare()
 				q = QSqlQuery()
-				q.exec_()
+				q.exec()
 				q.prepare(
 							"""
 							INSERT INTO radiotheaters (
