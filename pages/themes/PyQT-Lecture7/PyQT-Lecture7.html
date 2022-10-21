@@ -294,39 +294,6 @@
 	</section>
 </section>
 
-<section data-min="5" class="main-sesction-title"><h1>Style Widgets with Style Sheets</h1></section>
-<section class="sub-sections"><h2>Style Widgets with Style Sheets</h2>
-	<section>
-		<dl class="fa">
-			<dt>Qt Style Sheets support various properties, pseudo-states, and subcontrols that make it possible to customize the look of widgets.</dt>
-			<dt>Reference: <a href="https://doc.qt.io/qt-6/stylesheet-reference.html#list-of-property-types">Qt Style Sheets</a></dt>
-			<dt>StyleSheets can be written in separate <code>css</code> file and used as needed</dt>
-		</dl>
-		<pre><code rel="qWidget.css" class="css">
-			QWidget {
-				border: 20px solid black;
-				border-radius: 10px;
-				background-color: rgb(255, 255, 255);
-			}
-		</code></pre>
-		<pre><code rel="myGUIapp.py" class="python">
-			with open("qWidget.css", 'r') as fh:
-				sheet = fh.read()
-
-			widgetInstance.setStyleSheet(sheet)
-		</code></pre>
-	</section>
-	<section><h3>Style Sheet Syntax</h3>
-		<a href="./images/CSS_syntax_image.png"><img src="./images/CSS_syntax_image.png" alt="CSS_syntax_image"></a>
-		<br>
-		<dl class="fa">
-			<dt>Reference: </dt>
-			<dd><a href="https://doc.qt.io/qt-6/stylesheet-syntax.html">The Style Sheet Syntax @qt.io</a></dd>
-			<dd><a href="https://www.w3schools.com/css/">CSS Tutorial @w3schools</a></dd>
-		</dl>
-	</section>
-</section>
-
 <section data-min="5" class="main-sesction-title"><h1>Slides Code Example</h1></section>
 <section class="sub-sections"><h2>Slides Code Example</h2>
 	<section>
