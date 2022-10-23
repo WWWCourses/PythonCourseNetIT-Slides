@@ -171,13 +171,13 @@
 			def createTableAction(self):
 				#  create our custom QActions
 				self.add_above_action = qtw.QAction("Add row above", self)
-				self.add_above_action.triggered.connect(lambda: self.insertRow(self.currentRow()
+				self.add_above_action.triggered.connect(lambda: self.insertRow(self.currentRow()))
 
 			def contextMenuEvent(self, event):
 				context_menu = qtw.QMenu(self)
 				context_menu.addAction(self.add_above_action)
 
-				#HW: imlement add row below custom action
+				#HW: implement add row below custom action
 				context_menu.addAction("Add row bellow")
 
 				# By passing the event's position as argument we ensure that the context menu appears at the expected position.
