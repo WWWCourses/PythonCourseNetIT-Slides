@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section class="main-sesction-title"><h1>PyQT - Lecture 9 : Hands On CarParts Project with PyQT and Mysql (Part 2)</h1></section>
+<section class="main-sesction-title"><h1>PyQT - Lecture 9 : QTableWidget</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
 		<div class="note">
@@ -124,6 +124,13 @@
 			</tr>
 		</table>
 	</section>
+	<section><h3>QTableWidgetItem</h3>
+		<dl class="fa">
+			<dt>Table items are used to hold pieces of information for table widgets.</dt>
+			<dt>Items usually contain text, icons, or checkboxes</dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-6/qtablewidgetitem.html#details">QTableWidgetItem</a></dt>
+		</dl>
+	</section>
 	<section><h3>Create Simple Table - Example</h3>
 		<dl class="fa">
 			<dt>Create a file with the PyQt App template, and in constructor call the <code>uiCreateTable</code> method. The code is given bellow:</dt>
@@ -174,7 +181,7 @@
 				context_menu.addAction("Add row bellow")
 
 				# By passing the event's position as argument we ensure that the context menu appears at the expected position.
-				context_menu.exec_(event.globalPos())
+				context_menu.exec(event.globalPos())
 			</code></pre>
 	</section>
 	<section id="Task_StyledTableWithCustomActions"><h3>Task: </h3>
@@ -197,8 +204,8 @@
 
 <section data-min="50" class="main-sesction-title"><h1>Displaying SQL Data With PyQt</h1></section>
 <section class="sub-sections"><h2>Displaying SQL Data With PyQt</h2>
-	<section><h3>Exmaple</h3>
-		<pre><code rel="Python" class="python">
+	<section><h3>Example</h3>
+		<pre><code rel="Python" class="python" style="min-height: 90vh;">
 			import sys
 
 			from PyQt5.QtSql import QSqlDatabase, QSqlQuery
@@ -242,7 +249,7 @@
 
 				win = Radiotheaters()
 				win.show()
-				sys.exit(app.exec_())
+				sys.exit(app.exec())
 		</code></pre>
 	</section>
 </section>
