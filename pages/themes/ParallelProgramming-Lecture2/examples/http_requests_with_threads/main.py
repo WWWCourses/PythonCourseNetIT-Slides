@@ -8,7 +8,7 @@ import threading
 
 def get_links(base_url):
 	html = get_page_content(base_url)
-	soup = BeautifulSoup(html, 'html.parser')
+	soup = BeautifulSoup(html, 'html.parser')  # type: ignore
 
 	pubs_divs = soup.select('#module_1_1 .row-fluid > .span8')
 	pubs_urls = []
