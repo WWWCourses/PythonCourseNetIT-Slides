@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>PythonBasics_StringMethods</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_StringMethods" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section class="main-sesction-title"><h1>String Methods and Formatting</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+
+<section data-min="5" id="Variables" class="main-sesction-title"><h1>String Methods</h1></section>
+<section class="sub-sections"><h2>String Methods</h2>
+	<section>
+		<dl class="fa">
+			<dt>Python has a set of built-in methods that you can use on strings.</dt>
+			<dt><span class="note">All string methods returns new values. They do not change the original string.</span></dt>
+			<pre><code rel="Python" class="python">
+				user_name_input = 'ada'
+				user_name = user_name_input.capitalize()
+
+				print(user_name_input)		# 'ada'
+				print(user_name)		# 'Ada'
+			</code></pre>
+			<dt>Reference: <a href="https://www.w3schools.com/python/python_ref_string.asp">Python String Methods @w3schools</a></dt>
+		</dl>
+
+	</section>
+</section>
+
+
+<section data-min="50" class="main-sesction-title"><h1>Formatting strings</h1></section>
+<section class="sub-sections"><h2>Formatting strings</h2>
+	<section><h3>Why?</h3>
+		<dl class="fa">
+			<dt>It is not convenient to use the concatenation operator when we want to display some message and some variables interpolated into it.</dt>
+			<pre><code rel="Python" class="Python">
+				name = 'Iva'
+				print('Hello ' + name + ', nice to see you!')
+
+				# Output
+				# Hello Iva, nice to see you!
+			</code></pre>
+			<dt>Python <span class="note">do not support variables interpolation in double quoted strings</span> like in bash/Perl/PHP/...</dt>
+			<pre><code rel="Perl" class="perl">
+				# not possible in Python!!!
+				my $name = "Iva";
+				print("Hello $name, nice to see you!")
+
+				# Output
+				# Hello Iva, nice to see you!
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Literal String Interpolation (f-strings)</h3>
+		<dl class="fa">
+		<dt>F-strings provide a way to embed expressions inside string literals, using a minimal syntax</dt>
+		<pre><code rel="Python" class="python">
+			name = 'Iva'
+			print(f'Hello {name}, nice to see you!')
+
+			# Output
+			# Hello Iva, nice to see you!
+		</code></pre>
+		<pre><code rel="Python" class="python">
+			x = 2
+			y = 4
+			print(f'x+y={x+y}')
+
+			# Output
+			# x+y=6
+		</code></pre>
+		<dt>More on f-strings: <a href="https://cito.github.io/blog/f-strings/">The new f-strings in Python 3.6</a></dt>
+		</dl>
+  	</section>
+</section>
+
+
+<section><h2>"old-style" String Formatting in Python</h3>
+	<section><h3>syntax</h3>
+		<pre><code rel="Syntax" class="shell">
+			"format_string" % (values_tuple)
+		</code></pre>
+		<pre><code rel="Python" class="python">
+			>>> "%s died in %d year" % ("Ada Byron", 1852)
+			'Ada Byron died in 1852 year'
+		</code></pre>
+		<dl class="fa">
+			<dt><span class="note">format_string</span> -  a string with formatting placeholders in  it</dt>
+			<dt><span class="note">values_tuple</span> - the values which will be interpolated into the respective formatting placeholders.</dt>
+			<dt>Reference: <a href="https://docs.python.org/3/library/stdtypes.html#printf-style-string-formatting">printf-style String Formatting</a> @python docs</dt>
+		</dl>
+
+	</section>
+	<section><h3>how it works?</h3>
+		<a href="images/Python_formting_string.png"><img style="height: 40vh" src="images/Python_formting_string.png"></a>
+	</section>
+	<section><h3>Example - format data as table</h3>
+		<pre><code rel="Python" class="python">
+			print("| %10s | %10s |" % ("=" * 10, "=" * 10))
+			print("| %10d | %10d |" % (1,2) )
+			print("| %10d | %10d |" % (34,12) )
+			print("| %10d | %10d |" % (243,126) )
+			print("| %10s | %10s |" % ("=" * 10, "=" * 10))
+		</code></pre>
+		<pre><code rel="Output" class="shell">
+			| ========== | ========== |
+			|          1 |          2 |
+			|         34 |         12 |
+			|        243 |        126 |
+			| ========== | ========== |
+		</code></pre>
+	</section>
+	<section><h3>Examples - more</h3>
+		<pre><code rel="Python" class="python">
+			x = 1.2345678
+			y = 123
+			print("x = %d, y = %d" % (x,y))
+			print("x = %02d, y = %02d" % (x,y))
+			print("x = %f, y = %f" % (x, y))
+			print("x = %.2f, y = %.2f" % (x, y))
+		</code></pre>
+	</section>
+	<section><h3>it's the "old style of formatting" - should we use it?</h3>
+		<dl class="fa">
+			<dt>Though considered "the old way" it's still widely used and is not (still) deprecated in new Python3 versions</dt>
+			<dt>But the preferred way of formatting strings in Python is <span class="note">str.format() method</span></dt>
+			<dt>Knowing how this string formatting works, will help you to grasp the "new style", discussed in next slides.</dt>
+		</dl>
+	</section>
+	<section><h3>resources</h3>
+		<dl class="fa">
+			<dt><a href="https://www.python-course.eu/python3_formatted_output.php">Formatted Output @python-course.eu </a></dt>
+			<dt><a href="https://docs.python.org/3/library/stdtypes.html#old-string-formatting">printf-style String Formatting</a> @python docs</dt>
+		</dl>
+	</section>
+</section>
+
+<section><h2>format string syntax: <code>str.format()</code> method</h2>
+	<section><h3>Syntax</h3>
+		<pre><code rel="Syntax" class="shell">
+			"string_with_placeholders".format(values_to_be_substituted)
+		</code></pre>
+		<pre><code rel="Python" class="python">
+			>>> "{} died in {} year".format("Ada Byron", 1852)
+			'Ada Byron died in 1852 year'
+		</code></pre>
+		<dl class="fa">
+			<dt><span class="note">string_with_placeholders</span> is a string containing placeholders of the form <code>{}</code></dt>
+			<dt><span class="note">values_to_be_substituted</span> - a comma separated list of values, which will be replaced in the respective placeholders</dt>
+			<dt>Reference: <a href="https://docs.python.org/3/library/string.html#format-string-syntax">Format String Syntax</a> @python docs</dt>
+		</dl>
+	</section>
+	<section><h3>placeholders</h3>
+		<dl class="fa">
+			<dt>You can give in placeholders an explicit positional index (<span class="note">counting starts from 0</span>), which allows values to be printed in desired order</dt>
+		</dl><br>
+		<pre><code rel="Python" class="python">
+				>>> "{1} died in {0} year".format("Ada Byron", 1852)
+				'1852 died in Ada Byron year'
+			</code></pre>
+	</section>
+	<section><h3>new style vs old style?</h3>
+		<dl class="fa">
+			<dt>The format specifier syntax is similar to the old %-formatting, with the addition of the <code>{}</code> and with <code>:</code> used instead of <code>%</code>. For example, '<code>%10d</code>' can be translated to '<code>{:10d}</code>' and so on.</dt>
+		</dl><br><br>
+		<pre><code rel="Python" class="python">
+			print("| {:10s} | {:10s} |".format("=" * 10, "=" * 10))
+			print("| {:10d} | {:10d} |".format(1, 2))
+			print("| {:10d} | {:10d} |".format(34, 12))
+			print("| {:10d} | {:10d} |".format(243, 126))
+			print("| {:10s} | {:10s} |".format("=" * 10, "=" * 10))
+		</code></pre>
+	</section>
+	<section><h3>resources</h3>
+		<dl class="fa">
+			<dt><a href="https://docs.python.org/3/tutorial/inputoutput.html#tut-f-strings">Formatted String Literals</a> @python tutorial</dt>
+			<dt><a href="https://docs.python.org/3/library/string.html#formatstrings">Format String Syntax</a> @python docs</dt>
+		</dl>
+	</section>
+</section>
+
+
+<section id="HW" class="main-sesction-title">
+	<h1>Exercises</h1>
+</section>
+<section class="sub-sections"><h2><b>Task 1</b></h2>
+	<section>
+		<dl class="fa">
+			<dt><b>Задача 1</b>. Попълнете празните полета, като използвате форматиращият метод format. Празните места запълнете с вашето име и любими активности.
+
+			<pre><code rel="Python" class="python">
+				"{ }'s favorite sports is { }.".format()
+				"{ } is working on { } programming!".format()
+			</code></pre>
+			</dt>
+			<dt><b>Задача 3</b>. Създайте променлива, paragraph, която да съдържа следното съдържание: <br>
+			"Python is a great language!", said Fred. "I don't ever remember having this much fun before. "</dt>
+		</dl>
+	</section>
+</section>
+
+
+<section class="disclaimer end-slide"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
