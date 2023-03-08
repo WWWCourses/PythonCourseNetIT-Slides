@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>PythonBasics_logicalExpressionsAndConditionalStatements</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_logicalExpressionsAndConditionalStatements" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section class="main-sesction-title"><h1>Logical expressions and conditional statements</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+<section data-min="50" class="main-sesction-title"><h1>___MainSectionTitle___</h1></section>
+<section class="sub-sections"><h2>___MainSectionTitle___</h2>
+	<section><h3>___SubSectionTitle___</h3>
+	</section>
+</section>
+
+<section class="main-sesction-title"><h1>Boolean type</h1></section>
+<section class="sub-sections"><h2>Boolean type</h2>
+	<section><h3>What?</h3>
+		<dl class="fa">
+			<dt>Most programming languages define a Boolean type, which represents the truth values of logic and Boolean algebra (named after <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>).</dt>
+			<dt>Boolean values in Python are used mainly in the Conditional Statements and Logical Operations.</dt>
+		</dl>
+	</section>
+	<section><h3>The Boolean type</h3>
+		<dl class="fa">
+			<dt>The Boolean data type consists of only 2 values:</dt>
+			<dd><span class="note">True</span></dd>
+			<dd><span class="note">False</span></dd>
+			<dt>Note, that these are not variables names, but values like 0 and 1!</dt>
+		</dl><br><br>
+		<pre><code rel="Python" class="bash">
+			&gt;&gt;&gt; print( type(True) )
+			&lt;class 'bool'&gt;
+			&gt;&gt;&gt; print( type(False) )
+			&lt;class 'bool'&gt;
+		</code></pre>
+	</section>
+	<section><h3>What is True/False in Python?</h3>
+		<p>True/False values for most of the build-in objects:</p>
+		<table>
+			<tr>
+				<th>Type:</th>
+				<th>=False</th>
+				<th>=True</th>
+			</tr>
+			<tr>
+				<td>any numeric type</td>
+				<td>0 (zero)</td>
+				<td>everything else</td>
+			</tr>
+			<tr>
+				<td>string</td>
+				<td>""</td>
+				<td>any non-empty string</td>
+			</tr>
+			<tr>
+				<td>sequences and collections</td>
+				<td>empty</td>
+				<td>any non empty</td>
+			</tr>
+		</table>
+	</section>
+	<section><h3>What is True/False in Python - the bool() check</h3>
+		<p>Using the built-in function <code><a href="https://docs.python.org/3/library/functions.html#bool">bool()</a></code>, we can convert any Python value to True or False</p>
+		<pre><code rel="Python" class="python">
+			>>> bool(-42)
+			True
+			>>> bool(0)
+			False
+			>>> bool(0.00001)
+			True
+			>>> bool("ada")
+			True
+			>>> bool("")
+			False
+
+		</code></pre>
+	</section>
+</section>
+
+<section class="main-sesction-title"><h1>Logical (Boolean) operators</h1></section>
+<section class="sub-sections"><h2>Logical (Boolean) operators</h2>
+	<section><h3></h3>
+		<table>
+			<tr>
+				<th>Operation</th><th>Result</th>
+			</tr>
+			<tr>
+				<td>x <span class="note">or</span> y</td>
+				<td>if x is false, then y, else x</td>
+			</tr>
+			<tr>
+				<td>x <span class="note">and</span> y</td>
+				<td>if x is false, then x, else y</td>
+			</tr>
+			<tr>
+				<td><span class="note">not</span> x</td>
+				<td>if x is false, then True, else False</td>
+			</tr>
+		</table>
+		<br>
+		<dl class="fa">
+			<dt><span class="note">and</span> and <span class="note">or</span> returns one of their operands. I.e. not necessary boolean type.</dt>
+			<dt><span class="note">not</span> always returns boolean value</dt>
+		</dl>
+	</section>
+	<section><h3>Examples</h3>
+		<pre><code rel="Python" class="python">
+			>>> True and False
+			False
+			>>> 0 and 1
+			0
+			>>> 0 or 1
+			1
+			>>> 1 or 0
+			1
+			>>> not 1
+			False
+			>>> not 0
+			True
+
+		</code></pre>
+	</section>
+</section>
+
+<section class="main-sesction-title"><h1>Comparison operators</h1></section>
+<section class="sub-sections"><h2>Comparison operators</h2>
+	<section><h3>intro</h3>
+		<dl class="fa">
+			<dt>With Comparison Operations we can check if 2 or more values are equal or if a value is less than other, and so on.</dt>
+			<dt>The result of a Comparison Operation is True/False</dt>
+			<dt class="note">Comparing objects of different types, except different numeric, will raise a TypeError in Python3! (Can not compare "apples" with "oranges")</dt>
+		</dl><br><br>
+		<pre><code rel="Python" class="python">
+			>>> 2 < 1
+			False
+			>>> 2 < "1"
+			...
+			TypeError: '<' not supported between instances of 'int' and 'str
+		</code></pre>
+	</section>
+	<section><h3>the operators</h3>
+		<table border="1">
+			<colgroup>
+			<col width="32%">
+			<col width="68%">
+			</colgroup>
+			<thead valign="bottom">
+			<tr><th>Operation</th>
+			<th>Meaning</th>
+			</tr>
+			</thead>
+			<tbody valign="top">
+			<tr><td><code><span>&lt;</span></code></td>
+			<td>strictly less than</td>
+			</tr>
+			<tr><td><code><span>&lt;=</span></code></td>
+			<td>less than or equal</td>
+			</tr>
+			<tr><td><code><span>&gt;</span></code></td>
+			<td>strictly greater than</td>
+			</tr>
+			<tr><td><code><span>&gt;=</span></code></td>
+			<td>greater than or equal</td>
+			</tr>
+			<tr><td><code><span>==</span></code></td>
+			<td>equal</td>
+			</tr>
+			<tr><td><code><span>!=</span></code></td>
+			<td>not equal</td>
+			</tr>
+			<tr style="opacity: 0.7"><td><code><span>is</span></code></td>
+			<td>object identity*</td>
+			</tr>
+			<tr style="opacity: 0.7"><td><code><span>is</span> <span>not</span></code></td>
+			<td>negated object identity*</td>
+			</tr>
+			</tbody>
+		</table>
+		<p class="note">Objects identity will be discussed in the OOP part of the course.</p>
+	</section>
+	<section><h3>examples</h3>
+		<pre><code rel="Python" class="python">
+			>>> i = 5
+			>>> i < 5
+			False
+			>>> i <= 5
+			True
+			>>> 9 < 1000
+			True
+			>>> "9" < "1000"
+			False
+		</code></pre>
+		<p class="note">Note, the last example: <code>"9" < "1000"</code>, the result is False, because strings are compared lexicographically.</p>
+	</section>
+	<section><h3>lexicographical comparison</h3>
+			<dl class="fa">
+				<dt>Symbols are compared by their position (codepoint) according to the character code table used.</dt>
+				<dt>First the first two items are compared, and if they differ this determines the outcome of the comparison.If they are equal, the next two items are compared, and so on, until either sequence is exhausted.</dt>
+			</dl>
+	</section>
+	<section><h3>So, why  "9" < "1000" returns False?</h3>
+			<p>If we use the <a href="https://ascii.cl/">ASCII Codes Table</a>, we see that the ASCII code point for "9" is 57, and for "1" - 49.</p>
+			<p>So, Python compares <code>57 < 49</code> and as the result is False it returns False for the whole expression</p>
+			<p class="advanced">You can get the Unicode code point for a one-character string using the built-in <code><a href="https://docs.python.org/3/library/functions.html?highlight=ord#ord">ord()</a></code> function</p>
+	</section>
+	<section><h3>Comparison operator Chaining</h3>
+		<dl class="fa">
+			<dt>Comparison operators in Python can be chained, instead of combining them with logical 'and'</dt>
+		</dl>
+		<pre><code rel="Python" class="python3">
+			x = 5
+
+			# equivalent of: 0&lt;x and x&lt;10:
+			print(0&lt;x&lt;10)
+		</code></pre>
+	</section>
+</section>
+
+<section class="main-sesction-title"><h1>Control Flow (Conditional) Statements</h1></section>
+<section class="sub-sections"><h2>Control Flow (Conditional) Statements</h2>
+	<section><h3>What?</h3>
+		<dl class="fa">
+			<dt>The Control Flow statements allows our program to react in one way, if some <span class="note">condition</span> is True, or in another way, if it's False.</dt>
+		</dl>
+	</section>
+	<section><h3>Normal Control Flow</h3>
+		<p>Statements are executed one after another, as written in code.</p>
+		<a href="images/NormalControlFlow.png"><img src="images/NormalControlFlow.png"></a>
+	</section>
+</section>
+<section class="sub-sections"><h2><code class="note">if</code> statement</h2>
+	<section><h3>Syntax</h3>
+		<pre><code rel="Syntax" class="shell">
+			if condition :
+				block 1
+		</code></pre>
+		<a href="images/ifFlow.png"><img src="images/ifFlow.png"></a>
+		<dl class="fa">
+			<dt><span class="note">Condition</span> can be any expression, which could be evaluated to <span class="note">True/False</span></dt>
+			<dt>In Python, to encompass the statements which forms a block, you do not need to put any braces, but each statement have to be indented with the same amount of spaces!</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			x = 42
+			if ( x % 2 == 0):
+			    print("{} is an even number!".format(x))
+		</code></pre>
+
+	</section>
+	<section><h3>example - align matters</h3>
+		<pre><code rel="Python" class="python">
+			if False :
+				print("Statement1")
+			  print("Statement2")
+			print("Statement3")
+		</code></pre>
+		<dl class="fa">
+			<dt>Statement1 and Statement2 forms a block, which will be executed, <span class="note">only if the condition is true</span>. This is not the case in example above, that's why only Statement3 will be executed.</dt>
+		</dl>
+	</section>
+</section>
+<section class="sub-sections"><h2><code class="note">if - else</code> statement</h2>
+	<section><h3>Syntax</h3>
+		<pre><code rel="Syntax" class="shell">
+			if condition :
+				block 1
+			else :
+				block 2
+		</code></pre>
+		<p>Note, that only block1 or block2 will be executed, but never - both</p>
+		<a href="images/if-elseFlow.png"><img src="images/if-elseFlow.png"></a>
+	</section>
+
+	<section><h3>example - even/odd number</h3>
+		<pre><code rel="Python" class="python">
+			x = 41
+			if (x % 2 == 0):
+				print("{} is an EVEN number!".format(x))
+			else:
+			  print("{} is an ODD number!".format(x))
+		</code></pre>
+		<pre><code rel="Output" class="shell">
+			41 is an ODD number!
+		</code></pre>
+	</section>
+	<section><h3>example - hello in BG</h3>
+		<pre><code rel="Python" class="python">
+			user_lang = "bg"
+			if user_lang == "bg":
+			    print("Здравейте")
+			else:
+			    print("Hello")
+			print("-" * 20)
+		</code></pre>
+		<pre><code rel="Output" class="shell">
+			Здравейте
+			--------------------
+		</code></pre>
+	</section>
+</section>
+<section class="sub-sections"><h2><code class="note">if - elif - else</code> statement</h2>
+	<section><h3>Syntax</h3>
+		<pre><code rel="Syntax" class="shell">
+			if c1 :
+				block 1
+			elif c2:
+				block 2
+			else:
+				block 3
+		</code></pre>
+		<a href="images/if-elif-elseFlow.png"><img src="images/if-elif-elseFlow.png"></a>
+		<p>We can have more than one elif statement</span>, as shown in next examples!</p>
+	</section>
+	<section><h3>example - multinational hello</h3>
+		<pre><code rel="Python" class="python">
+			user_lang = "it"
+			if user_lang == "bg":
+			    print("Здравейте")
+			elif user_lang == "it":
+			    print("Ciao")
+			elif user_lang == "en":
+			    print("Hello")
+			else:
+			    print("I do not speak your language!")
+			print("-" * 20)
+		</code></pre>
+	</section>
+</section>
+
+
+<section class="main-sesction-title"><h1>Exercises</h1></section>
+<section id="hw">
+	<section><h3>Task1: odd_or_even.py</h3>
+		<dl class="fa">
+			<dt>Write a program, which will print out for any integer number if it is odd or even.</dt>
+		</dl>
+	</section>
+	<section><h3>Task2: BMI_by_categories.py</h3>
+		<dl class="fa">
+			<dt>Refine the BMI program form the previous lab</dt>
+			<dt>Now, the output of your program should be the BMI category, corresponding to the BMI index</dt>
+		</dl>
+		<table>
+			<tr><th>BMI</th><th>Category</th></tr>
+			<tr><td>&lt;= 18.5</td><td>Underweight</td></tr>
+			<tr><td>18.5–24.9</td><td>Normal</td></tr>
+			<tr><td>25–29.9</td><td>Overweight</td></tr>
+			<tr><td>&gt;= 30</td><td>Obesity</td></tr>
+		</table>
+	</section>
+
+	<!-- <section id="hw_guess_the_number" style="font-size: 0.8em"><h3>Task3: guess_the_number.py</h3>
+		<dl class="fa">
+			<dt>Write a simple Python program, implementing the "Guess the number" game, following the rules:</dt>
+			<dd>The program will "think" of a number using the <code>random module</code>, as shown in code shown in next slide.</dd>
+			<dt>You have to implement now only the first user move:</dt>
+			<dd>Prompt the user for his/her guess</dd>
+			<dd>If the user guess is equal to the machine number => print out a congratulation message!</dd>
+			<dd>If the user guess is less than the machine number => print out "your guess is less than my number. Try again!"</dd>
+			<dd>If the user guess is greater than the machine number => print out "your guess is greater than my number. Try again!"</dd>
+		</dl>
+	</section>
+	<section style="font-size: 1.2em"><h3>How to generate "machine_number"</h3>
+		<pre><code rel="Python" class="python">
+			from random import randint
+			machine_number = randint(1,10)
+
+			print("machine_number={}".format(machine_number))
+
+			### your code goes bellow:
+
+		</code></pre>
+	</section> -->
+</section>
+
+
+<section class="disclaimer end-slide"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
