@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>PythonBasics_modulesPackagesVirtenvs</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_modulesPackagesVirtenvs" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section class="main-sesction-title"><h1>Modules and Packages. Virtual Environment.</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+
+<section class="main-sesction-title"><h1>Modules in Python</h1></section>
+<section class="sub-sections"><h2>Modules in Python</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>Modules allows to split a long program into several files</dt>
+			<dd>for instance - to put function/class definitions in one or more files, and the main program to be written in a separate file.</dd>
+			<dt>Each module creates its own namespace.</dt>
+			<dt>A module is a Python file containing definitions and statements.</dt>
+			<dd class="note">Module == Python file</dd>
+
+			<pre><code rel="Terminal" class="shell" data-noescape>
+				├── my_app
+				│   ├── app.py           # the main file
+				│   ├── helper_module.py # a module file
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Import module: <code class="note">import <em>X</em></code></h3>
+		<dl class="fa">
+			<dt>To use a module, you have to import it first.</dt>
+			<dt>As a module generates its own namespace, you have to prefix the imported names with the module name:</dt>
+			<pre><code rel="helper_module.py" class="python">
+				def get_user_name():
+					return input('Enter your name:')
+
+				def greet(user_name):
+					print(f'Hello, {user_name}!')
+			</code></pre>
+			<pre><code rel="app.py" class="python">
+				# import the helper_module:
+				import helper_module
+
+				# use helper_module
+				user_name = helper_module.get_user_name()
+				helper_module.greet(user_name)
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Module Execution</h3>
+		<dl class="fa">
+			<dt>A module can contain executable statements as well as function definitions. Usually these statements are intended to initialize the module.</dt>
+			<dt>Statements in a module are executed only the first time the module name is encountered in an import statement.</dt>
+			<dt>But as a module is just a Python file, we can execute it as a standalone program.</dt>
+		</dl>
+	</section>
+	<section><h3>Module alias: <code class="note">import X as Y</code></h3>
+		<dt>You can give modules names a shorter aliases:</dt>
+		<pre><code rel="Python" class="python">
+			import helper_module as hm
+
+			user_name = hm.get_user_name()
+			hm.greet(user_name)
+		</code></pre>
+	</section>
+	<section><h3>Import object from module: <code class="note">from X import Y</code></h3>
+		<dl class="fa">
+			<dt>You can import an object from module, using the <br> <code class="note">from X import Y</code> notation. After that, you can use the name (Y), without having to prefixing it.</dt>
+			<dt>You can import more that one object, if you separate them with comma</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from helper_module import get_user_name, greet
+
+			user_name = get_user_name()
+			greet(user_name)
+		</code></pre>
+	</section>
+	<section><h3>Import object from module: <code class="note">from X import *</code></h3>
+		<dl class="fa">
+			<dt>Imports all objects from a module.</dt>
+			<dt>Not recommended to use it, as a name collision could occurs.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from helper_module import *
+
+			user_name = get_user_name()
+			greet(user_name)
+		</code></pre>
+	</section>
+	<section><h3>Where <code>import</code> looks for a module?</h3>
+		<dl class="fa">
+			<dt>The directory containing the input script</dt>
+			<dt>the directories specified in the <span class="note">PYTHONPATH</span> environment variable</dt>
+			<dt>The installation-dependent default.</dt>
+		</dl>
+	</section>
+
+	<!-- <section><h3>Absolute and Relative Imports</h3>
+		<dl>
+			<dt><a href="https://www.python.org/dev/peps/pep-0328">PEP 328 -- Imports: Multi-Line and Absolute/Relative</a></dt>
+			<dd></dd>
+		</dl>
+	</section> -->
+
+	<section><h3>Python's built-in modules</h3>
+		<dl class="fa">
+			<dt>or why Python is "Batteries Included"</dt>
+			<dt><a href="https://docs.python.org/3/py-modindex.html">Python Module Index</a></dt>
+			<dt>to use a built-in (standard) module, you have to import it!</dt>
+		</dl>
+	</section>
+	<section><h3>Help on Python's built-in modules</h3>
+		<dl class="fa">
+			<dt>Using the <code>help('module_name')</code> function provides useful information about a module.</dt>
+			<dt>If you want to check all built-in modules, just use <code>help("modules")</code></dt>
+			<dt>Most modules have defined the <code>__file__</code> attribute (discussed in next slides), which contain the path where the module is installed</dt>
+			<pre><code rel="Python" class="python">
+				import datetime
+				print( datetime.__file__)
+
+				# /usr/lib/python3.5/datetime.py
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Python's third-party modules</h3>
+		<dl class="fa">
+			<dt>The Python Packaging Index <a href="https://pypi.python.org/pypi">PyPI</a>is a public repository of open source licensed packages made available for use by other Python users.</dt>
+			<dt>We are going to see how to install third-party modules after we get familiar with Python's Virtual Environments</dt>
+			<!-- <dt><a href="https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments">Creating Virtual Environments</a></dt>
+			<dt><a href="https://packaging.python.org/tutorials/managing-dependencies/#managing-dependencies"></a>Managing Application Dependencies</dt> -->
+		</dl>
+	</section>
+</section>
+
+<section class="main-sesction-title"><h1>Import-related module attributes</h1></section>
+<section class="sub-sections"><h2>Import-related module attributes/global variables</h2>
+	<section><h3>The <code>__file__</code> and <code>__name__</code> variables</h3>
+		<dl class="fa">
+			<dt>Within a python file we can use the global <code>__file__</code> and <code>__name__</code> variables.</dt>
+			<dt><code>__file__</code> variable contains the pathname of the file from which the module was loaded</dt>
+			<dt>When a Python module is imported, <code>__name__</code> is set to the module’s name, without the .py extension</dt>
+			<dt>When a Python module is executed as a standalone script, the <code>__name__</code> variable is set to '__main__' value</dt>
+		</dl>
+		<pre><code rel="helper_module.py" class="python">
+			print( "__file__:", __file__)
+			print( "__name__:", __name__)
+		</code></pre>
+		<dt>Executed as a standalone script:</dt>
+		<pre><code rel="Terminal" class="bash">
+			python helper_module.py
+
+			# __file__: /some/path/helper_module.py
+			# __name__: __main__
+		</code></pre>
+		<dt>Executed as a module:</dt>
+		<pre><code rel="app.py" class="python">
+			import helper_module
+
+			# __file__: /some/path/helper_module.py
+			# __name__: helper_module
+		</code></pre>
+	</section>
+	<section><h3><code>__name__</code></h3>
+		<dl class="fa">
+			<dt>When Python interpreter reads a <code>.py</code> file, it executes the code in it!</dt>
+			<dt>If a <code>.py</code> file is executed as a module:</dt>
+			<dd><code>__name__</code> is set to module's own filename</dd>
+			<dt>If a <code>.py</code> file is executed as stand-alone program:</dt>
+			<dd><code>__name__</code> is set to <code>"__main__"</code></dd>
+		</dl>
+	</section>
+	<section><h3><code>__name__ - examples</code></h3>
+		<p>Create in same directory next Python files:</p>
+		<pre><code rel="main.py" class="python">
+			import helper_module
+		</code></pre>
+		<pre><code rel="helper_module.py" class="python">
+			if __name__ == "__main__":
+				print("helper_module is executed as stand-alone py file")
+			else:
+				print("helper_module is imported as module")
+		</code></pre>
+		<dl class="fa">
+			<dt>Run the <code>main.py</code> and look at the output</dt>
+			<dt>Run the <code>helper_module.py</code> and look at the output</dt>
+		</dl>
+	</section>
+	<section><h3><code>__file__</code></h3>
+		<dl class="fa">
+			<dt>Stores the full filename (including path) of the file/module being executed</dt>
+			<dt>Will be same, no matter if the file is executed as a stand-alone or as a module.</dt>
+			<dt>If we need to strip the path, and get just the filename, </dt>
+		</dl>
+	</section>
+	<section><h3><code>__file__ - examples</code></h3>
+		<p>Create in same directory next Python files:</p>
+		<pre><code rel="main.py" class="python">
+			import helper_module
+		</code></pre>
+		<pre><code rel="helper_module.py" class="python">
+			print( "__file__:", __file__)
+		</code></pre>
+		<dl class="fa">
+			<dt>Run the <code>main.py</code> and look at the output</dt>
+			<dt>Run the <code>helper_module.py</code> and look at the output</dt>
+		</dl>
+	</section>
+</section>
+
+<section class="main-sesction-title"><h1>Packages in Python</h1></section>
+<section class="sub-sections"><h2>Packages in Python</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>A Python package is simply a group of Python module(s), usually stored in one directory</dt>
+			<dt>Packages are a way of structuring Python’s module namespace by using “dotted module names”.</dt>
+		</dl>
+	</section>
+	<section><h3>make directory a package: <code class="note">__init__.py</code></h3>
+		<dl class="fa">
+			<dt>You should put an <code class="note">__init__.py</code> file in the directory, which you want it to be treated as package from Python.</dt>
+			<dt><code class="note">__init__.py</code> can be an empty file</dt>
+			<dt>or you can put some initialization code for the package</dt>
+		</dl>
+		<pre><code rel="Terminal" class="shell" data-noescape>
+			$ tree my_app
+			my_app/
+			├── app.py
+			└── packA
+					├── greet.py
+					├── __init__.py
+					└── packB
+							├── get_data.py
+							└── __init__.py
+		</code></pre>
+		<p class="advanced">from python 3.2 __init__.py must be present only in Regular Packages, but can be omitted in Namespace Packages. More info <a href="https://docs.python.org/3/reference/import.html#regular-packages">in docs</a></p>
+	</section>
+	<section><h3>Importing packages</h3>
+		<dl class="fa">
+			<dt>You can import a module from a package using the same mechanism as importing a single module. But do  not forget - a package makes its namespace, so you must use the dot notation.</dt>
+			<dt>If we have next structure:</dt>
+			<pre><code rel="Terminal" class="shell" data-noescape>
+				$ tree my_app
+				my_app/
+				├── app.py
+				└── packA
+						├── greet.py
+						├── __init__.py
+						└── packB
+								├── get_data.py
+								└── __init__.py
+			</code></pre>
+			<dt>We can import <code>get_data</code> module in <code>app</code> with:</dt>
+			<pre><code rel="app.py" class="python">
+				import packA.packB.get_data
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3 class="advanced">pyc files and __pycahce__ folder</h3>
+		<dl class="fa">
+			<dt>Python automatically compiles a script to so called byte code, before running it.</dt>
+			<dt>To speed up loading modules, when a module is imported for the first time, or when the source is more recent than the current compiled file, a <code>.pyc</code> file containing the compiled code will be created.</dt>
+			<dt>When you run the program next time, Python uses this file to skip the compilation step.</dt>
+			<dt>Python caches the compiled version of each module in the automatically created __pycache__ directory under the name module.version.pyc</dt>
+			<dt>If you really need to tell python not to generate the compiled versions, you can set the <a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONDONTWRITEBYTECODE">PYTHONDONTWRITEBYTECODE</a> env. var.</dt>
+		</dl>
+	</section>
+
+	<!-- <section><h3 class="advanced">decompile pyc files</h3>
+		<dl class="fa">
+				<dt><a href="https://github.com/rocky/python-uncompyle6">uncompyle6</a> works for Python 3 and 2.7 (more recent, aiming to unify earlier forks and focusing on automated testing).</dt>
+				<dd>Read more on <a href="https://stackoverflow.com/questions/5287253/is-it-possible-to-decompile-a-compiled-pyc-file-into-a-py-file#">stackoverflow</a></dd>
+		</dl>
+	</section> -->
+	<section><h3>Readings</h3>
+		<dl class="fa">
+			<dt><a href="https://chrisyeh96.github.io/2017/08/08/definitive-guide-python-imports.html">The Definitive Guide to Python import Statements</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section class="main-sesction-title"><h1>Execute python module from command line</h1></section>
+<section class="sub-sections"><h2>Execute python module from command line</h2>
+	<section>
+		<dl class="fa">
+			<dt>We can use <code>python -m <i>module_name</i> from terminal in order to execute a module</code></dt>
+			<pre><code rel="Terminal" class="bash">
+				python -m helper_module
+
+				# note the difference between:
+				python3 helper_module.py
+			</code></pre>
+			<dt>Note that since the argument is a module name, you must not give a file extension (.py).</dt>
+		</dl>
+	</section>
+</section>
+<!-- <section class="main-sesction-title"><h1>List dependencies of a project</h1></section>
+<section class="sub-sections"><h2>List dependencies of a project</h2>
+	<section><h3>pip way - requirements.txt</h3>
+		<dl class="fa">
+			<dt>When you need to move your project and </dt>
+		</dl>
+	</section>
+</section> -->
+
+
+<section class="main-sesction-title"><h1>PIP - the Python Package Manager</h1></section>
+<section class="sub-sections"><h2>PIP - the Python Package Manager</h2>
+	<section><h3></h3>
+		<dl class="fa">
+			<dt>Python has a strong community which releases lot's of modules(packages), which you can use for free and focus on "get job done", instead of reinventing the wheel.</dt>
+			<dt>pip is the tool for installing Python packages from <a href="https://pypi.python.org/pypi">PyPI (Python Package Index)</a></dt>
+			<dt class="note">Note, that if you do not use a Virtual Environment, a package installed by using pip will be installed in your system's python distribution.</dt>
+		</dl>
+	</section>
+	<section style="font-size: 1em"><h3>pip basic commands</h3>
+		<dl class="fa">
+			<dt>get help on pip:</dt>
+			<dd class="code">pip help</dd>
+			<dt>install a package from PyPI:</dt>
+			<dd class="code">pip install package_name</dd>
+			<dt>uninstall a package</dt>
+			<dd class="code">pip uninstall package_name</dd>
+			<dt>list installed packages:</dt>
+			<dd class="code">pip list</dd>
+			<dt>upgrade a package:</dt>
+			<dd class="code">pip install --upgrade SomePackage</dd>
+			<dt>show information about installed packages.:</dt>
+			<dd class="code">pip show package_name</dd>
+			<dt>output installed packages in requirements format</dt>
+			<dd>pip freeze</dd>
+		</dl>
+		<p>Reference: <a href="https://pip.pypa.io/en/stable/cli/">pip commands</a></p>
+	</section>
+	<section><h3>More readings</h3>
+		<dl class="fa">
+			<dt><a href="https://pip.pypa.io/en/stable/">pip - The PyPA recommended tool for installing Python packages.</a></dt>
+			<dt><a href="https://pypi.python.org/pypi">PyPI - the Python Package Index</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section class="main-sesction-title"><h1>Python Virtual Environments</h1></section>
+<section class="sub-sections"><h2>Python Virtual Environments</h2>
+	<section><h3>Virtual environment - Why?</h3>
+		<dl class="fa">
+			<dt>Python apps usually depends on many modules(packages), which depends on other packages, and very often - from a specific version of a package.</dt>
+			<dt>Many system tools also depends on specific versions of installed Python packages.</dt>
+			<dt class="note">You don't want to pollute your system's Python environment or to deal with <a href="https://medium.com/knerd/the-nine-circles-of-python-dependency-hell-481d53e3e025">dependency hell</a>!</dt>
+			<a href="./images/dependancy_hell.jpeg"><img src="./images/dependancy_hell.jpeg" alt="dependancy_hell.jpeg" style="height: 50vh;"></a>
+		</dl>
+	</section>
+	<section><h3>Virtual environment - What?</h3>
+		<dl class="fa">
+			<dt>A virtual environment is an isolated Python environment that allows packages to be installed for use by a particular application, rather than being installed system wide</dt>
+			<dt>A virtual environment is a directory tree which contains Python interpreter, libraries and scripts installed into it,  and other files which indicate that it is a virtual environment.</dt>
+
+			<dt>There are many tools for working with virtual environments in Python (<a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a>, <a href="https://pipenv.pypa.io/en/latest/">pipenv</a>, <a href="https://python-poetry.org/docs/master/managing-environments/">poetry</a>, <a href="https://docs.conda.io/en/latest/">conda</a>, etc.)</dt>
+			<dt>Starting with Python 3.4, <a href="https://docs.python.org/3/library/venv.html#module-venv"><code>venv</code></a> module is the preferred way to create and manage virtual environments.</dt>
+			<dt>venv module is included in the Python standard library and requires no additional installation.</dt>
+		</dl>
+	</section>
+	<section id="createVenv"><h3>Create Virtual Environment</h3>
+		<pre><code rel="Create Virtual Environment - Terminal" class="bash">
+			# make sure you are in project folder, where you want to use virtual environment
+
+			# create virtual environment with name ".venv"
+			python3 -m venv .venv
+
+			# a folder '.venv' is created in the project folder
+		</code></pre>
+		<dl class="fa">
+			<dt><code>.venv</code> is a common name for a virtual environment as it keeps the directory typically hidden in your shell.</dt>
+			<dt>Note, that you need to create a virtiual environment per project only once. But each time you work in your project you must activate it.</dt>
+		</dl>
+	</section>
+	<section id="activateVenv">
+		<dl class="fa" style="font-size:.7em">
+			<dt>In order to install and use python packages in your virtiual env, you <span class="note">must activate it</span>: </dt>
+			<pre><code rel="Activate Virtual Environment - Terminal" class="bash">
+				# On Windows PowerShell run:
+				.venv\Scripts\Activate.ps1
+
+				# On Windows CommandPrompt run:
+				.venv\Scripts\activate.bat
+
+				# On Windows GitBash run:
+				source .venv\Scripts\activate
+
+				# On Linux, MacOS, run:
+				source .venv/bin/activate
+			</code></pre>
+			<dd>If on PowerShell you receive an error <span style="color:darkred">File ... cannot be loaded because running scripts is disabled on this system</span> you must first set the PowerShell execution policies (<a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.2">Set-ExecutionPolicy @microsoft.com</a>):</dd>
+			<pre><code rel="Terminal" class="bash">
+				Set-ExecutionPolicy Unrestricted -Scope Process
+				# now try again to activate:
+				.venv\Scripts\Activate.ps1
+			</code></pre>
+			<dt>You can confirm you’re in the virtual environment by checking the location of your Python interpreter:</dt>
+			<pre><code rel="Terminal" class="bash">
+				# On Windows, run:
+				where python
+
+				# On Unix or MacOS, run:
+				which python
+
+				# It should be in the .venv directory
+			</code></pre>
+			<dt>If you want to switch projects or otherwise leave your virtual environment, simply run</dt>
+			<pre><code rel="Deactivate Virtual Environment - Terminal" class="bash">
+				deactivate
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>References</h3>
+		<dl class="fa">
+			<dt><a href="https://docs.python.org/3/tutorial/venv.html">Virtual Environments and Packages</a> @python3 tutorial</dt>
+		</dl>
+	</section>
+</section>
+
+
+<section class="main-sesction-title"><h1>Installing packages using pip and virtual environments</h1></section>
+<section class="sub-sections"><h2>Installing packages using pip and virtual environments</h2>
+	<section><h3>The steps</h3>
+		<pre><code rel="Terminal" class="bash" style="min-height: 60vh;">
+			# Create virt.env - just once per project
+			python -m venv .venv
+
+			# Activate it - every time you will work on the project:
+			# On Windows CommandPrompt run:
+			.venv\Scripts\activate.bat
+
+			# On Linux, MacOS, run:
+			source .venv/bin/activate
+
+			# Install module
+			pip install module_name
+		</code></pre>
+		<dl class="fa">
+			<dt>Reference:  <a href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">Installing packages using pip and virtual environments</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section id="hw"><h1>Exercises</h1></section>
+<section class="sub-sections"><h2>Task1: BMI_app</h2>
+	<section><h3>The Task</h3>
+		<dl class="fa">
+			<dt>Refactor your BMI program (<a href="https://wwwcourses.github.io/ProgressBG-Python-UniCredit-Slides/pages/themes/functions/functions.html#/hw">Functions HW: BMI</a>), by separating the functions definitions into a module: <code>bmi.py</code>, and your main program logic into <code>main.py</code> file.</dt>
+			<dt>Make sure you have next folder structure:</dt>
+			<pre><code rel="Terminal" class="bash">
+				└── bmi_app
+					├── bmi.py
+					└── main.py
+			</code></pre>
+		</dl>
+	</section>
+</section>
+
+
+
+
+
+
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section class="sub-sections"><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section> -->
+
+<!-- <section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_modulesPackagesVirtenvs">ivawebcourses@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer end-slide"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
