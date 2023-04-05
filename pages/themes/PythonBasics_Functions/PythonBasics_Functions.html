@@ -71,13 +71,13 @@
 	</section>
 </section>
 
-<section id="WhatAreFunctions"><h1>What are Functions?</h1></section>
+<section id="WhatAreFunctions" class="main-sesction-title"><h1>What are Functions?</h1></section>
 <section class="sub-sections"><h2>What are Functions?</h2>
 	<section>
 		<dl class="fa">
-			<dt>A function is a <span class="note">named block of statements</span> (i.e. a sequence of instructions) which perform one conceptual task.</dt>
+			<dt>A function is a <span class="note">named block of statements and expressions</span> (i.e. a sequence of instructions) which perform one conceptual task.</dt>
 			<dt>A typical example for a function in the real life, is a recipe in a cooking book.</dt>
-			<dt>The statements in the function are performed <span class="note">only after the function is called</span>.</dt>
+			<dt>The code in the function is executed <span class="note">only after the function is called</span>.</dt>
 			<dt>Functions help us to organize our code (<span class="note">break a task into sub-tasks</span>)</dt>
 			<pre><code rel="Python" class="python">
 				def task_1():
@@ -95,28 +95,28 @@
 	</section>
 </section>
 
-<section id="FunctionDefinition"><h1>Function Definition</h1></section>
+<section id="FunctionDefinition" class="main-sesction-title"><h1>Function Definition</h1></section>
 <section class="sub-sections"><h2>Function Definition</h2>
 	<section>
 		<pre><code rel="Syntax" class="python" data-noescape>
 			<b>def</b> <b>function_name(</b><em>param_list</em><b>)</b><b>:</b>
 				<em>'''docstring'''</em>
-				statements
+				statements and expression
 				<em>return [expression]</em>
 		</code></pre>
 		<dl class="fa" style="font-size: 1em">
 			<dt>def</dt>
 			<dd>A keyword that starts the function definition</dd>
 			<dt>function_name</dt>
-			<dd>Should be valid <a href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers">variable name</a>.</dd>
+			<dd>Should be valid <a href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers">identifier name</a>, like variables names.</dd>
 			<dt><em>param_list</em></dt>
 			<dd>Optional. A list of function parameters. The <span class="note">braces around it are required</span>, even if the list is empty.</dd>
 			<dt><em>'''docstring'''</em></dt>
 			<dd>Optional. A string for function documentation.</dd>
-			<dt>statements</dt>
-			<dd>block of statements, also called <span class="note">function body</span>. Must have at least 1 statement.</dd>
+			<dt>statements and expression</dt>
+			<dd>block of code, also called <span class="note">function body</span>. Must have at least 1 line or the pass statement.</dd>
 			<dt><em>return [expression]</em></dt>
-			<dd>Optional. Specify what t<span class="note">he return value of the function</span> should be.</dd>
+			<dd>Optional. Specify what the return <span class="note">value of the function</span> should be.</dd>
 		</dl>
 	</section>
 	<section><h3>The pass statement</h3>
@@ -151,13 +151,13 @@
 	</section>
 </section>
 
-<section id="FunctionCall"><h1>Function Call</h1>
+<section id="FunctionCall" class="main-sesction-title"><h1>Function Call</h1>
 	<br><p class="note" style="font-size: 1.6em">Synonyms: Function Execution; Function Invocation</p>
 </section>
 <section class="sub-sections"><h2>Function Call</h2>
 	<section>
 		<dl class="fa">
-			<dt>The statements in the body of a function will be executed only when the function is called:</dt>
+			<dt>The code in the body of a function will be executed only when the function is called:</dt>
 			<pre><code rel="Syntax" class="python" data-noescape>
 				<b>function_name(</b><em>opt_arg_list</em><b>)</b>
 			</code></pre>
@@ -204,7 +204,7 @@
 </section>
 
 
-<section id="Function Parameters"><h1>Function Parameters</h1></section>
+<section id="Function Parameters" class="main-sesction-title"><h1>Function Parameters</h1></section>
 <section class="sub-sections"><h2>Function Parameters</h2>
 	<section>
 		<dl class="fa">
@@ -328,7 +328,7 @@
 	<section id="args"><h3>Variable Number of Positional Arguments (*args)</h3>
 		<dl class="fa">
 			<dt>You can define a function to take <span class="note">variable number of arguments</span> if you use the <span class="note">*</span> (star) operator in front a parameter name.</dt>
-			<dt>Thus, the parameter will receive the arguments in a <span class="note">tuple</span>:</dt>
+			<dt>Thus, the parameter will receive the arguments <span class="note">packed in a tuple</span>:</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
 			def foo(*args):
@@ -380,7 +380,7 @@
 	</section>
 	<section id="kwargs"><h3>Variable Number of Keyword Arguments (**kwargs)</h3>
 		<dl class="fa">
-			<dt>You can use <code class="note">**</code> (double stars) in front of parameter name which will receive a variable number of <span class="note">keyword arguments</span> into a <span class="note">dictionary</span>.</dt>
+			<dt>You can use <code class="note">**</code> (double stars) in front of parameter name which will receive a variable number of <span class="note">keyword arguments packed into a dictionary</span>.</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
 			def foo(**kwargs):
@@ -436,7 +436,7 @@
 </section>
 
 
-<section id="FunctionReturnValues"><h1>Function Return Values</h1></section>
+<section id="FunctionReturnValues" class="main-sesction-title"><h1>Function Return Values</h1></section>
 <section class="sub-sections"><h2>Function Return Values</h2>
 	<section><h3><code class="note">return</code> statement</h3>
 		<dl class="fa">
@@ -444,7 +444,7 @@
 		</dl>
 		<pre><code rel="Syntax" class="python" data-noescape>
 			def f():
-				<em>statements</em>
+				<em>statements and expressions</em>
 				return [<em>expression</em>]
 		</code></pre>
 		<pre><code rel="Python" class="python" data-noescape>
@@ -488,19 +488,46 @@
 			# bar() was executed!
 			# End
 		</code></pre>
-		<p>In Python each function returns a value, being it None!</p>
+		<p>In Python <span class="note">every function returns a value</span> (as in math), being it None!</p>
 	</section>
 </section>
 
-<section id="ScopeAndNamespaces"><h1>Scope and Namespaces</h1></section>
+<section id="ScopeAndNamespaces" class="main-sesction-title"><h1>Scope and Namespaces</h1></section>
 <section class="sub-sections"><h2>Scope and Namespaces</h2>
 	<section><h3>What?</h3>
 		<dl class="fa">
-			<dt>A <span class="note">namespace</span> stores the mapping from names to objects. Usually implemented internally by a dictionary.</dt>
+			<dt>A <span class="note">namespace</span> stores the mapping from names to objects stored in memory. Namespace usually is implemented internally by a dictionary.</dt>
 			<dt>A <span class="note">scope</span> is a lexical (textual) region of the program, where a namespace is directly accessible (i.e. without a prefix).</dt>
 			<dt>You can think of the scope as part of your program where a variable can be accessed (used, visible).</dt>
 		</dl>
 		<a href="images/scope.png"><img src="images/scope.png"></a>
+	</section>
+	<section><h3>Namespace example</h3>
+		<pre><code rel="Python" class="python" style="min-height: 90vh;">
+			from pprint import pprint
+
+			x = 1
+
+			def f1():
+				y = 2
+				print('f1 local namespace:')
+				pprint( locals() )
+				print()
+
+			def f2():
+				z = 2
+				print('f2 local namespace:')
+				pprint( locals() )
+				print()
+
+
+			f1()
+			f2()
+
+			print('global namespace:')
+			pprint( globals() )
+			print()
+		</code></pre>
 	</section>
 	<section><h3>Local Scope</h3>
 		<dl class="fa">
@@ -538,7 +565,7 @@
 	<section><h3>Names Resolution</h3>
 		<dl class="fa">
 			<dt style="font-size: .8em">When a name is assigned a value inside function body, that name is created in function local scope (if the global keyword is not used), even if the same name is already defined in global scope</dt>
-			<pre><code rel="Python" class="python">
+			<pre><code rel="Python" class="python" style="min-height: 50vh;">
 				x = 1
 
 				def foo():
@@ -555,7 +582,7 @@
 		<p class="note">Variables with same name, defined in different scopes are considered as different variables!</p>
 	</section>
 	<section><h3>Names Resolution - nested functions</h3>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height: 70vh;">
 			def outer():
 			  x=2
 
@@ -579,7 +606,7 @@
 		<dl class="fa">
 			<dt>We can declare a name with the <code>nonlocal</code> statement prefix</dt>
 			<dt>The nonlocal statement causes the listed names to refer to previously bound variables in the nearest enclosing scope excluding globals.</dt>
-			<pre><code rel="Python" class="python">
+			<pre><code rel="Python" class="python" style="min-height: 70vh;">
 				def outer():
 				  x=2
 
@@ -605,7 +632,7 @@
 		<dl class="fa">
 			<dt>We can declare a name with the <code>global</code> statement prefix</dt>
 			<dt>The <code>global</code> statement causes the listed names to be interpreted as global names.</dt>
-			<pre><code rel="Python" class="python">
+			<pre><code rel="Python" class="python" style="min-height: 70vh;">
 				def outer():
 				  x=2
 
@@ -658,7 +685,7 @@
 
 
 
-<section id="hw"><h1>Exercises</h1></section>
+<section id="hw" class="main-sesction-title"><h1>Exercises</h1></section>
 <section class="sub-sections"><h2>Task1: BMI with functions</h2>
 	<section><h3>Task</h3>
 		<dl class="fa">
