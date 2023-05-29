@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Pandas_Overview</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#Pandas_Overview" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section class="main-sesction-title"><h1>Pandas Overview</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+<section class="main-sesction-title"><h1>pandas - Overview and Installation</h1></section>
+<section class="sub-sections"><h2>pandas - Overview and Installation</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt><a href="https://pandas.pydata.org/">pandas</a> is an open source library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language</dt>
+			<dt>pandas is great for data analysis and modeling</dt>
+			<dt>The two primary data structures in pandas are <span class="note">Series</span> and <span class="note">DataFrame</span></dt>
+			<dt><a href="https://pandas.pydata.org/">Pandas home page</a></dt>
+		</dl>
+	</section>
+	<section><h3>Install in Python's venv</h3>
+		<dl class="fa">
+			<dt>You should install pandas in activated Python environment</dt>
+		</dl>
+		<pre><code rel="Terminal" class="bash" data-noescape style="min-height: 50vh;">
+			# create Python environment (if you do not have one):
+			# note that executing next command will create virtual environment (named '.venv') in current working directory:
+			$ python3 -m venv .venv
+
+			# activate Python (.venv) environment in Bash:
+			$ source .venv/bin/activate
+
+			# activate Python (.venv) environment in Command Prompt:
+			$ .venv\Scripts\activate.bat
+
+			# install pandas
+			(.venv)$ pip install pandas
+		</code></pre>
+	</section>
+	<section><h3>Use Pandas</h3>
+		<dl class="fa">
+			<dt>You can start using pandas in any Python file</dt>
+			<pre><code rel="pandas_test.py" class="python3">
+				import pandas as pd
+
+				df_users = pd.DataFrame({
+					"name":['Maria', 'Petyr', 'Ivan'],
+					"age":[23, 21, 34],
+					"gender":['female', 'male', 'male']
+				})
+
+				print(df_users)
+			</code></pre>
+			<dt>or or in a JupyterNotebook</dt>
+			<pre><code rel="pandas_test.ipynb" class="python3">
+				import pandas as pd
+
+				df_users = pd.DataFrame({
+					"name":['Maria', 'Petyr', 'Ivan'],
+					"age":[23, 21, 34],
+					"gender":['female', 'male', 'male']
+				})
+
+				df_users
+			</code></pre>
+		</dl>
+	</section>
+</section>
+
+
+<section class="main-sesction-title"><h1>Pandas Data Structures Overview</h1></section>
+<section class="sub-sections"><h2>Pandas Data Structures Overview</h2>
+	<section>
+		<dl class="fa">
+			<dt>The two primary data structures in pandas are <span class="note">Series</span> and <span class="note">DataFrame</span></dt>
+			<dt>A DataFrame is a collection of Series objects</dt>
+			<dd>A Pandas Series is <span class="note">a one-dimensional array</span> of indexed data, based on the NumPy ndarray. Pandas Series object wraps both <span class="note">a sequence of values</span> and <span class="note">a sequence of indices</span></dd>
+			<dt>a DataFrame is an analogue of <span class="note">a two-dimensional array or table</span> with flexible <span class="note">row and column indices</span>.</dt>
+			<dt>You can think of DataFrame as an Excel table, and of Series - as a column in an Excel table</dt>
+		</dl>
+		<a href="./images/DF_as_collection_of_Series.png"><img src="./images/DF_as_collection_of_Series.png" alt="./images/DF_as_collection_of_Series.png"></a>
+	</section>
+	<section><h3>DataFrame as a collection of Series</h3>
+		<dl class="fa">
+			<dt>A multi-column DataFrame can be thought as a dictionary of Series objects, where the dictionary <span class="note">keys</span> represent the <span class="note">columns names</span>. Note, that the Series objects must be aligned, i.e. to have the same index.</dt>
+		</dl>
+		<pre><code rel="Python" class="python" style="width: 100%; font-size: .9em;">
+			prices_ds = pd.Series([1.5, 2, 2.5, 3],
+			index=["apples", "oranges", "bananas", "strawberries"])
+
+			suppliers_ds = pd.Series(["supplier1", "supplier2", "supplier4", "supplier3"],
+			index=["apples", "oranges", "bananas", "strawberries"])
+
+			fruits_df = pd.DataFrame({
+				"prices": prices_ds,
+				"suppliers": suppliers_ds
+			})
+			print(fruits_df)
+			#              prices  suppliers
+			#apples           1.5  supplier1
+			#oranges          2.0  supplier2
+			#bananas          2.5  supplier4
+			#strawberries     3.0  supplier3
+		</code></pre>
+	</section>
+	<section><h3>Create DataFrame</h3>
+		<dl class="fa">
+			<dt>Pandas provides various methods for creating DataFrames from objects or different file formats</dt>
+			<dt>Check: <a href="https://nbviewer.org/github/geekcourses/ML_SA-Slides/blob/main/pages/themes/Pandas_3/examples/DataFrame_create.ipynb">DataFrame_create.ipynb</a></dt>
+			<dt>The demo dataset: <a href="https://raw.githubusercontent.com/geekcourses/JupyterNotebooksExamples/master/datasets/various/drinks.csv">drinks.csv</a> </dt>
+		</dl>
+	</section>
+	<section><h3>Load CSV into DataFrame</h3>
+		<pre><code rel="pandas_csv.ipynb" class="python">
+			import pandas as pd
+
+			csv_file_path = 'https://raw.githubusercontent.com/geekcourses/JupyterNotebooksExamples/master/datasets/various/drinks.csv'
+
+			df = pd.read_csv(csv_file_path)
+
+			df
+		</code></pre>
+	</section>
+	<section><h3>DataFrame Indexing and Manipulations</h3>
+		<dl class="fa">
+			<dt><a href="https://nbviewer.org/github/geekcourses/ML_SA-Slides/blob/main/pages/themes/Pandas_3/examples/DataFrame_index.ipynb">DataFrame_index.ipynb</a></dt>
+			<dt><a href="https://nbviewer.org/github/geekcourses/ML_SA-Slides/blob/main/pages/themes/Pandas_3/examples/DataFramesManipulations.ipynb">DataFramesManipulations.ipynb</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section data-min="240" class="main-sesction-title"><h1>Matplotlib with Pandas</h1></section>
+<section class="sub-sections"><h2>Matplotlib with Pandas</h2>
+ 	<section>
+		<p>The presentation is given in next Jupyter Notebook:</p>
+		<dl class="fa" style="width: 120%">
+			<dt>On GitHub: <a href="https://github.com/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/matplotlib_pandas_seaborn/Matplotlib_with_Pandas_1.ipynb" download="Matplotlib_with_Pandas_1.ipynb">Matplotlib_with_Pandas_1.ipynb</a></dt></dt>
+			<dt>On nbviewer: <a href="https://nbviewer.jupyter.org/github/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/matplotlib_pandas_seaborn/Matplotlib_with_Pandas_1.ipynb">Matplotlib_with_Pandas_1.ipynb</a></dt>
+		</dl>
+ 	</section>
+</section>
+
+<section class="disclaimer end-slide"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
