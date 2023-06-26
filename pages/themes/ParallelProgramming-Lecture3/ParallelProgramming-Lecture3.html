@@ -96,7 +96,7 @@
 	</section>
 
 	<section><h3>Създаване и стартиране на процес - Пример</h3>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
 			import multiprocessing as mp
 			import time
 
@@ -123,7 +123,7 @@
 		<dl class="fa">
 			<dt>There are certain guidelines and idioms which should be adhered to when using multiprocessing: <a href="https://docs.python.org/3.4/library/multiprocessing.html#multiprocessing-programming">Programming guidelines @python3 docs</a>.</dt>
 			<dt>But most important is to make sure that the main module can be safely imported by a new Python interpreter without causing unintended side effects (such as starting a new process)</dt>
-			<dt class="note">I.e. always use <code>if __name__ == '__main__':</code> when using processes!</dt>
+			<dt class="note">I.e. always start a new process in main program, i.e. in <code>if __name__ == '__main__':</code>, and not in a file which will be imported</dt>
 		</dl>
 	</section>
 	<section><h3>Процесите не споделят обща памет - пример</h3>

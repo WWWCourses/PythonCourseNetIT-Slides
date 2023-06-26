@@ -1,12 +1,29 @@
-import requests
-import os
-import time
+import threading
+
+def worker():
+	global counter
+
+	# lock the 'critical section':
+	lock.acquire()
+	for i in range(1_000_000):
+		counter += 1
+	lock.release()
 
 
-start_time = time.time()
-time.sleep(1)
-print(time.time() - start_time)
+counter = 0
+lock = threading.Lock()
 
-start_pcounter = time.perf_counter()
-time.sleep(1)
-print(time.perf_counter() - start_pcounter)
+# create some treads to count together:
+thread_pool = []
+for i in range(5):
+	tr = threading.Thread(target=worker)
+	thread_pool.append(tr)
+
+	print(f"Counter before start of {tr.name}: {counter}")
+	tr.start()
+
+# wait for tread to finish:
+for tr in thread_pool:
+	tr.join()
+
+print("Workers counted:", counter)

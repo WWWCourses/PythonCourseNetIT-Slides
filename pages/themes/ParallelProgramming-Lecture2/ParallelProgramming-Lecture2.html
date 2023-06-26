@@ -135,19 +135,18 @@
 	</section>
 	<section><h3>Критична Секция - Пример</h3>
 		<dl class="fa">
-			<dt>Имаме 2 нишки и глобален брояч, който се увеличава от всяка една нишка по 10000000 пъти</dt>
-			<dt>В края на процеса, стойността на глобалният брояч би трябвало да е 2*10000000 пъти, но тъй като той е споделен ресурс, виждаме че резултата е непредсказуем.</dt>
-			<dd class="note">в Python 3.10 има недокументирана промяна, която предотвратява този race condition, дори и без да се използва lock.</dd>
+			<dt>Имаме 5 нишки и глобален брояч, който се увеличава от всяка една нишка по 10000000 пъти</dt>
+			<dt>В края на процеса, стойността на глобалният брояч би трябвало да е 5*10000000 пъти, но тъй като той е споделен ресурс, виждаме че резултата е непредсказуем.</dt>
+			<dd><span class="note">в Python 3.10 има недокументирана промяна, която предотвратява този race condition, дори и без да се използва lock.</span> За да видите проблема, трябва да стартирате кода с python < 3.10  </dd>
 		</dl>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height: 60vh;">
 			import threading
 			import time
-
 
 			def worker():
 				global counter
 
-				for i in range(10000000):
+				for i in range(1_000_000):
 					counter += 1
 
 
@@ -173,38 +172,34 @@
 		<a href="./images/raceConditionOfCounterDemo.png"><img src="./images/raceConditionOfCounterDemo.png" alt=""></a>
 	</section>
 	<section><h3>Solution: Lock the <em>critical sections</em></h3>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
 			import threading
-			import time
-
 
 			def worker():
-			global counter
+				global counter
 
-			# lock the critical section:
-			lock.acquire()
-			tmp = counter
-			print("Before:",counter)
-			counter = tmp + 1
-			print("After:",counter)
-			lock.release()
-
+				# lock the 'critical section':
+				lock.acquire()
+				for i in range(1_000_000):
+					counter += 1
+				lock.release()
 
 
 			counter = 0
-			# create a lock
 			lock = threading.Lock()
 
 			# create some treads to count together:
 			thread_pool = []
-			for i in range(10000):
-			tr = threading.Thread(target=worker)
-			tr.start()
-			thread_pool.append(tr)
+			for i in range(5):
+				tr = threading.Thread(target=worker)
+				thread_pool.append(tr)
+
+				print(f"Counter before start of {tr.name}: {counter}")
+				tr.start()
 
 			# wait for tread to finish:
 			for tr in thread_pool:
-			tr.join()
+				tr.join()
 
 			print("Workers counted:", counter)
 		</code></pre>
