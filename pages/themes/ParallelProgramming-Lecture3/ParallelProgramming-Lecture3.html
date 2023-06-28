@@ -250,9 +250,67 @@
 		</code></pre>
 		<p>Забележете, че обекта <code>queue</code> трябва да бъде споделен между процесите, които искат да имат достъп до тези данни.</p>
 	</section>
+	<section><h3>The Pool object</h3>
+		<dl class="fa">
+			<dt>The Pool object in multiprocessing module offers a convenient means of parallelizing the execution of a function across multiple input values, distributing the input data across processes (data parallelism)</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			from multiprocessing import Pool
+			import time
+
+			def worker(n):
+			  # for light work, the pool is not efficient, try with n**10
+			  return n**1000
+
+			if __name__ == '__main__':
+			  t =time.time()
+
+			  # create the Pool:
+			  p = Pool(processes=5)
+			  result = p.map(worker, range(100000))
+			  p.close()
+			  p.join()
+
+			  print("Pool took: ", time.time() - t)
+
+			  # serial processing:
+			  t = time.time()
+			  result = []
+			  for x in range(100000):
+			    result.append(worker(x))
+			  # print("Result: ", result)
+			  print("Serial processing took: ", time.time() - t)
+		</code></pre>
+	</section>
 </section>
 
-
+<section data-min="50" class="main-sesction-title"><h1>Processes vs Threads - when to use which</h1></section>
+<section class="sub-sections"><h2>Processes vs Threads - when to use which</h2>
+	<section><h3>Multiprocessing Pros and Cons</h3>
+		<dl class="fa">
+			<dt>Multiprocessing Pros:</dt>
+			<dd>Takes advantage of multiple CPUs and cores</dd>
+			<dd>Avoids GIL limitations</dd>
+			<dd>Memory leaks in one process would not harm the others</dd>
+			<dd>Child processes could be killed</dd>
+			<dd>An intuitive and easy to use module APIs (very close to threading)</dd>
+			<dd>Very useful with cPython for CPU-bound processing</dd>
+			<dt>Cons:</dt>
+			<dd>Separate memory space is harder to manage.</dd>
+			<dd>Larger memory footprint</dd>
+		</dl>
+	</section>
+	<section><h3>Threading Pros and Cons</h3>
+		<dl class="fa">
+			<dt>Threading Pros:</dt>
+			<dd>Lightweight and low memory footprint</dd>
+			<dd>Shared memory between threads - easier to manage.</dd>
+			<dd>Perfect for responsive UIs, DB Querying, Online Data Retrieval, I/O-bound and other applications where a lot of background work is done</dd>
+			<dt>Cons:</dt>
+			<dd>A memory leak in one thread will corrupt all threads</dd>
+		</dl>
+	</section>
+</section>
 
 
 
