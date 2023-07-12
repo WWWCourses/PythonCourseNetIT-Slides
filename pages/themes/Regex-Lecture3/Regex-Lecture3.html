@@ -247,7 +247,7 @@
 				'Icecream with raspberries? Yes!',
 				'Icecream with berries? No!',
 			]
-			regex = re.compile(r"\b(straw|rasp)berries\b")
+			regex = re.compile(r"\b(?:straw|rasp)berries\b")
 
 			for s in strings:
 				match = regex.search(s)
@@ -439,7 +439,7 @@
 	<section><h3><a href="https://docs.python.org/3/library/re.html#match-objects">Match Object</a> Methods</h3>
 		<table style="width: 110%">
 			<tr><th>Method/Attribute</th><th>Purpose</th></tr>
-			<tr><td>group()</td><td>Return the string matched by the RE</td></tr>
+			<tr><td>group()</td><td>Returns one or more subgroups of the match</td></tr>
 			<tr><td>groups()</td><td>Return a tuple containing all the subgroups of the match</td></tr>
 			<tr><td>start()</td><td>Return the starting position of the match</td></tr>
 			<tr><td>end()</td><td>Return the ending position of the match</td></tr>
