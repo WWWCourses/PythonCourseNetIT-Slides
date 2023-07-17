@@ -86,12 +86,12 @@
 		<dl class="fa">
 			<dt><strong>Relational DataBases (SQL DataBases)</strong></dt>
 			<dd>Relational databases were developed in the 1970s.</dd>
-			<dd>Data are stored as <span class="note">relational tables</span></dd>
+			<dd>Data are stored as <span class="note">relational tables</span>, where each row represents a single instance of the entity being modeled, and each column represents a specific attribute of that entity.</dd>
 			<dd>Data manipulations are done by <span class="note">Structured Query Language (SQL)</span>, based on Edgar Frank Codd’s work on the relational model for database management</dd>
 			<dt><strong>No-SQL DataBases ("non SQL" or "not only SQL")</strong></dt>
 			<dd>Developed in the late 2000s</dd>
-			<dd>Have flexible data models</dd>
-			<dd>Focus on scaling, fast queries, allowing for frequent application changes, and making programming simpler for developers.</dd>
+			<dd>Have flexible data models. Can handle large volumes of structured, semi-structured, and unstructured data.</dd>
+			<dd>Focus on scaling, fast queries and frequent application changes.</dd>
 		</dl>
 		<br>
 		<p>Reference: <a href="https://www.mongodb.com/nosql-explained/nosql-vs-sql#differences-between-sql-and-nosql">Differences between SQL and NoSQL</a></p>
@@ -106,7 +106,7 @@
 	<section><h3>Key-Value Store Databases</h3>
 		<dl class="fa">
 			<dt>data is represented as a collection of <span class="note">Key-Value pairs</span>,  an attribute name and a value, eg &lt;department, sales&gt; or &lt;salary, 2300&gt;.</dt>
-			<a href="./images/KeyValue.png" title="click for bigger image" title="click for bigger image"><img src="./images/KeyValue.png" alt="KeyValue.png"></a>
+			<a href="./images/KeyValue.png" title="click for bigger image"><img src="./images/KeyValue.png" alt="KeyValue.png" style="margin:1em"></a>
 			<dt>Adavantages:</dt>
 			<dd>Flexibility, use far less memory</dd>
 			<dt>Popular systems</dt>
@@ -118,7 +118,7 @@
 			<dt>uses tables, rows and columns like in a relational database, but unlike a relational database, the names and formats of the columns can vary from row to row in the same table.  A wide column store can be interpreted as a 2 dimensional key-value store..</dt>
 			<a href="./images/wide-column-store.png" title="click for bigger image"><img src="./images/wide-column-store.png" alt="wide-column-store.png" style="height: 50vh;"></a>
 			<dt>Popular systems</dt>
-			<dd>Apache Cassandra, Azure Tables, Bigtable</dd>
+			<dd>Apache Cassandra, HBase,  Azure Tables, Bigtable</dd>
 		</dl>
 	</section>
 	<section><h3>Graph Databases</h3>
@@ -162,6 +162,12 @@
 			<dd><a href="https://www.mongodb.com/try/download/community">MongoDB Community Server</a></dd>
 			<dt>But its better to follow the docs:</dt>
 			<dd><a href="https://docs.mongodb.com/manual/administration/install-community/">Install MongoDB Community Server @docs.mongodb.com</a></dd>
+		</dl>
+	</section>
+	<section><h3>Install MongoDB Shell (Windows Only)</h3>
+		<dl class="fa">
+			<dt>MongoDB Shell (mongosh) does not come with the MongoDB Community Edition. You need to install it separately after successfully installing the MongoDB server on your windows 10 system.</dt>
+			<dt>Download it from <a href="https://www.mongodb.com/try/download/shell">MongoDB Shell</a></dt>
 		</dl>
 	</section>
 	<section><h3>Run MongoDB Community Edition</h3>
