@@ -171,13 +171,14 @@
 		</dl>
 	</section>
 	<section><h3>Run MongoDB Community Edition</h3>
+		<p>If Mongo Server is not started, you can start it manually by:</p>
 		<dl class="fa">
 			<dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#run-mongodb-community-edition">Linux (Ubuntu based)</a></dt>
 			<dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#run-mongodb-community-edition-as-a-windows-service">Windows</a></dt>
 			<dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb-community-edition">MacOS</a></dt>
 		</dl>
 	</section>
-	<section><h3>Test the local installation</h3>
+	<!-- <section><h3>Test the local installation</h3>
 		<pre><code rel="Terminal" class="bash">
 			mongo
 		</code></pre>
@@ -188,7 +189,7 @@
 			Implicit session: session { "id" : UUID("84365a48-2b99-48e7-a5a0-8598ad39b06a") }
 			MongoDB server version: 4.4.9
 		</code></pre>
-	</section>
+	</section> -->
 	<section><h3>MongoDB Atlas - the Mongo's Cloud DataBase</h3>
 		<dl class="fa">
 			<dt>MongoDB Atlas is a fully-managed cloud database developed by the same people that build MongoDB</dt>
@@ -200,6 +201,14 @@
 			<dt>Register to MongoDB Atlas and create <i>python_course_atlas</i> DB with 1 collection: <i>todos</i>, as shown</dt>
 			<a href="./images/Atlas_collection_created_screenshot.png" title="click for bigger image"><img src="./images/Atlas_collection_created_screenshot.png" alt="Atlas_collection_created_screenshot.png" style="max-height: 70vh;"></a>
 			<dd>Docs: <a href="https://docs.atlas.mongodb.com/getting-started/">Get Started with Atlas @docs.atlas.mongodb.com</a></dd>
+		</dl>
+	</section>
+	<section><h3>Allow Access to Atlas From All IP Addresses</h3>
+		<dl class="fa">
+			<dt>On the left side of the screen under SECURITY, click on Network Access.</dt>
+			<dt>Click the green Add IP Address button.</dt>
+			<dt>In the modal, click the ALLOW ACCESS FROM ANYWHERE button. You should see 0.0. 0.0/0 in the Access List Entry field.</dt>
+			<dt>Click the green Confirm button.</dt>
 		</dl>
 	</section>
 </section>
