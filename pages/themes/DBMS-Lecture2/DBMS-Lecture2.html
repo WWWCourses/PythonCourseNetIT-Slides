@@ -116,13 +116,13 @@
 		</dl>
 	</section>
 	<section><h3>Connect to MongoDB - Example</h3>
-		<pre><code rel="Python" class="python" style="min-height: 70vh;">
+		<pre><code rel="Python" class="python" style="min-height: 90vh;">
 			from pymongo import MongoClient
 
 			def connect_to_local_cluster():
 				# connect using connection string:
 				# &#39;mongodb://&lt;username?&gt;:&lt;password?&gt;@localhost:27017/&lt;dbname?&gt;
-				connection_string = &#39;mongodb://localhost:27017/python_course&#39;
+				connection_string = &#39;mongodb://localhost:27017&#39;
 
 				return MongoClient(connection_string)
 
@@ -130,7 +130,7 @@
 			def connect_to_atlas_cluster():
 				# connect using connection string:
 				# mongodb+srv://&lt;username&gt;:&lt;password&gt;@&lt;atlas cluster hostname&gt;/&lt;dbname?&gt;
-				connection_string = &quot;mongodb+srv://python_courses_test:12345678abv@cluster0.6oisd7l.mongodb.net/&quot;
+				connection_string = &quot;mongodb+srv://PythonCourse:12345678abv@cluster0.qprcu.mongodb.net/&quot;
 
 				return MongoClient(connection_string)
 
@@ -193,7 +193,8 @@
 			<dt><span class="note">CRUD = Create, Read, Update, and Delete</span> are the four basic operations performed on a database</dt>
 			<dt>Reference:</dt>
 			<dd><a href="https://docs.mongodb.com/manual/crud/">MongoDB CRUD Operations (Manual && Tutorial)</a></dd>
-			<dd><a href="https://www.mongodb.com/docs/v6.0/crud/">MongoDB CRUD Operations(Docs)</a></dd>
+			<dd>Note that in the Tutorial pages, you have a Drop-Down menu to select the programming language the examples are shown to.</dd>
+			<a href="./images/Insert Documents — MongoDB Manual - Google Chrome_001.png" title="click for bigger image"><img src="./images/Insert Documents — MongoDB Manual - Google Chrome_001.png" alt="Insert Documents"></a>
 			<dt>In next sections we'll see how to perform CRUD operations using pymongo.</dt>
 		</dl>
 	</section>
@@ -279,7 +280,7 @@
 			</code></pre>
 			<dt><span class="note">query</span>: a document which specifies selection filter using query operators. To return all documents in a collection, omit this parameter or pass an empty document ({}).</dt>
 			<dt><span class="note">projection</span>: a document which specifies the fields to return in the documents that match the query filter. To return all fields in the matching documents, omit this parameter.</dt>
-			<dt>Or shortly, the query specifies which documents to retrieve, while the projection defines which fields of matching documents to be returned</dt>
+			<dt class="note">Or shortly, the query specifies which documents to retrieve, while the projection defines which fields of matching documents to be returned</dt>
 		</dl>
 	</section>
 	<section><h3>Query Filter</h3>
