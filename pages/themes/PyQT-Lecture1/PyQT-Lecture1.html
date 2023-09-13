@@ -81,50 +81,47 @@
 			<dt>As PyQt alternatives for building GUIs in Python, there are <a href="https://docs.python.org/3/library/tkinter.html#module-tkinter">Tkinter</a>, <a href="https://www.wxpython.org/">wxPython</a>, <a href="https://pypi.org/project/PySide2/">PySide2</a></dt>
 			<dt>PyQt is available several versions.</dt>
 			<dd><span class="note">PyQt4</span>: no longer supported and no new releases will be made.</dd>
-			<dd><span class="note">PyQt5</span>: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/index.html">official docs</a> (this is the version which will be used in the course, but you can also try using PyQt6).</dd>
-			<dd><span class="note">PyQt6</span>: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/index.html">official docs</a></dd>
-			<dd><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/pyqt5_differences.html">Differences Between PyQt6 and PyQt5</a></dd>
-
+			<dd><span class="note">PyQt5</span>: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/index.html">official docs</a>.</dd>
+			<dd><span class="note">PyQt6</span>: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/index.html">official docs</a> (this is the version which will be used in the course)</dd>
+			<dd><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/PyQt6_differences.html">Differences Between PyQt5 and PyQt6</a></dd>
 		</dl>
 	</section>
-	<section><h3>PyQT5 Installation</h3>
+	<section><h3>PyQt6 Installation</h3>
 		<dl class="fa">
-			<dt>As python package from <a href="https://pypi.org/project/PyQt5/">PyQt5 Project</a> which will install the GPL version of PyQt5 (<span class="note">the recommended way</span>)</dt>
+			<dt>As python package from <a href="https://pypi.org/project/PyQt6/">PyQt6 Project</a> which will install the GPL version of PyQt6 (<span class="note">the recommended way</span>)</dt>
 			<pre><code rel="Terminal" class="bash">
 				# on activated virtual environment:
-				pip install PyQt5
+				pip install PyQt6
 
 				# check install info:
-				pip show PyQt5
+				pip show PyQt6
 			</code></pre>
-			<dt>Reference: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/installation.html?highlight=installation">Installing PyQt5</a></dt>
+			<dt>Reference: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/installation.html?highlight=installation">Installing PyQt6</a></dt>
 			<br>
-			<dt class="advanced">On Linux/Ubuntu, if you have problems with standard installation, you can use your software package manager. Note that this will make a system-wide install.</dt>
-			<pre><code rel="Terminal" class="bash">
-				sudo apt install python3-pyqt5
-			</code></pre>
 		</dl>
 	</section>
 	<section><h3>Test the installation</h3>
 		<dl class="fa">
 			<dt>Create the <code>pyqt_test.py</code> file and run it.</dt>
 		</dl>
-		<pre><code rel="pyqt_test.py" class="python" style="min-height: 50vh;">
+		<pre><code rel="pyqt_test.py" class="python" style="min-height: 80vh;">
 			import sys
 
-			from PyQt5.QtWidgets import QApplication,QWidget
+			from PyQt6.QtWidgets import QApplication,QWidget
 
 			app = QApplication(sys.argv)
 
 			window = QWidget()
-			window.setWindowTitle('PyQt5 App Works')
+			window.setWindowTitle('PyQt6 App Works')
 			window.setGeometry(100, 100, 500, 500)
 
 			window.show()
 			sys.exit(app.exec())
 		</code></pre>
+	</section>
+	<section><h3>Test the installation</h3>
 		<p>You should see a window like: <br>
-			<img src="./images/PyQT5AppWorks.png" alt="PyQT5AppWorks.png">
+			<img src="./images/PyQt6AppWorks.png" alt="PyQt6AppWorks.png" style="height: 80vh;">
 		</p>
 	</section>
 	<section><h3>Qt Tools: QtDesigner</h3>
@@ -132,29 +129,24 @@
 			<dt>QtDesigner is a Qt tool that provides a what-you-see-is-what-you-get (WYSIWYG) user interface which speeds the creation of GUIs for PyQt applications</dt>
 			<dt>QtDesigner creates .ui files (which contains <span class="note">an XML description of the GUI</span>).</dt>
 			<dt>I.e., QtDesigner is platform and programming language independent.</dt>
-			<dt>Reference: <a href="https://doc.qt.io/qt-5/qtdesigner-manual.html">Qt Designer Manual</a></dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-6/qtdesigner-manual.html">Qt Designer Manual</a></dt>
 		</dl>
 		<a href="./images/QtdesignerStart.png" title="click for bigger image"><img src="./images/QtdesignerStart.png" alt="./images/QtdesignerStart.png" style="height: 70vh;"></a>
 	</section>
 	<section><h3>QtDesigner Installation</h3>
 		<dl class="fa">
 			<p>Qt Designer normally ships as a part of <a href="https://www.qt.io/product/development-tools">Qt Creator</a>. This is Qt's official editor and lets you do a lot more than just graphically design user interfaces. It is a full-fledged and very powerful C++ IDE. But <span class="note">For PyQT development you don't need the whole Qt Creator (which is huge)</span>.<br>You can install only the Qt Designer in two ways:</p>
-			<dt>As python package <a href="https://pypi.org/project/pyqt5-tools/">pyqt5-tools</a> or <a href="https://pypi.org/project/pyqt6-tools">pyqt6-tools</a> (<span>the recommended way</span>):</dt>
-			<dd class="note">Note, that both pyqt5-tools/pyqt6-tools doesn't support Python 3.10 yet</dd>
+			<dt>As python package: <a href="https://pypi.org/project/pyqt6-tools">pyqt6-tools</a> (<span>the recommended way</span>):</dt>
+			<dd class="note">Note, that pyqt6-tools doesn't support Python 3.10 yet</dd>
 			<pre><code rel="Terminal" class="bash">
 				# make sure you're on activated virtual environment:
-				pip install pyqt5-tools
+				pip install pyqt6-tools
 
 				# check install info:
-				pip show pyqt5-tools
+				pip show pyqt6-tools
 			</code></pre>
 			<dt>Or as standalone application for Windows/MacOS (use it only if you have problems with python packages):</dt>
 			<dd><a href="https://build-system.fman.io/qt-designer-download">Install Qt Designer on Windows or Mac</a></dd>
-			<dd >On Linux/Ubuntu you can use your software package manager:</dd >
-			<pre><code rel="Terminal" class="bash">
-				sudo apt-get install qttools5-dev-tools
-				sudo apt-get install qttools5-dev
-			</code></pre>
 		</dl>
 	</section>
 	<section><h3>QtDesigner - "HelloWorld" GUI</h3>
@@ -162,7 +154,7 @@
 			<dt>Start QtDesigner:</dt>
 			<dd>If you installed QtDesigner as Python package, just write in your activated virt. environment</dd>
 			<pre><code rel="Terminal" class="bash">
-				pyqt5-tools designer
+				pyqt6-tools designer
 			</code></pre>
 			<dd>If you have installed the QtDesigner as standalone app, you should have an icon for it</dd>
 			<dt>Now you can create your first "HelloWorld" app GUI:</dt>
@@ -173,30 +165,40 @@
 		<dl class="fa">
 			<dt>PyUIC (Python  User  Interface  Compiler) is a Qt user interface compiler for Python</dt>
 			<dt>The pyuic reads a user interface definition file (.ui) in XML as  generated  by Qt Designer and creates corresponding Python class</dt>
-			<dt>Reference: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/designer.html#pyuic5">pyuic5</a></dt>
-			<dt>Note, that <code>pyuic5</code> is included in the <code>pyqt5-tools</code>, so you do not need to install it. Just use it.</dt>
+			<dt>Reference: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/designer.html#pyuic6">pyuic6</a></dt>
+			<dt>Note, that <code>pyuic6</code> is included in the <code>PyQt6-tools</code>, so you do not need to install it. Just use it.</dt>
 			<dt>Let's compile our .ui file  created by QtDesigner into Python code:</dt>
 		</dl>
 		<pre><code rel="Terminal" class="bash">
-			pyuic5 helloWorld.ui -o helloWorld.py
+			pyuic6 helloWorld.ui -o helloWorld.py
 		</code></pre>
 	</section>
 </section>
 
-<section data-min="5" id="setupPyCharmForPyQt5" class="main-sesction-title"><h1>Setup PyCharm for PyQt5</h1></section>
-<section class="sub-sections"><h2>Setup PyCharm for PyQt5</h2>
+<section class="main-sesction-title"><h1>Using PyQt with VSCode - Optional Topic</h1></section>
+<section class="sub-sections"><h2>Using PyQt with VSCode - Optional Topic</h2>
+	<section>
+		<dl class="fa">
+			<dt>VSCode have many extensions which facilitates the work with PyQt. You can check:</dt>
+			<dd><a href="https://marketplace.visualstudio.com/items?itemName=zhoufeng.pyqt-integration">PYQT Integration</a> - an extension help you coding PYQT form in vsocde. Support ".ui", ".qrc", ".pro", ".ts" files.</dd>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5" id="setupPyCharmForPyQt6" class="main-sesction-title"><h1>Setup PyCharm for PyQt6 - Optional Topic</h1></section>
+<section class="sub-sections"><h2>Setup PyCharm for PyQt6 - Optional Topic</h2>
 	<section><h3>PyCharm - Basic Configuration</h3>
 		<dl class="fa">
 			<dt>Create/open a new project</dt>
 			<dt>Make sure you have installed the needed project dependencies:</dt>
-			<dd>You need <code>PyQt5</code>, <code>PyQt5-sip</code> and <code>pyqt5-tools</code></dd>
+			<dd>You need <code>PyQt6</code>, <code>PyQt6-sip</code> and <code>PyQt6-tools</code></dd>
 			<a href="./images/PyCharm_CheckProjectDependancies.png" title="click for bigger image"><img src="./images/PyCharm_CheckProjectDependancies.png" alt="" style="height: 80vh;"></a>
 		</dl>
 	</section>
 	<section><h3>PyCharm - add missing dependencies</h3>
-		<p class="note">You need to perform next steps only if you don't have <code>PyQt5</code>, <code>PyQt5-sip</code> and <code>pyqt5-tools</code> packages</p>
+		<p class="note">You need to perform next steps only if you don't have <code>PyQt6</code>, <code>PyQt6-sip</code> and <code>PyQt6-tools</code> packages</p>
 		<dl class="fa">
-			<dt>In Project Interpreter interface click the <code>+</code> and install pyqt5, pyqt5-sip, pyqt5-tools</dt>
+			<dt>In Project Interpreter interface click the <code>+</code> and install PyQt6, PyQt6-sip, PyQt6-tools</dt>
 			<a href="./images/PyCharm_InstallMissingDependencies.png" title="click for bigger image"><img src="./images/PyCharm_InstallMissingDependencies.png" alt="./images/PyCharm_InstallMissingDependencies.png"></a>
 		</dl>
 	</section>
@@ -226,7 +228,7 @@
 		<dl class="fa">
 			<a href="./images/PyCharm_PyUICTool.png" title="click for bigger image"><img src="./images/PyCharm_PyUICTool.png"" alt="./images/PyCharm_PyUICTool.png""></a>
 			<dt><b>Program</b>: Select python3 interpreter from your virtual environment:</dt>
-			<dt><b>Arguments</b>: <code>-m PyQt5.uic.pyuic $FileName$ -o $FileNameWithoutExtension$.py</code></dt>
+			<dt><b>Arguments</b>: <code>-m PyQt6.uic.pyuic $FileName$ -o $FileNameWithoutExtension$.py</code></dt>
 			<dt><b>Working directory</b>: <code>$FileDir$</code></dt>
 		</dl>
 	</section>
@@ -234,7 +236,7 @@
 		<dl class="fa">
 			<dt><a href="https://www.jetbrains.com/help/pycharm/configuring-third-party-tools.html">External tools @jetbrains.com</a></dt>
 			<!-- <dt><a href="https://www.programmersought.com/article/18407263993/">How to install QT Designer+PyUIC in Pycharm</a></dt> -->
-			<!-- <dt><a href="https://www.programmersought.com/article/35548368831/">Pycharm Install PYQT5, PyQt5-Tools and Tools under VENV</a></dt> -->
+			<!-- <dt><a href="https://www.programmersought.com/article/35548368831/">Pycharm Install PyQt6, PyQt6-Tools and Tools under VENV</a></dt> -->
 			<!-- <dt>Note, that you don't need to setup Pyrcc, as it is not maintained anymore.</dt> -->
 		</dl>
 	</section>
@@ -248,7 +250,7 @@
 		<pre><code rel="Python" class="python" style="min-height: 80vh;">
 			import sys
 
-			from PyQt5.QtWidgets import (
+			from PyQt6.QtWidgets import (
 				QApplication, QMainWindow
 			)
 
@@ -288,7 +290,7 @@
 		<td>Dialog with Buttons Bottom</td>
 		<td>Dialog</td>
 		<td><em>OK</em> and <em>Cancel</em> buttons laid out horizontally on the bottom-right corner</td>
-		<td><a href="https://doc.qt.io/qt-5/qdialog.html"><code>QDialog</code></a></td>
+		<td><a href="https://doc.qt.io/qt-6/qdialog.html"><code>QDialog</code></a></td>
 		</tr>
 		<tr>
 		<td>Dialog with Buttons Right</td>
@@ -306,13 +308,13 @@
 		<td>Main Window</td>
 		<td>Main Window</td>
 		<td>A menu bar at the top and a status bar at the bottom</td>
-		<td><a href="https://doc.qt.io/qt-5/qmainwindow.html"><code>QMainWindow</code></a></td>
+		<td><a href="https://doc.qt.io/qt-6/qmainwindow.html"><code>QMainWindow</code></a></td>
 		</tr>
 		<tr>
 		<td>Widget</td>
 		<td>Widget</td>
 		<td>No</td>
-		<td><a href="https://doc.qt.io/qt-5/qwidget.html"><code>QWidget</code></a></td>
+		<td><a href="https://doc.qt.io/qt-6/qwidget.html"><code>QWidget</code></a></td>
 		</tr>
 		</tbody>
 		</table>
@@ -332,14 +334,14 @@
 	<section><h3>Official Docs</h3>
 		<p>The Qt team maintains a thorough documentation, as well as user guides, tutorials, etc. for working wit QtDesigner </p>
 		<dl class="fa">
-			<dt><a href="https://doc.qt.io/qt-5/designer-to-know.html">Getting to Know Qt Designer</a></dt>
-			<dt><a href="https://doc.qt.io/qt-5/designer-quick-start.html">A Quick Start to Qt Designer</a></dt>
-			<dt>The full manual: <a href="https://doc.qt.io/qt-5/qtdesigner-manual.html">Qt Designer Manual</a></dt>
+			<dt><a href="https://doc.qt.io/qt-6/designer-to-know.html">Getting to Know Qt Designer</a></dt>
+			<dt><a href="https://doc.qt.io/qt-6/designer-quick-start.html">A Quick Start to Qt Designer</a></dt>
+			<dt>The full manual: <a href="https://doc.qt.io/qt-6/qtdesigner-manual.html">Qt Designer Manual</a></dt>
 		</dl>
 	</section>
 	<section><h3>QtDesigner Layouts</h3>
 		<dl class="fa">
-			<dt><a href="https://doc.qt.io/qt-5/designer-layouts.html">Using Layouts in Qt Designer</a></dt>
+			<dt><a href="https://doc.qt.io/qt-6/designer-layouts.html">Using Layouts in Qt Designer</a></dt>
 		</dl>
 		<!-- <p><a href="https://www.youtube.com/watch?v=MY29YV9Wk7I">Video - Creating PyQt Layouts for GUI Python Applications</a></p>
 		<iframe width="912" height="513" src="https://www.youtube.com/embed/MY29YV9Wk7I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
@@ -354,7 +356,7 @@
 			<dt>Create a simple GUI like the one shown bellow.</dt>
 			<a href="./Tasks_and_HW/PyQT_HW_1_My_First_GUI.gif" title="click for bigger image"><img src="./Tasks_and_HW/PyQT_HW_1_My_First_GUI.gif" alt=".PyQT_HW_1_My_First_GUI.gif" style="min-height: 40vh;"></a>
 			<dt>Use the Qt Designer and save the file as <code>my_first_GUI.ui</code></dt>
-			<dt>Convert the generated <code>my_first_GUI.ui</code> file to python code, using the <code>pyuic5</code> tool</dt>
+			<dt>Convert the generated <code>my_first_GUI.ui</code> file to python code, using the <code>pyuic6</code> tool</dt>
 			<dt>Create your Python app file: <code>my_first_GUI_app.py</code> which will start a Qt App and shows the GUI created by you with QtDesigner.</dt>
 		</dl><br>
 	</section>

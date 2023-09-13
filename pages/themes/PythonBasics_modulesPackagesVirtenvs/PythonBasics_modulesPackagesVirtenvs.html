@@ -483,7 +483,6 @@
 	</section>
 </section>
 
-
 <section class="main-sesction-title"><h1>Installing packages using pip and virtual environments</h1></section>
 <section class="sub-sections"><h2>Installing packages using pip and virtual environments</h2>
 	<section><h3>The steps</h3>
@@ -504,6 +503,52 @@
 		<dl class="fa">
 			<dt>Reference:  <a href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">Installing packages using pip and virtual environments</a></dt>
 		</dl>
+	</section>
+</section>
+
+<section class="main-sesction-title"><h1>Creating Virtual Environments with Different Python Versions for Your Projects using PowerShell</h1></section>
+<section class="sub-sections"><h2>Creating Virtual Environments with Different Python Versions for Your Projects using PowerShell</h2>
+	<section><h3>Prerequisites</h3>
+		<dl class="fa">
+			<dt>Install the Python versions you want to have in your machine. In next examples I'll be using Python 3.7 and Python 3.7</dt>
+			<dd><span class="note">Check the checkbox: "Add Python to Path"</span> only for the version you want to be the default. For other Python installations - do not check that checkbox</dd>
+			<dd>Remember the Python Installation locations for later use</dd>
+		</dl>
+	</section>
+	<section><h3>Prerequisites</h3>
+		<p>Now, imagine the problem statement is that we have 2 projects that will have to be developed on 2 different Python versions — 3.7 and 3.8. They will have different supported library versions. Thus, our aim is to create 2 virtual environments and install the respective requirements.</p>
+		<p>Create the 2 project folders in your machine:  test_project_37 and test_project_38. We will create a virtual environment with Python 3.7 for the test_project_37 , and Python 3.8 for the other project. They have two different requirements.txt files as well. We put these two text files in the respective project folders.</p>
+	</section>
+	<section><h3>Create virtual environment</h3>
+		<p>Now let’s move to the first project folder test_project_37 and execute the following command.</p>
+		<pre><code rel="Terminal" class="bash">
+			PS C:\Users\user\Projects\test_project_37> C:\"Program Files"\Python\Python37\python.exe -m venv venv37
+		</code></pre>
+		<p> What it does is going to the location where we installed the Python 3.7 and looks for the Python interpreter (python.exe), “copies” it and creates a virtual environment folder called venv37 via the -m venv syntax. This is an important step before installing any libraries into our environment, as it boils down to which library versions the desired Python version supports.</p>
+	</section>
+	<section><h3>Activate virtual environment</h3>
+		<p>After creating virtual environment, you will see the new folder venv37 created in this project folder. There, once the virtual environment is activated, Python will store all future libraries. Next, we will activate this environment by calling the activate.ps1 file inside the Scripts folder</p>
+		<pre><code rel="Terminal" class="bash">
+			PS C:\Users\user\ML Projects\test_project_37> venv37\Scripts\activate.ps1
+		</code></pre>
+		<p>If this is done correctly, you will see the project folder address being suffixed with the virtual environment name in brackets:</p>
+		<pre><code rel="Terminal" class="bash">
+			(venv37) PS C:\Users\user\ML Projects\test_project_37>
+		</code></pre>
+		<p>We can check the version of Python by the following command. The version 3.7 must be returned:</p>
+		<pre><code rel="Terminal" class="bash">
+			(venv37) PS C:\Users\user\ML Projects\test_project_37> python -V
+			Python 3.7.11
+		</code></pre>
+	</section>
+	<section><h3>How will the `pip install` behave?</h3>
+		<p>Once we are in a virtual environment, whenever we use pip install to install any library, if we don’t specify the desired version of the library, pip will automatically install the latest version that is compatible with the python version inside the virtual environment</p>
+	</section>
+	<section><h1>Freezing the dependency versions</h1>
+		<p>Imagine we have done all the work in our local environment and want to create the requirements.txt file for others to use and install on their virtual environment, so that there is no compatibility issue. Besides telling them the python version in use (e.g., 3.7) we need to “freeze” the current package versions and export them to a text file. let’s call it requirements37.txt</p>
+		<pre><code rel="Terminal" class="bash">
+			(venv37) PS C:\Users\user\ML Projects\test_project_38> python -m pip freeze > requirements38.txt
+		</code></pre>
 	</section>
 </section>
 
