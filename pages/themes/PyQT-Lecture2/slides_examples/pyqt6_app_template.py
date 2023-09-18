@@ -1,7 +1,7 @@
 import sys
-from PyQt5 import QtWidgets as qtw
-from PyQt5 import QtCore as qtc
-from PyQt5 import QtGui as qtg
+from PyQt6 import QtWidgets as qtw
+from PyQt6 import QtCore as qtc
+from PyQt6 import QtGui as qtg
 
 class MainWindow(qtw.QWidget):
 	def __init__(self, *args, **kwargs):
@@ -17,4 +17,4 @@ if __name__ == '__main__':
 
 	window = MainWindow()
 
-	sys.exit(app.exec_())
+	sys.exit(app.exec())
