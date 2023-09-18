@@ -1,12 +1,15 @@
-from PyQt5.QtWidgets import QApplication, QWidget
+# 1. import needed QtWidgets classes
+from PyQt6.QtWidgets import QApplication, QWidget
 
-
+# 2. the main app instance for our application.
 app = QApplication([])
 
-main_window = QWidget()
-main_window.show()
+# 3. Create Qt widget, which will be our main window.
+window = QWidget()
 
-# start the event loop
-app.exec_()
+# 4. show the window
+window.show()
 
-print('App END')
+# 5. Start the event loop
+app.exec()
+
