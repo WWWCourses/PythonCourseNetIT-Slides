@@ -74,30 +74,6 @@
 
 <section data-min="5" class="main-sesction-title"><h1>Hand Code the UI of a Login Form Widget</h1></section>
 <section class="sub-sections"><h2>Hand Code the UI of a Login Form Widget</h2>
-	<section><h3>Create user input widgets</h3>
-		<dl class="fa">
-			<pre><code rel="Python" class="python">
-				# --------------------------- your code starts here -------------------------- #
-				# create user input widgets:
-				user_name_input = qtw.QLineEdit()
-				password_input = qtw.QLineEdit()
-				#
-				password_input.setEchoMode(qtw.QLineEdit.EchoMode.Password)
-				# ---------------------------- your code ends here --------------------------- #
-			</code></pre>
-			<dt>Of course, we did not see the created widgets, because they are not attached to our main window</dt>
-			<dt>We can attach them directly to out main window by passing it as parent argument to QLineEdit() constructor :</dt>
-			<pre><code rel="Python" class="python">
-				# create user input widgets:
-				user_name_input = qtw.QLineEdit(self)
-				password_input = qtw.QLineEdit(self)
-			</code></pre>
-			<dt>But we did not set the geometry of our main windows, so the result is not what we want.</dt>
-			<dt>References: </dt>
-			<dd><a href="https://doc.qt.io/qt-6/qlineedit.html">QLineEdit Class</a></dd>
-			<dd><a href="https://doc.qt.io/qt-6/qlineedit.html#echoMode-prop">EchoMode Property</a></dd>
-		</dl>
-	</section>
 	<section><h3>Window Geometry</h3>
 		<a href="./images/window_geometry.png"><img src="./images/window_geometry.png" alt="window_geometry.png"></a>
 		<dl class="fa">
