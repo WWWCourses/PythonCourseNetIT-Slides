@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>PyQT-Lecture5</title>
+	<title>PyQT-Lecture4</title>
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section class="main-sesction-title"><h1>PyQT - Lecture 5</h1></section>
+<section class="main-sesction-title"><h1>PyQT - Lecture 4</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
 		<div class="note">
@@ -171,6 +171,162 @@
 		</dl>
 	</section>
 </section>
+
+
+<section data-min="5" class="main-sesction-title"><h1>Custom signals and slots</h1></section>
+<section class="sub-sections"><h2>Custom slots</h2>
+	<section><h3>Signals and Slots Type-safety</h3>
+		<dl class="fa">
+			<dt>Unlike Python, C++ is <span class="note">a statically typed language</span>, which means that all variables and function parameters must be given a type ( string , integer , float ,...) on declaration time and any value stored in the variable or passed to that function must have a matching type.</dt>
+			<dt>Native Qt signals and slots are type-safe.</dt>
+			<dt>Consider next example: we tried to connect line_edit textChange signal to btn_change clicked signal, but an error is thrown, because textChanged emits a string, and clicked signal on button (which we want to use as a slot) emits a Boolean not string.</dt>
+			<pre><code rel="Python" class="python">
+				self.line_edit.textChanged.connect(self.btn_change.clicked)
+
+				# QObject::connect: Incompatible sender/receiver arguments
+				# QLineEdit::textChanged(QString) --> QPushButton::clicked(bool)
+				# TypeError: connect() failed between textChanged(QString) and clicked()
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Custom Slots</h3>
+		<dl class="fa">
+			<dt>Any Python callable can play the role of a slot.</dt>
+			<dt>Custom slots are called when a signal is emitted. </dt>
+			<dt>They are called with the sender object as the first argument and the signal arguments as the second and third arguments. </dt>
+			<dt>The sender object is the object that emits the signal.</dt>
+			<dt>But when the slot is a Python callable, there will be no type-error as Python is dynamically typed language</dt>
+			<dt>Of course, an error will be thrown if did not pass enough arguments to the slot (note, that if we pass more arguments than declared there will be no error, as Qt will throw them away)</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			self.line_edit.textChanged.connect(self.some_slot)
+
+			def some_slot(signal, text, x):
+				print(text, x)
+
+			# TypeError: some_slot() missing 1 required positional argument: 'x'
+		</code></pre>
+	</section>
+	<section><h3>Type-safety using slots decorators</h3>
+		<dl class="fa">
+			<dt>But QtCore contains a pyqtSlot() function, which we can use to decorate a Python callable as a slot.</dt>
+			<dt>pyqtSlot() is a decorator that takes a Python callable and returns a slot object. </dt>
+			<dt>The slot object is a wrapper around the Python callable that can be connected to a signal. </dt>
+			<dt>Using the pyqtSlot() decorator allows us to specify the type of the arguments that will be passed to the slot.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			@qtc.pyqtSlot(str)
+			def some_slot(*args):
+				for arg in args:
+					print(arg)
+		</code></pre>
+	</section>
+</section>
+<section class="sub-sections"><h2>Custom Signals</h2>
+	<section><h3>Defining Custom Signals</h3>
+		<dl class="fa">
+			<dt>Custom signals are defined using the <code>pyqtSignal()</code> function.</dt>
+			<dt>pyqtSignal() returns a signal object, which is is a wrapper around the Python callable that can be connected to a slot. </dt>
+			<dt>Custom signals are defined as class attributes.</dt>
+			<dt>Custom signals have the emit()method, which is used to emit the signal.</dt>
+			<dt>Reference:</dt>
+			<dd><a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html#defining-new-signals-with-pyqtsignal">Defining New Signals with pyqtSignal</a></dd>
+			<dd><a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html#emit">emit</a></dd>
+		</dl>
+		<pre><code rel="Python" class="python">
+			# cretate custom signal which will cary a string data type data:
+			sig_submit = qtc.pyqtSignal(str)
+
+			@qtc.pyqtSlot(bool)
+			def onSubmit(self):
+				self.sig_submit.emit(self.edit.text())
+				self.close()
+		</code></pre>
+	</section>
+</section>
+
+<section data-min="50" class="main-sesction-title"><h1>Sharing data between widgets using custom signals and slots</h1></section>
+<section class="sub-sections"><h2>Sharing data between widgets using custom signals and slots</h2>
+	<section>
+		<dl class="fa">
+			<dt>At its core, the signals and slots mechanism can be seen as a way for any two objects in an application to communicate while remaining <a href="https://en.wikipedia.org/wiki/Loose_coupling#:~:text=In%20computing%20and%20systems%20design,the%20opposite%20of%20tight%20coupling.">loosely coupled</a></dt>
+		</dl>
+	</section>
+	<section><h3>Why?</h3>
+		<dl class="fa">
+			<dt>Suppose you have a program that pops up a form window.</dt>
+			<dt>When the user finish filling the form and submits it, we need to get the entered data back to the main application class for processing.</dt>
+			<dt>There are a few ways we could approach this. One is the main application to watch for click events on the pop-up window's Submit button, then grab the data from its fields before destroying the dialog </dt>
+			<dt> But that approach requires the main form to know all about the pop-up dialog's widgets and any refactoring of the popup would risk breaking code in the main application.</dt>
+		</dl>
+	</section>
+	<section><h3>Demo: tightly-coupled approach</h3>
+		<p>Note that MainWindow must know form's implementation</p>
+		<script src="https://gist.github.com/WWWCourses/85a71a944860e9b37f2b40a9f6ed8a7c.js"></script>
+	</section>
+	<section><h3>Demo: loosly-coupled approach</h3>
+		<p>Note that MainWindow don't care about form's implementation, it just pass and receive data</p>
+		<script src="https://gist.github.com/WWWCourses/4f5763c425ac129a9e232cfd11adb448.js"></script>
+	</section>
+</section>
+
+<section data-min="5" class="main-sesction-title"><h1>Hands on: Using MySQL With PyQt5 Widgets</h1></section>
+<section class="sub-sections"><h2>Hands on LoginForm: Using MySQL With PyQt5 Widgets</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>When we need our Qt app to work with database, we can use:</dt>
+			<dd>Python's <a href="https://peps.python.org/pep-0249/#introduction">DB-API</a> compliant modules, like <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector</a> - this is a kind of universal approach which works on any Python app.</dd>
+			<dd>Qt's SQL API, which is the preferred way for PyQt applications, especially when we use the Qt's model/view architecture (discussed later in these course). But note that to use MySQL with Qt SQL API you must <a href="https://doc.qt.io/qt-6/sql-driver.html#how-to-build-the-qmysql-plugin-on-windows">build QMYSQL Plugin yourself</a></dd>
+			<dt>In next examples, we will use the Python's <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector</a>, but later in the course we will discuss the Qt's approach. </dt>
+		</dl>
+	</section>
+	<section><h3>Create <code>users</code> table</h3>
+		<pre><code rel="SQL" class="sql" style="min-height: 62vh;">
+			DROP TABLE IF EXISTS `users`;
+			/*!40101 SET @saved_cs_client     = @@character_set_client */;
+			/*!40101 SET character_set_client = utf8 */;
+			CREATE TABLE `users` (
+				`id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'primary key',
+				`username` varchar(50) NOT NULL,
+				`email` varchar(20) NOT NULL,
+				`password` varchar(45) NOT NULL,
+				PRIMARY KEY (`id`),
+				UNIQUE KEY `email` (`email`)
+			) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+			/*!40101 SET character_set_client = @saved_cs_client */;
+		</code></pre>
+	</section>
+	<section><h3>Insert some data</h3>
+		<pre><code rel="SQL" class="sql">
+			INSERT INTO `users` VALUES
+				(1,'Maria','maria@gmail.com','maria123'),
+				(2,'Pesho','peho@gmail.com','pesho123'),
+				(3,'Ivan','ivan@gmail.com','ivan123');
+		</code></pre>
+	</section>
+	<section><h3>Registration Form demo - CLI, no PyQt</h3>
+		<script src="https://gist.github.com/WWWCourses/d1766798e16467af3c6619a28c776b82.js"></script>
+	</section>
+	<section><h3>References</h3>
+		<dl class="fa">
+			<dt><a href="https://wwwcourses.github.io/PythonCourseNetIT-Slides/pages/themes/DBMS-Lecture4_part2/DBMS-Lecture4_part2.html#/5/1">MySQL and Python</a></dt>
+			<dt><a href="https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-select.html">Querying Data Using Connector/Python</a></dt>
+			<dt><a href="https://wwwcourses.github.io/PythonCourseNetIT-Slides/pages/themes/DBMS-Lecture4/DBMS-Lecture4.html#/20">Basic Data Manipulation Statements</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="50" class="main-sesction-title"><h1>Exercises</h1></section>
+<section class="sub-sections"><h2>Exercises</h2>
+	<section id="LoginFormTask"><h3>Login Form Task</h3>
+		<dl class="fa">
+			<dt>Create a simple Login Form which function as shown in gif bellow (click on the image to see it high-resolution in new tab):</dt>
+			<dt>Use the data in your MySQL server </dt>
+		</dl>
+		<a href="./Tasks_and_HW/LoginFormTask.gif" style="display: block;"><img src="./Tasks_and_HW/LoginFormTask.gif" alt="LoginFormTask.gif" title="click for bigger image..." style="max-height: 60vh;"></a>
+	</section>
+</section>
+
 
 
 <section data-min="5" class="main-sesction-title"><h1>Add GUI feature to your app as separate git branch (extra topic)</h1></section>

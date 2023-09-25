@@ -1,4 +1,23 @@
-a = 1
-b = 3
-c = 2
-print(a,b,c)
+import sys
+from PyQt6 import QtWidgets as qtw
+from PyQt6 import QtCore as qtc
+from PyQt6 import QtGui as qtg
+
+
+class MainWindow(qtw.QWidget):
+
+	def __init__(self , *args, **kwargs):
+		super().__init__(*args, **kwargs)
+
+		self.setWindowTitle('Test')
+
+		self.show();
+
+
+
+if __name__ == '__main__':
+	app = qtw.QApplication(sys.argv);
+
+	window = MainWindow()
+
+	sys.exit(app.exec())
