@@ -667,6 +667,198 @@
 	</section>
 </section>
 
+
+
+<section class="main-sesction-title"><h1>First-class functions in Python</h1></section>
+<section class="sub-sections"><h2>First-class functions in Python</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt class="note">Functions in Python are First-class function, i.e:</dt>
+			<dd>a function can be assigned to variable, or stored in other data structure (like list of functions)</dd>
+			<dd>a function can be passed as argument to another function</dd>
+			<dd>a function can be returned as value from another function</dd>
+			<dt class="note">Functions in Python are objects! Just like integers, strings, lists, ...</dt>
+		</dl>
+	</section>
+	<section><h3>Example - a function can be assigned to variable</h3>
+		<pre><code rel="Python" class="python">
+			def greet(name):
+				print("Hello, {}".format(name))
+
+			#a function can be assigned to variable:
+			foo = greet
+			greet("Maria")
+			foo("Pesho")
+
+			#OUTPUT
+			# Hello, Maria
+			# Hello, Pesho
+		</code></pre>
+	</section>
+	<section><h3>Example - a function can be passed as argument to another function</h3>
+		<pre><code rel="Python" class="python">
+			def greet(name):
+				print("Hello, {}".format(name))
+
+			# a function can be passed as argument to another function
+			def wrapper(f, n):
+				f(n)
+
+			wrapper(greet, "Alex")
+
+			#OUTPUT
+			# Hello, Alex
+		</code></pre>
+	</section>
+	<section><h3>Example - a function can be returned as value from another function</h3>
+		<pre><code rel="Python" class="python">
+			#a function can be returned as value from another function
+			def greet_wrapper(name):
+				def wrapper():
+					print("Hello, {}".format(name))
+
+				return wrapper
+
+			greet = greet_wrapper("Viktor")
+			greet()
+		</code></pre>
+	</section>
+</section>
+
+
+<section class="main-sesction-title"><h1>Lambda expressions</h1></section>
+<section class="sub-sections"><h2>Lambda expressions</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>Lambda expressions in Python are used to create short (one-line), anonymous functions.</dt>
+			<dt>Lambda expressions creates a function	that does	not	use	<code>def</code>	and <code>return</code>.</dt>
+			<dt>The "body" of lambda can contain only single expression.</dt>
+			<dt>They are generally	used	with	reduce(	),	filter(	),	and	maps() - as discussed further, or as arguments to other functions - typical for Functional Programming paradigm.</dt>
+		</dl>
+	</section>
+	<section><h3>Syntax</h3>
+		<p>Lambda functions are defined by:</p>
+		<pre><code rel="Python" class="python">
+			lambda	parameter_list: expression
+		</code></pre>
+		<p>which is equivalent to </p>
+		<pre><code rel="Python" class="python">
+			def some_func(arguments):
+				return expression
+		</code></pre>
+		<p>but without a name</p>
+	</section>
+	<section><h3>simple example</h3>
+		<p style="font-size: .8em">Note, that in bellow examples, lambda functions are assigned to variables, just to demonstrate the lambda syntax in simplest context. <span class="note">This is not Pythonic - lambdas should be used as anonymous functions</span>. And we will see real lambda usage in next slides.</p>
+		<pre><code rel="Python" class="python">
+			add = lambda x,y:x+y
+			print( add(2,3) )
+
+			maxnum = lambda x,y: x if x>y else y
+			print( maxnum(30,40) )
+		</code></pre>
+	</section>
+</section>
+
+
+<section class="main-sesction-title"><h1>The <code>filter()</code> Function</h1></section>
+<section class="sub-sections"><h2>The <code>filter()</code> Function</h2>
+	<section><h3>Syntax</h3>
+		<pre><code rel="Syntax" class="shell" data-noescape>
+			filter(<em>function</em>, <em>iterable</em>)
+		</code></pre>
+		<dl class="fa">
+			<dt><em>function</em> - a function definition. Note, that you must not call the function!</dt>
+			<dt><em>iterable</em> - a sequence (list, tupple, range or string) or container which supports iteration, or an iterator.</dt>
+			<dt><em>Function</em> should return a Boolean value. It is called for each item in the sequence and if it returns False, the item will be filtered</dt>
+		</dl>
+	</section>
+	<section><h3>Example: List of even numbers - without lambda</h3>
+		<pre><code rel="Python" class="python">
+			def is_even(x):
+			  return True if x!=0 and x%2==0 else False
+
+			even_numbers = filter(is_even, range(10))
+
+			print( list(even_numbers) )
+
+			# [2, 4, 6, 8]
+		</code></pre>
+	</section>
+	<section><h3>Example: List of even numbers - with lambda</h3>
+		<pre><code rel="Python" class="python">
+			even_numbers = filter(lambda x: x%2==0 if x!=0 else False, range(10))
+
+			print( list(even_numbers) )
+		</code></pre>
+	</section>
+	<section><h3>Example: filter empty strings - with lambda</h3>
+		<pre><code rel="Python" class="python">
+			names = ["Ivan", "", "Alex", "", "Maria", "Angel", ""]
+			not_empty_names = filter(lambda s: s, names)
+
+			print( list(not_empty_names) )
+		</code></pre>
+	</section>
+	<section><h3>Example: Names, starting with 'A' - with lambda</h3>
+		<pre><code rel="Python" class="python">
+			names = ["Ivan", "Alex", "Maria", "Angel", ""]
+			filtered_names = filter(lambda s: s and s[0]=="A", names)
+
+			print( list(filtered_names) )
+		</code></pre>
+	</section>
+</section>
+
+<section class="main-sesction-title"><h1>The <code>map()</code> Function</h1></section>
+<section class="sub-sections"><h2>The <code>map()</code> Function</h2>
+	<section><h3>Syntax</h3>
+		<pre><code rel="Syntax" class="shell" data-noescape>
+			map(<em>function</em>, <em>iterable</em>, ...)
+		</code></pre>
+		<dl class="fa">
+			<dt><em>function</em> - a function definition. Note, that you must not call the function!</dt>
+			<dt><em>iterable</em> - a sequence (list, tupple, range or string) or container which supports iteration, or an iterator. <span>Note, that you can pass multiple <em>iterables</em></span>!</dt>
+			<dt>map() applies the function to all the elements of the <em>iterable</em>. And returns a new <em>iterable</em> with the elements changed by the <em>function</em>.</dt>
+		</dl>
+	</section>
+	<section><h3>Example: numbers => squared numbers</h3>
+		<p>map numbers in a list to a list of squared numbers:</p>
+		<pre><code rel="Python" class="python">
+			numbers = [1,2,3,4,5]
+
+			sqr_numbers = map(lambda x:x**2, numbers)
+
+			print( list(sqr_numbers) )
+
+			#[1, 4, 9, 16, 25]
+		</code></pre>
+	</section>
+	<section><h3>Example: Generate all uppercase cyrillic letters by their UTF codes</h3>
+		<pre><code rel="Python" class="python">
+			letters = map(chr, range(1040, 1072))
+			print( list(letters) )
+
+			#['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я']
+		</code></pre>
+	</section>
+	<section><h3>Example: feed map() with multiple iterables</h3>
+		<dl class="fa">
+			<dt>If we pass to map N iterables, then it will feed the <em>function</em> with N arguments, each from the respective iterable.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			l1 = [1,2,3]
+			l2 = [1,2,3]
+
+			l_sum = map(lambda a,b: a+b, l1, l2)
+			print( list(l_sum) )
+
+			# [2, 4, 6]
+		</code></pre>
+	</section>
+</section>
+
+
 <section class="main-sesction-title"><h1>References</h1></section>
 <section class="sub-sections"><h2>Videos</h2>
 	<section><h3>Python tutorial #7: Python Namespaces and Scope</h3>
