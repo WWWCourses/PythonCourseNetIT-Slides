@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>PyQT-Lecture6</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture7" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section class="main-sesction-title"><h1>PyQT - Lecture 6</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+<section data-min="5" class="main-sesction-title"><h1>Create applications with QMainWindow</h1></section>
+<section class="sub-sections"><h2>Create applications with QMainWindow</h2>
+	<section><h3>Get familiar with MainWindow</h3>
+		<dl class="fa">
+			<dt>Qt has QMainWindow and its related classes for main window management.</dt>
+			<dt>QMainWindow has its own layout to which you can add QToolBars, QDockWidgets, a QMenuBar, and a QStatusBar. </dt>
+			<dt>The Main Window of an application is created as instance of <a href="https://doc.qt.io/qt-6/qmainwindow.html">QMainWindow Class</a></dt>
+			<dt>Main windows have either a single (SDI) or multiple (MDI) Document Interface.</dt>
+			<dd>You can create MDI applications by using a <a href="https://doc.qt.io/qt-6/qmdiarea.html">QMdiArea</a> as the central widget.</dd>
+		</dl><br>
+		<a href="./images/mainwindowlayout.png"><img src="./images/mainwindowlayout.png" alt="./images/mainwindowlayout.png" style="height: 70vh;"></a>
+	</section>
+	<section><h3>MainWindow Central Widget</h3>
+		<dl class="fa">
+			<dt>A central widget will typically be a standard Qt widget such as a QTextEdit</dt>
+			<dt>Custom widgets can also be used for advanced applications</dt>
+			<dt>You set the central widget with setCentralWidget().</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			self.textedit = qtw.QTextEdit()
+			self.setCentralWidget(self.textedit)
+		</code></pre>
+	</section>
+	<section><h3>MenuBar</h3>
+		<dl class="fa">
+			<dt>A menu bar consists of a list of pull-down menu items</dt>
+			<dt>QMainWindow provides an empty <a href="https://doc-snapshots.qt.io/qt6-dev/qmenubar.html">QMenuBar</a> object by default.</dt>
+			<dt>To get access to this menu bar, you need to call .menuBar() on your QMainWindow object.</dt>
+			<dt>You add menu items with addMenu()</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			# get the menu bar
+			menubar = self.menuBar()
+
+			# add menu items
+			file_menu = menubar.addMenu('File')
+			edit_menu = menubar.addMenu('Edit')
+			help_menu = menubar.addMenu('Help')
+		</code></pre>
+		<dl class="fa">
+			<dt>The ampersand in the menu item's text sets Alt+Symbol as a shortcut for this menu.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			# add menu items
+			file_menu = menubar.addMenu('&File')
+			edit_menu = menubar.addMenu('&Edit')
+			help_menu = menubar.addMenu('&Help')
+		</code></pre>
+	</section>
+	<section><h3>ToolBar</h3>
+		<dl class="fa">
+			<dt>The <a href="https://doc.qt.io/qt-6/qtoolbar.html">QToolBar</a> class provides a movable panel that contains a set of controls.</dt>
+			<dt>You add toolbars to a MainWindow with addToolBar()</dt>
+			<dt>To add some toolbar buttons you can use PyQt actions, which are instances of QAction (discussed later)</dt>
+		</dl>
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
+			toolbar = self.addToolBar('File')
+
+			toolbar.setMovable(False)
+			toolbar.setFloatable(False)
+
+			# for Qt6:
+			toolbar.setAllowedAreas(
+				qtc.Qt.ToolBarArea.TopToolBarArea |
+				qtc.Qt.ToolBarArea.BottomToolBarArea
+			)
+
+			# for Qt5:
+			# toolbar.setAllowedAreas(
+			#	qtc.Qt.TopToolBarArea |
+			#	qtc.Qt.BottomToolBarArea
+			# )
+		</code></pre>
+
+	</section>
+	<section><h3>Menu Items and ToolBar Actions</h3>
+		<dl class="fa">
+			<dt>In applications many common commands can be invoked via menus, toolbar buttons, and keyboard shortcuts</dt>
+			<dt> Since the user expects each command to be performed in the same way, regardless of the user interface used, it is useful to represent each command as an action.</dt>
+			<dt class="note">Actions can be added to menus and toolbars, and will automatically keep them in sync</dt>
+			<dt>Actions can be created as independent <a href="https://doc.qt.io/qt-6/qaction.html">QAction</a> objects, but they may also be created during the construction of menus, as shown bellow.</dt>
+			<dt>A QAction may contain an icon, menu text, a shortcut, status text, "What's This?" text, and a tooltip.</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			# add actions
+			open_action = file_menu.addAction('Open')
+			save_action = file_menu.addAction('Save')
+
+			# add separator
+			file_menu.addSeparator()
+
+			quit_action = file_menu.addAction('Quit', self.close)
+			undo_action = edit_menu.addAction('Undo', self.textedit.undo)
+
+			# create a QAction manually
+			redo_action = qtg.QAction('Redo', self)
+			redo_action.triggered.connect(self.textedit.redo)
+
+			# Actions, which opens custom dialog
+			edit_menu.addAction(redo_action)
+			edit_menu.addAction('Set Font…', self.set_font)
+			edit_menu.addAction('Settings…', self.show_settings)
+
+		</code></pre>
+	</section>
+	<section><h3>Custom ToolBar Actions</h3>
+		<dl class="fa">
+			<dt>We can create a custom QAction, as well</dt>
+			<dt>And we can use a <a href="https://doc.qt.io/qt-6/qstyle.html#StandardPixmap-enum">standard pixmap</a> for icon</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			self.help_action = qtg.QAction(
+				self.style().standardIcon(qtw.QStyle.StandardPixmap.SP_DialogHelpButton),
+				'Help',
+				self  # important to pass the parent!
+			)
+
+			# add signal
+			self.help_action.triggered.connect(lambda : qtw.QMessageBox.information(self,'Not Implemented','Sorry, no help yet!'))
+
+			toolbar.addAction(help_action)
+		</code></pre>
+	</section>
+	<section><h3>Dock Widgets</h3>
+		<dl class="fa">
+			<dt>A <a href="https://doc-snapshots.qt.io/qt6-dev/qdockwidget.html">QDockWidget</a> is a window that can be docked into the main window</dt>
+			<dt>You add dock widgets to a main window with addDockWidget()</dt>
+			<dt>A QDockWidget consists of a title bar and the content area. The title bar displays the dock widgets window title, a float button and a close button (depending on the DockWidget state)</dt>
+			<dt>There are four dock widget areas as given by the Qt::DockWidgetArea enum: left, right, top, and bottom</dt>
+		</dl>
+		<pre><code rel="Python" class="python" style="min-height: 52vh;">
+			dock = qtw.QDockWidget("Replace")
+			self.addDockWidget(qtc.Qt.LeftDockWidgetArea, dock)
+
+			# set dock widget to move and float (but not closeable)
+			dock.setFeatures(
+				# for pyqt6
+				qtw.QDockWidget.DockWidgetFeature.DockWidgetMovable |
+				qtw.QDockWidget.DockWidgetFeature.DockWidgetFloatable
+
+				# for pyqt5
+				# qtw.QDockWidget.DockWidgetMovable |
+				# qtw.QDockWidget.DockWidgetFloatable
+			)
+		</code></pre>
+	</section>
+	<section><h3>Add widgets to Dock Widget</h3>
+		<dl class="fa">
+			<dt>A QDockWidget acts as a wrapper for its child widget, set with setWidget().</dt>
+		</dl>
+		<pre><code rel="Python" class="python" style="min-height: 75vh;">
+			replace_widget = qtw.QWidget()
+			replace_widget.setLayout(qtw.QVBoxLayout())
+
+			self.search_text_input = qtw.QLineEdit()
+			self.search_text_input.setPlaceholderText('search')
+			self.replace_text_input = qtw.QLineEdit()
+			self.replace_text_input.setPlaceholderText('replace')
+
+			search_and_replace_btn = qtw.QPushButton(
+				"Search and Replace",
+				)
+			search_and_replace_btn.clicked.connect(self.search_and_replace)
+
+			replace_widget.layout().addWidget(self.search_text_input)
+			replace_widget.layout().addWidget(self.replace_text_input)
+			replace_widget.layout().addWidget(search_and_replace_btn)
+			replace_widget.layout().addStretch()
+
+			dock.setWidget(replace_widget)
+		</code></pre>
+	</section>
+	<section><h3>The Status Bar</h3>
+		<dl class="fa">
+		<dt><a href="https://doc.qt.io/qt-6/qstatusbar.html">QStatusBar</a> is a widget (displayed as horizontal bar) that is used to display status information.</dt>
+			<dt>Each status indicator falls into one of three categories:</dt>
+			<dd><span class="note">Temporary</span> - briefly occupies most of the status bar. Used to explain tool tip texts or menu entries, for example.</dd>
+			<dd><span class="note">Normal</span> - occupies part of the status bar and may be hidden by temporary messages. Used to display the page and line number in a word processor, for example.</dd>
+			<dd><span class="note">Permanent</span> - is never hidden. Used for important mode indications, for example, some applications put a Caps Lock indicator in the status bar.</dd>
+		</dl>
+	</section>
+	<section><h3>Create Temporary status messages</h3>
+		<dl class="fa">
+			<dt>the showMessage() slot is used to display a temporary message:</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			# create status bar widget and atach it to main window:
+			self.status_bar = qtw.QStatusBar()
+			self.setStatusBar(self.status_bar)
+
+			# show temporary message for 3 second:
+			self.status_bar.showMessage('Welcome to My Text Editor',3000)
+		</code></pre>
+	</section>
+	<section><h3>Adding Permanent Message to StatusBar</h3>
+		<dl class="fa">
+			<dt>Adds the given widget permanently to this status bar</dt>
+		</dl>
+		<pre><code rel="Python" class="python">
+			charcount_label = qtw.QLabel("chars: 0")
+			self.textedit.textChanged.connect(
+				lambda: charcount_label.setText( "chars: " + str(len(self.textedit.toPlainText())) )
+			)
+			self.status_bar.addPermanentWidget(charcount_label)
+		</code></pre>
+	</section>
+</section>
+
+<section data-min="10" class="main-sesction-title"><h1>Adding images and icons</h1></section>
+<section class="sub-sections"><h2>Adding images and icons</h2>
+	<section><h3>Adding images</h3>
+		<dl class="fa">
+			<dt>Qt provides four classes for handling image data: QImage, QPixmap, QBitmap and QPicture, where <span class="note">QPixmap is designed and optimized for showing images on screen</span></dt>
+			<dt>To add an image, first we must load the image using <a href="https://doc.qt.io/qt-6/qpixmap.html">QPixmap</a></dt>
+			<dt>A QPixmap can easily be displayed on the screen using QLabel or one of QAbstractButton's subclasses (such as QPushButton and QToolButton). QLabel has a pixmap property, whereas QAbstractButton has an icon property.</dt>
+			<dt>Optionally, we may want to resize the label according to the image dimensions.</dt>
+		</dl>
+	</section>
+	<section><h3>Example</h3>
+		<script src="https://gist.github.com/WWWCourses/b6f5c4f8992cc34ab3bb8f799ef38f9d.js"></script>
+	</section>
+	<section><h3>Set App Icon</h3>
+		<dl class="fa">
+			<dt>The setWindowIcon() method allows you to set the application icon. To do this, we created a QIcon object, from any downloaded icon image.</dt>
+			<pre><code rel="Python" class="python" style="min-height:80vh;">
+				import sys
+				from PyQt6 import QtWidgets as qtw
+				from PyQt6 import QtCore as qtc
+				from PyQt6 import QtGui as qtg
+
+
+				class MainWindow(qtw.QWidget):
+
+					def __init__(self , *args, **kwargs):
+						super().__init__(*args, **kwargs)
+
+						self.setWindowTitle('Icon Demo')
+						self.setWindowIcon(qtg.QIcon('./icons/calculator.png'))
+
+						self.show();
+
+
+
+				if __name__ == '__main__':
+					app = qtw.QApplication(sys.argv);
+
+					window = MainWindow()
+
+					sys.exit(app.exec())
+
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Qt Standard Icons</h3>
+		<dl class="fa">
+			<dt>Qt ships with a set of standard icons for common actions. </dt>
+			<dt>The icons are all accessible through the current active application style -- available as a series of flags, which can be passed to .standardIcon to get the icon.</dt>
+			<dt>The following script can be used to display all the built-in icons.</dt>
+			<pre><code rel="Python" class="python" style="min-height:80vh;">
+				import sys
+
+				from PyQt6.QtWidgets import (QApplication, QGridLayout, QPushButton, QStyle, QWidget)
+
+
+				class Window(QWidget):
+					def __init__(self):
+						super(Window, self).__init__()
+
+						icons = sorted([attr for attr in dir(QStyle.StandardPixmap) if attr.startswith("SP_")])
+						layout = QGridLayout()
+
+						for n, name in enumerate(icons):
+							btn = QPushButton(name)
+
+							pixmapi = getattr(QStyle.StandardPixmap, name)
+							icon = self.style().standardIcon(pixmapi)
+							btn.setIcon(icon)
+							layout.addWidget(btn, int(n/4), int(n%4))
+
+						self.setLayout(layout)
+
+
+				app = QApplication(sys.argv)
+
+				w = Window()
+				w.show()
+
+				app.exec()
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Set Widget's Icon - Example</h3>
+		<pre><code rel="Python" class="python" style="min-height:95vh;">
+			import sys
+			from PyQt6 import QtWidgets as qtw
+			from PyQt6 import QtCore as qtc
+			from PyQt6 import QtGui as qtg
+
+
+			class MainWindow(qtw.QWidget):
+
+				def __init__(self , *args, **kwargs):
+					super().__init__(*args, **kwargs)
+
+					self.setWindowTitle('Icons Demo')
+
+					### use standard icon:
+					standardIcon = self.style().standardIcon(getattr(qtw.QStyle.StandardPixmap,'SP_DialogYesButton'))
+					self.btnStandardIcon = qtw.QPushButton('btnStandardIcon')
+					self.btnStandardIcon.setIcon(standardIcon)
+
+					### use icon from theme:
+					# https://specifications.freedesktop.org/icon-naming-spec/latest/ar01s04.html
+					themeIcon = qtg.QIcon.fromTheme("accessories-calculator")
+					self.btnThemeIcon = qtw.QPushButton('btnThemeIcon')
+					self.btnThemeIcon.setIcon(themeIcon)
+
+					### use custom icon:
+					customIcon = qtg.QIcon('./icons/submit_icon.png')
+					self.btnCustomIcon = qtw.QPushButton('btnCustomIcon')
+					self.btnCustomIcon.setIcon(customIcon)
+
+					mainLayout = qtw.QVBoxLayout(self)
+					mainLayout.addWidget(self.btnCustomIcon)
+					mainLayout.addWidget(self.btnStandardIcon)
+					mainLayout.addWidget(self.btnThemeIcon)
+
+
+
+
+			if __name__ == '__main__':
+				app = qtw.QApplication(sys.argv);
+
+				window = MainWindow()
+
+				window.show()
+
+				sys.exit(app.exec())
+
+		</code></pre>
+	</section>
+</section>
+
+<section data-min="5" class="main-sesction-title"><h1>Style Widgets with Style Sheets</h1></section>
+<section class="sub-sections"><h2>Style Widgets with Style Sheets</h2>
+	<section><h3>What is CSS</h3>
+		<dl class="fa">
+			<dt>CSS = Cascading Style Sheets</dt>
+			<dt>CSS is a rule-based language for specifying <span class="note">how</span> documents are presented to users, how they are styled, laid out, etc.</dt>
+			<dt>CSS is developed for styling Web Pages, but PyQt also uses basic CSS rules </dt>
+		</dl>
+	</section>
+	<section><h3>A Style Sheet Rule Syntax</h3>
+		<a href="./images/CSS_syntax_image.png"><img src="./images/CSS_syntax_image.png" alt="CSS_syntax_image"></a>
+		<dl class="fa">
+			<dt><span class="note">selector</span>: a pattern which select the elements to which the style will be applied.</dt>
+			<dt><span class="note">declaration</span>: consists of a <span class="note">property</span> and <span class="note">value</span>, which describes a characteristic (like color, font-size), an aspect of how the element should be displayed.</dt>
+			<dt>Reference: </dt>
+			<dd><a href="https://doc.qt.io/qt-6/stylesheet-syntax.html">The Style Sheet Syntax @qt.io</a></dd>
+			<dd><a href="https://www.w3schools.com/css/">CSS Tutorial @w3schools</a></dd>
+
+		</dl>
+	</section>
+	<section><h3>Apply Style Sheets in PyQt</h3>
+		<dl class="fa">
+			<dt>Qt Style Sheets support various properties, pseudo-states, and subcontrols that make it possible to customize the look of widgets.</dt>
+			<dt>StyleSheets can be written as string, or read by a separate <code>css</code> file and used as needed</dt>
+			<dt>A style sheet can be applyied to widget by <a href="https://doc.qt.io/qt-6/qwidget.html#styleSheet-prop">setStyleSheet setter</a></dt>
+		</dl>
+		<pre><code rel="qWidget.css" class="css">
+			QWidget {
+				border: 20px solid black;
+				border-radius: 10px;
+				background-color: rgb(255, 255, 255);
+			}
+		</code></pre>
+		<pre><code rel="myGUIapp.py" class="python">
+			with open("qWidget.css", 'r') as fh:
+				sheet = fh.read()
+
+			widgetInstance.setStyleSheet(sheet)
+		</code></pre>
+	</section>
+	<section><h3>Example: selector types</h3>
+		<pre><code rel="Python" class="python">
+			self.btnSubmit = qtw.QPushButton('Submit')
+			self.btnSubmit.setObjectName('btnSubmit')
+			self.btnCancel = qtw.QPushButton('Cancel')
+		</code></pre>
+		<pre><code rel="Style Sheet" class="css">
+			/* apply red background-color to all QPushButton */
+			QPushButton{
+				background-color:red;
+			}
+			/* apply green background-color only to QPushButton with object name 'btnSubmit' */
+			QPushButton#btnSubmit{
+				background-color:green;
+			}
+		</code></pre>
+		<dl class="fa">
+			<dt>Reference: <a href="https://doc.qt.io/QT-6/stylesheet-syntax.html#selector-types">Selector Types</a></dt>
+		</dl>
+	</section>
+	<section><h3>Pseudo State Selectors</h3>
+		<dl class="fa">
+			<dt>A widget can be in various pseudo-states, like hover, checked, and we can select it by it state</dt>
+			<dt>Reference: <a href="https://doc.qt.io/qt-6/stylesheet-syntax.html#pseudo-states">Pseudo-States Selectors</a></dt>
+		</dl>
+		<pre><code rel="Style Sheet" class="css">
+			/* apply red background-color to all QPushButton */
+			QPushButton{
+				background-color:red;
+			}
+			/* apply blue background-color to buttons which are hovered */
+			QPushButton:hover{
+				background-color:blue;
+			}
+
+		</code></pre>
+	</section>
+	<section><h3>Apply style to only one widget</h3>
+		<dl class="fa">
+			<dt>We can select only one widget if we have given it an object name with <code>setObjectName()</code> method, as we saw before.</dt>
+			<dt>But we can also apply one or more declarations only to one widget, with <code>setStyleSheet()</code></dt>
+			<dd>In these case, we do not need to put a  selector{}, but just declarations, separated by ';'</dd>
+		</dl>
+		<pre><code rel="Python" class="python">
+			self.btnCancel = qtw.QPushButton('Cancel')
+			self.btnCancel.setStyleSheet("""
+				background-color:gray;
+				padding:10px;
+			""")
+		</code></pre>
+	</section>
+	<section><h3>Qt Style Sheet Reference</h3>
+		<dl class="fa">
+			<dt><a href="https://doc.qt.io/QT-6/stylesheet-syntax.html#selector-types">Selector Types</a></dt>
+			<dt><a href="https://doc.qt.io/qt-6/stylesheet-reference.html#list-of-stylable-widgets">List of Stylable Widgets</a></dt>
+			<dt><a href="https://doc.qt.io/qt-6/stylesheet-reference.html#list-of-properties">List of Properties</a></dt>
+			<dt><a href="https://doc.qt.io/qt-6/stylesheet-reference.html#list-of-pseudo-states">List of Pseudo-States
+			</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+
+<section data-min="5" class="main-sesction-title"><h1>Slides Code Example</h1></section>
+<section class="sub-sections"><h2>Slides Code Example</h2>
+	<section>
+		<p>The whole code for the 'Simple Text Editor App', used in these slides:</p>
+		<script src="https://gist.github.com/WWWCourses/822a721b044856d6fe5ac047390f7097.js"></script>
+	</section>
+</section>
+
+
+<section class="disclaimer end-slide"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
