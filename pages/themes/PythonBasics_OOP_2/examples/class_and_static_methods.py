@@ -1,10 +1,11 @@
 class Person():
   count = 0
 
-  @classmethod
-  def increment_counter(cls):
-    cls.count += 1
-    print("count:",cls.count )
+  # @classmethod
+  # def increment_counter(cls):
+  #   print(f'cls:{cls}')
+  #   cls.count += 1
+  #   print("count:",cls.count )
 
   @staticmethod
   def validate_age(age):
@@ -12,6 +13,9 @@ class Person():
       raise ValueError("Invalid age value")
     else:
       return True
+
+  def increment_counter(self):
+    print(f'self:{self}')
 
   def __init__(self, name, age):
     self.name = name
@@ -28,10 +32,12 @@ class Person():
 
 
 maria = Person("Maria", 20)
-pesho = Person("Pesho", 300)
+pesho = Person("Pesho", 30)
 
 print(maria)
 print(pesho)
+
+# print(Person.count)
 
 # obviously, we would not want that. So, be careful with class methods!
 maria.increment_counter()
