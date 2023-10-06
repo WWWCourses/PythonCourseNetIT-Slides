@@ -20,6 +20,7 @@ class MainWindow(qtw.QMainWindow):
 
 		self.set_style()
 		self.setWindowTitle('My Simple Text Editor')
+		self.setWindowIcon(qtg.QIcon('./icons/text_editor_icon.png'))
 		self.resize(800, 600)
 		self.show()
 
@@ -28,6 +29,7 @@ class MainWindow(qtw.QMainWindow):
 		menubar = self.menuBar()
 		file_menu = menubar.addMenu('&File')
 		file_menu.addAction(self.openAction)
+		file_menu.addAction(self.saveAction)
 
 		edit_menu = menubar.addMenu('&Edit')
 
@@ -37,6 +39,7 @@ class MainWindow(qtw.QMainWindow):
 	def create_toolbar(self):
 		toolbar = self.addToolBar('File')
 		toolbar.addAction(self.openAction)
+		toolbar.addAction(self.saveAction)
 		toolbar.addAction(self.about_action)
 
 		toolbar.setMovable(True)
@@ -91,12 +94,19 @@ class MainWindow(qtw.QMainWindow):
 		self.status_bar.addPermanentWidget(charcount_label)
 
 	def create_actions(self):
-		self.openAction = qtg.QAction("&Open...", self)
+		self.openAction = qtg.QAction(
+			self.style().standardIcon(qtw.QStyle.StandardPixmap.SP_DialogOpenButton),
+			"&Open...",
+			self)
 		self.openAction.triggered.connect(self.open_new_file)
 
-		self.saveAction = qtg.QAction("&Save", self)
+		self.saveAction = qtg.QAction(
+			self.style().standardIcon(qtw.QStyle.StandardPixmap.SP_DialogSaveButton),
+			"&Save",
+			self)
 		self.saveAction.setShortcut("Ctrl+S")
 		self.saveAction.setStatusTip("Save your changes")
+		self.saveAction.triggered.connect(self.save_file)
 
 		self.exitAction = qtg.QAction("&Exit", self)
 
@@ -121,6 +131,16 @@ class MainWindow(qtw.QMainWindow):
 				self.setWindowTitle(self.file_path)
 				self.textedit.setText(file_contents)
 
+	@qtc.pyqtSlot()
+	def save_file(self):
+		self.file_path, _ = qtw.QFileDialog.getSaveFileName(self, "Save as","", "All files (*)")
+		if self.file_path:
+			with open(self.file_path, "w") as f:
+				content = self.textedit.toPlainText()
+				f.write(content)
+				self.setWindowTitle(self.file_path)
+
+
 	@qtc.pyqtSlot(bool)
 	def search_and_replace(self):
 		print('search_and_replace')
@@ -133,12 +153,16 @@ class MainWindow(qtw.QMainWindow):
 		replaced_text = regex.sub(replace_text,text_to_search)
 		self.textedit.setPlainText(replaced_text)
 
+
 	def set_style(self):
 		main_style = """
 			QTextEdit{
-				border:5px solid #F00;
-				background: #FFF;
-				color: #F00;
+				background: #222;
+				color: #CCC;
+			}
+
+			QTextEdit:focus{
+				border: 2px solid #F99;
 			}
 		"""
 		self.setStyleSheet(main_style)
