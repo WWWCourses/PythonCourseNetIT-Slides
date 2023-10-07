@@ -1,4 +1,3 @@
-from json import tool
 import sys
 from PyQt6 import QtWidgets as qtw
 from PyQt6 import QtCore as qtc

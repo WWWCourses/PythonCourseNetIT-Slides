@@ -1,21 +1,22 @@
 import sys
-from PyQt5 import QtWidgets as qtw
-from PyQt5 import QtCore as qtc
-from PyQt5 import QtGui as qtg
-from PyQt5 import QtSql as qtsql
+from PyQt6 import QtWidgets as qtw
+from PyQt6 import QtCore as qtc
+from PyQt6 import QtGui as qtg
+from PyQt6 import QtSql as qtsql
 import csv
 
 class CarParts(qtw.QWidget):
 	def __init__(self):
 		super().__init__()
 
-		# self.setup_model_from_csv()
-		self.setup_model_from_sqltable()
+		self.setup_model_from_csv()
+		# self.setup_model_from_sqltable()
 		self.setup_view()
 		self.setupUI()
 
 	def setupUI(self):
-		label = qtw.QLabel('test',parent=self)
+		label = qtw.QLabel('Model-View Demo')
+		label.setAlignment(qtc.Qt.AlignmentFlag.AlignCenter)
 
 		self.main_layout = qtw.QVBoxLayout(self)
 		self.main_layout.addWidget(label)
@@ -23,7 +24,7 @@ class CarParts(qtw.QWidget):
 
 		# adjust TableView to fit its content
 		self.table_view.setSizeAdjustPolicy(
-        qtw.QAbstractScrollArea.AdjustToContents)
+        qtw.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
 
 		# adjust widget to fit its content
 		self.adjustSize()
@@ -53,11 +54,11 @@ class CarParts(qtw.QWidget):
 
 		self.model = qtsql.QSqlTableModel(self)
 		self.model.setTable("carparts")
-		self.model.setEditStrategy(qtsql.QSqlTableModel.OnFieldChange)
-		self.model.setHeaderData(0, qtc.Qt.Horizontal, "ID")
-		self.model.setHeaderData(1, qtc.Qt.Horizontal, "Name")
-		self.model.setHeaderData(2, qtc.Qt.Horizontal, "Category")
-		self.model.setHeaderData(3, qtc.Qt.Horizontal, "Price")
+		self.model.setEditStrategy(qtsql.QSqlTableModel.EditStrategy.OnFieldChange)
+		self.model.setHeaderData(0, qtc.Qt.Orientation.Horizontal, "ID")
+		self.model.setHeaderData(1, qtc.Qt.Orientation.Horizontal, "Name")
+		self.model.setHeaderData(2, qtc.Qt.Orientation.Horizontal, "Category")
+		self.model.setHeaderData(3, qtc.Qt.Orientation.Horizontal, "Price")
 		self.model.select()
 
 	def setup_view(self):
@@ -82,7 +83,6 @@ class CarParts(qtw.QWidget):
 		return (header,data)
 
 class MainWindow(qtw.QWidget):
-
 	def __init__(self , *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
@@ -100,4 +100,4 @@ if __name__ == '__main__':
 
 	window = MainWindow()
 
-	sys.exit(app.exec_())
+	sys.exit(app.exec())
