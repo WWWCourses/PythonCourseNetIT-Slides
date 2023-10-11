@@ -97,3 +97,14 @@
 }
 .tabs5{ margin-left: -20em !important; }
 
+.reveal.overview .slides section.past{
+    outline:none;
+}
+.reveal.overview .slides section.present{
+    outline:10px solid rgb(97, 73, 73);
+}
+.reveal.overview .slides section:hover{
+    /* outline:inherit; */
+}
+
+
