@@ -193,19 +193,19 @@
 # print(easter(2023, method=3))
 
 # -------------------------------- Example 12 -------------------------------- #
-import time
-from functools import reduce
+# import time
+# from functools import reduce
 
-#start timer
-start = time.time()
+# #start timer
+# start = time.time()
 
 
-# do some time intensive stuff:
-num_range = (1, 10_000_000)
-sum = reduce(lambda x,y:x+y, range(num_range[0],num_range[1]+1))
-print(f"The sum of numbers from {num_range[0]} to {num_range[1]} is: ", sum)
+# # do some time intensive stuff:
+# num_range = (1, 10_000_000)
+# sum = reduce(lambda x,y:x+y, range(num_range[0],num_range[1]+1))
+# print(f"The sum of numbers from {num_range[0]} to {num_range[1]} is: ", sum)
 
-#end timer
-end = time.time()
+# #end timer
+# end = time.time()
 
-print("[Finished in {:.3f}s]".format(end - start))
+# print("[Finished in {:.3f}s]".format(end - start))
