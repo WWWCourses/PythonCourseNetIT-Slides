@@ -71,217 +71,236 @@
 	</section>
 </section>
 
-<section class="main-sesction-title"><h1>Overview</h1></section>
-<section class="sub-sections"><h2>Overview</h2>
+
+<section class="main-sesction-title"><h1>How computers store time?</h1></section>
+<section class="sub-sections"><h2>How computers store time?</h2>
+	<section>
+		<dl class="fa">
+			<dt>System time is measured by a system clock, which is typically implemented as a <span class="note">simple count of the number of ticks that have elapsed since some arbitrary starting date, called the epoch</span>.</dt>
+			<dt>Many devices encode system time as the number of seconds elapsed since the start of the <span class="note">Unix epoch</span> at 1 January 1970 00:00:00 UT</dt>
+			<dt>System time can be converted into a form more suitable for human comprehension. For example, the Unix system time 1000000000 seconds since the beginning of the epoch translates into the calendar time 9 September 2001 01:46:40 UT</dt>
+			<dt>In programming languages like Python, datetime objects are used to represent dates and times. These objects contain attributes such as year, month, day, hour, minute, second, and microsecond. Datetime objects provide methods for arithmetic operations, formatting, and parsing, making them versatile for various applications</dt>
+		</dl>
+	</section>
+</section>
+
+
+
+<section data-min="50" class="main-sesction-title"><h1>Datetime module - Overview</h1></section>
+<section class="sub-sections"><h2>Datetime module - Overview</h2>
 	<dl class="fa" style="font-size:.8em">
-		<dt>The <a href="https://docs.python.org/3/library/datetime.html">datetime module</a> supplies classes for manipulating dates and times in both simple and complex ways</dt>
-		<dt>A <span class="note">naive (unaware) object</span> does not contain enough information to unambiguously locate itself relative to other date/time objects</dt>
-		<dt>For applications requiring <span class="note">aware objects</span>, datetime and time objects have an optional time zone information attribute, tzinfo</dt>
-		<dd><a href="https://docs.python.org/3/library/datetime.html#tzinfo-objects">datetime.tzinfo</a> is an abstract base class and Python's standard libraries don't include any tzinfo classes. For such cases, it's convenient to use the <a href="http://pytz.sourceforge.net/">pytz</a> module</dd>
-	</dl>
-	<pre><code rel="Python" class="python">
-		import datetime,pytz
+		<dt>The built-in <a href="https://docs.python.org/3/library/datetime.html">datetime module</a> supplies classes for manipulating dates and times in both simple and complex ways.</dt>
 
-		unaware = datetime.datetime(2018, 11, 21, 9, 12, 32, 0)
-		aware = datetime.datetime(2018, 11, 21, 9, 12, 32, 0, pytz.UTC)
-	</code></pre>
+
+
+		<dt>class <span class="note">datetime.date</span></dt>
+		<dd>An idealized naive date, assuming the current Gregorian calendar always was, and always will be, in effect. </dd>
+		<dd>Attributes: year, month, and day.</dd>
+
+		<dt>class <span class="note">datetime.time</span></dt>
+		<dd>An idealized time, independent of any particular day, assuming that every day has exactly 24*60*60 seconds.</dd>
+		<dd>Attributes: hour, minute, second, microsecond, and tzinfo.</dd>
+
+		<dt>class <span class="note">datetime.datetime</span></dt>
+		<dd>A combination of a date and a time.</dd>
+		<dd>Attributes: year, month, day, hour, minute, second, microsecond, and tzinfo.</dd>
+
+		<dt>class <span class="note">datetime.timedelta</span></dt>
+		<dd>A duration expressing the difference between two date, time, or datetime instances to microsecond resolution.</dd>
+
+		<dt>class <span class="note">datetime.tzinfo</span></dt>
+		<dd>An abstract base class for time zone information objects. These are used by the datetime and time classes to provide a customizable notion of time adjustment (for example, to account for time zone and/or daylight saving time).</dd>
+
+		<dt>class <span class="note">datetime.timezone</span></dt>
+		<dd>A class that implements the tzinfo abstract base class as a fixed offset from the UTC.</dd>
 </section>
 
-<section class="main-sesction-title"><h1>class datetime.time</h1></section>
-<section class="sub-sections"><h2>class datetime.time</h2>
-	<section><h3>Overview</h3>
+<section data-min="50" class="main-sesction-title"><h1>Get Current Date and Time</h1></section>
+<section class="sub-sections"><h2>Get Current Date and Time</h2>
+	<section>
 		<dl class="fa">
-			<dt>A time object represents a (local) time of day, independent of any particular day</dt>
-			<dt><a href="https://docs.python.org/3/library/datetime.html#time-objects">time object @python3 docs</a></dt>
+			<dt>Using the <code>now()</code> method in datetime class, we can obtain the current date and time:</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
-			import datetime as dt
+			from datetime import datetime
 
-			lunch_time = dt.time(hour=12, minute=0, second=0)
+			current_datetime = datetime.now()
+			print(f'Current Date and Time: {current_datetime}')
+
+			# OUTPUT:
+			# Current Date and Time: 2023-10-17 11:54:04.585473
 		</code></pre>
 	</section>
 </section>
 
-<section class="main-sesction-title"><h1>class datetime.date</h1></section>
-<section class="sub-sections"><h2>class datetime.date</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>A date object represents a date (year, month and day)</dt>
-			<dt><a href="https://docs.python.org/3/library/datetime.html#date-objects">date object @python3 docs</a></dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-		import datetime as dt
 
-		due_date = dt.date(2019, 3, 7)
-	</code></pre>
+<section data-min="50" class="main-sesction-title"><h1>Date and Time Components</h1></section>
+<section class="sub-sections"><h2>Date and Time Components</h2>
+	<section>
+		<dl class="fa">
+			<dt>The datetime module provides various attributes to access individual components of a date and time, such as year, month, day, hour, minute, second, and microsecond.</dt>
+			<pre><code rel="Python" class="python" style="min-height: 80vh;">
+				from datetime import datetime
+
+				now = datetime.now()
+
+				year = now.year
+				month = now.month
+				day = now.day
+				hour = now.hour
+				minute = now.minute
+				second = now.second
+				microsecond = now.microsecond
+
+				print("Year:", year)
+				print("Month:", month)
+				print("Day:", day)
+				print("Hour:", hour)
+				print("Minute:", minute)
+				print("Second:", second)
+				print("Microsecond:", microsecond)
+			</code></pre>
+		</dl>
 	</section>
 </section>
 
-<section class="main-sesction-title"><h1>class datetime.datetime</h1></section>
-<section class="sub-sections"><h2>class datetime.datetime</h2>
-	<section><h3>Overview</h3>
+
+<section data-min="50" class="main-sesction-title"><h1>Formatting Dates and Times</h1></section>
+<section class="sub-sections"><h2>Formatting Dates and Times</h2>
+	<section><h3>datetime.strftime()</h3>
 		<dl class="fa">
-			<dt>A datetime object is a single object containing all the information from a date object and a time object.</dt>
-			<dt>Supports multiple constructors, some of which are</dt>
-			<dd><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime">datetime.datetime()</a></dd>
-			<dd><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.today">datetime.datetime.today()</a></dd>
-			<dd><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.now">datetime.datetime.now()</a></dd>
-			<dt><a href="https://docs.python.org/3/library/datetime.html#datetime-objects">datetime object @python3 docs</a></dt>
+			<dt>You can format dates and times as strings using the <code>strftime()</code> method.</dt>
+			<dt>This method allows you to define a custom format for your date and time representation using <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes">Format Codes</a></dt>
+			<pre><code rel="Python" class="python" style="min-height: 50vh;">
+				from datetime import datetime
+
+				now = datetime.now()
+
+				formatted_date = now.strftime("%d.%m.%Y")
+				formatted_time = now.strftime("%H:%M:%S")
+
+				print("Formatted Date:", formatted_date)
+				print("Formatted Time:", formatted_time)
+
+				# OUTPUT:
+				# Formatted Date: 17.10.2023
+				# Formatted Time: 12:45:46
+			</code></pre>
 		</dl>
 	</section>
 </section>
 
-<section class="main-sesction-title"><h1>class datetime.timedelta</h1></section>
-<section class="sub-sections"><h2>class datetime.timedelta</h2>
-	<section><h3>Overview</h3>
+<section data-min="50" class="main-sesction-title"><h1>Create datetime object from string</h1></section>
+<section class="sub-sections"><h2>Create datetime object from string</h2>
+	<section><h3>datetime.strptime()</h3>
 		<dl class="fa">
-			<dt>A timedelta object represents a duration, the difference between two dates or times.</dt>
-			<dt>Supports multiple operations on date, time and datetime objects</dt>
-			<dt><a href="https://docs.python.org/3/library/timedelta.html">timedelta object @python3 docs</a></dt>
+			<dt>With <code>strptime()</code> method we can parse a string into a datetime object given a corresponding format, using the same <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes">Format Codes</a> as pattern:</dt>
+			<pre><code rel="Python" class="python" style="min-height: 40vh;">
+				from datetime import datetime
+
+				user_birthdate_str='30.12.2000'
+				user_birthdate=datetime.strptime(user_birthdate_str,"%d.%m.%Y")
+
+				print(f'user birth year: {user_birthdate.year}')
+				print(f'user birth month: {user_birthdate.month}')
+				print(f'user birth day: {user_birthdate.day}')
+			</code></pre>
+		</dl>
+	</section>
+</section>
+
+
+<section data-min="50" class="main-sesction-title"><h1>Date Arithmetic</h1></section>
+<section class="sub-sections"><h2>Date Arithmetic with <code>datetime.timedelta</code></h2>
+	<section>
+		<dl class="fa">
+			<dt>We can perform arithmetic with dates by creating <a href="https://docs.python.org/3/library/datetime.html#timedelta-objects">timedelta objects</a>. These objects represent a duration or difference between two dates. </dt>
+			<pre><code rel="Python" class="python" style="min-height: 60vh;">
+				from datetime import datetime, timedelta
+
+				current_date = datetime.now().date()
+				one_week_ahead = current_date + timedelta(weeks=1)
+				hundred_days_before = current_date - timedelta(days=100)
+
+				print("One week from today:", one_week_ahead)
+				print("100 days before today:", hundred_days_before)
+
+				# OUTPUT:
+				# One week from today: 2023-10-24
+				# 100 days before today: 2023-07-09
+			</code></pre>
+		</dl>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt>Note, that timedelta objects stores internally only days, seconds and microseconds</dt>
 		</dl>
 		<pre><code rel="Python" class="python">
-			due_date = dt.date(2019, 3, 7)
-			current_date = dt.datetime.now().date()
+			from datetime import datetime, date, timedelta
 
-			print(due_date - current_date)
+			today = datetime.now().date()
+			user_birthdate = date(year=2000,month=1,day=31)
+			# print(user_birthdate)
+
+			td = today - user_birthdate
+
+			print(f'User is {td.days} days old') # 'User is 8660 days old'
+			print(f'User is {td.weeks} weeks old') # Error will be thrown!
+		</code></pre>
+		<dl class="fa">
+			<dt>For more complicated and accurate date calculations we can use third-party modules, like <code>dateutil</code>  </dt>
+		</dl>
+	</section>
+</section>
+<section class="sub-sections"><h2>Date Arithmetic with <code>dateutil</code> module</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>The third-party <a href="https://dateutil.readthedocs.io/en/stable/">dateutil</a> module provides powerful extensions to the standard datetime module. </dt>
+			<dt>To use it, you must install it first.</dt>
+			<dd>Open a Terminal (Command Promt/Powershell/Bash ...) and write:</dd>
+			<pre><code rel="Terminal" class="bash">
+				pip install python-dateutil
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Example</h3>
+		<dl class="fa">
+			<dt>The <code>relativedelta</code> class from dateutil takes care of the complex date calculations, including months and leap years:</dt>
+		</dl>
+
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
+			from datetime import datetime
+			from dateutil.relativedelta import relativedelta
+
+			# User's birthdate
+			user_birthdate = datetime(year=2000, month=1, day=31)
+
+			# Current date
+			current_date = datetime.now()
+
+			# Calculate the age difference in years, days, and minutes
+			age_difference = relativedelta(current_date, user_birthdate)
+			# print(age_difference)
+			years = age_difference.years
+			months = age_difference.months
+			days = age_difference.days
+			minutes = age_difference.hours * 60 + age_difference.minutes
+
+			print(f"The user is {years} years, {months} months, {days} days, and {minutes} minutes old.")
+
+			# OUTPUT:
+			# The user is 23 years, 8 months, 17 days, and 838 minutes old.
 		</code></pre>
 	</section>
 </section>
-
-<section class="main-sesction-title"><h1>class datetime.tzinfo</h1></section>
-<section class="sub-sections"><h2>class datetime.tzinfo</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>An abstract base class. Capture information about the offset from UTC time, the time zone name, and whether Daylight Saving Time is in effect.</dt>
-			<dt><a href="https://docs.python.org/3/library/datetime.html#tzinfo-objects">timedelta object @python3 docs</a></dt>
-		</dl>
-	</section>
 </section>
 
 
-<section class="main-sesction-title"><h1>Extensions to the standard datetime module</h1></section>
-<section class="main-sesction-title"><h1>Extensions to the standard datetime module</h1>
-	<section><h3>The <code>dateutil</code> module</h3>
-		<dl class="fa">
-			<dt><a href="https://pypi.org/project/python-dateutil/">dateutil</a>  module provides powerful extensions, good documentation and recent updates</dt>
-		</dl>
-	</section>
-</section>
 
 <section class="main-sesction-title"><h1>Examples</h1></section>
 <section class="sub-sections"><h2>Examples</h2>
-		<section><h3>Get current local and UTC datetimes</h3>
-			<pre><code rel="Python" class="python">
-				import datetime
-
-				# returns naive datetime object
-				today = datetime.datetime.today()
-
-				# equivalent to datetime.today(), when no tzinfo object is passed
-				now = datetime.datetime.now()
-
-				# returns the UTC time
-				utcnow = datetime.datetime.utcnow()
-
-				print(today)
-				print(now)
-				print(utcnow)
-
-				#2018-04-18 18:04:11.148224
-				#2018-04-18 18:04:11.148232
-				#2018-04-18 15:04:11.148234
-			</code></pre>
-		</section>
-		<section><h3>Get current date and time</h3>
-			<pre><code rel="Python" class="python">
-				import datetime
-
-				# get current date
-				date_now = datetime.date.today()
-				# or:
-				# date_now = datetime.datetime.today().date()
-				print("Current date: ",date_now)
-
-				# get current time
-				time_now = datetime.datetime.today().time()
-				print("Current time: ",time_now)
-
-				#Current date:  2018-04-18
-				#Current time:  17:59:19.556068
-			</code></pre>
-		</section>
-
-		<section><h3>Format datetime object as string</h3>
-			<p>Check <a href="https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior">strftime() and strptime() Behavior</a>, where are published all formatting codes supported by Python</p>
-			<pre><code rel="Python" class="python">
-				import datetime
-
-				# get the date object
-				today = datetime.datetime.today()
-
-				# now, format it as string, using the format codes:
-				print("Year:", today.strftime("%Y"))
-				print("Month:", today.strftime("%m"))
-				print("Day:", today.strftime("%d"))
-				print("Hour:", today.strftime("%H"))
-				print("Minutes:", today.strftime("%M"))
-				print("Seconds:", today.strftime("%s"))
-			</code></pre>
-		</section>
-
-		<section><h3>Create datetime object from string</h3>
-			<pre><code rel="Python" class="python">
-				import datetime
-
-				dt = datetime.datetime.strptime("15/02/17 22:10", "%d/%m/%y %H:%M")
-				print(dt)
-				# 2017-02-15 22:10:00
-
-				bdate = datetime.datetime.strptime("18.12.31", "%y.%m.%d")
-				print(bdate)
-				# 2018-12-31 00:00:00
-			</code></pre>
-		</section>
-
-		<section><h3>Calculate time interval</h3>
-			<pre><code rel="Python" class="python">
-				from datetime import datetime
-
-				t1 = datetime.strptime("08:30", "%H:%M")
-				t2 = datetime.strptime("12:15", "%H:%M")
-				print(t2 - t1)
-
-				#3:45:00
-			</code></pre>
-		</section>
-		<section><h3>Timing your code</h3>
-			<p class="note">For better precision (to account only the CPU time of your process ) use <a href="https://docs.python.org/3/library/profile.html">Python profilers built-in modules</a></p>
-			<pre><code rel="Python" class="python">
-				import time
-				from functools import reduce
-
-				#start timer
-				start = time.time()
-
-				# do some time intensive stuff:
-				sum = reduce(lambda x,y:x+y, range(1,1_000_001))
-				print("The sum of numbers from 1 to 1_000_000 is: ", sum)
-
-				#end timer
-				end = time.time()
-
-				print("[Finished in {:.6f}s]".format(end - start))
-
-				#The sum of numbers from 1 to 1_000_000 is:  500000500000
-				#[Finished in 0.087371s]
-			</code></pre>
-		</section>
-	</section>
-
-<section class="main-sesction-title"><h1>Live Demos</h1></section>
-<section class="sub-sections"><h2>Live Demos</h2>
 	<section><h3>Get weekday name for today</h3>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height: 70vh;">
 			import datetime
 
 			def get_weekday_name(date, lang):
@@ -295,66 +314,117 @@
 
 			now = datetime.datetime.now()
 
-			print('Today is', get_weekday_name(now, "bg"))
+			print('Днес е ', get_weekday_name(now, "bg"))
+			print('Today is', get_weekday_name(now, "en"))
 		</code></pre>
 	</section>
-	<section><h3>When will my birthday be on Sunday?</h3>
-		<pre><code rel="Python" class="python">
+	<section><h3>When will my birthday be on given weekday name?</h3>
+		<pre><code rel="Python" class="python" style="min-height: 90vh;">
 			import datetime
 
-			def get_next_sunday_date(bdate, period):
-				"""get_next_sunday_date
+			def get_years_by_weekday(date, weeekday_name, period):
+				"""get_years_by_weekday
 
 				Args:
-				    bdate (datetime): Object representing the date
-				    period (tuple): (start_year,end_year) interval to look into
+					date (datetime): Object representing the date
+					period (tuple): (start_year,end_year) interval to look into
 
 				Returns:
-				    list: years, on which a date will be on Sunday
+					list: years, on which a date will be on Sunday
 				"""
 				years = []
 
 				for y in range(*period):
-					bdate_weekday = datetime.date(y, bdate.month, bdate.day).weekday()
+					date_weekday = datetime.date(y, date.month, date.day).weekday()
 
-					if bdate_weekday == 6:
+					if wd_names[date_weekday] == weeekday_name:
 						years.append(y)
 
 				return years
 
 
-			birth_date = datetime.datetime.strptime("31/12/00", "%d/%m/%y")
+			wd_names = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+			birth_date = datetime.datetime.strptime("31.12.2000", "%d.%m.%Y")
 
-			sundays_years = get_next_sunday_date(birth_date, (2018,2100))
-			print(sundays_years)
-			#[2023, 2028, 2034, 2045, 2051, 2056, 2062, 2073, 2079, 2084, 2090]
+			years_by_weekday = get_years_by_weekday(birth_date, 'Sunday', (2018,2100))
+			print(years_by_weekday)
 		</code></pre>
 	</section>
 	<section><h3>Calculates the Western Easter date for given period</h3>
 		<p>Using the Samuel Butcher Algorithm, published in <a href="https://en.wikipedia.org/wiki/Computus">Computus @ wikipedia</a>.</p>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height: 50vh;">
 			import datetime
 
-			def butcher_easter(year):
-			    "Returns Easter as a date object."
-			    a = year % 19
-			    b = year // 100
-			    c = year % 100
-			    d = (19 * a + b - b // 4 - ((b - (b + 8) // 25 + 1) // 3) + 15) % 30
-			    e = (32 + 2 * (b % 4) + 2 * (c // 4) - d - (c % 4)) % 7
-			    f = d + e - 7 * ((a + 11 * d + 22 * e) // 451) + 114
-			    month = f // 31
-			    day = f % 31 + 1
-			    return datetime.date(year, month, day)
+			def calc_easter_dates(year):
+				"Returns Easter as a date object."
+				a = year % 19
+				b = year // 100
+				c = year % 100
+				d = (19 * a + b - b // 4 - ((b - (b + 8) // 25 + 1) // 3) + 15) % 30
+				e = (32 + 2 * (b % 4) + 2 * (c // 4) - d - (c % 4)) % 7
+				f = d + e - 7 * ((a + 11 * d + 22 * e) // 451) + 114
+				month = f // 31
+				day = f % 31 + 1
 
-			def easter_dates_between(start, end):
-			    for year in range(start, end+1):
-			        print( butcher_easter(year).strftime("%d.%m.%Y") )
+				return datetime.date(year, month, day)
 
+			def calc_easter_dates_in_range(start, end):
+				easter_dates = []
+				for year in range(start, end+1):
+					easter_dates.append(calc_easter_dates(year).strftime("%d.%m.%Y"))
 
-			easter_dates_between(2018, 2050)
+				return easter_dates
+
+			easter_dates = calc_easter_dates_in_range(2020, 2024)
+			print('\n'.join(easter_dates))
+			print('*'*50)
 		</code></pre>
-		<p class="note">The <a href="https://pypi.org/project/python-dateutil/">dateutil</a> modules provides <a href="https://github.com/dateutil/dateutil/blob/master/dateutil/easter.py">easter.py</a> module, supporting Western, Ortodox and Julian Calendars.</p>
+	</section>
+	<section><h3>Calculates the Western Easter date for given period using dateutil.easter</h3>
+		<p>The <a href="https://pypi.org/project/python-dateutil/">dateutil</a> package provides <a href="https://dateutil.readthedocs.io/en/stable/easter.html">easter</a> module, supporting Western, Ortodox and Julian Calendars.</p>
+		<pre><code rel="Python" class="python" style="min-height: 70vh;">
+			from dateutil.easter import easter
+
+			def calc_easter_dates_in_range(start, end, method):
+				easter_dates = []
+				for year in range(start, end+1):
+					easter_dates.append(easter(year, method=method).strftime("%d.%m.%Y"))
+
+				return easter_dates
+
+
+			methods = ['EASTER_JULIAN', 'EASTER_ORTHODOX', 'EASTER_WESTERN']
+			for method_idx in range(len(methods)):
+				easter_dates = calc_easter_dates_in_range(2020, 2024, method=method_idx+1)
+				print(f'Easter dates for {methods[method_idx]}:')
+				print('\n'.join(easter_dates))
+				print('*'*50)
+		</code></pre>
+	</section>
+	<section><h3>Timing your code</h3>
+		<p>Using the <code>time</code></p>
+		<pre><code rel="Python" class="python">
+			import time
+			from functools import reduce
+
+			#start timer
+			start = time.time()
+
+
+			# do some time intensive stuff:
+			num_range = (1, 10_000_000)
+			sum = reduce(lambda x,y:x+y, range(num_range[0],num_range[1]+1))
+			print(f"The sum of numbers from {num_range[0]} to {num_range[1]} is: ", sum)
+
+			#end timer
+			end = time.time()
+
+			print("[Finished in {:.3f}s]".format(end - start))
+
+			#The sum of numbers from 1 to 10000000 is:  50000005000000
+			#[Finished in 0.187s]
+		</code></pre>
+		<p class="note">For better precision (to account only the CPU time of your process ) use <a href="https://docs.python.org/3/library/profile.html">Python profilers built-in modules</a></p>
 	</section>
 </section>
 
@@ -382,15 +452,9 @@
 	</section>
 </section>
 
-<section><h3>Submission</h3>
-	<dl class="fa">
-		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
-		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-		<dt>Send files to <a href="mailto:progressbg.python.course@gmail.com?Subject=dateAndTime">progressbg.python.course@gmail.com</a></dt>
-	</dl>
-</section>
 
-<section class="disclaimer" data-background="/ProgressBG-Python-UniCredit-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
+
+<section class="disclaimer" data-background="/PythonCourseNetIT-Slides/outfit/images/for_slides/the_end_on_sand.jpg">
 	 <p>These slides are based on</p>
 	 <p>customised version of </p>
 	 <p><a href="http://hakim.se/">Hakimel</a>'s <a href="http://lab.hakim.se/reveal-js">reveal.js</a></p>
