@@ -295,6 +295,42 @@
 </section>
 </section>
 
+<section data-min="50" class="main-sesction-title"><h1>Working with timezones via <code>pytz</code> module</h1></section>
+<section class="sub-sections"><h2>Working with timezones via <code>pytz</code> module</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>The <a href="https://pypi.org/project/pytz/">pytz</a> third-party module brings the <a href="https://en.wikipedia.org/wiki/Tz_database">Olson tz database</a> into Python. This library allows accurate and cross platform timezone calculations using Python 2.4 or higher. </dt>
+			<dt>The tz database provides next <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List">List of tz database time zones</a></dt>
+			<dt>To use it, we must install it first:</dt>
+			<pre><code rel="Terminal" class="bash">
+				pip install pytz
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Find the current time of a certain timezone</h3>
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
+			from datetime import datetime
+			import pytz
+
+			# Get the timezone object for New York and London
+			tz_NY = pytz.timezone('America/New_York')
+			tz_London = pytz.timezone('Europe/London')
+
+			# Get local current time:
+			current  =datetime.now()
+
+			# Get the current time in New York
+			current_NY = datetime.now(tz_NY)
+			# Get the current time in London
+			current_London = datetime.now(tz_London)
+
+			# Format the times as a string and print it
+			print("Local time:", current.strftime("%H:%M:%S"))
+			print("NY time:", current_NY.strftime("%H:%M:%S"))
+			print("London time:", current_London.strftime("%H:%M:%S"))
+		</code></pre>
+	</section>
+</section>
 
 
 <section class="main-sesction-title"><h1>Examples</h1></section>

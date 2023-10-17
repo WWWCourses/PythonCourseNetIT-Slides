@@ -209,3 +209,24 @@
 # end = time.time()
 
 # print("[Finished in {:.3f}s]".format(end - start))
+
+# -------------------------------- Example 13 -------------------------------- #
+from datetime import datetime
+import pytz
+
+# Get the timezone object for New York and London
+tz_NY = pytz.timezone('America/New_York')
+tz_London = pytz.timezone('Europe/London')
+
+# Get local current time:
+current  =datetime.now()
+
+# Get the current time in New York
+current_NY = datetime.now(tz_NY)
+# Get the current time in London
+current_London = datetime.now(tz_London)
+
+# Format the times as a string and print it
+print("Local time:", current.strftime("%H:%M:%S"))
+print("NY time:", current_NY.strftime("%H:%M:%S"))
+print("London time:", current_London.strftime("%H:%M:%S"))
