@@ -79,11 +79,37 @@
 		<dl class="fa">
 			<dt>FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.8+ based on standard Python type hints.</dt>
 			<dt>It is high-performance, easy to learn, fast to code, ready for production</dt>
-			<dt>FastAPI is ideal for building modern, high-performance APIs with automatic documentation and data validation.</dt>
+			<dt>FastAPI is ideal for building modern APIs with automatic documentation and data validation.</dt>
+			<dt>FastAPI fully supports asynchronous programming using Python's async and await keywords. This makes it suitable for building high-performance, asynchronous APIs.</dt>
 			<dt>References:</dt>
 			<dd><a href="https://fastapi.tiangolo.com/">FastAPI official site</a></dd>
 			<dd><a href="https://github.com/tiangolo/fastapi">FastAPI @Github</a></dd>
 		</dl>
+	</section>
+	<section><h3>Async-Await in pYthon</h3>
+		<dl class="fa">
+			<dt><code>async</code> and <code>await</code> in Python allows you to write non-blocking code that can be more efficient, especially when dealing with I/O-bound operations.</dt>
+		</dl>
+		<pre><code rel="Python" class="python" style="min-height: 50vh;">
+			# Define an asynchronous function
+			async def greet(name, delay):
+				await asyncio.sleep(delay)  # Simulate a non-blocking delay
+				print(f"Hello, {name}!")
+
+			# Create an event loop
+			async def main():
+				# Create multiple asynchronous tasks
+				task1 = greet("Pesho", 2)
+				task2 = greet("Ivan", 1)
+
+				# Schedule the tasks in the event loop
+				await asyncio.gather(task1, task2)
+
+			# Run the event loop
+			if __name__ == "__main__":
+				asyncio.run(main())
+
+		</code></pre>
 	</section>
 	<section><h3>Installation</h3>
 		<pre><code rel="Terminal" class="bash">
