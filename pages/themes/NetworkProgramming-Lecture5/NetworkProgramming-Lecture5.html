@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>NetworkProgramming-Lecture6</title>
+	<title>NetworkProgramming-Lecture5</title>
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -53,7 +53,7 @@
 ########################################################
 -->
 
-<section class="main-sesction-title"><h1>NetworkProgramming-Lecture 6</h1></section>
+<section class="main-sesction-title"><h1>NetworkProgramming-Lecture 5</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
 		<div class="note">
@@ -72,15 +72,54 @@
 	</section>
 </section>
 
-<section data-min="10" class="main-sesction-title"><h1>TodoApp with FastAPI</h1></section>
-<section class="sub-sections"><h2>TodoApp with FastAPI</h2>
-	<section><h3>FastAPI Overview</h3>
+
+<section data-min="50" class="main-sesction-title"><h1>Building RESTful APIs with FastAPI</h1></section>
+<section class="sub-sections"><h2>Building RESTful APIs with FastAPI</h2>
+	<section><h3>Overview</h3>
 		<dl class="fa">
-			<dt>FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.</dt>
+			<dt>FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.8+ based on standard Python type hints.</dt>
 			<dt>It is high-performance, easy to learn, fast to code, ready for production</dt>
-			<dt>Reference: <a href="https://fastapi.tiangolo.com/">FastAPI</a></dt>
+			<dt>References:</dt>
+			<dd><a href="https://fastapi.tiangolo.com/">FastAPI official site</a></dd>
+			<dd><a href="https://github.com/tiangolo/fastapi">FastAPI @Github</a></dd>
 		</dl>
 	</section>
+	<section><h3>Installation</h3>
+		<pre><code rel="Terminal" class="bash">
+			#install fastapi
+			pip install fastapi
+
+			# install ASGI server, for production such as Uvicorn:
+			pip install "uvicorn[standard]"
+		</code></pre>
+	</section>
+	<section><h3>Create Simple App and Run it</h3>
+		<pre><code rel="main.py" class="python" style="min-height: 54vh;">
+			from fastapi import FastAPI
+			from fastapi.responses import HTMLResponse
+			from typing import Union
+
+			app = FastAPI()
+
+			@app.get("/")
+			async def root():
+				html_content = "<h1>Welcome to my site</h1>"
+				return HTMLResponse(content=html_content, status_code=200)
+
+			@app.get("/items/{item_id}")
+			def get_item(item_id: int, q: Union[str, None] = None):
+				return {"item_id": item_id, "q": q}
+		</code></pre>
+		<p>Run it:</p>
+		<pre><code rel="Terminal" class="bash">
+			uvicorn main:app --reload
+		</code></pre>
+		<p>Open your browser at <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a> or <a href="http://127.0.0.1:8000/items/5?q=somequery">http://127.0.0.1:8000/items/5?q=somequery</a></p>
+	</section>
+</section>
+
+<section data-min="10" class="main-sesction-title"><h1>TodoApp with FastAPI</h1></section>
+<section class="sub-sections"><h2>TodoApp with FastAPI</h2>
 	<section><h3>Create todoApp project</h3>
 		<dl class="fa">
 			<dt>Create project and virtenv:</dt>
@@ -102,7 +141,8 @@
 		</dl>
 		<pre><code rel="Terminal" class="bash">
 			# fastapi && uvicorn
-			pip install "fastapi[all]"
+			pip install fastapi
+			pip install "uvicorn[standard]"
 
 			# parser for the multipart/form-data and templates:
 			pip install python-multipart jinja2
@@ -257,6 +297,51 @@
 			cd src/
 			uvicorn app:app --reload
 		</code></pre>
+	</section>
+</section>
+
+<section data-min="50" class="main-sesction-title"><h1>Building Web Apps with Django</h1></section>
+<section class="sub-sections"><h2>Building Web Apps with Django</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.</dt>
+			<dt>Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel.</dt>
+			<dt>It’s free and open source.</dt>
+			<dt>Installation:</dt>
+			<pre><code rel="Terminal" class="bash">
+				pip install Django
+			</code></pre>
+			<dt>Reference: <a href="https://www.djangoproject.com/">https://www.djangoproject.com/</a></dt>
+		</dl>
+	</section>
+	<section><h3>Create simple Django App - Live demo</h3>
+		<dl class="fa">
+			<dt>Tutorial: <a href="https://docs.djangoproject.com/en/4.2/intro/tutorial01/">Writing your first Django app</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="50" class="main-sesction-title"><h1>Building Single-Page Apps with Flask</h1></section>
+<section class="sub-sections"><h2>Building Single-Page Apps with Flask</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>Flask is a Web microframework, which is Scalable, Flexible and Lightweight</dt>
+			<dt>Key features:</dt>
+			<dd><b>Routing</b>: Flask allows you to define URL routes, associating them with specific Python functions (views) to handle HTTP requests.</dd>
+
+			<dd><b>Templating</b>: It provides support for Jinja2 templates, which make it easy to generate HTML and other content dynamically.</dd>
+
+			<dd><b>HTTP Request and Response Handling</b>: Flask simplifies handling HTTP requests and responses, making it straightforward to work with form data, cookies, and session management.</dd>
+			<dd><b>Extensions</b>: Flask has a rich ecosystem of extensions that can be added to enhance its capabilities. These extensions cover areas such as authentication, database integration, and more.</dd>
+			<dd><b>Lightweight</b>: Flask is minimalistic by design, meaning it does not include a lot of pre-built functionality. This allows developers to choose and add the components they need, which can result in lean and efficient web applications.</dd>
+			<dd><b>RESTful Support</b>: Flask is well-suited for building RESTful APIs due to its simplicity and support for HTTP methods like GET, POST, PUT, and DELETE.</dd>
+			<dd><b>Easy to Learn</b>: Flask's simplicity and clear documentation make it a good choice for developers, especially those new to web development in Python.</dd>
+		</dl>
+	</section>
+	<section><h3>Create simple Flask App - Live Demo</h3>
+		<dl class="fa">
+			<dt>Quickstart: <a href="https://flask.palletsprojects.com/en/3.0.x/quickstart/">https://flask.palletsprojects.com/en/3.0.x/quickstart/</a></dt>
+		</dl>
 	</section>
 </section>
 
