@@ -372,39 +372,6 @@
 			<p>' ; ' след последна декларация не е задължителна, но е добра практика да се поставя винаги – улеснява редактирането на кода.</p>
 	</section>
 
-	<section style="font-size: .7em">
-			<p>Пример</p>
-			<pre><code rel="HTML">
-					<div class="flag bg">
-							<span>Бяло</span><span>Зелено</span><span>Червено</span>
-					</div>
-			</code></pre>
-			<a  href="examples/flag_without_css.html">резултат (без CSS)...</a>
-			<pre class="fragment"><code rel="CSS" style="height: 40vh">
-				.flag{
-						display: inline-block;
-						line-height: 2em;
-						width: 20em;
-						border: .2em solid #333;
-				}
-				.flag>span{
-						display: block;
-				}
-				.bg>span:nth-child(1){
-						background: white;
-						color: #CCC;
-				}
-				.bg>span:nth-child(2){
-						background: green;
-						color: #CCC;
-				}
-				.bg>span:nth-child(3){
-						background: red;
-						color: #CCC;
-				}
-			</code></pre>
-			<a class="fragment" href="examples/flag_with_css.html">резултат (със CSS)...</a>
-	</section>
 	<section><h3>Коментари в CSS</h3>
 			<dl>
 					<dt><code>/*</code> - за начало на коментар</dt>
@@ -499,14 +466,6 @@
 			<dt><span class="note">В атрибута <b>id</b> не можем да имаме спейс!</span></dt>
 		</dl>
 	</section>
-	<section><h3>Стойности за class и id: добри практики</h3>
-		<p>Slef-learning Section</p>
-
-		<dl class="fa">
-			<dt><a href="https://cssguidelin.es/#naming-conventions">Naming Conventions @cssguidelin.es</a></dt>
-			<dt class="advanced"><a href="https://cssguidelin.es/#bem-like-naming">BEM-like Naming @cssguidelin.es</a></dt>
-		</dl>
-	</section>
 	<section><h3>Селектор за class</h3>
 		<dl class="fa" style="font-size: .9em">
 			<dt>Записва се с точка ("<b>.</b>") последвана от стойност на class.</dt>
@@ -537,7 +496,7 @@
 		</dl>
 	</section>
 	<section><h3>Пример</h3>
-		<pre><code rel="CSS" style="width: 120%; height: 30vh; margin-left: -2em;">
+		<pre><code rel="CSS" style="width: 120%; height: 50vh; margin-left: -2em;">
 		/* Селектира всички HTML елементи, които са дефинирали class="c1" */
 		.c1{
 			color: purple;
@@ -555,7 +514,7 @@
 				2px 2px #c000c0;
 		}
 		</code></pre>
-		<pre><code rel="HTML" style="width: 120%; height: 20vh; margin-left: -2em;">
+		<pre><code rel="HTML" style="width: 120%; height: 30vh; margin-left: -2em;">
 			<p>Purple Section:</p>
 			<h1 class="c1">Заглавие</h1>
 			<p class="c1">Параграф</p>
@@ -563,7 +522,6 @@
 			<p class="c1">Параграф</p>
 			<p id="vip">Параграф с id="vip"</p>
 		</code></pre>
-		<a href="slides_examples/class_selectors.html">резултат</a>
 	</section>
 </section>
 
@@ -631,41 +589,25 @@
 	<section><h3>Видове HTML възли и съответстващи комбинатори - Диаграма</h3>
 		<a href="images/CSS_CombinatorsDepictionInTree.png"><img src="images/CSS_CombinatorsDepictionInTree.png" style="min-height: 60vh"></a>
 	</section>
-	<section><h3>Task: Combinators</h3>
-		<p>Стилизирайте елементите както е показано, без да променяте HTML и без да гледате решението ;)</p>
+	<section><h3>Пример: CSS Combinators</h3>
 		<p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="dQJzem/" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS Selectrors - Combinators (labs)">
-		<span>See the Pen <a href='https://codepen.io/webdesigncourse/pen/dQJzem/'>CSS Selectrors - Combinators (labs)</a> by Iva Popova (<a href='https://codepen.io/webdesigncourse'>@webdesigncourse</a>) on <a href='https://codepen.io'>CodePen</a>.
+		<span>See the Pen <a href='https://codepen.io/webdesigncourse/pen/dQJzem/'>CSS Selectrors - Combinators</a>  on <a href='https://codepen.io'>CodePen</a>.
 		</span>
 		</p>
 	</section>
-	<section><h3>Task: Combinators </h3>
-		<p>Стилизирайте елементите както е показано, без да променяте HTML и без да гледате решението ;)</p>
+	<section><h3>Пример: CSS Combinators </h3>
 		<p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="XyVaxR/" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Combinators Siblings - demo">
 		<span>See the Pen <a href='https://codepen.io/webdesigncourse/pen/XyVaxR/'>Combinators Siblings - demo</a> by Iva Popova (<a href='https://codepen.io/webdesigncourse'>@webdesigncourse</a>) on <a href='https://codepen.io'>CodePen</a>.
 		</span>
 		</p>
 	</section>
-	<section><h3>Task: Combinators</h3>
-		<p>Стилизирайте елементите както е показано, без да променяте HTML и без да гледате решението ;)</p>
+	<section><h3>Пример: CSS Combinators</h3>
 		<p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="GRoabPz" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Task: ComplexCombinators">
 		<span>
 		See the Pen <a href='https://codepen.io/webdesigncourse/pen/GRoabPz'>Task: ComplexCombinators</a> by Iva Popova
 		(<a href='https://codepen.io/webdesigncourse'>@webdesigncourse</a>) on <a href='https://codepen.io'>CodePen</a>.
 		</span>
 		</p>
-	</section>
-	<section><h3>Parent Selector?</h3>
-		<p>Поради съображения за сигурност/производителност, засега, не можем да селектираме елементи <span class="note">нагоре</span> и в <span class="note">ляво</span> по  дървото. Поради това <span class="note">няма селектор за родител/предшественик</span>.</p>
-	</section>
-	<section><h3>Parent Slector ;)</h3>
-		<p class="advanced"><a href="https://perishablepress.com/awesome-new-css3-selectors/" title="">awesome-new-css3-selectors ?</a> - ако се зачетете в това, то моля прегледайте и коментарите в темата : ))))</p>
-	</section>
-	<section><h3>Parent Slector?</h3>
-		<p class="advanced">Въпреки, че в черновата на Selectors Level 4 има специфициран <a href="https://drafts.csswg.org/selectors-4/#relational" title=""><code>:has</code> селектор</a>, то все още не е официално приет и <a href="http://caniuse.com/#search=%3Ahas" title="">не се поддържа от нито един браузер</a>.</p>
-	</section>
-	<section style="font-size: .8em"><h3>Parent Slector : )</h3>
-		<p><a href="https://www.reddit.com/r/ProgrammerHumor/comments/6qwe5o/the_real_reason_behind_the_rejection_of_css/">The real reason behind the rejection of CSS parent selector</a></p>
-		<a href="images/parent_selector.gif" title="click to see bigger image"><img src="images/parent_selector.gif" alt="parent selector" ></a>
 	</section>
 </section>
 
@@ -718,5 +660,7 @@
 			]
 		});
 	</script>
+
+	<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 </body>
 </html>
