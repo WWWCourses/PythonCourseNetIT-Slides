@@ -22,4 +22,3 @@ print(first_ul_attributes)
 for string in first_ul.stripped_strings:
 	print(string)
 
-print(first_ul.id)
