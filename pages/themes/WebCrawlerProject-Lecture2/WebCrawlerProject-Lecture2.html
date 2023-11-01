@@ -79,7 +79,7 @@
 		<dl class="fa">
 			<dt>Create your project folder structure</dt>
 			<dt>You may follow the one I use, or reorganize files as you wish</dt>
-			<pre><code rel="WebCrawler" class="bash" style="min-height:70vh">
+			<pre><code rel="BNRCrawler" class="bash" style="min-height:70vh">
 				BNRCrawler/
 				├── app.py
 				├── BNRCrawler
@@ -317,55 +317,66 @@
 <section class="sub-sections"><h2>Hands on crawler.py</h2>
 	<section><h3>Crawler class template</h3>
 		<pre><code rel="Python" class="python" style="min-height: 80vh;">
-			class Crawler():
-				def __init__(self, seed):
+			import requests
+
+			class Crawler:
+				def __init__(self, base_url):
 					pass
 
-				def make_filename(self,url):
-					""" Extracts domain from a url.
-						Prepend data_path and append '.html'
+				def get_html(self):
+					pass
 
-						:param url: string
+			if __name__ == "__main__":
+				base_url = 'https://bnr.bg/hristobotev/radioteatre/list'
 
-						return `domain`.html string
+
+			class Crawler():
+				def __init__(self, url):
+					""" Construct Crawler instances
+
+					Args:
+						url (string): the url to start Crawling
 					"""
 					pass
 
+				def make_filename(self,url):
+				""" Extracts domain from a url.
+					Prepend data_path and append '.html'
+					Needed, only if you want to store the HTML on disk
+
+					Args:
+						url: string
+
+					return `domain`.html string
+				"""
+				pass
+
 				def write_to_file(self,filename, content):
 					""" Write string to given filename
-							:param filename: string
-							:param content: sring
+						Needed, only if you want to store the HTML on disk
+
+						Args:
+							filename: string
+							content: sring
 					"""
 					pass
 
 				def get_html(self,url):
-					""" Make GET request and save content to file
+					""" Make GET request and get html content
 						First try with SSL verification (default),
 						if error => disable SSL verification
 
-						:param url: string
+						Args:
+							url: string
+
+						return html:string
 					"""
 					pass
 
 
-				def run(self):
-					""" run the crawler for each url in seed
-						Use multithreading for each GET request
-
-					"""
-					for url in self.seed:
-						self.get_html(url)
-
 			if __name__ == '__main__':
-				seed = [
-					'https://www.autokelly.bg/',
-					'https://www.imdb.com/chart/moviemeter/?ref_=nv_mv_mpm'
-				]
-				crawler = Crawler(seed)
-				crawler.run()
-
-
-
+				base_url = 'https://bnr.bg/hristobotev/radioteatre/list'
+				crawler = Crawler(base_url)
 		</code></pre>
 	</section>
 </section>
@@ -412,6 +423,38 @@
 			print(soup.title.string)
 		</code></pre>
 	</section>
+	<section><h3>get element's attributes and content</h3>
+		<dl class="fa">
+			<dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#bs4.Tag.attrs">Tag.attrs</a></dt>
+		</dl>
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
+			from bs4 import BeautifulSoup as bs
+
+			html ="""
+				<ul class="menu" id="test" data-note="abc">
+					<li><a href="https://somesite.com/page1">page1</a></li>
+					<li><a href="https://somesite.com/page2">page2</a></li>
+					<li><a href="https://somesite.com/page3">page3</a></li>
+				</ul>
+			"""
+
+			soup = bs(html, 'html.parser')
+
+			# get first UL element:
+			first_ul = soup.ul
+			print(first_ul)
+
+			# get all attributes of an element:
+			first_ul_attributes = first_ul.attrs
+			print(first_ul_attributes)
+
+			# get all text content inside element
+			for string in first_ul.stripped_strings:
+				print(string)
+
+
+		</code></pre>
+	</section>
 	<section><h3>Searching the tree</h3>
 		<dl class="fa">
 			<dt>Beautiful Soup defines a lot of methods for searching the parse tree, but they’re all very similar.</dt>
@@ -420,7 +463,7 @@
 		</dl>
 		<pre><code rel="Python" class="python">
 			# get the div with id="module_1_1"
-			articles = soup.find("div",id="module_1_1")
+			article = soup.find("div",id="module_1_1")
 		</code></pre>
 	</section>
 </section>
