@@ -72,6 +72,209 @@
 	</section>
 </section>
 
+
+<section data-min="50" class="main-sesction-title"><h1>Hands On WebCraweler Project</h1></section>
+<section class="sub-sections"><h2>Hands On WebCraweler Project</h2>
+	<section><h3>Create Project Folder structure</h3>
+		<dl class="fa">
+			<dt>Create your project folder structure</dt>
+			<dt>You may follow the one I use, or reorganize files as you wish</dt>
+			<pre><code rel="WebCrawler" class="bash" style="min-height:70vh">
+				BNRCrawler/
+				├── app.py
+				├── BNRCrawler
+				│   ├── config
+				│   │   ├── bnrdb.sql
+				│   │   ├── config.ini
+				│   │   ├── __init.py
+				│   │   └── read_config.py
+				│   ├── crawler.py
+				│   ├── db.py
+				│   ├── __init.py
+				│   └── scraper.py
+				├── data
+				└── requirements.txt
+			</code></pre>
+		</dl>
+	</section>
+	<section id="createProjectSVirtualEnvironment"><h3>Create project's virtual environment</h3>
+		<p>If you don't use PyCharm, or if you want to understand what's PyCharm is doing...:</p>
+		<dl class="fa">
+			<dt>Create the root project folder</dt>
+			<pre><code rel="Terminal" class="bash">
+				# navigate to your root project folder:
+				cd WebCrawler
+			</code></pre>
+			<dt>Create a virtual environment and activate it:</dt>
+			<pre><code rel="Terminal" class="bash">
+				# create a virtualenv named ".venv" in current working folder:
+				python3 -m venv ./.venv
+
+				# activate the ".venv" environment:
+				source .venv/bin/activate
+
+				# your command prompt should be prefixed with "(.venv)" now
+			</code></pre>
+			<dt>You can deactivate a virtual environment by typing “deactivate” in your shell.</dt>
+			<dt>Reference: <a href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">Creating a virtual environment @python.org</a></dt>
+		</dl>
+	</section>
+	<section id="installPackages"><h3>Install packages needed for your project</h3>
+		<pre><code rel="Terminal" class="bash">
+			pip install requests
+			pip install beautifulsoup4
+			pip install mysql-connector-python
+			pip install PyQt6
+			pip install pyqt6-tools
+		</code></pre>
+	</section>
+	<section id="freezingDependencies"><h3>Freezing dependencies</h3>
+		<dl class="fa">
+			<dt>When you want to share your project, you must provide <a href="https://pip.pypa.io/en/latest/user_guide/#requirements-files">Requirements File</a> which allows to re-create the exact versions of all packages installed in your environment.</dt>
+			<dt>Pip can export a list of all installed packages and their versions using the freeze command</dt>
+			<pre><code rel="Terminal" class="bash">
+				# just list the installed packages
+				pip freeze
+
+				# save the list into "requirements.txt" file:
+				pip freeze > requirements.txt
+			</code></pre>
+		</dl>
+	</section>
+	<section id="initGit"><h3>Init project git repo and add the project to Github</h3>
+		<dl class="fa">
+			<dt>Init your git repo</dt>
+			<dt>Create <a href="https://git-scm.com/docs/gitignore">.gitignore</a> file and add in it files/folders to be ignored by git</dt>
+			<dd>You can use next template for Python provided by GitHub: <a href="https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore">Python.gitignore</a> :</dd>
+			<dt>To add your project ot GitHub, follow <a href="https://docs.github.com/en/github/importing-your-projects-to-github/importing-source-code-to-github/adding-an-existing-project-to-github-using-the-command-line#adding-a-project-to-github-without-github-cli">the github's instructions</a></dt>
+		</dl>
+	</section>
+</section>
+
+<section data-min="50" class="main-sesction-title" id="usingConfigFileForDbConnectionString"><h1>Create the <code>db</code> module</h1></section>
+<section class="sub-sections"><h2>Using Config File For DB Connection String</h2>
+	<section>
+		<dl class="fa" style="font-size:0.7em">
+			<dt>The DB connection string contains sensitive information. To prevent security vulnerabilities and maintenance problems we do not want to embed it in our application code, but rather to put that information in a separate config file. You can ignore config.ini file in .gitignore, and put a sample of it in your Readme file.</dt>
+			<dt>Create the application <code>config.ini</code> file using the example code bellow:</dt>
+			<pre><code rel="config.ini" class="python">
+				[mysql]
+				HOST     = 127.0.0.1
+				USER     = test
+				PASSWORD = qazwsxedc
+				DATABASE = bnrdb
+				PORT=3306
+			</code></pre>
+			<dt>In order to parse the <code>config.ini</code> file we can use the <a href="https://docs.python.org/3/library/configparser.html">configparser</a> module</dt>
+			<pre><code rel="db_config.py" class="python" style="min-height: 50vh;">
+				from configparser import ConfigParser
+				import os
+
+
+				package_directory = os.path.dirname(os.path.abspath(__file__))
+
+				def read_db_config(filename='config.ini', section='mysql'):
+					""" Read database configuration file and return a dictionary object
+						:param filename: name of the configuration file
+						:param section: section of database configuration
+						:return: a dictionary of database parameters
+					"""
+					# create parser and read the configuration file
+					parser = ConfigParser()
+
+					if parser.read(os.path.join(package_directory, filename)):
+						db_config = {}
+						if parser.has_section(section):
+							items = parser.items(section)
+							for item in items:
+								db_config[item[0]] = item[1]
+							return db_config
+						else:
+							raise Exception(f'{section} not found in the {filename} file')
+					else:
+						raise Exception(f'{filename} file not found')
+
+
+				if __name__ == '__main__':
+					db_config = read_db_config('config.ini', 'mysql')
+					print(db_config)
+
+			</code></pre>
+		</dl>
+	</section>
+</section>
+<section class="sub-sections"><h2>Create the <code>db</code> module</h2>
+	<section>
+		<pre><code rel="db.py" class="python" style="min-height: 90vh;">
+			from BNRCrawler.config.read_config import read_db_config
+			import mysql.connector
+			from mysql.connector import errorcode
+			from datetime import datetime
+
+			class DB:
+				def __init__(self):
+					try:
+						db_config = read_db_config('config.ini', 'mysql')
+						# print(db_config)
+						self.conn = mysql.connector.connect(**db_config)
+					except mysql.connector.Error as err:
+						if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+							print("Something is wrong with your user name or password")
+						elif err.errno == errorcode.ER_BAD_DB_ERROR:
+							print("Database does not exist")
+						else:
+							print(err)
+
+
+				def create_radiotheaters_table(self):
+					sql = """
+						CREATE TABLE IF NOT EXISTS radiotheaters(
+							id INT AUTO_INCREMENT PRIMARY KEY,
+							title VARCHAR(100) NOT NULL,
+							pub_date DATE NOT NULL,
+							content TEXT,
+							created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+							updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+							CONSTRAINT title_date UNIQUE (title, pub_date)
+						);
+					"""
+					with self.conn.cursor() as cursor:
+						cursor.execute(sql)
+						self.conn.commit()
+
+				def drop_radiotheaters_table(self):
+					sql = "DROP TABLE IF EXISTS radiotheaters";
+
+					with self.conn.cursor() as cursor:
+						cursor.execute(sql)
+						self.conn.commit()
+
+				def insert_row(self, *data):
+					q = """
+						INSERT INTO radiotheaters
+							(title, pub_date, content)
+							VALUES ( %s, %s, %s)
+					"""
+
+					with self.conn.cursor(prepared=True) as cursor:
+						cursor.execute(q, *data)
+						self.conn.commit()
+
+
+				def close_connection(self):
+					self.conn.close()
+
+			if __name__ == "__main__":
+				db = DB()
+				# db.drop_radiotheaters_table()
+				# db.create_radiotheaters_table()
+				db.insert_row(('PubTitle3', datetime.now() , 'contnet'))
+		</code></pre>
+	</section>
+</section>
+
+
 <section data-min="50" class="main-sesction-title"><h1>Crawl a web site using requests lib</h1></section>
 <section class="sub-sections"><h2>Crawl a web site using requests lib</h2>
 	<section><h3>request lib usage:</h3>
@@ -213,7 +416,7 @@
 		<dl class="fa">
 			<dt>Beautiful Soup defines a lot of methods for searching the parse tree, but they’re all very similar.</dt>
 			<dt>The two most popular methods are: find() and find_all()</dt>
-			<dt>Reference: <a href="">https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-the-tree</a>Searching the tree</dt>
+			<dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-the-tree">Searching the tree</a></dt>
 		</dl>
 		<pre><code rel="Python" class="python">
 			# get the div with id="module_1_1"
