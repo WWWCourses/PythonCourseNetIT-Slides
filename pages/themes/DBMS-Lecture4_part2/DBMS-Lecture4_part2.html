@@ -368,17 +368,13 @@
 			<dt>More on Sessions: <a href="http://docs.sqlalchemy.org/en/rel_1_1/orm/session_basics.html">Session Basics @docs.sqlalchemy.org</a></dt>
 		</dl>
 	</section>
-</section>
-
-<section class="main-sesction-title"><h1>Reflecting Database Objects</h1></section>
-<section class="sub-sections"><h2>Reflecting Database Objects</h2>
-	<section><h3>Overview</h3>
+	<section><h3>Reflecting Database Objects - Overview</h3>
 		<dl class="fa">
 			<dt>If a table already exists, SQLAlchemy can read its column definitions directly from the database.</dt>
 			<dt>This processes is called <span class="note">reflecting the table</span>.</dt>
 		</dl>
 	</section>
-	<section><h3>example</h3>
+	<section><h3>Reflecting Database Objects - Example</h3>
 		<pre><code rel="Python" class="bash">
 			from sqlalchemy import create_engine
 			from sqlalchemy import MetaData
@@ -397,6 +393,14 @@
 			metadata.reflect(bind=engine)
 			print(metadata.tables)
 		</code></pre>
+	</section>
+
+</section>
+<section class="main-sesction-title"><h1>References</h1></section>
+<section class="sub-sections"><h2>References</h2>
+	<section><h3>"Introduction to SQLAlchemy 2020 (Tutorial)" by: Mike Bayer</h3>
+		<p>Learn from source with Mike Bayer - the creator of SQLAlchemy</p>
+		<iframe width="1280" height="720" src="https://www.youtube.com/embed/sO7FFPNvX2s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</section>
 </section>
 
