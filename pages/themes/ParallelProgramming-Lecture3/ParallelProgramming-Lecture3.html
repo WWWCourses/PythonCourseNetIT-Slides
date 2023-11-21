@@ -76,7 +76,7 @@
 	<section><h3>Характеристики на Процесите</h3>
 		<dl class="fa">
 			<dt>Всеки процес има собствен сегмент памет, който не може да бъде достъпен от останалите процеси.</dt>
-			<dd>За да могат множество процеси да обменят данни се използват различни техники, известни с общото име <span class="note">Inter process communication</span> </dd>
+			<dd>За да могат множество процеси да обменят данни се използват различни техники, известни с общото име <span class="note">Inter Process Communication</span> (IPC).</dd>
 			<dt>При стартирането на една Python програма се стартира поне един процес и поне една нишка за главната програма.</dt>
 			<dt>Множество процеси могат да работят едновременно на различни ядра. За разлика от "паралелизмът" чрез нишки, в Python, паралелизмът чрез процеси не е засегнат от GIL.</dt>
 		</dl>
@@ -308,6 +308,9 @@
 			<dt>Cons:</dt>
 			<dd>A memory leak in one thread will corrupt all threads</dd>
 		</dl>
+	</section>
+	<section><h3>calc_sum(start, end): Sequential, Threaded and Mutliprocessing Versions</h3>
+		<script src="https://gist.github.com/WWWCourses/9a159203214643501965f1490079c0b1.js"></script>
 	</section>
 </section>
 
