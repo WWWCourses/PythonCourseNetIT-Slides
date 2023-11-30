@@ -193,7 +193,6 @@
 	</section>
 </section>
 
-
 <section data-min="5" class="main-sesction-title"><h1>Regex Syntax - Character classes</h1></section>
 <section class="sub-sections"><h2>Character classes</h2>
 	<section><h3>Character classes</h3>
@@ -291,6 +290,55 @@
 			print(matched)
 
 			#OUTPUT: ['line1\n', 'line2\n', 'line3 ']
+		</code></pre>
+	</section>
+</section>
+
+<section data-min="5" class="main-sesction-title"><h1>Modifiers/Flags</h1></section>
+<section class="sub-sections"><h2>Modifiers/Flags</h2>
+	<section><h3>Modifiers/Flags</h3>
+		<dl class="fa">
+			<dt>Flags reflects how the regular expression is executed.</dt>
+			<dt>They are available in the re module with a long name such as <code>re.IGNORECASE</code> or with a short, one-letter form such as <code>re.I</code>.</dt>
+			<dt>Multiple flags can be specified by bitwise OR-ing them. For example <code>re.I|re.M</code> sets both the I and M flags.</dt>
+			<dt>These flags are set by passing the <i>flags</i> argument to the re.compile() method</dt>
+			<pre><code rel="Python" class="python">
+				regex_with_flags_arg= re.compile(r"[aeiouy]+",re.I)
+			</code></pre>
+			<dt>Or as a third argument on re module methods</dt>
+			<pre><code rel="Python" class="python">
+				m = re.search(r"[aeiouy]+", str, re.I)
+			</code></pre>
+			<dt>Flags can be also set in the regular expression itself, using (?aiLmsux) syntax at the beginning of the regex string</dt>
+			<pre><code rel="Terminal" class="bash">
+				regex_with_flags_prefix= re.compile(r"(?i)[aeiouy]+")
+			</code></pre>
+		</dl>
+	</section>
+	<section><h3>Modifiers/Flags list</h3>
+		<table >
+			<tr><th>In reges</th><th>As param</th><th>Description</th></tr>
+			<tr><td>(?i)</td><td>re.I</td><td>case-<b>i</b>nsensitive matching</td></tr>
+			<tr><td>(?m)</td><td>re.M</td><td><b>m</b>ultiline matching</td></tr>
+			<tr><td>(?s)</td><td>re.S</td><td>Make the '<b>.</b>' to match any character at all, including a newline</td></tr>
+			<tr><td>(?x)</td><td>re.X</td><td>Allows to write readable regexes by using spaces and comments('#') in the regex. More on: <a href="https://docs.python.org/3/library/re.html#re.X">re.X</a></td></tr>
+		</table>
+		<p>Reference: <a href="https://docs.python.org/3/howto/regex.html#compilation-flags">Compilation flags</a></p>
+	</section>
+	<section><h3>Modifiers/Flags example</h3>
+		<pre><code rel="Python" class="python">
+			import re
+
+			text = """123
+			ABC
+			456"""
+			rx = re.compile('(?is)123.abc')
+
+			res = rx.search(text)
+			if res:
+				print(res.group(0))
+			else:
+				print("No match!")
 		</code></pre>
 	</section>
 </section>
