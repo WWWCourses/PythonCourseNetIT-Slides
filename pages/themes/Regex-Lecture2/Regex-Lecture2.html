@@ -76,7 +76,7 @@
 <section class="sub-sections"><h2>Using Regexes in Python - going deep</h2>
 	<section><h3>Regex object and re module</h3>
 		<dl class="fa" style="font-size: 0.8em;">
-			<dt>We can use various <a href="https://docs.python.org/3/library/re.html#module-contents"><code>re</code> module methods</a> which accept the regex string as first argument.</dt>
+			<dt>We can use various <a href="https://docs.python.org/3/library/re.html#functions"><code>re</code> module functions</a> which accept the regex string as first argument.</dt>
 			<dt>We can <span class="note">pre-compile</span> the pattern string into <a href="https://docs.python.org/3/library/re.html#re-objects">Regular Expression Object</a>, and then to perform matches on it. I.e. to use methods on the pre-compiled pattern object itself</dt>
 			<pre><code rel="Syntax" class="bash">
 				# re module level methods call
@@ -108,9 +108,9 @@
 	</section>
 	<section><h3>Compiling Regular Expressions</h3>
 		<dl class="fa">
-			<dt>we can precompile a regex object by <code><a href="https://docs.python.org/3/library/re.html#re.compile">re.compile</a></code> method</dt>
+			<dt>we can pre-compile a regex object by <code><a href="https://docs.python.org/3/library/re.html#re.compile">re.compile</a></code> method</dt>
 		</dl>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height: 53vh;">
 			import re
 
 			test_string = "this"
@@ -124,7 +124,6 @@
 
 			print(m1)
 			print(m2)
-
 		</code></pre>
 	</section>
 	<section><h3>When to use Compiled Regex Methods?</h3>
