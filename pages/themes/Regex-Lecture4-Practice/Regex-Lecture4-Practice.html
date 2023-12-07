@@ -71,10 +71,29 @@
 	</section>
 </section>
 
+<section data-min="50" class="main-sesction-title"><h1>Regex use cases</h1></section>
+<section class="sub-sections"><h2>Regex use cases</h2>
+	<section>
+		<dl class="fa">
+			<dt><b>Password Validation:</b> Regular expressions can enforce specific patterns in password verification to ensure security and complexity, such as requiring a mix of uppercase and lowercase letters, digits, and special characters​​.</dt>
+			<dt><b>Email and Username Validation:</b> RegEx is used to validate the format of email addresses and usernames, ensuring they adhere to standard formats and include necessary components like the "@" symbol for emails​​.</dt>
+			<dt><b>Date and Time Validation:</b> RegEx is used to ensure that dates and times are entered in a specific format, such as "YYYY-MM-DD" or "HH:MM" and to validate the correctness of these entries​​.</dt>
+			<dt><b>Input Validation in Forms:</b> RegEx is commonly used in Web Development to validate form inputs, such as phone numbers, postal codes, and other custom formats, ensuring that users provide data in the correct format, which improves user experience.</dt>
+		</dl>
+	</section>
+	<section>
+		<dl class="fa">
+			<dt><b>Data Extraction:</b> RegEx is essential in Web Scraping and text analysis for extracting specific pieces of information from larger texts or datasets, such as URLs, email addresses, or specific keywords​​.</dt>
+			<dt><b>HTML and XML Parsing:</b> While not always recommended due to the complexity of HTML/XML structures, RegEx can be used for simple parsing tasks, such as extracting links, tags, or specific attributes from HTML/XML documents.</dt>
+			<dt><b>Log Parsing:</b> Regular expressions are used to parse logs for valuable information like user activities, timestamps, and error messages, which is essential for troubleshooting and security analysis​​.</dt>
+			<dt><b>Search and Replace:</b> In text editing and programming, RegEx is used to identify specific patterns in text and replace them with other text. This is useful in code refactoring, data cleaning, and mass text editing​​.</dt>
+		</dl>
+	</section>
+</section>
 
 <section data-min="5" class="main-sesction-title"><h1>Beautify code</h1></section>
 <section class="sub-sections"><h2>Beautify code</h2>
-	<section><h3>Description</h3>
+	<section><h3>Task Description</h3>
 		<p>We must extract data from non-commented lines in a file and place line numbers infront. For simplicity, lets assume next file content given as a string:</p>
 		<pre><code rel="Terminal" class="bash">
 			line1
@@ -128,48 +147,52 @@
 
 <section data-min="50" class="main-sesction-title"><h1>Validate User Name</h1></section>
 <section class="sub-sections"><h2>Validate User Name</h2>
-	<section><h3>Description</h3>
-		<p>A valid user name must follow next rules</p>
-		<ol>
-			<li>Must consists of 3 to 10 characters inclusive.</li>
-			<li>Username can only contain alphanumeric characters, dashes (-) and underscores (_).</li>
-			<li>The first character of the username must be an alphabetic character</li>
-		</ol>
+	<section><h3>Task Description</h3>
+		<dl class="fa">
+			<dt>Write a Python program to validate usernames using Regular Expressions. The program should check if a given username meets specific criteria and print an appropriate message indicating whether the username is valid or not.</dt>
+			<dt>Criteria for a Valid Username:
+				<ol>
+					<li>Username Length: 3 to 15 characters inclusive.</li>
+					<li>Allowed Characters: only alphanumeric characters, dashes (-), and underscores (_).</li>
+					<li>Starting Character: must start with a letter (either uppercase or lowercase).</li>
+					<li>Ending Character: must not end with an underscore or dash.</li>
+				</ol>
+			</dt>
+		</dl>
 	</section>
 	<section><h3>Test cases and Output</h3>
 		<p>You can use next list of usernames to test your program</p>
-		<pre><code rel="Python" class="python">
+		<pre><code rel="Python" class="python" style="min-height: 70vh;">
 			user_names = [
-				"ada", 	# yes
-				"a__", 	# yes
-				"a12345",	# yes
-				"a1234567890", # no (rule 1)
-				"1aaaaaaa",	# no (rule 3)
-				"aaa#", 	# no (rule 2)
-				"a", 		# no (rule 1)
+				"User123",		# yes
+				"Valid-User_123",	# yes
+				"u1234567890123",	# yes
+				"u____a",		# yes
+				"us",			# no
+				"user_name_with_long_length", # no
+				"1username", # no
+				"_username", # no
+				"username-", # no
+				"username_", # no
+				"User@name-", # no
 			]
-		</code></pre>
-		<p>The expected output should be:</p>
-		<pre><code rel="EXPECTED OUTPUT" class="bash">
-			ada is valid!
-			a__ is valid!
-			a12345 is valid!
-			a1234567890 is NOT valid!
-			1aaaaaaa is NOT valid!
-			-a- is NOT valid!
-			a is NOT valid!
 		</code></pre>
 	</section>
 	<section><h3>Solution</h3>
 		<pre><code rel="Python" class="python" style="min-height: 80vh;">
 			def validate_name(string):
-				# "x" flag ignores spaces and comments in a regex
-				rx = re.compile(r'''(?x)
-				^			# beginning of string
-					[a-zA-Z]  		# rule 3
-					[\w-]{3,9}		# rule 1 and 2
-				$			# end of string
-				''')
+				# "x" flag (re.VERBOSE) ignores spaces and comments in a regex
+				rx = re.compile(
+					r"""
+						^
+						[a-z]       	# rule 3
+						[\w-]{1,13} 	# rule 1 and 2
+						[a-z0-9]		# rule 4
+						$
+					""",
+					re.IGNORECASE|re.VERBOSE,
+				)
+
 
 				m = rx.search(string)
 				if m:
@@ -178,13 +201,17 @@
 					print(f'{string} is NOT valid!')
 
 			tests = [
-				"ada", 		# yes
-				"a__", 		# yes
-				"a12345",		# yes
-				"a1234567890",	# no (rule 1)
-				"1aaaaaaa",		# no (rule 3)
-				"aaa#",		# no (rule 2)
-				"a",			# no (rule 1)
+				"User123", # yes
+				"Valid-User_123", # yes
+				"u1234567890123", # yes
+				"u____a", # yes
+				"us", # no
+				"user_name_with_long_length", # no
+				"1username", # no
+				"_username", # no
+				"username-", # no
+				"username_", # no
+				"User@name-" # no
 			]
 
 			for t in tests:
@@ -195,7 +222,7 @@
 
 <section data-min="50" class="main-sesction-title"><h1>Validate Password</h1></section>
 <section><h2 class="advanced">Validate Password</h2>
-	<section><h3>Description</h3>
+	<section><h3>Task Description</h3>
 		<p>Password must follow next rules:</p>
 		<ol>
 			<li>Must contain at least <span class="note">one letter</span> and at least <span class="note">one number</span></li>
@@ -220,6 +247,29 @@
 			_____1a is valid!
 		</code></pre>
 		<p style="font-style: italic;">Hint: the easiest solution is to use <a href="https://www.regular-expressions.info/lookaround.html">positive look-ahead</a></p>
+	</section>
+	<section><h3>Positive look-ahead</h3>
+		<dl class="fa" style="font-size: 0.8em;">
+			<dt>Positive look-ahead is a powerful tool for asserting that a certain pattern is followed by another specific pattern, without including that second pattern in the match result.</dt>
+			<dt>It's a form of <span class="note">zero-width assertion</span>, meaning it doesn't consume any characters in the string; it just asserts a condition.</dt>
+			<dt>Syntax: <code>(?=pattern)</code> -  here, pattern is the condition you want to check for, following the current position in the text.</dt>
+			<dt>Operation: When a regex engine encounters a positive look-ahead, it checks to see if the immediate part of the string matches the pattern inside the look-ahead. If it does, the regex engine continues matching the rest of the regex pattern. If it doesn't, the regex fails at that point.</dt>
+			<dt>Examples:</dt>
+			<pre><code rel="Python" class="python" style="min-height: 30vh;">
+				# next regex will match "10" in "10usd", but it won't include "usd" in the match.
+				regex = r'\d+(?=usd)'
+
+				# next regex asserts that at the beginning of the string there must be at least one digit anywhere ahead in the string.
+				regex = r'^(?=.*)'
+
+				# next regex matches the entire string as long as it contains a digit.
+				regex = r'^(?=.*\d).*$'
+			</code></pre>
+			<dl class="fa">
+				<dt><a href="https://www.regular-expressions.info/lookaround.html">More on Lookahead and Lookbehind @regular-expressions.info</a></dt>
+			</dl>
+		</dl>
+
 	</section>
 	<section><h3>Solution</h3>
 		<pre><code rel="Python" class="python" style="min-height: 80vh;">
@@ -256,7 +306,7 @@
 
 <section data-min="5" class="main-sesction-title"><h1>HTML cleaning</h1></section>
 <section class="sub-sections"><h2>HTML cleaning</h2>
-	<section><h3>Description</h3>
+	<section><h3>Task Description</h3>
 		<dl class="fa">
 			<dt>From an HTML code we want to remove tags, and repeated whitespaces, in order to extract the text only.</dt>
 			<pre><code rel="Python" class="python">
@@ -311,16 +361,6 @@
 
 <section data-min="5" class="main-sesction-title"><h1>Resources</h1></section>
 <section class="sub-sections"><h2>Resources</h2>
-	<section><h3>Video</h3>
-		<p>Reg(exp){2}lained/: Demystifying Regular Expressions by Lea Verou</p>
-		<iframe width="767" height="431" src="https://www.youtube.com/embed/EkluES9Rvak" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	</section>
-	<section><h3>Online Regex Testers and Cheet-sheet</h3>
-		<dl class="fa">
-			<dt><a href="https://www.debuggex.com/cheatsheet/regex/python">Python Regex Cheatsheet</a></dt>
-			<dt><a href="https://regex101.com/">regex101.com - Online regex tester and debugger: PHP, PCRE, Python, Golang ...</a></dt>
-		</dl>
-	</section>
 	<section><h3>regex Excersises</h3>
 		<dl class="fa">
 			<dt><a href="https://regex101.com/quiz">regex101 regex quiz</a></dt>
