@@ -192,27 +192,6 @@
 			MongoDB server version: 4.4.9
 		</code></pre>
 	</section>
-	<section><h3>MongoDB Atlas - the Mongo's Cloud DataBase</h3>
-		<dl class="fa">
-			<dt>MongoDB Atlas is a fully-managed cloud database developed by the same people that build MongoDB</dt>
-			<dt> Atlas handles all the complexity of deploying, managing, and healing your deployments on the cloud service provider of your choice (AWS, Azure, and GCP)</dt>
-		</dl>
-	</section>
-	<section id="TASK_MongoDB_Atlas"><h3>MongoDB Atlas - TASK</h3>
-		<dl class="fa">
-			<dt>Register to MongoDB Atlas and create <i>python_course_atlas</i> DB with 1 collection: <i>todos</i>, as shown</dt>
-			<a href="./images/Atlas_collection_created_screenshot.png" title="click for bigger image"><img src="./images/Atlas_collection_created_screenshot.png" alt="Atlas_collection_created_screenshot.png" style="max-height: 70vh;"></a>
-			<dd>Docs: <a href="https://docs.atlas.mongodb.com/getting-started/">Get Started with Atlas @docs.atlas.mongodb.com</a></dd>
-		</dl>
-	</section>
-	<section><h3>Allow Access to Atlas From All IP Addresses</h3>
-		<dl class="fa">
-			<dt>On the left side of the screen under SECURITY, click on Network Access.</dt>
-			<dt>Click the green Add IP Address button.</dt>
-			<dt>In the modal, click the ALLOW ACCESS FROM ANYWHERE button. You should see 0.0. 0.0/0 in the Access List Entry field.</dt>
-			<dt>Click the green Confirm button.</dt>
-		</dl>
-	</section>
 </section>
 
 <section data-min="5" class="main-sesction-title"><h1>Mongodb data model</h1></section>
@@ -231,6 +210,50 @@
 			<dt>MongoDB documents are composed of field-and-value pairs, separated by coma.</dt>
 			<dt>The value of a field can be any of the BSON data types, including other documents, arrays, and arrays of documents</dt>
 			<a href="./images/document_structure.svg"><img src="./images/document_structure.svg" alt="document_structure.svg" style="width: 50vw;"></a>
+		</dl>
+	</section>
+</section>
+
+<section data-min="50" class="main-sesction-title"><h1>MongoDB Atlas - the Mongo's Cloud DataBase</h1></section>
+<section class="sub-sections"><h2>MongoDB Atlas - the Mongo's Cloud DataBase</h2>
+	<section><h3>Overview</h3>
+		<dl class="fa">
+			<dt>MongoDB Atlas is a fully-managed cloud database developed by the same people that build MongoDB</dt>
+			<dt> Atlas handles all the complexity of deploying, managing, and healing your deployments on the cloud service provider of your choice (AWS, Azure, and GCP)</dt>
+		</dl>
+	</section>
+	<section><h3>Create Free Atlas Plan</h3>
+		<dl class="fa">
+			<dt>You can easily <a href="https://www.mongodb.com/cloud/atlas/register">Get started for free</a>  using your Google Account.</dt>
+			<dd>After filling the Welcome Form, on the page "Deploy your database" select <b>M0 Free</b> plan:</dd>
+			<a href="./images/Atlas_Login_Free.bmp"><img src="./images/Atlas_Login_Free.bmp" alt="Atlas_Login_Free.bmp"></a>
+			<dd>And click the "Create" button on the bottom of the page.</dd>
+			<dt>On next page "Security Quickstart" leave the defaults, click "Create User", and on the last section "Add entries to your IP Access List" click on <b>Add My Current IP Address</b> button.</dt>
+		</dl>
+	</section>
+	<section id="TASK_MongoDB_Atlas"><h3>MongoDB Atlas - TASK</h3>
+		<dl class="fa">
+			<dt>Register to MongoDB Atlas and create <i>python_course_atlas</i> DB with 1 collection: <i>todos</i>, as shown</dt>
+			<a href="./images/Atlas_collection_created_screenshot.png" title="click for bigger image"><img src="./images/Atlas_collection_created_screenshot.png" alt="Atlas_collection_created_screenshot.png" style="max-height: 70vh;"></a>
+			<dd>Docs: <a href="https://docs.atlas.mongodb.com/getting-started/">Get Started with Atlas @docs.atlas.mongodb.com</a></dd>
+		</dl>
+	</section>
+	<section><h3>Create Database User</h3>
+		<dl class="fa">
+			<dt>It's a best practice, when an application needs to work on specific database, to create a separate user for connection to it, and not using your Atlas Credentials.</dt>
+			<dt>In Atlas homepage, on the left side of the screen, under SECURITY section click on <b>Database Access</b> and then on the button "Add New Database User".</dt>
+			<dt>In "Authentication Method" leave Password. In "Password Authentication" write the username and the password. Under "Built-in Role" select: "Read and write to any database". Then click on the "Add User" button.</dt>
+			<a href="./images/Atlas_AddNewDatabaseUser.bmp" title="Click for full page view"><img src="./images/Atlas_AddNewDatabaseUser.bmp" alt="Atlas_AddNewDatabaseUser"></a>
+		</dl>
+	</section>
+	<section><h3 class="advanced">Allow Access to Atlas</h3>
+		<dl class="fa">
+			<dt>If you want to be able to connect to your Atlas Cluster from whatever machine, then:</dt>
+			<dt>In Atlas homepage, on the left side of the screen, under SECURITY section click on <b>Network Access</b>.</dt>
+			<dt>Click the green "Add IP Address" button.</dt>
+			<dt>In the modal, click the ALLOW ACCESS FROM ANYWHERE button. You should see 0.0. 0.0/0 in the Access List Entry field.</dt>
+			<dt>Click the green Confirm button.</dt>
+			<a href="./images/Atlas_AllowIPAdresses.bmp" title="Click for full page view"><img src="./images/Atlas_AllowIPAdresses.bmp" alt="Atlas_AllowIPAdresses" height="600"></a>
 		</dl>
 	</section>
 </section>
