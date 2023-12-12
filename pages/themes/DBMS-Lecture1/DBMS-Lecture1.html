@@ -161,13 +161,15 @@
 			<dt>Install from: </dt>
 			<dd><a href="https://www.mongodb.com/try/download/community">MongoDB Community Server</a></dd>
 			<dt>But its better to follow the docs:</dt>
-			<dd><a href="https://docs.mongodb.com/manual/administration/install-community/">Install MongoDB Community Server @docs.mongodb.com</a></dd>
+			<dd><a href="https://docs.mongodb.com/manual/administration/install-community/">Install MongoDB Community Edition @docs.mongodb.com</a></dd>
+			<dt>Visual Tutorial: <a href="https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb">How to Install MongoDB</a></dt>
 		</dl>
 	</section>
 	<section><h3>Install MongoDB Shell (Windows Only)</h3>
 		<dl class="fa">
 			<dt>MongoDB Shell (mongosh) does not come with the MongoDB Community Edition. You need to install it separately after successfully installing the MongoDB server on your windows 10 system.</dt>
 			<dt>Download it from <a href="https://www.mongodb.com/try/download/shell">MongoDB Shell</a></dt>
+			<dt>Do not forget to add <a href="https://www.mongodb.com/docs/mongodb-shell/install/#add-the-mongosh-binary-to-your-path-environment-variable"> the MongoDB Shell binary's location to your PATH environment variable</a></dt>
 		</dl>
 	</section>
 	<section><h3>Run MongoDB Community Edition</h3>
@@ -178,9 +180,9 @@
 			<dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb-community-edition">MacOS</a></dt>
 		</dl>
 	</section>
-	<!-- <section><h3>Test the local installation</h3>
+	<section><h3>Test the local installation</h3>
 		<pre><code rel="Terminal" class="bash">
-			mongo
+			mongosh --version
 		</code></pre>
 		<p>If you receve similar output => you're good to go</p>
 		<pre><code rel="Output" class="bash">
@@ -189,7 +191,7 @@
 			Implicit session: session { "id" : UUID("84365a48-2b99-48e7-a5a0-8598ad39b06a") }
 			MongoDB server version: 4.4.9
 		</code></pre>
-	</section> -->
+	</section>
 	<section><h3>MongoDB Atlas - the Mongo's Cloud DataBase</h3>
 		<dl class="fa">
 			<dt>MongoDB Atlas is a fully-managed cloud database developed by the same people that build MongoDB</dt>
