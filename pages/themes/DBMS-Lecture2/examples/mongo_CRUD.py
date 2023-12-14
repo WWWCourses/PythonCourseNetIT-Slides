@@ -1,18 +1,21 @@
 import pymongo
 from datetime import datetime
 
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+
 # ------------------------- Connect to MongoDB Server ------------------------ #
 # connect to MongoDB server:
 client = pymongo.MongoClient("mongodb://localhost:27017")
 
 # ----------------------- Switch context to a database ----------------------- #
-# get "python_course" database:
+# use "python_course" database:
 db = client.python_course
 
 # ------------------- Show all Collections in the database: ------------------ #
 # get all collections in the database:
-collections = db.list_collection_names()
-print(collections)
+# collections = db.list_collection_names()
+# print(collections)
 
 # ---------------------------------- Create ---------------------------------- #
 # # insert a new document into "todos" collection:
@@ -21,7 +24,10 @@ print(collections)
 # # get the id of the inserted document:
 # print(res.inserted_id)
 
-# # insert multiple documents into "todos" collection:
+# # get the timestamp of Object id:
+# print(res.inserted_id.generation_time)
+
+# insert multiple documents into "todos" collection:
 # res =  db.todos.insert_many([
 # 	{
 # 		"title": "Learn Python",
@@ -72,26 +78,15 @@ print(collections)
 # completed = db.todos.find({'completed':False})
 # print(list(completed))
 
-# python_completed = db.todos.find(
-# 	{
-# 		'$and':[
-# 			{'done':True},
-# 			{'title':{'$regex': 'learn', '$options': 'i' }}
-# 		]
-# 	},
-# 	{
-# 		'title':1,'done':1,'_id':0
-# 	}
-# )
-
-# # get all completed tasks and return all fields, except "_id"
+# get all completed tasks and return all fields, except "_id"
 # completed1 = db.todos.find({'completed':False}, {"_id":0})
 
 # # get all completed tasks and return only "title" field
 # completed2 = db.todos.find({'completed':False}, {"title":1,"_id":0})
 
-# print(list(completed1))
-# print(list(completed2))
+# pp.pprint(list(completed1))
+# pp.pprint(list(completed2))
+
 
 # -------------------------- Text Indexes and Search ------------------------- #
 # db.todos.create_index([
@@ -102,13 +97,13 @@ print(collections)
 
 # print(list(res))
 
-python_completed = db.todos.find(
-  {
-    '$and':[
-      {'completed':False},
-      {'title':{'$regex': 'learn', '$options': 'i' }}
-    ]
-  },
-  {"title":1}
-)
-print(list(python_completed))
+# python_completed = db.todos.find(
+#   {
+#     '$and':[
+#       {'completed':False},
+#       {'title':{'$regex': 'learn', '$options': 'i' }}
+#     ]
+#   },
+#   {"title":1}
+# )
+# print(list(python_completed))
