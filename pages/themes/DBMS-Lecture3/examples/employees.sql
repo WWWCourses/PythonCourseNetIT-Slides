@@ -1,4 +1,7 @@
+-- Active: 1663945334496@@127.0.0.1@3306@Tmp
+use Tmp;
 DROP DATABASE IF EXISTS employees;
+
 CREATE DATABASE IF NOT EXISTS employees;
 USE employees;
 
@@ -51,8 +54,7 @@ CREATE TABLE titles (
     to_date     DATE,
     FOREIGN KEY (emp_no) REFERENCES employees (emp_no) ON DELETE CASCADE,
     PRIMARY KEY (emp_no,title, from_date)
-)
-;
+);
 
 CREATE TABLE salaries (
     emp_no      INT             NOT NULL,
@@ -61,5 +63,4 @@ CREATE TABLE salaries (
     to_date     DATE            NOT NULL,
     FOREIGN KEY (emp_no) REFERENCES employees (emp_no) ON DELETE CASCADE,
     PRIMARY KEY (emp_no, from_date)
-)
-;
+);

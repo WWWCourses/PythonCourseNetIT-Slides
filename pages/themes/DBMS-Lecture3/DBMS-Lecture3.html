@@ -143,6 +143,15 @@
 	<section><h3>Install on Windows - Select Products</h3>
 		<a href="./images/MySQL_instal_wndows_minimal_products.png"><img src="./images/MySQL_instal_wndows_minimal_products.png" alt="MySQL_instal_wndows_minimal_products.png"></a>
 	</section>
+	<section id="setupPath"><h3>Install on Windows - Setup PATH for MySQL Tools</h3>
+		<dl class="fa">
+			<dt>On the Windows desktop, right-click the My Computer icon, and select Properties.</dt>
+			<dt>Next select the Advanced tab from the System Properties menu that appears, and click the Environment Variables button.</dt>
+			<dt>Under <span class="note">System Variables</span>, select Path, and then click the Edit button. The Edit System Variable dialogue should appear.</dt>
+			<dt>Place your cursor at the end of the text appearing in the space marked Variable Value. (Use the End key to ensure that your cursor is positioned at the very end of the text in this space.) Then enter the complete path name of your MySQL bin directory (for example, C:\Program Files\MySQL\MySQL Server 8.0\bin)</dt>
+			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-installation-windows-path.html">Customizing the PATH for MySQL Tools</a></dt>
+		</dl>
+	</section>
 	<section><h3>Install on MacOS</h3>
 		<dl class="fa">
 			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/macos-installation.html">Installing MySQL on MacOS @https://dev.mysql.com/</a></dt>
@@ -183,32 +192,32 @@
 
 <section data-min="50" class="main-sesction-title"><h1>Test the installations</h1></section>
 <section class="sub-sections"><h2>Test the installations</h2>
-	<section><h3>MySQL Client</h3>
-        <pre><code rel="Terminal" class="bash" style="min-height: 90vh;">
-			### the client:
-			mysql --version
+	<section>
+		<dl class="fa">
+			<dt>Open <b>new</b> Terminal (Command Prompt) and write next commands:</dt>
+			<pre><code rel="Terminal" class="bash" style="min-height: 40vh;">
+				### the client:
+				mysql --version
 
-			# mysql  Ver 14.14 Distrib 5.7.11, for Linux (x86_64) using  EditLine wrapper
+				# mysql  Ver 14.14 Distrib 5.7.11, for Linux (x86_64) using  EditLine wrapper
 
-			### the server:
-			mysqld --version
+				### the server:
+				mysqld --version
 
-			# mysqld  Ver 5.7.11 for Linux on x86_64 (MySQL Community Server (GPL))
+				# mysqld  Ver 5.7.11 for Linux on x86_64 (MySQL Community Server (GPL))
 
+			</code></pre>
+			<dt>If you receive error like: "<i>mysql is not recognized as an internal or external command...</i>", then check that you have added MySQL bin folder to System Variables=>Path.</dt>
+			<dd>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-installation-windows-path.html">Customizing the PATH for MySQL Tools</a></dd>
+		</dl>
 
-			### the workbench
-			mysql-workbench --version
-
-			# Found /usr/lib/x86_64-linux-gnu/libproj.so.9
-			# MySQL Workbench CE (GPL) 6.3.10 CE build 12092614
-		</code></pre>
     </section>
-	<section><h3>Add mysql path to Windows PATH env. variable</h3>
+	<!-- <section><h3>Add mysql path to Windows PATH env. variable</h3>
 		<dl class="fa">
 			<dt>If after the sucessfull instalation, your 'mysql' command is not recognized, then you have to add it to windows path.</dt>
 			<dt>Follow nezt instructions: <a href="https://dev.mysql.com/doc/mysql-windows-excerpt/5.7/en/mysql-installation-windows-path.html">Customizing the PATH for MySQL Tools</a></dt>
 		</dl>
-	</section>
+	</section> -->
 </section>
 
 <section data-min="5" class="main-sesction-title"><h1>Start/stop MySQL Server</h1></section>
@@ -247,22 +256,28 @@
 <section data-min="5" class="main-sesction-title"><h1>Connect to MySQL Server</h1></section>
 <section class="sub-sections"><h2>Connect to MySQL Server</h2>
 	<section><h3>MySQL client</h3>
-		<pre><code rel="Terminal" class="bash">
+		<pre><code rel="Terminal" class="bash" style="min-height: 70vh;">
 			# connect to local mysql, using the root account:
 			mysql -u root -p
 
 			# Enter password:
 			# ...
 
-			# Welcome to the MariaDB monitor.  Commands end with ; or \g.
-			# Your MariaDB connection id is 14
-			# Server version: 10.2.38-MariaDB-10.2.38+maria~xenial-log mariadb.org binary distribution
+			# You should see something like:
 
-			# Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+			Welcome to the MySQL monitor.  Commands end with ; or \g.
+			Your MySQL connection id is 9
+			Server version: 8.0.35-0ubuntu0.22.04.1 (Ubuntu)
 
-			# Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+			Copyright (c) 2000, 2023, Oracle and/or its affiliates.
 
-			# MariaDB [(none)]>
+			Oracle is a registered trademark of Oracle Corporation and/or its
+			affiliates. Other names may be trademarks of their respective
+			owners.
+
+			Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+			mysql>
 		</code></pre>
 	</section>
 
@@ -313,7 +328,7 @@
 		<dt>The standard language for relational database management systems.</dt>
 		<dt>Not a procedural language(C, Java etc.).</dt>
 		<dt>A declarative language!</dt>
-			<dd>Tell with SQL <b>what</b> you want instead of telling the system how to get it.</dd>
+			<dd>Tell with SQL <b>what</b> you want, instead of telling the system <b>how</b> to get it.</dd>
 		<dt>Case insensitive!</dt>
 	</dl>
 	</section>
@@ -493,7 +508,9 @@
 				....
 			);
         </code></pre>
-        <p>Column names should not be MySQL <a href="https://dev.mysql.com/doc/refman/5.6/en/keywords.html" class="note">reserved words</a>. If you really want to use them (which is a <span class="note">bad practice</span>), you have to put them in backticks(``)</p>
+		<dl class="fa">
+			<dt>If identifiers for database, table, column and other, contains special characters or is a <a href="https://dev.mysql.com/doc/refman/8.0/en/keywords.html" class="note">reserved word</a> you have to put them in backticks (``).</dt>
+		</dl>
     </section>
     <section><h3>CREATE TABLE - example</h3>
         <pre><code class="sql">

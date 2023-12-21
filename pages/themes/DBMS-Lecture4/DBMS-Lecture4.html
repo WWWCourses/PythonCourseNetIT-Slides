@@ -154,7 +154,7 @@
 		</code></pre>
 		<p>And now insnert some numeric data</p>
 		<pre><code>
-			INSERT INTO integer_datatypes (tinyint_data,smallint_data,mediumint_data,int_data,bigint_data )
+			INSERT INTO datatypes (tinyint_data,smallint_data,mediumint_data,int_data,bigint_data )
 			VALUES (100, 20000, 3000000, 100000000, 10000000000000000 );
 		</code></pre>
 	</section>
@@ -169,12 +169,12 @@
 			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/fixed-point-types.html">Fixed-Point Types</a></dt>
 			<dt>Example</dt>
 			<pre><code rel="mysql" class="sql">
-				ALTER TABLE integer_datatypes ADD decimal_data DECIMAL(6,2)
+				ALTER TABLE datatypes ADD decimal_data DECIMAL(6,2)
 
-				INSERT INTO integer_datatypes (decimal_data) VALUES (10000.99)
+				INSERT INTO datatypes (decimal_data) VALUES (10000.99)
 				# (1264, "Out of range value for column 'decimal_data' at row 1")
 
-				INSERT INTO integer_datatypes (decimal_data) VALUES (9999.99)
+				INSERT INTO datatypes (decimal_data) VALUES (9999.99)
 				Query OK, 1 row affected
 			</code></pre>
 		</dl>
@@ -309,7 +309,7 @@
 			SELECT [select_option]
 			{select_expression}
 			[
-				FROM
+				FROM table_reference
 					JOIN
 					ON
 					WHERE
@@ -332,6 +332,9 @@
 				FROM customers.customers as customers, orders
 					WHERE customers.id=orders.customer_id
 		</code></pre>
+		<dl class="fa">
+			<dt>Note, that it is good practice to prefix table names with DB name, like: <code>customers.customer</code></dt>
+		</dl>
 	</section>
 </section>
 
