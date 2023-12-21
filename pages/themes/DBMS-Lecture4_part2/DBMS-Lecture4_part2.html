@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section class="main-sesction-title"><h1>MySQl - goind deep</h1></section>
+<section class="main-sesction-title"><h1>MySQL and Python</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
 		<div class="note">
@@ -108,53 +108,119 @@
 		</code></pre>
 	</section>
 	<section><h3>MySQL Connector - Create connection</h3>
-		<pre><code rel="Python" class="python" style="min-height: 80vh;">
+		<pre><code rel="Python" class="python" style="min-height: 50vh;">
 			import mysql.connector
-			from mysql.connector import connection
 
-			def make_connection(user, password, db, host="localhost", port=3306):
-				try:
-					cnx = mysql.connector.connect(
-						user=user,
-						password=password,
-						db=db,
-						host=host,
-						port=port
-					)
-
-				except mysql.connector.Error as e:
-					print(e)
-
-				print('Connection Established')
-				return cnx
-
-
-			# Connect to server
-			cnx = make_connection (user="root", password="1234", db='customers')
-
-			# Get a cursor
-			cur = cnx.cursor()
-
-			# Execute a query
-			cur.execute("SELECT CURDATE()")
-
-			# Fetch one result
-			row = cur.fetchone()
-			print("Current date is: {0}".format(row[0]))
-
-			# fetch Multiple results
-			with cnx.cursor() as cursor:
-				cursor.execute(f'SHOW TABLES')
-
-				results = cursor.fetchall()
-				# print(results)
-				for r in results:
-					print(r)
-
-			# Close connection
-			cnx.close()
+			# Establish a connection to the MySQL server
+			db = mysql.connector.connect(
+				host="localhost",
+				user="test",
+				password="test1234",
+				database="test"
+			)
 		</code></pre>
 	</section>
+	<section><h3>MySQL Connector - Create table</h3>
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
+			import mysql.connector
+
+			# Establish a connection to the MySQL server
+			db = mysql.connector.connect(
+				...
+			)
+
+			# Create a cursor object to interact with the database
+			cursor = db.cursor()
+
+			# SQL query to create a 'students' table
+			create_table_query = """
+			CREATE TABLE students (
+				student_id INT AUTO_INCREMENT PRIMARY KEY,
+				student_name VARCHAR(50),
+				student_age INT,
+				student_grade TINYINT CHECK (student_grade >= 2 AND student_grade <= 6)
+			)
+			"""
+
+			# Execute the query to create the table
+			cursor.execute(create_table_query)
+
+			# Commit changes to the database
+			db.commit()
+
+			# Close the cursor and database connection
+			cursor.close()
+			db.close()
+		</code></pre>
+	</section>
+	<section><h3>MySQL Connector - Insert</h3>
+		<pre><code rel="Python" class="python" style="min-height: 90vh;">
+			import mysql.connector
+
+			# Establish a connection to the MySQL server
+			db = mysql.connector.connect(
+				...
+			)
+
+			# Create a cursor object to interact with the database
+			cursor = db.cursor()
+
+			# Data to be inserted into the table
+			student_data = [
+				("Alice", 20, 4),
+				("Bob", 22, 2),
+				("Charlie", 21, 5),
+				("Diana", 23, 6)
+			]
+
+			# SQL query to insert data into the 'students' table
+			insert_query = """
+			INSERT INTO students (student_name, student_age, student_grade)
+			VALUES (%s, %s, %s)
+			"""
+
+			# Execute the query to insert data
+			cursor.executemany(insert_query, student_data)
+
+			# Commit changes to the database
+			db.commit()
+
+			# Close connection
+			db.close()
+
+		</code></pre>
+	</section>
+	<section><h3>MySQL Connector - Fetch rows</h3>
+		<pre><code rel="Python" class="python" style="min-height: 90vh;">
+			import mysql.connector
+
+			# Establish a connection to the MySQL server
+			db = mysql.connector.connect(
+				...
+			)
+
+			# Create a cursor object to interact with the database
+			cursor = db.cursor()
+
+
+			### Example: Fetching all rows
+			cursor.execute("SELECT * FROM students")
+			rows = cursor.fetchall()
+			for row in rows:
+				print(row)
+
+			### Example:  Fetch a single row
+			cursor.execute("SELECT * FROM students")
+
+			row1 = cursor.fetchone()
+			row2 = cursor.fetchone()
+			print(row1)
+			print(row2)
+
+			db.close()
+		</code></pre>
+	</section>
+
 </section>
 
 <!--
@@ -411,7 +477,7 @@
 <section class="sub-sections"><h2>Demo example with SQLAlchemy and SQLite3</h2>
 	<section><h3>___MainSectionSubTitle___</h3></section>
 </section> -->
-
+<!--
 <section data-min="20" class="main-sesction-title"><h1>Pandas and DB</h1></section>
 <section class="sub-sections"><h2>Pandas and DB</h2>
   <section><h3>DataFrame from MySQL table</h3>
@@ -438,10 +504,10 @@
 			<dt><a href="https://www.pythonsheets.com/notes/python-sqlalchemy.html">Python SQLAlchemy Cheatsheet</a></dt>
 		</dl>
 	</section>
-</section>
+</section> -->
 
-<section id="hw"><h1>Exercises</h1></section>
-<section class="sub-sections"><h2>books_db</h2>
+<section id="hw" class="main-sesction-title"><h1>Exercises</h1></section>
+<section class="sub-sections"><h2>TASK: books_db</h2>
 	<section>
 		<ol class="fs-small">
 			<li>CONNECT TO MySQL as ROOT</li>
