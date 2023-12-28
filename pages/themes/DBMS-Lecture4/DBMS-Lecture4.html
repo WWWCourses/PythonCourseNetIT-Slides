@@ -681,6 +681,14 @@
 
 		</code></pre>
 	</section>
+	<section><h3>"One to Many" ER Diagram</h3>
+		<p><a href="./images/customers_db_ERDiagram.png"><img src="./images/customers_db_ERDiagram.png" alt="customers_db_ERDiagram.png" style="height: 60vh;"></a></p>
+		<dl class="fa">
+			<dt>With FOREIGN KEY we can implement <span class="note">"one to many"</span> relationship between Parent and Child tables!</dt>
+			<dd><span class="note">One</span> customer can have <span class="note">many</span> orders.</dd>
+			<dt>If we need <span class="note">"many to many"</span> relation we could make third table: <code>customers_orders</code> which will store foreign keys to <code>customers(id)</code> and <code>orders(id)</code> </dt>
+		</dl>
+	</section>
 	<section><h3>Example on child table insert</h3>
 		<dl class="fa">
 			<dt>Note, that if we try to insert into orders the id of a customer, who does not exists, MySQL will through an error</dt>
@@ -692,19 +700,11 @@
 			# Cannot add or update a child row: a foreign key constraint fails
 		</code></pre>
 	</section>
-	<section><h3>customersdb ER Diagram</h3>
-		<p><a href="./images/customers_db_ERDiagram.png"><img src="./images/customers_db_ERDiagram.png" alt="customers_db_ERDiagram.png" style="height: 60vh;"></a></p>
-		<dl class="fa">
-			<dt>This implements <span class="note">"one to many"</span> relation!</dt>
-			<dd><span class="note">One</span> customer can have <span class="note">many</span> orders.</dd>
-			<dt>If we need <span class="note">"many to many"</span> relation we could make third table: <code>customers_orders</code> which will store foreign keys to <code>customers(id)</code> and <code>orders(id)</code> </dt>
-		</dl>
-	</section>
 	<section><h3>FOREIGN KEY Constraint</h3>
 		<p>Ensure the <span class="keyword">referential integrity</span> of the data in one table to match values in another table</p>
 		<p>MySQL supports FOREIGN KEY Constraint only for <a href="http://dev.mysql.com/doc/refman/8.0/en/using-innodb-tables.html">InnoDB tables</a></p>
 	</section>
-	<section><h3>FOREIGN KEY Constraint</h3>
+	<section><h3 class="advanced">FOREIGN KEY Constraint</h3>
 		<p>The syntax</p>
 		<pre><code class="fs-big bash">
 			[CONSTRAINT constraint_name]
@@ -721,7 +721,7 @@
 
 		</dl>
 	</section>
-	<section><h3>FOREIGN KEY Constraint: ON DELETE</h3>
+	<section><h3 class="advanced">FOREIGN KEY Constraint: ON DELETE</h3>
 		<dl class="fa fs-small">
 			<dt>ON DELETE specifies what happens to the child table when parent table rows are deleted.</dt>
 			<dt class="note">ON DELETE CASCADE causes matching child rows to be deleted when the corresponding parent row is deleted. In essence, the effect of the delete is cascaded from the parent to the child. This enables you to perform multiple-table deletes by deleting rows only from the parent table and letting InnoDB delete the corresponding rowsfrom the child table.</dt>
@@ -729,14 +729,14 @@
 			<dt>ON DELETE SET NULL causes index columns in matching child rows to be set to NULL when the parent row is deleted. If you use this option, all the indexed child table columns named in the foreign key definition must be defined topermit NULL values</dt>
 		</dl>
 	</section>
-	<section><h3>FOREIGN KEY Constraint: ON UPDATE</h3>
+	<section><h3 class="advanced">FOREIGN KEY Constraint: ON UPDATE</h3>
 		<dl class="fa fs-small">
 			<dt>ON UPDATE enables you to specify what happens to the child table when parent table rows are updated.</dt>
 			<dt>If ON UPDATE clause is not present, the default behaviour is to reject any inserts or updates in the child table that result in foreign key values that don’t have any match in the parent table index, and to prevent updates to parent table index values to which child rows point. </dt>
 			<dt>The possible action values are the same as for ON DELETE and have similar effects.</dt>
 		</dl>
 	</section>
-	<section><h3>FOREIGN KEY Constraint: Guidelines</h3>
+	<section><h3 class="advanced">FOREIGN KEY Constraint: Guidelines</h3>
 		<dl class="fa fs-small">
 			<dt>You must create the parent table index explicitly before defining the foreign key relationship.</dt>
 			<dt>InnoDB automatically creates an index on foreign key columns (the referencing columns) in the child table if the CREATE TABLE statement does not include such an index.</dt>
@@ -748,7 +748,7 @@
 			<dt>For string columns, you must index the entire column, not just a leading prefix of it.</dt>
 		</dl>
 	</section>
-	<section><h3>FOREIGN KEY Constraint: Examples</h3>
+	<section><h3 class="advanced">FOREIGN KEY Constraint: Examples</h3>
 		<dl class="fa fs-small">
 			<dt>Download <a href="slides_examples/books_db_schema.sql">books_db schema</a></dt>
 			<dt>Download <a href="slides_examples/books_db_sample_data.sql">books_db sample data</a></dt>
@@ -762,7 +762,7 @@
 			</code></pre>
 		</dl>
 	</section>
-	<section><h3>FOREIGN KEY Constraint: Exercises</h3>
+	<section><h3 class="advanced">FOREIGN KEY Constraint: Exercises</h3>
 		<dl class="fa fs-small">
 			<dt>Create the next <a href="slides_examples/books_db_schema.sql">books_db schema</a> and insert the <a href="slides_examples/books_db_sample_data.sql">books_db sample data</a></dt>
 			<dt>Set <span class="note">ON UPDATE</span> constraint on <span class="code">fk_AuthorID</span> which will force the MySQL to automatically update all rows in <span class="code">book</span> table, when a corresponding row in <span class="code">author</span> table has changed.</dt>
