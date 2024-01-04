@@ -1,4 +1,24 @@
-args = [1,2,3]
+import sys
+from PyQt6 import QtWidgets as qtw
+from PyQt6 import QtCore as qtc
+from PyQt6 import QtGui as qtg
 
-a, b = args[0:2]
-print(a,b)
+from Ui_gridMergedCells import Ui_Form
+
+class MainWindow(qtw.QWidget, Ui_Form):
+
+	def __init__(self , *args, **kwargs):
+		super().__init__(*args, **kwargs)
+
+		self.setupUi(self)
+
+		self.show();
+
+
+
+if __name__ == '__main__':
+	app = qtw.QApplication(sys.argv);
+
+	window = MainWindow()
+
+	sys.exit(app.exec())
