@@ -544,7 +544,7 @@
 	<section><h3>How will the `pip install` behave?</h3>
 		<p>Once we are in a virtual environment, whenever we use pip install to install any library, if we don’t specify the desired version of the library, pip will automatically install the latest version that is compatible with the python version inside the virtual environment</p>
 	</section>
-	<section><h1>Freezing the dependency versions</h1>
+	<section><h3>Freezing the dependency versions</h3>
 		<p>Imagine we have done all the work in our local environment and want to create the requirements.txt file for others to use and install on their virtual environment, so that there is no compatibility issue. Besides telling them the python version in use (e.g., 3.7) we need to “freeze” the current package versions and export them to a text file. let’s call it requirements37.txt</p>
 		<pre><code rel="Terminal" class="bash">
 			(venv37) PS C:\Users\user\ML Projects\test_project_38> python -m pip freeze > requirements38.txt
