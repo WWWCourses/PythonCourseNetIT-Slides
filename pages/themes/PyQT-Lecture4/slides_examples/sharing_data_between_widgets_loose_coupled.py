@@ -4,14 +4,14 @@ from PyQt5 import QtCore as qtc
 from PyQt5 import QtGui as qtg
 
 class FormWindow(qtw.QWidget):
-	# cretate custom signal which will cary a string data type data:
+	# create custom signal which will carry a string data type data:
 	submit = qtc.pyqtSignal(str);
 
 	def __init__(self , msg, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.setWindowTitle('My Form')
 
-		# ------------------------- create and atach widgets ------------------------- #
+		# ------------------------- create and attach widgets ------------------------- #
 		self.edit = qtw.QLineEdit(msg)
 		self.btn_submit = qtw.QPushButton('Submit')
 
@@ -49,7 +49,7 @@ class MainWindow(qtw.QWidget):
 		self.show()
 
 	def onChangeClicked(self):
-		# loosly-coupled approach: we don't care about form's implementation, just pass and receive data
+		# loosely-coupled approach: we don't care about form's implementation, just pass and receive data
 		self.form = FormWindow(self.label.text())
 		self.form.submit.connect(self.label.setText)
 		self.form.show()
