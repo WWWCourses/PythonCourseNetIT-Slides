@@ -351,6 +351,64 @@
 </section> -->
 
 
+<section data-min="5" class="main-sesction-title"><h1>Add GUI feature to your app as separate git branch (extra topic)</h1></section>
+<section class="sub-sections"><h2>Add GUI feature to your app as separate git branch</h2>
+	<!-- <section><h3>Create/Clone repos</h3>
+		<dl class="fa">
+			<dt>Create your github repo, or clone someone's else (if you want to contribute to the project)</dt>
+			<dt>References:</dt>
+			<dd><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">Create a repo @docs.github.com</a></dd>
+			<dd><a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository">Cloning a repository @docs.github.com</a></dd>
+		</dl>
+	</section> -->
+	<section><h3>Disclaimer</h3>
+		<dl class="fa">
+			<dt>Note, that topics on Git/GitHub will not be included in final exam! But they will speed your workflow process, especially on final course project development!</dt>
+		</dl>
+	</section>
+	<section><h3>Git Branch Overview</h3>
+		<dl class="fa">
+			<dt>If you already have a working application with console IO, and you want to refactor your app to work with GUI, it's best to separate your work in a different branch.</dt>
+			<dt>Readings:</dt>
+			<dd><a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Git branching branches in a nutshell</a> </dd>
+			<dd><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">Git Feature Branch Workflow @atlassian.com</a></dd>
+		</dl>
+	</section>
+	<section><h3>Git Branch Overview - Video</h3>
+		<p><a href="https://www.youtube.com/watch?v=QV0kVNvkMxc">Git & GitHub Tutorial for Beginners #8 - Branches</a></p>
+		<iframe width="912" height="513" src="https://www.youtube.com/embed/QV0kVNvkMxc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</section>
+	<section><h3>Create and work in a branch for <code>GUI</code> of your app</h3>
+
+		<pre><code rel="Terminal" class="bash" style="min-height: 80vh;">
+			### make sure you're in the git project folder and that you git status is clear:
+			git status
+			#On branch main
+			#nothing to commit, working tree clean
+
+			### create new branch, named "GUI"
+			git checkout -b GUI
+			# your prompt should change and show the branch name (GUI)
+
+			# do some hard work on your GUI app...
+
+			# commit your work:
+			git add -A
+			git commit -m'hard work done'
+
+			### switching between branches
+			# go back to you main branch
+			git checkout main
+			# this command will return you to the main branch
+
+			# do some stuff on main, but remember - to commit
+
+			# swithch back to GUI branch:
+			git checkout GUI
+		</code></pre>
+	</section>
+</section>
+
 <section class="disclaimer end-slide"></section>
 <!--
 ########################################################
