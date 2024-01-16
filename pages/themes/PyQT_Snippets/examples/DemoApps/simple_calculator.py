@@ -23,7 +23,7 @@ class Calc(qtw.QWidget):
 
         # create 1st row - span widgets horisontally by 2
         first_row_button_positions = [
-            ('Backspace', 0, 0, 1, 2), ('Clear', 0, 2, 1, 2), ('ClearAll', 0, 4, 1, 2)
+            ('Backspace', 0, 0, 1, 2), ('Clear', 0, 2, 1, 3)
         ]
         for (text, row, col, row_span, col_span) in first_row_button_positions:
             button = qtw.QPushButton(text)
@@ -33,10 +33,10 @@ class Calc(qtw.QWidget):
 
         # Button positions
         rest_button_positions = [
-            ('MC', 1,0), ('7', 1,1),('8', 1,2),('9',  1,3),('/', 1,4),('sqrt', 1,5),
-            ('MR', 2,0), ('4', 2,1),('5', 2,2),('6',  2,3),('*', 2,4),('**2',  2,5),
-            ('MS', 3,0), ('1', 3,1),('2', 3,2),('3',  3,3),('-', 3,4),('1/x',  3,5),
-            ('M+', 4,0), ('0', 4,1),('.', 4,2),('+-', 4,3),('+', 4,4),('=',    4,5)
+            ('7', 1,0),('8', 1,1),('9',  1,2),('/', 1,3),('sqrt', 1,4),
+            ('4', 2,0),('5', 2,1),('6',  2,2),('*', 2,3),('**2',  2,4),
+            ('1', 3,0),('2', 3,1),('3',  3,2),('-', 3,3),('1/x',  3,4),
+            ('0', 4,0),('.', 4,1),('+-', 4,2),('+', 4,3),('=',    4,4)
         ]
 
         for (text, row, col) in rest_button_positions:

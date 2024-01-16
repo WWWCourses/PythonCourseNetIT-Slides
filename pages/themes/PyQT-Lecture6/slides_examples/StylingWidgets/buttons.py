@@ -52,7 +52,6 @@ class StyledButton(qtw.QPushButton):
         )
 
 
-
 if __name__ == '__main__':
     app = qtw.QApplication(sys.argv)
     w = qtw.QWidget()
@@ -65,7 +64,6 @@ if __name__ == '__main__':
         StyledButton('Danger', role=ButtonRole.DANGER),
         StyledButton('Warning', role=ButtonRole.WARNING),
         StyledButton('Info', role=ButtonRole.INFO),
-        StyledButton('Test', role=ButtonRole.SUCCESS)
     ]
 
     mainLayout = qtw.QGridLayout(w)
