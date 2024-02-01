@@ -122,7 +122,7 @@
 
 		</code></pre>
 	</section>
-	<section><h3>How TCP Connection Works</h3>
+	<section id="TCP_Communication"><h3>How TCP Connection Works</h3>
 		<a href="./images/how_TCP_works.png"><img src="./images/how_TCP_works.png" alt="how_TCP_works.png" style="height: 70vh;"></a>
 	</section>
 	<section><h3>Creating a Socket</h3>
@@ -164,15 +164,12 @@
 		</dl>
 
 	</section>
-
 	<section><h3>Host Name Related Methods</h3>
 		<dl class="fa">
 			<dt><code>socket.gethostname()</code> - returns the host name of the current system under which the Python interpreter is executed.</dt>
 			<dt><code>socket.gethostbyname(hostname)</code> - returns the IP address of the given host</dt>
 		</dl>
 	</section>
-
-
 	<section><h3>Using Sockets on Server</h3>
 		<pre><code rel="server.py" class="python" style="min-height: 70vh;">
 			def handle_client(conn, addr):
@@ -238,7 +235,6 @@
 			<dt><code>socket.send(bytes[, flags])</code> - <a href="https://docs.python.org/3/library/socket.html#socket.socket.send">socket.send() @python.org</a></dt>
 		</dl>
 	</section>
-
 </section>
 
 <section data-min="5" class="main-sesction-title"><h1>Monitoring TCP connection</h1></section>
