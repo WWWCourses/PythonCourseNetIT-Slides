@@ -180,22 +180,21 @@
 					msg_length = conn.recv(BUFF_SIZE)
 
 					if msg_length:
-					msg_length = int(msg_length)
-					msg = conn.recv(msg_length).decode(FORMAT)
-					if msg == DISCONNECT_MESSAGE:
-					connected = False
+						msg_length = int(msg_length)
+						msg = conn.recv(msg_length).decode(FORMAT)
 
-					print(f"[{addr}] {msg}")
-					conn.send("Msg received".encode(FORMAT))
+						if msg == DISCONNECT_MESSAGE:
+							connected = False
 
-					conn.close()
+						print(f"[{addr}] {msg}")
+						conn.send("Msg received".encode(FORMAT))
+
+				conn.close()
 
 			while True:
 				conn, addr = s.accept()
 				# better to do with threading
 				handle_client(conn, addr)
-
-				print(f"[ACTIVE CONNECTIONS] {threading.activeCount() - 1}")
 		</code></pre>
 	</section>
 	<section><h3>Using Sockets on Server</h3>
@@ -226,7 +225,6 @@
 					send(DISCONNECT_MESSAGE)
 				else:
 					send(msg)
-
 		</code></pre>
 	</section>
 	<section><h3>Send and Recieve</h3>
