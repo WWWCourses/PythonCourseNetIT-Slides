@@ -1,52 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>NetworkProgramming-Lecture5</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>NetworkProgramming-Lecture5</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -55,322 +55,421 @@
 
 <section class="main-sesction-title"><h1>NetworkProgramming-Lecture 5</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
 
 <section data-min="50" class="main-sesction-title"><h1>Building RESTful APIs with FastAPI</h1></section>
 <section class="sub-sections"><h2>Building RESTful APIs with FastAPI</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.8+ based on standard Python type hints.</dt>
-			<dt>It is high-performance, easy to learn, fast to code, ready for production</dt>
-			<dt>FastAPI is ideal for building modern APIs with automatic documentation and data validation.</dt>
-			<dt>FastAPI fully supports asynchronous programming using Python's async and await keywords. This makes it suitable for building high-performance, asynchronous APIs.</dt>
-			<dt>References:</dt>
-			<dd><a href="https://fastapi.tiangolo.com/">FastAPI official site</a></dd>
-			<dd><a href="https://github.com/tiangolo/fastapi">FastAPI @Github</a></dd>
-		</dl>
-	</section>
-	<section><h3>Async-Await in pYthon</h3>
-		<dl class="fa">
-			<dt><code>async</code> and <code>await</code> in Python allows you to write non-blocking code that can be more efficient, especially when dealing with I/O-bound operations.</dt>
-		</dl>
-		<pre><code rel="Python" class="python" style="min-height: 50vh;">
-			# Define an asynchronous function
-			async def greet(name, delay):
-				await asyncio.sleep(delay)  # Simulate a non-blocking delay
-				print(f"Hello, {name}!")
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.8+ based on standard Python type hints.</dt>
+            <dt>It is high-performance, easy to learn, fast to code, ready for production</dt>
+            <dt>FastAPI is ideal for building modern APIs with automatic documentation and data validation.</dt>
+            <dt>FastAPI fully supports asynchronous programming using Python's async and await keywords. This makes it suitable for building high-performance, asynchronous APIs.</dt>
+            <dt>References:</dt>
+            <dd><a href="https://fastapi.tiangolo.com/">FastAPI official site</a></dd>
+            <dd><a href="https://github.com/tiangolo/fastapi">FastAPI @Github</a></dd>
+        </dl>
+    </section>
+    <section><h3 class="advanced">Async-Await in Python</h3>
+        <dl class="fa">
+            <dt><code>async</code> and <code>await</code> in Python allows you to write non-blocking code that can be more efficient, especially when dealing with I/O-bound operations.</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 80vh;">
+            import asyncio
 
-			# Create an event loop
-			async def main():
-				# Create multiple asynchronous tasks
-				task1 = greet("Pesho", 2)
-				task2 = greet("Ivan", 1)
+            # Define an asynchronous function
+            async def greet(name, delay):
+                await asyncio.sleep(delay)  # Simulate a non-blocking delay
+                print(f"Hello, {name}!")
 
-				# Schedule the tasks in the event loop
-				await asyncio.gather(task1, task2)
+            # Create an event loop
+            async def main():
+                # Create multiple asynchronous tasks
+                task1 = greet("Pesho", 2)
+                task2 = greet("Ivan", 1)
 
-			# Run the event loop
-			if __name__ == "__main__":
-				asyncio.run(main())
+                # Schedule the tasks in the event loop
+                await asyncio.gather(task1, task2)
 
-		</code></pre>
-	</section>
-	<section><h3>Installation</h3>
-		<pre><code rel="Terminal" class="bash">
-			#install fastapi
-			pip install fastapi
+            # Run the event loop
+            if __name__ == "__main__":
+                asyncio.run(main())
 
-			# install ASGI server, for production such as Uvicorn:
-			pip install "uvicorn[standard]"
-		</code></pre>
-	</section>
-	<section><h3>Create Simple App and Run it</h3>
-		<pre><code rel="main.py" class="python" style="min-height: 54vh;">
-			from fastapi import FastAPI
-			from fastapi.responses import HTMLResponse
-			from typing import Union
+        </code></pre>
+    </section>
+    <section><h3>FastAPI Installation</h3>
+        <pre><code rel="Terminal" class="bash">
+            #install fastapi
+            pip install fastapi
 
-			app = FastAPI()
+            # install ASGI server, for production such as Uvicorn:
+            pip install "uvicorn[standard]"
+        </code></pre>
+    </section>
+    <section><h3>Create Simple App and Run it</h3>
+        <pre><code rel="main.py" class="python" style="min-height: 54vh;">
+            from fastapi import FastAPI
+            from fastapi.responses import HTMLResponse
+            from typing import Union
 
-			@app.get("/")
-			async def root():
-				html_content = "<h1>Welcome to my site</h1>"
-				return HTMLResponse(content=html_content, status_code=200)
+            app = FastAPI()
 
-			@app.get("/items/{item_id}")
-			def get_item(item_id: int, q: Union[str, None] = None):
-				return {"item_id": item_id, "q": q}
-		</code></pre>
-		<p>Run it:</p>
-		<pre><code rel="Terminal" class="bash">
-			uvicorn main:app --reload
-		</code></pre>
-		<p>Open your browser at <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a> or <a href="http://127.0.0.1:8000/items/5?q=somequery">http://127.0.0.1:8000/items/5?q=somequery</a></p>
-	</section>
+            @app.get("/")
+            async def root():
+                html_content = "<h1>Welcome to my site</h1>"
+                return HTMLResponse(content=html_content, status_code=200)
+
+            @app.get("/items/{item_id}")
+            def get_item(item_id: int, q: Union[str, None] = None):
+                return {"item_id": item_id, "q": q}
+        </code></pre>
+        <p>Run it:</p>
+        <pre><code rel="Terminal" class="bash">
+            uvicorn main:app --reload
+        </code></pre>
+        <p>Open your browser at <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a> or <a href="http://127.0.0.1:8000/items/5?q=somequery">http://127.0.0.1:8000/items/5?q=somequery</a></p>
+    </section>
 </section>
 
 <section data-min="10" class="main-sesction-title"><h1>TodoApp with FastAPI</h1></section>
 <section class="sub-sections"><h2>TodoApp with FastAPI</h2>
-	<section><h3>Create todoApp project</h3>
-		<dl class="fa">
-			<dt>Create project and virtenv:</dt>
-		</dl>
-		<pre><code rel="Terminal" class="bash">
-			mkdir simple_todoapp
-			cd simple_todoapp
+    <section><h3>Create todoApp project</h3>
+        <dl class="fa">
+            <dt>Create project and virtenv:</dt>
+        </dl>
+        <pre><code rel="Terminal" class="bash">
+            mkdir simple_todoapp
+            cd simple_todoapp
 
-			# create virtenv:
-			python -m venv ./.venv
+            # create virtenv:
+            python -m venv ./.venv
 
-			# activate virtualenv:
-			source ./venv/bin/activate
-		</code></pre>
-	</section>
-	<section><h3>Dependency installations</h3>
-		<dl class="fa">
-			<dt>Make sure you run next commands in main project folder and that your virtual env is activated</dt>
-		</dl>
-		<pre><code rel="Terminal" class="bash">
-			# fastapi && uvicorn
-			pip install fastapi
-			pip install "uvicorn[standard]"
+            # activate virtualenv:
+            source ./.venv/bin/activate
+        </code></pre>
+    </section>
+    <section><h3>Dependency installations</h3>
+        <dl class="fa">
+            <dt>Make sure you run next commands in main project folder and that your virtual env is activated</dt>
+        </dl>
+        <pre><code rel="Terminal" class="bash">
+            # Install FastAPI and Uvicorn for async web serving
+            pip install fastapi
+            pip install "uvicorn[standard]"
 
-			# parser for the multipart/form-data and templates:
-			pip install python-multipart jinja2
+            # Install packages for parsing multipart/form-data and Jinja2 for templates
+            pip install python-multipart jinja2
 
-			# db packages:
-			pip install sqlalchemy
-		</code></pre>
-	</section>
-	<section><h3>Create project structure</h3>
-		<pre><code rel="Terminal" class="bash">
-			|simple_todoapp
-			└── src
-				├── app.py
-				├── db.py
-				├── models.py
-				└── templates
-					└── base.html
-		</code></pre>
-	</section>
-	<section><h3>./src/app.py</h3>
-		<pre><code rel="Python" class="python" style="min-height: 100vh;">
-			from fastapi import FastAPI, Depends, Request, Form, status
+            # Install SQLAlchemy for database interactions
+            pip install sqlalchemy
 
-			from starlette.responses import RedirectResponse
-			from starlette.templating import Jinja2Templates
+            # Install sqlalchemy2-stubs for better type hinting with SQLAlchemy
+            pip install sqlalchemy2-stubs
 
-			from sqlalchemy.orm import Session
-			from db import SessionLocal, engine
-			import models
+        </code></pre>
+    </section>
+    <section><h3>Create project structure</h3>
+        <pre><code rel="Terminal" class="bash">
+            |simple_todoapp
+            └── src
+                ├── app.py
+                ├── db.py
+                ├── models.py
+                └── templates
+                    └── base.html
+        </code></pre>
+        <dl class="fa" style="min-width:80vw">
+            <dt>On Bash, you can use next commands to create project structure</dt>
+        </dl>
+        <pre><code rel="Terminal" class="bash">
+            mkdir -p simple_todoapp/src/templates
+            touch simple_todoapp/src/{templates/base.html,app.py,db.py,models.py}
+        </code></pre>
+    </section>
+    <section><h3>./src/app.py</h3>
+        <script src="https://gist.github.com/WWWCourses/19c2bc1e3f1b94d3939df847d7ab1e42.js"></script>
 
-			models.Base.metadata.create_all(bind=engine)
+    </section>
+    <section><h3>./src/models.py</h3>
+        <pre><code rel="Python" class="python" style="min-height: 70vh;">
+            from sqlalchemy import Boolean, Column, Integer, String
+            from db import Base
 
-			templates = Jinja2Templates(directory="templates")
+            class Todo(Base):
+                __tablename__ = "todos"
 
-			app = FastAPI()
+                id = Column(Integer, primary_key=True)
+                title = Column(String(100))
+                complete = Column(Boolean, default=False)
 
-			def get_db():
-				db = SessionLocal()
-				try:
-					yield db
-				finally:
-					db.close()
+                def __init__(self, title: str):
+                    self.title = title
+        </code></pre>
+    </section>
+    <section><h3>./src/db.py</h3>
+        <pre><code rel="Python" class="python" style="min-height: 80vh;">
+            from sqlalchemy import create_engine
+            from sqlalchemy.orm import sessionmaker
+            from sqlalchemy.ext.declarative import declarative_base
 
-			@app.get("/")
-			async def home(req: Request, db: Session = Depends(get_db)):
-				todos = db.query(models.Todo).all()
-				return templates.TemplateResponse("base.html", { "request": req, "todo_list": todos })
+            # Database connection configuration
+            DB_URL = "sqlite:///./db.sqlite"  # SQLite database file path
 
-			@app.post("/add")
-			def add(req: Request, title: str = Form(...), db: Session = Depends(get_db)):
-				new_todo = models.Todo(title=title)
-				db.add(new_todo)
-				db.commit()
-				url = app.url_path_for("home")
-				return RedirectResponse(url=url, status_code=status.HTTP_303_SEE_OTHER)
+            # Create SQLAlchemy engine for database interaction
+            engine = create_engine(DB_URL, connect_args={"check_same_thread": False})
 
-			@app.get("/update/{todo_id}")
-			def add(req: Request, todo_id: int, db: Session = Depends(get_db)):
-				todo = db.query(models.Todo).filter(models.Todo.id == todo_id).first()
-				todo.complete = not todo.complete
-				db.commit()
-				url = app.url_path_for("home")
-				return RedirectResponse(url=url, status_code=status.HTTP_303_SEE_OTHER)
+            # Create a SessionLocal class for managing database sessions
+            SessionLocal = sessionmaker(
+                autocommit=False,  # Disable autocommit to control transactions manually
+                autoflush=False,   # Disable autoflush to control flushing behavior
+                bind=engine        # Bind the session to the engine
+            )
 
-
-			@app.get("/delete/{todo_id}")
-			def add(req: Request, todo_id: int, db: Session = Depends(get_db)):
-				todo = db.query(models.Todo).filter(models.Todo.id == todo_id).first()
-				db.delete(todo)
-				db.commit()
-				url = app.url_path_for("home")
-				return RedirectResponse(url=url, status_code=status.HTTP_303_SEE_OTHER)
-
-		</code></pre>
-	</section>
-	<section><h3>./src/models.py</h3>
-		<pre><code rel="Python" class="python" style="min-height: 70vh;">
-			from email.policy import default
-			from sqlalchemy import Boolean, Column, Integer, String
-			from db import Base
-
-			class Todo(Base):
-				__tablename__ = "todos"
-
-				id = Column(Integer, primary_key=True)
-				title = Column(String(100))
-				complete = Column(Boolean, default=False)
-		</code></pre>
-	</section>
-	<section><h3>./src/db.py</h3>
-		<pre><code rel="Python" class="python" style="min-height: 70vh;">
-			from sqlalchemy import create_engine
-			from sqlalchemy.orm import sessionmaker
-			from sqlalchemy.ext.declarative import declarative_base
-
-			DB_URL = "sqlite:///./db.sqlite"
-
-			engine = create_engine(DB_URL, connect_args = { "check_same_thread": False })
-
-			SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-			Base = declarative_base()
-		</code></pre>
-	</section>
-	<section><h3>./src/templates/base.html</h3>
-		<pre><code rel="HTML" class="html" style="min-height: 70vh;">
-			&lt;!DOCTYPE html&gt;
-			&lt;html lang=&quot;en&quot;&gt;
-				&lt;head&gt;
-					&lt;meta charset=&quot;UTF-8&quot;&gt;
-					&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-					&lt;title&gt;Todo App&lt;/title&gt;
-					&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css&quot;&gt;
-					&lt;script src=&quot;https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js&quot;&gt;&lt;/script&gt;
-				&lt;/head&gt;
-				&lt;body&gt;
-					&lt;div style=&quot;margin-top: 50px;&quot; class=&quot;ui container&quot;&gt;
-						&lt;h1 class=&quot;ui center aligned header&quot;&gt;Fastapi ToDo App&lt;/h1&gt;
-
-						&lt;form class=&quot;ui form&quot; action=&quot;/add&quot; method=&quot;post&quot;&gt;
-							&lt;div class=&quot;field&quot;&gt;
-								&lt;label&gt;Todo Title&lt;/label&gt;
-								&lt;input type=&quot;text&quot; name=&quot;title&quot; placeholder=&quot;Enter ToDo task...&quot;&gt;
-								&lt;br&gt;
-							&lt;/div&gt;
-							&lt;button class=&quot;ui blue button&quot; type=&quot;submit&quot;&gt;Add&lt;/button&gt;
-						&lt;/form&gt;
-
-						&lt;hr&gt;
-
-						{% for todo in todo_list %}
-						&lt;div class=&quot;ui segment&quot;&gt;
-							&lt;p class=&quot;ui big header&quot;&gt;{{ todo.id }} | {{ todo.title }}&lt;/p&gt;
-
-							{% if todo.complete == False %}
-							&lt;span class=&quot;ui gray label&quot;&gt;Not Complete&lt;/span&gt;
-							{% else %}
-							&lt;span class=&quot;ui green label&quot;&gt;Complete&lt;/span&gt;
-							{% endif %}
-
-							&lt;a class=&quot;ui blue button&quot; href=&quot;/update/{{ todo.id }}&quot;&gt;Update&lt;/a&gt;
-							&lt;a class=&quot;ui red button&quot; href=&quot;/delete/{{ todo.id }}&quot;&gt;Delete&lt;/a&gt;
-						&lt;/div&gt;
-						{% endfor %}
-					&lt;/div&gt;
-				&lt;/body&gt;
-			&lt;/html&gt;
-		</code></pre>
-	</section>
-	<section><h3>Start the server</h3>
-		<pre><code rel="Terminal" class="bash">
-			cd src/
-			uvicorn app:app --reload
-		</code></pre>
-	</section>
+            # Base class for declarative model definitions
+            Base = declarative_base()
+        </code></pre>
+    </section>
+    <section><h3>./src/templates/base.html</h3>
+        <script src="https://gist.github.com/WWWCourses/1ebfa2f3621e0b8e2eccf3e6a67d536d.js"></script>
+    </section>
+    <section><h3>Start the server</h3>
+        <pre><code rel="Terminal" class="bash">
+            cd src/
+            uvicorn app:app --reload
+        </code></pre>
+    </section>
 </section>
 
-<section data-min="50" class="main-sesction-title"><h1>Building Web Apps with Django</h1></section>
+<section data-min="50" class="main-sesction-title"><h1>Building Todo App with Django</h1></section>
 <section class="sub-sections"><h2>Building Web Apps with Django</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.</dt>
-			<dt>Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel.</dt>
-			<dt>It’s free and open source.</dt>
-			<dt>Installation:</dt>
-			<pre><code rel="Terminal" class="bash">
-				pip install Django
-			</code></pre>
-			<dt>Reference: <a href="https://www.djangoproject.com/">https://www.djangoproject.com/</a></dt>
-		</dl>
-	</section>
-	<section><h3>Create simple Django App - Live demo</h3>
-		<dl class="fa">
-			<dt>Tutorial: <a href="https://docs.djangoproject.com/en/4.2/intro/tutorial01/">Writing your first Django app</a></dt>
-		</dl>
-	</section>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.</dt>
+            <dt>Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel.</dt>
+            <dt>It’s free and open source.</dt>
+            <dt>Reference: <a href="https://www.djangoproject.com/">https://www.djangoproject.com/</a></dt>
+        </dl>
+    </section>
+    <section><h3>Setting Up a Virtual Environment</h3>
+        <dl class="fa">
+            <dt>Create and activate a virtual environment for your Django Todo App project:</dt>
+        </dl>
+        <pre><code rel="Terminal" class="bash" style="min-height: 65vh;">
+            # Navigate to your project directory
+            cd path/to/your/project
+
+            # Create a virtual environment named 'venv'
+            python -m venv venv
+
+            # Activate the virtual environment
+            # On Windows
+            .\venv\Scripts\activate
+            # On Unix or MacOS
+            source venv/bin/activate
+
+            # Now that the virtual environment is activated,
+            # you can install Djano packages using pip and they will be
+            # isolated from the global Python installation.
+            pip install Django
+        </code></pre>
+    </section>
+    <section><h3>Set up a Django Project</h3>
+        <pre><code rel="Terminal" class="bash">
+            # create project structure:
+            django-admin startproject todo_project
+
+            cd todo_project
+
+            python manage.py startapp todos
+        </code></pre>
+        <dl class="fa" style="min-width:80vw">
+            <dt>django-admin startproject todo_project</dt>
+            <dd>This command initializes a new Django project by creating a directory named 'todo_project'.
+                It sets up a basic Django project structure with a configuration directory containing settings.py,
+                urls.py, asgi.py, and wsgi.py files. These files are essential for configuring the project,
+                defining URL routes, and deploying the project to a server</dd>
+            <dt><code>python manage.py startapp todos</code></dt>
+            <dd>This command creates a new Django app named 'todos' within your project.
+                It generates a directory with the same name (todos)
+                containing the app structure, including models.py, views.py, and others,
+                which are essential for defining your app's database models, routes, and views.</dd>
+        </dl>
+    </section>
+    <section><h3>Configure the Django Project</h3>
+        <dl class="fa">
+            <dt>Modify settings.py to include your app and database configuration:</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+            # todo_project/settings.py
+            INSTALLED_APPS = [
+                ...
+                'todos',
+            ]
+
+            DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.sqlite3',
+                    'NAME': BASE_DIR / 'db.sqlite3',
+                }
+            }
+        </code></pre>
+    </section>
+    <section><h3>Define the Todo Model</h3>
+        <dl class="fa">
+            <dt>Create your Todo model in models.py:</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 10vh;">
+            # todos/models.py
+            from django.db import models
+
+            class Todo(models.Model):
+                title = models.CharField(max_length=100)
+                complete = models.BooleanField(default=False)
+
+                def __str__(self):
+                    return self.title
+        </code></pre>
+        <dl class="fa">
+            <dt>Run migrations command in your todo_project folder to create your model tables:</dt>
+        </dl>
+        <pre><code rel="Terminal" class="bash">
+            python manage.py makemigrations
+            python manage.py migrate
+        </code></pre>
+    </section>
+    <section><h3>Create Forms</h3>
+        <dl class="fa" style="min-width:80vw">
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                from django import forms
+                from .models import Todo
+
+                class TodoForm(forms.ModelForm):
+                    class Meta:
+                        model = Todo
+                        fields = ['title']
+
+            </code></pre>
+            <dt>This code snippet defines a Django form class named TodoForm, which will be linked directly to the Todo model</dt>
+            <dt>The Meta class inside it specifies which model the form is for and which fields should be included in the form. In this case, the form will include only the 'title' field from the Todo model.</dt>
+            <dt>This makes it easier to create forms for adding or editing instances of the Todo model, as Django will
+                automatically generate the appropriate form fields based on the model fields specified.</dt>
+        </dl>
+    </section>
+    <section><h3>Create Views and Forms</h3>
+        <dl class="fa">
+            <dt>Implement views in views.py:</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+            from django.shortcuts import render, redirect
+            from .models import Todo
+            from .forms import TodoForm
+
+            def home(request):
+                todos = Todo.objects.all()
+                form = TodoForm()
+                if request.method == 'POST':
+                    form = TodoForm(request.POST)
+                    if form.is_valid():
+                        form.save()
+                        return redirect('home')
+                context = {'todos': todos, 'form': form}
+                return render(request, 'todos/home.html', context)
+
+            def update_todo(request, pk):
+                todo = Todo.objects.get(id=pk)
+                todo.complete = not todo.complete
+                todo.save()
+                return redirect('home')
+
+            def delete_todo(request, pk):
+                todo = Todo.objects.get(id=pk)
+                todo.delete()
+                return redirect('home')
+        </code></pre>
+    </section>
+    <section><h3>URL Configuration</h3>
+        <dl class="fa">
+            <dt>Define URLs in your app's urls.py :</dt>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                # todos/urls.py
+                from django.urls import path
+                from . import views
+
+                urlpatterns = [
+                    path('', views.home, name='home'),
+                    path('update/<int:pk>/', views.update_todo, name='update_todo'),
+                    path('delete/<int:pk>/', views.delete_todo, name='delete_todo'),
+                ]
+            </code></pre>
+            <dt>and include them in the project's urls.py</dt>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                # todo_app/urls.py
+                from django.contrib import admin
+                from django.urls import path,include
+
+                urlpatterns = [
+                    path('admin/', admin.site.urls),
+                    path('', include('todos.urls')),
+                ]
+            </code></pre>
+        </dl>
+
+    </section>
+    <section><h3>Create Templates</h3>
+        <dl class="fa">
+            <dt>Design your HTML templates for displaying todos:</dt>
+        </dl>
+        <script src="https://gist.github.com/WWWCourses/e035f4c9c7ef6fa8d62be33c58ee3ba7.js"></script>
+    </section>
+    <section><h3>Run Your Server</h3>
+        <pre><code rel="Terminal" class="bash">
+            python manage.py runserver
+        </code></pre>
+    </section>
 </section>
+
+
+<!--
 
 <section data-min="50" class="main-sesction-title"><h1>Building Single-Page Apps with Flask</h1></section>
 <section class="sub-sections"><h2>Building Single-Page Apps with Flask</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>Flask is a Web microframework, which is Scalable, Flexible and Lightweight</dt>
-			<dt>Key features:</dt>
-			<dd><b>Routing</b>: Flask allows you to define URL routes, associating them with specific Python functions (views) to handle HTTP requests.</dd>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>Flask is a Web microframework, which is Scalable, Flexible and Lightweight</dt>
+            <dt>Key features:</dt>
+            <dd><b>Routing</b>: Flask allows you to define URL routes, associating them with specific Python functions (views) to handle HTTP requests.</dd>
 
-			<dd><b>Templating</b>: It provides support for Jinja2 templates, which make it easy to generate HTML and other content dynamically.</dd>
+            <dd><b>Templating</b>: It provides support for Jinja2 templates, which make it easy to generate HTML and other content dynamically.</dd>
 
-			<dd><b>HTTP Request and Response Handling</b>: Flask simplifies handling HTTP requests and responses, making it straightforward to work with form data, cookies, and session management.</dd>
-			<dd><b>Extensions</b>: Flask has a rich ecosystem of extensions that can be added to enhance its capabilities. These extensions cover areas such as authentication, database integration, and more.</dd>
-			<dd><b>Lightweight</b>: Flask is minimalistic by design, meaning it does not include a lot of pre-built functionality. This allows developers to choose and add the components they need, which can result in lean and efficient web applications.</dd>
-			<dd><b>RESTful Support</b>: Flask is well-suited for building RESTful APIs due to its simplicity and support for HTTP methods like GET, POST, PUT, and DELETE.</dd>
-			<dd><b>Easy to Learn</b>: Flask's simplicity and clear documentation make it a good choice for developers, especially those new to web development in Python.</dd>
-		</dl>
-	</section>
-	<section><h3>Create simple Flask App - Live Demo</h3>
-		<dl class="fa">
-			<dt>Quickstart: <a href="https://flask.palletsprojects.com/en/3.0.x/quickstart/">https://flask.palletsprojects.com/en/3.0.x/quickstart/</a></dt>
-		</dl>
-	</section>
-</section>
+            <dd><b>HTTP Request and Response Handling</b>: Flask simplifies handling HTTP requests and responses, making it straightforward to work with form data, cookies, and session management.</dd>
+            <dd><b>Extensions</b>: Flask has a rich ecosystem of extensions that can be added to enhance its capabilities. These extensions cover areas such as authentication, database integration, and more.</dd>
+            <dd><b>Lightweight</b>: Flask is minimalistic by design, meaning it does not include a lot of pre-built functionality. This allows developers to choose and add the components they need, which can result in lean and efficient web applications.</dd>
+            <dd><b>RESTful Support</b>: Flask is well-suited for building RESTful APIs due to its simplicity and support for HTTP methods like GET, POST, PUT, and DELETE.</dd>
+            <dd><b>Easy to Learn</b>: Flask's simplicity and clear documentation make it a good choice for developers, especially those new to web development in Python.</dd>
+        </dl>
+    </section>
+    <section><h3>Create simple Flask App - Live Demo</h3>
+        <dl class="fa">
+            <dt>Quickstart: <a href="https://flask.palletsprojects.com/en/3.0.x/quickstart/">https://flask.palletsprojects.com/en/3.0.x/quickstart/</a></dt>
+        </dl>
+    </section>
+</section> -->
 
 
 
@@ -380,48 +479,48 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1080,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1080,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 </body>
 </html>
