@@ -254,6 +254,11 @@
             uvicorn app:app --reload
         </code></pre>
     </section>
+    <section><h3>FastAPI_TodoApp @GitHub</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>You can find the full project code at <a href="https://github.com/WWWCourses/FastAPI_TodoApp">https://github.com/WWWCourses/FastAPI_TodoApp</a> </dt>
+        </dl>
+    </section>
 </section>
 
 <section data-min="50" class="main-sesction-title"><h1>Building Todo App with Django</h1></section>
@@ -266,37 +271,37 @@
             <dt>Reference: <a href="https://www.djangoproject.com/">https://www.djangoproject.com/</a></dt>
         </dl>
     </section>
-    <section><h3>Setting Up a Virtual Environment</h3>
+    <section><h3>Install dependencies for Todo App Project</h3>
         <dl class="fa">
             <dt>Create and activate a virtual environment for your Django Todo App project:</dt>
+            <pre><code rel="Terminal" class="bash" style="min-height: 45vh;">
+                # Navigate to your projects directory
+                cd path/to/your/projects
+
+                # Create a virtual environment named 'venv'
+                python -m venv venv
+
+                # Activate the virtual environment
+                # On Windows
+                .\venv\Scripts\activate
+                # On Unix or MacOS
+                source venv/bin/activate
+            </code></pre>
+            <dt> Now that the virtual environment is activated, you can install Djano packages using pip and they will be isolated from the global Python installation.</dt>
+            <pre><code rel="Terminal" class="python" style="min-height: 10vh;">
+                pip install Django
+            </code></pre>
         </dl>
-        <pre><code rel="Terminal" class="bash" style="min-height: 65vh;">
-            # Navigate to your project directory
-            cd path/to/your/project
 
-            # Create a virtual environment named 'venv'
-            python -m venv venv
-
-            # Activate the virtual environment
-            # On Windows
-            .\venv\Scripts\activate
-            # On Unix or MacOS
-            source venv/bin/activate
-
-            # Now that the virtual environment is activated,
-            # you can install Djano packages using pip and they will be
-            # isolated from the global Python installation.
-            pip install Django
-        </code></pre>
     </section>
-    <section><h3>Set up a Django Project</h3>
+    <section><h3>Set up a Django Todo App Project</h3>
         <pre><code rel="Terminal" class="bash">
             # create project structure:
             django-admin startproject todo_project
 
             cd todo_project
 
-            python manage.py startapp todos
+            python manage.py startapp todo_app
         </code></pre>
         <dl class="fa" style="min-width:80vw">
             <dt>django-admin startproject todo_project</dt>
@@ -305,8 +310,8 @@
                 urls.py, asgi.py, and wsgi.py files. These files are essential for configuring the project,
                 defining URL routes, and deploying the project to a server</dd>
             <dt><code>python manage.py startapp todos</code></dt>
-            <dd>This command creates a new Django app named 'todos' within your project.
-                It generates a directory with the same name (todos)
+            <dd>This command creates a new Django app named 'todo_app' within your project.
+                It generates a directory with the same name (todo_app)
                 containing the app structure, including models.py, views.py, and others,
                 which are essential for defining your app's database models, routes, and views.</dd>
         </dl>
@@ -315,11 +320,11 @@
         <dl class="fa">
             <dt>Modify settings.py to include your app and database configuration:</dt>
         </dl>
-        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+        <pre><code rel="todo_project/settings.py" class="python" style="min-height: 50vh;">
             # todo_project/settings.py
             INSTALLED_APPS = [
                 ...
-                'todos',
+                'todo_app',
             ]
 
             DATABASES = {
@@ -333,9 +338,10 @@
     <section><h3>Define the Todo Model</h3>
         <dl class="fa">
             <dt>Create your Todo model in models.py:</dt>
+            <dd>The Todo model defines a simple structure for todo items in a Django application. It consists of two fields: <code>title</code>, which is a character field to hold the name or title of the todo item, limited to 100 characters; and <code>complete</code>, which is a boolean field indicating whether the todo item has been completed, defaulting to False (indicating it's incomplete)</dd>
         </dl>
-        <pre><code rel="Python" class="python" style="min-height: 10vh;">
-            # todos/models.py
+        <pre><code rel="todo_app/models.py" class="python" style="min-height: 10vh;">
+            # todo_app/models.py
             from django.db import models
 
             class Todo(models.Model):
@@ -345,17 +351,30 @@
                 def __str__(self):
                     return self.title
         </code></pre>
-        <dl class="fa">
-            <dt>Run migrations command in your todo_project folder to create your model tables:</dt>
+    </section>
+    <section><h3>Run migrations</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dl class="fa">
+                <dt>Run migrations command in your main todo_project folder to create your model tables.</dt>
+                <dd>These commands are used to apply database schema changes in a Django project</dd>
+            </dl>
+            <pre><code rel="Terminal" class="bash">
+                python manage.py makemigrations
+                python manage.py migrate
+            </code></pre>
         </dl>
-        <pre><code rel="Terminal" class="bash">
-            python manage.py makemigrations
-            python manage.py migrate
-        </code></pre>
+    </section>
+    <section><h3>Create Forms and Views</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><b>Forms</b> handle the logic of accepting and processing user data submitted through web forms. Django forms manage form rendering (to HTML), data validation, and error handling.</dt>
+            <dt><b>Views</b> manage the logic of responding to user requests. They receive web requests, process data (retrieved or submitted), and return web responses, often by rendering templates filled with context data.</dt>
+        </dl>
     </section>
     <section><h3>Create Forms</h3>
         <dl class="fa" style="min-width:80vw">
-            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+            <dt>Create file <code>todo_app/forms.py</code> and define  </dt>
+            <pre><code rel="todo_app/forms.py" class="python" style="min-height: 10vh;">
+                #todo_app/forms.py
                 from django import forms
                 from .models import Todo
 
@@ -371,11 +390,14 @@
                 automatically generate the appropriate form fields based on the model fields specified.</dt>
         </dl>
     </section>
-    <section><h3>Create Views and Forms</h3>
+    <section><h3>Create Views</h3>
         <dl class="fa">
-            <dt>Implement views in views.py:</dt>
+            <dt>Create views in <code>todo_app/views.py</code>:</dt>
         </dl>
-        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+        <pre><code rel="todo_app/views.py" class="python" style="min-height: 90vh;">
+            # todo_app/views.py
+            from django.shortcuts import render
+
             from django.shortcuts import render, redirect
             from .models import Todo
             from .forms import TodoForm
@@ -389,7 +411,7 @@
                         form.save()
                         return redirect('home')
                 context = {'todos': todos, 'form': form}
-                return render(request, 'todos/home.html', context)
+                return render(request, 'todo_app/home.html', context)
 
             def update_todo(request, pk):
                 todo = Todo.objects.get(id=pk)
@@ -404,10 +426,17 @@
         </code></pre>
     </section>
     <section><h3>URL Configuration</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>In Django, URLs define the mappings between URL paths and your views.</dt>
+            <dt>They tell Django which view to call for a given URL pattern, allowing your application to serve different content based on the URL accessed by the user.</dt>
+            <dt>This system is managed through a URLconf (URL configuration), typically set in the urls.py file of an app or project.</dt>
+        </dl>
+    </section>
+    <section><h3>URL Configuration</h3>
         <dl class="fa">
-            <dt>Define URLs in your app's urls.py :</dt>
-            <pre><code rel="Python" class="python" style="min-height: 10vh;">
-                # todos/urls.py
+            <dt>Define URLs in <code>todo_app/urls.py</code> :</dt>
+            <pre><code rel="todo_app/urls.py" class="python" style="min-height: 10vh;">
+                # todo_app/urls.py
                 from django.urls import path
                 from . import views
 
@@ -416,31 +445,41 @@
                     path('update/<int:pk>/', views.update_todo, name='update_todo'),
                     path('delete/<int:pk>/', views.delete_todo, name='delete_todo'),
                 ]
+
             </code></pre>
             <dt>and include them in the project's urls.py</dt>
-            <pre><code rel="Python" class="python" style="min-height: 10vh;">
-                # todo_app/urls.py
+            <pre><code rel="todo_project/urls.py" class="python" style="min-height: 10vh;">
+                # todo_project/urls.py
                 from django.contrib import admin
                 from django.urls import path,include
 
                 urlpatterns = [
                     path('admin/', admin.site.urls),
-                    path('', include('todos.urls')),
+                    path('', include('todo_app.urls')),
                 ]
             </code></pre>
         </dl>
-
     </section>
-    <section><h3>Create Templates</h3>
+    <section><h3>Templates</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>In Django, templates are HTML files that allow Python-like expressions for dynamic data rendering.</dt>
+            <dt>They separate presentation from business logic by providing placeholders and tags to dynamically generate HTML content based on context data passed from views.</dt>
+            <dt>Templates are used to create dynamic web pages, where parts of the page change based on the context provided by Django views.</dt>
+        </dl>
+    </section>
+    <section><h3>Create TodoApp Template</h3>
         <dl class="fa">
-            <dt>Design your HTML templates for displaying todos:</dt>
+            <dt>Put your HTML template in <code>todo_app/templates/todo_app/home.html</code></dt>
         </dl>
         <script src="https://gist.github.com/WWWCourses/e035f4c9c7ef6fa8d62be33c58ee3ba7.js"></script>
     </section>
-    <section><h3>Run Your Server</h3>
-        <pre><code rel="Terminal" class="bash">
-            python manage.py runserver
-        </code></pre>
+    <section><h3>Start the Server</h3>
+        <dl class="fa" style="min-width:80vw">
+            <pre><code rel="Terminal" class="bash">
+                python manage.py runserver
+            </code></pre>
+            <dt>This command starts a lightweight development web server on the local machine, making the Django project accessible through a web browser for testing and development purposes. It automatically reloads the code upon changes, facilitating rapid development.</dt>
+        </dl>
     </section>
 </section>
 
