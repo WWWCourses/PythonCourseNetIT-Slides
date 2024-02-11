@@ -483,29 +483,105 @@
 	</section>
 </section>
 
-<section class="main-sesction-title"><h1>Installing packages using pip and virtual environments</h1></section>
-<section class="sub-sections"><h2>Installing packages using pip and virtual environments</h2>
-	<section><h3>The steps</h3>
-		<pre><code rel="Terminal" class="bash" style="min-height: 60vh;">
-			# Create virt.env - just once per project
-			python -m venv .venv
 
-			# Activate it - every time you will work on the project:
-			# On Windows CommandPrompt run:
-			.venv\Scripts\activate.bat
 
-			# On Linux, MacOS, run:
-			source .venv/bin/activate
+<section data-min="50"><h1>Installing packages in a virtual environments</h1></section>
+<section><h2>Installing packages in a virtual environments</h2>
+    <section><h3>Install Project Dependencies</h3>
+        <dl class="fa">
+            <pre><code rel="Terminal" class="bash" style="min-height: 60vh;">
+                # Create virt.env - just once per project
+                python -m venv .venv
 
-			# Install module
-			pip install module_name
-		</code></pre>
-		<dl class="fa">
-			<dt>Reference:  <a href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">Installing packages using pip and virtual environments</a></dt>
-		</dl>
-	</section>
+                # Activate it - every time you will work on the project:
+                # On Windows CommandPrompt run:
+                .venv\Scripts\activate.bat
+
+                # On Linux, MacOS, run:
+                source .venv/bin/activate
+
+                # Install module
+                pip install module_name
+            </code></pre>
+            <dt>Once we are in a virtual environment, whenever we use pip install to install any library, if we don’t specify the desired version of the library, pip will automatically install the latest version that is compatible with the python version inside the virtual environment</dt>
+            <dt>Reference:  <a href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">Installing packages using pip and virtual environments</a></dt>
+        </dl>
+    </section>
 </section>
 
+
+<section data-min="50"><h1>Freezing the dependency versions</h1></section>
+<section><h2>Freezing the dependency versions</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>"Freezing the dependency versions" in the context of Python development refers to the practice of creating a snapshot of all the packages and their exact versions that your project depends on.</dt>
+            <dt>This is crucial for ensuring consistency, reproducibility, and stability across different environments (development, testing, production) and when sharing the project with others.</dt>
+            <dt>It helps to avoid the "it works on my machine" problem by ensuring that everyone working on the project uses the same versions of dependencies.</dt>
+        </dl>
+    </section>
+    <section><h3>the <code>pip freeze</code></h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Before freezing dependencies, ensure that your virtual environment is activated. This ensures that the dependency list is specific to your project and not your global Python installation.</dt>
+            <dt>Once your virtual environment is activated, use <code>pip freeze</code> to list all installed packages and their exact versions. Then, redirect the output to a requirements.txt file:</dt>
+            <pre><code rel="Terminal" class="bash">
+                pip freeze > requirements.txt
+            </code></pre>
+            <dt>This requirements.txt file now contains a snapshot of all packages (with versions) installed in your virtual environment.</dt>
+        </dl>
+    </section>
+    <section><h3>Using the 'requirements.txt' file</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>When you or someone else needs to set up the project environment, you can use the requirements.txt file to install all the dependencies at their frozen versions. Run:</dt>
+            <pre><code rel="Terminal" class="bash">
+                pip install -r requirements.txt
+            </code></pre>
+            <dt>This command installs the exact versions of the packages listed in requirements.txt, ensuring that the environment is consistent with the original setup.</dt>
+        </dl>
+    </section>
+</section>
+
+
+<section class="main-sesction-title" id="virtEnvMultiplePythonVersions"><h1>Creating Virtual Environments with Different Python Versions on Windows</h1></section>
+<section class="sub-sections"><h2>Creating Virtual Environments with Different Python Versions on Windows</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>Creating virtual environments with different Python versions on a Windows system is an essential skill for managing dependencies and ensuring compatibility across multiple projects. </dt>
+            <dt>This process requires having multiple versions of Python installed and knowing how to specify the version when creating a new virtual environment.</dt>
+        </dl>
+    </section>
+    <section><h3>Install Multiple Versions of Python</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dl class="fa" style="min-width:80vw">
+                <dt><b>Download Python</b>: go to the official Python website (python.org) and download the installer for the versions you need. Make sure to download the Windows installer for each version.</dt>
+                <dt><b>Install Python</b>: run each installer. During installation:</dt>
+                <dd>Check the box that says "Add Python X.X to PATH" for each version you install. This makes it easier to access Python from the Command Prompt.</dd>
+                <dd>Ensure each version is installed in a separate directory. The installer usually suggests a default directory like C:\Users\YourName\AppData\Local\Programs\Python\PythonXX where XX corresponds to the Python version.</dd>
+                <dt>To verify the installation and check available Python versions, open Command Prompt:</dt>
+                <pre><code rel="Terminal" class="bash">
+                    # lists all installed Python versions
+                    py -0
+                </code></pre>
+            </dl>
+        </dl>
+    </section>
+    <section><h3>Create Virtual Environments with Specific Python Versions</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dl class="fa" style="min-width:80vw">
+                <dt><b>Using the py Launcher</b>: you can specify which Python version to use for your virtual environment with the py launcher. Navigate to your project directory and run:</dt>
+                <pre><code rel="Terminal" class="bash">
+                    py -X.X -m venv myenv
+                </code></pre>
+                <dd>Replace X.X with the Python version you want to use, and myenv with the name of your virtual environment.</dd>
+                <dt><b>Activate the Virtual Environment</b>: after creating the virtual environment, you need to activate it. Run:</dt>
+                <pre><code rel="Terminal" class="bash">
+                    myenv\Scripts\activate
+                </code></pre>
+            </dl>
+        </dl>
+    </section>
+</section>
+
+<!--
 <section class="main-sesction-title" id="virtEnvMultiplePythonVersions"><h1>Creating Virtual Environments with Different Python Versions for Your Projects using PowerShell</h1></section>
 <section class="sub-sections"><h2>Creating Virtual Environments with Different Python Versions for Your Projects using PowerShell</h2>
 	<section><h3>Prerequisites</h3>
@@ -550,7 +626,7 @@
 			(venv37) PS C:\Users\user\ML Projects\test_project_38> python -m pip freeze > requirements38.txt
 		</code></pre>
 	</section>
-</section>
+</section> -->
 
 <!--
 <section id="hw"><h1>Exercises</h1></section>
