@@ -1,35 +1,31 @@
-from bs4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup
 
-with open('./test.html', 'r') as f:
-	html = f.read()
+html = """
+<body>
+    <div>
+        <h3>Product 1 title</h3>
+        <a href="/products/1">view product1 page</a>
+    </div>
+    <div>
+        <h3>Product 2 title</h3>
+        <a href="/products/2">view product2 page</a>
+    </div>
+    <a href="https://somesite.com/add1">add1</a>
+</body>
+"""
 
-# create BeautifulSoup object, which represents the document as a nested data structure:
-soup = bs(html, 'html.parser')
-# print(dir(soup))
+# Task: get links and h3 heading for all products by selecting a tag which href starts with "/products"
+soup = BeautifulSoup(html, 'html.parser')
 
-# get first UL element:
-first_ul = soup.ul
-# print(first_ul)
+products_links = soup.select('a[href^="/products"]')
 
-# get all attributes of an element:
-first_ul_attributes = first_ul.attrs
-# print(first_ul_attributes)
+for link in products_links:
+    print(link)
+    # get h3 as from link's parent div:
+    h3 = link.parent.find('h3')
+    print(h3)
 
-# get text content of an element:
-print(soup.title.string)
-print(first_ul.string)
-print(first_ul.stripped_strings)
-for string in first_ul.stripped_strings:
-	print(string)
-
-
-# get all UL elements:
-uls = soup.find_all('ul')
-
-# get first UL element with class="menu"
-ul_menu = soup.find('ul', class_="menu")
-# print(ul_menu)
-
-# get all A elements inside ul.menu:
-ul_menu_links = ul_menu.find_all('a')
-# print(ul_menu_links)
+# <a href="/products/1">view product1 page</a>
+# <h3>Product 1 title</h3>
+# <a href="/products/2">view product2 page</a>
+# <h3>Product 2 title</h3>

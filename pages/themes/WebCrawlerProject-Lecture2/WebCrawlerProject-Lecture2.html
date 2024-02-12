@@ -111,99 +111,238 @@
 <section><h2>BeautifulSoup Methods</h2>
     <section><h3>find() and find_all()</h3>
         <dl class="fa">
-            <dt><code>find()</code> searches for the first tag that matches a given criterion.</dt>
-            <dt><code>find_all()</code> retrieves a list of tags that match the given criteria.</dt>
-            <dt>Example and Output:</dt>
+            <dt><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find"><code>find()</code></a> searches for the first tag that matches a given criterion.</dt>
+            <dt><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-all"><code>find_all()</code></a> retrieves a list of tags that match the given criteria.</dt>
         </dl>
-        <pre><code rel="Python" class="python" style="min-height: 50vh;">
-            html = """&lt;html&gt;&lt;body&gt;&lt;p class="message"&gt;Hello World&lt;/p&gt;&lt;p&gt;Hello BeautifulSoup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"""
-            soup = BeautifulSoup(html, 'html.parser')
-            first_p = soup.find('p')
-            all_p = soup.find_all('p')
+        <pre><code rel="Python" class="python" style="min-height: 70vh;">
+            from bs4 import BeautifulSoup
 
-            print(first_p)  # &lt;p class="message"&gt;Hello World&lt;/p&gt;
-            print([str(tag) for tag in all_p])  # ['&lt;p class="message"&gt;Hello World&lt;/p&gt;', '&lt;p&gt;Hello BeautifulSoup&lt;/p&gt;']
+            html = &quot;&quot;&quot;
+            &lt;html&gt;
+                &lt;body&gt;
+                    &lt;p&gt;Hello World&lt;/p&gt;
+                    &lt;p&gt;Just a paragraph&lt;/p&gt;
+                    &lt;p&gt;Yet &lt;b&gt;another&lt;/b&gt; paragpraph&lt;/p&gt;
+                &lt;/body&gt;
+            &lt;/html&gt;
+            &quot;&quot;&quot;
+
+            soup = BeautifulSoup(html, &#39;html.parser&#39;)
+
+            # get first p element:
+            first_p =soup.find(&#39;p&#39;)
+
+            # get all p elements:
+            all_p =soup.find_all(&#39;p&#39;)
+
+            print(first_p)
+            print(all_p)
+
         </code></pre>
     </section>
-    <section><h3>select()</h3>
-        <dl class="fa">
-            <dt><code>select()</code> method allows you to make CSS selector queries.</dt>
-            <dt>Example and Output:</dt>
-        </dl>
-        <pre><code rel="Python" class="python" style="min-height: 50vh;">
-            css_select = soup.select("p.message")
+    <section><h3>Find elements by html attributes</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>You can pass relevant attribute names and values as keyword arguments to the find() and find_all() methods</dt>
+            <dd>Note, that 'class' is a reserved word in Python, so for class attribute we must use 'class_'.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 80vh;">
+                from bs4 import BeautifulSoup
 
-            print([str(tag) for tag in css_select])  # ['&lt;p class="message"&gt;Hello World&lt;/p&gt;']
+                html = &quot;&quot;&quot;
+                &lt;html&gt;
+                    &lt;body&gt;
+                        &lt;h1 class=&quot;red&quot;&gt;Page heading&lt;/h1&gt;
+                        &lt;p class=&quot;message red&quot;&gt;Hello World&lt;/p&gt;
+                        &lt;p&gt;Just a paragraph&lt;/p&gt;
+                        &lt;p id=&quot;p3&quot;&gt;Yet another paragpraph&lt;/p&gt;
+                    &lt;/body&gt;
+                &lt;/html&gt;
+                &quot;&quot;&quot;
+
+                soup = BeautifulSoup(html, &#39;html.parser&#39;)
+
+                # get all elements which have class &quot;red&quot;
+                all_red =soup.find_all(class_=&quot;red&quot;)
+
+                # get all p elements which have class &quot;red&quot;
+                all_red_p =soup.find_all(&#39;p&#39;, class_=&quot;red&quot;)
+
+                # get element with id=&quot;p3&quot;:
+                p3 =soup.find(id=&#39;p3&#39;)
+
+                print(all_red)
+                print(all_red_p)
+                print(p3)
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Find elements by CSS selectors</h3>
+        <dl class="fa">
+            <dt>You can use CSS selectors to find elements using css property or he shortcut methods:</dt>
+            <dd><code>tag.css.select_one()</code> or <code>tag.select_one()</code> - gets the first element matching the selector</dd>
+            <dd><code>tag.css.select()</code> or <code>tag.select()</code> - gets all elements matching the selector</dd>
+            <dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#css-selectors-through-the-css-property">CSS selectors through the .css property</a></dt>
+            <pre><code rel="Python" class="python" style="min-height: 70vh;">
+                from bs4 import BeautifulSoup
+
+                html = &quot;&quot;&quot;
+                &lt;html&gt;
+                    &lt;body&gt;
+                        &lt;h1 class=&quot;red&quot;&gt;Page heading&lt;/h1&gt;
+                        &lt;p class=&quot;message red&quot;&gt;Hello World&lt;/p&gt;
+                        &lt;p&gt;Just a paragraph&lt;/p&gt;
+                        &lt;p id=&quot;p3&quot;&gt;Yet another paragpraph&lt;/p&gt;
+                    &lt;/body&gt;
+                &lt;/html&gt;
+                &quot;&quot;&quot;
+
+                soup = BeautifulSoup(html, &#39;html.parser&#39;)
+
+                # get all elements which have class &quot;red&quot; using CSS selector:
+                all_red =soup.select(&quot;.red&quot;)
+
+                # get all p elements which have class &quot;red&quot; using CSS selector:
+                all_red_p =soup.select(&quot;p.red&quot;)
+
+                # get element with id=&quot;p3&quot; using CSS selector:
+                p3 =soup.select_one(&quot;#p3&quot;)
+
+                print(all_red)
+                print(all_red_p)
+                print(p3)
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Find elements by CSS selectors - example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 92vh;">
+            from bs4 import BeautifulSoup
+
+            html = &quot;&quot;&quot;
+            &lt;html&gt;
+                &lt;body&gt;
+                    &lt;ul class=&quot;menu&quot;&gt;
+                        &lt;li&gt;&lt;a href=&quot;https://somesite.com/page1&quot;&gt;page1&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;https://somesite.com/page2&quot;&gt;page2&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;hr&gt;
+                    &lt;ul class=&quot;ads&quot;&gt;
+                        &lt;li&gt;&lt;a href=&quot;https://somesite.com/add1&quot;&gt;add1&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href=&quot;https://somesite.com/add2&quot;&gt;add2&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/body&gt;
+            &lt;/html&gt;
+            &quot;&quot;&quot;
+
+            soup = BeautifulSoup(html, &#39;html.parser&#39;)
+
+            # get all links (a elements) which are in &lt;ul class=&quot;menu&quot;&gt; using desendant combinator:
+            menu_links =soup.select(&quot;.menu a&quot;)
+
+            print(menu_links)
         </code></pre>
     </section>
-    <section><h3>Getting Text from an Element</h3>
+    <section><h3>Extracting Text and HTML Content in BeautifulSoup</h3>
         <dl class="fa">
-            <dt>To extract text from an element, use the <code>.text</code> attribute or <code>.get_text()</code> method.</dt>
-            <dt>Example and Output:</dt>
+            <dt><code>.text</code> attribute or <code>.get_text()</code> method: extracts all text content inside an element.</dt>
+            <dt><code>tag.string</code>: extracts text from element which have only text content as a child. If element contains not only text, but other HTML elements <code>tag.string</code> return <code>None</code>.</dt>
+            <dt><code>tag.decode_contents()</code>: extract the inner HTML from an element</dt>
         </dl>
-        <pre><code rel="Python" class="python" style="min-height: 50vh;">
-            text = first_p.text
+        <pre><code rel="Python" class="python" style="min-height: 70vh;">
+            from bs4 import BeautifulSoup
 
-            print(text)  # Hello World
+            html = &quot;&quot;&quot;
+            &lt;body&gt;
+                &lt;p&gt;Hello &lt;b&gt;world&lt;/b&gt;!&lt;/p&gt;
+            &lt;/body&gt;
+            &quot;&quot;&quot;
+
+            soup = BeautifulSoup(html, &#39;html.parser&#39;)
+            p = soup.find(&quot;p&quot;)
+            b = soup.find(&quot;b&quot;)
+
+            # Getting text with text property:
+            print( p.text )     #Hello world!
+
+            # Getting text with .get_text()
+            print( p.get_text() )   #Hello world!
+
+            # Getting text content with string proprty
+            print( p.string ) #None
+            print( b.string ) #world
+
+            # Getting inner HTML with .decode_contents()
+            print(p.decode_contents()) #Hello &lt;b&gt;world&lt;/b&gt;!
         </code></pre>
     </section>
     <section><h3>Getting Attribute Values</h3>
         <dl class="fa">
-            <dt>To get the value of an attribute, access it like a dictionary or use the <code>.get()</code> method.</dt>
-            <dt>Example and Output:</dt>
+            <dt>BeautifulSoup stores HTML attributes and their vaules in a dictionary, which can be accessed by <code>tag.attrs</code> property</dt>
+            <dt>To get the value of an attribute, you can access it by <code>tag['key']</code> or by <code>tag.get(key)</code> method.</dt>
+            <pre><code rel="Python" class="python" style="min-height: 66vh;">
+                from bs4 import BeautifulSoup
+
+                html = &quot;&quot;&quot;
+                &lt;body&gt;
+                    &lt;a href=&quot;http://example.com&quot; title=&quot;Go to example site&quot;&gt;example&lt;/a&gt;
+                &lt;/body&gt;
+                &quot;&quot;&quot;
+
+                soup = BeautifulSoup(html, &#39;html.parser&#39;)
+
+                a = soup.find(&#39;a&#39;)
+                # get the value of href attribute:
+                print( a[&#39;href&#39;])   #http://example.com
+                print( a.get(&#39;href&#39;)) #http://example.com
+
+                # get all HTML attributes:
+                print( a.attrs ) #{&#39;href&#39;: &#39;http://example.com&#39;, &#39;title&#39;: &#39;Go to example site&#39;}
+            </code></pre>
         </dl>
-        <pre><code rel="Python" class="python" style="min-height: 50vh;">
-            link = soup.find('a')
-            href = link['href']  # or link.get('href')
-
-            print(href)  # Assuming <a href="http://example.com">example</a>
-        </code></pre>
-    </section>
-    <section><h3>get element's attributes and content</h3>
-        <dl class="fa">
-            <dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#bs4.Tag.attrs">Tag.attrs</a></dt>
-        </dl>
-        <pre><code rel="Python" class="python" style="min-height: 80vh;">
-            from bs4 import BeautifulSoup as bs
-
-            html ="""
-                <ul class="menu" id="test" data-note="abc">
-                    <li><a href="https://somesite.com/page1">page1</a></li>
-                    <li><a href="https://somesite.com/page2">page2</a></li>
-                    <li><a href="https://somesite.com/page3">page3</a></li>
-                </ul>
-            """
-
-            soup = bs(html, 'html.parser')
-
-            # get first UL element:
-            first_ul = soup.ul
-            print(first_ul)
-
-            # get all attributes of an element:
-            first_ul_attributes = first_ul.attrs
-            print(first_ul_attributes)
-
-            # get all text content inside element
-            for string in first_ul.stripped_strings:
-                print(string)
-
-
-        </code></pre>
     </section>
     <section><h3>Navigating the Tree</h3>
         <dl class="fa">
             <dt>BeautifulSoup allows you to navigate the parse tree using tag names and properties like <code>.contents</code>, <code>.parent</code>, and <code>.next_sibling</code>.</dt>
-            <dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-the-tree">Searching the tree</a></dt>
-            <dt>Example and Output:</dt>
-        </dl>
-        <pre><code rel="Python" class="python" style="min-height: 50vh;">
-            parent = first_p.parent
-            sibling = first_p.next_sibling.next_sibling
+            <dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-the-tree">Navigating the tree</a></dt>
+            <pre><code rel="Python" class="python" style="min-height: 90vh;">
+                from bs4 import BeautifulSoup
 
-            print(parent.name)  # body
-            print(sibling)  # Prints the next <p> sibling, assuming there is one
-        </code></pre>
+                html = &quot;&quot;&quot;
+                &lt;body&gt;
+                    &lt;div&gt;
+                        &lt;h3&gt;Product 1 title&lt;/h3&gt;
+                        &lt;a href=&quot;/products/1&quot;&gt;view product1 page&lt;/a&gt;
+                    &lt;/div&gt;
+                    &lt;div&gt;
+                        &lt;h3&gt;Product 2 title&lt;/h3&gt;
+                        &lt;a href=&quot;/products/2&quot;&gt;view product2 page&lt;/a&gt;
+                    &lt;/div&gt;
+                    &lt;a href=&quot;https://somesite.com/add1&quot;&gt;add1&lt;/a&gt;
+                &lt;/body&gt;
+                &quot;&quot;&quot;
+
+                # Task: get links and h3 heading for all products by selecting a tag which href starts with &quot;/products&quot;
+                soup = BeautifulSoup(html, &#39;html.parser&#39;)
+
+                products_links = soup.select(&#39;a[href^=&quot;/products&quot;]&#39;)
+
+                for link in products_links:
+                    print(link)
+                    # get h3 from link&#39;s parent div:
+                    h3 = link.parent.find(&#39;h3&#39;)
+                    print(h3)
+
+                # &lt;a href=&quot;/products/1&quot;&gt;view product1 page&lt;/a&gt;
+                # &lt;h3&gt;Product 1 title&lt;/h3&gt;
+                # &lt;a href=&quot;/products/2&quot;&gt;view product2 page&lt;/a&gt;
+                # &lt;h3&gt;Product 2 title&lt;/h3&gt;
+            </code></pre>
+        </dl>
+    </section>
+</section>
+<section class="sub-sections"><h2>Live Demos</h2>
+    <section><h3>Countries of the World: A Simple Example</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Let's extract information about each country given into this page:<a href="https://www.scrapethissite.com/pages/simple/">Countries of the World: A Simple Example</a></dt>
+        </dl>
     </section>
 </section>
 
