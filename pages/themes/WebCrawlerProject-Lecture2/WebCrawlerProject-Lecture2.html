@@ -1,52 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>WebCrawlerProject-Lecture2</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>WebCrawlerProject-Lecture2</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -55,418 +55,166 @@
 
 <section class="main-sesction-title"><h1>WebCrawlerProject-Lecture2</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
 
-<section data-min="50" class="main-sesction-title"><h1>Hands On WebCraweler Project</h1></section>
-<section class="sub-sections"><h2>Hands On WebCraweler Project</h2>
-	<section><h3>Create Project Folder structure</h3>
-		<dl class="fa">
-			<dt>Create your project folder structure</dt>
-			<dt>You may follow the one I use, or reorganize files as you wish</dt>
-			<pre><code rel="BNRCrawler" class="bash" style="min-height:70vh">
-				BNRCrawler/
-				├── app.py
-				├── BNRCrawler
-				│   ├── config
-				│   │   ├── bnrdb.sql
-				│   │   ├── config.ini
-				│   │   ├── __init.py
-				│   │   └── read_config.py
-				│   ├── crawler.py
-				│   ├── db.py
-				│   ├── __init.py
-				│   └── scraper.py
-				├── data
-				└── requirements.txt
-			</code></pre>
-		</dl>
-	</section>
-	<section id="createProjectSVirtualEnvironment"><h3>Create project's virtual environment</h3>
-		<p>If you don't use PyCharm, or if you want to understand what's PyCharm is doing...:</p>
-		<dl class="fa">
-			<dt>Create the root project folder</dt>
-			<pre><code rel="Terminal" class="bash">
-				# navigate to your root project folder:
-				cd WebCrawler
-			</code></pre>
-			<dt>Create a virtual environment and activate it:</dt>
-			<pre><code rel="Terminal" class="bash">
-				# create a virtualenv named ".venv" in current working folder:
-				python3 -m venv ./.venv
-
-				# activate the ".venv" environment:
-				source .venv/bin/activate
-
-				# your command prompt should be prefixed with "(.venv)" now
-			</code></pre>
-			<dt>You can deactivate a virtual environment by typing “deactivate” in your shell.</dt>
-			<dt>Reference: <a href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">Creating a virtual environment @python.org</a></dt>
-		</dl>
-	</section>
-	<section id="installPackages"><h3>Install packages needed for your project</h3>
-		<pre><code rel="Terminal" class="bash">
-			pip install requests
-			pip install beautifulsoup4
-			pip install mysql-connector-python
-			pip install PyQt6
-			pip install pyqt6-tools
-		</code></pre>
-	</section>
-	<section id="freezingDependencies"><h3>Freezing dependencies</h3>
-		<dl class="fa">
-			<dt>When you want to share your project, you must provide <a href="https://pip.pypa.io/en/latest/user_guide/#requirements-files">Requirements File</a> which allows to re-create the exact versions of all packages installed in your environment.</dt>
-			<dt>Pip can export a list of all installed packages and their versions using the freeze command</dt>
-			<pre><code rel="Terminal" class="bash">
-				# just list the installed packages
-				pip freeze
-
-				# save the list into "requirements.txt" file:
-				pip freeze > requirements.txt
-			</code></pre>
-		</dl>
-	</section>
-	<section id="initGit"><h3>Init project git repo and add the project to Github</h3>
-		<dl class="fa">
-			<dt>Init your git repo</dt>
-			<dt>Create <a href="https://git-scm.com/docs/gitignore">.gitignore</a> file and add in it files/folders to be ignored by git</dt>
-			<dd>You can use next template for Python provided by GitHub: <a href="https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore">Python.gitignore</a> :</dd>
-			<dt>To add your project ot GitHub, follow <a href="https://docs.github.com/en/github/importing-your-projects-to-github/importing-source-code-to-github/adding-an-existing-project-to-github-using-the-command-line#adding-a-project-to-github-without-github-cli">the github's instructions</a></dt>
-		</dl>
-	</section>
+<section data-min="50" class="main-sesction-title"><h1>___MainSectionTitle___</h1></section>
+<section class="sub-sections"><h2>___MainSectionTitle___</h2>
+    <section><h3>___SubSectionTitle___</h3>
+    </section>
 </section>
 
-<section data-min="50" class="main-sesction-title" id="usingConfigFileForDbConnectionString"><h1>Create the <code>db</code> module</h1></section>
-<section class="sub-sections"><h2>Using Config File For DB Connection String</h2>
-	<section>
-		<dl class="fa" style="font-size:0.7em">
-			<dt>The DB connection string contains sensitive information. To prevent security vulnerabilities and maintenance problems we do not want to embed it in our application code, but rather to put that information in a separate config file. You can ignore config.ini file in .gitignore, and put a sample of it in your Readme file.</dt>
-			<dt>Create the application <code>config.ini</code> file using the example code bellow:</dt>
-			<pre><code rel="config.ini" class="python">
-				[mysql]
-				HOST     = 127.0.0.1
-				USER     = test
-				PASSWORD = qazwsxedc
-				DATABASE = bnrdb
-				PORT=3306
-			</code></pre>
-			<dt>In order to parse the <code>config.ini</code> file we can use the <a href="https://docs.python.org/3/library/configparser.html">configparser</a> module</dt>
-			<pre><code rel="db_config.py" class="python" style="min-height: 50vh;">
-				from configparser import ConfigParser
-				import os
-
-
-				package_directory = os.path.dirname(os.path.abspath(__file__))
-
-				def read_db_config(filename='config.ini', section='mysql'):
-					""" Read database configuration file and return a dictionary object
-						:param filename: name of the configuration file
-						:param section: section of database configuration
-						:return: a dictionary of database parameters
-					"""
-					# create parser and read the configuration file
-					parser = ConfigParser()
-
-					if parser.read(os.path.join(package_directory, filename)):
-						db_config = {}
-						if parser.has_section(section):
-							items = parser.items(section)
-							for item in items:
-								db_config[item[0]] = item[1]
-							return db_config
-						else:
-							raise Exception(f'{section} not found in the {filename} file')
-					else:
-						raise Exception(f'{filename} file not found')
-
-
-				if __name__ == '__main__':
-					db_config = read_db_config('config.ini', 'mysql')
-					print(db_config)
-
-			</code></pre>
-		</dl>
-	</section>
+<section data-min="50" class="main-section-title"><h1>Web Scraping with BeautifulSoup - Overview</h1></section>
+<section class="sub-sections"><h2>Web Scraping with BeautifulSoup - Overview</h2>
+    <section><h3>What is BeautifulSoup?</h3>
+        <dl class="fa">
+            <dt>Beautiful soup is one of the most widely-used Python libraries for web scraping.</dt>
+            <dt>It works with your favorite parser to provide idiomatic ways of navigating, searching, and modifying the parse tree.</dt>
+            <dt>Reference:</dt>
+            <dd><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup Documentation</a></dd>
+            <dt>Installation:</dt>
+            <pre><code rel="Python" class="python">
+                pip install beautifulsoup4
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Popular BeautifulSoup Use Cases</h3>
+        <dl class="fa">
+            <dt>Data analysis projects that require quick and easy access to web data.</dt>
+            <dt>Automating the collection of information from multiple pages of a website for research or market analysis.</dt>
+            <dt>Scraping data from HTML tables into CSV files or databases for further processing.</dt>
+            <dt>Monitoring changes in website content over time for competitive analysis.</dt>
+        </dl>
+    </section>
+    <section><h3>How BeautifulSoup Works?</h3>
+        <dl class="fa">
+            <dt>BeautifulSoup transforms a complex HTML document into a complex tree of Python objects. The BeautifulSoup object itself represents the document as a whole.</dt>
+            <dt>To parse a document, pass it into the BeautifulSoup constructor. You can use a variety of parsers, like html.parser or lxml, depending on your needs.</dt>
+            <dt>Example:</dt>
+            <dd><code>
+                from bs4 import BeautifulSoup<br>
+                soup = BeautifulSoup(html_doc, 'html.parser')
+            </code></dd>
+        </dl>
+        <img src="./images/BeautifulSoupParsingExample.svg.png" alt="BeautifulSoupParsingExample.svg.png">
+    </section>
 </section>
-<section class="sub-sections"><h2>Create the <code>db</code> module</h2>
-	<section>
-		<pre><code rel="db.py" class="python" style="min-height: 90vh;">
-			from BNRCrawler.config.read_config import read_db_config
-			import mysql.connector
-			from mysql.connector import errorcode
-			from datetime import datetime
+<section><h2>BeautifulSoup Methods</h2>
+    <section><h3>find() and find_all()</h3>
+        <dl class="fa">
+            <dt><code>find()</code> searches for the first tag that matches a given criterion.</dt>
+            <dt><code>find_all()</code> retrieves a list of tags that match the given criteria.</dt>
+            <dt>Example and Output:</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+            html = """&lt;html&gt;&lt;body&gt;&lt;p class="message"&gt;Hello World&lt;/p&gt;&lt;p&gt;Hello BeautifulSoup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"""
+            soup = BeautifulSoup(html, 'html.parser')
+            first_p = soup.find('p')
+            all_p = soup.find_all('p')
 
-			class DB:
-				def __init__(self):
-					try:
-						db_config = read_db_config('config.ini', 'mysql')
-						# print(db_config)
-						self.conn = mysql.connector.connect(**db_config)
-					except mysql.connector.Error as err:
-						if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-							print("Something is wrong with your user name or password")
-						elif err.errno == errorcode.ER_BAD_DB_ERROR:
-							print("Database does not exist")
-						else:
-							print(err)
+            print(first_p)  # &lt;p class="message"&gt;Hello World&lt;/p&gt;
+            print([str(tag) for tag in all_p])  # ['&lt;p class="message"&gt;Hello World&lt;/p&gt;', '&lt;p&gt;Hello BeautifulSoup&lt;/p&gt;']
+        </code></pre>
+    </section>
+    <section><h3>select()</h3>
+        <dl class="fa">
+            <dt><code>select()</code> method allows you to make CSS selector queries.</dt>
+            <dt>Example and Output:</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+            css_select = soup.select("p.message")
+
+            print([str(tag) for tag in css_select])  # ['&lt;p class="message"&gt;Hello World&lt;/p&gt;']
+        </code></pre>
+    </section>
+    <section><h3>Getting Text from an Element</h3>
+        <dl class="fa">
+            <dt>To extract text from an element, use the <code>.text</code> attribute or <code>.get_text()</code> method.</dt>
+            <dt>Example and Output:</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+            text = first_p.text
+
+            print(text)  # Hello World
+        </code></pre>
+    </section>
+    <section><h3>Getting Attribute Values</h3>
+        <dl class="fa">
+            <dt>To get the value of an attribute, access it like a dictionary or use the <code>.get()</code> method.</dt>
+            <dt>Example and Output:</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+            link = soup.find('a')
+            href = link['href']  # or link.get('href')
+
+            print(href)  # Assuming <a href="http://example.com">example</a>
+        </code></pre>
+    </section>
+    <section><h3>get element's attributes and content</h3>
+        <dl class="fa">
+            <dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#bs4.Tag.attrs">Tag.attrs</a></dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 80vh;">
+            from bs4 import BeautifulSoup as bs
+
+            html ="""
+                <ul class="menu" id="test" data-note="abc">
+                    <li><a href="https://somesite.com/page1">page1</a></li>
+                    <li><a href="https://somesite.com/page2">page2</a></li>
+                    <li><a href="https://somesite.com/page3">page3</a></li>
+                </ul>
+            """
+
+            soup = bs(html, 'html.parser')
+
+            # get first UL element:
+            first_ul = soup.ul
+            print(first_ul)
+
+            # get all attributes of an element:
+            first_ul_attributes = first_ul.attrs
+            print(first_ul_attributes)
+
+            # get all text content inside element
+            for string in first_ul.stripped_strings:
+                print(string)
 
 
-				def create_radiotheaters_table(self):
-					sql = """
-						CREATE TABLE IF NOT EXISTS radiotheaters(
-							id INT AUTO_INCREMENT PRIMARY KEY,
-							title VARCHAR(100) NOT NULL,
-							pub_date DATE NOT NULL,
-							content TEXT,
-							created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-							updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        </code></pre>
+    </section>
+    <section><h3>Navigating the Tree</h3>
+        <dl class="fa">
+            <dt>BeautifulSoup allows you to navigate the parse tree using tag names and properties like <code>.contents</code>, <code>.parent</code>, and <code>.next_sibling</code>.</dt>
+            <dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-the-tree">Searching the tree</a></dt>
+            <dt>Example and Output:</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+            parent = first_p.parent
+            sibling = first_p.next_sibling.next_sibling
 
-							CONSTRAINT title_date UNIQUE (title, pub_date)
-						);
-					"""
-					with self.conn.cursor() as cursor:
-						cursor.execute(sql)
-						self.conn.commit()
-
-				def drop_radiotheaters_table(self):
-					sql = "DROP TABLE IF EXISTS radiotheaters";
-
-					with self.conn.cursor() as cursor:
-						cursor.execute(sql)
-						self.conn.commit()
-
-				def insert_row(self, *data):
-					q = """
-						INSERT INTO radiotheaters
-							(title, pub_date, content)
-							VALUES ( %s, %s, %s)
-					"""
-
-					with self.conn.cursor(prepared=True) as cursor:
-						cursor.execute(q, *data)
-						self.conn.commit()
-
-
-				def close_connection(self):
-					self.conn.close()
-
-			if __name__ == "__main__":
-				db = DB()
-				# db.drop_radiotheaters_table()
-				# db.create_radiotheaters_table()
-				db.insert_row(('PubTitle3', datetime.now() , 'contnet'))
-		</code></pre>
-	</section>
+            print(parent.name)  # body
+            print(sibling)  # Prints the next <p> sibling, assuming there is one
+        </code></pre>
+    </section>
 </section>
 
 
-<section data-min="50" class="main-sesction-title"><h1>Crawl a web site using requests lib</h1></section>
-<section class="sub-sections"><h2>Crawl a web site using requests lib</h2>
-	<section><h3>request lib usage:</h3>
-		<dl class="fa">
-			<dt>The requests module allows us to send HTTP requests using Python.</dt>
-			<pre><code rel="Syntax" class="python">
-				requests.methodname(params)
-			</code></pre>
-			<section data-markdown>
-				<textarea data-template>
-					|Method     				| Description                                |
-					|---------------------------| -------------------------------------------|
-					|delete(url, args)     		| Sends a DELETE request to the specified url 	|
-					|get(url, params, args)		| Sends a GET request to the specified url 		|
-					|head(url, args)			| Sends a HEAD request to the specified url 	|
-					|patch(url, data, args)		| Sends a PATCH request to the specified url 	|
-					|post(url, data, json, args)| Sends a POST request to the specified url 	|
-					|put(url, data, args)		| Sends a PUT request to the specified url 		|
-					|request(method, url, args)	| Sends a request of the specified method to the specified url|
-				</textarea>
-			</section>
-			<dt>Where:</dt>
-			<dd><span class="note">params</span> – (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.</dd>
-			<dd><span class="note">data</span> – (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the Request.</dd>
-			<dd><span class="note">json</span> – (optional) A JSON serializable Python object to send in the body of the Request.</dd>
-			<dt>Reference: <a href="https://docs.python-requests.org/en/latest/api/#requests.request">request() method main interface</a></dt>
-		</dl>
-	</section>
-	<section><h3>References</h3>
-		<dl class="fa">
-			<dt><a href="https://docs.python-requests.org/en/master/user/quickstart/">Quickstart</a></dt>
-			<dt><a href="https://docs.python-requests.org/en/master/user/advanced/#advanced">Advanced</a></dt>
-			<dt><a href="https://docs.python-requests.org/en/latest/api/">API reference</a></dt>
-			<dt><a href="https://docs.python-requests.org/en/master/api/#requests.Response">Response Object</a></dt>
-		</dl>
-	</section>
-</section>
 
-<section data-min="5" class="main-sesction-title"><h1>Hands on crawler.py</h1></section>
-<section class="sub-sections"><h2>Hands on crawler.py</h2>
-	<section><h3>Crawler class template</h3>
-		<pre><code rel="Python" class="python" style="min-height: 80vh;">
-			import requests
-
-			class Crawler:
-				def __init__(self, base_url):
-					pass
-
-				def get_html(self):
-					pass
-
-			if __name__ == "__main__":
-				base_url = 'https://bnr.bg/hristobotev/radioteatre/list'
-
-
-			class Crawler():
-				def __init__(self, url):
-					""" Construct Crawler instances
-
-					Args:
-						url (string): the url to start Crawling
-					"""
-					pass
-
-				def make_filename(self,url):
-				""" Extracts domain from a url.
-					Prepend data_path and append '.html'
-					Needed, only if you want to store the HTML on disk
-
-					Args:
-						url: string
-
-					return `domain`.html string
-				"""
-				pass
-
-				def write_to_file(self,filename, content):
-					""" Write string to given filename
-						Needed, only if you want to store the HTML on disk
-
-						Args:
-							filename: string
-							content: sring
-					"""
-					pass
-
-				def get_html(self,url):
-					""" Make GET request and get html content
-						First try with SSL verification (default),
-						if error => disable SSL verification
-
-						Args:
-							url: string
-
-						return html:string
-					"""
-					pass
-
-
-			if __name__ == '__main__':
-				base_url = 'https://bnr.bg/hristobotev/radioteatre/list'
-				crawler = Crawler(base_url)
-		</code></pre>
-	</section>
-</section>
-
-
-<section data-min="50" class="main-sesction-title"><h1>Using BeautifulSoup</h1></section>
-<section class="sub-sections"><h2>Using BeautifulSoup</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>Beautiful soup is one of the most widely-used Python libraries for web scraping.</dt>
-			<dt>It works with your favorite parser to provide idiomatic ways of navigating, searching, and modifying the parse tree.</dt>
-			<dt>Installation:</dt>
-			<pre><code rel="Python" class="python">
-				pip install beautifulsoup4
-			</code></pre>
-			<dt><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Official Documentation</a></dt>
-		</dl>
-	</section>
-	<section><h3>Beautiful soup hands on</h3>
-		<dl class="fa">
-			<dt>Let's extract links for each publication in <a href="https://bnr.bg/hristobotev/radioteatre/list">https://bnr.bg/hristobotev/radioteatre/list</a></dt>
-			<dt>The inspection of the site shows that the links we needed are in div with id="module_1_1"</dt>
-		</dl>
-		<a href="./images/bnr_inspect.png" title="click for bigger image">
-			<img src="./images/bnr_inspect.png" alt="/bnr_inspect.png" style="height: 70vh;">
-		</a>
-	</section>
-	<section><h3>Create and navigate in the soup</h3>
-		<dl class="fa">
-			<dt>First we need to create a BeautifulSoup object, which will represents the document as a nested data structure.</dt>
-			<dt>Then using variety of properties and methods we can navigate into the tree in order to get the meaningful information</dt>
-			<dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-the-tree">Navigating the tree</a></dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			from bs4 import BeautifulSoup as bs
-
-			# create BeautifulSoup object, which represents the document as a nested data structure:
-			soup = bs(html, 'html.parser')
-
-			# get HTML element:
-			print(soup.title)
-
-			# # get HTML element's content as string:
-			print(soup.title.string)
-		</code></pre>
-	</section>
-	<section><h3>get element's attributes and content</h3>
-		<dl class="fa">
-			<dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#bs4.Tag.attrs">Tag.attrs</a></dt>
-		</dl>
-		<pre><code rel="Python" class="python" style="min-height: 80vh;">
-			from bs4 import BeautifulSoup as bs
-
-			html ="""
-				<ul class="menu" id="test" data-note="abc">
-					<li><a href="https://somesite.com/page1">page1</a></li>
-					<li><a href="https://somesite.com/page2">page2</a></li>
-					<li><a href="https://somesite.com/page3">page3</a></li>
-				</ul>
-			"""
-
-			soup = bs(html, 'html.parser')
-
-			# get first UL element:
-			first_ul = soup.ul
-			print(first_ul)
-
-			# get all attributes of an element:
-			first_ul_attributes = first_ul.attrs
-			print(first_ul_attributes)
-
-			# get all text content inside element
-			for string in first_ul.stripped_strings:
-				print(string)
-
-
-		</code></pre>
-	</section>
-	<section><h3>Searching the tree</h3>
-		<dl class="fa">
-			<dt>Beautiful Soup defines a lot of methods for searching the parse tree, but they’re all very similar.</dt>
-			<dt>The two most popular methods are: find() and find_all()</dt>
-			<dt>Reference: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-the-tree">Searching the tree</a></dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			# get the div with id="module_1_1"
-			article = soup.find("div",id="module_1_1")
-		</code></pre>
-	</section>
-</section>
 
 <section class="disclaimer end-slide"></section>
 <!--
@@ -474,48 +222,48 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1080,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1080,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 </body>
 </html>
