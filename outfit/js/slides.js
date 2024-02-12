@@ -57,7 +57,7 @@ function applyBackgrounds() {
     const mappings = {
         'presentation-title': bgPath+'presentation_title_slide_bg.png',
         'copyright': bgPath+'green_slide_bg.png',
-        'main-sesction-title':bgPath+'blue_slide_bg.png',
+        'main-section-title':bgPath+'blue_slide_bg.png',
         'sub-sections': bgPath+'normal_slide_bg.png',
         'end-slide':bgPath+'end_slide_bd.png'
     }
