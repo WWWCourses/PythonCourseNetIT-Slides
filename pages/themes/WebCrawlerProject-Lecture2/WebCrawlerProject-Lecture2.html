@@ -87,12 +87,19 @@
             </code></pre>
         </dl>
     </section>
-    <section><h3>Popular BeautifulSoup Use Cases</h3>
+    <section><h3>BeautifulSoup Use Cases</h3>
         <dl class="fa">
             <dt>Data analysis projects that require quick and easy access to web data.</dt>
             <dt>Automating the collection of information from multiple pages of a website for research or market analysis.</dt>
             <dt>Scraping data from HTML tables into CSV files or databases for further processing.</dt>
             <dt>Monitoring changes in website content over time for competitive analysis.</dt>
+            <dt>BeautifulSoup is perfect for small-scale projects and learning purposes. </dt>
+        </dl>
+    </section>
+    <section><h3>Popular BeautifulSoup Alternatives</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><b>Selenium</b> - targeted for web automation and testing web browsers, but can be useful for scraping websites that rely heavily on JavaScript to render their content.</dt>
+            <dt><b>Scrapy</b> - the most popular Python framework for professional web scraping. It is designed for crawling web sites and extracting structured data. Learning curve for Scrapy is steeper compared to other Python libraries like BeautifulSoup or requests, particularly for beginners or those new to web scraping and asynchronous programming.</dt>
         </dl>
     </section>
     <section><h3>How BeautifulSoup Works?</h3>
@@ -100,12 +107,28 @@
             <dt>BeautifulSoup transforms a complex HTML document into a complex tree of Python objects. The BeautifulSoup object itself represents the document as a whole.</dt>
             <dt>To parse a document, pass it into the BeautifulSoup constructor. You can use a variety of parsers, like html.parser or lxml, depending on your needs.</dt>
             <dt>Example:</dt>
-            <dd><code>
-                from bs4 import BeautifulSoup<br>
-                soup = BeautifulSoup(html_doc, 'html.parser')
-            </code></dd>
+            <pre><code rel="Python" class="python" style="min-height: 60vh;">
+                from bs4 import BeautifulSoup
+
+                html_doc = &quot;&quot;&quot;
+                &lt;body&gt;
+                    &lt;a href=&quot;/product/1&quot;&gt;Product 1&lt;/a&gt;
+                    &lt;a href=&quot;/product/2&quot;&gt;Product 2&lt;/a&gt;
+                &lt;/body&gt;
+                &quot;&quot;&quot;
+                soup = BeautifulSoup(html_doc, &#39;html.parser&#39;)
+                print(soup.prettify())
+
+                #&lt;body&gt;
+                #    &lt;a href=&quot;/product/1&quot;&gt;
+                #     Product 1
+                #    &lt;/a&gt;
+                #    &lt;a href=&quot;/product/2&quot;&gt;
+                #     Product 2
+                #    &lt;/a&gt;
+                #&lt;/body&gt;
+            </code></pre>
         </dl>
-        <img src="./images/BeautifulSoupParsingExample.svg.png" alt="BeautifulSoupParsingExample.svg.png">
     </section>
 </section>
 <section><h2>BeautifulSoup Methods</h2>
@@ -338,11 +361,146 @@
         </dl>
     </section>
 </section>
-<section class="sub-sections"><h2>Live Demos</h2>
-    <section><h3>Countries of the World: A Simple Example</h3>
+
+<section data-min="50" class="main-section-title"><h1>Live Demos</h1></section>
+<section class="sub-sections"><h2>Scrape Countries of the World</h2>
+    <section><h3>The task</h3>
         <dl class="fa" style="min-width:80vw">
-            <dt>Let's extract information about each country given into this page:<a href="https://www.scrapethissite.com/pages/simple/">Countries of the World: A Simple Example</a></dt>
+            <dt>Let's extract information about each country given into this page: <a href="https://www.scrapethissite.com/pages/simple/">Countries of the World: A Simple Example</a></dt>
+            <dt>We need to get 'country_name', 'capital', 'population' and 'area' for each country which 'area' is bigger than that of Bulgaria's.</dt>
         </dl>
+    </section>
+    <section><h3>The steps</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Step1: Fetch the Web Page content using requests library</dt>
+            <dt>Step2: Parse the HTML Content</dt>
+            <dd>Step 2.1: Inspect the HTML structure and elements needed using Chrome Dev tools</dd>
+            <dd>Step 2.2: Extract Required Information using BeautifulSoup.</dd>
+        </dl>
+    </section>
+    <section><h3>Step1: Fetch the Web Page content</h3>
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+            import requests
+            import logging
+
+            logger = logging.getLogger(__name__)
+            logger.setLevel(logging.DEBUG)
+
+
+            def get_html(url):
+                """Retrieves the HTML content of a given URL, handling errors appropriately."""
+
+                # set user-agent
+                user_agent = "A scrapper for learning"
+                headers = {"User-Agent": user_agent}
+
+                # perform GET request
+                try:
+                    response = requests.get(url, headers=headers)
+                    response.raise_for_status()  # Raise an exception for non-200 status codes
+
+                    response.encoding = "utf-8"
+                    return response.text
+
+                except requests.exceptions.RequestException as e:
+                    logger.error(f"Failed to retrieve HTML from {url}: {e}")
+                    raise  # re-raise the exception to be handled by the caller
+
+            if __name__=="__main__":
+                url = 'https://www.scrapethissite.com/pages/simpl'
+                html = ''
+
+                try:
+                    html = get_html(url)
+                except Exception as e:
+                    logger.error(f"An error occurred: {e}")
+
+                print(html)
+        </code></pre>
+    </section>
+    <section><h3>Step 2.1: Inspect the HTML structure</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Open Chrome Dev Tools by <kbd>CTRL_SHIFT+I</kbd> keyboard shortcut.</dt>
+            <dt>We can see that the block for each country is in a:</dt>
+            <pre><code rel="HTML" class="html5" style="font-size: .8em;">
+                <div class="col-md-4 country">
+                    <h3 class="country-name">
+                        <i class="flag-icon flag-icon-ad"></i>
+                        Andorra
+                    </h3>
+                    <div class="country-info">
+                        <strong>Capital:</strong> <span class="country-capital">Andorra la Vella</span><br>
+                        <strong>Population:</strong> <span class="country-population">84000</span><br>
+                        <strong>Area (km<sup>2</sup>):</strong> <span class="country-area">468.0</span><br>
+                    </div>
+                </div>
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Step 2.2: Extract Required Information</h3>
+        <dl class="fa" style="min-width:80vw;">
+            <dl class="fa" style="min-width:80vw">
+                <dt>The easiest way to get an element object with BeautifulSoup is by using CSS Selector.</dt>
+                <dt>You can use the Chrome Dev Tools to extract an element's CSS Selector:</dt>
+                <dd>Dev Tools=>Elements=>Right click on desired element=>Copy=>Copy Selector</dd>
+                <a href="./images/DevTools_CopySelector_Countries of the World: A Simple Example.bmp" title="click for bigger image">
+                    <img src="./images/DevTools_CopySelector_Countries of the World: A Simple Example.bmp" alt="DevTools_CopySelector_Countries of the World: A Simple Example.bmp" style="height: 50vh; margin: 0.2em 2em;">
+                </a>
+                <dd>This way is not so reliable as manually finding the best selector, as Chrome gives you a selector very tight with the element position.</dd>
+                <dd>Compare: "<code>#countries > div > div:nth-child(4) > div:nth-child(1)</code>" vs "<code>#countries div.country</code>"</dd>
+            </dl>
+        </dl>
+    </section>
+    <section><h3>Step 2.2: Extract Required Information - Code</h3>
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+            def extract_data(html):
+            soup = bs4.BeautifulSoup(html, &quot;html.parser&quot;)
+
+            ### get all countries (&#39;&lt;div class=&quot;col-md-4 country&quot;&gt;&#39;)
+            selector = &quot;#countries div.country&quot;
+            countries = soup.select(selector=selector)
+
+            ### get Bulgaria area:
+            # get Bulgaria data div:
+            bulgaria = list(
+                filter(
+                    lambda c: c.select_one(&quot;.country-name&quot;).text.strip().lower() == &quot;bulgaria&quot;,
+                    countries,
+                )
+            )[0]
+            logger.debug(f&quot;Bulgaria data div: {bulgaria}&quot;)
+
+            # from Bulgaria data div get &quot;span.country-area&quot; value:
+            bulgaria_area = float(bulgaria.select_one(&quot;span.country-area&quot;).text)
+            logger.debug(f&quot;Bulgaria area: {bulgaria_area}&quot;)
+
+            ### get all countries which have area&gt;bulgaria_area:
+            bigger_countries = filter(
+                lambda c: float(c.select_one(&quot;span.country-area&quot;).text) &gt; bulgaria_area,
+                countries,
+            )
+
+            ### get &#39;country_name&#39;, &#39;capital&#39;, &#39;population&#39; and &#39;area&#39; for each country
+            countries_data = []
+            for country in bigger_countries:
+                logger.debug(f&quot;process country: {country}&quot;)
+                country_data = {}
+
+                country_data[&quot;name&quot;] = country.select_one(&quot;.country-name&quot;).text.strip()
+                country_data[&quot;capital&quot;] = country.select_one(&quot;.country-capital&quot;).text.strip()
+                country_data[&quot;population&quot;] = country.select_one(
+                    &quot;.country-population&quot;
+                ).text.strip()
+                country_data[&quot;area&quot;] = country.select_one(&quot;.country-area&quot;).text.strip()
+                logger.debug(f&quot;country_data: {country_data}&quot;)
+                countries_data.append(country_data)
+
+            logger.info(f&quot;countries_data: {countries_data}&quot;)
+            return countries_data
+        </code></pre>
+    </section>
+    <section><h3>The whole code</h3>
+    <script src="https://gist.github.com/WWWCourses/7558d423f60c54ea7893b538b8742448.js"></script>
     </section>
 </section>
 
