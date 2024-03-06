@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section class="main-section-title"><h1>String Methods and Formatting</h1></section>
+<section class="main-section-title"><h1>Escape Sequences. Basic IO. String formatting</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
 		<div class="note">
@@ -72,238 +72,394 @@
 </section>
 
 
-<section data-min="5" id="Variables" class="main-section-title"><h1>String Methods</h1></section>
-<section class="sub-sections"><h2>String Methods</h2>
-	<section>
-		<dl class="fa">
-			<dt>Python has a set of built-in methods that you can use on strings.</dt>
-			<dt><span class="note">All string methods returns new values. They do not change the original string.</span></dt>
-			<pre><code rel="Python" class="python">
-				user_name_input = 'ada'
-				user_name = user_name_input.capitalize()
+<section><h2>Escape Sequences</h2>
+    <section>
+        <dl class="fa">
+            <dt>The backslash (\) character is used to escape characters that otherwise have a special meaning, such as newline, backslash itself, or the quote character.</dt>
+            <dt>With escape sequence we can insert characters that are illegal in a string, like quotes or new line symbol.</dt>
+            <dt>The most used escape sequences are given bellow:</dt>
+        </dl>
+        <table>
+            <tr>
+                <th>escape character</th>
+                <th>result</th>
+            </tr>
+            <tr>
+                <td>\'</td>
+                <td>Single Quote</td>
+            </tr>
+            <tr>
+                <td>\"</td>
+                <td>Double Quote</td>
+            </tr>
+            <tr>
+                <td>\n</td>
+                <td>New Line</td>
+            </tr>
+            <tr>
+                <td>\t</td>
+                <td>Tab</td>
+            </tr>
+            <tr>
+                <td>\\</td>
+                <td>Backslash</td>
+            </tr>
+        </table>
+        <dl class="fa">
+            <dt>Reference: <a href="https://docs.python.org/3/reference/lexical_analysis.html#index-23">List of recognized escape sequences in Pyhton</a></dt>
+        </dl>
+    </section>
+    <section><h3>Examples</h3>
+        <pre><code rel="Python" class="python3">
+            print('line1\nline2')
+            #line1
+            #line2
 
-				print(user_name_input)		# 'ada'
-				print(user_name)		# 'Ada'
-			</code></pre>
-			<dt>Reference: <a href="https://www.w3schools.com/python/python_ref_string.asp">Python String Methods @w3schools</a></dt>
-		</dl>
+            print('abc\t123')
+            #abc     123
 
-	</section>
+            print('John\'s pub')
+            #John's pub
+
+            # above, we can do without escape, but changing quotes
+            print("John's pub")
+            #John's pub
+        </code></pre>
+    </section>
 </section>
 
+<section data-min="5"><h1>Basic IO</h1></section>
+<section><h2>Basic IO </h2>
+    <section><h3>print() function</h3>
+        <dl class="fa" style="width: 80vw;">
+            <dt style="font-size: .8em"><a href="https://docs.python.org/3/library/functions.html#print"><code>print()</code></a> function is used for outputting data to the console.</dt>
+            <pre><code rel="Syntax" class="python">
+                print(*objects, sep=' ', end='\n',file=sys.stdout, flush=False)
+            </code></pre>
+            <dt>Examples</dt>
+            <pre><code rel="Python" class="python" style="min-height: 65vh;">
+                ### basic usage
+                print("Hello")
+                print("World")
+                #Hello
+                #World
 
-<section data-min="50" class="main-section-title"><h1>Formatting strings</h1></section>
-<section class="sub-sections"><h2>Formatting strings</h2>
-	<section><h3>Why?</h3>
-		<dl class="fa">
-			<dt>It is not convenient to use the concatenation operator when we want to display some message and some variables interpolated into it.</dt>
-			<pre><code rel="Python" class="Python">
-				name = 'Iva'
-				print('Hello ' + name + ', nice to see you!')
 
-				# Output
-				# Hello Iva, nice to see you!
-			</code></pre>
-			<dt>Python <span class="note">do not support variables interpolation in double quoted strings</span> like in bash/Perl/PHP/...</dt>
-			<pre><code rel="Perl" class="perl">
-				# not possible in Python!!!
-				my $name = "Iva";
-				print("Hello $name, nice to see you!")
+                ### Print multiple values. Note that default separator is space
+                print(1,2,3)
+                # 1 2 3
 
-				# Output
-				# Hello Iva, nice to see you!
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>Literal String Interpolation (f-strings)</h3>
-		<dl class="fa">
-		<dt>F-strings provide a way to embed expressions inside string literals, using a minimal syntax</dt>
-		<pre><code rel="Python" class="python">
-			name = 'Iva'
-			print(f'Hello {name}, nice to see you!')
+                # Change separator to '-'
+                print(1,2,3,sep="-")
+                # 1-2-3
 
-			# Output
-			# Hello Iva, nice to see you!
-		</code></pre>
-		<pre><code rel="Python" class="python">
-			x = 2
-			y = 4
-			print(f'x+y={x+y}')
+                # Change default EOL symbol ("\n") to none. So, there will be no new line after print
+                print("Hello",end="")
+                print("World",end="")
+                print("!")
+                # HelloWorld!
 
-			# Output
-			# x+y=6
-		</code></pre>
-		<dt>More on f-strings: <a href="https://cito.github.io/blog/f-strings/">The new f-strings in Python 3.6</a></dt>
-		</dl>
-  	</section>
+            </code></pre>
+        </dl>
+
+    </section>
+    <section><h3>Python input() function</h3>
+        <dl class="fa">
+            <dt><a href="https://docs.python.org/3/library/functions.html#input"><code>input()</code></a> function is used to get user input as a string.</dt>
+            <pre><code rel="Syntax" class="python3">
+                variable = input("prompt message, to be displayed to the user: ")
+            </code></pre>
+            <dt>Examples:</dt>
+            <pre><code rel="Python" class="python">
+                # No space at the end of &lt;prompt_msg&gt;
+                &gt;&gt;&gt; user_name = input(&quot;Hi, what is your name:&quot;)
+                Hi, what is your name:Iva
+
+                &gt;&gt;&gt; user_pass = input(&quot;What is your password: &quot;)
+                What is your password: 123
+
+                &gt;&gt;&gt; print(f&#39;Ok, your password is |{user_pass}|&#39;)
+                Ok, your password is |123|
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Numeric Input - Example</h3>
+        <dl class="fa">
+            <dt>Note, that no matter what value is entered, it will be <span class="note">stored as a string</span>!</dt>
+            <pre><code rel="Python" class="python3">
+                >>> user_input = input("Enter some number: ")
+                Enter some number: 42
+
+                >>> print(user_input)
+                42
+
+                >>> print(user_input*5)
+                4242424242
+
+                >>> print(type(user_input))
+                &lt;class 'str'&gt;
+            </code></pre>
+            <dt>But you can easily convert it to numerical, using the built in functions <a href="https://docs.python.org/3/library/functions.html#input"><code>int()</code></a> or <a href="https://docs.python.org/3/library/functions.html#float"><code>float()</code></a></dt>
+            <pre><code rel="Python" class="python" style="min-height: 40vh;">
+                &gt;&gt;&gt; x = int(input(&#39;Enter x=&#39;))
+                Enter x=5
+
+                &gt;&gt;&gt; y = float(input(&#39;Enter y=&#39;))
+                Enter y=5
+
+                &gt;&gt;&gt; print(x,y, sep=&quot; , &quot;)
+                5 , 5.0
+
+                &gt;&gt;&gt; print(type(x),type(y), sep=&quot; , &quot;)
+                &lt;class &#39;int&#39;&gt; , &lt;class &#39;float&#39;&gt;
+            </code></pre>
+        </dl>
+    </section>
 </section>
 
+<section data-min="50"><h1>Formatted Strings (f-strings)</h1></section>
+<section><h2>Formatted Strings (f-strings)</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>Before Python 3.6 we have to use the concatenation operator when we want to display some string and some variables interpolated into it.</dt>
+            <dt>Consider next example:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 20vh;">
+                user_name = 'Ada'
+                user_surname = 'Byron'
 
-<section><h2>"old-style" String Formatting in Python</h3>
-	<section><h3>syntax</h3>
-		<pre><code rel="Syntax" class="shell">
-			"format_string" % (values_tuple)
-		</code></pre>
-		<pre><code rel="Python" class="python">
-			>>> "%s died in %d year" % ("Ada Byron", 1852)
-			'Ada Byron died in 1852 year'
-		</code></pre>
-		<dl class="fa">
-			<dt><span class="note">format_string</span> -  a string with formatting placeholders in  it</dt>
-			<dt><span class="note">values_tuple</span> - the values which will be interpolated into the respective formatting placeholders.</dt>
-			<dt>Reference: <a href="https://docs.python.org/3/library/stdtypes.html#printf-style-string-formatting">printf-style String Formatting</a> @python docs</dt>
-		</dl>
+                print('Hello ' + user_name + ' ' + user_surname + '!')
 
-	</section>
-	<!-- <section><h3>how it works?</h3>
-		<a href="images/Python_formting_string.png"><img style="height: 40vh" src="images/Python_formting_string.png"></a>
-	</section> -->
-	<section><h3>Example - format data as table</h3>
-		<pre><code rel="Python" class="python">
-			print("| %10s | %10s |" % ("=" * 10, "=" * 10))
-			print("| %10d | %10d |" % (1,2) )
-			print("| %10d | %10d |" % (34,12) )
-			print("| %10d | %10d |" % (243,126) )
-			print("| %10s | %10s |" % ("=" * 10, "=" * 10))
-		</code></pre>
-		<pre><code rel="Output" class="shell">
-			| ========== | ========== |
-			|          1 |          2 |
-			|         34 |         12 |
-			|        243 |        126 |
-			| ========== | ========== |
-		</code></pre>
-	</section>
-	<section><h3>Examples - more</h3>
-		<pre><code rel="Python" class="python">
-			x = 1.2345678
-			y = 123
-			print("x = %d, y = %d" % (x,y))
-			print("x = %02d, y = %02d" % (x,y))
-			print("x = %f, y = %f" % (x, y))
-			print("x = %.2f, y = %.2f" % (x, y))
-		</code></pre>
-	</section>
-	<section><h3>it's the "old style of formatting" - should we use it?</h3>
-		<dl class="fa">
-			<dt>Though considered "the old way" it's still widely used and is not (still) deprecated in new Python3 versions</dt>
-			<dt>But the preferred way of formatting strings in Python is <span class="note">str.format() method</span></dt>
-			<dt>Knowing how this string formatting works, will help you to grasp the "new style", discussed in next slides.</dt>
-		</dl>
-	</section>
-	<section><h3>resources</h3>
-		<dl class="fa">
-			<dt><a href="https://www.python-course.eu/python3_formatted_output.php">Formatted Output @python-course.eu </a></dt>
-			<dt><a href="https://docs.python.org/3/library/stdtypes.html#old-string-formatting">printf-style String Formatting</a> @python docs</dt>
-		</dl>
-	</section>
+                # Hello Ada Byron!
+            </code></pre>
+            <dt>With <code>f-strings</code>, the code is more readable and easy to write (like using "template strings" in JavaScript):</dt>
+            <pre><code rel="Python" class="python" style="min-height: 20vh;">
+                user_name = 'Ada'
+                user_surname = 'Byron'
+
+                print(f'Hello {user_name} {user_surname}!')
+
+                # Hello Ada Byron!
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>What are <code>f-strings</code>?</h3>
+        <dl class="fa">
+            <dt>Python 3.6 added "f-strings" which provide concise and convenient way to embed Python expressions inside string literals.</dt>
+            <dt>The letter "f" is used as a prefix before the opening quotation mark of the string literal</dt>
+            <pre><code rel="Python" class="python3" style="min-height: 58vh;">
+                # single line f-string:
+                x = 1
+                y = 2
+                print(f'x + y = {x+y}')
+
+                #x + y = 3
+
+                # multiline f-strings
+                print(f"""
+                x=1
+                y=2
+                x+y = {x+y}
+                """)
+
+                #x=1
+                #y=2
+                #x+y = 3
+
+            </code></pre>
+            <dt>More on f-strings: </dt>
+            <dd><a href="https://docs.python.org/3/tutorial/inputoutput.html#tut-f-strings">Formatted String Literals</a> @python tutorial</dd>
+        </dl>
+        </section>
+    <section><h3>Formatting <code>f-strings</code></h3>
+        <dl class="fa">
+            <dt>The <code>f-strings</code> in Python allow for various format specifiers to control how the values are displayed.</dt>
+            <dt>Examples:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 40vh;">
+                # ------------------- Precision for Floating Point Numbers ------------------- #
+                pi = 3.14159265
+
+                # rounded to 2 decimal places:
+                print(f"{pi:.2f}")
+                # 3.14
+
+                # ---------------------- comma as a thousands separator ---------------------- #
+                budget = 1234567890
+                print(f'budget={budget:,}')
+                # budget=1,234,567,890
+
+                # ---------------------- Format a number as a percentage --------------------- #
+                accuracy = 0.95678
+                print(f"Accuracy: {accuracy:.2%}")
+
+                # Accuracy: 95.68%
+            </code></pre>
+            <dt>Reference: <a href="https://docs.python.org/3/library/string.html#formatspec">Format Specification Mini-Language</a></dt>
+        </dl>
+    </section>
+    <section><h3>Formatting <code>f-strings</code> - more examples</h3>
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+            # ----------------------------- Aligning Strings ----------------------------- #
+            x = 123
+
+            # Right-align a string and pad it with spaces on the left:
+            print(f"--->{x:>10}<---")
+            # --->       123<---
+
+            # Center-align a string by adding spaces on both sides:
+            print(f"--->{x:^10}<---")
+            # --->   123    <---
+
+            # Center-align a string, but pad it with different symbol ('*'):
+            print(f'--->{x:*^10}<---')
+            # --->***123****<---
+
+            # Pad an integer with zeros.
+            day = 5
+            print(f"Day of the month: {day:02d}")
+            # Day of the month: 05
+
+
+            # ---------------------------- Dynamic Formatting ---------------------------- #
+            value = 12.34567
+            precision = 3
+
+            # Use variables to determine the format.
+            print(f"Value: {value:.{precision}f}")
+            # Value: 12.346
+        </code></pre>
+    </section>
+    <section><h3>Task</h3>
+        <dl class="fa">
+            <dt>Write a program which will print next output:</dt>
+            <pre><code rel="Terminal" class="bash">
+                |==========|==========|
+                |         1|1         |
+                |        23|23        |
+                |       456|456       |
+                |==========|==========|
+            </code></pre>
+        </dl>
+        <br>
+        <dl class="fa custom-fragment" style="width: 40vw; margin: 0 auto;">
+            <dt>Solution</dt>
+            <pre><code rel="Python" class="python" style="min-height: 20vh;">
+                print(f&quot;|{&#39;=&#39;*10}|{&#39;=&#39;*10}|&quot;)
+                print(f&quot;|{1:&gt;10}|{1:&lt;10}|&quot;)
+                print(f&quot;|{23:&gt;10}|{23:&lt;10}|&quot;)
+                print(f&quot;|{456:&gt;10}|{456:&lt;10}|&quot;)
+                print(f&quot;|{&#39;=&#39;*10}|{&#39;=&#39;*10}|&quot;)
+            </code></pre>
+        </dl>
+    </section>
 </section>
 
-<section><h2>format string syntax: <code>str.format()</code> method</h2>
-	<section><h3>Syntax</h3>
-		<pre><code rel="Syntax" class="shell">
-			"string_with_placeholders".format(values_to_be_substituted)
-		</code></pre>
-		<dl class="fa">
-			<dt><span class="note">string_with_placeholders</span> is a string containing placeholders of the form <code>{}</code></dt>
-			<dt><span class="note">values_to_be_substituted</span> - a comma separated list of values, which will be replaced in the respective placeholders</dt>
-			<pre style="margin: 0; width: 100%;"><code rel="Python" class="python">
-				name = "Alice"
-				age = 30
-				formatted = "My name is {} and I'm {} years old.".format(name, age)
-				print(formatted)
-				# Output: "My name is Alice and I'm 30 years old."
-			</code></pre>
-			<dt>Reference: <a href="https://docs.python.org/3/library/string.html#format-string-syntax">Format String Syntax</a> @python docs</dt>
-		</dl>
-	</section>
-	<section><h3>placeholders position</h3>
-		<dl class="fa">
-			<dt>You can give in placeholders an explicit positional index (<span class="note">counting starts from 0</span>), which allows values to be printed in desired order</dt>
-		</dl><br>
-		<pre><code rel="Python" class="python">
-			x = 5
-			y = 10
-			formatted = "{0}-{0}-{0}, {1}-{1}".format(x,y)
-			print(formatted)
-			# Output: 5-5-5, 10-10
-		</code></pre>
-		<pre><code rel="Python" class="python">
-				>>> "{1} died in {0} year".format("Ada Byron", 1852)
-				'1852 died in Ada Byron year'
-			</code></pre>
-	</section>
-	<section><h3>Examples</h3>
-		<dl class="fa">
-			<dt>Specifying format options for numeric values:</dt>
-			<pre style="margin: 0; width: 110%;"><code rel="Python" class="python">
-				num = 3.14159
-				formatted = "The value of pi is {:.2f}".format(num)
-				print(formatted)
-				# Output: "The value of pi is 3.14"
-
-				num = 1000000
-				formatted = "The value is {:,}".format(num)
-				print(formatted)
-				# Output: "The value is 1,000,000"
-			</code></pre>
-			<dt>Combining multiple formatting options:</dt>
-			<pre style="margin: 0; width: 110%;"><code rel="Python" class="python">
-				num = 3.14159
-				formatted = "The value of pi is {0:.2f}, which is approximately {0:.0f}".format(num)
-				print(formatted)
-				# Output: "The value of pi is 3.14, which is approximately 3"
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>new style vs old style?</h3>
-		<dl class="fa">
-			<dt>The format specifier syntax is similar to the old %-formatting, with the addition of the <code>{}</code> and with <code>:</code> used instead of <code>%</code>. For example, '<code>%10d</code>' can be translated to '<code>{:10d}</code>' and so on.</dt>
-		</dl><br><br>
-		<pre><code rel="Python" class="python">
-			print("| {:10s} | {:10s} |".format("=" * 10, "=" * 10))
-			print("| {:10d} | {:10d} |".format(1, 2))
-			print("| {:10d} | {:10d} |".format(34, 12))
-			print("| {:10d} | {:10d} |".format(243, 126))
-			print("| {:10s} | {:10s} |".format("=" * 10, "=" * 10))
-		</code></pre>
-	</section>
-	<section><h3>resources</h3>
-		<dl class="fa">
-			<dt><a href="https://docs.python.org/3/tutorial/inputoutput.html#tut-f-strings">Formatted String Literals</a> @python tutorial</dt>
-			<dt><a href="https://docs.python.org/3/library/string.html#formatstrings">Format String Syntax</a> @python docs</dt>
-		</dl>
-	</section>
+<section data-min="50"><h1>Mastering String Formatting: <code>str.format()</code> and Old-Style Percent Syntax</section>
+<section><h2>Why to learn str.format()</h2>
+    <section>
+        <dl class="fa">
+            <dt><span class="note">Flexibility</span>: str.format() allows for complex and dynamic formatting which isn't always possible with f-strings.
+            <dt><span class="note">Compatibility</span>: It works in older versions of Python where f-strings are not available.</dt>
+            <dt><span class="note">Learning Fundamentals</span>: It's part of Python's core formatting capabilities and helps in understanding the evolution of string formatting in Python.</dt>
+        <dl class="fa">
+    </section>
+</section>
+<section><h2 class="advanced">"old-style" String Formatting in Python</h3>
+    <section><h3>syntax</h3>
+        <pre><code rel="Syntax" class="shell">
+            "format_string" % (values_tuple)
+        </code></pre>
+        <pre><code rel="Python" class="python3">
+            >>> "%s died in %d year" % ("Ada Byron", 1852)
+            'Ada Byron died in 1852 year'
+        </code></pre>
+        <dl class="fa">
+            <dt><span class="note">format_string</span> -  a string with formatting placeholders in  it</dt>
+            <dt><span class="note">values_tuple</span> - the values which will be interpolated into the respective formatting placeholders.</dt>
+            <dt>Reference: <a href="https://docs.python.org/3/library/stdtypes.html#printf-style-string-formatting">printf-style String Formatting</a> @python docs</dt>
+        </dl>
+    </section>
+    <section><h3>how it works?</h3>
+        <a href="images/Python_formting_string.png"><img style="height: 40vh" src="images/Python_formting_string.png"></a>
+    </section>
+    <section><h3>Example - format data as table</h3>
+        <pre><code rel="Python" class="python3">
+            print("| %10s | %10s |" % ("=" * 10, "=" * 10))
+            print("| %10d | %10d |" % (1,2) )
+            print("| %10d | %10d |" % (34,12) )
+            print("| %10d | %10d |" % (243,126) )
+            print("| %10s | %10s |" % ("=" * 10, "=" * 10))
+        </code></pre>
+        <pre><code rel="Output" class="shell">
+            | ========== | ========== |
+            |          1 |          2 |
+            |         34 |         12 |
+            |        243 |        126 |
+            | ========== | ========== |
+        </code></pre>
+    </section>
+    <section><h3>Examples - more</h3>
+        <pre><code rel="Python" class="python3">
+            x = 1.2345678
+            y = 123
+            print("x = %d, y = %d" % (x,y))
+            print("x = %02d, y = %02d" % (x,y))
+            print("x = %f, y = %f" % (x, y))
+            print("x = %.2f, y = %.2f" % (x, y))
+        </code></pre>
+    </section>
+    <section><h3>it's the "old style of formatting" - should we use it?</h3>
+        <dl class="fa">
+            <dt>Though considered "the old way" it's still widely used and is not (still) deprecated in new Python3 versions</dt>
+            <dt>But the preferred way of formatting strings in Python is <span class="note">str.format() method</span></dt>
+            <dt>Knowing how this string formatting works, will help you to grasp the "new style", discussed in next slides.</dt>
+        </dl>
+    </section>
+    <section><h3>resources</h3>
+        <dl class="fa">
+            <dt><a href="https://www.python-course.eu/python3_formatted_output.php">Formatted Output @python-course.eu </a></dt>
+            <dt><a href="https://docs.python.org/3/library/stdtypes.html#old-string-formatting">printf-style String Formatting</a> @python docs</dt>
+        </dl>
+    </section>
 </section>
 
-
-<section id="HW" class="main-section-title"><h1>Exercises</h1>
+<section><h2 class="advanced">format string syntax: <code>str.format()</code> method</h2>
+    <section><h3>Syntax</h3>
+        <pre><code rel="Syntax" class="shell">
+            "string_with_placeholders".format(values_to_be_substituted)
+        </code></pre>
+        <pre><code rel="Python" class="python3">
+            >>> "{} died in {} year".format("Ada Byron", 1852)
+            'Ada Byron died in 1852 year'
+        </code></pre>
+        <dl class="fa">
+            <dt><span class="note">string_with_placeholders</span> is a string containing placeholders of the form <code>{}</code></dt>
+            <dt><span class="note">values_to_be_substituted</span> - a comma separated list of values, which will be replaced in the respective placeholders</dt>
+            <dt>Reference: <a href="https://docs.python.org/3/library/string.html#format-string-syntax">Format String Syntax</a> @python docs</dt>
+        </dl>
+    </section>
+    <section><h3>placeholders</h3>
+        <dl class="fa">
+            <dt>You can give in placeholders an explicit positional index (<span class="note">counting starts from 0</span>), which allows values to be printed in desired order</dt>
+        </dl><br>
+        <pre><code rel="Python" class="python3">
+                >>> "{1} died in {0} year".format("Ada Byron", 1852)
+                '1852 died in Ada Byron year'
+            </code></pre>
+    </section>
+    <section><h3>new style vs old style?</h3>
+        <dl class="fa">
+            <dt>The format specifier syntax is similar to the old %-formatting, with the addition of the <code>{}</code> and with <code>:</code> used instead of <code>%</code>. For example, '<code>%10d</code>' can be translated to '<code>{:10d}</code>' and so on.</dt>
+        </dl><br><br>
+        <pre><code rel="Python" class="python3">
+            print("| {:10s} | {:10s} |".format("=" * 10, "=" * 10))
+            print("| {:10d} | {:10d} |".format(1, 2))
+            print("| {:10d} | {:10d} |".format(34, 12))
+            print("| {:10d} | {:10d} |".format(243, 126))
+            print("| {:10s} | {:10s} |".format("=" * 10, "=" * 10))
+        </code></pre>
+    </section>
 </section>
-<section class="sub-sections"><h2>Exercises</h2>
-	<section><h3>Task 1</h3>
-		<dl class="fa">
-			<dt>Попълнете празните полета, като използвате форматиращият метод format. Празните места запълнете с вашето име и любими активности.
 
-			<pre><code rel="Python" class="python">
-				"{ }'s favorite sports is { }.".format()
-				"{ } is working on { } programming!".format()
-			</code></pre>
-			</dt>
-		</dl>
-	</section>
-	<section><h3>Task 2</h3>
-		<dl class="fa">
-			<dt>Create 3 variables to store the numbers 1,3,4.</dt>
-			<dt>Calculate and displays the sum, average, minimum, and maximum values. Use the str.format() method to format the output as  floating point number with 2 decimal places.</dt>
-			<pre><code rel="Expected Output" class="bash">
-				Sum = 8.00
-				Average = 2.67
-				Min = 1.00
-				Max = 4.00
-			</code></pre>
-		</dl>
-	</section>
-</section>
 
 
 <section class="disclaimer end-slide"></section>
