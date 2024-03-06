@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section class="main-section-title"><h1>Escape Sequences. Basic IO. String formatting</h1></section>
+<section class="main-section-title"><h1>Escape Sequences. String formatting</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
 		<div class="note">
@@ -125,95 +125,6 @@
             print("John's pub")
             #John's pub
         </code></pre>
-    </section>
-</section>
-
-<section data-min="5"><h1>Basic IO</h1></section>
-<section><h2>Basic IO </h2>
-    <section><h3>print() function</h3>
-        <dl class="fa" style="width: 80vw;">
-            <dt style="font-size: .8em"><a href="https://docs.python.org/3/library/functions.html#print"><code>print()</code></a> function is used for outputting data to the console.</dt>
-            <pre><code rel="Syntax" class="python">
-                print(*objects, sep=' ', end='\n',file=sys.stdout, flush=False)
-            </code></pre>
-            <dt>Examples</dt>
-            <pre><code rel="Python" class="python" style="min-height: 65vh;">
-                ### basic usage
-                print("Hello")
-                print("World")
-                #Hello
-                #World
-
-
-                ### Print multiple values. Note that default separator is space
-                print(1,2,3)
-                # 1 2 3
-
-                # Change separator to '-'
-                print(1,2,3,sep="-")
-                # 1-2-3
-
-                # Change default EOL symbol ("\n") to none. So, there will be no new line after print
-                print("Hello",end="")
-                print("World",end="")
-                print("!")
-                # HelloWorld!
-
-            </code></pre>
-        </dl>
-
-    </section>
-    <section><h3>Python input() function</h3>
-        <dl class="fa">
-            <dt><a href="https://docs.python.org/3/library/functions.html#input"><code>input()</code></a> function is used to get user input as a string.</dt>
-            <pre><code rel="Syntax" class="python3">
-                variable = input("prompt message, to be displayed to the user: ")
-            </code></pre>
-            <dt>Examples:</dt>
-            <pre><code rel="Python" class="python">
-                # No space at the end of &lt;prompt_msg&gt;
-                &gt;&gt;&gt; user_name = input(&quot;Hi, what is your name:&quot;)
-                Hi, what is your name:Iva
-
-                &gt;&gt;&gt; user_pass = input(&quot;What is your password: &quot;)
-                What is your password: 123
-
-                &gt;&gt;&gt; print(f&#39;Ok, your password is |{user_pass}|&#39;)
-                Ok, your password is |123|
-            </code></pre>
-        </dl>
-    </section>
-    <section><h3>Numeric Input - Example</h3>
-        <dl class="fa">
-            <dt>Note, that no matter what value is entered, it will be <span class="note">stored as a string</span>!</dt>
-            <pre><code rel="Python" class="python3">
-                >>> user_input = input("Enter some number: ")
-                Enter some number: 42
-
-                >>> print(user_input)
-                42
-
-                >>> print(user_input*5)
-                4242424242
-
-                >>> print(type(user_input))
-                &lt;class 'str'&gt;
-            </code></pre>
-            <dt>But you can easily convert it to numerical, using the built in functions <a href="https://docs.python.org/3/library/functions.html#input"><code>int()</code></a> or <a href="https://docs.python.org/3/library/functions.html#float"><code>float()</code></a></dt>
-            <pre><code rel="Python" class="python" style="min-height: 40vh;">
-                &gt;&gt;&gt; x = int(input(&#39;Enter x=&#39;))
-                Enter x=5
-
-                &gt;&gt;&gt; y = float(input(&#39;Enter y=&#39;))
-                Enter y=5
-
-                &gt;&gt;&gt; print(x,y, sep=&quot; , &quot;)
-                5 , 5.0
-
-                &gt;&gt;&gt; print(type(x),type(y), sep=&quot; , &quot;)
-                &lt;class &#39;int&#39;&gt; , &lt;class &#39;float&#39;&gt;
-            </code></pre>
-        </dl>
     </section>
 </section>
 
