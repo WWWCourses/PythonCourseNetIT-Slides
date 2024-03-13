@@ -1,4 +1,4 @@
-# logical_expressions_and_conditional_statements_tasks.py
+# IO_logical_expressions_and_conditional_statements_tasks.py
 
 # ---------------------------------- Task 1 ---------------------------------- #
 """ DESCRIPTION:
