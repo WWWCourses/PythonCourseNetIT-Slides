@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>PythonBasics_DictAndSetDataTypes</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_DictAndSetDataTypes" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section class="main-section-title"><h1>Data structures: Dictionaries and Sets</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+<section class="main-section-title" id="Dictionaries"><h1>Dictionaries</h1></section>
+<section class="sub-sections"><h2>Dictionaries</h2>
+    <section><h3>What is a Dictionary?</h3>
+        <dl class="fa">
+            <dt>An <span class="note">unordered</span> collection of objects (values)</dt>
+            <dt>Each value is associated with a <span class="note">unique key</span>.</dt>
+            <dt>A dictionary can be regarded as a collection of <span class="note">key:value</span> pairs</dt>
+            <dt>Dictionaries in Python are similar to <em>associative arrays</em>, <em>hashes (hash tables)</em> in other programming languages (PHP, Perl, Ruby)</dt>
+        </dl>
+    </section>
+    <section><h3>Dictionary Structure</h3>
+        <a href="images/dictionary_structure.png"><img src="images/dictionary_structure.png"></a>
+    </section>
+    <section><h3>Syntax</h3>
+        <pre><code rel="Syntax" class="shell" data-noescape>
+            dictionary = {
+            'key1': <em>value 1</em>,
+            'key2': <em>value 2</em>,
+            'keyN': <em>value N</em>
+            }
+        </code></pre>
+        <dl class="fa">
+            <dt>There is <span class="note">no order</span> in dictionary! We can not say if 'key1' pair will be before 'key2' pair</dt>
+            <dd>In fact, after Python 3.5 the dict objects preserves insertion order, but relying on that property is risky.</dd>
+            <dd>If you need an ordered dict structure - use <a href="https://docs.python.org/3/library/collections.html#module-collections">OrderedDict objects from collections module</a></dd>
+            <dt>Keys must be <span class="note">immutable</span> data type. Usually they are strings.</dt>
+            <dt>Keys must be <span class="note">unique</span>. If multiple "key:values" pairs with the same key exists, only the last one pair will be present in the dictionary</dt>
+        </dl>
+    </section>
+    <section><h3>Dictionaries - examples</h3>
+        <pre><code rel="Python" class="python" style="min-height: 70vh;">
+            ### Example 1
+            en_bg_dict = {
+             'apple': 'ябълка',
+             'orange':'портокал',
+             'banana':'банан'
+            }
+
+            print(en_bg_dict['apple'])
+            # ябълка
+
+            ### Example 2 - repeated keys
+            en_bg_dict = {
+                'apple': 'ябълка',
+                'orange':'портокал',
+                'banana':'банан',
+                'apple':'манго',
+            }
+
+            print(en_bg_dict['apple'])
+            # манго
+        </code></pre>
+    </section>
+    <section><h3>Retrieve item from dictionary</h3>
+        <dl class="fa">
+            <dt>Dictionary values can be retrieved using their respective key in square bracket:</dt>
+            <pre><code rel="Syntax" class="shell" data-noescape>
+                item = dictionary_name[<em>key</em>]
+            </code></pre>
+            <dt>Examples:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 40vh;">
+                prices = {
+                    "apples": 2.50,
+                    "oranges": 2.43,
+                    "bananas": 3.50
+                }
+
+                apples_price = prices['apples']
+                print(f'{apples_price:.2f}')
+                # 2.50
+
+                oranges_price = prices['oranges']
+                print(f'{oranges_price:.2f}')
+                # 2.43
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Change item in a dictionary</h3>
+        <pre><code rel="Syntax" class="shell" data-noescape>
+                dictionary_name[<em>key</em>] = <em>new_value</em>
+        </code></pre>
+        <pre><code rel="Python" class="python" style="min-height: 20vh;">
+            ### change apples prices:
+            prices['apples'] = 2.20
+            print(prices)
+            # {'apples': 2.2, 'oranges': 2.43, 'bananas': 3.5}
+        </code></pre>
+    </section>
+    <section><h3>Add item in a dictionary</h3>
+        <dl class="fa">
+            <dt>Note that, unlike lists, we can use a non-existing key in <code>dictionary_name[<em>key</em>]</code> to add new item</dt>
+            <pre><code rel="Syntax" class="python" data-noescape>
+                dictionary_name[<em>new_key</em>] = <em>new_value</em>
+            </code></pre>
+            <dt>Examples:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 40vh;">
+                prices = {
+                    "apples": 2.50,
+                    "oranges": 2.43,
+                    "bananas": 3.50
+                }
+
+                ### add new key:value pair:
+                prices['plums'] = 4.30
+                print(prices)
+                # {'apples': 2.5, 'oranges': 2.43, 'bananas': 3.5, 'plums': 4.3}
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Delete item from dictionary: <code class="note">del</code> - operator</h3>
+        <dl class="fa">
+            <dt><code>del</code> operator deletes the key:value pair whit the given key. </dt>
+            <pre><code rel="Syntax" class="python" data-noescape>
+                del <em>dictionary</em>[<em>key</em>]
+            </code></pre>
+            <dt>If <code>key</code> did not exists a KeyError will be raised.</dt>
+            <dt>Example:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 50vh;">
+                prices = {
+                    "apples": 2.50,
+                    "oranges": 2.43,
+                    "bananas": 3.50
+                }
+
+                # delete '"oranges": 2.43' pair:
+                del prices['oranges']
+                print(prices)
+                # {'apples': 2.5, 'bananas': 3.5}
+
+                # try to delete non-existing key:
+                del prices['plums']
+                # KeyError: 'plums'
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Delete item from dictionary: <code class="note">pop()</code></h3>
+        <dl class="fa">
+            <pre><code rel="Syntax" class="python" data-noescape>
+                value = pop(<em>key</em>[, <em>default</em>])
+            </code></pre>
+            <dt>If <em>key</em> is in the dictionary, remove it and return its value, else return <em>default</em>.</dt>
+            <dt>If no <em>key</em> or <em>default</em> values are given a KeyError is raised.</dt>
+            <pre><code rel="Python" class="python" style="min-height: 70vh;">
+                prices = {
+                    "apples": 2.50,
+                    "oranges": 2.43,
+                    "bananas": 3.50
+                }
+
+                ### remove 'apples' key:value pair from the dictionary, and return its value
+                apples_price = prices.pop('apples')
+                print(apples_price)
+                # 2.5
+                print(prices)
+                # {'oranges': 2.43, 'bananas': 3.5}
+
+
+                ### try to remove 'plums' key:value pair from the dictionary, no KeyError will be raised, as default value is given:
+                plums_price = prices.pop('plums', None)
+                print(plums_price)
+                # None
+                print(prices)
+                # {'oranges': 2.43, 'bananas': 3.5}
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Get all dictionary keys: <code class="note">keys()</code></h3>
+        <dl class="fa" style="font-size: .9em">
+            <dt>the <a href="https://docs.python.org/3/library/stdtypes.html#dict.keys"><code>dict.keys()</code></a> method returns a <em><a href="https://docs.python.org/3/library/stdtypes.html#dict-views">dict view object</a></em> of dictionary keys, which means that when the dictionary changes, the view reflects these changes.</dt>
+            <dt>Example:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 47vh;">
+                prices = {
+                    "apples": 2.50,
+                    "oranges": 2.43,
+                    "bananas": 3.50
+                }
+
+                prices_view = prices.keys()
+                print(prices_view)
+                # dict_keys(['apples', 'oranges', 'bananas'])
+
+                # let's change prices:
+                prices.pop('apples', None)
+                print(prices_view)
+                # dict_keys(['oranges', 'bananas'])
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3><code class="note">keys()</code> - another dynamic view example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+            prices = {
+                "apples": 2.50,
+                "oranges": 2.43,
+                "bananas": 3.50
+            }
+
+            # get prices keys view:
+            prices_keys = prices.keys()
+            print("before:", prices_keys)
+
+            # add new key-value pair:
+            prices["new_key"]="new value"
+
+            # check if prices_keys contains the new key
+            print("after:", prices_keys)
+        </code></pre>
+        <pre><code rel="Output" class="bash" data-noescape>
+            before: dict_keys(['bananas', 'oranges', 'apples'])
+            after: dict_keys(['new_key', 'bananas', 'oranges', 'apples'])
+        </code></pre>
+    </section>
+    <section><h3>Get all dictionary values: <code class="note">values()</code></h3>
+        <dl class="fa" style="font-size: .9em">
+            <dt>the <a href="https://docs.python.org/3/library/stdtypes.html#dict.values"><code>dict.values()</code></a> method of a dictionary returns a <em><a href="https://docs.python.org/3/library/stdtypes.html#dict-views">dict view object</a></em>  dictionary values</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 40vh;">
+            prices = {
+                "apples": 2.50,
+                "oranges": 2.43,
+                "bananas": 3.50
+            }
+
+            price_list = prices.values()
+            print(price_list)
+            # dict_values([2.5, 2.43, 3.5])
+        </code></pre>
+    </section>
+    <section><h3><code class="note">values()</code> - dynamic view example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 40vh;">
+            prices = {
+                "apples": 2.50,
+                "oranges": 2.43,
+                "bananas": 3.50
+            }
+
+            # get prices values view:
+            prices_values = prices.values()
+            print("before:", prices_values)
+
+            # change a value:
+            prices["oranges"]=100
+
+            # check if prices_values reflects the change:
+            print("after:", prices_values)
+        </code></pre>
+        <pre><code rel="Output" class="bash" data-noescape>
+            before: dict_values([3.5, 2.5, 2.43])
+            after: dict_values([3.5, 2.5, 100])
+        </code></pre>
+    </section>
+    <section><h3>Get all dictionary items (key-value pairs): <code class="note">items()</code></h3>
+        <dl class="fa" style="font-size: .9em">
+            <dt>the <a href="https://docs.python.org/3/library/stdtypes.html#dict.items"><code>dict.items()</code></a> method of a dictionary returns a <em><a href="https://docs.python.org/3/library/stdtypes.html#dict-views">dict view object</a></em> of dictionary items, i.e. a view of <span class="note">key-value pairs</span></dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 30vh;">
+            prices = {
+                "apples": 2.50,
+                "oranges": 2.43,
+                "bananas": 3.50
+            }
+
+            prices_items = prices.items()
+            print(prices_items)
+
+            # dict_items([('bananas', 3.5), ('apples', 2.5), ('oranges', 2.43)])
+        </code></pre>
+    </section>
+    <section><h3><code class="note">items()</code> - dynamic view example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+            prices = {
+                    "apples": 2.50,
+                    "oranges": 2.43,
+                    "bananas": 3.50
+            }
+
+            # get prices items view:
+            prices_items = prices.items()
+            print("before:", prices_items)
+
+            # remove an item:
+            del prices["oranges"]
+
+            # check if prices_items reflects the change:
+            print("after:", prices_items)
+        </code></pre>
+        <pre><code rel="Output" class="bash" data-noescape>
+            before: dict_items([('apples', 2.5), ('oranges', 2.43), ('bananas', 3.5)])
+            after: dict_items([('apples', 2.5), ('bananas', 3.5)])
+        </code></pre>
+    </section>
+    <section><h3>dict views in Python3 and Python2</h3>
+        <dl class="fa">
+            <dt>The <code>keys()</code>, <code>values()</code> and <code>items()</code> methods return dict view objects only in <span class="note">Python3</span>. In Python2 they return lists.</dt>
+            <dt>If you need to convert a dict view object to a list in Python3, you may use the <code>list()</code> method`</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+            prices = {
+                "apples": 2.50,
+                "oranges": 2.43,
+                "bananas": 3.50
+            }
+
+            print(list(prices.keys()))
+            # ['apples', 'oranges', 'bananas']
+
+            print(list(prices.values()))
+            # [2.5, 2.43, 3.5]
+
+            print(list(prices.items()))
+            # [('apples', 2.5), ('oranges', 2.43), ('bananas', 3.5)]
+        </code></pre>
+    </section>
+    <section><h3>Iterate over dictionary keys:</h3>
+        <p>Note that when using <code>for-in</code> loop, dict_name is the same as dict_name.keys()</p>
+        <pre><code rel="Syntax" class="shell" data-noescape>
+            ### Variant 1:
+            for key in dict_name:
+                # do something with a key
+
+            # ### Variant 2:
+            for key in dict_name.keys():
+                # do something with a key
+        </code></pre>
+
+        <pre style="font-size: .5em"><code rel="Python" class="python" style="min-height: 40vh;">
+            prices = {
+                "apples": 2.50,
+                "oranges": 2.43,
+                "bananas": 3.50
+            }
+
+            for key in prices:
+                print(key, end=",")
+            # apples,oranges,bananas,
+
+            for key in prices.keys():
+                print(key, end=",")
+            # apples,oranges,bananas,
+        </code></pre>
+    </section>
+    <section><h3>Iterate over dictionary values:</h3>
+        <pre><code rel="Syntax" class="shell" data-noescape>
+            for value in dict_name.values():
+                # do something with a value
+        </code></pre>
+        <pre style="font-size: .5em"><code rel="Python" class="python" style="min-height: 30vh;">
+            prices = {
+                    "apples": 2.50,
+                    "oranges": 2.43,
+                    "bananas": 3.50
+            }
+
+            for v in prices.values():
+                print(v)
+        </code></pre>
+        <pre style="font-size: .5em"><code rel="Output" class="bash" data-noescape>
+            2.43
+            3.5
+            2.5
+        </code></pre>
+    </section>
+    <section><h3>Iterate over keys and values</h3>
+        <dl class="fa" style="font-size: .9em">
+            <dt class="note">This is the most often used and the most Pythonic construct for looping over dictionaries</dt>
+        </dl>
+        <pre><code rel="Syntax" class="shell" data-noescape>
+            for key, value in dict_name.items():
+                # do something with a key
+                # do something with a value
+        </code></pre>
+        <pre style="font-size: .5em"><code rel="Python" class="python" style="min-height: 40vh;">
+            prices = {
+                "apples": 2.50,
+                "oranges": 2.43,
+                "bananas": 3.50
+            }
+
+            for fruit, price in prices.items():
+                print(f'{fruit}={price}')
+
+            # apples=2.5
+            # oranges=2.43
+            # bananas=3.5
+        </code></pre>
+    </section>
+    <section><h3>More on dictionaries</h3>
+        <dl class="fa">
+            <dt><a href="https://docs.python.org/3.3/library/stdtypes.html#dict"><code>dict</code> class</a> @python docs</dt>
+            <dt><a href="https://docs.python.org/3/library/stdtypes.html#dict-views">Dictionary view objects</a> @python docs</dt>
+        </dl>
+    </section>
+</section>
+
+<section class="main-section-title" id="Sets"><h1>Sets</h1></section>
+<section class="sub-sections"><h2>Sets</h2>
+    <section><h3>What is a Set?</h3>
+        <dl class="fa">
+            <dt>An <span class="note">unordered</span> collection of <span class="note">unique and immutable</span> objects.</dt>
+            <dt>Note that the set itself is a <span class="note">mutable object</span>.</dt>
+            <dt>Set data type in Python is an implementation of the sets as they are defined in mathematics.</dt>
+            <dt>Sets are commonly used to test membership, remove duplicates from a sequence, and compute mathematical operations such as intersection, union, difference, and symmetric difference.</dt>
+        </dl>
+    </section>
+    <section><h3>Syntax</h3>
+        <dl class="fa">
+            <pre><code rel="Syntax" class="shell" data-noescape>
+                set = {<em>value1</em>, <em>value2</em>, <em>valueN</em>}
+            </code></pre>
+            <dt>Example: set' elements <b>must be immutable</b>:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 20vh;">
+                set_of_imutables = {"a", 1, "b", 2, 3}
+                print(set_of_imutables) #{'a', 'b', 2, 3, 1}
+
+                set_of_mutables = { [1,2,3], ["a", "b"] }
+                print(set_of_imutables) #TypeError: unhashable type: 'list'
+            </code></pre>
+            <dt>There is <span class="note">no order</span> in a set! We can not say if 'value1' pair will be before 'value2'.</dt>
+            <dt><span class="note">No duplicate items</span> are allowed. If we define a set with duplicate items, duplicates will be ignored!</dt>
+            <pre><code rel="Python" class="python" style="min-height: 20vh;">
+                int_dup_numbers = {1, 2, 3, 1, 2, 4, 3, 5, 1, 2, 3}
+
+                print(int_dup_numbers)
+                # {1, 2, 3, 4, 5, 6}
+            </code></pre>
+            <pre><code rel="Python" class="python" style="min-height: 20vh;">
+                int_numbers = {1, 2, 3, 4, 5}
+                int_dup_numbers = {1, 2, 3, 1, 2, 4, 3, 5, 1, 2, 3}
+
+                print(int_numbers == int_dup_numbers)
+                # True
+            </code></pre>
+        </dl>
+
+    </section>
+    <section><h3>Set use case: get unique values from a list using <code>set()</code></h3>
+        <pre><code rel="Python" class="python" style="min-height: 30vh;">
+            # from l1 crate l2 with unique values:
+            l1 = [1,2,1,3,2,5,3]
+            l2 = list(set(l1))
+            print(l2)
+
+            # [1, 2, 3, 5]
+        </code></pre>
+    </section>
+    <section><h3>Sets vs Dictionaries</h3>
+        <dl class="fa">
+            <dt>Similarities:</dt>
+            <dd>Both are <span class="note">unordered</span> collection of objects (values).</dd>
+            <dd>Both are <span class="note">mutable</span> (add/remove/modify elements)</dd>
+            <dd>Both use <span class="note">curly braces</span> for their literals.</dd>
+            <dt>Differences:</dt>
+            <dd>A dictionary is a <span class="note">collection of <code>key:value</code> pairs</span>.</dd>
+            <dd>Set is just a <span class="note">collection of immutable objects</span> </dd>
+            <dd>A Set can not contain <span class="note">duplicate items</span>! Dictionaries can.</dd>
+        </dl>
+    </section>
+    <section><h3 class="advanced">Sets vs Lists</h3>
+        <dl class="fa">
+            <dt>Sets are implemented internally as a <a href="https://en.wikipedia.org/wiki/Hash_table">Hash Table</a>, so they are much faster than lists for operations concerning searching of an element</dt>
+            <dt>Lists are much faster than sets for iteration and random access by element index.</dt>
+        </dl>
+    </section>
+    <section><h3 class="advanced">Example: sets are faster for searching elements</h3>
+        <pre><code rel="Python" class="python" style="min-height: 70vh;">
+            import time
+
+            # Creating a large set and list for demonstration
+            large_set = set(range(10_000_000))
+            large_list = list(range(10_000_000))
+
+            # Searching for an element in the set
+            start_time = time.time()
+            exists_in_set = 999999 in large_set     # Searching for a high number
+            set_duration = time.time() - start_time
+
+            # Searching for the same element in the list
+            start_time = time.time()
+            exists_in_list = 999999 in large_list  # Searching for the same high number
+            list_duration = time.time() - start_time
+
+            print(f"Time taken for search in set: {set_duration:.8f} seconds")
+            print(f"Time taken for search in list: {list_duration:.8f} seconds")
+
+            # Time taken for search in set: 0.00000381 seconds
+            # Time taken for search in list: 0.01182604 seconds
+
+        </code></pre>
+    </section>
+    <section><h3 class="advanced">Example: lists are faster for iteration</h3>
+        <pre><code rel="Python" class="python" style="min-height: 70vh;">
+            import time
+
+            # Creating a large set and list for demonstration
+            large_set = set(range(10_000_000))
+            large_list = list(range(10_000_000))
+
+            # Iterating through a list and a set
+            start_time = time.time()
+            for item in large_list:
+                pass  # Simple iteration
+            list_iteration_duration = time.time() - start_time
+
+            start_time = time.time()
+            for item in large_set:
+                pass  # Simple iteration
+            set_iteration_duration = time.time() - start_time
+
+            print(f"Time taken for iterating list: {list_iteration_duration:.8f} seconds")
+            print(f"Time taken for iterating set: {set_iteration_duration:.8f} seconds")
+
+            # Time taken for iterating list: 0.26020551 seconds
+            # Time taken for iterating set: 0.29316807 seconds
+
+
+        </code></pre>
+    </section>
+</section>
+
+<section class="main-section-title" id="BasicSetsOperations"><h1>Basic sets operations</h1></section>
+<section class="sub-sections"><h2>Basic sets operations</h2>
+    <section id="SetsUnion"><h3>Sets Union</h3>
+        <a href="./images/set_union.png"><img src="./images/set_union.png" alt="set_union.png" style="height: 50vh;"></a>
+        <p>Returns new set, which elements are in either sets.</p>
+    </section>
+    <section id="SetsUnionExample"><h3>Sets Union - example</h3>
+        <p>Pipe operator <code>|</code> or method <code>union</code> can be used</p>
+        <pre><code rel="Python" class="python" style="min-height: 40vh;">
+            set1 = {1, 2, 3, 4}
+            set2 = {5, 4}
+
+            union1 = set1 | set2
+            union2 = set1.union(set2)
+            print(union1)
+            print(union2)
+
+            # {1, 2, 3, 4, 5}
+            # {1, 2, 3, 4, 5}
+        </code></pre>
+    </section>
+
+    <section><h3>Sets Intersection</h3>
+        <a href="images/set_intersection.png"><img src="images/set_intersection.png" alt="set_intersection.png" style="height: 50vh;"></a>
+        <p>Returns new set, which elements belong to both sets.</p>
+    </section>
+    <section><h3>Sets Intersection - example</h3>
+        <p>Ampersand operator <code>&</code> or method <code>intersection</code> can be used</p>
+        <pre><code rel="Python" class="python" style="min-height: 40vh;">
+            set1 = {1, 2, 3, 4}
+            set2 = {5, 4}
+
+            intersec1 = set1 & set2
+            intersec2 = set1.intersection(set2)
+            print(intersec1)
+            print(intersec2)
+
+            # {4}
+            # {4}
+        </code></pre>
+    </section>
+
+    <section><h3>Sets Difference</h3>
+        <a href="images/set_difference.png"><img src="images/set_difference.png" alt="set_difference.png" style="height: 50vh;"></a>
+        <p>C = B-A, where C is a new set, which elements are the elements of B, which are not present in A</p>
+    </section>
+    <section><h3>Sets Difference - example</h3>
+        <p>Operator <code>-</code> or method <code>difference</code> can be used</p>
+        <pre><code rel="Python" class="python" style="min-height: 40vh;">
+            set1 = {1, 2, 3, 4, 5}
+            set2 = {5, 4}
+
+            dif1 = set1.difference(set2)
+            dif2 = set1 - set2
+            print(dif1)
+            print(dif2)
+
+            # {1, 2, 3}
+            # {1, 2, 3}
+        </code></pre>
+    </section>
+
+    <section><h3>Sets Symmetric Difference</h3>
+        <a href="images/A_symmetric_minus_B.svg.png"><img src="images/A_symmetric_minus_B.svg.png" style="height: 50vh;"></a>
+        <p>C = A △ B, where C is a new set, which elements are either in sets A or B but not in both.</p>
+    </section>
+    <section><h3>Sets Symmetric Difference - example</h3>
+        <p>Operator <code>^</code> or method <code>symmetric_difference</code> can be used</p>
+        <pre><code rel="Python" class="python" style="min-height: 40vh;">
+            set1 = {1, 2, 3, 4}
+            set2 = {5, 4}
+
+            sym_dif = set1.symmetric_difference(set2)
+            print(sym_dif)
+
+            # {1, 2, 3, 5}
+        </code></pre>
+    </section>
+    <section><h3>More on sets</h3>
+        <p><a href="https://docs.python.org/3/library/stdtypes.html#set"><code>set</code> class in docs.python.org</a></p>
+    </section>
+</section>
+
+<section class="main-section-title" id="hw"><h1>Exercises</h1></section>
+<section class="sub-sections"><h2>task_best_students_scores.py</h2>
+    <section id="task_best_students_scores"><h3>the task</h3>
+        <a href="./Tasks_and_HW/images/task1_student_with_high_score.png"><img src="./Tasks_and_HW/images/task1_student_with_high_score.png" alt="./Tasks_and_HW/images/task1_student_with_high_score.png" style="height: 30vh"></a><br>
+        <dl class="fa">
+            <dt>Represent the information given in student_scores table in appropriate data structure.</dt>
+            <dt>From <code>student_scores</code> data, create a new data structure named <code>best_students_scores</code>, storing the information (name and score) only for students with scores greater than 4.00</dt>
+            <dt>Print out the names and scores from <code>best_students_scores</code> as shown:</dt>
+            <pre><code rel="Expected Output" class="shell" data-noescape>
+                Ivan     - 5.00
+                Maria    - 5.50
+                Georgy   - 5.00
+            </code></pre>
+        </dl>
+    </section>
+</section>
+<section class="sub-sections"><h2>task_min_max_student_score.py</h2>
+    <section id="task_min_max_student_score"><h3>the task</h3>
+        <dl class="fa">
+            <dt>Using the same information as in previous task, i.e.</dt>
+            <a href="./Tasks_and_HW/images/student_score_data.png"><img src="./Tasks_and_HW/images/student_score_data.png" style="height: 30vh"></a><br>
+            <dt>Print out <b>the name and score</b> of the student with maximum score</dt>
+            <dt>Print out <b>the name and score</b> of the student with minimum score</dt>
+        </dl>
+        <pre><code rel="Output" class="bash" data-noescape>
+            Maria - 5.5
+            Alex - 3.5
+        </code></pre>
+    </section>
+    <section id="hints_min_max_student_score"><h3>hints</h3>
+        <dl class="fa">
+            <dt>To find a min/max value from values, you can use Python's built-in functions <a href="https://docs.python.org/3/library/functions.html#min">min()</a> and <a href="https://docs.python.org/3/library/functions.html#max">max()</a></dt>
+            <dd>You can use them on any sequence, like this:</dd>
+            <pre><code rel="Python" class="python" style="min-height: 40vh;">
+                numbers = [2,3,1,5]
+
+                min_number = min(numbers)
+                max_number = max(numbers)
+
+                print(min_number)
+                print(max_number)
+
+                #OUTPUT
+                # 1
+                # 5
+            </code></pre>
+        </dl>
+    </section>
+</section>
+<section class="sub-sections"><h2>task_simple_word_index.py</h2>
+    <section id="task_simple_word_index"><h3>the task</h3>
+        <dl class="fa">
+            <dt>Make a program which will counts how many times a word appears in  given text</dt>
+        </dl>
+        <pre><code rel="Sample data" class="bash" data-noescape>
+            text = """apple and banana one apple one banana
+                      a red apple and a green apple"""
+        </code></pre>
+        <pre><code rel="Output" class="bash" data-noescape>
+            # not nessesarly in the same order
+            apple  - 4
+            and    - 2
+            banana - 2
+            one    - 2
+            a      - 2
+            red    - 1
+            green  - 1
+        </code></pre>
+    </section>
+    <section id="hint_simple_word_index"><h3>Hints</h3>
+        <dl class="fa">
+            <dt><i>Hint 1</i>: for simplicity we will get the "words" as a space separated sequences in string. To get that list of words we can use the <a href="https://docs.python.org/3/library/stdtypes.html#str.split"><code>str.split()</code></a> method, as shown:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 20vh;">
+                text = "some words delimited by spaces"
+                words_list = text.split()
+
+                print(words_list)
+
+                # ['some', 'words', 'delimited', 'by', 'spaces']
+            </code></pre>
+            <dt><i>Hint 2</i>: you can use the <code>list.count(x)</code> method which return the number of times x appears in the list.</dt>
+            <pre><code rel="Python" class="python" style="min-height: 20vh;">
+                l = [1,1,1,2,2,2,2,3,3]
+
+                print(l.count(1)) # 3
+                print(l.count(2)) # 4
+                print(l.count(3)) # 2
+            </code></pre>
+        </dl>
+
+    </section>
+
+</section>
+
+
+<section class="disclaimer end-slide"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
