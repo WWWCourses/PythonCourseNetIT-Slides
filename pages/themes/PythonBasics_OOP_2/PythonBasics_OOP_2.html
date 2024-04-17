@@ -1,52 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>PythonBasics_OOP_2</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>PythonBasics_OOP_2</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_OOP_2" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_OOP_2" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -54,388 +54,394 @@
 -->
 <section class="main-section-title"><h1>OOP in Python - Part 2</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
 
-<section class="main-section-title"><h1>Static Attributes</h1></section>
-<section class="sub-sections"><h2>Static Attributes</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt class="note">A Class is an object in Python</dt>
-			<dt>Class objects can have attributes: data and methods</dt>
-			<dt>A Class attribute data in Python behaves like <em>static data</em> </dt>
-			<dt>A Class attribute method in Python behaves like <em>static mehotd</em></dt>
-		</dl>
-	</section>
-	<section><h3>Class data attributes (Static Attributes)</h3>
-		<dl class="fa">
-			<dt class="note">Class data attributes are shared among all Class instances</dt>
-		</dl>
-		<pre><code rel="Python" class="python" style="min-height: 85vh;">
-			class Person():
-				count = 0
+<section class="main-section-title"><h1>Static (Class) Attributes</h1></section>
+<section class="sub-sections"><h2>Static (Class) Attributes</h2>
+    <!-- <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt class="note">A Class is an object in Python</dt>
+            <dt>Class objects can have attributes: data and methods</dt>
+            <dt>A Class attribute data in Python behaves like <em>static data</em> </dt>
+            <dt>A Class attribute method in Python behaves like <em>static mehotd</em></dt>
+        </dl>
+    </section> -->
+    <section><h3>Class data attributes == Static Attributes</h3>
+        <dl class="fa">
+            <dt>All variables declared inside the Class' body are 'static' attributes.</dt>
+            <dt class="note">Class data attributes are shared among all Class instances</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 85vh;">
+            class Person():
+                # static attribute
+                count = 0
 
-				def __init__(self, name, age):
-					self.name = name
-					self.age = age
+                def __init__(self, name, age):
+                    # instance attributes
+                    self.name = name
+                    self.age = age
 
-					# should be __count, but good to show that Person.count != self.count
-					self.count = Person.count
-
-					# increment objects counter:
-					Person.count += 1
-
-
-				def __str__(self):
-					return "{}. {}: {}".format(self.count, self.name, self.age)
+                    # increment objects counter:
+                    Person.count += 1
 
 
-			maria = Person("Maria", 20)
-			pesho = Person("Pesho", 30)
+            maria = Person("Maria", 20)
+            pesho = Person("Pesho", 30)
 
-			print(maria)
-			print(pesho)
-		</code></pre>
-	</section>
+            print(f'Person created so far: {Person.count}')
+
+        </code></pre>
+    </section>
 </section>
+
 
 <section class="main-section-title"><h1>Class Methods</h1></section>
 <section class="sub-sections"><h2>Class Methods</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>A class method receives the class as implicit first argument (just like an instance method receives the instance)</dt>
-			<dt>Class methods have access to the state of the class</dt>
-			<dt>Class methods are build by the <code>@classmethod</code> decorator</dt>
-			<dt>Class methods are used to create factory methods (can emulate method overloading, which is not supported in Python)</dt>
-		</dl>
-	</section>
-	<section><h3>Syntax</h3>
-		<pre><code rel="Python" class="python">
-			class Spam():
-					@classmethod
-					def foo(cls, arg1, arg2, ...):
-		</code></pre>
-		<p class="note"><code>cls</code> will be bound to class, not to instance.</p>
-	</section>
-	<section><h3>Example</h3>
-		<pre><code rel="Python" class="python">
-			class Person():
-				count = 0
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>A class method receives the class as implicit first argument (just like an instance method receives the instance)</dt>
+            <dt>Class methods have access to the state of the class</dt>
+            <dt>Class methods are build by the <code>@classmethod</code> decorator</dt>
+        </dl>
+    </section>
+    <section><h3>Syntax</h3>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            class Spam():
+                @classmethod
+                def foo(cls, arg1, arg2, ...):
+        </code></pre>
+        <p class="note"><code>cls</code> will be bound to class, not to instance.</p>
+    </section>
+    <section><h3>Common use case - </h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>A common use case for class methods is to to provide alternative constructors -  they can encapsulate logic to create an object in different ways from the class constructor.</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            class Person():
+                def __init__(self, name, age):
+                    self.name = name
+                    self.age = age
 
-				@classmethod
-				def increment_counter(cls):
-					cls.count += 1
-					print("count:",cls.count )
+                def __str__(self):
+                    return f"name:{self.name}, age:{self.age}"
 
-				def __init__(self, name, age):
-					self.name = name
-					self.age = age
-
-					self.increment_counter()
-					# attach count to an object
-					self.count = Person.count
-
-
-				def __str__(self):
-					return "{}. {}: {}".format(self.count, self.name, self.age)
+                @classmethod
+                def from_dict(cls, data):
+                    ''' Create Person objects from dictionary'''
+                    return cls(data['name'], data['age'])
 
 
-			maria = Person("Maria", 20)
-			pesho = Person("Pesho", 30)
+            pesho_data = {
+                "name": "Pesho",
+                "age": 30
+            }
 
-			print(maria)
-			print(pesho)
-
-			# obviously, we would not want that. So, be careful with class methods!
-			maria.increment_counter()
-			pesho.increment_counter()
-		</code></pre>
-	</section>
+            pesho = Person.from_dict(pesho_data)
+            print(pesho)
+        </code></pre>
+    </section>
 </section>
 
 <section class="main-section-title"><h1>Static Methods</h1></section>
 <section class="sub-sections"><h2>Static Methods</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt class="note">A static method does not receive an implicit first argument.</dt>
-			<dt>It is like normal function, but placed in a class.</dt>
-			<dt>Static methods are generally used to create utility functions.</dt>
-		</dl>
-	</section>
-	<section><h3>Syntax</h3>
-		<pre><code rel="Python" class="python">
-			class Spam():
-					@staticmethod
-					def foo(arg1, arg2, ...):
-		</code></pre>
-		<p>Note, that no implicit argument is passed to foo()</p>
-	</section>
-	<section><h3>Example</h3>
-		<pre><code rel="Python" class="python">
-			class Person():
-				@staticmethod
-				def validate_age(age):
-					if not 0 < age < 100:
-						raise ValueError("Invalid age value")
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt class="note">A static method does not receive an implicit first argument.</dt>
+            <dt>It is like normal function, but placed in a class.</dt>
+            <dt>Static methods are generally used to create utility functions.</dt>
+            <dt>Example:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 45vh;">
+                class A():
+                    @staticmethod
+                    def print_sum(x,y):
+                        print(x+y)
 
-				def __init__(self, name, age):
-					self.name = name
-					try:
-						self.validate_age(age)
-					except:
-						raise
-					else:
-						self.age = age
+                # access static method from class:
+                A.print_sum(3,4)
 
-				def __str__(self):
-					return "{}: {}".format(self.name, self.age)
+                # access static method from instaces:
+                a = A()
+                a.print_sum(3,4)
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Example - static method as utility function</h3>
+        <pre><code rel="Python" class="python" style="min-height: 85vh;">
+            class Person:
+                def __init__(self, name: str, age: int)->None:
+                    self.name = name
+                    self.age = self.validate_age(age)
 
-			maria = Person("Maria", 20)
-			print(maria)
+                @staticmethod
+                def validate_age(age: int) -> int:
+                    """Validate the age value to be within 0 and 100. Raise ValueError if not."""
+                    if not 0 < age < 100:
+                        raise ValueError("Invalid age value: Age must be between 1 and 99.")
+                    return age
 
-			pesho = Person("Pesho", 300)
-			print(pesho)
-		</code></pre>
-	</section>
+                def __str__(self) -> str:
+                    return f"{self.name}: {self.age}"
+
+
+            if __name__=="__main__":
+                try:
+                    person1 = Person("Maria", 30)
+                    print(person1)
+                except ValueError as e:
+                    print(f"Error: {e}")
+        </code></pre>
+    </section>
 </section>
 
-<section class="main-section-title"><h1>"Normal" Method vs Class Method vs Static Method</h1></section>
-<section class="main-section-title"><h1>"Normal" Method vs Class Method vs Static Method</h1>
-	<pre><code rel="Python" class="python">
-		class A():
-			@staticmethod
-			def staticMethod():
-				print("STATIC method fired!")
-				print("Nothing is bound to me (but I'm defined inside a class)")
-				print("~" * 30)
 
-			@classmethod
-			def classMethod(cls):
-				print("CLASS method fired!")
-				print(str(cls) + " is bound to me")
-				print("~" * 30)
+<section class="main-section-title"><h1>Instance Method vs Class Method vs Static Method</h1></section>
+<section class="sub-sections"><h2>Instance Method vs Class Method vs Static Method</h2>
+    <section>
+        <pre><code rel="Python" class="python" style="min-height: 99vh;">
+            class A:
+                @staticmethod
+                def static_method():
+                    """Static method: Does not access any class or instance specific data."""
+                    print("STATIC method fired!")
+                    print("Nothing is bound to me (but I'm defined inside a class)")
+                    print("~" * 30)
 
-			# normal method
-			def normalMethod(self):
-				print("'normalMethod' fired!")
-				print(str(self) + " is bound to me")
-				print("~" * 30)
+                @classmethod
+                def class_method(cls):
+                    """Class method: Accesses class object through 'cls', not instance specific."""
+                    print("CLASS method fired!")
+                    print(f"{cls} is bound to me")
+                    print("~" * 30)
+
+                def instance_method(self):
+                    """Instance method: Accesses instance specific data through 'self'."""
+                    print("'instance_method' fired!")
+                    print(f"{self} is bound to me")
+                    print("~" * 30)
 
 
-		a = A()
-		a.staticMethod()
-		a.classMethod()
-		a.normalMethod()
-	</code></pre>
+            # Creating an instance of class A
+            a = A()
+
+            # Calling static method using the instance (not typical but valid)
+            a.static_method()  # Typically called using A.static_method()
+
+            # Calling class method using the instance (not typical but valid)
+            a.class_method()  # Typically called using A.class_method()
+
+            # Calling instance method using the instance (the intended way)
+            a.instance_method()
+        </code></pre>
+    </section>
 </section>
 
-</section>
 <section class="main-section-title"><h1>Inheritance</h1></section>
 <section class="sub-sections"><h2>Inheritance</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>The mechanism of Inheritance allows programmers to create classes that are built upon existing classes</dt>
-			<dt>Python supports <em>class-based inheritance</em></dt>
-			<dt>I.e. inheritance allows a new class (<b>Derived class</b>) to be build upon existing class ( called <b>Super</b> or <b>Base</b>) class, extending (if needed) its behaviour</dt>
-		</dl>
-	</section>
-	<section><h3>Syntax</h3>
-		<pre><code rel="Python" class="python">
-			class DerivedClassName(BaseClassName):
-				pass
-		</code></pre>
-		<dl class="fa">
-			<dt>The name BaseClassName must be defined in a scope containing the derived class definition</dt>
-		</dl>
-	</section>
-	<section><h3>Example</h3>
-		<pre><code rel="Python" class="python">
-			class Person():
-				"""docstring for Person"""
-				def __init__(self, name, age):
-					self.name = name
-					self.age = age
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>The mechanism of Inheritance allows programmers to create classes that are built upon existing classes</dt>
+            <dt>Python supports <em>class-based inheritance</em></dt>
+            <dt>I.e. inheritance allows a new class (<b>Derived class</b>) to be build upon existing class ( called <b>Super</b> or <b>Base</b>) class, extending (if needed) its behaviour</dt>
+        </dl>
+    </section>
+    <section><h3>Syntax</h3>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            class DerivedClassName(BaseClassName):
+                pass
+        </code></pre>
+        <dl class="fa">
+            <dt>The name BaseClassName must be defined in a scope containing the derived class definition</dt>
+        </dl>
+    </section>
+    <section><h3>Example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            class Person():
+                """docstring for Person"""
+                def __init__(self, name, age):
+                    self.name = name
+                    self.age = age
 
-				def __str__(self):
-					return "{} is {} years old".format(self.name, self.age)
+                def __str__(self):
+                    return "{} is {} years old".format(self.name, self.age)
 
-			class Employee(Person):
-				pass
+            class Employee(Person):
+                pass
 
-			pesho = Employee("Pesho",25)
+            pesho = Employee("Pesho",25)
 
-			print(pesho)
-		</code></pre>
-	</section>
-	<section><h3>Inheritance mechanism</h3>
-		<dl class="fa">
-			<dt>If a requested attribute is not found in the child class, the search proceeds to look in the base class.</dt>
-			<dt>This rule is applied recursively if the base class itself is derived from some other class.</dt>
-			<dt>Derived classes may override methods of their base classes</dt>
-		</dl>
-	</section>
-	<section><h3>Method overriding</h3>
-		<dl class="fa">
-			<dt>Derived classes may override methods of their base classes.</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			class Person():
-				"""docstring for Person"""
-				def __init__(self, name, age):
-					self.name = name
-					self.age = age
+            print(pesho)
+        </code></pre>
+    </section>
+    <section><h3>Inheritance mechanism</h3>
+        <dl class="fa">
+            <dt>If a requested attribute is not found in the child class, the search proceeds to look in the base class.</dt>
+            <dt>This rule is applied recursively if the base class itself is derived from some other class.</dt>
+            <dt>Derived classes may override methods of their base classes</dt>
+        </dl>
+    </section>
+    <section><h3>Method overriding</h3>
+        <dl class="fa">
+            <dt>Derived classes may override methods of their base classes.</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            class Person():
+                """docstring for Person"""
+                def __init__(self, name, age):
+                    self.name = name
+                    self.age = age
 
-				def __str__(self):
-					return "{} is {} years old".format(self.name, self.age)
+                def __str__(self):
+                    return "{} is {} years old".format(self.name, self.age)
 
-			class Employee(Person):
-				def __str__(self):
-					return "{} is  employee".format(self.name)
+            class Employee(Person):
+                def __str__(self):
+                    return "{} is  employee".format(self.name)
 
-			maria = Person("Maria", 20)
-			pesho = Employee("Pesho",25)
+            maria = Person("Maria", 20)
+            pesho = Employee("Pesho",25)
 
-			print(maria)
-			print(pesho)
-		</code></pre>
-	</section>
-	<section><h3>Direct access to base methods</h3>
-		<p>We can call the base class method directly</p>
-		<pre><code rel="Python" class="python">
-			BaseClass.method(self, arguments)
-		</code></pre>
-		<pre><code rel="Python" class="python">
-			class Person():
-				"""docstring for Person"""
-				def __init__(self, name, age):
-					self.name = name
-					self.age = age
+            print(maria)
+            print(pesho)
+        </code></pre>
+    </section>
+    <section><h3>Direct access to base methods</h3>
+        <p>We can call the base class method directly</p>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            BaseClass.method(self, arguments)
+        </code></pre>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            class Person():
+                """docstring for Person"""
+                def __init__(self, name, age):
+                    self.name = name
+                    self.age = age
 
-				def __str__(self):
-					return "{} is {} years old".format(self.name, self.age)
+                def __str__(self):
+                    return "{} is {} years old".format(self.name, self.age)
 
-			class Employee(Person):
-				"""docstring for Employee"""
-				def __init__(self, name, age, salary):
-					Person.__init__(self,name,age)
-					self.salary = salary
-
-
-			pesho = Employee("Pesho",25, 3500)
-			print(pesho)
-		</code></pre>
-	</section>
-	<section><h3><code>super()</code> access to base methods</h3>
-		<p>When we need to access inherited methods that have been overridden in a class, it's preffered to use <code>super()</code></p>
-		<pre><code rel="Syntax" class="python">
-			class C(B):
-					def method(self, arg):
-							super().method(arg)
-		</code></pre>
-	</section>
-	<section><h3><code>super()</code> access to base methods - example</h3>
-		<pre><code rel="Python" class="python">
-			class Person():
-				"""docstring for Person"""
-				def __init__(self, name, age):
-					self.name = name
-					self.age = age
-
-				def __str__(self):
-					return "{} is {} years old".format(self.name, self.age)
-
-			class Employee(Person):
-				"""docstring for Employee"""
-				def __init__(self, name, age, salary):
-					super().__init__(name,age)
-					self.salary = salary
-
-				def __str__(self):
-					# return super().__str__() + ". Has salary: {}".format(self.salary)
-					return Person.__str__(self) + ". Has salary: {}".format(self.salary)
+            class Employee(Person):
+                """docstring for Employee"""
+                def __init__(self, name, age, salary):
+                    Person.__init__(self,name,age)
+                    self.salary = salary
 
 
-			pesho = Employee("Pesho",25, 3500)
-			print(pesho)
-		</code></pre>
-	</section>
+            pesho = Employee("Pesho",25, 3500)
+            print(pesho)
+        </code></pre>
+    </section>
+    <section><h3><code>super()</code> access to base methods</h3>
+        <p>When we need to access inherited methods that have been overridden in a class, it's preffered to use <code>super()</code></p>
+        <pre><code rel="Syntax" class="python">
+            class C(B):
+                    def method(self, arg):
+                            super().method(arg)
+        </code></pre>
+    </section>
+    <section><h3><code>super()</code> access to base methods - example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            class Person():
+                """docstring for Person"""
+                def __init__(self, name, age):
+                    self.name = name
+                    self.age = age
+
+                def __str__(self):
+                    return "{} is {} years old".format(self.name, self.age)
+
+            class Employee(Person):
+                """docstring for Employee"""
+                def __init__(self, name, age, salary):
+                    super().__init__(name,age)
+                    self.salary = salary
+
+                def __str__(self):
+                    # return super().__str__() + ". Has salary: {}".format(self.salary)
+                    return Person.__str__(self) + ". Has salary: {}".format(self.salary)
+
+
+            pesho = Employee("Pesho",25, 3500)
+            print(pesho)
+        </code></pre>
+    </section>
 </section>
 
 <section class="main-section-title"><h1>Operator overloading <br> (<span class="note">advanced topic</span>)</h1></section>
 <section><h2 class="advanced">Operator overloading</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>A class can implement certain operations that are invoked by special syntax (such as arithmetic operations or subscripting and slicing) by defining methods with special names</dt>
-			<dt>This is Python’s approach to operator overloading, allowing classes to define their own behavior with respect to language operators</dt>
-			<dt>Setting a special method to None indicates that the corresponding operation is not available</dt>
-		</dl>
-	</section>
-	<section><h3>Example</h3>
-		<pre><code rel="Python" class="python">
-			class Person():
-				"""docstring for Person"""
-				def __init__(self, name, age):
-					self.name = name
-					self.age = age
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>A class can implement certain operations that are invoked by special syntax (such as arithmetic operations or subscripting and slicing) by defining methods with special names</dt>
+            <dt>This is Python’s approach to operator overloading, allowing classes to define their own behavior with respect to language operators</dt>
+            <dt>Setting a special method to None indicates that the corresponding operation is not available</dt>
+        </dl>
+    </section>
+    <section><h3>Example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            class Person():
+                """docstring for Person"""
+                def __init__(self, name, age):
+                    self.name = name
+                    self.age = age
 
-				def __str__(self):
-					return "{} is {} years old".format(self.name, self.age)
+                def __str__(self):
+                    return "{} is {} years old".format(self.name, self.age)
 
-			class Employee(Person):
-				"""docstring for Employee"""
-				def __init__(self, name, age, salary):
-					super().__init__(name,age)
-					self.salary = salary
+            class Employee(Person):
+                """docstring for Employee"""
+                def __init__(self, name, age, salary):
+                    super().__init__(name,age)
+                    self.salary = salary
 
-				def __str__(self):
-					return super().__str__() + ". Has salary: {}".format(self.salary)
+                def __str__(self):
+                    return super().__str__() + ". Has salary: {}".format(self.salary)
 
-				def __add__(self,other):
-					return self.salary + other.salary
+                def __add__(self,other):
+                    return self.salary + other.salary
 
 
-			pesho = Employee("Pesho",25, 3500)
-			maria = Employee("maria",20, 2500)
-			print(pesho)
-			print(maria)
+            pesho = Employee("Pesho",25, 3500)
+            maria = Employee("maria",20, 2500)
+            print(pesho)
+            print(maria)
 
-			print("pesho + maria = ", pesho + maria)
-			# pesho + maria =  6000
-		</code></pre>
-	</section>
+            print("pesho + maria = ", pesho + maria)
+            # pesho + maria =  6000
+        </code></pre>
+    </section>
 </section>
 
 
 <section class="main-section-title"><h1>Resources</h1></section>
 <!-- <section class="sub-sections"><h2>YouTube Videos</h2>
-	<section><h3>Python Classes and Objects - John Philip Jones</h3>
-		<iframe src="https://www.youtube.com/embed/AaIdperUu-A?list=PL6lxxT7IdTxEloArZ2ZSRWCy5jQpD5VtT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-	</section>
+    <section><h3>Python Classes and Objects - John Philip Jones</h3>
+        <iframe src="https://www.youtube.com/embed/AaIdperUu-A?list=PL6lxxT7IdTxEloArZ2ZSRWCy5jQpD5VtT" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </section>
 </section> -->
 <section class="sub-sections"><h2>blogs, tutorials</h2>
-	<section>
-		<dl class="fa">
-			<dt><a href="https://docs.python.org/3/tutorial/classes.html">Classes @python tutorial</a></dt>
-			<dt><a href="http://blog.thedigitalcatonline.com/blog/2014/05/19/method-overriding-in-python/">Method overriding in Python</a></dt>
-			<dt><a href="https://docs.python.org/3/library/functions.html#super"><code>super()</code> @python docs</a></dt>
-			<dt><a href="https://docs.python.org/3.6/reference/datamodel.html#special-method-names">Special method names @python docs</a></dt>
-		</dl>
-	</section>
+    <section>
+        <dl class="fa">
+            <dt><a href="https://docs.python.org/3/tutorial/classes.html">Classes @python tutorial</a></dt>
+            <dt><a href="http://blog.thedigitalcatonline.com/blog/2014/05/19/method-overriding-in-python/">Method overriding in Python</a></dt>
+            <dt><a href="https://docs.python.org/3/library/functions.html#super"><code>super()</code> @python docs</a></dt>
+            <dt><a href="https://docs.python.org/3.6/reference/datamodel.html#special-method-names">Special method names @python docs</a></dt>
+        </dl>
+    </section>
 </section>
 
 
@@ -446,17 +452,17 @@
 <!--
 <section id="hw"><h1>Exercises</h1></section>
 <section class="sub-sections"><h2>Task1</h2>
-	<section><h3>The Task</h3>
+    <section><h3>The Task</h3>
 
-	</section>
+    </section>
 </section> -->
 
 <!-- <section><h3>Submission</h3>
-	<dl class="fa">
-		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
-		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_OOP_2">ivawebcourses@gmail.com</a></dt>
-	</dl>
+    <dl class="fa">
+        <dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+        <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+        <dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_OOP_2">ivawebcourses@gmail.com</a></dt>
+    </dl>
 </section> -->
 
 
@@ -467,48 +473,48 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1080,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1280,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 </body>
 </html>
