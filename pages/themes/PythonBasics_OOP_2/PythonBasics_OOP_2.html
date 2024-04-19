@@ -128,11 +128,11 @@
         </code></pre>
         <p class="note"><code>cls</code> will be bound to class, not to instance.</p>
     </section>
-    <section><h3>Common use case - </h3>
+    <section><h3>Common use case - class method as alternative constructors</h3>
         <dl class="fa" style="min-width:80vw">
             <dt>A common use case for class methods is to to provide alternative constructors -  they can encapsulate logic to create an object in different ways from the class constructor.</dt>
         </dl>
-        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
             class Person():
                 def __init__(self, name, age):
                     self.name = name
@@ -213,7 +213,7 @@
 <section class="main-section-title"><h1>Instance Method vs Class Method vs Static Method</h1></section>
 <section class="sub-sections"><h2>Instance Method vs Class Method vs Static Method</h2>
     <section>
-        <pre><code rel="Python" class="python" style="min-height: 99vh;">
+        <pre><code rel="Python" class="python" style="min-height: 100vh;">
             class A:
                 @staticmethod
                 def static_method():
@@ -251,46 +251,47 @@
     </section>
 </section>
 
-<section class="main-section-title"><h1>Inheritance</h1></section>
+<section class="main-section-title" id="Inheritance"><h1>Inheritance</h1></section>
 <section class="sub-sections"><h2>Inheritance</h2>
     <section><h3>Overview</h3>
         <dl class="fa">
-            <dt>The mechanism of Inheritance allows programmers to create classes that are built upon existing classes</dt>
-            <dt>Python supports <em>class-based inheritance</em></dt>
-            <dt>I.e. inheritance allows a new class (<b>Derived class</b>) to be build upon existing class ( called <b>Super</b> or <b>Base</b>) class, extending (if needed) its behaviour</dt>
+            <dt>Inheritance is a fundamental concept in object-oriented programming (OOP) that allows a new class to inherit properties and methods from an existing class</dt>
+            <dt>The mechanism of Inheritance allows programmers to create new (derived) class that is built upon existing (base) class, extending (if needed) its behaviour.</dt>
+            <dt>The primary benefit of inheritance is code reusability.</dt>
         </dl>
     </section>
-    <section><h3>Syntax</h3>
-        <pre><code rel="Python" class="python" style="min-height: 1vh;">
-            class DerivedClassName(BaseClassName):
-                pass
-        </code></pre>
-        <dl class="fa">
-            <dt>The name BaseClassName must be defined in a scope containing the derived class definition</dt>
+    <section><h3>Inheritance in Python</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>In Python, inheritance is implemented by passing the parent class as a parameter to the child class.</dt>
+            <pre><code rel="Python" class="python">
+                class BaseClass:
+                    pass
+
+                class DerivedClass(BaseClass):
+                    pass
+
+            </code></pre>
+            <dt>Example</dt>
+            <pre><code rel="Python" class="python" style="min-height: 5 0vh;">
+                class Person():
+                    def __init__(self, name, age):
+                        self.name = name
+                        self.age = age
+
+                    def greet(self):
+                        print(f"Hi, I'm {self.name} and I'm {self.age} years old. ")
+
+                class Employee(Person):
+                    pass
+
+                maria = Employee("Maria", 20)
+                maria.greet()
+            </code></pre>
         </dl>
-    </section>
-    <section><h3>Example</h3>
-        <pre><code rel="Python" class="python" style="min-height: 1vh;">
-            class Person():
-                """docstring for Person"""
-                def __init__(self, name, age):
-                    self.name = name
-                    self.age = age
-
-                def __str__(self):
-                    return "{} is {} years old".format(self.name, self.age)
-
-            class Employee(Person):
-                pass
-
-            pesho = Employee("Pesho",25)
-
-            print(pesho)
-        </code></pre>
     </section>
     <section><h3>Inheritance mechanism</h3>
         <dl class="fa">
-            <dt>If a requested attribute is not found in the child class, the search proceeds to look in the base class.</dt>
+            <dt>If a requested attribute/method is not found in the child class, the search proceeds to look in the base class.</dt>
             <dt>This rule is applied recursively if the base class itself is derived from some other class.</dt>
             <dt>Derived classes may override methods of their base classes</dt>
         </dl>
@@ -299,33 +300,43 @@
         <dl class="fa">
             <dt>Derived classes may override methods of their base classes.</dt>
         </dl>
-        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+        <pre><code rel="Python" class="python" style="min-height:70vh;">
             class Person():
-                """docstring for Person"""
                 def __init__(self, name, age):
                     self.name = name
                     self.age = age
 
-                def __str__(self):
-                    return "{} is {} years old".format(self.name, self.age)
+                def greet(self):
+                    print(f"Hi, I'm {self.name} and I'm {self.age} years old. ")
 
             class Employee(Person):
-                def __str__(self):
-                    return "{} is  employee".format(self.name)
+                def greet(self):
+                    print(f"Hi, I'm the employee {self.name}, {self.age} years old. ")
 
             maria = Person("Maria", 20)
-            pesho = Employee("Pesho",25)
+            petar = Employee('Petar', 34)
 
-            print(maria)
-            print(pesho)
+            maria.greet()
+            petar.greet()
+
+            # Hi, I'm Maria and I'm 20 years old.
+            # Hi, I'm the employee Petar, 34 years old.
         </code></pre>
     </section>
-    <section><h3>Direct access to base methods</h3>
-        <p>We can call the base class method directly</p>
-        <pre><code rel="Python" class="python" style="min-height: 1vh;">
-            BaseClass.method(self, arguments)
-        </code></pre>
-        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+    <section><h3>Access base class methods</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>We can call parent's methods explicitly or by <code>super()</code> construct:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                BaseClass.method(self, arguments)
+                # or
+                super().method(arguments)
+            </code></pre>
+            <dt><code>BaseClass.method(self, arguments)</code> is useful when you need to call a method in a specific class unambiguously. However, it's less flexible if you decide to change the base classes of your class later.  Thus, for most object-oriented Python code, super() is recommended.</dt>
+
+        </dl>
+    </section>
+    <section><h3>Example: call parent method explicitly</h3>
+        <pre><code rel="Python" class="python" style="min-height: 70vh;">
             class Person():
                 """docstring for Person"""
                 def __init__(self, name, age):
@@ -346,16 +357,8 @@
             print(pesho)
         </code></pre>
     </section>
-    <section><h3><code>super()</code> access to base methods</h3>
-        <p>When we need to access inherited methods that have been overridden in a class, it's preffered to use <code>super()</code></p>
-        <pre><code rel="Syntax" class="python">
-            class C(B):
-                    def method(self, arg):
-                            super().method(arg)
-        </code></pre>
-    </section>
-    <section><h3><code>super()</code> access to base methods - example</h3>
-        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+    <section><h3>Example: call parent method with <code>super()</code></h3>
+        <pre><code rel="Python" class="python" style="min-height: 87vh;">
             class Person():
                 """docstring for Person"""
                 def __init__(self, name, age):
@@ -382,46 +385,85 @@
     </section>
 </section>
 
-<section class="main-section-title"><h1>Operator overloading <br> (<span class="note">advanced topic</span>)</h1></section>
-<section><h2 class="advanced">Operator overloading</h2>
-    <section><h3>Overview</h3>
-        <dl class="fa">
-            <dt>A class can implement certain operations that are invoked by special syntax (such as arithmetic operations or subscripting and slicing) by defining methods with special names</dt>
-            <dt>This is Python’s approach to operator overloading, allowing classes to define their own behavior with respect to language operators</dt>
-            <dt>Setting a special method to None indicates that the corresponding operation is not available</dt>
+<section class="main-section-title" id="EncapsulationAndDataHiding"><h1>Encapsulation and Data Hiding</h1></section>
+<section class="sub-sections"><h2>Encapsulation and Data Hiding</h2>
+    <section><h3>Python's Way - Conventions</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Encapsulation is a fundamental concept in object-oriented programming (OOP) that involves bundling data (attributes) and methods (functions) that operate on the data into a single unit, or class.</dt>
+            <dt><b>Importance of Encapsulation</b></dt>
+           <dd><i>Data Hiding</i>: Encapsulation helps in hiding the internal state of an object from the outside. This is important to prevent unauthorized access and modification, which could lead to inconsistent or erroneous states.</dd>
+           <dd><i>Interface Exposure</i>: By encapsulating, a class exposes only what is necessary for the use of the class, typically through methods. This forms a clear and controlled interface with the outside world.</dd>
+           <dd><i>Maintainability:</i> Encapsulation makes maintenance easier, as changes to the encapsulated code can be made with less concern about affecting other parts of the program.</dd>
+
         </dl>
     </section>
-    <section><h3>Example</h3>
-        <pre><code rel="Python" class="python" style="min-height: 1vh;">
-            class Person():
-                """docstring for Person"""
+    <section><h3>Encapsulation in Python</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>In Python, encapsulation is achieved through naming convention.</dt>
+            <table style="font-size: .8em">
+                <tr>
+                    <th>Naming</th>
+                    <th>Type</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>Public</td>
+                    <td>Attributes, that can be freely used inside or outside of a class definition.</td>
+                </tr>
+                <tr>
+                    <td>_name</td>
+                    <td>Protected</td>
+                    <td>Protected attributes are intended to be used only within the class and its subclasses..</td>
+                </tr>
+                <tr>
+                    <td>__name</td>
+                    <td>Private</td>
+                    <td>This kind of attribute should be inaccessible and invisible outside the class. It's neither possible to read nor write to those attributes, except inside of the class definition itself.</td>
+                </tr>
+            </table>
+            <dt>Example:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 53vh;">
+                class Person:
+                    def __init__(self, name, age):
+                        self.name = name
+                        self.__age = age  # private !!!
+
+                    def __str__(self):
+                        return f"name = {self.name}; __age = {self.__age}"
+
+
+                maria = Person("Maria Popova", 25)
+
+                # let's try to change Maria's age:
+                maria.__age = 100
+
+                # we could not
+                print(maria) # name = Maria Popova; __age = 25
+            </code></pre>
+        </dl>
+
+    </section>
+    <section><h3>Private Attributes in Python?</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Python did not provide a truly private attributes!</dt></dt>
+            <dt>The dunder attributes are just prefixed with the <code>_ClassName</code>, known as name mangling.</dt>
+            <dt class=" note">You can access private attributes outside the class, but that's a very bad practice!</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 10vh;">
+            class Person:
                 def __init__(self, name, age):
                     self.name = name
-                    self.age = age
+                    self.__age = age
 
                 def __str__(self):
-                    return "{} is {} years old".format(self.name, self.age)
+                    return f"name = {self.name}; __age = {self.__age}"
 
-            class Employee(Person):
-                """docstring for Employee"""
-                def __init__(self, name, age, salary):
-                    super().__init__(name,age)
-                    self.salary = salary
+            maria = Person("Maria Popova", 25)
 
-                def __str__(self):
-                    return super().__str__() + ". Has salary: {}".format(self.salary)
-
-                def __add__(self,other):
-                    return self.salary + other.salary
-
-
-            pesho = Employee("Pesho",25, 3500)
-            maria = Employee("maria",20, 2500)
-            print(pesho)
-            print(maria)
-
-            print("pesho + maria = ", pesho + maria)
-            # pesho + maria =  6000
+            # let's try to change Maria's age -
+            maria._Person__age = 100
+            print(maria)    # name = Maria Popova; __age = 100
         </code></pre>
     </section>
 </section>
@@ -446,24 +488,15 @@
 
 
 
-
-
-
-<!--
-<section id="hw"><h1>Exercises</h1></section>
-<section class="sub-sections"><h2>Task1</h2>
-    <section><h3>The Task</h3>
-
-    </section>
-</section> -->
-
-<!-- <section><h3>Submission</h3>
+<section id="hw"><h1>Homework</h1></section>
+<section class="sub-sections"><h2>Homework</h2></section>
+<section id="task1"><h3>Tasks</h3>
     <dl class="fa">
-        <dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
-        <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-        <dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_OOP_2">ivawebcourses@gmail.com</a></dt>
+        <dt>The tasks are given in next <a href="https://gist.github.com/ProgressBG-Python-Course/b1d866c4288a5218661440d1978a67e7">gist file</a></dt>
+        <dt>You can copy it and work directly on it. Just put your code under "### Your code here".</dt>
     </dl>
-</section> -->
+</section>
+
 
 
 
