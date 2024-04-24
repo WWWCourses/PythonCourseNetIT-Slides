@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>PythonBasics_OS_module</title>
+    <title>PythonBasics_OS_and_SYS_modules</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,7 +29,7 @@
 <body>
     <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
         <div class="top_links">
-            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_OS_module" target="_top"></a>
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_OS_and_SYS_modules" target="_top"></a>
             <span class="help_link"><i class="fa fa-question"></i></span>
             <div class="help_text">
                 <div class="note">Keyboard shortcuts:</div>
@@ -153,7 +153,7 @@
     </section>
     <section id="CurrentWorkingDirectory"><h3>CWD in Python script: <code>os.getcwd()</code> and <code>os.chdir()</code></h3>
         <dl class="fa" style="min-width:80vw">
-            <dt>The CWD is the directory from which your Python script is executed, and it plays a pivotal role in how Python accesses and manipulates files. Understanding and managing the CWD effectively can help ensure that your scripts work as intended, especially when interacting with the filesystem.</dt>
+            <dt>The CWD is the directory from which your Python script is executed, and it plays a pivotal role in how Python accesses and manipulates files. Understanding and managing the CWD effectively can help ensure that your scripts work as intended, especially when interacting with the file system.</dt>
             <dt><b>Getting the Current Working Directory:</b></dt>
             <dd>To find out what the current working directory is in your Python script, you can use the <a href="https://docs.python.org/3/library/os.html#os.getcwd">getcwd()</a> function from the os module. This function returns the absolute path of the directory in which the Python interpreter is currently running.</dd>
             <!-- Optional code block for programming code -->
@@ -257,7 +257,7 @@
                 import os
                 os.makedirs("parent_directory/child_directory")
             </code></pre>
-            <dt>If a directory alredy exists, these functions will throw File exists error</dt>
+            <dt>If a directory already exists, these functions will throw File exists error</dt>
         </dl>
     </section>
     <section id="DeletingDirectories"><h3>Deleting Directories: <code>os.rmdir()</code> and <code>shutil.rmtree()</code></h3>
@@ -382,12 +382,139 @@
 </section>
 
 
+
+<section class="main-section-title"><h1>the <code>sys</code> module</h1></section>
+<section><h2>the <code>sys</code> module</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt><code>sys</code> is a built-in module, which contains Python interpreter's specific parameters and functions</dt>
+            <dt>Reference: <a href="https://docs.python.org/3/library/sys.html">sys @python.org</a></dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 60vh;">
+            >>> import sys
+
+            >>> dir(sys)
+            ['__displayhook__', '__doc__', '__excepthook__', '__interactivehook__', '__loader__', '__name__', '__package__', '__spec__', '__stderr__', '__stdin__', '__stdout__', '
+            _clear_type_cache', '_current_frames', '_debugmallocstats', '_getframe', '_home', '_mercurial', '_xoptions', 'abiflags', 'api_version', 'argv', 'base_exec_prefix', 'ba
+            se_prefix', 'builtin_module_names', 'byteorder', 'call_tracing', 'callstats', 'copyright', 'displayhook', 'dont_write_bytecode', 'exc_info', 'excepthook', 'exec_prefix
+            ', 'executable', 'exit', 'flags', 'float_info', 'float_repr_style', 'get_coroutine_wrapper', 'getallocatedblocks', 'getcheckinterval', 'getdefaultencoding', 'getdlopen
+            flags', 'getfilesystemencoding', 'getprofile', 'getrecursionlimit', 'getrefcount', 'getsizeof', 'getswitchinterval', 'gettrace', 'hash_info', 'hexversion', 'implementa
+            tion', 'int_info', 'intern', 'is_finalizing', 'last_traceback', 'last_type', 'last_value', 'maxsize', 'maxunicode', 'meta_path', 'modules', 'path', 'path_hooks', 'path
+            _importer_cache', 'platform', 'prefix', 'set_coroutine_wrapper', 'setcheckinterval', 'setdlopenflags', 'setprofile', 'setrecursionlimit', 'setswitchinterval', 'settrac
+            e', 'stderr', 'stdin', 'stdout', 'thread_info', 'version', 'version_info', 'warnoptions']
+        </code></pre>
+    </section>
+    <section><h3>get current version number of Python</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>sys.version</code> - A string containing the version number of the Python interpreter plus additional information.</dt>
+            <dt><code>sys.version_info</code> - A tuple containing the five components of the version number: major, minor, micro, releaselevel, and serial.</dt>
+            <pre><code rel="Python" class="python" data-noescape>
+                import sys
+
+                print(sys.version)
+                # 3.12.0 (main, Jan  2 2024, 16:26:01) [GCC 11.4.0]
+
+                print(sys.version_info)
+                # sys.version_info(major=3, minor=12, micro=0, releaselevel='final', serial=0)
+            </code></pre>
+            <dt>Use case: specify version requirements directly in the code</dt>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import sys
+
+                if sys.version_info[0] == 2:
+                    print("This program requires Python 3 or above. You are using Python 2.")
+                elif sys.version_info[0] == 3:
+                    print("Python 3 is running")
+            </code></pre>
+        </dl>
+
+    </section>
+    <section><h3>get interpreter absolute path</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>sys.executable</code> - A string giving the absolute path of the executable binary for the Python interpreter</dt>
+            <pre><code rel="Python" class="python" data-noescape>
+                import sys
+
+                print(sys.executable)
+
+                #/usr/bin/python3
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>get/set module search path</h3>
+        <dl class="fa">
+            <dt><code>sys.path</code> - A list of strings that specifies the search path for modules. Initialized from the environment variable PYTHONPATH, plus an installation-dependent default.</dt>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import sys
+
+                for path in sys.path:
+                    print(path)
+
+                #/media/user/data/projects/examples
+                #/usr/lib/python312.zip
+                #/usr/lib/python3.12
+                #/usr/lib/python3.12/lib-dynload
+                #/usr/local/lib/python3.12/dist-packages
+                #/usr/lib/python3/dist-packages
+                #/usr/lib/python3.12/dist-packages
+            </code></pre>
+            <dt>You can adjust the module search path at runtime by appending the desired path to <code>sys.path</code> list:</dt>
+            <dd>If you want to use 'module1' which is in "/media/user/data/my_modules":</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import sys
+
+                # add 'my_modules' to path:
+                sys.path.append('/media/user/data/my_modules')
+
+                from module1 import foo
+
+                foo()
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3 class="advanced">get the size of an object in bytes</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>sys.getsizeof()</code> - Return the size of an object in bytes.</dt>
+            <dt>Note, that <code>sys.getsizeof()</code> function returns the size of the object itself, not the size of the elements it contains or references.</dt>
+            <dd>For a list, the size reported by sys.getsizeof() includes the size of the list's overhead plus space for pointers to the elements it contains, but not the size of the elements themselves</dd>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 10vh;">
+            import sys
+            from functools import reduce
+
+            x = 1000
+            l = [1,2,3,4,5,6,7,8,9,10]
+
+            int_object_memory = sys.getsizeof(x)
+            list_object_memory = sys.getsizeof(l)
+            list_elements_memory = reduce( lambda a,el: a+sys.getsizeof(el), l, 0)
+
+            print(int_object_memory)    # 28
+            print(list_object_memory)   # 136
+            print(list_elements_memory) # 280
+
+        </code></pre>
+    </section>
+    <section><h3>Terminate the script</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>sys.exit([status])</code> - Terminate the script with an optional exit status.</dt>
+            <dd>exit status zero is considered "successful termination" and any nonzero value is considered "abnormal termination" by shells and the like</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import sys
+
+                sys.exit(0) # successful termination
+            </code></pre>
+        </dl>
+    </section>
+</section>
+
+
 <section class="main-section-title" id="sys.argv"><h1><code>sys.argv</code>: accessing command-line arguments</h1></section>
 <section><h2><code>sys.argv</code>: accessing command-line arguments</h2>
     <section id="Overview"><h3>Overview of command-line arguments</h3>
         <dl class="fa">
             <dt>Command-line arguments are strings of text used to pass additional information to a program at the time of its invocation. They are typically used to specify options, flags, or data for program operations.</dt>
-            <dt>Ussually these arguments are used to control the program's operation, to provide necessary data for processing, or customize the program's behavior without needing to modify the program's source code</dt>
+            <dt>Usually these arguments are used to control the program's operation, to provide necessary data for processing, or customize the program's behavior without needing to modify the program's source code</dt>
             <dt>Command-line arguments are particularly useful for automating tasks, configuring scripts to run in different modes, or when the program is part of a larger pipeline in software workflows.</dt>
             <dt>A simple use case is allowing users to query the script for usage information - a common feature in command-line tools and applications.</dt>
             <pre><code rel="Terminal" class="bash" data-noescape>
@@ -406,12 +533,12 @@
             </code></pre>
         </dl>
     </section>
-    <section><h3>Accsess command line arguments in Python</h3>
+    <section><h3>Access command line arguments in Python</h3>
         <dl class="fa">
             <dt>In a Python script you can get command-line argument with <code>sys.argv</code> list:</dt>
             <dt class="note">Note that the script name itself is passed implicitly as the first argument!</dt>
             <dd>i.e. <code>sys.argv[0] will always store the script name.</code></dd>
-            <dt>If you need only the list of command-line argmuments, you can just slice sys.argv: <code>sys.argv[1:]</code></dt>
+            <dt>If you need only the list of command-line arguments, you can just slice sys.argv: <code>sys.argv[1:]</code></dt>
             <pre><code rel="greet_user.py" class="python" style="min-height: 10vh;">
                 import sys
 
