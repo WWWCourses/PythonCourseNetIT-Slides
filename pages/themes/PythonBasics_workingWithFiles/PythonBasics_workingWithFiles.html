@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>UsingTheFileSystem</title>
+	<title>PythonBasics_workingWithFiles</title>
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,7 +29,7 @@
 <body>
 	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
 		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#UsingTheFileSystem" target="_top"></a>
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_workingWithFiles" target="_top"></a>
 			<span class="help_link"><i class="fa fa-question"></i></span>
 			<div class="help_text">
 				<div class="note">Keyboard shortcuts:</div>
@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section class="main-section-title"><h1>Using the file system</h1></section>
+<section class="main-section-title"><h1>___PresentationTitle___</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
 		<div class="note">
@@ -72,109 +72,6 @@
 </section>
 
 
-<section id="directoryManipulations" class="main-section-title"><h1>Directory Manipulations</h1></section>
-<section class="sub-sections"><h2>Directory Manipulations</h2>
-	<section><h3>Get and set the current working directory </h3>
-		<dl class="fa">
-			<dt>CWD stands for <b>C</b>urrent <b>W</b>orking <b>D</b>irectory. In Python, the Current Working Directory is set to the directory location from where the python script is executed.</dt>
-			<dt>All filesystem operations will be relative to CWD, unless you specify an absolute (full) path.</dt>
-			<dt>Get CWD: <code>os.getcwd()</code></dt>
-			<dd>Return a string representing the CWD</dd>
-			<pre><code rel="Python" class="python">
-				>>> os.getcwd()
-				'/data/python_demos/music/The Cure'
-			</code></pre>
-			<dt>Set CWD: <code>os.chdir(path)</code></dt>
-			<dd>Change the current working directory to the specified path.</dd>
-			<pre><code rel="Python" class="python">
-				>>> os.chdir("SeventeenSeconds")
-				>>> os.getcwd()
-				'/data/python_demos/music/The Cure/SeventeenSeconds'
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>List entries in a directory</h3>
-		<dl class="fa">
-			<dt><code>os.listdir(path='dirname')</code></dt>
-			<dd>Return a list containing the names of the entries in the directory given by path</dd>
-			<dd>listdir() returns both files and folders, with no indication of which is which.</dd>
-			<dd class="advanced">Consider using os.scandir() when you need an iterator, instead of list</dd>
-		</dl>
-		<pre><code rel="Python" class="python">
-			>>> os.listdir()
-			['SeventeenSeconds', 'Disintegration']
-		</code></pre>
-	</section>
-
-	<section><h3>Make directory</h3>
-		<dl class="fa">
-			<dt><code><a href="https://docs.python.org/3/library/os.html#os.mkdir">os.mkdir(path)</a></code></dt>
-			<dd>Create a directory with given path name</dd>
-			<dd>If the directory already exists, FileExistsError is raised.</dd>
-			<dd>If a parent directory in the path does not exist, FileNotFoundError is raised.</dd>
-		</dl>
-		<pre><code rel="Python" class="python">
-			os.mkdir("TheCure")
-			# folder 'TheCure' is created in CWD
-
-			os.mkdir("A/B/C")
-			# FileNotFoundError: [Errno 2] No such file or directory: 'A/B/C'
-		</code></pre>
-	</section>
-	<section><h3>Make directory tree</h3>
-		<dl class="fa">
-			<dt><code>os.makedirs(path)</code></dt>
-			<dd>Like mkdir(), but makes all intermediate-level directories needed to contain the leaf directory.</dd>
-			<dd>Recursive directory creation.</dd>
-		</dl>
-		<pre><code rel="Python" class="python">
-			path = os.path.join('TheCure','Disintegration', 'Plainsong')
-			os.makedirs(path)
-		</code></pre>
-		<pre><code rel="Output Tree" class="bash">
-			TheCure/
-			└── Disintegration
-						└── Plainsong
-
-		</code></pre>
-	</section>
-	<section><h3>Rename file or directory</h3>
-		<dl class="fa">
-			<dt><code>os.rename(src, dst)</code></dt>
-			<dd>Rename the source file or directory to given destination</dd>
-		</dl>
-		<pre><code rel="Python" class="python">
-			# Lets create folder 'TheCure/Seventeen Seconds'
-			os.makedirs(os.path.join('TheCure','Seventeen Seconds'))
-			print(os.listdir("TheCure"))
-			# ['Seventeen Seconds', 'Disintegration']
-
-			# Rename 'TheCure/Seventeen Seconds' to 'TheCure/SeventeenSeconds'
-			old_name = os.path.join('TheCure','Seventeen Seconds')
-			new_name = os.path.join('TheCure','SeventeenSeconds')
-			os.rename(old_name,new_name)
-
-			print(os.listdir("TheCure"))
-			# ['SeventeenSeconds', 'Disintegration']
-
-		</code></pre>
-	</section>
-	<section><h3>Remove directory</h3>
-		<dl class="fa">
-			<dt><code>os.rmdir(path)</code></dt>
-			<dd>Remove (delete) the directory path.</dd>
-			<dd class="note">Only works when the directory is empty, otherwise, OSError is raised.</dd>
-			<dd class="note">This is safer than os.removedirs(), which will delete even non-empty directories.</dd>
-		</dl>
-		<pre><code rel="Python" class="python">
-			os.rmdir(os.path.join('TheCure','SeventeenSeconds'))
-			# 'TheCure/SeventeenSeconds' is removed, because it was empty
-
-			os.rmdir(os.path.join('TheCure','Disintegration'))
-			# OSError: [Errno 39] Directory not empty: 'TheCure/Disintegration'
-		</code></pre>
-	</section>
-</section>
 
 <section id="filesManipulations" class="main-section-title"><h1>Files Manipulations</h1></section>
 <section class="sub-sections"><h2>Files Manipulations</h2>
@@ -282,6 +179,24 @@
 		</dl>
 	</section>
 </section>
+
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section class="sub-sections"><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section> -->
+
+<!-- <section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_workingWithFiles">ivawebcourses@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
 
 <section class="disclaimer end-slide"></section>
 <!--

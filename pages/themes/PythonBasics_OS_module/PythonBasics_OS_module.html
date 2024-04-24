@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>PythonBasics_OS_module</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
+</head>
+<body>
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_OS_module" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section class="main-section-title"><h1>The OS module</h1></section>
+<section data-transition="zoom">
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
+</section>
+
+
+<section class="main-section-title"><h1>Introduction to OS Module</h1></section>
+<section class="sub-sections"><h2>Introduction to OS Module</h2>
+    <section><h3>Introduction to OS Module</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>What is the OS Module?</dt>
+            <dd>The os module in Python is a built-in library that provides a portable way of using operating system dependent functionality such as reading or writing to the file system, managing paths, and interacting with the operating system.</dd>
+            <dt>Key Features of the OS Module</dt>
+            <dd>The os module provides a rich set of methods that are used to perform various operating system tasks such as file and directory manipulation, retrieving environment variables, and more.</dd>
+            <dd class="note">This module abstracts the underlying operating system functionality to provide a uniform interface across different operating systems.</dd>
+            <dt>Importance of the OS Module</dt>
+            <dd>For Python programmers, the os module is crucial because it allows the creation of platform-independent scripts. This means that the same Python code can often run on multiple platforms without modification, enhancing the portability and scalability of applications.</dd>
+        </dl>
+    </section>
+</section>
+
+<section class="main-section-title" id="PrerequisitesPathsAndCurrentWorkingDirectory"><h1>Basic Concepts: Paths and Current Working Directory</h1></section>
+<section class="sub-sections"><h2>Basic Concepts: Paths and Current Working Directory</h2>
+    <section id="AbsoluteRelativePaths"><h3>What are Paths?</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Paths are addresses that tell the computer where to find files and folders in its storage system, much like how an address helps you find a house in a city.</dt>
+            <dd>Windows uses backslashes (<b>\</b>) to separate directory levels in the path.</dd>
+            <pre><code rel="Terminal" class="bash">
+                C:\Users\nemsys\tmp.txt
+            </code></pre>
+            <!-- <a href="./images/Win_path.gif"><img src="./images/Win_path.gif" alt="Win_path.gif"></a> -->
+            <dd>Linux and macOS use forward slashes (<b>/</b>) to separate directory levels in the path.</dd>
+            <pre><code rel="Terminal" class="bash">
+                /home/nemsys/tmp.txt
+            </code></pre>
+            <dt>Root path</dt>
+            <dd>Windows can have many root directories designated with letters, such as C: or D:</dd>
+            <dd>In Linux and macOS there is only one root directory, designated as <b>/</b> and  </dd>
+        </dl>
+    </section>
+    <section><h3>CWD - Current Working Directory</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>The Current Working Directory refers to the directory in which a user or a program is operating at a given time.</dt>
+            <dt>When you open a command prompt or terminal session, you are placed in a default directory (usually your user directory). This is your initial current working directory. Every time you execute commands that involve files and directories without specifying a full path, those commands will operate relative to the CWD.</dt>
+            <dt><b><i>How to know CWD while working on Command Prompt/Terminal</i></b></dt>
+            <pre><code rel="Terminal" class="bash">
+                # Windows (the CWD is shown in the prompt )
+                C:\Users\nemsys\MyDocuments>cd
+                C:\Users\nemsys\MyDocuments
+
+                # Linux/MacOS
+                nemsys@debian:~/Documents$ pwd
+                /home/nemsys/Documents
+            </code></pre>
+            <dt><b><i>How to know CWD while working with Windows Explorer</i></b></dt>
+            <dd>When browsing files, the CWD is display in Address Bar, when you click on it:</dd>
+            <a href="./images/Win_File-Explorer-Address-Bar-Full-Path.png"><img src="./images/Win_File-Explorer-Address-Bar-Full-Path.png" alt="Win_File-Explorer-Address-Bar-Full-Path.png" style="height: 20vh;"></a>
+
+        </dl>
+    </section>
+    <section><h3>Absolute vs Relative Paths</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><b>Absolute Path</b>: specifies the complete path starting from the root directory.</dt>
+            <dd>On Windows, it typically starts with a drive letter followed by a colon.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                absolute_path = r"C:\Users\Username\Documents\example.txt"
+            </code></pre>
+            <dd>On Linux and macOS, it typically starts with a forward slash (/) representing the root directory.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                absolute_path = "/home/username/Documents/example.txt"
+            </code></pre>
+            <dt><b>Relative Path</b>: specifies the path relative to the current working directory</dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # if CWD = '/home/username'
+                relative_path = "Documents/example.txt"
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Absolute vs Relative Paths</h3>
+        <a href="./images/absolute_vs_relative_path.png"><img src="./images/absolute_vs_relative_path.png" alt="absolute_vs_relative_path.png" style="min-height: 50vh;"></a>
+        <dl class="fa" style="min-width:80vw">
+            <dt>The `.` path name represents the CWD</dt>
+            <dt>The `..` path name represents the parent directory, which is the directory one level up from the CWD</dt>
+        </dl>
+    </section>
+    <section id="CurrentWorkingDirectory"><h3>CWD in Python script: <code>os.getcwd()</code> and <code>os.chdir()</code></h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>The CWD is the directory from which your Python script is executed, and it plays a pivotal role in how Python accesses and manipulates files. Understanding and managing the CWD effectively can help ensure that your scripts work as intended, especially when interacting with the filesystem.</dt>
+            <dt><b>Getting the Current Working Directory:</b></dt>
+            <dd>To find out what the current working directory is in your Python script, you can use the <a href="https://docs.python.org/3/library/os.html#os.getcwd">getcwd()</a> function from the os module. This function returns the absolute path of the directory in which the Python interpreter is currently running.</dd>
+            <!-- Optional code block for programming code -->
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import os
+                cwd = os.getcwd()
+                print("Current Working Directory:", cwd)
+            </code></pre>
+
+            <dt><b>Changing the Current Working Directory</b></dt>
+            <dd>If you need to change the current working directory during the execution of your Python script, you can use the <a href="https://docs.python.org/3/library/os.html#os.chdir">chdir()</a> function, also from the os module. This allows your script to modify its working directory context, which affects where it reads from and writes to files by default.</dd>
+            <!-- Optional code block for programming code -->
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import os
+
+                # Change the directory to "/path/to/your/directory"
+                os.chdir("/path/to/your/directory")
+
+                # Verify the change
+                new_dir = os.getcwd()
+                print("The current working directory has been changed to:", new_dir)
+
+            </code></pre>
+        </dl>
+    </section>
+</section>
+
+<section class="main-section-title" id="DirectoryManipulationswithPython"><h1>Directory Manipulations with Python</h1></section>
+<section class="sub-sections"><h2>Directory Manipulations with Python</h2>
+    <section id="Introduction"><h3>Introduction</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Understanding how to manipulate directories is crucial for various tasks in programming, such as organizing files, managing projects, and handling file I/O operations.</dt>
+            <dt>All filesystem operations will be relative to <a href="https://docs.python.org/3/library/os.html#os.getcwd">CWD</a>, unless you specify an absolute (full) path.</dt>
+        </dl>
+    </section>
+    <section id="ListingDirectories"><h3>Listing Directories: <code>os.listdir()</code></h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Listing Contents of a Directory</dt>
+            <dd>To list the contents of a directory, you can use the <a href="https://docs.python.org/3/library/os.html#os.listdir">os</a> module's <a href="https://docs.python.org/3/library/os.html#os.listdir">listdir()</a> function.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import os
+                contents = os.listdir("directory_path")
+                print(contents)
+                # Output: ['file1.txt', 'file2.txt', 'folder1', 'folder2']
+            </code></pre>
+            <dt>Filtering Directory Contents</dt>
+            <dd>You can filter the directory contents based on specific criteria using list comprehensions or the <a href="https://docs.python.org/3/library/functions.html#filter">filter()</a> function.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import os
+
+                # get list of files only:
+                files = [f for f in os.listdir("directory_path") if os.path.isfile(f)]
+
+                print(files)
+
+                # Output: ['file1.txt', 'file2.txt']
+            </code></pre>
+        </dl>
+    </section>
+    <section id="ListTheEntireDirectory"><h3>List the entire directory content: <code>os.walk()</code></h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>To list the entire directory content, including subfolders, you can use the the <a href="https://docs.python.org/3/library/os.html#os.walk">os.walk</a> function:</dt>
+            <dt>Next example demonstrate how to list the entire content of CWD:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 80vh;">
+                def list_dir_contents(dir_path):
+                  """
+                  This function recursively iterates through the directory tree, yielding root, dirs, and files at each level.
+                  It then prints the full path of each directory and file
+
+                  Args:
+                      dir_path: The path to the directory to list.
+
+                  Returns:
+                      None
+                  """
+                  for root, dirs, files in os.walk(dir_path):
+                    for directory in dirs:
+                      full_dir_path = os.path.join(root, directory)
+                      print(f"Directory: {full_dir_path}\n")
+                    for filename in files:
+                      full_file_path = os.path.join(root, filename)
+                      print(f"File: {full_file_path}\n")
+
+
+                dir_path = os.getcwd()
+                list_dir_contents(dir_path)
+            </code></pre>
+        </dl>
+    </section>
+    <section id="CreatingDirectories"><h3>Creating Directories: <code>os.makedir()</code> and <code>os.makedirs()</code></h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Creating a Directory</dt>
+            <dd>To create a directory in Python, you can use the <a href="https://docs.python.org/3/library/os.html#os.mkdir">os.mkdir()</a> function.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import os
+                os.makedir("parent_directory")
+            </code></pre>
+            <dt>Creating Nested Directories</dt>
+            <dd>You can create nested directories by specifying the full path when calling the <a href="https://docs.python.org/3/library/os.html#os.makedirs">os.mkdirs()</a> function.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import os
+                os.makedirs("parent_directory/child_directory")
+            </code></pre>
+            <dt>If a directory alredy exists, these functions will throw File exists error</dt>
+        </dl>
+    </section>
+    <section id="DeletingDirectories"><h3>Deleting Directories: <code>os.rmdir()</code> and <code>shutil.rmtree()</code></h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Deleting a Directory</dt>
+            <dd>To delete a directory in Python, you can use the <a href="https://docs.python.org/3/library/os.html#os.rmdir">os</a> module's <a href="https://docs.python.org/3/library/os.html#os.rmdir">rmdir()</a> function.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import os
+                os.rmdir("directory_path")
+            </code></pre>
+            <dd>Note that, <code>os.rmdir()</code> removes only empty directory. Otherwise, <code>OSError</code> is raised.</dd>
+            <dd>This is safer than <code>os.removedirs()</code>, which will delete even non-empty directories.</dd>
+
+            <dt>Deleting a Directory Tree</dt>
+            <dd>To delete a directory and all its contents recursively, you can use the <a href="https://docs.python.org/3/library/shutil.html#shutil.rmtree">shutil</a> module's <a href="https://docs.python.org/3/library/shutil.html#shutil.rmtree">rmtree()</a> function.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import shutil
+                shutil.rmtree("directory_path")
+            </code></pre>
+        </dl>
+    </section>
+</section>
+
+<section class="main-section-title" id="OsPathModule"><h1>os.path Module</h1></section>
+<section class="sub-sections"><h2>os.path Module</h2>
+    <section id="Introduction"><h3>Introduction</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>The `os.path` module in Python provides functions for common path manipulations, making it easier to work with file and directory paths in a platform-independent manner. This allows your code to work seamlessly across different operating systems.</dt>
+            <dt>Some of the commonly used functions in the <a href="https://docs.python.org/3/library/os.path.html">os.path</a> module include:</dt>
+            <dd><a href="https://docs.python.org/3/library/os.path.html#os.path.join">os.path.join()</a>: Concatenates one or more path components intelligently, taking into account the platform-specific path separator.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import os
+                joined_path = os.path.join("folder", "file.txt")
+                print("Joined Path:", joined_path)
+                # Output: Joined Path: folder/file.txt
+            </code></pre>
+
+            <dd><a href="https://docs.python.org/3/library/os.path.html#os.path.abspath">os.path.abspath()</a>: Returns the absolute path of a given path.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import os
+                abs_path = os.path.abspath("file.txt")
+                print("Absolute Path:", abs_path)
+                # Output: Absolute Path: /full/path/to/file.txt
+            </code></pre>
+        </dl>
+    </section>
+    <section id="CommonFunctions"><h3>Common Functions</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dd><a href="https://docs.python.org/3/library/os.path.html#os.path.basename">os.path.basename()</a>: Returns the base name of a path (i.e., the filename without the directory).</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import os
+                file_name = os.path.basename("/path/to/file.txt")
+                print("File Name:", file_name)
+                # Output: File Name: file.txt
+            </code></pre>
+
+            <dd><a href="https://docs.python.org/3/library/os.path.html#os.path.dirname">os.path.dirname()</a>: Returns the directory name of a path.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import os
+                dir_name = os.path.dirname("/path/to/file.txt")
+                print("Directory Name:", dir_name)
+                # Output: Directory Name: /path/to
+            </code></pre>
+
+            <dd><a href="https://docs.python.org/3/library/os.path.html#os.path.exists">os.path.exists()</a>: Checks whether a path exists.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import os
+                path = "/path/to/file.txt"
+                exists = os.path.exists(path)
+                print("Path Exists:", exists)
+                # Output: Path Exists: True (or False if the path doesn't exist)
+            </code></pre>
+        </dl>
+    </section>
+    <section id="CommonFunctions2"><h3>Common Functions</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dd><a href="https://docs.python.org/3/library/os.path.html#os.path.isfile">os.path.isfile()</a>: Checks whether a path is a regular file.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import os
+                file_path = "/path/to/file.txt"
+                is_file = os.path.isfile(file_path)
+                print("Is a File:", is_file)
+                # Output: Is a File: True (or False if the path is not a file)
+            </code></pre>
+
+            <dd><a href="https://docs.python.org/3/library/os.path.html#os.path.isdir">os.path.isdir()</a>: Checks whether a path is a directory.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import os
+                dir_path = "/path/to/directory"
+                is_dir = os.path.isdir(dir_path)
+                print("Is a Directory:", is_dir)
+                # Output: Is a Directory: True (or False if the path is not a directory)
+            </code></pre>
+        </dl>
+    </section>
+</section>
+
+<section class="main-section-title" id="OS_info"><h1>Operating System Information</h1></section>
+<section class="sub-sections"><h2>Operating System Information</h2>
+    <section id="OperatingSystemInformation"><h3>Operating System Information</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>os.name</dt>
+            <dd>Provides the name of the operating system dependent module imported.</dd>
+            <pre><code rel="Python" class="python3" style="min-height: 1vh;">
+                import os
+                print(os.name)
+            </code></pre>
+            <dt>os.environ</dt>
+            <dd>Returns a dictionary representing the user's environmental variables.</dd>
+            <pre><code rel="Python" class="python3" style="min-height: 1vh;">
+                import os
+                print(os.environ)
+            </code></pre>
+            <dt>os.system(command)</dt>
+            <dd>Executes the command (a string) in a subshell.</dd>
+            <pre><code rel="Python" class="python3" style="min-height: 1vh;">
+                import os
+                os.system('echo Hello World')
+            </code></pre>
+        </dl>
+    </section>
+</section>
+
+
+<section class="main-section-title" id="sys.argv"><h1><code>sys.argv</code>: accessing command-line arguments</h1></section>
+<section><h2><code>sys.argv</code>: accessing command-line arguments</h2>
+    <section id="Overview"><h3>Overview of command-line arguments</h3>
+        <dl class="fa">
+            <dt>Command-line arguments are strings of text used to pass additional information to a program at the time of its invocation. They are typically used to specify options, flags, or data for program operations.</dt>
+            <dt>Ussually these arguments are used to control the program's operation, to provide necessary data for processing, or customize the program's behavior without needing to modify the program's source code</dt>
+            <dt>Command-line arguments are particularly useful for automating tasks, configuring scripts to run in different modes, or when the program is part of a larger pipeline in software workflows.</dt>
+            <dt>A simple use case is allowing users to query the script for usage information - a common feature in command-line tools and applications.</dt>
+            <pre><code rel="Terminal" class="bash" data-noescape>
+                $ python greet_user.py --help
+
+                Usage: python greet_user.py [options]
+                Options:
+                  --help    Show this help message
+                  --name    User name (string)
+                  --age     User age (integer)
+            </code></pre>
+            <dt>Command line arguments must follow the script name by a space.</dt>
+            <dt>Multiple command line arguments must be separated from each other by space.</dt>
+            <pre><code rel="Terminal" class="bash">
+                $ python greet_user.py --name=Ada --age=23
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Accsess command line arguments in Python</h3>
+        <dl class="fa">
+            <dt>In a Python script you can get command-line argument with <code>sys.argv</code> list:</dt>
+            <dt class="note">Note that the script name itself is passed implicitly as the first argument!</dt>
+            <dd>i.e. <code>sys.argv[0] will always store the script name.</code></dd>
+            <dt>If you need only the list of command-line argmuments, you can just slice sys.argv: <code>sys.argv[1:]</code></dt>
+            <pre><code rel="greet_user.py" class="python" style="min-height: 10vh;">
+                import sys
+
+                print(f"Script Name: {sys.argv[0]}")
+                print(f"Arguments: {sys.argv[1:]}")
+
+                ###Output of:  python greet_user.py --name=Ada --age=23
+                #Script Name: greet_user.py
+                #Arguments: ['--name=Ada', '--age=23']
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Command line arguments - examples</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Lets have next script, which just prints argv list: </dt>
+            <pre><code rel="argv_examples.py" class="python">
+                import sys
+
+                print('Argument List:', sys.argv)
+            </code></pre>
+            <dt>Now, let's execute script with different command-line arguments:</dt>
+            <pre><code rel="Terminal" class="bash" data-noescape>
+                # call script without arguments:
+
+                $ python argv_examples.py
+                Argument List: ['argv_examples.py']
+            </code></pre>
+            <pre><code rel="Terminal" class="bash" data-noescape>
+                # call script with 1 argument:
+
+                $ python argv_examples.py arg1
+                Argument List: ['argv_examples.py', 'arg1']
+            </code></pre>
+            <pre><code rel="Terminal" class="bash" data-noescape>
+                # call script with 3 arguments:
+
+                $ python argv_examples.py arg1 23 -45.6
+                Argument List: ['argv_examples.py', 'arg1', '23', '-45.6']
+            </code></pre>
+        </dl>
+
+    </section>
+</section>
+<section class="sub-sections" id="UsingArgparse"><h2 class="advanced">Using argparse for Advanced Argument Parsing</h2>
+    <section><h3>Introduction to argparse</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>The argparse module makes it easy to write user-friendly command-line interfaces even for complex scenarios</dt>
+            <dt>The program defines what arguments it requires, and argparse figures out how to parse those out of sys.argv.</dt>
+            <dt>Example: simple script that echoes a message a specified number of times</dt>
+            <pre><code rel="Python" class="python" style="min-height: 80vh;">
+                import argparse
+
+                # Create the parser
+                parser = argparse.ArgumentParser(description='Example script demonstrating argparse usage.')
+
+                # define positional required argument:
+                parser.add_argument('message', help='the message to be repeated')
+
+                # define optional argument:
+                parser.add_argument('--repeat', type=int, default=1, help='How many times to repeat the message (default: %(default)s)')
+
+                # Parse arguments
+                args = parser.parse_args()
+
+                # Use arguments
+                for _ in range(args.repeat):
+                    print(args.message)
+
+
+
+                ###Output of: $ python echo.py hello --repeat 3
+                # hello
+                # hello
+                # hello
+
+                ###Output of: $ python echo.py --help
+                # usage: echo.py [-h] [--repeat REPEAT] message
+
+                # Example script demonstrating argparse usage.
+
+                # positional arguments:
+                #   message          the message to be repeated
+
+                # options:
+                #   -h, --help       show this help message and exit
+                #   --repeat REPEAT  How many times to repeat the message (default: 1)
+
+                ###Output of: python3 echo.py
+                # usage: echo.py [-h] [--repeat REPEAT] message
+                # echo.py: error: the following arguments are required: message
+            </code></pre>
+            <dt>argparse handles positional arguments (here, <code>message</code>) that are required, and optional arguments (here, <code>--repeat</code>) that the user can specify to alter the script's behavior.</dt>
+            <dt>The argparse module automatically generates help and usage messages and issues errors when users give the program invalid arguments.</dt>
+        </dl>
+    </section>
+</section>
+
+
+<section class="disclaimer end-slide"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1280,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
+</body>
+</html>
