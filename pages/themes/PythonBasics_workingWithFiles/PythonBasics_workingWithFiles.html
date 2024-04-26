@@ -1,199 +1,315 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>PythonBasics_workingWithFiles</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>PythonBasics_workingWithFiles</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_workingWithFiles" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_workingWithFiles" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section class="main-section-title"><h1>___PresentationTitle___</h1></section>
+<section class="main-section-title"><h1>Working with files</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
 
 
 <section id="filesManipulations" class="main-section-title"><h1>Files Manipulations</h1></section>
 <section class="sub-sections"><h2>Files Manipulations</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>For basic files operations, like reading, writing and appending to files we can use the built-in <a href="https://docs.python.org/3/glossary.html#term-file-object">file object</a> and its methods.</dt>
-			<dt>To get a corresponding file object we must use the <a href="https://docs.python.org/3/library/functions.html#open">open()</a> built-in function.</dt>
-		</dl>
-	</section>
-	<section><h3>open file</h3>
-		<dl class="fa">
-			<dt><code>fh = open(file_path, mode="<em>mode</em>")</code></dt>
-			<dt>Open file by the given pathname and return a corresponding file object</dt>
-			<dt><em>mode</em></dt>
-			<dd>'r' - open for reading (default)</dd>
-			<dd>'w' - open for writing, truncating the file first</dd>
-			<dd>'a' - open for writing, appending to the end of the file if it exists</dd>
-			<dt class="note">After the work with the file is done, you have to call fh.close() in order to release the fh</dt>
-		</dl>
-	</section>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>For basic files operations, like reading, writing and appending to files we can use the built-in <a href="https://docs.python.org/3/glossary.html#term-file-object">file object</a> and its methods.</dt>
+            <dt>To get a corresponding file object we must use the <a href="https://docs.python.org/3/library/functions.html#open">open()</a> built-in function.</dt>
+        </dl>
+    </section>
+    <section><h3>open file</h3>
+        <dl class="fa">
+            <dt><code>fh = open(file_path, mode="<em>mode</em>")</code></dt>
+            <dt>Open file by the given pathname and return a corresponding file object</dt>
+            <dt><em>mode</em></dt>
+            <dd>'r' - open for reading (default)</dd>
+            <dd>'w' - open for writing, truncating the file first</dd>
+            <dd>'a' - open for writing, appending to the end of the file if it exists</dd>
+            <dt class="note">After the work with the file is done, you have to call fh.close() in order to release the fh</dt>
+        </dl>
+    </section>
 
-	<section><h3>Read from file</h3>
-		<dl class="fa">
-			<dt><code>fh.read(<i>size</i>)</code></dt>
-			<dd>Reads file content and stores it in variable </dd>
-			<dd>When size is omitted or negative, <span class="note">the entire contents of the file will be read and returned</span> (python will not take care if the file is twice as large as your machine’s memory)</dd>
-			<dd>If <i>size</i> is given at most <i>size</i> characters (in text mode) or size bytes (in binary mode) are read and returned.</dd>
-			<pre><code rel="Python" class="python">
-				fh = open('test.txt','r')
+    <section><h3>Read from file</h3>
+        <dl class="fa">
+            <dt><code>fh.read(<i>size</i>)</code></dt>
+            <dd>Reads file content and stores it in variable </dd>
+            <dd>When size is omitted or negative, <span class="note">the entire contents of the file will be read and returned</span> (python will not take care if the file is twice as large as your machine’s memory)</dd>
+            <dd>If <i>size</i> is given at most <i>size</i> characters (in text mode) or size bytes (in binary mode) are read and returned.</dd>
+            <pre><code rel="Python" class="python">
+                fh = open('test.txt','r')
 
-				# read whole file content:
-				contents =fh.read()
-			</code></pre>
-			<dt><code>fh.readline()</code></dt>
-			<dd>Reads and returns a single line from the file (including the ending new line character)</dd>
-			<dd>f.readline() returns an empty string, when the end of the file has been reached</dd>
-			<dt><code>f.readlines()</code></dt>
-			<dd>Reads all the lines of a file in a list. You can do the same with <code>list(f)</code></dd>
-		</dl>
-	</section>
-	<section><h3>Read lines in a loop</h3>
-		<dl class="fa">
-			<dt>With fh.readlines():</dt>
-			<pre><code rel="Python" class="python">
-				fh = open('test_file.txt', 'r')
+                # read whole file content:
+                contents =fh.read()
+            </code></pre>
+            <dt><code>fh.readline()</code></dt>
+            <dd>Reads and returns a single line from the file (including the ending new line character)</dd>
+            <dd>f.readline() returns an empty string, when the end of the file has been reached</dd>
+            <dt><code>f.readlines()</code></dt>
+            <dd>Reads all the lines of a file in a list. You can do the same with <code>list(f)</code></dd>
+        </dl>
+    </section>
+    <section><h3>Read lines in a loop</h3>
+        <dl class="fa">
+            <dt>With fh.readlines():</dt>
+            <pre><code rel="Python" class="python">
+                f = open('test_file.txt', 'r')
 
-				for l in fh.readlines():
-					print(l, end='')
+                for line in f.readlines():
+                    print(line, end='')
 
-				fh.close()
-			</code></pre>
-			<dt>Iterate over the file object itself. This is memory efficient, fast, and leads to simple code:</dt>
-			<pre><code rel="Python" class="python">
-				fh = open('test_file.txt', 'r')
+                f.close()
+            </code></pre>
+            <dt>Iterate over the file object itself. This is memory efficient, fast, and leads to simple code:</dt>
+            <pre><code rel="Python" class="python">
+                f = open('test_file.txt', 'r')
 
-				for l in fh:
-					print(l, end='')
+                for line in f:
+                    print(line, end='')
 
-				fh.close()
-			</code></pre>
-		</dl>
-	</section>
+                f.close()
+            </code></pre>
+        </dl>
+    </section>
 
-	<section><h3>Write to a file</h3>
-	  <dl class="fa">
-		<dt><code>fh.write(str)</code></dt>
-		<dd>Writes a string to the file. There is no return value</dd>
-		<dt><code>fh.writelines(sequence)</code></dt>
-		<dd>Writes a sequence of strings to the file. The sequence can be any iterable object producing strings, typically a list of strings.</dd>
-	  </dl>
-	</section>
+    <section><h3>Write to a file</h3>
+      <dl class="fa">
+        <dt><code>fh.write(str)</code></dt>
+        <dd>Writes a string to the file. There is no return value</dd>
+        <dt><code>fh.writelines(sequence)</code></dt>
+        <dd>Writes a sequence of strings to the file. The sequence can be any iterable object producing strings, typically a list of strings.</dd>
+      </dl>
+    </section>
 
-	<section><h3>Remove a file </h3>
-	  <dl class="fa">
-		<dt><code>os.remove(file_path)</code></dt>
-		<dd>Removes a file with the given file_path </dd>
-		<pre><code rel="Python" class="python">
-			os.remove('test_file.txt')
-		</code></pre>
-	  </dl>
-	</section>
+    <section><h3>Remove a file </h3>
+      <dl class="fa">
+        <dt><code>os.remove(file_path)</code></dt>
+        <dd>Removes a file with the given file_path </dd>
+        <pre><code rel="Python" class="python">
+            os.remove('test_file.txt')
+        </code></pre>
+      </dl>
+    </section>
+    <section><h3>the <code>with</code> statement</h3>
+        <dl class="fa">
+            <dt>It is good practice to use the <code>with</code> keyword when dealing with file objects</dt>
+            <dt>The advantage is that the file is properly closed after its suite finishes, even if an exception is raised at some point</dt>
+            <pre><code rel="Syntax" class="python" data-noescape>
+                with expression as identifier :
+                    statement...
+            </code></pre>
+            <pre><code rel="Example" class="python">
+                with open("test.txt") as fh:
+                    data = fh.read()
+                    # do something with data
+            </code></pre>
+            <dt>Reference: <a href="https://docs.python.org/3/reference/compound_stmts.html#with">The with statement</a> @python.org</dt>
+        </dl>
+    </section>
+    <section><h3>Handling Exceptions</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Handling exceptions is a crucial part of working with files in Python.</dt>
+            <dt>Exceptions can occur during file operations for various reasons, such as attempting to open a non-existent file, lacking the necessary permissions, or encountering an I/O error during reading or writing.</dt>
+            <dt>When working with file operations, you'd typically wrap your <code>with open(...)</code> statement inside a <code>try</code> block and handle specific exceptions with <code>except</code> blocks</dt>
+            <dt>Example:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                try:
+                    with open('filename.txt', 'r') as file:
+                        content = file.read()
+                except FileNotFoundError:
+                    print("The file does not exist.")
+                except PermissionError:
+                    print("You do not have permission to open the file.")
+                except Exception as e:
+                    print(f"An error occurred: {e}")
+            </code></pre>
+        </dl>
+    </section>
 
-	<section><h3>the <code>with</code> statement</h3>
-		<dl class="fa">
-			<dt>It is good practice to use the <code>with</code> keyword when dealing with file objects</dt>
-			<dt>The advantage is that the file is properly closed after its suite finishes, even if an exception is raised at some point</dt>
-			<dt>Using with is also much shorter than writing equivalent try-finally blocks</dt>
-			<pre><code rel="Syntax" class="python" data-noescape>
-				with expression as identifier :
-					statement...
-			</code></pre>
-			<pre><code rel="Example" class="python">
-				with open("test.txt") as fh:
-					data = fh.read()
-					# do something with data
-			</code></pre>
-			<dt>Reference: <a href="https://docs.python.org/3/reference/compound_stmts.html#with">The with statement</a> @python.org</dt>
-		</dl>
-	</section>
+</section>
 
-	<section><h3>Resources</h3>
-		<dl class="fa">
-			<dt><a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">Reading and Writing Files</a></dt>
-			<dt><a href="https://www.tutorialspoint.com/python/file_methods.htm">Python File Methods</a></dt>
-		</dl>
-	</section>
+<section class="main-section-title"><h1 class="advanced">Working with binary files</h1></section>
+<section class="sub-sections"><h2 class="advanced">Working with binary files</h2>
+    <section><h3>Text (ASCII) files vs binary files</h3>
+        <dl class="fa" style="min-width:80vw; font-size: .8em;" >
+            <dt class="note">Text Files</dt>
+            <dd><b>Content</b>: Text files contain data that is readable as text, including letters, numbers, and symbols. You can open and read them with any text editor like Notepad, VSCode, or even in your web browser.</dd>
+            <dd><b>Encoding</b>: The data in text files is stored according to a character encoding, such as ASCII or UTF-8. This encoding converts characters into bytes that computers can store and manipulate.</dd>
+            <dd><b>Usage</b>: Text files are typically used for storing things like code, logs, configuration data, or any information that can be easily read and edited by humans.</dd>
+            <dd><b>Python Handling</b>: In Python, you can open and read a text file using functions like open() with modes like '<code>r</code>' (read) or '<code>w</code>' (write). When you read from a text file, Python processes the contents as strings.</dd>
+            <dt class="note">Binary Files</dt>
+            <dd><b>Content</b>: Binary files contain data in a format that is not intended to be directly readable or understandable by humans. This can include images, audio files, compiled programs, or any file format specifically designed for programs or hardware.</dd>
+            <dd><b>Encoding</b>: There is no character encoding for binary files as they do not represent text. Instead, they are a direct representation of binary data (bits and bytes).</dd>
+            <dd><b>Usage</b>: Binary files are used to store a wide variety of data types that require specific formats for software or hardware to process, like JPEG images or executable files.</dd>
+            <dd><b>Python Handling</b>: To deal with binary files in Python, you open them using modes like '<code>rb</code>' (read binary) or '<code>wb</code>' (write binary). Python treats the data read from these files as bytes, not as a string.</dd>
+        </dl>
+    </section>
+    <section><h3>Example: read text file as binary and print each byte as a binary number</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Let's have 'test_file.txt' with content:</dt>
+            <pre><code rel="test_file.txt" class="bash">
+                abc
+                cde
+            </code></pre>
+            <dt>To print the real bytes, as stored in drive, we can use:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 50vh;">
+                # Open the file in binary mode
+                with open('./test_file.txt', 'rb') as file:
+                    # Read the file line by line
+                    for line in file:
+                        # Convert each byte of the line to its binary representation
+                        binary_line = ' '.join(f'{byte:08b}' for byte in line)
+                        print(binary_line)
+
+
+                # Output:
+                # 01100001 01100010 01100011 00001010
+                # 01100011 01100100 01100101
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Example: read binary file</h3>
+        <dl class="fa" style="width:80vw">
+            <pre><code rel="Python" class="python" style="min-height: 40vh;">
+                # Open file in binary mode
+                with open('./smile.png', 'rb') as file:
+                    # Read the file line by line
+                    for line in file:
+                        print(line)  # This will not be human-readable text
+
+                # OUTPUT:
+                b'\x89PNG\r\n'
+                b'\x1a\n'
+                b'\x00\x00\x00\rIHDR\x00\x00\x00\x08\x00\x00\x00\x08\x08\x06\x00\x00\x00\xc4\x0f\xbe\x8b\x00\x00\x00\x01sRGB\x00\xae\xce\x1c\xe9\x00\x00\x005IDAT(Scd \x00\x18\x91\xe4\xff300\xc0\xf8p6u\x14 \x1b\x8d\xee\xa2\xff +@\n'
+                b'@\x00\xd9:\x10\x1f,\x8e\xec(\xac|tG"[\x01\x96\x03\x00@\x17\r\x07\x1bD\xd3m\x00\x00\x00\x00IEND\xaeB`\x82'
+            </code></pre>
+        </dl>
+    </section>
+
+    <section><h3 class="advanced">Image Processing Demo with PIL</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>To edit an image, you'd typically do not work directly with bytes, but use an image processing library, like Pillow (PIL).</dt>
+            <dt>First, you'll need to install Pillow if it's not already installed:</dt>
+            <pre><code rel="Terminal" class="bash">
+                pip install Pillow
+            </code></pre>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                from PIL import Image
+
+                # Load the image
+                with Image.open('./smile.png') as img:
+                    # Convert the image to 'RGBA' if it's not already to ensure it has an alpha channel
+                    if img.mode != 'RGBA':
+                        img = img.convert('RGBA')
+
+                    # Get the size of the image
+                    width, height = img.size
+
+                    # Calculate the starting point for the crop to remove the first half of the rows
+                    start_height = height // 2  # Using integer division to get the midpoint
+
+                    # Crop the image to remove the first half of the rows
+                    # The crop box is defined by (left, upper, right, lower)
+                    cropped_img = img.crop((0, start_height, width, height))
+
+                    # Save the modified image
+                    cropped_img.save('./modified_smile.png')
+
+                    # Optionally display the cropped image
+                    cropped_img.show()
+            </code></pre>
+        </dl>
+    </section>
+</section>
+
+
+<section class="main-section-title"><h1>Resources</h1></section>
+<section class="sub-sections"><h2>Resources</h2>
+    <section><h3>Resources</h3>
+        <dl class="fa">
+            <dt><a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">Reading and Writing Files</a></dt>
+            <dt><a href="https://www.tutorialspoint.com/python/file_methods.htm">Python File Methods</a></dt>
+        </dl>
+    </section>
 </section>
 
 <!--
 <section id="hw"><h1>Exercises</h1></section>
 <section class="sub-sections"><h2>Task1</h2>
-	<section><h3>The Task</h3>
+    <section><h3>The Task</h3>
 
-	</section>
+    </section>
 </section> -->
 
 <!-- <section><h3>Submission</h3>
-	<dl class="fa">
-		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
-		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_workingWithFiles">ivawebcourses@gmail.com</a></dt>
-	</dl>
+    <dl class="fa">
+        <dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+        <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+        <dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_workingWithFiles">ivawebcourses@gmail.com</a></dt>
+    </dl>
 </section> -->
 
 
@@ -204,48 +320,48 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1080,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1280,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 </body>
 </html>
