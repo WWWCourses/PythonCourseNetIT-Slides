@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>PythonBasics_variousFormatsHandling</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_variousFormatsHandling" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section class="main-section-title"><h1>Working with various data-exchange formats</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+
+
+<section class="main-section-title"><h1>Data Serialization</h1></section>
+<section class="sub-sections"><h2>Data Serialization</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Data serialization in Python refers to the process of converting complex data structures, such as objects or dictionaries, into a <span class="note">format that can be easily stored or transmitted and then reconstructed back</span> into their original form when needed.</dt>
+            <dt>Serialization is essential for tasks such as saving data to files, transmitting data over networks, or storing data in databases</dt>
+            <dt>There are several reasons why data serialization is necessary:</dt>
+            <dd><b>Persistence</b>: Serialized data can be saved to disk and retrieved later, allowing programs to store and retrieve their state across multiple executions.</dd>
+            <dd><b>Interoperability</b>: Serialized data can be transmitted between different systems or platforms, allowing communication between applications written in different programming languages or running on different platforms.</dd>
+            <dd><b>Efficiency</b>: Serialized data is typically more compact than its in-memory representation, making it more efficient to store and transmit.</dd>
+        </dl>
+    </section>
+    <section><h3>Serialization in Python</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Python provides several built-in modules for data serialization, including:</dt>
+            <dd><b>CSV (Comma-Separated Values)</b>: a common format for data serialization, particularly for tabular data.</dd>
+            <dd><b>JSON (JavaScript Object Notation)</b>: a lightweight data interchange format commonly used for transmitting data between a server and a web application. Python provides the json module for encoding and decoding JSON data.</dd>
+            <dd><b>Pickle</b>: a Python-specific serialization format that can serialize and deserialize virtually any Python object. It is highly efficient but Python-specific, meaning that pickled data may not be compatible with other programming languages.</dd>
+
+        </dl>
+    </section>
+</section>
+
+
+<section class="main-section-title"><h1>Handling JSON Data in Python</h1></section>
+<section class="sub-sections"><h2>Handling JSON Data in Python</h2>
+    <section><h3>JSON Overview</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><abbr>JSON</abbr><dfn id="CSV"><span>Java</span><span>Script</span><span>Object</span><span>Notation</span></dfn></dt>
+        </dl>
+        <div>
+            <blockquote cite="href="https://en.wikipedia.org/wiki/JSON"">JSON is an open-standard file format that uses human-readable text to transmit data objects consisting of <span class="note">attribute-value pairs and array data</span> types (or any other serializable value)</blockquote><a href="https://en.wikipedia.org/wiki/JSON">JSON @wikipedia</a>
+        </div>
+    </section>
+    <section><h3>JSON  - Examples</h3>
+        <p>examples of JSON data:</p>
+        <pre><code rel="JSON" class="json" style="min-height: 60vh;">
+            {
+                    "title": "Person",
+                    "type": "object",
+                    "properties": {
+                            "firstName": {
+                                    "type": "string"
+                            },
+                            "lastName": {
+                                    "type": "string"
+                            },
+                            "age": {
+                                    "description": "Age in years",
+                                    "type": "integer",
+                                    "minimum": 0
+                            }
+                    },
+                    "required": ["firstName", "lastName"]
+            }
+        </code></pre>
+    </section>
+    <section><h3>Overview - JSON in Python</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Python standard library provides the <code>json</code> module (<a href="https://docs.python.org/3/library/json.html">json - JSON encoder and decoder</a>), which provides functions for:</dt>
+            <dt>Parsing (Deserializing) JSON into Python objects</dt>
+            <dd><a href="https://docs.python.org/3/library/json.html#json.load">json.load()</a>: parse JSON data from a file-like object and returns a Python object</dd>
+            <dd><a href="https://docs.python.org/3/library/json.html#json.loads">json.loads()</a>: parses a JSON string and returns a Python object</dd>
+            <dt>Writing (Serializing) Python objects to JSON</dt>
+            <dd><a href="https://docs.python.org/3/library/json.html#json.dump">json.dump()</a>: serializes Python objects to a file-like object in JSON format</dd>
+            <dd><a href="https://docs.python.org/3/library/json.html#json.dumps">json.dumps()</a>: serializes Python objects to a JSON formatted string</dd>
+        </dl>
+    </section>
+
+    <section><h3>Parse JSON string to Python objects.</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code><a href="https://docs.python.org/3/library/json.html#json.loads">json.loads()</a></code>: Deserialize a <span class="note">string</span> (or bytes or bytearray instance) containing a JSON document into a Python object using next <a href="https://docs.python.org/3/library/json.html#json-to-py-table">conversion table</a></dt>
+            <dd>the <span class="note">s</span> in load<span class="note">s</span>() stands for String, not plural.</dd>
+            <dt>Example:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 75vh;">
+                import json
+
+                json_str = """
+                    [
+                            {
+                                    "name": "apple",
+                                    "price": 1.80
+                            },
+                            {
+                                    "name": "orange",
+                                    "price": 2.10
+                            },
+                            {
+                                    "name": "bananas",
+                                    "price": 1.60
+                            }
+                    ]
+                """
+
+                #read json from string
+                data = json.loads(json_str)
+
+                print(type(data))
+                # &lt;class &#39;list&#39;&gt;
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Parse JSON file to Python objects.</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code><a href="https://docs.python.org/3/library/json.html#json.load">json.load()</a></code>: Deserialize а readable (text or binary) <span class="note">file-like object</span> containing a JSON document to a Python object using next <a href="https://docs.python.org/3/library/json.html#json-to-py-table">conversion table</a>.</dt>
+            <dt>Example:</dt>
+            <dd>Let's have next sample json file:</dd>
+            <pre><code rel="sample.json" class="javascript" data-noescape>
+                [
+                    {
+                            "name": "apple",
+                            "price": 1.80
+                    },
+                    {
+                            "name": "orange",
+                            "price": 2.10
+                    },
+                    {
+                            "name": "bananas",
+                            "price": 1.60
+                    }
+                ]
+            </code></pre>
+            <dd>We can read the data into a Python data structure with:</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import json
+                from operator import itemgetter
+
+                json_file = "sample.json"
+
+                #read json from file
+                with open(json_file) as f:
+                        json_data = json.load(f)
+
+                # use the data, stored in json_data:
+                for i in sorted(json_data,key=itemgetter("price")):
+                    print(i)
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Writing (Serializing) Python objects to JSON string</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code><a href="https://docs.python.org/3/library/json.html#json.dumps">json.dumps()</a></code></dt>
+            <dd>serializes Python objects to a JSON formatted string</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import json
+
+                mylist = [1,2,3]
+
+                matrix = [
+                        [1,2,3],
+                        [4,5,6],
+                        [7,8,9],
+                ]
+
+                print('List :', json.dumps(mylist))
+                print('Matrix :', json.dumps(matrix))
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Writing (Serializing) Python objects to JSON file</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code><a href="https://docs.python.org/3/library/json.html#json.dump">json.dump()</a></code></dt>
+            <dd>Serialize an object as a JSON formatted file-like object using next <a href="https://docs.python.org/3/library/json.html#json-to-py-table">conversion table</a>.</dd>
+            <dt>Example: write Python dictionary in file, indented </dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import json
+
+                prices = {
+                    "apples":2.50,
+                    "bananas":1.80,
+                    "strawberry": 3.20
+                }
+
+                with open('json_dump.out', 'w+') as fh:
+                    fh.write(json.dumps(prices, indent=2))
+            </code></pre>
+        </dl>
+    </section>
+</section>
+
+<section class="main-section-title" id="handling-csv-data-in-python"><h1>Handling CSV Data in Python</h1></section>
+<section class="sub-sections"><h2>Reading and Writing CSV Files</h2>
+    <section id="reading-and-writing-csv-files"><h3>Reading and Writing CSV Files</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Using the <a href="https://docs.python.org/3/library/csv.html">csv</a> Module</dt>
+            <dd>The <a href="https://docs.python.org/3/library/csv.html">csv</a> module in Python provides functionality to read and write CSV files.</dd>
+            <dd>We can use the <code>csv.reader</code> object to iterate over rows in a CSV file, and the <code>csv.writer</code> object to write data to a CSV file.</dd>
+            <dt>Example:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 55vh;">
+                import csv
+
+                # Reading CSV file
+                with open('data.csv', 'r') as file:
+                    csv_reader = csv.reader(file)
+                    for row in csv_reader:
+                        print(row)
+
+                # Writing CSV file
+                data = [
+                    ['Name', 'Age', 'City'],
+                    ['John', 30, 'New York'],
+                    ['Alice', 25, 'San Francisco']
+                ]
+                with open('output.csv', 'w', newline='') as file:
+                    csv_writer = csv.writer(file)
+                    csv_writer.writerows(data)
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Parsing CSV: Example</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Let's have next data in "sample_data.csv" file:</dt>
+            <pre><code rel="sample_data.csv" class="python">
+                Symbol,Price,Date,Time,Change,Volume
+                "AA",39.48,"6/11/2007","9:36am",-0.18,181800
+                "AIG",71.38,"6/11/2007","9:36am",-0.15,195500
+                "AXP",62.58,"6/11/2007","9:36am",-0.46,935000
+                "BA",98.31,"6/11/2007","9:36am",+0.12,104800
+                "C",53.08,"6/11/2007","9:36am",-0.25,360900
+                "CAT",78.29,"6/11/2007","9:36am",-0.23,225400
+            </code></pre>
+            <dt>we can parse them with:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 10vh;">
+                import csv
+
+                # Open the file
+                with open('sample_data.csv',newline='') as f:
+                    # Create a CSV reader:
+                    csv_reader = csv.reader(f)
+
+                    # skip header row:
+                    headers = next(csv_reader)
+
+                    # print CSV data, sorted by "Price"
+                    for row in sorted(csv_reader, key=lambda a:a[1]):
+                        print(row)
+            </code></pre>
+        </dl>
+    </section>
+
+</section>
+<section class="sub-sections"><h2>Reading and Writing CSV Files with Dictionaries</h2>
+    <section id="reading-and-writing-csv-files-with-dictionaries"><h3>Reading and Writing CSV Files with Dictionaries</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Using the <a href="https://docs.python.org/3/library/csv.html#csv.DictReader">csv.DictReader</a> and <a href="https://docs.python.org/3/library/csv.html#csv.DictWriter">csv.DictWriter</a> Objects</dt>
+            <dd>The <a href="https://docs.python.org/3/library/csv.html#csv.DictReader">csv.DictReader</a> and <a href="https://docs.python.org/3/library/csv.html#csv.DictWriter">csv.DictWriter</a> objects provide a way to read and write CSV files using dictionaries.</dd>
+            <dd>This allows accessing columns by their header names, making it more convenient for data manipulation.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 60vh;">
+                import csv
+
+                # Reading CSV file with dictionaries
+                with open('data.csv', 'r') as file:
+                    csv_reader = csv.DictReader(file)
+                    for row in csv_reader:
+                        print(row)
+
+                # Writing CSV file with dictionaries
+                fieldnames = ['Name', 'Age', 'City']
+                data = [
+                    {'Name': 'John', 'Age': 30, 'City': 'New York'},
+                    {'Name': 'Alice', 'Age': 25, 'City': 'San Francisco'}
+                ]
+                with open('output_dict.csv', 'w', newline='') as file:
+                    csv_writer = csv.DictWriter(file, fieldnames=fieldnames)
+                    csv_writer.writeheader()
+                    csv_writer.writerows(data)
+            </code></pre>
+        </dl>
+    </section>
+</section>
+
+
+<!-- <section class="main-section-title"><h1>Handling CSV Data in Python</h1></section>
+<section class="sub-sections"><h2>Handling CSV Data in Python</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><abbr>CSV</abbr><dfn id="CSV"><span>Comma</span><span>Separated</span><span>Values</span></dfn></dt>
+            <dt>the most common import and export format for spreadsheets.</dt>
+            <dt>For CSV parsing Python provides the built-in csv module </dt>
+            <dd><a href="https://docs.python.org/3/library/csv.html">csv — CSV File Reading and Writing</a></dd>
+        </dl>
+    </section>
+    <section><h3>csv.reader()</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code><a href="https://docs.python.org/3/library/csv.html#csv.reader">csv.reader()</a></code></dt>
+            <dd>Return a reader object which will iterate over lines in the given csvfile</dd>
+            <dt>All csv readers/writers objects can be given a Dialect and/or Formatting Parameters to tune the CSV parsing</dt>
+            <dd><a href="https://docs.python.org/3/library/csv.html#csv-fmt-params">Dialects and Formatting Parameters</a></dd>
+            <dt>Algorithm:</dt>
+            <dd>Open the file</dd>
+            <dd>Create a CSV reader</dd>
+            <dd>For every line (row) in the file, do something</dd>
+
+        </dl>
+    </section>
+    <section><h3>Parsing CSV - example 1 - sample_data.csv</h3>
+        <pre><code rel="sample_data.csv" class="python">
+            Symbol,Price,Date,Time,Change,Volume
+            "AA",39.48,"6/11/2007","9:36am",-0.18,181800
+            "AIG",71.38,"6/11/2007","9:36am",-0.15,195500
+            "AXP",62.58,"6/11/2007","9:36am",-0.46,935000
+            "BA",98.31,"6/11/2007","9:36am",+0.12,104800
+            "C",53.08,"6/11/2007","9:36am",-0.25,360900
+            "CAT",78.29,"6/11/2007","9:36am",-0.23,225400
+        </code></pre>
+    </section>
+    <section><h3>Parsing CSV data - example 1 - code</h3>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            import csv
+
+            # Open the file
+            with open('sample_data.csv',newline='') as f:
+                # Create a CSV reader:
+                f_csv = csv.reader(f)
+
+                # skip header row:
+                headers = next(f_csv)
+
+                # print CSV data, sorted by "Price"
+                for row in sorted(f_csv, key=lambda a:a[1]):
+                    print(row)
+
+                #OUTPUT
+                #['AA', '39.48', '6/11/2007', '9:36am', '-0.18', '181800']
+                #['C', '53.08', '6/11/2007', '9:36am', '-0.25', '360900']
+                #['AXP', '62.58', '6/11/2007', '9:36am', '-0.46', '935000']
+                #['AIG', '71.38', '6/11/2007', '9:36am', '-0.15', '195500']
+                #['CAT', '78.29', '6/11/2007', '9:36am', '-0.23', '225400']
+                #['BA', '98.31', '6/11/2007', '9:36am', '+0.12', '104800']
+        </code></pre>
+    </section>
+    <section><h3>Parsing CSV data - example 2 - TheCure_Discography.csv</h3>
+        <p>Given is next CSV file: <a href="examples/CSV/TheCure_Discography/TheCure_Discography.csv">The Cure - Discography</a></p>
+        <pre><code rel="TheCure_Discography.csv" class="bash" data-noescape style="font-size: 1em">
+            Album Title;Label;Year;
+            Three Imaginary Boys;Fiction Records;1979
+            Boys Don't Cry;PVC Records, Fiction Records;1980
+            Seventeen Seconds;Fiction Records, Polydor;1980
+            Faith And 'Carnage Visors';Fiction Records;1981
+            Faith;Fiction Records;1981
+            Pornography;Fiction Records;1982
+            The Walk;Sire;1983
+            The Top;Fiction Records;1984
+            Concert (The Cure Live) And Curiosity (Cure Anomalies 1977 -1984);Fiction Records;1984
+            Concert - The Cure Live;Fiction Records;1984
+            In Concert - 371 ‎(LP, Transcription);BBC Transcription Services;1985
+            The Head On The Door;Fiction Records;1985
+            In Concert-393 ‎(LP, Transcription);BBC Transcription Services;1986
+            The Cure / The Divinyls* - The King Biscuit Flower Hour ‎(LP, Transcription + LP, S/Sided);DIR Broadcasting;1986
+            The Call / The Cure - King Biscuit Flower Hour ‎(Transcription + LP + LP, S/Sided);DIR Broadcasting;1986
+            The Cure, The Outfield - King Biscuit Flower Hour ‎(2xLP, Transcription);King Biscuit Flower Hour;1987
+            Kiss Me Kiss Me Kiss Me;Fiction Records;1987
+            The Cure / Europe (2) - In Concert ‎(2xLP, Transcription);Westwood One;1987
+            Kiss Me Kiss Me Kiss Me Interview ‎(LP, Promo);Fiction Records, Polydor;1987
+            In Concert-427 ‎(LP, Transcription);BBC Transcription Services;1988
+            Disintegration;Fiction Records;1989
+            Entreat;Fiction Records, Polydor;1989
+            In Concert-500 ‎(LP, Transcription);BBC Transcription Services;1990
+            Mixed Up;Fiction Records;1990
+            An Interview ‎(CD, Promo);Polydor;1990
+        </code></pre>
+    </section>
+    <section><h3>Parsing CSV data - example 2 - code</h3>
+        <p>Print only albums, produced by "Fiction Records" during the period 1980 - 1989 (both included)</p>
+        <pre><code rel="Python" class="python" style="font-size: 1em">
+            import csv
+            with open('TheCure_Discography.csv',newline='') as f:
+                    f_csv = csv.reader(f, delimiter=';')
+                    headers = next(f_csv)
+
+                    for row in filter(
+                            lambda l: "Fiction Records" in l[1] and 1980 <= int(l[2]) <= 1989,
+                            f_csv
+                    ):
+                            print(row)
+
+            #OUTPUT
+            #["Boys Don't Cry", 'PVC Records, Fiction Records', '1980']
+            #['Seventeen Seconds', 'Fiction Records, Polydor', '1980']
+            #["Faith And 'Carnage Visors'", 'Fiction Records', '1981']
+            #['Faith', 'Fiction Records', '1981']
+            #['Pornography', 'Fiction Records', '1982']
+            #['The Top', 'Fiction Records', '1984']
+            #['Concert (The Cure Live) And Curiosity (Cure Anomalies 1977 -1984)', 'Fiction Records', '1984']
+            #['Concert - The Cure Live', 'Fiction Records', '1984']
+            #['The Head On The Door', 'Fiction Records', '1985']
+            #['Kiss Me Kiss Me Kiss Me', 'Fiction Records', '1987']
+            #['Kiss Me Kiss Me Kiss Me Interview \u200e(LP, Promo)', 'Fiction Records, Polydor', '1987']
+            #['Disintegration', 'Fiction Records', '1989']
+            #['Entreat', 'Fiction Records, Polydor', '1989']
+        </code></pre>
+    </section>
+    <section><h3>csv.DictReader()</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code><a href="https://docs.python.org/3/library/csv.html#csv.DictReader">csv.DictReader()</a></code></dt>
+            <dt>operates like a regular reader but maps the information in each row to an <a href="https://docs.python.org/3/library/collections.html#collections.OrderedDict">OrderedDict</a> collection.</dt>
+            <dt>By default, the header row will be used to set keys and other rows - will be set as a values.</dt>
+        </dl>
+    </section>
+    <section><h3>csv.DictReader() - example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            import csv
+            with open('sample_data.csv',newline='') as f:
+                reader = csv.DictReader(f, delimiter=',')
+
+                for r in reader:
+                    print(r)
+        </code></pre>
+    </section>
+</section> -->
+
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section class="sub-sections"><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section> -->
+
+<!-- <section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_variousFormatsHandling">ivawebcourses@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer end-slide"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1080,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
