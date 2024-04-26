@@ -1,0 +1,27 @@
+1."Programming Computer Vision with Python"
+	[Jan Erik Solem]
+	http://programmingcomputervision.com/downloads/ProgrammingComputerVision_CCdraft.pdf
+
+2."Natural Language Processing with Python"
+	[S. Bird, E. Klein...]
+	http://www.nltk.org/book/
+
+3."Think Complexity"
+	[Allen B. Downey]
+	http://www.greenteapress.com/complexity/thinkcomplexity.pdf
+
+4."Think Stats"
+	[Allen B. Downey]
+	http://greenteapress.com/thinkstats/thinkstats.pdf
+
+5."Think Stats 2e"
+	[Allen B. Downey]
+	http://greenteapress.com/thinkstats2/thinkstats2.pdf
+
+6."Annotated Algorithms In Python"
+	[Massimo Di Pierro]
+	https://raw.githubusercontent.com/mdipierro/nlib/master/docs/book_numerical.pdf
+
+7."Advanced Machine Learning with Python"
+	[John Hearty]
+	https://www.packtpub.com/packt/free-ebook/advanced-python-machine-learning

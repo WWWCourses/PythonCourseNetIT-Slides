@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "4K TV",
+        "category": "Electronics",
+        "price": 1500.00,
+        "stock": 20
+    },
+    {
+        "id": 2,
+        "name": "Bluetooth Speaker",
+        "category": "Electronics",
+        "price": 200.00,
+        "stock": 50
+    },
+    {
+        "id": 3,
+        "name": "Electric Kettle",
+        "category": "Home Appliances",
+        "price": 45.00,
+        "stock": 80
+    }
+]
