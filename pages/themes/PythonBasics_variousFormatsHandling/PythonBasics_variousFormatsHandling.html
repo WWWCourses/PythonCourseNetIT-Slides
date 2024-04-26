@@ -1,52 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>PythonBasics_variousFormatsHandling</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>PythonBasics_variousFormatsHandling</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_variousFormatsHandling" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#PythonBasics_variousFormatsHandling" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -54,21 +54,21 @@
 -->
 <section class="main-section-title"><h1>Working with various data-exchange formats</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
 
@@ -91,15 +91,13 @@
             <dd><b>CSV (Comma-Separated Values)</b>: a common format for data serialization, particularly for tabular data.</dd>
             <dd><b>JSON (JavaScript Object Notation)</b>: a lightweight data interchange format commonly used for transmitting data between a server and a web application. Python provides the json module for encoding and decoding JSON data.</dd>
             <dd><b>Pickle</b>: a Python-specific serialization format that can serialize and deserialize virtually any Python object. It is highly efficient but Python-specific, meaning that pickled data may not be compatible with other programming languages.</dd>
-
         </dl>
     </section>
 </section>
 
-
 <section class="main-section-title"><h1>Handling JSON Data in Python</h1></section>
 <section class="sub-sections"><h2>Handling JSON Data in Python</h2>
-    <section><h3>JSON Overview</h3>
+    <section><h3>JSON format overview</h3>
         <dl class="fa" style="min-width:80vw">
             <dt><abbr>JSON</abbr><dfn id="CSV"><span>Java</span><span>Script</span><span>Object</span><span>Notation</span></dfn></dt>
         </dl>
@@ -108,27 +106,81 @@
         </div>
     </section>
     <section><h3>JSON  - Examples</h3>
-        <p>examples of JSON data:</p>
-        <pre><code rel="JSON" class="json" style="min-height: 60vh;">
-            {
-                    "title": "Person",
-                    "type": "object",
-                    "properties": {
-                            "firstName": {
-                                    "type": "string"
-                            },
-                            "lastName": {
-                                    "type": "string"
-                            },
-                            "age": {
-                                    "description": "Age in years",
-                                    "type": "integer",
-                                    "minimum": 0
-                            }
-                    },
-                    "required": ["firstName", "lastName"]
-            }
-        </code></pre>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Example JSON data:</dt>
+            <pre><code rel="JSON" class="json" style="min-height: 70vh;">
+                {
+                        "title": "Person",
+                        "type": "object",
+                        "properties": {
+                                "firstName": {
+                                        "type": "string"
+                                },
+                                "lastName": {
+                                        "type": "string"
+                                },
+                                "age": {
+                                        "description": "Age in years",
+                                        "type": "integer",
+                                        "minimum": 0
+                                }
+                        },
+                        "required": ["firstName", "lastName"]
+                }
+            </code></pre>
+            <dt class="note">Note, that JSON data are just sting, not a Python's dictionaries, lists, etc.</dt>
+        </dl>
+
+    </section>
+    <section><h3><a href="https://docs.python.org/3/library/json.html#py-to-json-table">Python to JSON Conversion table</a></h3>
+        <dl class="fa" style="min-width:80vw">
+            <table border="1" class="dataframe">
+            <thead>
+                <tr style="text-align: right;">
+                <th></th>
+                <th>Python</th>
+                <th>JSON</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th>0</th>
+                <td>dict</td>
+                <td>object</td>
+                </tr>
+                <tr>
+                <th>1</th>
+                <td>list, tuple</td>
+                <td>array</td>
+                </tr>
+                <tr>
+                <th>2</th>
+                <td>str</td>
+                <td>string</td>
+                </tr>
+                <tr>
+                <th>3</th>
+                <td>int, float, int- &amp; float-derived Enums</td>
+                <td>number</td>
+                </tr>
+                <tr>
+                <th>4</th>
+                <td>True</td>
+                <td>true</td>
+                </tr>
+                <tr>
+                <th>5</th>
+                <td>False</td>
+                <td>false</td>
+                </tr>
+                <tr>
+                <th>6</th>
+                <td>None</td>
+                <td>null</td>
+                </tr>
+            </tbody>
+            </table>
+        </dl>
     </section>
     <section><h3>Overview - JSON in Python</h3>
         <dl class="fa" style="min-width:80vw">
@@ -141,13 +193,12 @@
             <dd><a href="https://docs.python.org/3/library/json.html#json.dumps">json.dumps()</a>: serializes Python objects to a JSON formatted string</dd>
         </dl>
     </section>
-
     <section><h3>Parse JSON string to Python objects.</h3>
         <dl class="fa" style="min-width:80vw">
-            <dt><code><a href="https://docs.python.org/3/library/json.html#json.loads">json.loads()</a></code>: Deserialize a <span class="note">string</span> (or bytes or bytearray instance) containing a JSON document into a Python object using next <a href="https://docs.python.org/3/library/json.html#json-to-py-table">conversion table</a></dt>
+            <dt><code><a href="https://docs.python.org/3/library/json.html#json.loads">json.loads()</a></code>: De-serialize a <span class="note">string</span> containing a JSON document into a Python objects using next <a href="https://docs.python.org/3/library/json.html#json-to-py-table">conversion table</a></dt>
             <dd>the <span class="note">s</span> in load<span class="note">s</span>() stands for String, not plural.</dd>
             <dt>Example:</dt>
-            <pre><code rel="Python" class="python" style="min-height: 75vh;">
+            <pre><code rel="Python" class="python" style="min-height: 85vh;">
                 import json
 
                 json_str = """
@@ -248,7 +299,7 @@
                 }
 
                 with open('json_dump.out', 'w+') as fh:
-                    fh.write(json.dumps(prices, indent=2))
+                    json.dump(prices, fh, indent=4)
             </code></pre>
         </dl>
     </section>
@@ -256,6 +307,23 @@
 
 <section class="main-section-title" id="handling-csv-data-in-python"><h1>Handling CSV Data in Python</h1></section>
 <section class="sub-sections"><h2>Reading and Writing CSV Files</h2>
+    <section><h3>CSV format overview</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>CSV (Comma-Separated Values) format is a widely used data file format that stores tabular data (numbers and text) in plain text.</dt>
+            <dt>Characteristics:</dt>
+            <dd><b>Simple Text</b>: CSV files are basic text files, making them easy to create, edit, and share.</dd>
+            <dd><b>Rows</b>: Each line of text in the CSV represents a single row of the table.</dd>
+            <dd><b>Columns</b>: Within each line, columns are typically separated by commas (but can be other symbol, like ';' or tab).</dd>
+            <dd><b>Headers</b>: The first line often contains headers, which are the names of the columns.</dd>
+            <dd><b>Data</b>: Subsequent lines contain data for each row, following the same order as the headers.</dd>
+            <dt>Example of CSV format</dt>
+            <pre><code rel="users.csv" class="bash">
+                Name,Age,Occupation
+                Alice,30,Engineer
+                Bob,25,Designer
+            </code></pre>
+        </dl>
+    </section>
     <section id="reading-and-writing-csv-files"><h3>Reading and Writing CSV Files</h3>
         <dl class="fa" style="min-width:80vw">
             <dt>Using the <a href="https://docs.python.org/3/library/csv.html">csv</a> Module</dt>
@@ -313,7 +381,6 @@
             </code></pre>
         </dl>
     </section>
-
 </section>
 <section class="sub-sections"><h2>Reading and Writing CSV Files with Dictionaries</h2>
     <section id="reading-and-writing-csv-files-with-dictionaries"><h3>Reading and Writing CSV Files with Dictionaries</h3>
@@ -344,6 +411,48 @@
         </dl>
     </section>
 </section>
+
+<section class="main-section-title"><h1>CSV vs JSON</h1></section>
+<section class="sub-sections"><h2>CSV vs JSON</h2>
+    <section><h3>CSV pros and cons</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt class="note">Advantages</dt>
+            <dd><b>Simplicity</b>: CSV is incredibly simple and easy to create, edit, and process, which is perfect for tabular data.</dd>
+            <dd><b>Efficiency</b>: CSV files are typically smaller and faster to read and write compared to JSON because they don't contain keys or metadata.</dd>
+            <dd><b>Data Handling</b>: Ideal for large datasets like those used in machine learning and data analysis, where data is primarily numeric and tabular.</dd>
+            <dd><b>Software Compatibility</b>: Widely supported by spreadsheet software, databases, and data analysis tools.</dd>
+            <dt class="note">Disadvantages</dt>
+            <dd><b>Limited Data Structure</b>: CSV only supports simple, flat data structures. It cannot represent hierarchies or relationships between data.</dd>
+            <dd><b>Lack of Type Information</b>: All data in CSV is stored as plain text, which means there is no distinction between types (e.g., string, number, date), potentially leading to type conversion issues.</dd>
+            <dd><b>No Standard Encoding</b>: Handling of special characters (like commas or newlines within entries) can vary by implementation, which may lead to compatibility issues.</dd>
+        </dl>
+    </section>
+    <section><h3>JSON pros and cons</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt class="note">Advantages</dt>
+            <dd><b>Structured Data</b>: JSON supports nested and hierarchical data structures, allowing for the representation of complex and interrelated data in an organized way.</dd>
+            <dd><b>Flexible Schema</b>: You can represent different data types and structures in the same file without conforming to a rigid schema.</dd>
+            <dd><b>Wide Compatibility</b>: Extensively supported across web technologies and programming languages, making it ideal for web APIs and configurations.</dd>
+            <dd><b>Readability</b>: JSON format is easy to read and understand, especially for developers.</dd>
+            <dt class="note">Disadvantages</dt>
+            <dd><b>Size</b>: JSON files can be larger than CSV because they include keys in each data object, which increases redundancy.</dd>
+            <dd><b>Parsing</b>: Requires parsing to read and write, which can add computational overhead, especially with large files.</dd>
+        </dl>
+    </section>
+    <section><h3>Choosing Between JSON and CSV</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Use JSON if:</dt>
+            <dd>You need to store or transmit nested or structured data.</dd>
+            <dd>Your data includes a variety of data types.</dd>
+            <dd>You are developing web applications or APIs where interoperability across different systems is crucial.</dd>
+            <dt>Use CSV if:</dt>
+            <dd>You are dealing with large but simple and flat tabular data.</dd>
+            <dd>Your primary concern is the efficiency of storage and speed of access.</dd>
+            <dd>You need to import or export data from spreadsheet tools or databases frequently.</dd>
+        </dl>
+    </section>
+</section>
+
 
 
 <!-- <section class="main-section-title"><h1>Handling CSV Data in Python</h1></section>
@@ -488,17 +597,17 @@
 <!--
 <section id="hw"><h1>Exercises</h1></section>
 <section class="sub-sections"><h2>Task1</h2>
-	<section><h3>The Task</h3>
+    <section><h3>The Task</h3>
 
-	</section>
+    </section>
 </section> -->
 
 <!-- <section><h3>Submission</h3>
-	<dl class="fa">
-		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
-		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_variousFormatsHandling">ivawebcourses@gmail.com</a></dt>
-	</dl>
+    <dl class="fa">
+        <dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+        <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+        <dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: PythonBasics_variousFormatsHandling">ivawebcourses@gmail.com</a></dt>
+    </dl>
 </section> -->
 
 
@@ -509,48 +618,48 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1280,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1280,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 </body>
 </html>
