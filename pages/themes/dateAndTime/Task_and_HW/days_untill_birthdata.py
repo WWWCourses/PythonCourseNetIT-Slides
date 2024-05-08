@@ -1,24 +1,29 @@
-import datetime
+from datetime import datetime
 
-def get_user_bdate():
-  pass
+def calc_days_until_birthdate(birthdate: str) -> int:
+    """
+    Calculates the number of days from today to the next occurrence of the birthdate.
 
-  return (bmonth, bday)
+    Parameters:
+        birthdate (str): The birthdate in "DD.MM.YYYY" format.
 
-def calc_days_untill_birthdate(bmonth, bday): 
-  today_date = datetime.date.today()
-  today_year = today_date.year
+    Returns:
+        int: The number of days until the next occurrence of the birthdate.
+    """
+    today = datetime.now()
+    birth_day, birth_month, birth_year = map(int, birthdate.split('.'))
+    this_year_birthday = datetime(year=today.year, month=birth_month, day=birth_day)
 
-  birthdate_this_year = datetime.date(today_year, bmonth, bday)
+    if this_year_birthday < today:
+        # If this year's birthday has passed, calculate for the next year
+        next_year_birthday = datetime(year=today.year + 1, month=birth_month, day=birth_day)
+        delta = next_year_birthday - today
+    else:
+        # If this year's birthday is yet to come
+        delta = this_year_birthday - today
 
-  delta =  birthdate_this_year - today_date
+    return delta.days
 
-  return delta.days
-
-if __name__ == "__main__":
-  # execute only if run as a script
-  bmonth = 6
-  bday = 12
-  days_untill_birthdate = calc_days_untill_birthdate(bmonth, bday)
-
-  print(days_untill_birthdate)
+# Example usage
+birthdate = "25.02.1990" # 25th February 1990
+print(f"Days until next birthday: {calc_days_until_birthdate(birthdate)}")
