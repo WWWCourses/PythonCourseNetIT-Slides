@@ -485,8 +485,8 @@
 
 
 
-<section data-min="50"><h1>Installing packages in a virtual environments</h1></section>
-<section><h2>Installing packages in a virtual environments</h2>
+<section class="main-section-title" data-min="50"><h1>Installing packages in a virtual environments</h1></section>
+<section class="sub-sections"><h2>Installing packages in a virtual environments</h2>
     <section><h3>Install Project Dependencies</h3>
         <dl class="fa">
             <pre><code rel="Terminal" class="bash" style="min-height: 60vh;">
@@ -510,8 +510,8 @@
 </section>
 
 
-<section data-min="50"><h1>Freezing the dependency versions</h1></section>
-<section><h2>Freezing the dependency versions</h2>
+<section class="main-section-title" data-min="50"><h1>Freezing the dependency versions</h1></section>
+<section class="sub-sections"><h2>Freezing the dependency versions</h2>
     <section><h3>Overview</h3>
         <dl class="fa" style="min-width:80vw">
             <dt>"Freezing the dependency versions" in the context of Python development refers to the practice of creating a snapshot of all the packages and their exact versions that your project depends on.</dt>
@@ -541,7 +541,7 @@
 </section>
 
 
-<section class="main-section-title" id="virtEnvMultiplePythonVersions"><h1>Creating Virtual Environments with Different Python Versions on Windows</h1></section>
+<section class="main-section-title" id="virtEnvMultiplePythonVersions"><h1 class="advanced">Creating Virtual Environments with Different Python Versions on Windows</h1></section>
 <section class="sub-sections"><h2>Creating Virtual Environments with Different Python Versions on Windows</h2>
     <section><h3>Overview</h3>
         <dl class="fa">
@@ -569,17 +569,25 @@
             <dl class="fa" style="min-width:80vw">
                 <dt><b>Using the py Launcher</b>: you can specify which Python version to use for your virtual environment with the py launcher. Navigate to your project directory and run:</dt>
                 <pre><code rel="Terminal" class="bash">
-                    py -X.X -m venv myenv
+                    py -X.X -m venv .venv
                 </code></pre>
-                <dd>Replace X.X with the Python version you want to use, and myenv with the name of your virtual environment.</dd>
+                <dd>Replace X.X with the Python version you want to use.</dd>
                 <dt><b>Activate the Virtual Environment</b>: after creating the virtual environment, you need to activate it. Run:</dt>
                 <pre><code rel="Terminal" class="bash">
-                    myenv\Scripts\activate
+                    .venv\Scripts\activate
                 </code></pre>
             </dl>
         </dl>
     </section>
 </section>
+
+<section class="main-section-title"><h1>Resources</h1></section>
+<section class="sub-sections"><h2>Videos</h2>
+	<section><h3>Python Virtual Environments - Full Tutorial for Beginners</h3>
+		<iframe width="1280" height="720" src="https://www.youtube.com/embed/Y21OR1OPC9A" title="Python Virtual Environments - Full Tutorial for Beginners" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	</section>
+</section>
+
 
 <!--
 <section class="main-section-title" id="virtEnvMultiplePythonVersions"><h1>Creating Virtual Environments with Different Python Versions for Your Projects using PowerShell</h1></section>
@@ -628,21 +636,6 @@
 	</section>
 </section> -->
 
-<!--
-<section id="hw"><h1>Exercises</h1></section>
-<section class="sub-sections"><h2>Task1: BMI_app</h2>
-	<section><h3>The Task</h3>
-		<dl class="fa">
-			<dt>Refactor your BMI program (<a href="https://wwwcourses.github.io/PythonCourseNetIT-Slides/pages/themes/functions/functions.html#/hw">Functions HW: BMI</a>), by separating the functions definitions into a module: <code>bmi.py</code>, and your main program logic into <code>main.py</code> file.</dt>
-			<dt>Make sure you have next folder structure:</dt>
-			<pre><code rel="Terminal" class="bash">
-				└── bmi_app
-					├── bmi.py
-					└── main.py
-			</code></pre>
-		</dl>
-	</section>
-</section> -->
 
 
 <section class="disclaimer end-slide"></section>
