@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Numpy_intro</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+
+	<!-- css & themes include -->
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<!-- CUSTOM -->
+	<base target="_blank">
+</head>
+<body>
+	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+		<div class="top_links">
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#Numpy_intro" target="_top"></a>
+			<span class="help_link"><i class="fa fa-question"></i></span>
+			<div class="help_text">
+				<div class="note">Keyboard shortcuts:</div>
+				<div><span>N/Спейс</span><span>Next Slide</span></div>
+				<div><span>P</span><span>Previous Slide</span></div>
+				<div><span>O</span><span>Slides Overview</span></div>
+				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
+				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+			</div>
+		</div>
+		<div class="footer theme_switch">
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+		</div>
+		<div class="slides">
+<!--
+########################################################
+##################### SLIDES START #####################
+########################################################
+-->
+<section class="main-section-title"><h1>Numpy Intro</h1></section>
+<section data-transition="zoom">
+	<section class="copyright" data-transition="zoom">
+		<div class="note">
+			<p>Created for</p>
+		</div>
+		<div class="company">
+			<a href="https://softwareacademy.bg/">
+			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+			</a>
+		</div>
+		<div class="author">
+			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+			<!-- <i class="fa fa-linkedin"></i> -->
+		</div>
+	</section>
+</section>
+
+
+
+<section class="main-section-title"><h1>NumPy Intro</h1></section>
+<section class="sub-sections"><h2>NumPy Intro</h2>
+	<section><h3>NumPy overview</h3>
+		<dl class="fa">
+			<dt><a href="https://numpy.org/">NumPy</a> is an essential tool in the Python ecosystem for anyone working with numerical data, scientific computing, or machine learning, providing a robust foundation for data manipulation and computation.</dt>
+			<dt>NumPy provides the array object, which is a powerful N-dimensional array capable of holding data of the same type.</dt>
+			<dt>It includes functions for performing element-wise operations, linear algebra, statistical computations, and much more.</dt>
+			<dt>Written in C, it offers high performance for mathematical operations, making it suitable for large-scale data processing.</dt>
+			<dt>Supports vectorization, which reduces the need for explicit loops, enhancing computational efficiency.</dt>
+
+			<dt>NumPy serves as the backbone for a broad array of Python libraries in the scientific computing and data analysis ecosystem.</dt>
+		</dl>
+	</section>
+	<section><h3>Key modules and libraries integrated with numpy</h3>
+		<dl class="fa" style="min-width:80vw">
+			<dt><a href="https://scipy.org/">SciPy</b></a> - scientific and technical computing</dt>
+			<dt><a href="https://pandas.pydata.org/">Pandas</a> - data analysis and data science tool</dt>
+			<dt><a href="https://matplotlib.org/">Matplotlib</a> -  comprehensive library for creating static, animated, and interactive visualizations in Python.</dt>
+			<dt><a href="https://www.statsmodels.org/">Statsmodels</a> - library for statistical modeling and econometrics</dt>
+			<dt><a href="https://scikit-learn.org/stable/">Scikit-learn</a> - a machine learning library</dt>
+			<dt><a href="https://www.tensorflow.org/">TensorFlow</a> and <a href="https://pytorch.org/">PyTorch</a> - libraries for deep learning and neural networks</dt>
+		</dl>
+	</section>
+	<section><h3>Installation</h3>
+		<dl class="fa" style="min-width:80vw">
+			<dt>NumPy is available on Python's <a href="https://pypi.org/project/numpy/">PyPI</a>, so you can install it with pip:</dt>
+			<dd><a href="https://numpy.org/install/#reproducible-installs">Best practice</a> is to install it in separated virtual environment per  project, in order to keep reproducibility.</dd>
+			<pre><code rel="Terminal" class="bash">
+				# in activated virtual environment write:
+				pip install numpy
+			</code></pre>
+			<dt>Reference: <a href="https://pypi.org/project/numpy/">numpy</a></dt>
+		</dl>
+	</section>
+	<section><h3>N-Dimensional Arrays</h3>
+		<dl class="fa">
+			<dt>The main object in numpy is the <span class="note">homogeneous</span> N-Dimensional Array, called <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html">ndarray Object</a>.</dt>
+			<dt>It is a sequence of elements (usually numbers), <span class="note">all of the same type</span>, indexed by a tuple of positive integers for each dimension.</dt>
+			<dd>In numpy, dimensions are called <span class="note">axes</span></dd>
+			<dd>Number of axes defines the <span class="note">rank</span> of the array</dd>
+		</dl>
+	</section>
+	<section><h3>Example</h3>
+		<pre><code rel="demo.py" class="python" style="min-height: 50vh;">
+			import numpy as np
+
+			# create one-dimensional array
+			arr1d = np.array([1, 2, 3])
+			# create two-dimensional array
+			arr2d = np.array([[1, 2, 3], [4, 5, 6]])
+
+			print(f'arr1d: \n{arr1d}\n')
+			print(f'arr2d: \n{arr2d}\n')
+
+			print(f'arr1d.shape: {arr1d.shape}') # (rank 1, axes 0)
+			print(f'arr2d.shape: {arr2d.shape}') # (rank 2, axes 0 and 1)
+		</code></pre>
+		<pre><code rel="Output" class="bash">
+			arr1d:
+			[1 2 3]
+
+			arr2d:
+			[[1 2 3]
+			[4 5 6]]
+
+			arr1d.shape: (3,)
+			arr2d.shape: (2, 3)
+		</code></pre>
+	</section>
+	<section><h3 class="advanced">NumPy arrays vs Python's lists</h3>
+		<dl class="fa">
+			<dt>Implementation - numpy arrays are homogeneous. This allows NumPy to optimize operations and memory usage effectively.</dt>
+			<a href="images/array_vs_list_implementation.png"><img src="images/array_vs_list_implementation.png"></a>
+			<dt>Next Jupyter Notebook demonstarte the speed of NumPy arrays vs. Python's lists: <a href="https://nbviewer.org/github/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/numpy_and_pandas/numpy/speed_test_array_vs_list.ipynb">speed_test_array_vs_list.ipynb</a></dt>
+		</dl>
+	</section>
+	<section><h3>Array with Mixed Data Types?</h3>
+		<dl class="fa" style="min-width:80vw">
+			<dt>If you try to create a NumPy array with elements of different types, NumPy will upcast elements to a common data type that can accommodate all the values, usually converting everything to a type that can hold all the given data.</dt>
+			<pre><code rel="Python" class="python" style="min-height: 1vh;">
+				import numpy as np
+
+				mixed_array = np.array([1, 2.5, &#39;3&#39;])
+				print(mixed_array.dtype)  # Output: &lt;U32 (Unicode string)
+			</code></pre>
+		</dl>
+	</section>
+</section>
+
+<section class="main-section-title"><h1>NumPy Data Types</h1></section>
+<section class="sub-sections"><h2>NumPy Data Types</h2>
+	<section>
+			<dl class="fa">
+				<dt>NumPy provides a variety of data types, referred to as <code>dtypes</code>, which are more efficient than Python’s native data types.</dt>
+				<dt>These dtypes are crucial for memory efficiency and speed in numerical computations.</dt>
+				<dt>There are 5 basic numerical types representing booleans (bool), integers (int), unsigned integers (uint) floating point (float) and complex.</dt>
+				<dt><span class="note">Do not forget, that Numpy Arrays are homogeneous</span>! I.e. can not store data from different data types.</dt>
+				<dt>Reference: <a href="https://numpy.org/doc/stable/user/basics.types.html">Data types @numpy.org</a></dt>
+				<dt>Examples: <a href="https://nbviewer.org/github/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/numpy_and_pandas/numpy/numpy_datatypes.ipynb">numpy_datatypes.ipynb</a></dt>
+			</dl>
+	</section>
+</section>
+
+
+<section class="main-section-title"><h1>Numpy ndarray attributes</h1></section>
+<section class="sub-sections"><h2>Numpy ndarray attributes</h2>
+	<section>
+		<dl class="fa">
+			<dt>NumPy ndarrays objects come with several attributes that provide valuable information about the array.</dt>
+			<dt>Reference: <a href="Reference: https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html">ndarray object</a></dt>
+			<dt>Examples: <a href="https://nbviewer.org/github/geekcourses/ML_SA-Slides/blob/main/pages/themes/Numpy_intro/examples/ndarray_attributes.ipynb">Numpy ndarray attributes</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section class="main-section-title"><h1>Numpy Array Creation</h1></section>
+<section class="sub-sections"><h2>Numpy Array Creation</h2>
+	<section>
+		<dl class="fa" style="min-width:80vw">
+			<dt>Numpy provides various mechanisms for creating arrays.</dt>
+			<dt>Reference: <a href="https://numpy.org/doc/stable/user/basics.creation.html#array-creation">Array creation</a></dt>
+			<dt>Examples: <a href="https://nbviewer.org/github/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/numpy_and_pandas/numpy/numpy_create_array.ipynb">Numpy Array Creation</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+
+
+<!--
+<section id="hw"><h1>Exercises</h1></section>
+<section class="sub-sections"><h2>Task1</h2>
+	<section><h3>The Task</h3>
+
+	</section>
+</section> -->
+
+<!-- <section><h3>Submission</h3>
+	<dl class="fa">
+		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: Numpy_intro">ivawebcourses@gmail.com</a></dt>
+	</dl>
+</section> -->
+
+
+
+<section class="disclaimer end-slide"></section>
+<!--
+########################################################
+##################### SLIDES END   #####################
+########################################################
+-->
+		</div>
+	</div>
+	<!-- Custom processing -->
+	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+	<!-- external scripts -->
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+	 <!-- init reveal -->
+	<script>
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		var highlightjsTabSize = '  ';
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			slideNumber: 'c/t',
+			keyboard: true,
+			history: true,
+			center: true,
+			width: 1920,
+			height: 1280,
+			// Bounds for smallest/largest possible scale to apply to content
+			// minScale: .5,
+			maxScale: 1,
+			// slide transition
+			transition: 'concave', // none/fade/slide/convex/concave/zoom
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+			// shift+left click to zoom in/out element
+			zoomKey: 'ctrl',
+			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			// transition: Reveal.getQueryHash().transition || 'default'
+			// Optional reveal.js plugins
+			dependencies: [
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+</html>
