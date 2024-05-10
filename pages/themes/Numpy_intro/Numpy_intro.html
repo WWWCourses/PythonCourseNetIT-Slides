@@ -146,7 +146,7 @@
 		<dl class="fa">
 			<dt>Implementation - numpy arrays are homogeneous. This allows NumPy to optimize operations and memory usage effectively.</dt>
 			<a href="images/array_vs_list_implementation.png"><img src="images/array_vs_list_implementation.png"></a>
-			<dt>Next Jupyter Notebook demonstarte the speed of NumPy arrays vs. Python's lists: <a href="https://nbviewer.org/github/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/numpy_and_pandas/numpy/speed_test_array_vs_list.ipynb">speed_test_array_vs_list.ipynb</a></dt>
+			<dt>Next Jupyter Notebook demonstrate the speed of NumPy arrays vs. Python's lists: <a href="https://nbviewer.org/github/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/numpy_and_pandas/numpy/speed_test_array_vs_list.ipynb">speed_test_array_vs_list.ipynb</a></dt>
 		</dl>
 	</section>
 	<section><h3>Array with Mixed Data Types?</h3>
@@ -176,26 +176,98 @@
 	</section>
 </section>
 
-
 <section class="main-section-title"><h1>Numpy ndarray attributes</h1></section>
 <section class="sub-sections"><h2>Numpy ndarray attributes</h2>
 	<section>
 		<dl class="fa">
-			<dt>NumPy ndarrays objects come with several attributes that provide valuable information about the array.</dt>
+			<dt>NumPy ndarrays objects come with several attributes that provide valuable information about the array's structure and content.</dt>
+			<dt>Key attributes include <code>shape</code>, which reveals the dimensions of the array as a tuple, and <code>dtype</code>, indicating the data type of the array’s elements, such as float64 or int32.</dt>
+			<dt>The <code>size</code> attribute provides the total number of elements in the array, while <code>ndim</code> indicates the number of dimensions.</dt>
+			<dt>Additionally, <code>itemsize</code> shows the size in bytes of each array element, and <code>nbytes</code> gives the total bytes consumed by the array, facilitating efficient memory management and data handling.</dt>
 			<dt>Reference: <a href="Reference: https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html">ndarray object</a></dt>
 			<dt>Examples: <a href="https://nbviewer.org/github/geekcourses/ML_SA-Slides/blob/main/pages/themes/Numpy_intro/examples/ndarray_attributes.ipynb">Numpy ndarray attributes</a></dt>
 		</dl>
 	</section>
 </section>
 
-
 <section class="main-section-title"><h1>Numpy Array Creation</h1></section>
 <section class="sub-sections"><h2>Numpy Array Creation</h2>
 	<section>
 		<dl class="fa" style="min-width:80vw">
-			<dt>Numpy provides various mechanisms for creating arrays.</dt>
+			<dt>NumPy offers a variety of mechanisms to create arrays, catering to diverse needs in numerical computing. </dt>
+			<dt>The <a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html">array</a> function converts Python lists or tuples into NumPy arrays, providing a straightforward method to generate arrays from existing data structures.</dt>
+			<dt>Functions like <a href="https://numpy.org/doc/stable/reference/generated/numpy.zeros.html">zeros</a>, <a href="https://numpy.org/doc/stable/reference/generated/numpy.ones.html">ones</a>, and <a href="https://numpy.org/doc/stable/reference/generated/numpy.full.html">full</a> allow the creation of arrays filled with zeros, ones, or a specified value, respectively, which are useful for initializing arrays with a uniform value.</dt>
+			<dt>The <a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html">arange</a> function generates arrays with regularly spaced values, ideal for creating sequences or ranges, while <a href="https://numpy.org/doc/stable/reference/generated/numpy.linspace.html">linspace</a> and <a href="https://numpy.org/doc/stable/reference/generated/numpy.logspace.html">logspace</a> produce arrays with linearly or logarithmically spaced values, respectively, useful in mathematical computations and plotting.</dt>
+			<dt>These mechanisms ensure flexibility and efficiency in array creation for a wide range of applications.</dt>
 			<dt>Reference: <a href="https://numpy.org/doc/stable/user/basics.creation.html#array-creation">Array creation</a></dt>
 			<dt>Examples: <a href="https://nbviewer.org/github/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/numpy_and_pandas/numpy/numpy_create_array.ipynb">Numpy Array Creation</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section class="main-section-title"><h1>NumPy Operations</h1></section>
+<section class="sub-sections"><h2>NumPy Operations</h2>
+	<section>
+		<dl class="fa">
+			<dt>NumPy provides carious functions for performing common mathematical operations, logical comparisons, and other array operations.</dt>
+			<dt>All operations are <b>element-wise</b> (point-to-point), meaning that they are applied to each element of the array!</dt>
+			<dt>Reference:</dt>
+			<dd><a href="https://numpy.org/doc/stable/reference/routines.math.html#">Mathematical Functions</a></dd>
+			<dd><a href="https://numpy.org/doc/stable/reference/routines.logic.html#">Logic Functions</a></dd>
+			<dt>Examples: <a href="https://nbviewer.org/github/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/numpy_and_pandas/numpy/numpy_operations.ipynb">Numpy Operations</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section class="main-section-title"><h1>NumPy Statistics Functions</h1></section>
+<section class="sub-sections"><h2>NumPy Statistics Functions</h2>
+	<section>
+		<dl class="fa">
+			<dt>NumPy provides a comprehensive suite of statistical functions for efficient and effective data analysis.</dt>
+			<dt>These functions allow for the calculation of basic statistics such as mean, median, variance, and standard deviation, among others.</dt>
+			<dt>They are optimized for performance and are applied directly to NumPy arrays, leveraging the power of vectorization (performing operations on entire arrays instead of individual elements).</dt>
+			<dt>Key Statistical Functions:</dt>
+			<dd><code>np.mean(array)</code> - Computes the arithmetic mean (average) of the array elements.</dd>
+			<dd><code>np.median(array)</code> - Finds the median value, the middle value when the array elements are sorted.</dd>
+			<dd><code>np.std(array)</code> - Calculates the standard deviation, a measure of the amount of variation or dispersion in the array.</dd>
+			<dd><code>np.var(array)</code> - Computes the variance, the average of the squared differences from the mean.</dd>
+			<dd><code>np.min(array)</code> / <code>np.max(array)</code> - Returns the minimum / maximum value in the array.</dd>
+			<dd><code>np.percentile(array, q)</code> - Calculates the qth percentile, the value below which a given percentage of array elements fall.</dd>
+			<dt>Reference:</dt>
+			<dd><a href="https://numpy.org/doc/stable/reference/routines.statistics.html">Statistics Functions</a></dd>
+			<dt>Examples:</dt>
+			<dd><a href="https://nbviewer.org/github/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/numpy_and_pandas/numpy/numpy_statistics_functions.ipynb">NumPy Statistics Functions</a></dd>
+		</dl>
+	</section>
+</section>
+
+
+
+<section class="main-section-title"><h1>NumPy Indexing & Slicing</h1></section>
+<section class="sub-sections"><h2>NumPy Indexing & Slicing</h2>
+	<section>
+		<dl class="fa" style="min-width:80vw">
+			<dt>NumPy provides a wide range of indexing and slicing operations for efficient and efficient data processing.</dt>
+			<dt>These operations are <b>element-wise</b> (point-to-point), meaning that they are applied to each element of the array!</dt>
+			<dt>Reference:</dt>
+			<dd><a href="https://numpy.org/doc/stable/user/basics.indexing.html">Indexing and Slicing</a></dd>
+			<dt>Examples: <a href="https://nbviewer.org/github/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/numpy_and_pandas/numpy/numpy_indexing_slicing.ipynb">Numpy Indexing & Slicing</a></dt>
+		</dl>
+	</section>
+</section>
+
+
+<section class="main-section-title"><h1>NumPy Reshaping & Resizing</h1></section>
+<section class="sub-sections"><h2>NumPy Reshaping & Resizing</h2>
+	<section>
+		<dl class="fa" style="min-width:80vw">
+			<dt>NumPy allows easy reshaping and resizing of arrays for flexible data manipulation and analysis.</dt>
+			<dt>Reshaping changes the dimensions without altering data, while resizing can modify both shape and data.</dt>
+			<dt>Reference:</dt>
+			<dd><a href="https://numpy.org/doc/stable/reference/generated/numpy.reshape.html">Reshape Documentation</a></dd>
+			<dt>Examples: <a href="https://nbviewer.org/github/geekcourses/JupyterNotebooksExamples/blob/master/Notebooks/numpy_and_pandas/numpy/numpy_reshaping_resizing.ipynb">Numpy Reshaping & Resizing</a></dt>
 		</dl>
 	</section>
 </section>
