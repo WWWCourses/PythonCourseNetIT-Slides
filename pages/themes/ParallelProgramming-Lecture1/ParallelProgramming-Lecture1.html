@@ -113,21 +113,112 @@
     <section><h3>Von Neumann Architecture</h3>
         <a href="./images/Computer_Systems_-_Von_Neumann_Architecture_Large_poster_anchor_chart.svg"><img src="./images/Computer_Systems_-_Von_Neumann_Architecture_Large_poster_anchor_chart.svg" alt="_Von_Neumann_Architecture_Large_poster_anchor_chart.svg"></a>
     </section>
-    <section><h3>Multi Core Processor</h3>
-        <a href="./images/Block-Diagram-of-Single-core-and-Multi-core-Processor.png"><img src="./images/Block-Diagram-of-Single-core-and-Multi-core-Processor.png" alt="Block-Diagram-of-Single-core-and-Multi-core-Processor.png"></a>
+    <section><h3>Single-core vs Multi-core Processor</h3>
+        <a href="./images/Single-core_vs_Multi-core_1.png"><img src="./images/Single-core_vs_Multi-core_1.png" alt="Single-core_vs_Multi-core_1.png" style="height: 70vh;"></a>
     </section>
     <section><h3>Check CPU details</h3>
-        <p>Linux:</p>
-        <pre><code rel="Terminal" class="bash">
-            lscpu | head -10
-        </code></pre>
-        <p>Windows: </p>
-        <p><a href="https://support.microsoft.com/en-us/windows/find-out-how-many-cores-your-processor-has-3126ef99-0247-33b3-81fc-065e9fb0c35b#:~:text=Press%20Ctrl%20%2B%20Shift%20%2B%20Esc%20to,logical%20processors%20your%20PC%20has.">Find out how many cores your processor has @support.microsoft.com</a></p>
-        <p>Pyhton:</p>
-        <pre><code rel="check_CPU_cores.py" class="bash">
-            import os
+        <dl class="fa" style="min-width:80vw">
+            <dt>On MacOS/Linux Terminal:</dt>
+            <pre><code rel="Terminal" class="bash">
+                lscpu | head -10
+            </code></pre>
+            <dt>On Windows</dt>
+            <a href="https://support.microsoft.com/en-us/windows/find-out-how-many-cores-your-processor-has-3126ef99-0247-33b3-81fc-065e9fb0c35b#:~:text=Press%20Ctrl%20%2B%20Shift%20%2B%20Esc%20to,logical%20processors%20your%20PC%20has.">Find out how many cores your processor has @support.microsoft.com</a>
+            <dt>By Python Script:</dt>
+            <dd>You must install <a href="https://pypi.org/project/psutil/">psutil</a></dd>
+            <pre><code rel="get_cores_and_HWThreads.py" class="python">
+                import psutil
 
-            print('core count: ', os.cpu_count())
+                # Get the number of physical cores
+                physical_cores = psutil.cpu_count(logical=False)
+                print(f"Number of physical cores: {physical_cores}")
+
+                # Get the number of logical processors (hardware threads)
+                logical_processors = psutil.cpu_count(logical=True)
+                print(f"Number of logical processors (hardware threads): {logical_processors}")
+
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Processes</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Processes are independent execution units that contain their own state information, use separate memory spaces, and communicate with each other through inter-process communication (IPC) mechanisms like pipes, sockets, or shared memory.</dt>
+            <dt>Characteristics</dt>
+            <dd><b>Isolation</b>: Processes are isolated from each other. Memory in one process is not accessible to another.</dd>
+            <dd><b>Robustness</b>: A crash in one process does not affect other processes.</dd>
+            <dd><b>Context Switching</b>: More resource-intensive due to separate memory spaces.</dd>
+            <dd><b>Concurrency and Parallelism</b>: Ideal for CPU-bound tasks (<sup class="note">1</sup> ) as each process can run on a separate core or CPU.</dd>
+            <hr>
+            <div><span class="note">1. CPU-bound task</span> - a task that require significant CPU processing time, like complex calculations, data processing, image rendering. Performance is limited by the speed of the CPU.</div>
+        </dl>
+    </section>
+    <section><h3>Example in Python</h3>
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+            import multiprocessing
+            import time
+
+
+            def worker(num):
+                print(f'Worker {num} starting')
+                # Simulate some work
+                time.sleep(2)
+                print(f'Worker {num} done')
+
+            if __name__ == '__main__':
+                start = time.time()
+                processes = []
+                for i in range(5):
+                    p = multiprocessing.Process(target=worker, args=(i,))
+                    processes.append(p)
+                    p.start()
+
+                for p in processes:
+                    p.join()
+
+                end = time.time()
+                print(f'time: {end-start}')
+        </code></pre>
+    </section>
+    <section><h3>Threads</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Threads are lighter units of execution that share the same memory space within a single process. They can run concurrently but are limited by the Global Interpreter Lock (GIL) in CPython, which can prevent multiple threads from executing Python bytecodes simultaneously.</dt>
+            <dt>A Thread lives in a Process. One Process can run multiple Threads.</dt>
+            <dt>Characteristics:</dt>
+
+            <dd><b>Shared Memory</b>: Threads share the same memory space, making communication between threads easier and faster.</dd>
+            <dd><b>Lightweight</b>: Less resource-intensive than processes since they share memory.</dd>
+            <dd><b>GIL  Limitation</b>: In CPython, the GIL ensures only one thread executes Python bytecode at a time, limiting true parallelism for CPU-bound tasks.</dd>
+            <dd><b>Concurrency</b>: Best suited for I/O-bound tasks (<sup class="note">1</sup> ) where the program spends time waiting for external events.</dd>
+            <hr>
+            <div><span class="note">1. /O-bound task</span> - a task that spend most of the time waiting for Input/Output operations, like reading/writing files, fetching data from a network, user input. Performance is limited by the speed of the I/O operations (e.g., disk access, network requests).</div>
+        </dl>
+    </section>
+    <section><h3>Example in Python</h3>
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+            import threading
+            import time
+
+
+            def worker(num):
+                print(f'Worker {num} starting')
+                # Simulate some work
+                time.sleep(2)
+                print(f'Worker {num} done')
+
+            if __name__ == '__main__':
+                start = time.time()
+                threads = []
+                for i in range(5):
+                    t = threading.Thread(target=worker, args=(i,))
+                    threads.append(t)
+                    t.start()
+
+                for t in threads:
+                    t.join()
+
+                end = time.time()
+                print(f'time: {end-start}')
+
         </code></pre>
     </section>
     <section><h3>Threads vs Processes</h3>
@@ -137,15 +228,19 @@
         <a href="images/Processes.png"><img src="images/Processes.png" style="height: 70vh;""></a>
     </section>
     <section><h3>Threads vs Processes</h3>
-        <dl class="fa">
-            <dt>Memory:</dt>
-            <dd>A Process has its own individual memory segment, not shareable with other process. <span class="note">Inter process communication</span> techniques are applied in order for process to share data</dd>
-            <dd>Threads <span class="note">share same memory</span>. </dd>
-            <dt>A Thread lives in a Process. One Process can run multiple Threads. </dt>
-            <dt>A python process has at least one thread - for the main program.</dt>
-            <dt>Parallelism in Python (GIL note)</dt>
-            <dd class="note">Only one thread can be executed at a time!</dd>
-            <dd class="note">Multiple processes can work simultaneous on different cores.</dd>
+        <dl class="fa" style="min-width:80vw">
+            <dt><b>Memory</b>:</dt>
+            <dd>Processes: Separate memory space, more secure but with higher overhead.</dd>
+            <dd>Threads: Shared memory space, less overhead but risk of data corruption due to concurrent access.</dd>
+            <dt><b>Performance</b>:</dt>
+            <dd>Processes: Better for CPU-bound tasks due to true parallelism on multiple cores.</dd>
+            <dd>Threads: Better for I/O-bound tasks; limited by GIL for CPU-bound tasks.</dd>
+            <dt><b>Communication</b>:</dt>
+            <dd>Processes: Requires IPC mechanisms (pipes, queues, shared memory).</dd>
+            <dd>Threads: Easier and faster through shared variables and data structures.</dd>
+            <dt><b>Failure Isolation</b>:</dt>
+            <dd>Processes: A crash in one process does not affect others.</dd>
+            <dd>Threads: A crash in one thread can affect the entire process.</dd>
         </dl>
     </section>
     <section><h3>Check running process and threads - Windows</h3>
@@ -192,7 +287,7 @@
         </dl>
     </section>
     <section><h3>Creating and running thread - example</h3>
-        <pre><code rel="simlplest.py" class="python">
+        <pre><code rel="simlplest.py" class="python" style="min-height: 78vh;">
             import threading
             import time
 
