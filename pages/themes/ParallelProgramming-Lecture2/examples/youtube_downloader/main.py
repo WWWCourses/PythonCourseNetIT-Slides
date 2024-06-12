@@ -3,6 +3,7 @@ import shutil
 # import re
 from pytube import Playlist, YouTube
 import threading
+import time
 
 class VideoDownloader:
 	def __init__(self,url, download_dir) -> None:
@@ -91,7 +92,6 @@ class PlaylistDownloader:
 	def download(self, highest_res=False):
 		# Download each video in the playlist
 		for video_url in self.video_urls:
-			# Create a YouTube object
 			video = VideoDownloader(
 				url=video_url,
 				download_dir=self.playlist_download_dir)
@@ -99,7 +99,7 @@ class PlaylistDownloader:
 			video.download(highest_res=highest_res)
 
 
-	def parallel_download(self, highest_res=False):
+	def threaded_download(self, highest_res=False):
 		# Download each video in the playlist using separate threads
 		threads = []
 		for video_url in self.video_urls:
@@ -123,8 +123,21 @@ class PlaylistDownloader:
 
 pl1 = PlaylistDownloader(
 	url='https://www.youtube.com/watch?v=x7T2XNeWTSI&list=PLHr3FWbW-hj6s13V_lFbwR6_V6PFDiBW4&ab_channel=TheAcademyofWisdom',
-	base_download_dir='./downloads/', n=10)
+	base_download_dir='./downloads/',
+	n=3
+)
 
 # pl1.list_videos()
+start_time = time.time()
 pl1.download()
-# pl1.parallel_download()
+sequential_time = time.time() - start_time
+
+start_time = time.time()
+pl1.threaded_download()
+threaded_time = time.time() - start_time
+
+
+# Display results
+print(f'\nSequential download {sequential_time:.2f} seconds')
+print(f'\nThreaded download {threaded_time:.2f} seconds')
+
