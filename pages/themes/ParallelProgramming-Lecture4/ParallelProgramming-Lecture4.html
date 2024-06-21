@@ -179,7 +179,7 @@
 				t2.start()
 		</code></pre>
 	</section>
-	<section><h3>Използване на with оператора за получаване/освобождаване на лок</h3>
+	<section><h3>Използване на with оператора за получаване/освобождаване на lock</h3>
 		<dl class="fa">
 			<dt>Всички lock обекти, които има <code>acquire()</code>/<code>release()</code> методи могат да се използват с оператора <code>with</code> като контекст мениджъри.</dt>
 		</dl>
@@ -205,7 +205,7 @@
 			<dt>Чрез библиотеката <code>requests</code> можем да свали даден HTTP ресурс</dt>
 			<dt>Документация: <a href="https://docs.python-requests.org/en/master/">docs.python-requests.org</a></dt>
 		</dl>
-		<pre><code rel="requests_get_simple_demo.py" class="python3">
+		<pre><code rel="requests_get_simple_demo.py" class="python3" style="min-height: 60vh;">
 			import requests
 
 			url = "https://unsplash.com/photos/CTflmHHVrBM/download?force=true"
@@ -235,7 +235,7 @@
 		</code></pre>
 	</section>
 	<section><h3>Сваляне на множество файлове - решение</h3>
-		<pre><code rel="download_images.py" class="python3">
+		<pre><code rel="download_images.py" class="python3" style="min-height: 80vh;">
 			import requests
 			import os
 			import time
@@ -282,7 +282,7 @@
 		</dl>
 	</section>
 	<section><h3>Сваляне на множество файлове чрез нишки - решение</h3>
-		<pre><code rel="download_images_with_threas.py" class="python3">
+		<pre><code rel="download_images_with_threas.py" class="python3" style="min-height: 80vh;">
 			import threading
 			import requests
 			import os
@@ -343,12 +343,9 @@
 	</section>
 	<section><h3>Сваляне на множество файлове чрез ThreadPoolExecutor</h3>
 		<dl class="fa">
-			<dt>В примера е използван метода <code>map()</code> на concurrent.futures.Executor класа, който работи по подобен начин на стандартната <a href="https://docs.python.org/3/library/functions.html#map"><code>map(func, *iterables)</code></a>  функция, с тази разлика, че</dt>
-			<dd>елементите в <code>iterables</code> се обработват незабавно, а не lazy.</dd>
-			<dd>подадената функция <code>func</code> се изпълнява асинхронно (чрез нишки или процеси)
-			</dd>
+			<dt>В примера е използван метода <code>map()</code> на concurrent.futures.Executor класа, който работи по подобен начин на стандартната <a href="https://docs.python.org/3/library/functions.html#map"><code>map(func, *iterables)</code></a>  функция, с тази разлика, че подадената функция <code>func</code> се изпълнява асинхронно (чрез нишки или процеси)</dt>
 		</dl>
-		<pre><code rel="JS" class="js">
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
 			import requests
 			import concurrent.futures
 			import os

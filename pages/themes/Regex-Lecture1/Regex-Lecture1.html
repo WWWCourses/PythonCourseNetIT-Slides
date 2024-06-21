@@ -1,52 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Regex-Lecture1</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>Regex-Lecture1</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -54,331 +54,374 @@
 -->
 <section class="main-section-title"><h1>Regular Expressions - Lecture 1</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
-<section class="sub-sections"><h2>What are Regular Expressions?</h2>
-	<section><h3>Intro</h3>
-		<dl class="fa">
-			<dt>Regular Expression is a <span class="note">string pattern</span>, which can match or not other stings</dt>
-			<dt>You can think of it a as a kind of search mechanism.</dt>
-			<dt>Regular Expression synonyms:</dt>
-			<dd data-tooltip="/\breg(?:ular\s*)?exp?(?:ression)?\b/i">Regex, RegEx, RegExp</dd>
-		</dl>
-	</section>
-	<section><h3>Example @regex101.com</h3>
-		<p>An example of <a href="https://regex101.com/r/o2sdSl">regex, matching strings with at leas 8 symbols</a>, at the <a href="https://regex101.com/">regex101.com</a> tool:</p>
-		<a href="https://regex101.com/r/o2sdSl" title="click for bigger picture"><img src="./images/regex101_at_least8chars.png" alt="png" style="height: 50vh;"></a>
-	</section>
-	<section><h3>the language</h3>
-		<dl class="fa">
-			<dt>You can think of Regular Expressions as a separate language, with its own rules and specs.</dt>
-			<dt>In fact, the Regular Expressions are coming from the <span class="note">regular language</span> defined by <a href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene">Kleene</a> in the early 1950s</dt>
-			<dt>Nowadays, almost all programming languages implements the concept of Regex.</dt>
-		</dl>
-	</section>
-	<section><h3>The Language</h3>
-		<dl class="fa">
-			<dt>You can think of Regular Expressions as a separate language, with its own rules and specs.</dt>
-			<dt>In fact, the Regular Expressions are coming from the <span class="note">regular language</span> defined by <a href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene">Kleene</a> in the early 1950s</dt>
-			<dt>Nowadays, almost all programming languages implements the concept of Regex.</dt>
-		</dl>
-	</section>
-	<section><h3>Regex example in Python</h3>
-		<pre><code rel="JS" class="js">
-			import re
+<section class="main-section-title"><h1>Regular Expressions Basics</h1></section>
+<section class="sub-sections"><h2>Introduction</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>Regular Expression (shortly Regex) is a <span class="note">string pattern</span>, which can match or not other strings.</dt>
+            <dd>You can think of it a as a kind of search mechanism.</dd>
+            <dt>Regular Expressions are coming from the <span class="note">regular language</span> defined by <a href="https://en.wikipedia.org/wiki/Stephen_Cole_Kleene">Kleene</a> in the early 1950s.</dt>
+            <dt>Nowadays, almost all programming languages implements the concept of Regex.</dt>
+            <dd>Also text editors (like VSCode), IDEs, Databases, CLI toos and more implements them</dd>
+            <dt>Example - using regex in Python:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 50vh;">
+                import re
 
-			user_pass = "qazwsxedc";
+                # regex that matches sequences of 8 or more word characters (letters, numbers, underscores)
+                rg = re.compile(r'^\w{8,}$')
 
-			#the RegEx to find if the user_pass contains at least 8 symbols:
-			pattern = r"^.{8,}$";
+                # the string to be matched by regex:
+                password = 'abc123456'
 
-			# do the test:
-			match = re.search(pattern,user_pass)
+                m = rg.search(password)
+                if m:
+                    print(f'{password} is valid!')
+                else:
+                    print(f'{password} is not valid!')
 
-			if match:
-				print("Match")
-			else:
-				print("No match!")
-		</code></pre>
-	</section>
-	<section>
-		<dl class="fa">
-			<dt>A regex grammar includes 2 types of symbols:</dt>
-			<dd><span class="note">Regular symbols</span>: they are matched literally on the matching string</dd>
-			<dd><span class="note">Meta-characters</span>: they have special meaning and gives the power of regex</dd>
-			<pre><code rel="complete list of regex metacharacters" class="python" data-noescape>
-
-			<span style="font-size: 1.5em;line-height:1.5em;color: darkred">. ^ $ * + ? { } [ ] \ | ( )</span>
-			</code></pre>
-			<dt>All characters which are <span class="note">not metacharacters</span> are matched literally.</dt>
-		</dl>
-		</section>
-		<section><h3>metacharacters - example</h3>
-		<pre><code rel="Python3" class="python">
-			import re
-
-			phone_numbers = ['+359 88 7123 456', '+359 88 7123456' ]
-
-			# match numbers with format: +359 YY YXXX XXX
-			regex = r'\+359\s\d{2}\s\d{4}\s\d{3}'
-
-			for number in phone_numners:
-			if re.match(regex,number):
-				print("{} is a valid number format".format(number))
-			else:
-				print("{} is NOT IN A VALID FORMAT".format(number))
-		</code></pre>
-		<pre><code rel="Output" class="bash" data-noescape>
-			+359 88 7123 456 is a valid number format
-			+359 88 7123456 is NOT IN A VALID FORMAT
-		</code></pre>
-		</section>
+                # abc123456 is valid
+            </code></pre>
+        </dl>
+    </section>
+    <section id="common-use-cases-for-regex"><h3>Common Use Cases for Regex</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Validation</dt>
+            <dd>Verify if a string matches a certain pattern, like email or phone number validation.</dd>
+            <dt>Data Extraction</dt>
+            <dd>Extract specific information from a text, such as extracting URLs from a webpage.</dd>
+            <dt>Data Cleaning</dt>
+            <dd>Remove unwanted characters or format text data according to predefined rules.</dd>
+            <dt>Text Parsing</dt>
+            <dd>Splitting text into tokens based on specified patterns.</dd>
+        </dl>
+    </section>
 </section>
 
-<section data-min="20" class="main-section-title"><h1>Using regexes in Python - the <code><a href="https://docs.python.org/3/library/re.html">re</a></code> module</h1></section>
+
+<section class="main-section-title"><h1>Using regexes in Python - the <code><a href="https://docs.python.org/3/library/re.html">re</a></code> module</h1></section>
 <section class="sub-sections"><h2>Using regexes in Python - the <code><a href="https://docs.python.org/3/library/re.html">re</a></code> module</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>The built-in <code><a href="https://docs.python.org/3/library/re.html">re</a></code> module in Python provides regular expression matching operations similar to those found in Perl.</dt>
-			<dt>Regular expressions are compiled into <a href="https://docs.python.org/3/library/re.html#re-objects">Regular Expression Object</a>, which have methods for various operations such as searching for pattern matches or performing string substitutions.</dt>
-			<dt><span class="note">Regular expressions in Python are handled as strings</span> because regular expressions aren’t part of the core Python language, and no special syntax was created for expressing them.</dt>
-		</dl>
-	</section>
-	<section><h3>How to write regex</h3>
-		<dl class="fa">
-			<dt><span class="note">Regex in Python are written as string</span>, which can be passed to re.compile() method or directly to other matching methods, like re.search(), re.match(). These topics will be discussed deeply later in the course.</dt>
-			<dt>We can use <span class="note">any string literals </span> to write our regex, including the <span class="note">row string</span> syntax.</dt>
-		</dl>
-	</section>
-	<section><h3>Matching backslash</h3>
-		<dl class="fa">
-			<dt>The <span class="note">raw string</span> syntax is most concise when we need to write a backslash in a regex.</dt>
-			<dt>The <a href="https://docs.python.org/2/reference/lexical_analysis.html#index-17">raw string</a> @docs:</dt>
-			<dd>When an 'r' or 'R' prefix is present, a character following a backslash is included in the string without change, and all backslashes are left in the string.</dd>
-			<pre><code rel="Python" class="python">
-				# note that backslash in raw string is not escape sequence
-				print(r'\\') # \\
-				print('\\')  # \
-			</code></pre>
-			<dd>A raw string cannot end in a single backslash</dd>
-			<pre><code rel="Python" class="python">
-				print(r'\') # SyntaxError
-			</code></pre>
-		</dl>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>The built-in <code><a href="https://docs.python.org/3/library/re.html">re</a></code> module in Python provides regular expression matching operations similar to those found in Perl.</dt>
+            <dt>Regular expressions are compiled into <a href="https://docs.python.org/3/library/re.html#re-objects">Regular Expression Object</a>, which have methods for various operations such as searching for pattern matches or performing string substitutions.</dt>
+            <dt><span class="note">Regular expressions in Python are handled as strings</span> because regular expressions aren’t part of the core Python language, and no special syntax was created for expressing them.</dt>
+        </dl>
+    </section>
+    <section><h3>How to write regex</h3>
+        <dl class="fa">
+            <dt><span class="note">Regex in Python are written as string</span>, which can be passed to re.compile() method or directly to other matching methods, like re.search(), re.match(). These topics will be discussed deeply later in the course.</dt>
+            <dt>We can use <span class="note">any string literals </span> to write our regex, including the <span class="note">row string</span> syntax.</dt>
+        </dl>
+    </section>
+    <section><h3>raw string syntax</h3>
+        <dl class="fa">
+            <dt>The <span class="note">raw string</span> syntax is most concise when we need to write a backslash in a regex.</dt>
+            <dt>From <a href="https://docs.python.org/2/reference/lexical_analysis.html#index-17">raw string</a> python docs:</dt>
+            <dd>When an 'r' or 'R' prefix is present, a character following a backslash is included in the string without change, and all backslashes are left in the string.</dd>
+            <pre><code rel="Python" class="python">
+                # note that backslash in raw string is not escape sequence
+                print(r'\\') # \\
+                print('\\')  # \
+            </code></pre>
+            <dd>A raw string cannot end in a single backslash</dd>
+            <pre><code rel="Python" class="python">
+                print(r'\') # SyntaxError
+            </code></pre>
+        </dl>
 
-	</section>
-	<section><h3>Matching backslash</h3>
-		<pre><code rel="Python" class="python" style="min-height:42vh">
-			import re
+    </section>
+    <section><h3>Matching backslash</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Note that in next example the pattern <code>\stop</code> did not match the string <code>\stop</code>, as backslash (<code>\</code>) is a special character in Regex grammar.</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height:58vh">
+            import re
 
-			test_string = '\\stop'
-			patterns = [
-				'\\stop',
-				'\\\\stop',
-				r'\\stop'
-			]
+            test_string = '\\stop'
+            patterns = [
+                '\\stop',
+                '\\\\stop',
+                r'\\stop'
+            ]
 
-			for pattern in patterns:
-				if re.match(pattern, test_string):
-					print(f"Pattern /{pattern}/ MATCHED string {test_string}!")
-				else:
-					print(f"Pattern /{pattern}/ DID NOT MATCHED string {test_string}!")
+            for pattern in patterns:
+                if re.match(pattern, test_string):
+                    print(f"Pattern /{pattern}/ MATCHED string {test_string}!")
+                else:
+                    print(f"Pattern /{pattern}/ DID NOT MATCHED string {test_string}!")
 
-		</code></pre>
-		<pre><code rel="Output" class="bash">
-			Pattern /\stop/ DID NOT MATCHED string \stop!
-			Pattern /\\stop/ MATCHED string \stop!
-			Pattern /\\stop/ MATCHED string \stop!
-		</code></pre>
-	</section>
+        </code></pre>
+        <pre><code rel="Output" class="bash">
+            Pattern /\stop/ DID NOT MATCHED string \stop!
+            Pattern /\\stop/ MATCHED string \stop!
+            Pattern /\\stop/ MATCHED string \stop!
+        </code></pre>
+    </section>
 </section>
 
 
-<section data-min="20" class="main-section-title"><h1>Regex Syntax</h1></section>
+<section class="main-section-title"><h1>Regex Syntax</h1></section>
 <section class="sub-sections"><h2>Regex Syntax</h2>
-	<section><h3>The Grammar</h3>
-		<dl class="fa">
-			<dt>A regex grammar includes 2 types of symbols:</dt>
-			<dd><span class="note">Regular symbols</span>: they are matched literally on the matching string</dd>
-			<dd><span class="note">Meta-characters</span>: they have special meaning and gives the power of regex</dd>
-		</dl>
-	</section>
-	<section><h3>Special Characters</h3>
-		<p>Only next characters has special meaning in Regex:</p>
-		<code class="note">^ $ \ . * + ? ( ) [ ] { } |</code>
-		<p>They can be combined with ordinary characters to change their meaning too</p>
-		<p>If we want to match <b>literally</b> a special character we have to escape it with backslash <code>'\'</code></p>
-	</section>
-	<section><h3>Matching Special Characters - example</h3>
-		<pre><code rel="Python" class="python">
-			import re
+    <section><h3>The Grammar</h3>
+        <dl class="fa">
+            <dt>A regex grammar includes 2 types of symbols:</dt>
+            <dd><span class="note">Regular symbols</span>: they are matched literally on the matching string</dd>
+            <dd><span class="note">Meta-characters</span>: they have special meaning and gives the power of regex</dd>
+        </dl>
+    </section>
+    <section><h3>Special Characters</h3>
+        <p>Only next characters has special meaning in Regex:</p>
+        <code class="note">^ $ \ . * + ? ( ) [ ] { } |</code>
+        <p>They can be combined with ordinary characters to change their meaning too</p>
+        <p>If we want to match <b>literally</b> a special character we have to escape it with backslash <code>'\'</code></p>
+    </section>
+    <section><h3>Matching Special Characters - example</h3>
+        <pre><code rel="Python" class="python">
+            import re
 
-			text = "try to match: 2+3"
-			rx = re.compile('2\+3')
+            text = "try to match: 2+3"
+            rx = re.compile('2\+3')
 
-			res = rx.search(text)
-			if res:
-				print( res.group())
-		</code></pre>
-	</section>
+            res = rx.search(text)
+            if res:
+                print( res.group())
+        </code></pre>
+    </section>
 </section>
 
-<section data-min="5" class="main-section-title"><h1>Quantifiers</h1></section>
-<section class="sub-sections"><h2>Quantifiers</h2>
-	<section><h3>Overview</h3>
-		<table style="font-size: .9em">
-			<tr><th>Quantifier</th><th>Description</th></tr>
-			<tr><td><i>r</i> <b class="note">*</b></td><td><i>r</i> match <b>0</b> or <b>more times</b></td></tr>
-			<tr><td><i>r</i> <b class="note">+</b></td><td><i>r</i> match <b>1</b> or <b>more times</b></td></tr>
-			<tr><td><i>r</i> <b class="note">?</b></td><td><i>r</i> match <b>0</b> or <b>1</b>time</td></tr>
-			<tr><td><i>r</i> <b class="note">{n}</b></td><td><i>r</i> match <b>exactly <i>n</i> times</b></td></tr>
-			<tr><td><i>r</i> <b class="note">{n,m}</b></td><td><i>r</i> match between <b>n</b> and <b>m</b> times (n, m are positive)</td></tr>
-		</table>
-		<p class="note"><code>r</code> can be any regex!</p>
-	</section>
-	<section><h3>Quantifiers (greedy and non-greedy match)</h3>
-		<dl class="fa">
-			<dt>The quantifiers are <span class="note">greedy</span>, meaning they will match the maximum part of the string they can:</dt>
-			<pre><code rel="Python" class="python">
-				matched = re.search(r'a.*a','ala bala' );
-				print(matched)
-				# match='ala bala', but not 'ala'
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>Quantifiers (greedy and non-greedy match)</h3>
-		<dl class="fa">
-			<dt>We can make them <span class="note">non-greedy</span>, if we suffix them with '<code class="note">?</code>'</dt>
-			<pre><code rel="Python" class="python">
-				matched = re.search(r'a.*?a','ala bala' );
-				print(matched)
-				#match='ala'
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>'*'quantifier - example</h3>
-		<pre><code rel="Python" class="python">
-			import re
-
-			string = 'ala bala'
-
-			matched = re.findall(r'a.*a',string ) # greedy
-			print(matched)
-			#OUTPUT: ['ala bala']
-
-			matched = re.findall(r'a.*?a',string ) # non-greedy
-			print(matched)
-			#OUTPUT: ['ala', 'ala']
-
-			matched = re.findall(r'.*?',string ) # non-gready
-			print(matched)
-			#OUTPUT: ['', '', '', '', '', '', '', '', ''
-		</code></pre>
-	</section>
-	<section><h3>{n,m} quantifier - example</h3>
-		<pre><code rel="Python" class="python">
-			import re
-
-			matched = re.findall(r'\d{2,4}','123456789' ) # gready
-			print(matched)
-			# OUTPUT: ['1234', '5678']
-
-			matched = re.findall(r'\d{2,4}?','123456789' ) # non-gready
-			print(matched)
-			#OUTPUT: ['12', '34', '56', '78']
-		</code></pre>
-	</section>
-</section>
-
-<section data-min="5" class="main-section-title"><h1>Character Sets</h1></section>
+<section class="main-section-title"><h1>Character classes and sets</h1></section>
 <section class="sub-sections"><h2>Character Sets</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-				<dt>The square brackets are used to define a character set. Like: <code><b>[</b>abc<b>]</b></code> (will match 'a' or 'b' or 'c').</dt>
-				<dt class="note">The character set itself match only one symbol!</dt>
-				<dt>Symbols inside brackets are the elements of set.</dt>
-				<dt>Special characters lose their special meaning inside sets</dt>
-				<dt>The hyphen (<code>-</code>), when it is between 2 symbols, has special meaning inside the character class  - it defines a range. Like: <code>[0-9]</code>. If it is in the end, it is considered as a hyphen.</dt>
-		</dl>
-	</section>
-	<section><h3>Character Sets Description</h3>
-		<table>
-			<tr><th>Character set</th><th>Description</th></tr>
-			<tr><td><code class="note">[abc]</code></td><td>Match any one of the symbols listed ('a' or 'b' or 'c')</td></tr>
-			<tr><td><code class="note">[a-z]</code></td><td>Match any symbol, from 'a' till 'z' (i.e. any lower Latin letter)</td></tr>
-			<tr><td><code class="note">[^abc]</code></td><td>Match any symbol, except 'a or 'b' or 'c' (i.e. the <code><b>^</b></code> negates the characters in the set)</td></tr>
-		</table>
-	</section>
-	<section><h3>Character Sets examples</h3>
-		<pre><code rel="Python" class="python">
-			import re
+    <section><h3>Overview</h3>
+        <dl class="fa">
+                <dt>The square brackets are used to define a character set. Like: <code><b>[</b>abc<b>]</b></code> (will match 'a' or 'b' or 'c').</dt>
+                <dt class="note">The character set itself match only one symbol!</dt>
+                <dt>Symbols inside brackets are the elements of set.</dt>
+                <dt>The hyphen (<code>-</code>), when it is between 2 symbols, has special meaning inside the character class  - it defines a range. Like: <code>[0-9]</code>. If it is in the end, it is considered as a hyphen.</dt>
+        </dl>
+        <hr>
+        <table>
+            <tr><th>Character set</th><th>Description</th></tr>
+            <tr><td><code class="note">[abc]</code></td><td>Match any one of the symbols listed ('a' or 'b' or 'c')</td></tr>
+            <tr><td><code class="note">[a-z]</code></td><td>Match any symbol, from 'a' till 'z' (i.e. any lower Latin letter)</td></tr>
+            <tr><td><code class="note">[0-9]</code></td><td>Match any digit</td></tr>
+            <tr><td><code class="note">[0-9-]</code></td><td>Match any digit or hyphen</td></tr>
+            <tr><td><code class="note">[^abc]</code></td><td>Match any symbol, except 'a or 'b' or 'c' (i.e. the <code><b>^</b></code> negates the characters in the set)</td></tr>
+        </table>
 
-			# match any one of the vocals
-			matched = re.findall(r'[aeiouy]','astroid' );
-			print(matched)
-			#OUTPUT: ['a', 'o', 'i']
+    </section>
+    <section><h3>Character Sets examples</h3>
+        <pre><code rel="Python" class="python" style="min-height: 60vh;">
+            import re
 
-			# match any consecutive vocals - one or more times
-			matched = re.findall(r'[aeiouy]+','astroid' );
-			print(matched)
-			#OUTPUT: ['a', 'oi']
+            # Match any vowel character
+            matched = re.findall(r'[aeiouy]','astroid' );
+            print(matched)
+            #OUTPUT: ['a', 'o', 'i']
 
-			# match bg mobile phone numbers
-			matched = re.findall('\+3598[7-9][0-9]{7}', '+359888123456');
-			print(matched)
-			#OUTPUT: ['+359888123456']
+            # Match any non-vowel character
+            matched = re.findall(r'[^aeiouy]','astroid' );
+            print(matched)
+            #OUTPUT: ['s', 't', 'r', 'd']
 
-			# match digit or hyphen:
-			matched = re.findall('[1-5-]', '12-34');
-			print(matched)
-			#OUTPUT: ['1', '2', '-', '3', '4']
-		</code></pre>
-	</section>
-	<section><h3>Character Sets Negation - examples</h3>
-		<pre><code rel="Python" class="python">
-			import re
-
-			# match any non-vocal:
-			matched = re.findall(r'[^aeiouy]','astroid' );
-			print(matched)
-			#OUTPUT: ['s', 't', 'r', 'd']
-		</code></pre>
-	</section>
+            # match any digit or hyphen:
+            matched = re.findall('[0-9-]', 'a2-b8');
+            print(matched)
+            #OUTPUT: ['2', '-', '8']
+        </code></pre>
+    </section>
 </section>
+<section class="sub-sections"><h2>Character classes</h2>
+    <section id="character-classes-definition"><h3>Overview</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Character classes in regular expressions are shorthands for commonly used sets of characters. They provide a concise way to match specific types of characters.</dt>
+            <dt>Some commonly used character classes include:</dt>
+            <ul style="list-style-type: none;">
+                <li><code>\d</code>: Matches any digit character (equivalent to <code>[0-9]</code>).</li>
+                <li><code>\w</code>: Matches any word character (equivalent to <code>[a-zA-Z0-9_]</code>).</li>
+                <li><code>\s</code>: Matches any whitespace character (spaces, tabs, newlines, etc.).</li>
+                <li><code>\D</code>: Matches any non-digit character (equivalent to <code>[^0-9]</code>).</li>
+                <li><code>\W</code>: Matches any non-word character (equivalent to <code>[^a-zA-Z0-9_]</code>).</li>
+                <li><code>\S</code>: Matches any non-whitespace character.</li>
+            </ul>
+        </dl>
+    </section>
+    <section><h3>Character classes example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 85vh;">
+            import re
+
+            # Match any digit character
+            text = "The price is $25.99."
+            pattern = re.compile(r'\d')
+            result = pattern.findall(text)
+            print(result)
+            # Output: ['2', '5', '9', '9']
+
+            # Match any word character
+            text = "The quick brown fox jumps over the lazy dog."
+            pattern = re.compile(r'\w+')
+            result = pattern.findall(text)
+            print(result)
+            # Output: ['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
+
+            # Match 'line' followed by digit followed by whitespace:
+            text = """line1
+            line2
+            line3 line4"""
+
+            pattern = re.compile(r'line\d\s')
+            result = pattern.findall(text)
+            print(result)
+
+            # Output: ['line1\n', 'line2\n', 'line3 ']
+        </code></pre>
+    </section>
+</section>
+
+<section class="main-section-title"><h1>Quantifiers</h1></section>
+<section class="sub-sections"><h2>Quantifiers</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Quantifiers in regular expressions specify the quantity of the preceding element to match.</dt>
+        </dl>
+        <table style="font-size: .9em">
+            <tr><th>Quantifier</th><th>Description</th></tr>
+            <tr><td><i>r</i> <b class="note">*</b></td><td><i>r</i> match <b>0</b> or <b>more times</b></td></tr>
+            <tr><td><i>r</i> <b class="note">+</b></td><td><i>r</i> match <b>1</b> or <b>more times</b></td></tr>
+            <tr><td><i>r</i> <b class="note">?</b></td><td><i>r</i> match <b>0</b> or <b>1</b>time</td></tr>
+            <tr><td><i>r</i> <b class="note">{n}</b></td><td><i>r</i> match <b>exactly <i>n</i> times</b></td></tr>
+            <tr><td><i>r</i> <b class="note">{n,m}</b></td><td><i>r</i> match between <b>n</b> and <b>m</b> times (n, m are positive)</td></tr>
+        </table>
+        <p class="note"><code>r</code> can be character, group, or character class/set</p>
+    </section>
+    <section id="quantifiers-examples"><h3>Examples</h3>
+       <dl class="fa" style="min-width:80vw">
+           <dt>*</dt>
+           <dd>Matches zero or more occurrences of the preceding character or group.</dd>
+           <pre><code rel="Python" class="python" style="min-height: 1vh;">
+               pattern = re.compile(r'ab*c')
+               result = pattern.match('ac')      # Matches
+               result = pattern.match('abc')     # Matches
+               result = pattern.match('abbc')    # Matches
+               result = pattern.match('a')       # Matches
+           </code></pre>
+           <dt>+</dt>
+           <dd>Matches one or more occurrences of the preceding character or group.</dd>
+           <pre><code rel="Python" class="python" style="min-height: 1vh;">
+               pattern = re.compile(r'ab+c')
+               result = pattern.match('ac')      # Doesn't match
+               result = pattern.match('abc')     # Matches
+               result = pattern.match('abbc')    # Matches
+               result = pattern.match('a')       # Doesn't match
+           </code></pre>
+           <dt>?</dt>
+           <dd>Matches zero or one occurrence of the preceding character or group.</dd>
+           <pre><code rel="Python" class="python" style="min-height: 1vh;">
+               pattern = re.compile(r'ab?c')
+               result = pattern.match('ac')      # Matches
+               result = pattern.match('abc')     # Matches
+               result = pattern.match('abbc')    # Doesn't match
+               result = pattern.match('a')       # Doesn't match
+           </code></pre>
+       </dl>
+    </section>
+    <section><h3>Examples</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>{n}</dt>
+            <dd>Matches exactly <code>n</code> occurrences of the preceding character or group.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                pattern = re.compile(r'a{2}b')
+                result = pattern.match('aab')     # Matches
+                result = pattern.match('ab')      # Doesn't match
+                result = pattern.match('aaab')    # Doesn't match
+            </code></pre>
+            <dt>{n,}</dt>
+            <dd>Matches <code>n</code> or more occurrences of the preceding character or group.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                pattern = re.compile(r'a{2,}b')
+                result = pattern.match('aab')     # Matches
+                result = pattern.match('aaab')    # Matches
+                result = pattern.match('ab')      # Doesn't match
+            </code></pre>
+            <dt>{n,m}</dt>
+            <dd>Matches at least <code>n</code> and at most <code>m</code> occurrences of the preceding character or group.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                pattern = re.compile(r'a{2,3}b')
+                result = pattern.match('aab')     # Matches
+                result = pattern.match('aaab')    # Matches
+                result = pattern.match('aaaab')   # Doesn't match
+                result = pattern.match('ab')      # Doesn't match
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Quantifiers (greedy and non-greedy match)</h3>
+        <dl class="fa">
+            <dt>The quantifiers are <span class="note">greedy</span>, meaning they will match the maximum part of the string they can:</dt>
+            <dt>We can make them <span class="note">non-greedy</span>, if we suffix them with '<code class="note">?</code>'</dt>
+            <dt>Example</dt>
+            <pre><code rel="Python" class="python" style="min-height: 70vh;">
+                import re
+
+                # Greedy *
+                matched = re.findall(r"a.*a", "ala bala")
+                print(matched)
+                # Output: ['ala bala']
+
+                # Non-greedy *
+                matched = re.findall(r"a.*?a", "ala bala")
+                print(matched)
+                # Output: ['ala', 'ala']
+
+                # Greedy {n,m}
+                matched = re.findall(r"\d{2,4}", "123456789")
+                print(matched)
+                # Output: ['1234', '5678']
+
+                # Non-greedy {n,m}
+                matched = re.findall(r"\d{2,4}?", "123456789")
+                print(matched)
+                # Output: ['12', '34', '56', '78']
+
+            </code></pre>
+        </dl>
+    </section>
+</section>
+
 
 <section data-min="5" class="main-section-title"><h1>Resources</h1></section>
 <section class="sub-sections"><h2>Resources</h2>
-	<section><h3>Video</h3>
-		<p>Reg(exp){2}lained/: Demystifying Regular Expressions by Lea Verou</p>
-		<iframe width="767" height="431" src="https://www.youtube.com/embed/EkluES9Rvak" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	</section>
-	<section><h3>Online Regex Testers and Cheet-sheet</h3>
-		<dl class="fa">
-			<dt><a href="https://www.debuggex.com/cheatsheet/regex/python">Python Regex Cheatsheet</a></dt>
-			<dt><a href="https://regex101.com/">regex101.com - Online regex tester and debugger: PHP, PCRE, Python, Golang ...</a></dt>
-		</dl>
-	</section>
-	<section><h3>regex Excersises</h3>
-		<dl class="fa">
-			<dt><a href="https://regex101.com/quiz">regex101 regex quiz</a></dt>
-			<dt><a href="https://regexone.com/">regexone.com</a> - Learn Regular Expressions with simple, interactive exercises.</dt>
-		</dl>
-	</section>
+    <section><h3>Video</h3>
+        <p>Reg(exp){2}lained/: Demystifying Regular Expressions by Lea Verou</p>
+        <iframe width="767" height="431" src="https://www.youtube.com/embed/EkluES9Rvak" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+    <section><h3>Online Regex Testers and Cheet-sheet</h3>
+        <dl class="fa">
+            <dt><a href="https://www.debuggex.com/cheatsheet/regex/python">Python Regex Cheatsheet</a></dt>
+            <dt><a href="https://regex101.com/">regex101.com - Online regex tester and debugger: PHP, PCRE, Python, Golang ...</a></dt>
+        </dl>
+    </section>
+    <section><h3>regex Excersises</h3>
+        <dl class="fa">
+            <dt><a href="https://regex101.com/quiz">regex101 regex quiz</a></dt>
+            <dt><a href="https://regexone.com/">regexone.com</a> - Learn Regular Expressions with simple, interactive exercises.</dt>
+        </dl>
+    </section>
 </section>
 
 
@@ -388,48 +431,48 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1280,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1280,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 </body>
 </html>
