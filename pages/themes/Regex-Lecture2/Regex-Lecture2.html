@@ -202,7 +202,6 @@
     </section>
 </section>
 
-
 <section class="main-section-title"><h1>Alternation</h1></section>
 <section class="sub-sections"><h2>Alternation</h2>
     <section><h3>Alternation</h3>
@@ -237,7 +236,7 @@
 <section class="main-section-title"><h1>Grouping and capturing</h1></section>
 <section class="sub-sections"><h2>Grouping and capturing</h2>
     <section><h3>Overview</h3>
-        <dl class="fa">
+        <dl class="fa" style="font-size: 0.9em;">
             <dt>Brackets: <span class="note">(</span> and <span class="note">)</span>, play a dual role in regex!</dt>
             <dt>They can be used to <span class="note">capturing groups</span>, to remember a matched part of the string. Like: </dt>
             <pre><code rel="Python" class="python" style="min-height: 1vh;">
@@ -270,6 +269,167 @@
             <dt class="note">NB! Capturing is slow and memory consuming! If you need the parenthesis just for grouping- always use the <b>?:</b> prefix.</dt class="note">
         </dl>
     </section>
+	<section><h3>Grouping - example 1</h3>
+		<p>Note, that in next code we use brackets only for grouping (because of low priority of <code>|</code> operator), not for capturing.</p>
+		<pre><code rel="Python" class="python" style=" min-height: 61vh">
+			strings = [
+				'Icecream with strawberries? Yes!',
+				'Icecream with straws? No!',
+				'Icecream with blueberries? No!',
+				'Icecream with raspberries? Yes!',
+				'Icecream with berries? No!',
+			]
+			regex = re.compile(r"\b(?:straw|rasp)berries\b")
+
+			for s in strings:
+				match = regex.search(s)
+				if match:
+					print(f"'{s}' matched: {match[0]}")
+				else:
+					print(f"'{s}' did not match!")
+		</code></pre>
+		<pre><code rel="Output" class="bash">
+			'Icecream with strawberries? Yes!' matched: strawberries
+			'Icecream with straws? No!' did not match!
+			'Icecream with blueberries? No!' did not match!
+			'Icecream with raspberries? Yes!' matched: raspberries
+			'Icecream with berries? No!' did not match!
+		</code></pre>
+	</section>
+	<section><h3>Grouping - example 2</h3>
+		<p>Note, that in next code we use brackets only for grouping (because of low priority of <code>|</code> operator), not for capturing.</p>
+		<pre><code rel="Python" class="python" style=" min-height: 61vh">
+			# match only next words: "cat", "cats", "dog", "dogs" and nothing else:
+			strings = [
+				"I love cats",
+				"I love the dog!",
+				"I love camels",
+				"I love wildcats",
+				"I love catalogs",
+			]
+			regex = re.compile(r"\b(?:cat|dog)s?\b")
+
+			for s in strings:
+				match = regex.search(s)
+				if match:
+					print(f"'{s}' matched: {match[0]}")
+				else:
+					print(f"'{s}' did not match!")
+		</code></pre>
+		<pre><code rel="Output" class="bash">
+			'I love cats' matched: cats
+			'I love the dog!' matched: dog
+			'I love camels' did not match!
+			'I love wildcats' did not match!
+			'I love catalogs' did not match!
+		</code></pre>
+	</section>
+	<section><h3>Grouping - example 3</h3>
+		<p>Note, that in next code we use brackets only for grouping not for capturing. Remember, that <code>+</code> is applied by default only to the previous character, but we want it to reflect the whole <code>[a-z]\d</code> sub-regex.</p>
+		<pre><code rel="Python" class="python" style=" min-height: 55vh">
+			# match only strings which contains only sequences of a letter (a-z) followed by a digit:
+			strings = [
+				"a1_b3b4",
+				"a1b2c3a4",
+				"ab1ab2ab3"
+			]
+			regex = re.compile(r"^(?:[a-z]\d)+$")
+
+			for s in strings:
+				match = regex.search(s)
+				if match:
+					print(f"'{s}' matched: {match[0]}")
+				else:
+					print(f"'{s}' did not match!")
+		</code></pre>
+		<pre><code rel="Output" class="bash">
+			'a1_b3b4' did not match!
+			'a1b2c3a4' matched: a1b2c3a4
+			'ab1ab2ab3' did not match!
+		</code></pre>
+	</section>
+	<section><h3>Capturing and back-reference</h3>
+		<dl class="fa">
+			<dt>Parentheses are used not-only to group sub-regexes, but also can remember the captured part of the string which matched the group.</dt>
+			<dt>When parentheses are used only for grouping (i.e. with prefix <code>?:</code> ) we call them <span class="note">(?:non-capturing group)</span></dt>
+			<dt>When parentheses are used for capturing the matched part, we call them <span class="note">(capturing group)</span></dt>
+			<dt> We can make a back-reference to any capturing group inside our regex using the  <code>\number</code> syntax (like <code>\1</code>,  <code>\2</code>,... ), where number is the number of corresponding group we want to refer to.</dt>
+			<dt>Groups are numbered starting with 1, from left to write, counting each occurrence of opening bracket '('.</dt>
+			<dt>Python supports <span class="note">named capturing groups</span> with the <code>(?P&lt;name&gt;...)</code> syntax.</dt>
+		</dl>
+	</section>
+	<section><h3>Capturing and back-reference - example 1</h3>
+		<pre><code rel="Python" class="python" style="min-height: 54vh;">
+			# match only strings starting with letter (a-z) and ending with the same letter
+			strings = [
+				"a123a",
+				"a123ab",
+				"caaac"
+			]
+			regex = re.compile(r"^(\w).+\1$")
+
+			for s in strings:
+				match = regex.search(s)
+				if match:
+					print(f"'{s}' matched: {match[0]}")
+				else:
+					print(f"'{s}' did not match!")
+		</code></pre>
+		<pre><code rel="Output" class="bash">
+			'a123a' matched: a123a
+			'a123ab' did not match!
+			'caaac' matched: caaac
+		</code></pre>
+	</section>
+	<section><h3>Capturing and back-reference - example 2</h3>
+		<pre><code rel="Python" class="python" style="min-height: 54vh;">
+			# match strings which contains only two repeated words, like "echo echo"
+			strings = [
+				"echo echo",
+				"echo echoooooo",
+				"oh oh oh,oh",
+			]
+			regex = re.compile(r"^(\w+)[\s.!,]+\1$")
+
+			for s in strings:
+				match = regex.search(s)
+				if match:
+					print(f"'{s}' matched: {match[0]}")
+				else:
+					print(f"'{s}' did not match!")
+		</code></pre>
+		<pre><code rel="Output" class="bash">
+			'echo echo' matched: echo echo
+			'echo echoooooo' did not match!
+			'oh oh oh,oh' did not match!
+		</code></pre>
+	</section>
+	<section id="task_capturing_and_back_reference"><h3>Capturing and back-reference - TASK</h3>
+		<dl class="fa">
+			<dt>A list of strings is given. If each string contains the word "strawberries" or "raspberries" print the string but append "Yes!" to its end, otherwise append "No!"  </dt>
+		</dl>
+		<pre><code rel="task_icecreams.py" class="python" style="min-height: 50vh;">
+			import re
+
+			strings = [
+				'Ice cream with strawberries?',
+				'Ice cream with blueberries?',
+				'Ice cream with raspberries?',
+				'Ice cream with strawraspberries?',
+				'Ice cream with berries?',
+			]
+
+			# YOUR CODE HERE
+
+		</code></pre>
+		<pre><code rel="EXPECTED OUTPUT" class="bash">
+			Ice cream with strawberries? Yes!
+			Ice cream with blueberries? NO!
+			Ice cream with raspberries? Yes!
+			Ice cream with strawraspberries? NO!
+			Ice cream with berries? Yes!
+		</code></pre>
+	</section>
 </section>
 
 <section class="main-section-title"><h1>Resources</h1></section>
