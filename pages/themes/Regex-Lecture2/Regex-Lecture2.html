@@ -71,279 +71,208 @@
 	</section>
 </section>
 
+<section class="main-section-title"><h1>Anchors and Boundaries</h1></section>
+<section class="sub-sections"><h2>Anchors and Boundaries</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>They specify a <b>position</b> in the string where a match should occurs.</dt>
+            <dt>They are zero-width, i.e.when matched they do NOT consume characters from the string.</dt>
+        </dl>
+        <table style="font-size: .9em">
+            <tr><th>Anchor</th><th>Description</th></tr>
+            <tr><td class="note">^</td><td>Matches the <span class="note">beginning</span> of the string (or the line, if <b>m</b> flag is used)</td></tr>
+            <tr><td class="note">$</td><td>Matches the <span class="note">end</span> of the string (or the line, if <b>m</b> flag is used)</td></tr>
+            <tr><td class="note">\b</td><td>Matches on word boundaries, i.e. between <i>word</i>(\w) and <i>non-word</i>(\W) characters.<br>Note that the <b>start</b> and <b>end</b> of string are considered as non-word characters.</td></tr>
+            <tr><td class="note">\Z</td><td>Matches only at the end of the string.</td></tr>
+        </table>
+    </section>
+    <section><h3><code>^</code> and <code>$</code> example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+            import re
 
-<section data-min="20" class="main-section-title"><h1>Using Regexes in Python - going deep</h1></section>
-<section class="sub-sections"><h2>Using Regexes in Python - going deep</h2>
-	<section><h3>Regex object and re module</h3>
-		<dl class="fa" style="font-size: 0.8em;">
-			<dt>We can use various <a href="https://docs.python.org/3/library/re.html#functions"><code>re</code> module functions</a> which accept the regex string as first argument.</dt>
-			<dt>We can <span class="note">pre-compile</span> the pattern string into <a href="https://docs.python.org/3/library/re.html#re-objects">Regular Expression Object</a>, and then to perform matches on it. I.e. to use methods on the pre-compiled pattern object itself</dt>
-			<pre><code rel="Syntax" class="bash">
-				# re module level methods call
-				re.method_name(regex, str_to_match)
+            strings = [
+                'ana',
+                'ana bel',
+            ]
+            rx = re.compile(r'^a.+a$');
 
-				# regex object methods call
-				regex_obj = re.compile(regex_str)
-				regex_obj.method_name(str_to_match)
-			</code></pre>
-			<dt>Note, that module level methods and regex object methods are almost the same. The difference is that on regex object methods we can set start and end pos for searching in the string, but we can not set flags, as they must be given in <code>re.compile()</code></dt>
-			<dd><a href="https://docs.python.org/3/library/re.html#re.search">re.search(pattern, string, flags=0)</a> vs <a href="https://docs.python.org/3/library/re.html#re.Pattern.search">Pattern.search(string[, pos[, endpos]])</a></dd>
+            for string in strings:
+                res = rx.findall(string)
+                print("{} matches in {}".format(len(res), string))
 
-			<pre><code rel="Python" class="python" style="min-height: 50vh;">
-				import re
+            #Output:
+            #1 matches in ana
+            #0 matches in ana bel
+        </code></pre>
+    </section>
+    <section><h3><code>\b</code> example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 78vh;">
+            import re
 
-				test_string = '123abc789ABC'
-				regex_str = r'ABC'
+            strings = [
+                '',
+                'a',
+                '@',
+                '@a',
+                'aa',
+                'a!',
+                'a,a',
+            ]
+            rx = re.compile(r'\b');
 
-				# pre-compile regex:
-				regex = re.compile(regex_str,flags=re.IGNORECASE)
+            for string in strings:
+                res = rx.findall(string)
+                print(f"{len(res)} word bounders counted in {string}")
 
-				# next 2 variants gives identical results:
-				res1 = regex.findall(test_string,pos=6)
-				res2 = re.findall(regex_str,test_string[6:],flags=re.IGNORECASE)
 
-				print(res1==res2)  # True
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>Compiling Regular Expressions</h3>
-		<dl class="fa">
-			<dt>we can pre-compile a regex object by <code><a href="https://docs.python.org/3/library/re.html#re.compile">re.compile</a></code> method</dt>
-		</dl>
-		<pre><code rel="Python" class="python" style="min-height: 53vh;">
-			import re
-
-			test_string = "this"
-
-			# use regex object method on pre-compiled regex:
-			regex = re.compile(r"[aeiouy]+")
-			m1 = regex.search(test_string)
-
-			# use re module function, which is the same as above:
-			m2 = re.search(r"[aeiouy]+", test_string)
-
-			print(m1)
-			print(m2)
-		</code></pre>
-	</section>
-	<section><h3>When to use Compiled Regex Methods?</h3>
-		<dl class="fa">
-			<dt>The module-level match functions compile the given regex string, and keep it in its cache. So future calls using the same RE won’t need to parse the pattern again</dt>
-			<dt>But when you use the match function in a loop, the function itself will be needlessly called, that's why in loops, it is better to use the pre-compiled regex.</dt>
-		</dl>
-	</section>
-	<section><h3><a href="https://docs.python.org/3/library/re.html#re.search">regex.search(string[, start[, end]]))</a></h3>
-		<dl class="fa">
-			<dt>Scan through string looking where this regular expression produces a match.</dt>
-			<dt>If match produced => returns a corresponding <a href="https://docs.python.org/3/library/re.html#match-objects">match object</a></dt>
-			<dd>Match Object will be discussed deeply in later lectures, but for now you must remember that <br> a <span class="note">Match Object always have a boolean value of True</span></dd>
-			<dt>If string does not matches the pattern => return <span class="note">None</span></dt>
-			<dt>optional parameters:</dt>
-			<dd><i>start</i> - the index where the search should start</dd>
-			<dd><i>end</i> - the index where the search should ends</dd>
-		</dl>
-	</section>
-	<section><h3><a href="https://docs.python.org/3/library/re.html#re.search">regex.search(string[, start[, end]]))</a> - example</h3>
-		<pre><code rel="Python" class="python">
-			import re
-
-			text = "123abc456"
-			rx = re.compile('abc')
-
-			res = rx.search(text) # will match
-			res = rx.search(text,3) # will match, 'a' is on index 3 in text
-			res = rx.search(text,4) # would NOT match
-		</code></pre>
-	</section>
-	<section><h3><a href="https://docs.python.org/3/library/re.html#re.match">regex.match(string[, start[, end]])</a></h3>
-		<dl class="fa">
-			<dt>Matches only <span class="note">on the beginning of the string</span></dt>
-			<dt>If you want to locate a match anywhere in string, use search() instead</dt>
-			<dt>Reference: <a href="https://docs.python.org/3/library/re.html#search-vs-match">search-vs-match @python docs</a></dt>
-			<!-- <dt>For the rest - acts like regex.search() method</dt> -->
-		</dl>
-		<pre><code rel="Python" class="python">
-			text = "123abc456"
-			rx = re.compile('abc')
-
-			res = rx.match(text) # will NOT match, 'abc' is not in the beginning
-			res = rx.match(text,3) # will match, as matching starts from index 3
-		</code></pre>
-	</section>
-	<section><h3><a href="https://docs.python.org/3/library/re.html#re.findall">regex.findall(string[, pos[, endpos]])</a></h3>
-		<dl class="fa">
-			<dt>Returns <span class="note"> a list of strings</span> containing all non-overlapping matches of regex in the string</dt>
-			<dt>The string is scanned left-to-right, and matches are returned in the order found</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			text = "123abc456abcabc"
-			rx = re.compile('abc')
-
-			res = rx.findall(text) # ['abc', 'abc', 'abc']
-			res = rx.findall(\dtext) # ['3abc', '6abc']
-		</code></pre>
-	</section>
-	<section><h3>Other Matching Methods</h3>
-		<dl class="fa">
-			<dt><a href="https://docs.python.org/3/library/re.html#re.split">re.split()</a></dt>
-			<dt><a href="https://docs.python.org/3/library/re.html#re.fullmatch">re.fullmatch()</a></dt>
-			<dt><a href="https://docs.python.org/3/library/re.html#re.sub">re.sub()</a></dt>
-			<dt><a href="https://docs.python.org/3/library/re.html#re.subn">re.subn()</a></dt>
-		</dl>
-	</section>
+            # 0 word bounders counted in
+            # 2 word bounders counted in a
+            # 0 word bounders counted in @
+            # 2 word bounders counted in @a
+            # 2 word bounders counted in aa
+            # 2 word bounders counted in a!
+            # 4 word bounders counted in a,a
+        </code></pre>
+    </section>
 </section>
 
-<section data-min="5" class="main-section-title"><h1>Regex Syntax - Character classes</h1></section>
-<section class="sub-sections"><h2>Character classes</h2>
-	<section><h3>Character classes</h3>
-		<dl class="fa">
-				<dt>Character classes can be regarded as shorthands for some of the most used  character sets.</dt>
-				<dt>In python3 they work on any Unicode symbols.</dt>
-				<dd>You can use the <a href="https://docs.python.org/3/library/re.html#re.ASCII">re.ASCII/(?a)</a>  flag to specify that you want only ASCII symbols to be matched.</dd>
-		</dl>
-		<hr>
-		<table style="font-size: .8em">
-			<tr><th>Char class</th><th>Description</th></tr>
-			<tr><td><code class="note">.</code></td><td>Match <span class="note">any</span> character, except newline/line terminator. You can use the <a href="https://docs.python.org/3/library/re.html#re.S">re.DOTALL/(?s)</a> to match the new line, as well</td></tr>
-			<tr><td><code class="note">\w</code></td><td>Matches Unicode word characters; this includes most characters that can be part of a word in any language, as well as numbers and the underscore.<br>If the ASCII flag is used, only [a-zA-Z0-9_] is matched </td></tr>
-			<tr><td><code class="note">\d</code></td><td>Matches any Unicode decimal digit, which includes [0-9], and also many other digit characters<br>If the ASCII flag is used, only [0-9] is matched</td></tr>
-			<tr><td><code class="note">\s</code></td><td>Matches any Unicode whitespace characters (which includes [ \t\n\r\f\v], and also many other characters,</td></tr>
-		</table>
-	</section>
-	<section><h3>Character classes example</h3>
-		<pre><code rel="Python" class="python">
-			import re
-			# compiling regex using re.ASCII flag, so that charclass will match only ASCII symbols
-			rx = re.compile('\w+', re.ASCII)
-			test_strings = [
-				"ала",
-				"ala",
-			]
-
-			for ts in test_strings:
-				match = rx.search(ts)
-				if match:
-					print(f"{ts} matched")
-				else:
-					print(f"{ts} did not matched")
-		</code></pre>
-	</section>
-	<section><h3>Character classes example</h3>
-		<pre><code rel="Python" class="python3" style="min-height: 55vh;">
-			import re
-
-			# match bg mobile phone numbers in specific format:
-			regex = re.compile(r"\+359\s?8[7-9]\s?\d{7}")
-			phones = [
-				"+359888123456",	 # ok
-				"359888123456",	 # not ok (missing '+')
-				"+359 88 8123456",	# ok
-				"+359 888 123456",	# not ok (second space is misplaced)
-				"+359 88	8123456"	# ok (tab is ok for white-space separator)
-			]
-
-			for phone in phones:
-				m = regex.match(phone)
-				if m:
-					print(f"{phone} => OK")
-				else:
-					print(f"{phone} => no match")
-		</code></pre>
-		<pre><code rel="Output" class="bash">
-			+359888123456 => OK
-			359888123456 => no match
-			+359 88 8123456 => OK
-			+359 888 123456 => no match
-			+359 88 8123456 => OK
-		</code></pre>
-	</section>
-	<section><h3>Character classes example</h3>
-		<pre><code rel="Python" class="python" style="min-height: 50vh;">
-			import re
-
-			# march strings containing word-chars followed by digits:
-			strings = [
-				'petrov42', # ok
-				'42petrov',	# not ok (no digits after letters)
-				'ivan_pterov2' # ok ('_' is a word character)
-			]
-			rx = re.compile('\w+\d+')
-
-			for string in strings:
-				match = rx.search(string);
-				if match:
-					print(f"{match[0]} matched in {string}" )
-		</code></pre>
-		<pre><code rel="Output" class="bash">
-			petrov42 matched in petrov42
-			42 matched in 42petrov
-			ivan_pterov2 matched in ivan_pterov2
-		</code></pre>
-	</section>
-	<section><h3>Character classes example</h3>
-		<pre><code rel="Python" class="python">
-			string = """line1
-			line2
-			line3 line4"""
-
-			matched = re.findall('line\d\s', string);
-			print(matched)
-
-			#OUTPUT: ['line1\n', 'line2\n', 'line3 ']
-		</code></pre>
-	</section>
-</section>
-
-<section data-min="5" class="main-section-title"><h1>Modifiers/Flags</h1></section>
+<section class="main-section-title"><h1>Modifiers/Flags</h1></section>
 <section class="sub-sections"><h2>Modifiers/Flags</h2>
-	<section><h3>Modifiers/Flags</h3>
-		<dl class="fa">
-			<dt>Flags reflects how the regular expression is executed.</dt>
-			<dt>They are available in the re module with a long name such as <code>re.IGNORECASE</code> or with a short, one-letter form such as <code>re.I</code>.</dt>
-			<dt>Multiple flags can be specified by bitwise OR-ing them. For example <code>re.I|re.M</code> sets both the I and M flags.</dt>
-			<dt>These flags are set by passing the <i>flags</i> argument to the re.compile() method</dt>
-			<pre><code rel="Python" class="python">
-				regex_with_flags_arg= re.compile(r"[aeiouy]+",re.I)
-			</code></pre>
-			<dt>Or as a third argument on re module methods</dt>
-			<pre><code rel="Python" class="python">
-				m = re.search(r"[aeiouy]+", str, re.I)
-			</code></pre>
-			<dt>Flags can be also set in the regular expression itself, using (?aiLmsux) syntax at the beginning of the regex string</dt>
-			<pre><code rel="Terminal" class="bash">
-				regex_with_flags_prefix= re.compile(r"(?i)[aeiouy]+")
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>Modifiers/Flags list</h3>
-		<table >
-			<tr><th>In reges</th><th>As param</th><th>Description</th></tr>
-			<tr><td>(?i)</td><td>re.I</td><td>case-<b>i</b>nsensitive matching</td></tr>
-			<tr><td>(?m)</td><td>re.M</td><td><b>m</b>ultiline matching</td></tr>
-			<tr><td>(?s)</td><td>re.S</td><td>Make the '<b>.</b>' to match any character at all, including a newline</td></tr>
-			<tr><td>(?x)</td><td>re.X</td><td>Allows to write readable regexes by using spaces and comments('#') in the regex. More on: <a href="https://docs.python.org/3/library/re.html#re.X">re.X</a></td></tr>
-		</table>
-		<p>Reference: <a href="https://docs.python.org/3/howto/regex.html#compilation-flags">Compilation flags</a></p>
-	</section>
-	<section><h3>Modifiers/Flags example</h3>
-		<pre><code rel="Python" class="python">
-			import re
+    <section><h3>Modifiers/Flags</h3>
+        <dl class="fa">
+            <dt>Flags reflects how the regular expression is executed.</dt>
+            <dt>They are available in the re module with a long name such as <code>re.IGNORECASE</code> or with a short, one-letter form such as <code>re.I</code>.</dt>
+            <dt>Multiple flags can be specified by bitwise OR-ing them. For example <code>re.I|re.M</code> sets both the I and M flags.</dt>
+            <dt>Flags can be set as second argument to the re.compile() method</dt>
+            <pre><code rel="Python" class="python">
+                regex_with_flags_arg = re.compile(r"[aeiouy]+",re.I)
+            </code></pre>
+            <dt>Or as a third argument on re module methods</dt>
+            <pre><code rel="Python" class="python">
+                m = re.search(r"[aeiouy]+", str, re.I)
+            </code></pre>
+            <dt>Flags can be also set in the regular expression itself, using (?aiLmsux) syntax at the beginning of the regex string</dt>
+            <pre><code rel="Terminal" class="bash">
+                regex_with_flags_prefix= re.compile(r"(?i)[aeiouy]+")
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Modifiers/Flags list</h3>
+        <table>
+            <tr><th>In reges</th><th>As param</th><th>Description</th></tr>
+            <tr><td>(?i)</td><td>re.I</td><td>case-<b>i</b>nsensitive matching</td></tr>
+            <tr><td>(?m)</td><td>re.M</td><td><b>m</b>ultiline matching</td></tr>
+            <tr><td>(?s)</td><td>re.S</td><td>Make the '<b>.</b>' to match any character at all, including a newline</td></tr>
+            <tr><td>(?x)</td><td>re.X</td><td>Allows to write readable regexes by using spaces and comments('#') in the regex. More on: <a href="https://docs.python.org/3/library/re.html#re.X">re.X</a></td></tr>
+        </table>
+        <p>Reference: <a href="https://docs.python.org/3/howto/regex.html#compilation-flags">Compilation flags</a></p>
+    </section>
+    <section><h3>Modifiers/Flags example</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Using the re.IGNORECASE flag to perform case-insensitive matching</dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import re
 
-			text = """123
-			ABC
-			456"""
-			rx = re.compile('(?is)123.abc')
+                text = "The quick brown fox jumps over the lazy dog."
 
-			res = rx.search(text)
-			if res:
-				print(res.group(0))
-			else:
-				print("No match!")
-		</code></pre>
-	</section>
+                pattern = re.compile(r"the", flags=re.IGNORECASE)
+                result = pattern.findall(text)
+
+
+                # Output:
+                # ['The', 'the']
+            </code></pre>
+            <dt>Using re.MULTILINE flag to match at beginning of each line:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import re
+
+                # Example text containing multiple lines
+                text = """Line 1
+                # Line 2
+                Line 3"""
+
+                # Matching lines starting with "Line"
+                pattern = re.compile(r'^Line\s*\d', re.MULTILINE)
+                result = pattern.findall(text)
+                print(result)
+
+                # Output: ['Line 1', 'Line 3']
+            </code></pre>
+        </dl>
+    </section>
 </section>
 
-<section data-min="5" class="main-section-title"><h1>Resources</h1></section>
+
+<section class="main-section-title"><h1>Alternation</h1></section>
+<section class="sub-sections"><h2>Alternation</h2>
+    <section><h3>Alternation</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Alternation allows you to match one pattern or another. It is denoted by the pipe symbol <code>|</code>.</dt>
+            <pre><code rel="Python" class="python">
+                import re
+
+                text = "I love cats. He love dogs."
+                pattern = re.compile(r"cat|dog")
+
+                result = pattern.findall(text)
+                print(result)
+
+                # Output: ['cat', 'dog']
+            </code></pre>
+            <dt>The alternation operator has the lowest precedence of all regex operators. That is, it tells the regex engine to match either everything to the left of pipe, or everything to the right of pipe.</dt>
+            <dd>If you want to limit the reach of the alternation, you need to use parentheses for grouping (discussed in next topic).</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import re
+
+                text = "I love cats. He love dogs."
+                pattern = re.compile(r"(?:cat|dog)s")
+
+                result = pattern.findall(text)
+                print(result)
+            </code></pre>
+        </dl>
+    </section>
+</section>
+
+<section class="main-section-title"><h1>Grouping and capturing</h1></section>
+<section class="sub-sections"><h2>Grouping and capturing</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>Brackets: <span class="note">(</span> and <span class="note">)</span>, play a dual role in regex!</dt>
+            <dt>They can be used to <span class="note">capturing groups</span>, to remember a matched part of the string. Like: </dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import re
+
+                text = "Ivan Ivanov: 30 years old, Petar Petrov: 25 years old"
+
+                # Using capturing group to get names and ages
+                pattern = re.compile(r"(\w+ \w+): (\d+) years old")
+                matches = pattern.findall(text)
+
+                for match in matches:
+                    print("Name:", match[0])
+                    print("Age:", match[1])
+            </code></pre>
+            <dt>Brackets can be used for <span class="note">non-capturing groups</span> to group parts in a regex without capturing: </dt>
+            <dd><code><b>/(?:r1|r2)r3/</b></code> => match <code><b>r1r3</b></code> OR <code><b>r2r3</b></code>, but not <code><b>r1r2r3</b></code></dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                import re
+
+                # Example text
+                text = "I love strawberries and raspberries, but not blueberries."
+
+                # Using non-capturing group with alternation to match "quick" or "lazy"
+                pattern = re.compile(r"(?:straw|rasp)berries")
+                result = pattern.findall(text)
+                print(result)
+                # Output: ['strawberries', 'raspberries']
+            </code></pre>
+            <dt class="note">NB! Capturing is slow and memory consuming! If you need the parenthesis just for grouping- always use the <b>?:</b> prefix.</dt class="note">
+        </dl>
+    </section>
+</section>
+
+<section class="main-section-title"><h1>Resources</h1></section>
 <section class="sub-sections"><h2>Resources</h2>
 	<section><h3>Video</h3>
 		<p>Reg(exp){2}lained/: Demystifying Regular Expressions by Lea Verou</p>
