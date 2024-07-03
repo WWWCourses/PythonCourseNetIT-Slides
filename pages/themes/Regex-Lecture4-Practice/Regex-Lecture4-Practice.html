@@ -288,7 +288,7 @@
                 "___a_____1", #yes
                 "___1_____a", #yes
                 "___1_____!", # no (no letter)
-                "_____1a", #no ( Rule 1)
+                "123abc", #no ( rule 2)
             ]
         </code></pre>
         <p>The expected output should be:</p>
@@ -296,7 +296,7 @@
             ___a_____1 is valid!
             ___1_____a is valid!
             ___1_____! is NOT valid!
-            _____1a is valid!
+            123abc is NOT valid!
         </code></pre>
         <p style="font-style: italic;">Hint: the easiest solution is to use <a href="https://www.regular-expressions.info/lookaround.html">positive look-ahead</a></p>
     </section>
@@ -343,12 +343,12 @@
                     print(f'{string} is NOT valid!')
 
 
-            passwords = [
-                "___a_____1", #yes
-                "___1_____a", #yes
-                "___1_____!", # no (no letter)
-                "123abc", #no ( rule 2)
-            ]
+                passwords = [
+                    "___a_____1", #yes
+                    "___1_____a", #yes
+                    "___1_____!", # no (no letter)
+                    "123abc", #no ( rule 2)
+                ]
 
             for t in passwords:
                 validate_password(t))
@@ -381,31 +381,36 @@
             import re
 
             def strip_all_tags(html):
-                rx = re.compile(r'(?s)<.+?>')
-                return rx.sub('',html)
+                &quot;&quot;&quot;Remove all HTML tags from the input string.&quot;&quot;&quot;
+                tag_re = re.compile(r&#39;&lt;[^&gt;]+&gt;&#39;)
+                return tag_re.sub(&#39;&#39;, html)
 
-            def strip_mult_spaces(data,count):
-                rx = re.compile(r'\s{'+str(count)+',}')
-                return rx.sub('',data)
+            def normalize_spaces(data):
+                &quot;&quot;&quot;Replace multiple spaces with a single space and trim leading and trailing spaces&quot;&quot;&quot;
+                space_re = re.compile(r&#39;\s+&#39;)
+                return space_re.sub(&#39; &#39;, data).strip()
 
-            html = '''<div class="ac-head">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2"
-                        aria-expanded="true" aria-controls="collapse2">
-                            <span>
-                            02                          </span>
-                        <div>Променливи в Питон. (семестър 1)  (12.03.2020 в 18:30 ч.)</div>
-                        <div style="font-size:14px;">Модул: Основи на Питон, Продължителност: <b>3 учебни часа</b></div>
-                        </button>
-                    </div>
-            '''
+            html = &#39;&#39;&#39;
+            &lt;div class=&quot;ac-head&quot;&gt;
+                &lt;button class=&quot;btn btn-link&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#collapse2&quot; aria-expanded=&quot;true&quot; aria-controls=&quot;collapse2&quot;&gt;
+                    &lt;span&gt;
+                    02                          &lt;/span&gt;
+                &lt;div&gt;Променливи в Питон. (семестър 1)  (12.03.2020 в 18:30 ч.)&lt;/div&gt;
+                &lt;div style=&quot;font-size:14px;&quot;&gt;Модул: Основи на Питон, Продължителност: &lt;b&gt;3 учебни часа&lt;/b&gt;&lt;/div&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+            &#39;&#39;&#39;
 
+            # Strip HTML tags
             data = strip_all_tags(html)
-            print('\n', '~'*10, 'after stripped tags', '~'*10)
+            print(&#39;\n&#39;, &#39;~&#39; * 10, &#39;After stripping tags&#39;, &#39;~&#39; * 10)
             print(data)
 
-            data_cleaned=strip_mult_spaces(data,3)
-            print('\n', '~'*10,'after space cleaning', '~'*10)
+            # Clean up multiple spaces
+            data_cleaned = normalize_spaces(data)
+            print(&#39;\n&#39;, &#39;~&#39; * 10, &#39;After space cleaning&#39;, &#39;~&#39; * 10)
             print(data_cleaned)
+
         </code></pre>
     </section>
 </section>
