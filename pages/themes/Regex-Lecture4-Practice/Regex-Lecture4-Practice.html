@@ -308,13 +308,15 @@
             <dt>Operation: When a regex engine encounters a positive look-ahead, it checks to see if the immediate part of the string matches the pattern inside the look-ahead. If it does, the regex engine continues matching the rest of the regex pattern. If it doesn't, the regex fails at that point.</dt>
             <dt>Examples:</dt>
             <pre><code rel="Python" class="python" style="min-height: 30vh;">
-                # next regex will match "10" in "10usd", but it won't include "usd" in the match.
+                # This regex will match "10" in "10usd", but it won't include "usd" in the match.
                 regex = r'\d+(?=usd)'
 
-                # next regex asserts that at the beginning of the string there must be at least one digit anywhere ahead in the string.
-                regex = r'^(?=.*)'
+                # This regex ensures that the string contains at least one digit anywhere after the beginning of the string.
+                regex = r'^(?=.*\d)'
 
-                # next regex matches the entire string as long as it contains a digit.
+                regex = r'^(?=.*\d)'
+
+                # This regex matches the entire string as long as it contains a digit.
                 regex = r'^(?=.*\d).*$'
             </code></pre>
             <dl class="fa">
