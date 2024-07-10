@@ -1,52 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>DBMS-Lecture1</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>DBMS-Lecture1</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture1" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture1" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -54,368 +54,414 @@
 -->
 <section class="main-section-title"><h1>DataBase Management Systems (DBMS)</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
 
 <section class="main-section-title"><h1>DBMS - Introduction</h1></section>
 <section class="sub-sections"><h2>DBMS - Introduction</h2>
-	<section><h3>Why we need DataBase systems?</h3>
-		<a href="./images/DBMS_Overview.png" title="click for bigger image" title="click for bigger image"><img src="./images/DBMS_Overview.png" alt="DBMS_Overview.png" style="min-height:80vh ;"></a>
-		<p>Can you imagine such a workflow using only files to store data?</p>
-	</section>
+    <section><h3>Why we need DataBase systems?</h3>
+        <a href="./images/DBMS_Overview.png" title="click for bigger image" title="click for bigger image"><img src="./images/DBMS_Overview.png" alt="DBMS_Overview.png" style="min-height:80vh ;"></a>
+        <p>Can you imagine such a workflow using only files to store data?</p>
+    </section>
 </section>
 
 <section data-min="50" class="main-section-title"><h1>Relational vs Non-Relational DataBases</h1><br><h2>or <span class="note">SQL vs NoSQL DataBases</span></h2></section>
 <section class="sub-sections"><h2>SQL vs NoSQL DataBases</h2>
-	<section>
-		<dl class="fa">
-			<dt><strong>Relational DataBases (SQL DataBases)</strong></dt>
-			<dd>Relational databases were developed in the 1970s.</dd>
-			<dd>Data are stored as <span class="note">relational tables</span>, where each row represents a single instance of the entity being modeled, and each column represents a specific attribute of that entity.</dd>
-			<dd>Data manipulations are done by <span class="note">Structured Query Language (SQL)</span>, based on Edgar Frank Codd’s work on the relational model for database management</dd>
-			<dt><strong>No-SQL DataBases ("non SQL" or "not only SQL")</strong></dt>
-			<dd>Developed in the late 2000s</dd>
-			<dd>Have flexible data models. Can handle large volumes of structured, semi-structured, and unstructured data.</dd>
-			<dd>Focus on scaling, fast queries and frequent application changes.</dd>
-		</dl>
-		<br>
-		<p>Reference: <a href="https://www.mongodb.com/nosql-explained/nosql-vs-sql#differences-between-sql-and-nosql">Differences between SQL and NoSQL</a></p>
-	</section>
-	<section>
-		<a href="./images/documentDB_vs_RDMS.png" title="click for bigger image" title="click for bigger image"><img src="./images/documentDB_vs_RDMS.png" alt="documentDB_vs_RDMS.png" style="min-height: 70vh;"></a>
-	</section>
+    <section>
+        <dl class="fa">
+            <dt><strong>Relational DataBases (SQL DataBases)</strong></dt>
+            <dd>Relational databases were developed in the 1970s.</dd>
+            <dd>Data are stored as <span class="note">relational tables</span>, where each row represents a single instance of the entity being modeled, and each column represents a specific attribute of that entity.</dd>
+            <dd>Data manipulations are done by <span class="note">Structured Query Language (SQL)</span>, based on Edgar Frank Codd’s work on the relational model for database management</dd>
+            <dt><strong>No-SQL DataBases ("non SQL" or "not only SQL")</strong></dt>
+            <dd>Developed in the late 2000s</dd>
+            <dd>Have flexible data models. Can handle large volumes of structured, semi-structured, and unstructured data.</dd>
+            <dd>Focus on scaling, fast queries and frequent application changes.</dd>
+        </dl>
+        <br>
+        <p>Reference: <a href="https://www.mongodb.com/nosql-explained/nosql-vs-sql#differences-between-sql-and-nosql">Differences between SQL and NoSQL</a></p>
+    </section>
+    <section>
+        <dl class="fa" style="min-width:80vw">
+            <dt>On the left, the JSON document represents how data is typically stored in a NoSQL database</dt>
+            <dt>On the right, the two tables ("User Info" and "Address Info") represent how the same data would be normalized and stored in a SQL database.</dt>
+            <dd>The relationship between 2 tables is established by foreign key, shown in the image as 'ZIP_id'.</dd>
+        </dl>
+        <a href="./images/documentDB_vs_RDMS.png" title="click for bigger image" title="click for bigger image"><img src="./images/documentDB_vs_RDMS.png" alt="documentDB_vs_RDMS.png" style="min-height: 70vh;"></a>
+    </section>
 </section>
 
 <section data-min="50" class="main-section-title"><h1>NoSQL common data structures</h1></section>
 <section class="sub-sections"><h2>NoSQL common data structures</h2>
-	<section><h3>Key-Value Store Databases</h3>
-		<dl class="fa">
-			<dt>data is represented as a collection of <span class="note">Key-Value pairs</span>,  an attribute name and a value, eg &lt;department, sales&gt; or &lt;salary, 2300&gt;.</dt>
-			<a href="./images/KeyValue.png" title="click for bigger image"><img src="./images/KeyValue.png" alt="KeyValue.png" style="margin:1em"></a>
-			<dt>Adavantages:</dt>
-			<dd>Flexibility, use far less memory</dd>
-			<dt>Popular systems</dt>
-			<dd>Redis, memcached, Berkeley DB</dd>
-		</dl>
-	</section>
-	<section><h3>Wide Column Store Databases</h3>
-		<dl class="fa">
-			<dt>uses tables, rows and columns like in a relational database, but unlike a relational database, the names and formats of the columns can vary from row to row in the same table.  A wide column store can be interpreted as a 2 dimensional key-value store..</dt>
-			<a href="./images/wide-column-store.png" title="click for bigger image"><img src="./images/wide-column-store.png" alt="wide-column-store.png" style="height: 50vh;"></a>
-			<dt>Popular systems</dt>
-			<dd>Apache Cassandra, HBase,  Azure Tables, Bigtable</dd>
-		</dl>
-	</section>
-	<section><h3>Graph Databases</h3>
-		<dl class="fa">
-			<dt>Focuses on the relationships between data.</dt>
-			<dt>A graph is composed of 2 elements - a node and a relationship.  A node represents an entity, and a relationship represents how 2 nodes are associated. In the graph world these relationships are more important than the individual nodes or data points.</dt>
-			<a href="./images/GraphDatabase_PropertyGraph.png" title="click for bigger image" title="click for bigger image"><img src="./images/GraphDatabase_PropertyGraph.png" alt="GraphDatabase_PropertyGraph.png"></a>
-			<dt>The underlying storage mechanism of graph databases can vary: some uses the relational model and stores the graph as tables, others use a key-value store or document-oriented database</dt>
-			<dt>Popular systems</dt>
-			<dd>Neo4j, Ontotext GraphDB</dd>
-
-		</dl>
-	</section>
-	<section><h3>Document Store Databases</h3>
-		<dl class="fa">
-			<dt>data is encapsulated in a 'document' which is a standard format or encoding, eg XML, YAML or JSON.</dt>
-			<dt> Each document has a unique 'key' to identify it.</dt>
-			<dt>Documents can be grouped using Collections, Tags, Metadata or directory hierarchies.  Collections are similar to tables on a relation database, and documents similar to records.  But they differ in that every record in a relational database has the same sequence of fields, whereas documents in a collection can have an array of different fields.</dt>
-			<dt>Popular systems</dt>
-			<dd>MongoDB, CouchDB, Elasticsearch</dd>
-		</dl>
-	</section>
-
+    <section>
+        <h3>Key-Value Store Databases</h3>
+        <dl class="fa">
+            <dt>Data is represented as a collection of <span class="note">Key-Value pairs</span>, an attribute name and a value, e.g., &lt;department, sales&gt; or &lt;salary, 2300&gt;.</dt>
+            <a href="./images/KeyValue.png" title="Click for a larger image">
+                <img src="./images/KeyValue.png" alt="Key-Value pairs example" style="margin:1em">
+            </a>
+            <dt>Advantages:</dt>
+            <dd>Flexibility: Easy to add or modify key-value pairs without schema changes.</dd>
+            <dd>Memory Efficiency: Uses far less memory compared to other data models, especially when used as in-memory databases.</dd>
+            <dt>Popular Systems:</dt>
+            <dd>Redis, Memcached, Berkeley DB</dd>
+            <dt>Common Use Cases:</dt>
+            <dd>Caching, session management, real-time data analytics.</dd>
+        </dl>
+    </section>
+    <section>
+        <h3>Wide Column Store Databases</h3>
+        <dl class="fa" style="font-size: 0.9em;">
+            <dt>Wide Column Store Databases use tables, rows, and columns similar to a relational database, but with a key difference: the names and formats of the columns can vary from row to row within the same table. Essentially, a wide column store can be interpreted as a two-dimensional key-value store, offering more flexibility in data storage.</dt>
+            <a href="./images/Wide-column-Database-diagram.webp" title="Click for a larger image">
+                <img src="./images/Wide-column-Database-diagram.webp" alt="Wide Column Store Diagram" style="height: 50vh;">
+            </a>
+            <dt>Popular Systems:</dt>
+            <dd>Apache Cassandra, HBase, Azure Tables, Bigtable</dd>
+            <dt>Advantages:</dt>
+            <dd>Flexibility: Can handle dynamic and varied data structures within the same table.</dd>
+            <dd>Scalability: Designed to handle large volumes of data across distributed systems efficiently.</dd>
+            <dt>Common Use Cases:</dt>
+            <dd>Real-time data processing, IoT data management, time-series data, and large-scale data analytics.</dd>
+        </dl>
+    </section>
+    <section>
+        <h3>Graph Databases</h3>
+        <dl class="fa" style="font-size: 0.9em;">
+            <dt>Focuses on the relationships between data.</dt>
+            <dt>A graph is composed of two elements: nodes and relationships. A node represents an entity, and a relationship represents how two nodes are associated. In the graph world, these relationships are often more important than the individual nodes or data points.</dt>
+            <a href="./images/GraphDatabase_PropertyGraph.png" title="Click for a larger image">
+                <img src="./images/GraphDatabase_PropertyGraph.png" alt="Graph Database Property Graph">
+            </a>
+            <dt>The underlying storage mechanism of graph databases can vary: some use the relational model and store the graph as tables, others use a key-value store or document-oriented database.</dt>
+            <dt>Popular Systems:</dt>
+            <dd>Neo4j, Ontotext GraphDB</dd>
+            <dt>Advantages:</dt>
+            <dd>Efficiently handles complex relationships and queries.</dd>
+            <dd>Ideal for social networks, recommendation systems, and network analysis.</dd>
+        </dl>
+    </section>
+    <section>
+        <h3>Document Store Databases</h3>
+        <dl class="fa" style="font-size: .9em;">
+            <dt>Data is encapsulated in a 'document' which is a standard format or encoding, such as XML, YAML, or JSON.</dt>
+            <dt>Each document has a unique 'key' to identify it.</dt>
+            <dt>Documents can be grouped using collections, tags, metadata, or directory hierarchies. Collections are similar to tables in a relational database, and documents are similar to records. However, unlike relational databases, documents in a collection can have different fields.</dt>
+            <a href="./images/Document_store_db.png"><img src="./images/Document_store_db.png" alt="./images/Document_store_db.png"></a>
+            <dt>Advantages:</dt>
+            <dd>Flexibility: Documents can have varying structures, making it easy to adapt to changing data requirements.</dd>
+            <dd>Scalability: Designed to handle large volumes of data across distributed systems.</dd>
+            <dd>Performance: Optimized for fast retrieval of documents.</dd>
+            <dt>Popular Systems:</dt>
+            <dd>MongoDB, CouchDB, Elasticsearch</dd>
+        </dl>
+    </section>
 </section>
 
 
 <section data-min="50" class="main-section-title"><h1>Mongodb - getting started</h1></section>
 <section class="sub-sections"><h2>Mongodb - getting started</h2>
-	<section><h3>What is Mongodb</h3>
-		<dl class="fa">
-			<dt>Mongodb is a <span class="note">document-orientated</span> database</dt>
-			<dt>One of the most popular NoSQL databases</dt>
-			<dt>The name comes from hu<span class="note">mongo</span>us (<i>huge; enormous.</i> )</dt>
-			<dt>Mongodb saves data in BSON (Binary JSON) format, which was modeled after the JSON format (JavaScript Object Notation)</dt>
-			<dt style="font-size: 1.2em;">Mongo Official site is: <a href="https://www.mongodb.com/">mongodb.com</a></dt>
-		</dl>
-	</section>
-	<section><h3>Installation</h3>
-		<dl class="fa">
-			<dt>Install from: </dt>
-			<dd><a href="https://www.mongodb.com/try/download/community">MongoDB Community Server</a></dd>
-			<dt>But its better to follow the docs:</dt>
-			<dd><a href="https://docs.mongodb.com/manual/administration/install-community/">Install MongoDB Community Edition @docs.mongodb.com</a></dd>
-			<dt>Visual Tutorial: <a href="https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb">How to Install MongoDB</a></dt>
-		</dl>
-	</section>
-	<section><h3>Install MongoDB Shell (Windows Only)</h3>
-		<dl class="fa">
-			<dt>MongoDB Shell (mongosh) does not come with the MongoDB Community Edition. You need to install it separately after successfully installing the MongoDB server on your windows 10 system.</dt>
-			<dt>Download it from <a href="https://www.mongodb.com/try/download/shell">MongoDB Shell</a></dt>
-			<dt>Do not forget to add <a href="https://www.mongodb.com/docs/mongodb-shell/install/#add-the-mongosh-binary-to-your-path-environment-variable"> the MongoDB Shell binary's location to your PATH environment variable</a></dt>
-		</dl>
-	</section>
-	<section><h3>Run MongoDB Community Edition</h3>
-		<p>If Mongo Server is not started, you can start it manually by:</p>
-		<dl class="fa">
-			<dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#run-mongodb-community-edition">Linux (Ubuntu based)</a></dt>
-			<dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#run-mongodb-community-edition-as-a-windows-service">Windows</a></dt>
-			<dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb-community-edition">MacOS</a></dt>
-		</dl>
-	</section>
-	<section><h3>Test the local installation</h3>
-		<pre><code rel="Terminal" class="bash">
-			mongosh --version
-		</code></pre>
-		<p>If you receve similar output => you're good to go</p>
-		<pre><code rel="Output" class="bash">
-			MongoDB shell version v4.4.9
-			connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
-			Implicit session: session { "id" : UUID("84365a48-2b99-48e7-a5a0-8598ad39b06a") }
-			MongoDB server version: 4.4.9
-		</code></pre>
-	</section>
+    <section><h3>What is Mongodb</h3>
+        <dl class="fa">
+            <dt>Mongodb is a <span class="note">document-orientated</span> database</dt>
+            <dt>One of the most popular NoSQL databases</dt>
+            <dt>The name comes from hu<span class="note">mongo</span>us (<i>huge; enormous.</i> )</dt>
+            <dt>Mongodb saves data in BSON (Binary JSON) format, which was modeled after the JSON format (JavaScript Object Notation)</dt>
+            <dt style="font-size: 1.2em;">Mongo Official site is: <a href="https://www.mongodb.com/">mongodb.com</a></dt>
+        </dl>
+    </section>
+    <section><h3>Installation</h3>
+        <dl class="fa">
+            <dt>Install from: </dt>
+            <dd><a href="https://www.mongodb.com/try/download/community">MongoDB Community Server</a></dd>
+            <dt>But its better to follow the docs:</dt>
+            <dd><a href="https://docs.mongodb.com/manual/administration/install-community/">Install MongoDB Community Edition @docs.mongodb.com</a></dd>
+            <dt>Visual Tutorial: <a href="https://coding-boot-camp.github.io/full-stack/mongodb/how-to-install-mongodb">How to Install MongoDB</a></dt>
+        </dl>
+    </section>
+    <section><h3>Install MongoDB Shell (Windows Only)</h3>
+        <dl class="fa">
+            <dt>MongoDB Shell (mongosh) does not come with the MongoDB Community Edition. You need to install it separately after successfully installing the MongoDB server on your windows 10 system.</dt>
+            <dt>Download it from <a href="https://www.mongodb.com/try/download/shell">MongoDB Shell</a></dt>
+            <dt>Do not forget to add <a href="https://www.mongodb.com/docs/mongodb-shell/install/#add-the-mongosh-binary-to-your-path-environment-variable"> the MongoDB Shell binary's location to your PATH environment variable</a></dt>
+        </dl>
+    </section>
+    <section><h3>Run MongoDB Community Edition</h3>
+        <p>If Mongo Server is not started, you can start it manually by:</p>
+        <dl class="fa">
+            <dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#run-mongodb-community-edition">Linux (Ubuntu based)</a></dt>
+            <dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#run-mongodb-community-edition-as-a-windows-service">Windows</a></dt>
+            <dt><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#run-mongodb-community-edition">MacOS</a></dt>
+        </dl>
+    </section>
+    <section><h3>Test the installation</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Check the MongoDB Server installed version:</dt>
+            <pre><code rel="Terminal" class="bash">
+                mongod --version
+            </code></pre>
+            <pre><code rel="Output" class="bash">
+                db version v7.0.5
+                Build Info: {
+                    "version": "7.0.5",
+                    "gitVersion": "7809d71e84e314b497f282ea8aa06d7ded3eb205",
+                    "openSSLVersion": "OpenSSL 3.0.2 15 Mar 2022",
+                    "modules": [],
+                    ...
+                }
+            </code></pre>
+            <dt>Check the MongoDB Shell installed version:</dt>
+            <pre><code rel="Terminal" class="bash">
+                mongosh --version
+            </code></pre>
+            <pre><code rel="Output" class="bash">
+                MongoDB shell version v4.4.9
+                connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+                Implicit session: session { "id" : UUID("84365a48-2b99-48e7-a5a0-8598ad39b06a") }
+                MongoDB server version: 4.4.9
+            </code></pre>
+        </dl>
+
+    </section>
 </section>
 
 <section data-min="5" class="main-section-title"><h1>Mongodb data model</h1></section>
 <section class="sub-sections"><h2>Mongodb data model</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>A Mongodb <span class="note">databases</span> is a set of <span class="note">collections</span> of <span class="note">documents</span></dt>
-			<a href="./images/mongodb_collection.svg" title="click for bigger image"><img src="./images/mongodb_collection.svg" alt="mongodb_collection.svg"></a>
-			<dt>The data are stored in a document using <a href="https://docs.mongodb.com/v4.2/core/document/#bson-document-format">BSON Format</a>, which is a is a binary representation of JSON documents,</dt>
-		</dl>
-	</section>
-	<section><h3>Document structure</h3>
-		<dl class="fa">
-			<dt>MongoDB stores data records as BSON documents (Binary representation of JSON documents, though it contains more data types than JSON.</dt>
-			<dd>Reference: <a href="https://docs.mongodb.com/manual/reference/bson-types/">BSON data types</a></dd>
-			<dt>MongoDB documents are composed of field-and-value pairs, separated by coma.</dt>
-			<dt>The value of a field can be any of the BSON data types, including other documents, arrays, and arrays of documents</dt>
-			<a href="./images/document_structure.svg"><img src="./images/document_structure.svg" alt="document_structure.svg" style="width: 50vw;"></a>
-		</dl>
-	</section>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>A Mongodb <span class="note">databases</span> is a set of <span class="note">collections</span> of <span class="note">documents</span></dt>
+            <a href="./images/mongodb_collection.svg" title="click for bigger image"><img src="./images/mongodb_collection.svg" alt="mongodb_collection.svg"></a>
+            <dt>The data are stored in a document using <a href="https://docs.mongodb.com/v4.2/core/document/#bson-document-format">BSON Format</a>, which is a is a binary representation of JSON documents,</dt>
+        </dl>
+    </section>
+    <section><h3>Document structure</h3>
+        <dl class="fa">
+            <dt>MongoDB stores data records as BSON documents (Binary representation of JSON documents, though it contains more data types than JSON.</dt>
+            <dd>Reference: <a href="https://docs.mongodb.com/manual/reference/bson-types/">BSON data types</a></dd>
+            <dt>MongoDB documents are composed of field-and-value pairs, separated by coma.</dt>
+            <dt>The value of a field can be any of the BSON data types, including other documents, arrays, and arrays of documents</dt>
+            <a href="./images/document_structure.svg"><img src="./images/document_structure.svg" alt="document_structure.svg" style="width: 50vw;"></a>
+        </dl>
+    </section>
 </section>
 
 <section data-min="50" class="main-section-title"><h1>MongoDB Atlas - the Mongo's Cloud DataBase</h1></section>
 <section class="sub-sections"><h2>MongoDB Atlas - the Mongo's Cloud DataBase</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>MongoDB Atlas is a fully-managed cloud database developed by the same people that build MongoDB</dt>
-			<dt> Atlas handles all the complexity of deploying, managing, and healing your deployments on the cloud service provider of your choice (AWS, Azure, and GCP)</dt>
-		</dl>
-	</section>
-	<section><h3>Create Free Atlas Plan</h3>
-		<dl class="fa">
-			<dt>You can easily <a href="https://www.mongodb.com/cloud/atlas/register">Get started for free</a>  using your Google Account.</dt>
-			<dd>After filling the Welcome Form, on the page "Deploy your database" select <b>M0 Free</b> plan:</dd>
-			<a href="./images/Atlas_Login_Free.bmp"><img src="./images/Atlas_Login_Free.bmp" alt="Atlas_Login_Free.bmp"></a>
-			<dd>And click the "Create" button on the bottom of the page.</dd>
-			<dt>On next page "Security Quickstart" leave the defaults, click "Create User", and on the last section "Add entries to your IP Access List" click on <b>Add My Current IP Address</b> button.</dt>
-		</dl>
-	</section>
-	<section id="TASK_MongoDB_Atlas"><h3>MongoDB Atlas - TASK</h3>
-		<dl class="fa">
-			<dt>Register to MongoDB Atlas and create <i>python_course_atlas</i> DB with 1 collection: <i>todos</i>, as shown</dt>
-			<a href="./images/Atlas_collection_created_screenshot.png" title="click for bigger image"><img src="./images/Atlas_collection_created_screenshot.png" alt="Atlas_collection_created_screenshot.png" style="max-height: 70vh;"></a>
-			<dd>Docs: <a href="https://docs.atlas.mongodb.com/getting-started/">Get Started with Atlas @docs.atlas.mongodb.com</a></dd>
-		</dl>
-	</section>
-	<section><h3>Create Database User</h3>
-		<dl class="fa">
-			<dt>It's a best practice, when an application needs to work on specific database, to create a separate user for connection to it, and not using your Atlas Credentials.</dt>
-			<dt>In Atlas homepage, on the left side of the screen, under SECURITY section click on <b>Database Access</b> and then on the button "Add New Database User".</dt>
-			<dt>In "Authentication Method" leave Password. In "Password Authentication" write the username and the password. Under "Built-in Role" select: "Read and write to any database". Then click on the "Add User" button.</dt>
-			<a href="./images/Atlas_AddNewDatabaseUser.bmp" title="Click for full page view"><img src="./images/Atlas_AddNewDatabaseUser.bmp" alt="Atlas_AddNewDatabaseUser"></a>
-		</dl>
-	</section>
-	<section><h3 class="advanced">Allow Access to Atlas</h3>
-		<dl class="fa">
-			<dt>If you want to be able to connect to your Atlas Cluster from whatever machine, then:</dt>
-			<dt>In Atlas homepage, on the left side of the screen, under SECURITY section click on <b>Network Access</b>.</dt>
-			<dt>Click the green "Add IP Address" button.</dt>
-			<dt>In the modal, click the ALLOW ACCESS FROM ANYWHERE button. You should see 0.0. 0.0/0 in the Access List Entry field.</dt>
-			<dt>Click the green Confirm button.</dt>
-			<a href="./images/Atlas_AllowIPAdresses.bmp" title="Click for full page view"><img src="./images/Atlas_AllowIPAdresses.bmp" alt="Atlas_AllowIPAdresses" height="600"></a>
-		</dl>
-	</section>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>MongoDB Atlas is a fully-managed cloud database developed by the same people that build MongoDB</dt>
+            <dt> Atlas handles all the complexity of deploying, managing, and healing your deployments on the cloud service provider of your choice (AWS, Azure, and GCP)</dt>
+        </dl>
+    </section>
+    <section><h3>Create Free Atlas Plan</h3>
+        <dl class="fa">
+            <dt>You can easily <a href="https://www.mongodb.com/cloud/atlas/register">Get started for free</a>  using your Google Account.</dt>
+            <dd>After filling the Welcome Form, on the page "Deploy your database" select <b>M0 Free</b> plan:</dd>
+            <a href="./images/Atlas_Login_Free.bmp"><img src="./images/Atlas_Login_Free.bmp" alt="Atlas_Login_Free.bmp"></a>
+            <dd>And click the "Create" button on the bottom of the page.</dd>
+            <dt>On next page "Security Quickstart" leave the defaults, click "Create User", and on the last section "Add entries to your IP Access List" click on <b>Add My Current IP Address</b> button.</dt>
+        </dl>
+    </section>
+    <section id="TASK_MongoDB_Atlas"><h3>MongoDB Atlas - TASK</h3>
+        <dl class="fa">
+            <dt>Register to MongoDB Atlas and create <i>python_course_atlas</i> DB with 1 collection: <i>todos</i>, as shown</dt>
+            <a href="./images/Atlas_collection_created_screenshot.png" title="click for bigger image"><img src="./images/Atlas_collection_created_screenshot.png" alt="Atlas_collection_created_screenshot.png" style="max-height: 70vh;"></a>
+            <dd>Docs: <a href="https://docs.atlas.mongodb.com/getting-started/">Get Started with Atlas @docs.atlas.mongodb.com</a></dd>
+        </dl>
+    </section>
+    <section><h3>Create Database User</h3>
+        <dl class="fa">
+            <dt>It's a best practice, when an application needs to work on specific database, to create a separate user for connection to it, and not using your Atlas Credentials.</dt>
+            <dt>In Atlas homepage, on the left side of the screen, under SECURITY section click on <b>Database Access</b> and then on the button "Add New Database User".</dt>
+            <dt>In "Authentication Method" leave Password. In "Password Authentication" write the username and the password. Under "Built-in Role" select: "Read and write to any database". Then click on the "Add User" button.</dt>
+            <a href="./images/Atlas_AddNewDatabaseUser.bmp" title="Click for full page view"><img src="./images/Atlas_AddNewDatabaseUser.bmp" alt="Atlas_AddNewDatabaseUser"></a>
+        </dl>
+    </section>
+    <section><h3 class="advanced">Allow Access to Atlas</h3>
+        <dl class="fa">
+            <dt>If you want to be able to connect to your Atlas Cluster from whatever machine, then:</dt>
+            <dt>In Atlas homepage, on the left side of the screen, under SECURITY section click on <b>Network Access</b>.</dt>
+            <dt>Click the green "Add IP Address" button.</dt>
+            <dt>In the modal, click the ALLOW ACCESS FROM ANYWHERE button. You should see 0.0. 0.0/0 in the Access List Entry field.</dt>
+            <dt>Click the green Confirm button.</dt>
+            <a href="./images/Atlas_AllowIPAdresses.bmp" title="Click for full page view"><img src="./images/Atlas_AllowIPAdresses.bmp" alt="Atlas_AllowIPAdresses" height="600"></a>
+        </dl>
+    </section>
 </section>
 
 <section data-min="10" class="main-section-title"><h1>MongoDB Shell</h1></section>
 <section class="sub-sections"><h2>MongoDB Shell</h2>
-	<section><h3><span class="note">mongo</span> vs. <span class="note">mongosh</span></h3>
-		<dl class="fa">
-			<dt>MongoDB Shell is the quickest way to connect to (and work with) MongoDB</dt>
-			<dt>There are two separate versions of the shell.</dt>
-			<dt>The <span class="note"><code>mongo</code></span> shell is the old one and it is included in the
-				MongoDB Server installation</dt>
-			<dt>The new <span class="note"><code>mongosh</code></span> shell is a standalone product, it’s developed separately from the MongoDB Server.</dt>
-			<dd>You can install mongosh from here: <a href="https://www.mongodb.com/try/download/shell">Download MongoDB Shell</a></dd>
-			<dd>Be sure to add the path to your mongosh.exe binary to your PATH environment variable during installation.</dd>
-			<dt>Reference: <a href="https://www.mongodb.com/blog/post/introducing-the-new-shell">
-				Introducing the new MongoDB Shell</a></dt>
-		</dl>
-	</section>
-	<section><h3></h3>
-		<dl class="fa">
-			<dt>Start the Mongodb Shell and check help for all commands</dt>
-			<pre><code rel="Terminal" class="bash">
-				mongosh
-				# ---
-				> help
-			</code></pre>
-			<dt>Windows users notes: if you haven't added mongosh to your PATH, then you can start it by navigating to "C:\Program Files\mongosh" and the execute "mongosh.exe"</dt>
-			<a href="./images/start_mongosh_windows_explorer.png"><img src="./images/start_mongosh_windows_explorer.png" alt="start_mongosh_windows_explorer.png" style="height: 50vh;"></a>
-		</dl>
-	</section>
-	<section><h3>Basic commands</h3>
-		<pre><code rel="Terminal" class="bash">
-			db.help()                    help on db methods
-			db.mycoll.help()             help on collection methods
+    <section><h3><span class="note">mongo</span> vs. <span class="note">mongosh</span></h3>
+        <dl class="fa">
+            <dt>MongoDB Shell is the quickest way to connect to (and work with) MongoDB</dt>
+            <dt>There are two separate versions of the shell.</dt>
+            <dt>The <span class="note"><code>mongo</code></span> shell is the old one and it is included in the
+                MongoDB Server installation</dt>
+            <dt>The new <span class="note"><code>mongosh</code></span> shell is a standalone product, it’s developed separately from the MongoDB Server.</dt>
+            <dd>You can install mongosh from here: <a href="https://www.mongodb.com/try/download/shell">Download MongoDB Shell</a></dd>
+            <dd>Be sure to add the path to your mongosh.exe binary to your PATH environment variable during installation.</dd>
+            <dt>Reference: <a href="https://www.mongodb.com/blog/post/introducing-the-new-shell">
+                Introducing the new MongoDB Shell</a></dt>
+        </dl>
+    </section>
+    <section><h3></h3>
+        <dl class="fa">
+            <dt>Start the Mongodb Shell and check help for all commands</dt>
+            <pre><code rel="Terminal" class="bash">
+                mongosh
+                # ---
+                > help
+            </code></pre>
+            <dt>Windows users notes: if you haven't added mongosh to your PATH, then you can start it by navigating to "C:\Program Files\mongosh" and the execute "mongosh.exe"</dt>
+            <a href="./images/start_mongosh_windows_explorer.png"><img src="./images/start_mongosh_windows_explorer.png" alt="start_mongosh_windows_explorer.png" style="height: 50vh;"></a>
+        </dl>
+    </section>
+    <section><h3>Basic commands</h3>
+        <pre><code rel="Terminal" class="bash">
+            db.help()                    help on db methods
+            db.mycoll.help()             help on collection methods
 
-			show dbs                     show database names
-			show collections             show collections in current database
-			show users                   show users in current database
-			use &lt;db_name&gt;		     set current database (create a new one, if there isn't any)
-			db.mycoll.find()             list objects in collection mycoll
-		</code></pre>
-	</section>
-	<section><h3>Work with Database</h3>
-		<dl class="fa">
-			<dt>Create Database</dt>
-			<dd>There is no “create” command in the MongoDB shell. We can use the command: <code>use <i>database</i></code> on non-existing database and it will be created. If the database exist it will be set as current.</dd>
-			<dt><code>db.dropDatabase()</code></dt>
-			<dd>Removes the current database, deleting the associated data files.</dd>
-			<dt>Show current database</dt>
-			<dd><code>db</code> </dd>
-		</dl>
+            show dbs                     show database names
+            show collections             show collections in current database
+            show users                   show users in current database
+            use &lt;db_name&gt;		     set current database (create a new one, if there isn't any)
+            db.mycoll.find()             list objects in collection mycoll
+        </code></pre>
+    </section>
+    <section><h3>Work with Database</h3>
+        <dl class="fa">
+            <dt>Create Database</dt>
+            <dd>There is no “create” command in the MongoDB shell. We can use the command: <code>use <i>database</i></code> on non-existing database and it will be created. If the database exist it will be set as current.</dd>
+            <dt><code>db.dropDatabase()</code></dt>
+            <dd>Removes the current database, deleting the associated data files.</dd>
+            <dt>Show current database</dt>
+            <dd><code>db</code> </dd>
+        </dl>
 
-	</section>
-	<section><h3>Work with document collections</h3>
-		<dl class="fa">
-			<dt>Collections can be created just like databases, by writing a document to them.</dt>
-			<pre><code rel="Terminal" class="bash">
-				> use python_course
-				switched to db python_course
-				> db.todos.insert({title: "Learn Python", completed: false})
-				WriteResult({ "nInserted" : 1 })
-			</code></pre>
-			<dt>Note that db refers to current database being selected with <code>use</code> command. In example above, this is "python_course" db.</dt>
-			<dt>The collection into which the document is inserted is "todos". If it did not exists it will be created. </dt>
-		</dl>
-	</section>
+    </section>
+    <section><h3>Work with document collections</h3>
+        <dl class="fa">
+            <dt>Collections can be created just like databases, by writing a document to them.</dt>
+            <pre><code rel="Terminal" class="bash">
+                > use python_course
+                switched to db python_course
+                > db.todos.insert({title: "Learn Python", completed: false})
+                WriteResult({ "nInserted" : 1 })
+            </code></pre>
+            <dt>Note that db refers to current database being selected with <code>use</code> command. In example above, this is "python_course" db.</dt>
+            <dt>The collection into which the document is inserted is "todos". If it did not exists it will be created. </dt>
+        </dl>
+    </section>
 </section>
 
 <section data-min="5" class="main-section-title"><h1>MongoDB Compass</h1></section>
 <section class="sub-sections"><h2>MongoDB Compass</h2>
-	<section><h3></h3>
-		<dl class="fa">
-			<dt>MongoDB Compass is a the official GUI (Graphical User Interface) to explore, analyze, and interact with Mongodb Database</dt>
-			<dt><a href="https://docs.mongodb.com/compass/current/install/">Download and Install Compass: </a></dt>
-		</dl>
-	</section>
+    <section><h3></h3>
+        <dl class="fa">
+            <dt>MongoDB Compass is a the official GUI (Graphical User Interface) to explore, analyze, and interact with Mongodb Database</dt>
+            <dt><a href="https://docs.mongodb.com/compass/current/install/">Download and Install Compass: </a></dt>
+        </dl>
+    </section>
 </section>
 
 <section data-min="50" class="main-section-title"><h1>MongoDB for VS Code</h1></section>
 <section class="sub-sections"><h2>MongoDB for VS Code</h2>
-	<section>
-		<dl class="fa">
-			<dt>Mongodb has extension for VSCode: <a href="https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode">MongoDB for VS Code</a></dt>
-			<dt>It makes it easy to work with your data in MongoDB directly from your VS Code environment. MongoDB for VS Code is the perfect companion for MongoDB Atlas, but you can also use it with your self-managed MongoDB instances.</dt>
-		</dl>
-	</section>
+    <section>
+        <dl class="fa">
+            <dt>Mongodb has extension for VSCode: <a href="https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode">MongoDB for VS Code</a></dt>
+            <dt>It makes it easy to work with your data in MongoDB directly from your VS Code environment. MongoDB for VS Code is the perfect companion for MongoDB Atlas, but you can also use it with your self-managed MongoDB instances.</dt>
+        </dl>
+    </section>
 </section>
 
 <section data-min="5" class="main-section-title"><h1>Connect to MongoDB</h1></section>
 <section class="sub-sections"><h2>Connect to MongoDB</h2>
-	<section><h3>MongoDB URI (connection string)</h3>
-		<dl class="fa">
-			<dt>In order to connect to MongoDB, you will need a URI string.</dt>
-			<dd>A URI (Uniform Resource Identifier) is similar to a URL.</dd>
-			<dt>MongoDB URI must be supplied as a parameter when connecting to the mongo shell, Compass, and the MongoDB drivers</dt>
-			<dt>The MongoDB URI have two forms:</dt>
-			<ul style="line-height: 1.2em;">
-				<li><b>Standard connecting string</b>:<br>
-					<ul>
-						<li><code>mongodb://<i>username</i>:<i>password</i>@localhost:27017/<i>dbname</i></code></li>
-						<li>where <i>username</i>, <i>password</i> and <i>dbname</i> are optional</li>
-					</ul>
-				</li>
-				<li><b>DNS Seed List</b>:<br>
-					<ul>
-						<li><code>mongodb+srv://server.example.com/</code></li>
-					</ul>
-				</li>
-			</ul>
-		</dl>
-	</section>
-	<section><h3>Connect Compass to Atlas MongoDB</h3>
-		<dl class="fa">
-			<dt>Login to you Atlas MongoDB Cluster</dt>
-			<dt>Click connect button</dt>
-			<a href="./images/atlas_connect_button.png"><img src="./images/atlas_connect_button.png" alt=""></a>
-			<dt>Then select "I have MongoDB Compass"</dt>
-			<dt>Choose your Compass version</dt>
-		</dl>
-	</section>
-	<section>
-		<dl class="fa">
-			<dt>Copy the connection string</dt>
-			<a href="./images/atlas_copy_conn_string.png"><img src="./images/atlas_copy_conn_string.png" alt="atlas_copy_conn_string" style="height: 50vh; margin-left:1em;"></a>
-			<dt>Replace &lt;username&gt; and &lt;password&gt; with your Atlas credentials.</dt>
-			<dt>The connection string must looks like: <code>mongodb+srv://python_courses_test:12345678abv@cluster0.6oisd7l.mongodb.net/test</code></dt>
-		</dl>
-	</section>
-	<section>
-		<dl class="fa">
-			<dt>Open MongoDB Compass and in "New Connection" window paste the connection string</dt>
-			<a href="./images/MongoDB Compass - Connect_001.png"><img src="./images/MongoDB Compass - Connect_001.png" alt="MongoDB Compass - Connect_001.png"></a>
-		</dl>
-	</section>
+    <section><h3>MongoDB URI (connection string)</h3>
+        <dl class="fa">
+            <dt>In order to connect to MongoDB, you will need a URI string.</dt>
+            <dd>A URI (Uniform Resource Identifier) is similar to a URL.</dd>
+            <dt>MongoDB URI must be supplied as a parameter when connecting to the mongo shell, Compass, and the MongoDB drivers</dt>
+            <dt>The MongoDB URI have two forms:</dt>
+            <ul style="line-height: 1.2em;">
+                <li><b>Standard connecting string</b>:<br>
+                    <ul>
+                        <li><code>mongodb://<i>username</i>:<i>password</i>@localhost:27017/<i>dbname</i></code></li>
+                        <li>where <i>username</i>, <i>password</i> and <i>dbname</i> are optional</li>
+                    </ul>
+                </li>
+                <li><b>DNS Seed List</b>:<br>
+                    <ul>
+                        <li><code>mongodb+srv://server.example.com/</code></li>
+                    </ul>
+                </li>
+            </ul>
+        </dl>
+    </section>
+    <section><h3>Connect Compass to Atlas MongoDB</h3>
+        <dl class="fa">
+            <dt>Login to you Atlas MongoDB Cluster</dt>
+            <dt>Click connect button</dt>
+            <a href="./images/atlas_connect_button.png"><img src="./images/atlas_connect_button.png" alt=""></a>
+            <dt>Then select "I have MongoDB Compass"</dt>
+            <dt>Choose your Compass version</dt>
+        </dl>
+    </section>
+    <section>
+        <dl class="fa">
+            <dt>Copy the connection string</dt>
+            <a href="./images/atlas_copy_conn_string.png"><img src="./images/atlas_copy_conn_string.png" alt="atlas_copy_conn_string" style="height: 50vh; margin-left:1em;"></a>
+            <dt>Replace &lt;username&gt; and &lt;password&gt; with your Atlas credentials.</dt>
+            <dt>The connection string must looks like: <code>mongodb+srv://python_courses_test:12345678abv@cluster0.6oisd7l.mongodb.net/test</code></dt>
+        </dl>
+    </section>
+    <section>
+        <dl class="fa">
+            <dt>Open MongoDB Compass and in "New Connection" window paste the connection string</dt>
+            <a href="./images/MongoDB Compass - Connect_001.png"><img src="./images/MongoDB Compass - Connect_001.png" alt="MongoDB Compass - Connect_001.png"></a>
+        </dl>
+    </section>
 </section>
 
 <section data-min="5" class="main-section-title"><h1>Use Python with MongoDB</h1></section>
 <section class="sub-sections"><h2>PyMongo - a Mongodb Python's driver</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>To access a MongoDB from our Python application we need a MongoDB Python driver</dt>
-			<dt>The official ones are:</dt>
-			<dd><a href="https://docs.mongodb.com/drivers/pymongo/">pymongo</a> is the recommended driver to work with MongoDB using Python.</dd>
-			<dd><a href="https://docs.mongodb.com/drivers/motor/">motor</a> is the recommended driver for when you need <span class="note">non-blocking, asynchronous</span> access to MongoDB using Python.
-			</dd>
-			<dt>In these course we'll be using <span class="note">pymongo</span></dt>
-			<dt>We'll also need the <a href="https://www.dnspython.org/">dnspython</a> - a DNS toolkit for Python for queries, zone transfers, dynamic updates, nameserver testing. I.e. for using <code>mongodb+srv://</code> URIs</dt>
-		</dl>
-		<pre><code rel="Terminal" class="bash">
-			# install pymongo driver
-			pip install pymongo
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>To access a MongoDB from our Python application we need a MongoDB Python driver</dt>
+            <dt>The official ones are:</dt>
+            <dd><a href="https://docs.mongodb.com/drivers/pymongo/">pymongo</a> is the recommended driver to work with MongoDB using Python.</dd>
+            <dd><a href="https://docs.mongodb.com/drivers/motor/">motor</a> is the recommended driver for when you need <span class="note">non-blocking, asynchronous</span> access to MongoDB using Python.
+            </dd>
+            <dt>In these course we'll be using <span class="note">pymongo</span></dt>
+            <dt>We'll also need the <a href="https://www.dnspython.org/">dnspython</a> - a DNS toolkit for Python for queries, zone transfers, dynamic updates, nameserver testing. I.e. for using <code>mongodb+srv://</code> URIs</dt>
+        </dl>
+        <pre><code rel="Terminal" class="bash">
+            # install pymongo driver
+            pip install pymongo
 
-			# install dnspython
-			pip install dnspython
-		</code></pre>
-	</section>
-	<section><h3>Connect to Mongodb</h3>
-		<pre><code rel="Python" class="python" style="min-height: 70vh;">
-			from pymongo import MongoClient&#10;&#10;&#9;&#9;&#9;def connect_to_local_cluster():&#10;&#9;&#9;&#9;&#9;# connect using connection string:&#10;&#9;&#9;&#9;&#9;# &apos;mongodb://&lt;username?&gt;:&lt;password?&gt;@localhost:27017/&lt;dbname?&gt;&#10;&#9;&#9;&#9;&#9;connection_string = &apos;mongodb://localhost:27017/python_course&apos;&#10;&#10;&#9;&#9;&#9;&#9;return MongoClient(connection_string)&#10;&#10;&#10;&#9;&#9;&#9;def connect_to_atlas_cluster():&#10;&#9;&#9;&#9;&#9;# connect using connection string:&#10;&#9;&#9;&#9;&#9;# mongodb+srv://&lt;username&gt;:&lt;password&gt;@cluster0.xm0yw.mongodb.net/&lt;dbname?&gt;&#10;&#9;&#9;&#9;&#9;connection_string = &apos;mongodb+srv://power_user:q1a2z3@cluster0.xm0yw.mongodb.net/&apos;&#10;&#10;&#9;&#9;&#9;&#9;return MongoClient(connection_string)&#10;&#10;&#9;&#9;&#9;atlas_client = connect_to_atlas_cluster()&#10;&#9;&#9;&#9;local_client = connect_to_local_cluster()&#10;&#10;&#9;&#9;&#9;# list databases&#10;&#9;&#9;&#9;print(atlas_client.list_database_names())&#10;&#9;&#9;&#9;print(local_client.list_database_names())
-		</code></pre>
-	</section>
+            # install dnspython
+            pip install dnspython
+        </code></pre>
+    </section>
+    <section><h3>Connect to Mongodb</h3>
+        <pre><code rel="Python" class="python" style="min-height: 70vh;">
+            from pymongo import MongoClient&#10;&#10;&#9;&#9;&#9;def connect_to_local_cluster():&#10;&#9;&#9;&#9;&#9;# connect using connection string:&#10;&#9;&#9;&#9;&#9;# &apos;mongodb://&lt;username?&gt;:&lt;password?&gt;@localhost:27017/&lt;dbname?&gt;&#10;&#9;&#9;&#9;&#9;connection_string = &apos;mongodb://localhost:27017/python_course&apos;&#10;&#10;&#9;&#9;&#9;&#9;return MongoClient(connection_string)&#10;&#10;&#10;&#9;&#9;&#9;def connect_to_atlas_cluster():&#10;&#9;&#9;&#9;&#9;# connect using connection string:&#10;&#9;&#9;&#9;&#9;# mongodb+srv://&lt;username&gt;:&lt;password&gt;@cluster0.xm0yw.mongodb.net/&lt;dbname?&gt;&#10;&#9;&#9;&#9;&#9;connection_string = &apos;mongodb+srv://power_user:q1a2z3@cluster0.xm0yw.mongodb.net/&apos;&#10;&#10;&#9;&#9;&#9;&#9;return MongoClient(connection_string)&#10;&#10;&#9;&#9;&#9;atlas_client = connect_to_atlas_cluster()&#10;&#9;&#9;&#9;local_client = connect_to_local_cluster()&#10;&#10;&#9;&#9;&#9;# list databases&#10;&#9;&#9;&#9;print(atlas_client.list_database_names())&#10;&#9;&#9;&#9;print(local_client.list_database_names())
+        </code></pre>
+    </section>
 </section>
 
 
@@ -423,17 +469,17 @@
 <!--
 <section id="hw"><h1>Exercises</h1></section>
 <section class="sub-sections"><h2>Task1</h2>
-	<section><h3>The Task</h3>
+    <section><h3>The Task</h3>
 
-	</section>
+    </section>
 </section> -->
 
 <!-- <section><h3>Submission</h3>
-	<dl class="fa">
-		<dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
-		<dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
-		<dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: DB-Lecture1">ivawebcourses@gmail.com</a></dt>
-	</dl>
+    <dl class="fa">
+        <dt>Please, prefix your filenames/archive with your name initials, before sending.</dt>
+        <dd>For instance: <b>iep_task1.py</b> or <b>iep_tasks.rar</b></dd>
+        <dt>Send files to <a href="mailto:ivawebcourses@gmail.com?Subject=HW: DB-Lecture1">ivawebcourses@gmail.com</a></dt>
+    </dl>
 </section> -->
 
 
@@ -444,48 +490,48 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1280,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1280,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 </body>
 </html>
