@@ -6,7 +6,7 @@ def main():
     db = MongoDB()
 
     # Create a user
-    db.create_user("John Doe", "john.doe@example.com")
+    db.create_user("Ivan Ivanov", "ivan.ivanov@example.com")
 
     # Read users
     print("Users:")
@@ -15,7 +15,7 @@ def main():
     # Update a user's email
     # Replace with actual user ID from the database
     user_id = input("Enter user ID to update: ")
-    db.update_user_email(user_id, "john.newemail@example.com")
+    db.update_user_email(user_id, "ivan.newemail@example.com")
 
     # Read users again to see the update
     print("Updated Users:")
