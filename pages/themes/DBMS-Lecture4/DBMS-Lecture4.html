@@ -772,7 +772,7 @@
 
 <section data-min="5" class="main-section-title"><h1>SQL Constraints and Foreign Key</h1></section>
 <section><h2>SQL Constraints</h2>
-    <section><h3 id="constraints">Overview</h3>
+    <section id="constraints"><h3>Overview</h3>
         <dl class="fa">
             <dt>MySQL constraints are used to define rules to allow or restrict what values can be stored in columns. The purpose of inducing constraints is to enforce the integrity of a database</dt>
             <dt>Constraints are used to limit the type of data that can be inserted into a table</dt>
@@ -837,7 +837,7 @@
        <p class="advanced">Self-learning section:</p>
        <a href="http://www.w3schools.com/sql/sql_check.asp">w3schools: SQL CHECK Constraint</a>
     </section>
-    <section><h3>PRIMARY KEY</h3>
+    <section id="PrimaryKey"><h3>PRIMARY KEY</h3>
         <dl class="fa">
             <dt>Primary Key is a combination of a NOT NULL and UNIQUE.</dt>
             <dt>Primary Key ensures that a column (or combination of two or more columns) have a unique identity which helps to find a particular record in a table more easily and quickly</dt>
@@ -861,7 +861,7 @@
     </section>
 </section>
 <section><h2>FOREIGN KEY constraints</h2>
-    <section><h3 id="foreign_key">What is a FOREIGN KEY?</h3>
+    <section id="ForeignKey"><h3>What is a FOREIGN KEY?</h3>
         <dl class="fa fs-small">
             <dt>A FOREIGN KEY in one table points to a PRIMARY KEY in another table.</dt>
             <dt>FOREIGN KEY relationships involve a <span class="note">parent table</span> that holds the central data values, and a <span class="note">child table</span> with identical values pointing back to its parent.</dt>
@@ -972,14 +972,14 @@
             </code></pre>
         </dl>
     </section>
-    <section><h3 class="advanced">FOREIGN KEY Constraint: Exercises</h3>
+    <!-- <section><h3 class="advanced">FOREIGN KEY Constraint: Exercises</h3>
         <dl class="fa fs-small">
             <dt>Create the next <a href="slides_examples/books_db_schema.sql">books_db schema</a> and insert the <a href="slides_examples/books_db_sample_data.sql">books_db sample data</a></dt>
             <dt>Set <span class="note">ON UPDATE</span> constraint on <span class="code">fk_AuthorID</span> which will force the MySQL to automatically update all rows in <span class="code">book</span> table, when a corresponding row in <span class="code">author</span> table has changed.</dt>
             <dt>Set the <span class="code">author.id</span> to be 100 for Charles Dodgson author row.</dt>
             <dt>Check what happens with <span class="code">author_id</span> in the respective rows in <span class="code">book</span> table.</dt>
         </dl>
-    </section>
+    </section> -->
 </section>
 
 <section data-min="5" class="main-section-title" id="MySqlAndPython"><h1>MySQL and Python</h1></section>
@@ -1118,7 +1118,7 @@
     </section>
 </section>
 
-<section class="main-section-title"><h1>Hands-on: SimpleUserManagment</h1></section>
+<section class="main-section-title" id="Hands-on_SimpleUserManagment"><h1>Hands-on: SimpleUserManagment</h1></section>
 <section class="sub-sections"><h2>Hands-on: SimpleUserManagment</h2>
     <section><h3>Project Overview</h3>
         <dl class="fa" style="min-width:80vw">
