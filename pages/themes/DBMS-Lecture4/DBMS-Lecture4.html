@@ -84,18 +84,84 @@
         <pre style="margin-left:0em"><code rel="mysql" class="sql">
             SHOW ENGINES
         </code></pre>
-        <section data-markdown style="font-size: .7em;margin-left: -7em;">
-            | Engine             | Support   | Comment                                                                          | Transactions   | XA   | Savepoints   |
-            |--------------------|-----------|----------------------------------------------------------------------------------|----------------|------|--------------|
-            | CSV                | YES       | Stores tables as CSV files                                                       | NO             | NO   | NO           |
-            | MRG_MyISAM         | YES       | Collection of identical MyISAM tables                                            | NO             | NO   | NO           |
-            | SEQUENCE           | YES       | Generated tables filled with sequential values                                   | YES            | NO   | YES          |
-            | MyISAM             | YES       | Non-transactional engine with good performance and small data footprint          | NO             | NO   | NO           |
-            | MEMORY             | YES       | Hash based, stored in memory, useful for temporary tables                        | NO             | NO   | NO           |
-            | PERFORMANCE_SCHEMA | YES       | Performance Schema                                                               | NO             | NO   | NO           |
-            | Aria               | YES       | Crash-safe tables with MyISAM heritage                                           | NO             | NO   | NO           |
-            | InnoDB             | DEFAULT   | Supports transactions, row-level locking, foreign keys and encryption for tables | YES            | YES  | YES          |
-        </section>
+        <table style="font-size: .7em;margin-left: -7em; width: 70vw;margin-left: 5em;">
+            <thead>
+                <tr>
+                    <th>Engine</th>
+                    <th>Support</th>
+                    <th>Comment</th>
+                    <th>Transactions</th>
+                    <th>XA</th>
+                    <th>Savepoints</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CSV</td>
+                    <td>YES</td>
+                    <td>Stores tables as CSV files</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                </tr>
+                <tr>
+                    <td>MRG_MyISAM</td>
+                    <td>YES</td>
+                    <td>Collection of identical MyISAM tables</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                </tr>
+                <tr>
+                    <td>SEQUENCE</td>
+                    <td>YES</td>
+                    <td>Generated tables filled with sequential values</td>
+                    <td>YES</td>
+                    <td>NO</td>
+                    <td>YES</td>
+                </tr>
+                <tr>
+                    <td>MyISAM</td>
+                    <td>YES</td>
+                    <td>Non-transactional engine with good performance and small data footprint</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                </tr>
+                <tr>
+                    <td>MEMORY</td>
+                    <td>YES</td>
+                    <td>Hash based, stored in memory, useful for temporary tables</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                </tr>
+                <tr>
+                    <td>PERFORMANCE_SCHEMA</td>
+                    <td>YES</td>
+                    <td>Performance Schema</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                </tr>
+                <tr>
+                    <td>Aria</td>
+                    <td>YES</td>
+                    <td>Crash-safe tables with MyISAM heritage</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                    <td>NO</td>
+                </tr>
+                <tr>
+                    <td>InnoDB</td>
+                    <td>DEFAULT</td>
+                    <td>Supports transactions, row-level locking, foreign keys and encryption for tables</td>
+                    <td>YES</td>
+                    <td>YES</td>
+                    <td>YES</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
     <section><h3>What is a Transaction?</h3>
         <dl class="fa">
@@ -240,8 +306,7 @@
         <img src="images/IntegerDataTypes.png">
     </section> -->
     <section><h3>Numeric Data Types - Examples</h3>
-        <p>Create datatypes table</p>
-        <pre><code rel="mysql" class="sql">
+        <pre><code rel="mysql" class="sql" style="min-height: 100vh;">
             CREATE DATABASE exampleDB;
 
             USE exampleDB;
@@ -381,6 +446,14 @@
                 <dd>'2016/03/28' or '16/03/28'</dd>
         </dl>
     </section>
+    <section><h3>The TIME Date Type</h3>
+        <dl class="fa">
+            <dt>A time in <span class="code">HH:MM:SS</span> format</dt>
+            <dt>Values range: between <span class="code">-838:59:59</span> UTC and <span class="code">838:59:59</span> UTC.</dt>
+            <dt>Can represent a time, or time interval.</dt>
+            <dt>Can be inserted As a string in 'D HH:MM:SS' format. You can also use one of the following “relaxed” syntaxes: 'HH:MM:SS', 'HH:MM', 'D HH:MM', 'D HH', or 'SS'. Here D represents days and can have a value from 0 to 34.</dt>
+        </dl>
+    </section>
     <section><h3>The DATETIME Date Type</h3>
         <dl class="fa">
             <dt>A date and time in <span class="code">YYYY-MM-DD HH:MM:SS</span> format</dt>
@@ -402,14 +475,7 @@
             <dt>A TIMESTAMP value can be inserted in MYSQL the same way as a DATETIME value.</dt>
         </dl>
     </section>
-    <section><h3>The TIME Date Type</h3>
-        <dl class="fa">
-            <dt>A time in <span class="code">HH:MM:SS</span> format</dt>
-            <dt>Values range: between <span class="code">-838:59:59</span> UTC and <span class="code">838:59:59</span> UTC.</dt>
-            <dt>Can represent a time, or time interval.</dt>
-            <dt>Can be inserted As a string in 'D HH:MM:SS' format. You can also use one of the following “relaxed” syntaxes: 'HH:MM:SS', 'HH:MM', 'D HH:MM', 'D HH', or 'SS'. Here D represents days and can have a value from 0 to 34.</dt>
-        </dl>
-    </section>
+
     <section><h3>Reference</h3>
         <dl class="fa">
             <dt><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html">Date and Time Data Types</a></dt>
@@ -886,6 +952,143 @@
             <dt>Check what happens with <span class="code">author_id</span> in the respective rows in <span class="code">book</span> table.</dt>
         </dl>
     </section>
+</section>
+
+<section data-min="5" class="main-section-title" id="MySqlAndPython"><h1>MySQL and Python</h1></section>
+<section class="sub-sections"><h2>MySQL and Python</h2>
+    <section><h3>Python DB-API</h3>
+        <dl class="fa">
+            <dt><a href="https://www.python.org/dev/peps/pep-0249/">Python Database API</a> is a set of standards recommended by a Special Interest Group for database module standardization</dt>
+            <dt>Standard Python distribution has in-built support for SQLite database connectivity by the sqlite3 module</dt>
+            <dt>Other RDBMS products (Oracle, PostgreSQL, MySQL,...) also have DB-API compliant drivers</dt>
+            <dd>A database driver is a software that allows an application (like Python program) to connect and interact with a database system</dd>
+        </dl>
+    </section>
+    <section><h3>MySQL Connector/Python</h3>
+        <dl class="fa">
+            <dt>Reference: <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector/Python Developer Guide</a></dt>
+            <dd>Note, that MySQL’s official documentation uses the term connector instead of driver.</dd>
+            <dt>Installation:</dt>
+        </dl>
+        <pre><code rel="Terminal" class="bash">
+            # make sure you're in the venv
+            pip install mysql-connector-python
+        </code></pre>
+    </section>
+    <section><h3>MySQL Connector - Create connection</h3>
+        <pre><code rel="Python" class="python" style="min-height: 50vh;">
+            import mysql.connector
+
+            # Establish a connection to the MySQL server
+            db = mysql.connector.connect(
+                host="localhost",
+                user="test",
+                password="test1234",
+                database="test"
+            )
+        </code></pre>
+    </section>
+    <section><h3>MySQL Connector - Create table</h3>
+        <pre><code rel="Python" class="python" style="min-height: 80vh;">
+            import mysql.connector
+
+            # Establish a connection to the MySQL server
+            db = mysql.connector.connect(
+                ...
+            )
+
+            # Create a cursor object to interact with the database
+            cursor = db.cursor()
+
+            # SQL query to create a 'students' table
+            create_table_query = """
+            CREATE TABLE students (
+                student_id INT AUTO_INCREMENT PRIMARY KEY,
+                student_name VARCHAR(50),
+                student_age INT,
+                student_grade TINYINT CHECK (student_grade >= 2 AND student_grade <= 6)
+            )
+            """
+
+            # Execute the query to create the table
+            cursor.execute(create_table_query)
+
+            # Commit changes to the database
+            db.commit()
+
+            # Close the cursor and database connection
+            cursor.close()
+            db.close()
+        </code></pre>
+    </section>
+    <section><h3>MySQL Connector - Insert</h3>
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+            import mysql.connector
+
+            # Establish a connection to the MySQL server
+            db = mysql.connector.connect(
+                ...
+            )
+
+            # Create a cursor object to interact with the database
+            cursor = db.cursor()
+
+            # Data to be inserted into the table
+            student_data = [
+                ("Alice", 20, 4),
+                ("Bob", 22, 2),
+                ("Charlie", 21, 5),
+                ("Diana", 23, 6)
+            ]
+
+            # SQL query to insert data into the 'students' table
+            insert_query = """
+            INSERT INTO students (student_name, student_age, student_grade)
+            VALUES (%s, %s, %s)
+            """
+
+            # Execute the query to insert data
+            cursor.executemany(insert_query, student_data)
+
+            # Commit changes to the database
+            db.commit()
+
+            # Close connection
+            db.close()
+
+        </code></pre>
+    </section>
+    <section><h3>MySQL Connector - Fetch rows</h3>
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+            import mysql.connector
+
+            # Establish a connection to the MySQL server
+            db = mysql.connector.connect(
+                ...
+            )
+
+            # Create a cursor object to interact with the database
+            cursor = db.cursor()
+
+
+            ### Example: Fetching all rows
+            cursor.execute("SELECT * FROM students")
+            rows = cursor.fetchall()
+            for row in rows:
+                print(row)
+
+            ### Example:  Fetch a single row
+            cursor.execute("SELECT * FROM students")
+
+            row1 = cursor.fetchone()
+            row2 = cursor.fetchone()
+            print(row1)
+            print(row2)
+
+            db.close()
+        </code></pre>
+    </section>
+
 </section>
 
 
