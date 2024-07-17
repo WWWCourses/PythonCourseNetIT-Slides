@@ -1180,44 +1180,54 @@
                 from mysql.connector import Error
                 from .config import db_config
 
-                def create_connection():
-                    connection = None
-                    try:
-                        connection = mysql.connector.connect(**db_config)
-                        if connection.is_connected():
-                            print("Connected to MySQL database")
-                    except Error as e:
-                        print(f"Error: '{e}'")
-                    return connection
+                class MySQLDB:
+                    def __init__(self):
+                        self.connection = self.create_connection()
 
-                def create_user(connection, name, email):
-                    cursor = connection.cursor()
-                    query = "INSERT INTO users (name, email) VALUES (%s, %s)"
-                    cursor.execute(query, (name, email))
-                    connection.commit()
-                    print("User created successfully")
+                    def create_connection(self):
+                        connection = None
+                        try:
+                            connection = mysql.connector.connect(**db_config)
+                            if connection.is_connected():
+                                print("Connected to MySQL database")
+                        except Error as e:
+                            print(f"Error: '{e}'")
+                        return connection
 
-                def get_users(connection):
-                    cursor = connection.cursor()
-                    query = "SELECT * FROM users"
-                    cursor.execute(query)
-                    users = cursor.fetchall()
-                    for user in users:
-                        print(user)
+                    def create_user(self, name, email):
+                        cursor = self.connection.cursor()
+                        query = "INSERT INTO users (name, email) VALUES (%s, %s)"
+                        cursor.execute(query, (name, email))
+                        self.connection.commit()
+                        print("User created successfully")
 
-                def update_user_email(connection, user_id, new_email):
-                    cursor = connection.cursor()
-                    query = "UPDATE users SET email = %s WHERE id = %s"
-                    cursor.execute(query, (new_email, user_id))
-                    connection.commit()
-                    print("User email updated successfully")
+                    def get_users(self):
+                        cursor = self.connection.cursor()
+                        query = "SELECT * FROM users"
+                        cursor.execute(query)
+                        users = cursor.fetchall()
+                        for user in users:
+                            print(user)
 
-                def delete_user(connection, user_id):
-                    cursor = connection.cursor()
-                    query = "DELETE FROM users WHERE id = %s"
-                    cursor.execute(query, (user_id,))
-                    connection.commit()
-                    print("User deleted successfully")
+                    def update_user_email(self, user_id, new_email):
+                        cursor = self.connection.cursor()
+                        query = "UPDATE users SET email = %s WHERE id = %s"
+                        cursor.execute(query, (new_email, user_id))
+                        self.connection.commit()
+                        print("User email updated successfully")
+
+                    def delete_user(self, user_id):
+                        cursor = self.connection.cursor()
+                        query = "DELETE FROM users WHERE id = %s"
+                        cursor.execute(query, (user_id,))
+                        self.connection.commit()
+                        print("User deleted successfully")
+
+                    def close_connection(self):
+                        if self.connection.is_connected():
+                            self.connection.close()
+                            print("MySQL connection is closed")
+
 
             </code></pre>
         </dl>
@@ -1228,37 +1238,40 @@
             <pre><code rel="Python" class="python" style="min-height: 90vh;">
                 # main.py
 
-                from db.operations import create_connection, create_user, get_users, update_user_email, delete_user
+                from db.operations import MySQLDB
 
                 def main():
-                    connection = create_connection()
+                    db = MySQLDB()
 
-                    if connection is not None:
-                        # Create a user
-                        create_user(connection, "Ivan Ivanov", "ivan.ivanov@example.com")
+                    # Create a user
+                    db.create_user("Ivan Ivanov", "ivan.ivanov@example.com")
 
-                        # Read users
-                        print("Users:")
-                        get_users(connection)
+                    # Read users
+                    print("Users:")
+                    db.get_users()
 
-                        # Update a user's email
-                        update_user_email(connection, 1, "ivan.newemail@example.com")
+                    # Update a user's email
+                    user_id = int(input("Enter user ID to update: "))
+                    db.update_user_email(user_id, "ivan.newemail@example.com")
 
-                        # Read users again to see the update
-                        print("Updated Users:")
-                        get_users(connection)
+                    # Read users again to see the update
+                    print("Updated Users:")
+                    db.get_users()
 
-                        # Delete a user
-                        delete_user(connection, 1)
+                    # Delete a user
+                    user_id = int(input("Enter user ID to delete: "))
+                    db.delete_user(user_id)
 
-                        # Read users again to see the deletion
-                        print("Users after deletion:")
-                        get_users(connection)
+                    # Read users again to see the deletion
+                    print("Users after deletion:")
+                    db.get_users()
 
-                        connection.close()
+                    # Close the connection
+                    db.close_connection()
 
                 if __name__ == "__main__":
                     main()
+
 
             </code></pre>
         </dl>
