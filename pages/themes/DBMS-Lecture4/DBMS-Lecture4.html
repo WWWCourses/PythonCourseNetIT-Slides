@@ -72,7 +72,7 @@
 </section>
 
 
-<section data-min="5" class="main-section-title"><h1>MySQL Storage Engines</h1></section>
+<section data-min="5" class="main-section-title" id="MySqlStorageEngines"><h1>MySQL Storage Engines</h1></section>
 <section class="sub-sections"><h2>MySQL Storage Engines</h2>
     <section><h3>Overview</h3>
         <dl class="fa">
@@ -173,7 +173,7 @@
     </section>
 </section>
 
-<section data-min="1" class="main-section-title"><h1>MySQL Data Types</h1></section>
+<section data-min="1" class="main-section-title" id="MySqlDataTypes"><h1>MySQL Data Types</h1></section>
 <section class="sub-sections"><h2>MySQL Data Types</h2>
     <section><h3>Overview</h3>
         <dl class="fa">
@@ -646,8 +646,8 @@
 </section>
 
 
-<section data-min="5" class="main-section-title"><h1>MySQL_Indexes</h1></section>
-<section id="intro"><h2>Introduction</h2>
+<section data-min="5" class="main-section-title" id="MySqlIndexes"><h1>MySQL Indexes</h1></section>
+<section><h2>Introduction</h2>
     <section><h3>What and Why?</h3>
         <dl class="fa">
            <dt>A database index is added to a table <span class="note">to speed up the search</span> operation.</dt>
@@ -665,7 +665,7 @@
         </dl>
     </section>
 </section>
-<section id="regular_indexes"><h2>Regular index</h2>
+<section><h2>Regular index</h2>
     <section id="add_index"><h3>Add regular Index to a table</h3>
         <p>The syntax:</p>
         <pre><code>
@@ -729,8 +729,8 @@
         </code></pre>
     </section>
 </section>
-<section id="primary_key"><h2>Primary key</h2>
-    <section><h3>Why using Primary Key?</h3>
+<section><h2>Primary key</h2>
+    <section id="primary_key"><h3>Why using Primary Key?</h3>
         <dl class="fa">
             <dt>Regular indexes do not impose the values to be unique!</dt>
             <dt>The importance of having a key with a unique value for each row will come up when we start to combine data from different tables.</dt>
@@ -760,7 +760,7 @@
         <p><span class="note">NB!</span> As PRIMARY KEY requires unique values, the <span class="code">NOT NULL</span> and/or <span class="code">AUTO_INCREMENT</span> attribute should be present.</p>
     </section>
 </section>
-<section id="auto_increment"><h2>The AUTO_INCREMENT attribute</h2>
+<section><h2>The AUTO_INCREMENT attribute</h2>
     <section id="auto_increment"><h3>The AUTO_INCREMENT attribute</h3>
         <dl class="fa">
             <dt>The AUTO_INCREMENT attribute can be used to generate a unique identity for new rows.</dt>
@@ -771,8 +771,8 @@
 </section>
 
 <section data-min="5" class="main-section-title"><h1>SQL Constraints and Foreign Key</h1></section>
-<section id="constraints"><h2>SQL Constraints</h2>
-    <section><h3>Overview</h3>
+<section><h2>SQL Constraints</h2>
+    <section><h3 id="constraints">Overview</h3>
         <dl class="fa">
             <dt>MySQL constraints are used to define rules to allow or restrict what values can be stored in columns. The purpose of inducing constraints is to enforce the integrity of a database</dt>
             <dt>Constraints are used to limit the type of data that can be inserted into a table</dt>
@@ -860,8 +860,8 @@
         </dl>
     </section>
 </section>
-<section id="foreign_key"><h2>FOREIGN KEY constraints</h2>
-    <section><h3>What is a FOREIGN KEY?</h3>
+<section><h2>FOREIGN KEY constraints</h2>
+    <section><h3 id="foreign_key">What is a FOREIGN KEY?</h3>
         <dl class="fa fs-small">
             <dt>A FOREIGN KEY in one table points to a PRIMARY KEY in another table.</dt>
             <dt>FOREIGN KEY relationships involve a <span class="note">parent table</span> that holds the central data values, and a <span class="note">child table</span> with identical values pointing back to its parent.</dt>
