@@ -1,52 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>DBMS-Lecture4</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>DBMS-Lecture4</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DBMS-Lecture4" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DBMS-Lecture4" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -54,295 +54,411 @@
 -->
 <section class="main-section-title"><h1>MySQl - The Syntax</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
 
 <section data-min="5" class="main-section-title"><h1>MySQL Storage Engines</h1></section>
 <section class="sub-sections"><h2>MySQL Storage Engines</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>Storage engines are MySQL components that handle the SQL operations for different table types.</dt>
-			<dt>InnoDB is the default and most general-purpose storage engine, and Oracle recommends using it for tables except for specialized use cases.</dt>
-			<dt class="note">In MySQL 8.0 the The CREATE TABLE statement created InnoDB tables by default.</dt>
-			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html">storage-engines</a></dt>
-		</dl>
-		<pre style="margin-left:0em"><code rel="mysql" class="sql">
-			SHOW ENGINES
-		</code></pre>
-		<section data-markdown style="font-size: .7em;margin-left: -7em;">
-			| Engine             | Support   | Comment                                                                          | Transactions   | XA   | Savepoints   |
-			|--------------------|-----------|----------------------------------------------------------------------------------|----------------|------|--------------|
-			| CSV                | YES       | Stores tables as CSV files                                                       | NO             | NO   | NO           |
-			| MRG_MyISAM         | YES       | Collection of identical MyISAM tables                                            | NO             | NO   | NO           |
-			| SEQUENCE           | YES       | Generated tables filled with sequential values                                   | YES            | NO   | YES          |
-			| MyISAM             | YES       | Non-transactional engine with good performance and small data footprint          | NO             | NO   | NO           |
-			| MEMORY             | YES       | Hash based, stored in memory, useful for temporary tables                        | NO             | NO   | NO           |
-			| PERFORMANCE_SCHEMA | YES       | Performance Schema                                                               | NO             | NO   | NO           |
-			| Aria               | YES       | Crash-safe tables with MyISAM heritage                                           | NO             | NO   | NO           |
-			| InnoDB             | DEFAULT   | Supports transactions, row-level locking, foreign keys and encryption for tables | YES            | YES  | YES          |
-		</section>
-	</section>
-	<section><h3>What is a Transaction?</h3>
-		<dl class="fa">
-			<dt>A transaction is a logical unit of work that contains one or more SQL statements.</dt>
-			<dt>A transaction is an atomic unit.</dt>
-			<dt>The effects of all the SQL statements in a transaction can be <span class="note">either all committed</span> (applied to the database) <span class="note">or all rolled back</span> (undone from the database).</dt>
-			<dt>Reference: <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14220/transact.htm#i1666">Introduction to Transactions</a></dt>
-		</dl>
-	</section>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>Storage engines are MySQL components that handle the SQL operations for different table types.</dt>
+            <dt>InnoDB is the default and most general-purpose storage engine, and Oracle recommends using it for tables except for specialized use cases.</dt>
+            <dt class="note">In MySQL 8.0 the The CREATE TABLE statement created InnoDB tables by default.</dt>
+            <dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html">storage-engines</a></dt>
+        </dl>
+        <pre style="margin-left:0em"><code rel="mysql" class="sql">
+            SHOW ENGINES
+        </code></pre>
+        <section data-markdown style="font-size: .7em;margin-left: -7em;">
+            | Engine             | Support   | Comment                                                                          | Transactions   | XA   | Savepoints   |
+            |--------------------|-----------|----------------------------------------------------------------------------------|----------------|------|--------------|
+            | CSV                | YES       | Stores tables as CSV files                                                       | NO             | NO   | NO           |
+            | MRG_MyISAM         | YES       | Collection of identical MyISAM tables                                            | NO             | NO   | NO           |
+            | SEQUENCE           | YES       | Generated tables filled with sequential values                                   | YES            | NO   | YES          |
+            | MyISAM             | YES       | Non-transactional engine with good performance and small data footprint          | NO             | NO   | NO           |
+            | MEMORY             | YES       | Hash based, stored in memory, useful for temporary tables                        | NO             | NO   | NO           |
+            | PERFORMANCE_SCHEMA | YES       | Performance Schema                                                               | NO             | NO   | NO           |
+            | Aria               | YES       | Crash-safe tables with MyISAM heritage                                           | NO             | NO   | NO           |
+            | InnoDB             | DEFAULT   | Supports transactions, row-level locking, foreign keys and encryption for tables | YES            | YES  | YES          |
+        </section>
+    </section>
+    <section><h3>What is a Transaction?</h3>
+        <dl class="fa">
+            <dt>A transaction is a logical unit of work that contains one or more SQL statements.</dt>
+            <dt>A transaction is an atomic unit.</dt>
+            <dt>The effects of all the SQL statements in a transaction can be <span class="note">either all committed</span> (applied to the database) <span class="note">or all rolled back</span> (undone from the database).</dt>
+            <dt>Reference: <a href="https://docs.oracle.com/cd/B19306_01/server.102/b14220/transact.htm#i1666">Introduction to Transactions</a></dt>
+        </dl>
+    </section>
 </section>
 
 <section data-min="1" class="main-section-title"><h1>MySQL Data Types</h1></section>
 <section class="sub-sections"><h2>MySQL Data Types</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html">Data Types</a></dt>
-		</dl>
-	</section>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>Understanding SQL data types is essential for several reasons:</dt>
+            <ul>
+                <li><strong>Data Integrity:</strong> Choosing the correct data type ensures that the data stored in the database is accurate and consistent.</li>
+                <li><strong>Performance Optimization:</strong> Proper data types can significantly improve query performance and overall database efficiency.</li>
+                <li><strong>Storage Efficiency:</strong> Using appropriate data types helps in optimizing the storage space, reducing the amount of disk space required.</li>
+                <li><strong>Data Validation:</strong> Data types provide a built-in validation mechanism, ensuring that only valid data is stored in the database.</li>
+                <li><strong>Enhanced Querying:</strong> Understanding data types allows for more effective querying and manipulation of data.</li>
+            </ul>
+            <dt>MySQL supports SQL data types in several categories:</dt>
+            <dd><b>numeric types</b>, <b>date and time types</b>, <b>string (character and byte) types</b>, <b>spatial types</b>, and the <b>JSON data type</b>.</dd>
+            <dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html">Data Types</a></dt>
+        </dl>
+    </section>
 </section>
 
 <section data-min="5" class="main-section-title"><h1>Numeric Data Types</h1></section>
 <section class="sub-sections"><h2>Numeric Data Types</h2>
-	<section><h3>Numeric Data Types - Overview</h3>
-		<dl class="fa">
-			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/numeric-types.html">Numeric Data Types</a></dt>
-			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html#data-types-storage-reqs-numeric">Numeric Type Storage Requirements
-			</a></dt>
-		</dl>
-	</section>
-	<section><h3>Integer Types - Overview</h3>
-		<dl class="fa">
-			<dt>SQL standard integer types:</dt>
-				<dd>INTEGER (or INT)</dd>
-				<dd>SMALLINT</dd>
-			<dt>MySQL extension:</dt>
-				<dd>TINYINT</dd>
-				<dd>MEDIUMINT</dd>
-				<dd>BIGINT</dd>
-		</dl>
-	</section>
-	<section><h3>Integer Types - Comparison Table</h3>
-		<img src="images/IntegerDataTypes.png">
-	</section>
-	<section><h3>Integer Types - Examples</h3>
-		<p>Create datatypes table</p>
-		<pre><code rel="mysql" class="sql">
-			CREATE TABLE IF NOT EXISTS datatypes(
-				id int(10) unsigned NOT NULL AUTO_INCREMENT,
-				tinyint_data tinyint(4) DEFAULT NULL,
-				smallint_data smallint(6) DEFAULT NULL,
-				mediumint_data mediumint(9) DEFAULT NULL,
-				int_data int(11) DEFAULT NULL,
-				bigint_data bigint(20) DEFAULT NULL,
-				PRIMARY KEY (id)
-			);
-		</code></pre>
-		<p>And now insnert some numeric data</p>
-		<pre><code>
-			INSERT INTO datatypes (tinyint_data,smallint_data,mediumint_data,int_data,bigint_data )
-			VALUES (100, 20000, 3000000, 100000000, 10000000000000000 );
-		</code></pre>
-	</section>
-	<section><h3>Fixed-Point Types</h3>
-		<dl class="fa">
-			<dt>DECIMAL</dt>
-				<dd>Standard SQL requires that DECIMAL(X,Y) be able to store any value with X digits and Y decimals.</dd>
-				<pre><code rel="mysql" class="sql">
-					salary DECIMAL(6,2)
-				</code></pre>
-				<dd>Values that can be stored in the salary column range from -9999.99 to 9999.99.</dd>
-			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/fixed-point-types.html">Fixed-Point Types</a></dt>
-			<dt>Example</dt>
-			<pre><code rel="mysql" class="sql">
-				ALTER TABLE datatypes ADD decimal_data DECIMAL(6,2)
+    <section><h3>Numeric Data Types - Overview</h3>
+        <dl class="fa">
+            <style>
+                #MySQL_data_types{
+                    width: 80vw;
+                    height: 60vh;
+                    font-size: .8em;
+                    border-collapse: collapse; border: 1px solid black;
+                }
+                #MySQL_data_types tr>*{
+                    border: 1px solid black;
+                }
+            </style>
+            <table id="MySQL_data_types" summary="Storage required for numeric data types.">
+                <colgroup>
+                  <col style="width: 25%">
+                  <col style="width: 25%">
+                  <col style="width: 25%">
+                  <col style="width: 25%">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>Data Type</th>
+                    <th>Storage Required</th>
+                    <th>Minimum Value</th>
+                    <th>Maximum Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code class="literal">TINYINT</code></td>
+                    <td>1 byte</td>
+                    <td>-128</td>
+                    <td>127</td>
+                  </tr>
+                  <tr>
+                    <td><code class="literal">SMALLINT</code></td>
+                    <td>2 bytes</td>
+                    <td>-32,768</td>
+                    <td>32,767</td>
+                  </tr>
+                  <tr>
+                    <td><code class="literal">MEDIUMINT</code></td>
+                    <td>3 bytes</td>
+                    <td>-8,388,608</td>
+                    <td>8,388,607</td>
+                  </tr>
+                  <tr>
+                    <td><code class="literal">INT</code>, <code class="literal">INTEGER</code></td>
+                    <td>4 bytes</td>
+                    <td>-2,147,483,648</td>
+                    <td>2,147,483,647</td>
+                  </tr>
+                  <tr>
+                    <td><code class="literal">BIGINT</code></td>
+                    <td>8 bytes</td>
+                    <td>-9,223,372,036,854,775,808</td>
+                    <td>9,223,372,036,854,775,807</td>
+                  </tr>
+                  <tr>
+                    <td><code class="literal">FLOAT(<em class="replaceable"><code>p</code></em>)</code></td>
+                    <td>4 bytes if 0 &lt;= <em class="replaceable"><code>p</code></em> &lt;= 24, 8 bytes if 25 &lt;= <em class="replaceable"><code>p</code></em> &lt;= 53</td>
+                    <td>-3.402823466E+38</td>
+                    <td>3.402823466E+38</td>
+                  </tr>
+                  <tr>
+                    <td><code class="literal">FLOAT</code></td>
+                    <td>4 bytes</td>
+                    <td>-3.402823466E+38</td>
+                    <td>3.402823466E+38</td>
+                  </tr>
+                  <tr>
+                    <td><code class="literal">DOUBLE [PRECISION]</code>, <code class="literal">REAL</code></td>
+                    <td>8 bytes</td>
+                    <td>-1.7976931348623157E+308</td>
+                    <td>1.7976931348623157E+308</td>
+                  </tr>
+                  <tr>
+                    <td><code class="literal">DECIMAL(<em class="replaceable"><code>M</code></em>,<em class="replaceable"><code>D</code></em>)</code>, <code class="literal">NUMERIC(<em class="replaceable"><code>M</code></em>,<em class="replaceable"><code>D</code></em>)</code></td>
+                    <td>Varies; see following discussion</td>
+                    <td>Depends on M and D</td>
+                    <td>Depends on M and D</td>
+                  </tr>
+                  <tr>
+                    <td><code class="literal">BIT(<em class="replaceable"><code>M</code></em>)</code></td>
+                    <td>approximately (<em class="replaceable"><code>M</code></em>+7)/8 bytes</td>
+                    <td>0</td>
+                    <td>2^M - 1</td>
+                  </tr>
+                </tbody>
+              </table>
 
-				INSERT INTO datatypes (decimal_data) VALUES (10000.99)
-				# (1264, "Out of range value for column 'decimal_data' at row 1")
+            <!-- <dt><a href="https://dev.mysql.com/doc/refman/8.0/en/numeric-types.html">Numeric Data Types</a></dt> -->
+            <dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html#data-types-storage-reqs-numeric">Numeric Type Storage Requirements
+            </a></dt>
+        </dl>
+    </section>
+    <!-- <section><h3>Integer Types - Overview</h3>
+        <dl class="fa">
+            <dt>SQL standard integer types:</dt>
+                <dd>INTEGER (or INT)</dd>
+                <dd>SMALLINT</dd>
+            <dt>MySQL extension:</dt>
+                <dd>TINYINT</dd>
+                <dd>MEDIUMINT</dd>
+                <dd>BIGINT</dd>
+        </dl>
+    </section> -->
+    <!-- <section><h3>Integer Types - Comparison Table</h3>
+        <img src="images/IntegerDataTypes.png">
+    </section> -->
+    <section><h3>Numeric Data Types - Examples</h3>
+        <p>Create datatypes table</p>
+        <pre><code rel="mysql" class="sql">
+            CREATE DATABASE exampleDB;
 
-				INSERT INTO datatypes (decimal_data) VALUES (9999.99)
-				Query OK, 1 row affected
-			</code></pre>
-		</dl>
+            USE exampleDB;
 
-	</section>
-	<section><h3>Floating-Point Types</h3>
-		<a href="http://dev.mysql.com/doc/refman/8.0/en/floating-point-types.html">Floating-Point Types</a>
-	</section>
-	<section><h3>Numeric Type Attributes</h3>
-		<dl class="fa">
-			<dt><span class="note">(X)</span> - an optional extension in parentheses following the base keyword for the type, which <span class="note">specifies the display width</span> of integer data types.</dt>
-			<dt><span class="note">ZEROFILL</span> - when used in conjunction with the optional (nonstandard) attribute ZEROFILL, the default padding of spaces is replaced with zeros. For example, for a column declared as <code>INT(4) ZEROFILL</code>, a value of 3 is retrieved as 0003.</dt>
-		</dl>
-	</section>
+            CREATE TABLE numeric_data_types_example (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                tinyint_column TINYINT,
+                smallint_column SMALLINT,
+                mediumint_column MEDIUMINT,
+                int_column INT,
+                bigint_column BIGINT,
+                float_column FLOAT(7,4),
+                double_column DOUBLE(15,8),
+                decimal_column DECIMAL(10,2)
+            );
+
+            INSERT INTO numeric_data_types_example (
+                tinyint_column,
+                smallint_column,
+                mediumint_column,
+                int_column,
+                bigint_column,
+                float_column,
+                double_column,
+                decimal_column
+            ) VALUES
+                (127, 32767, 8388607, 2147483647, 9223372036854775807, 123.4567, 12345.67890123, 12345.67),
+                (-128, -32768, -8388608, -2147483648, -9223372036854775808, -123.4567, -12345.67890123, -12345.67);
+
+            SELECT * FROM numeric_data_types_example;
+        </code></pre>
+    </section>
+    <!-- <section><h3>Fixed-Point Types</h3>
+        <dl class="fa">
+            <dt>DECIMAL</dt>
+                <dd>Standard SQL requires that DECIMAL(X,Y) be able to store any value with X digits and Y decimals.</dd>
+                <pre><code rel="mysql" class="sql">
+                    salary DECIMAL(6,2)
+                </code></pre>
+                <dd>Values that can be stored in the salary column range from -9999.99 to 9999.99.</dd>
+            <dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/fixed-point-types.html">Fixed-Point Types</a></dt>
+            <dt>Example</dt>
+            <pre><code rel="mysql" class="sql">
+                ALTER TABLE datatypes ADD decimal_data DECIMAL(6,2)
+
+                INSERT INTO datatypes (decimal_data) VALUES (10000.99)
+                # (1264, "Out of range value for column 'decimal_data' at row 1")
+
+                INSERT INTO datatypes (decimal_data) VALUES (9999.99)
+                Query OK, 1 row affected
+            </code></pre>
+        </dl>
+
+    </section>
+    <section><h3>Floating-Point Types</h3>
+        <a href="http://dev.mysql.com/doc/refman/8.0/en/floating-point-types.html">Floating-Point Types</a>
+    </section>
+    <section><h3>Numeric Type Attributes</h3>
+        <dl class="fa">
+            <dt><span class="note">(X)</span> - an optional extension in parentheses following the base keyword for the type, which <span class="note">specifies the display width</span> of integer data types.</dt>
+            <dt><span class="note">ZEROFILL</span> - when used in conjunction with the optional (nonstandard) attribute ZEROFILL, the default padding of spaces is replaced with zeros. For example, for a column declared as <code>INT(4) ZEROFILL</code>, a value of 3 is retrieved as 0003.</dt>
+        </dl>
+    </section> -->
 </section>
 
 <section data-min="10" class="main-section-title"><h1>String Data Types</h1></section>
 <section class="sub-sections"><h2>String Data Types</h2>
-	<section><h3>The CHAR Data Type</h3>
-		<dl class="fa">
-			<dt><span class="code">CHAR(M)</span></dt>
-				<dd>Can store <span class="note">fixed</span> length strings.</dd>
-				<dd>The length is specified by M (defaults to 1).</dd>
-				<dd>The length can be any value from <span class="note">0</span> to <span class="note">255</span>.</dd>
-				<dd>If a value entered is with length < M, then<br>the string is <span class="note">right</span> padded with spaces.</dd>
-			<dt>Examples:</dt>
-				<pre><code>
-					first_name CHAR(4),
-				</code></pre>
-				<dd>Defines that <span class="code">first_name</span> column will contains 4 character strings.</dd>
-		</dl>
-	</section>
-	<section><h3>The VARCHAR Data Type</h3>
-		<dl class="fa">
-			<dt><span class="code">VARCHAR(M)</span></dt>
-				<dd>Can store <span class="note">variable</span> length strings.</dd>
-				<dd>The length is specified by M - <span class="note">cannot by empty</span>!</dd>
-				<dd>The length can be any value from <span class="note">0</span> to <span class="note">65,535</span>.</dd>
-				<dd>VARCHAR values are stored as a 1-byte or 2-byte length <span class="note">prefix</span> plus data. The length prefix indicates the number of bytes in the value. A column uses one length byte if values require no more than 255 bytes, two length bytes if values may require more than 255 bytes.</dd>
-			<dt>Examples:</dt>
-				<pre><code>
-					short_notes VARCHAR(50000),
-				</code></pre>
-				<dd>Defines that <span class="code">short_notes</span> column will contains 50000 character strings.</dd>
-				<dd>The real size taken on disk will be 50000+2 bytes.</dd>
-		</dl>
-	</section>
-	<section><h3>CHAR<->VARCHAR differences</h3>
-		<img src="images/CHAR_VARCHAR_diff.png">
-	</section>
-	<section><h3>BLOB and TEXT Data Types</h3>
-		<dl class="fa">
-			<dt><abbr>BLOB</abbr><dfn><span>Binary</span> <span>Large</span> <span>O</span><span>Bject</span></dfn></dt>
-				<dd>Stores large amounts of binary data, such as images, PDF or other types of files.</dd>
-				<dd>BLOB values are treated as binary strings - they have no character set!</dd>
-			<dt><span class="code">TEXT</span></dt>
-				<dd>TEXT values are treated as character strings - they have a character set!</dd>
-			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/blob.html">The BLOB and TEXT Types</a></dt>
-		</dl>
-	</section>
-	<section><h3>ENUM</h3>
-		<dl class="fa">
-			<dt><span class="code">ENUM</span> (from ENUMeration)</dt>
-			<dt>Defines a <span class="note">list</span> of predefined values. Like: ('yes', 'no')</dt>
-			<dt>The value entered must be selected from that list (or it can be NULL)</dt>
-			<dt>The elements listed in the column specification are assigned index numbers, beginning with <span class="note">1</span></dt>
-			<dt>Pros:</dt>
-				<dd>Compact data storage in situations where a column has a limited set of possible values.</dd>
-				<dd>The strings you specify as input values are automatically encoded as numbers</dd>
-			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/enum.html">ENUM</a></dt>
-		</dl>
-		<p>Example</p>
-			<pre><code>
-				smoker ENUM('yes','no')
-			</code></pre>
-	</section>
+    <section><h3>The CHAR Data Type</h3>
+        <dl class="fa">
+            <dt><span class="code">CHAR(M)</span></dt>
+                <dd>Can store <span class="note">fixed</span> length strings.</dd>
+                <dd>The length is specified by M (defaults to 1).</dd>
+                <dd>The length can be any value from <span class="note">0</span> to <span class="note">255</span>.</dd>
+                <dd>If a value entered is with length < M, then<br>the string is <span class="note">right</span> padded with spaces.</dd>
+            <dt>Examples:</dt>
+                <pre><code>
+                    first_name CHAR(4),
+                </code></pre>
+                <dd>Defines that <span class="code">first_name</span> column will contains 4 character strings.</dd>
+        </dl>
+    </section>
+    <section><h3>The VARCHAR Data Type</h3>
+        <dl class="fa">
+            <dt><span class="code">VARCHAR(M)</span></dt>
+                <dd>Can store <span class="note">variable</span> length strings.</dd>
+                <dd>The length is specified by M - <span class="note">cannot by empty</span>!</dd>
+                <dd>The length can be any value from <span class="note">0</span> to <span class="note">65,535</span>.</dd>
+                <dd>VARCHAR values are stored as a 1-byte or 2-byte length <span class="note">prefix</span> plus data. The length prefix indicates the number of bytes in the value. A column uses one length byte if values require no more than 255 bytes, two length bytes if values may require more than 255 bytes.</dd>
+            <dt>Examples:</dt>
+                <pre><code>
+                    short_notes VARCHAR(50000),
+                </code></pre>
+                <dd>Defines that <span class="code">short_notes</span> column will contains 50000 character strings.</dd>
+                <dd>The real size taken on disk will be 50000+2 bytes.</dd>
+        </dl>
+    </section>
+    <section><h3>CHAR<->VARCHAR differences</h3>
+        <img src="images/CHAR_VARCHAR_diff.png">
+    </section>
+    <section><h3>BLOB and TEXT Data Types</h3>
+        <dl class="fa">
+            <dt><abbr>BLOB</abbr><dfn><span>Binary</span> <span>Large</span> <span>O</span><span>Bject</span></dfn></dt>
+                <dd>Stores large amounts of binary data, such as images, PDF or other types of files.</dd>
+                <dd>BLOB values are treated as binary strings - they have no character set!</dd>
+            <dt><span class="code">TEXT</span></dt>
+                <dd>TEXT values are treated as character strings - they have a character set!</dd>
+            <dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/blob.html">The BLOB and TEXT Types</a></dt>
+        </dl>
+    </section>
+    <section><h3>ENUM</h3>
+        <dl class="fa">
+            <dt><span class="code">ENUM</span> (from ENUMeration)</dt>
+            <dt>Defines a <span class="note">list</span> of predefined values. Like: ('yes', 'no')</dt>
+            <dt>The value entered must be selected from that list (or it can be NULL)</dt>
+            <dt>The elements listed in the column specification are assigned index numbers, beginning with <span class="note">1</span></dt>
+            <dt>Pros:</dt>
+                <dd>Compact data storage in situations where a column has a limited set of possible values.</dd>
+                <dd>The strings you specify as input values are automatically encoded as numbers</dd>
+            <dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/enum.html">ENUM</a></dt>
+        </dl>
+        <p>Example</p>
+            <pre><code>
+                smoker ENUM('yes','no')
+            </code></pre>
+    </section>
 </section>
 
 <section class="main-section-title"><h1>Date and Time Types</h1></section>
 <section class="sub-sections"><h2>Date and Time Types</h2>
-	<section><h3>The DATE Data Type</h3>
-		<dl class="fa">
-			<dt>A date in <span class="code">YYYY-MM-DD</span> format</dt>
-			<dt>Values range: between <span class="code">1000-01-01</span> and <span class="code">9999-12-31</span>.</dt>
-			<dt>A date can be entered in several formats.</dt>
-				<dd><code>'YYYY-MM-DD'</code> or <code>'YY-MM-DD'</code>, like '2016-03-28' or '16-03-28'</dd>
-			<dt>Any punctuation character may be used as the delimiter between date parts.</dt>
-				<dd>'2016/03/28' or '16/03/28'</dd>
-		</dl>
-	</section>
-	<section><h3>The DATETIME Date Type</h3>
-		<dl class="fa">
-			<dt>A date and time in <span class="code">YYYY-MM-DD HH:MM:SS</span> format</dt>
-			<dt>Values range: between <span class="code">1000-01-01 00:00:00</span> and <span class="code">9999-12-31 23:59:59</span>.</dt>
-			<dt>A DATETIME can be entered in several formats.</dt>
-				<dd><code>'YYYY-MM-DD HH:MM:SS'</code> or <code>'YY-MM-DD HH:MM:SS'</code>, like '2016-03-28 09:54:10' or '16-03-28 09:54:10'</dd>
-			<dt>Any punctuation character may be used as the delimiter between date parts.</dt>
-				<dd>'2016/03/28 09.54.10' or '16/03/28 09.54.10'</dd>
-			<dt>The date and time parts can be separated by T rather than a space.</dt>
-				<dd>'2016-03-28 09:54:10' and '2016-03-28T09:54:10' are equivalent.</dd>
-		</dl>
-	</section>
-	<section><h3>The TIMESTAMP Date Type</h3>
-		<dl class="fa">
-			<dt>A date and time in <span class="code">YYYY-MM-DD HH:MM:SS</span> format</dt>
-			<dt>Values range: between <span class="code">1970-01-01 00:00:01</span> UTC and <span class="code">2038-01-19 03:14:07</span> UTC.</dt>
-			<dt>MySQL converts TIMESTAMP values from the current time zone to UTC for storage, and back from UTC to the current time zone for retrieval</dt>
-				<dd>By default, the current time zone for each connection is the <span class="note">server</span> time.</dd>
-			<dt>A TIMESTAMP value can be inserted in MYSQL the same way as a DATETIME value.</dt>
-		</dl>
-	</section>
-	<section><h3>The TIME Date Type</h3>
-		<dl class="fa">
-			<dt>A time in <span class="code">HH:MM:SS</span> format</dt>
-			<dt>Values range: between <span class="code">-838:59:59</span> UTC and <span class="code">838:59:59</span> UTC.</dt>
-			<dt>Can represent a time, or time interval.</dt>
-			<dt>Can be inserted As a string in 'D HH:MM:SS' format. You can also use one of the following “relaxed” syntaxes: 'HH:MM:SS', 'HH:MM', 'D HH:MM', 'D HH', or 'SS'. Here D represents days and can have a value from 0 to 34.</dt>
-		</dl>
-	</section>
-	<section><h3>Reference</h3>
-		<dl class="fa">
-			<dt><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html">Date and Time Data Types</a></dt>
-		</dl>
-	</section>
+    <section><h3>The DATE Data Type</h3>
+        <dl class="fa">
+            <dt>A date in <span class="code">YYYY-MM-DD</span> format</dt>
+            <dt>Values range: between <span class="code">1000-01-01</span> and <span class="code">9999-12-31</span>.</dt>
+            <dt>A date can be entered in several formats.</dt>
+                <dd><code>'YYYY-MM-DD'</code> or <code>'YY-MM-DD'</code>, like '2016-03-28' or '16-03-28'</dd>
+            <dt>Any punctuation character may be used as the delimiter between date parts.</dt>
+                <dd>'2016/03/28' or '16/03/28'</dd>
+        </dl>
+    </section>
+    <section><h3>The DATETIME Date Type</h3>
+        <dl class="fa">
+            <dt>A date and time in <span class="code">YYYY-MM-DD HH:MM:SS</span> format</dt>
+            <dt>Values range: between <span class="code">1000-01-01 00:00:00</span> and <span class="code">9999-12-31 23:59:59</span>.</dt>
+            <dt>A DATETIME can be entered in several formats.</dt>
+                <dd><code>'YYYY-MM-DD HH:MM:SS'</code> or <code>'YY-MM-DD HH:MM:SS'</code>, like '2016-03-28 09:54:10' or '16-03-28 09:54:10'</dd>
+            <dt>Any punctuation character may be used as the delimiter between date parts.</dt>
+                <dd>'2016/03/28 09.54.10' or '16/03/28 09.54.10'</dd>
+            <dt>The date and time parts can be separated by T rather than a space.</dt>
+                <dd>'2016-03-28 09:54:10' and '2016-03-28T09:54:10' are equivalent.</dd>
+        </dl>
+    </section>
+    <section><h3>The TIMESTAMP Date Type</h3>
+        <dl class="fa">
+            <dt>A date and time in <span class="code">YYYY-MM-DD HH:MM:SS</span> format</dt>
+            <dt>Values range: between <span class="code">1970-01-01 00:00:01</span> UTC and <span class="code">2038-01-19 03:14:07</span> UTC.</dt>
+            <dt>MySQL converts TIMESTAMP values from the current time zone to UTC for storage, and back from UTC to the current time zone for retrieval</dt>
+                <dd>By default, the current time zone for each connection is the <span class="note">server</span> time.</dd>
+            <dt>A TIMESTAMP value can be inserted in MYSQL the same way as a DATETIME value.</dt>
+        </dl>
+    </section>
+    <section><h3>The TIME Date Type</h3>
+        <dl class="fa">
+            <dt>A time in <span class="code">HH:MM:SS</span> format</dt>
+            <dt>Values range: between <span class="code">-838:59:59</span> UTC and <span class="code">838:59:59</span> UTC.</dt>
+            <dt>Can represent a time, or time interval.</dt>
+            <dt>Can be inserted As a string in 'D HH:MM:SS' format. You can also use one of the following “relaxed” syntaxes: 'HH:MM:SS', 'HH:MM', 'D HH:MM', 'D HH', or 'SS'. Here D represents days and can have a value from 0 to 34.</dt>
+        </dl>
+    </section>
+    <section><h3>Reference</h3>
+        <dl class="fa">
+            <dt><a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html">Date and Time Data Types</a></dt>
+        </dl>
+    </section>
 </section>
 
 <section data-min="5" class="main-section-title" id="BasicDataManipulationStatements"><h1>Basic Data Manipulation Statements</h1></section>
 
 <section class="sub-sections"><h2>SELECT and WHERE Clauses</h2>
-	<section><h3>Syntax</h3>
-		<pre><code rel="Basic Syntax" class="bash">
-			SELECT [select_option]
-			{select_expression}
-			[
-				FROM table_reference
-					JOIN
-					ON
-					WHERE
-					GROUP BY
-					HAVING
-					ORDER BY
-					LIMIT
-					INTO
-			]
-		</code></pre>
-		<dl class="fa">
-			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html">SELECT Statement</a></dt>
-			<dt>WHERE clause requires at least one condition. If multiple conditions are needed, connect them using AND or OR logic operators.</dt>
-			<dt><a href="http://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html">Comparison Functions and Operators</a> to use in <span class="impotant">WHERE Clause</span></dt>
-		</dl>
-	</section>
-	<section><h3>Example</h3>
-		<pre><code rel="mysql" class="sql">
-			SELECT first_name, order_date
-				FROM customers.customers as customers, orders
-					WHERE customers.id=orders.customer_id
-		</code></pre>
-		<dl class="fa">
-			<dt>Note, that it is good practice to prefix table names with DB name, like: <code>customers.customer</code></dt>
-		</dl>
-	</section>
+    <section><h3>Syntax</h3>
+        <pre><code rel="Basic Syntax" class="bash">
+            SELECT [select_option]
+            {select_expression}
+            [
+                FROM table_reference
+                    JOIN
+                    ON
+                    WHERE
+                    GROUP BY
+                    HAVING
+                    ORDER BY
+                    LIMIT
+                    INTO
+            ]
+        </code></pre>
+        <dl class="fa">
+            <dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/select.html">SELECT Statement</a></dt>
+            <dt>WHERE clause requires at least one condition. If multiple conditions are needed, connect them using AND or OR logic operators.</dt>
+            <dt><a href="http://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html">Comparison Functions and Operators</a> to use in <span class="impotant">WHERE Clause</span></dt>
+        </dl>
+    </section>
+    <section><h3>Example</h3>
+        <pre><code rel="mysql" class="sql">
+            SELECT first_name, order_date
+                FROM customers.customers as customers, orders
+                    WHERE customers.id=orders.customer_id
+        </code></pre>
+        <dl class="fa">
+            <dt>Note, that it is good practice to prefix table names with DB name, like: <code>customers.customer</code></dt>
+        </dl>
+    </section>
 </section>
 
 <section class="sub-sections"><h2>INSERT INTO table</h2>
     <section><h3>The syntax</h3>
         <pre><code>
-			INSERT INTO table_name [(column, ...)]
-			VALUES (value, ...)[, (...), ...];
+            INSERT INTO table_name [(column, ...)]
+            VALUES (value, ...)[, (...), ...];
         </code></pre>
         <dl class="fa">
             <dt>Column list is optional!</dt>
@@ -353,45 +469,45 @@
     <section><h3>Examples</h3>
         <p>Without specifying columns</p>
         <pre><code>
-			INSERT INTO artist
-			VALUES (0,'Robert', 'Smith');
+            INSERT INTO artist
+            VALUES (0,'Robert', 'Smith');
         </code>
-			Query OK, 1 row affected
+            Query OK, 1 row affected
         </pre>
         <p>But:</p>
         <pre><code>
-			INSERT INTO artist
-			VALUES ('Madonna');
+            INSERT INTO artist
+            VALUES ('Madonna');
         </code>
-			(1136, u"Column count doesn't match value count at row 1")
+            (1136, u"Column count doesn't match value count at row 1")
         </pre>
         <p>With explicit column specification</p>
         <pre><code>
-			INSERT INTO artist(lname)
-			VALUES ('Piazzolla');
+            INSERT INTO artist(lname)
+            VALUES ('Piazzolla');
         </code>
-			Query OK, 1 row affected
+            Query OK, 1 row affected
         </pre>
     </section>
     <section><h3>Examples</h3>
          <p>Insert more than 1 row at a time</p>
         <pre><code>
-			INSERT INTO artist( lname, fname )
-			VALUES ( 'Schnittke', 'Alfred' ),
-				( 'Pärt', 'Arvo' ),
-				( 'Shostakovich', 'Dmitri' );
+            INSERT INTO artist( lname, fname )
+            VALUES ( 'Schnittke', 'Alfred' ),
+                ( 'Pärt', 'Arvo' ),
+                ( 'Shostakovich', 'Dmitri' );
         </code>
-			Query OK, 3 rows affected
+            Query OK, 3 rows affected
         </pre>
     </section>
 </section>
 <section class="sub-sections"><h2>Delete</h2>
     <section><h3>The Syntax</h3>
         <pre><code>
-			DELETE FROM table_name
-			[WHERE where_condition]
-			[ORDER BY ...]
-			[LIMIT row_count]
+            DELETE FROM table_name
+            [WHERE where_condition]
+            [ORDER BY ...]
+            [LIMIT row_count]
         </code></pre>
         <dl class="fa">
             <dt>The conditions in the optional WHERE clause identify which rows to delete. With no WHERE clause, <span class="note">all rows are deleted</span>.</dt>
@@ -401,21 +517,21 @@
     </section>
     <section><h3>Examples</h3>
         <pre><code>
-			DELETE FROM artist WHERE
-				artist_id BETWEEN 9 AND 13;
+            DELETE FROM artist WHERE
+                artist_id BETWEEN 9 AND 13;
         </code>
-			Query OK, 5 rows affected
+            Query OK, 5 rows affected
         </pre>
     </section>
 </section>
 <section class="sub-sections"><h2>Update</h2>
     <section><h3>The Syntax</h3>
         <pre><code>
-			UPDATE table_name
-			SET column1=value, column2=value2,...
-			[WHERE where_clause]
-			[ORDER BY ...]
-			[LIMIT row_count]
+            UPDATE table_name
+            SET column1=value, column2=value2,...
+            [WHERE where_clause]
+            [ORDER BY ...]
+            [LIMIT row_count]
         </code></pre>
         <dl class="fa">
         <dt>The WHERE clause, if given, specifies the conditions that identify which rows to update</dt>
@@ -426,11 +542,11 @@
     </section>
     <section><h3>Examples</h3>
     <pre><code>
-		UPDATE artist
-		SET fname='Test', lname='Test'
-		WHERE artist_id >= 14;
+        UPDATE artist
+        SET fname='Test', lname='Test'
+        WHERE artist_id >= 14;
     </code>
-		Query OK, 2 rows affected
+        Query OK, 2 rows affected
     </pre>
     </section>
 </section>
@@ -438,338 +554,338 @@
 
 <section data-min="5" class="main-section-title"><h1>MySQL_Indexes</h1></section>
 <section id="intro"><h2>Introduction</h2>
-	<section><h3>What and Why?</h3>
-		<dl class="fa">
-		   <dt>A database index is added to a table <span class="note">to speed up the search</span> operation.</dt>
-		   <dt>An index is used by the Database Search Engine to locate records very fast.</dt>
-		   <dt>Indexes can be created for one or more columns.</dt>
-		   <dt>Indexes are implemented as a type of tables, which keep index field and a pointer to each record into the actual table.</dt>
-		   <dt>While adding index to a table will speed the SELECT queries, it will <span class="note">slow down</span> the INSERT and UPDATE statement.</dt>
-		</dl>
-	</section>
-	<section><h3>Types of indexes</h3>
-		<dl class="fa">
-			<dt>A regular INDEX</dt>
-			<dt>PRIMARY KEY</dt>
-			<dt>FULLTEXT</dt>
-		</dl>
-	</section>
+    <section><h3>What and Why?</h3>
+        <dl class="fa">
+           <dt>A database index is added to a table <span class="note">to speed up the search</span> operation.</dt>
+           <dt>An index is used by the Database Search Engine to locate records very fast.</dt>
+           <dt>Indexes can be created for one or more columns.</dt>
+           <dt>Indexes are implemented as a type of tables, which keep index field and a pointer to each record into the actual table.</dt>
+           <dt>While adding index to a table will speed the SELECT queries, it will <span class="note">slow down</span> the INSERT and UPDATE statement.</dt>
+        </dl>
+    </section>
+    <section><h3>Types of indexes</h3>
+        <dl class="fa">
+            <dt>A regular INDEX</dt>
+            <dt>PRIMARY KEY</dt>
+            <dt>FULLTEXT</dt>
+        </dl>
+    </section>
 </section>
 <section id="regular_indexes"><h2>Regular index</h2>
-	<section id="add_index"><h3>Add regular Index to a table</h3>
-		<p>The syntax:</p>
-		<pre><code>
-			ALTER TABLE table_name ADD INDEX(column_name(index_length));
-		</code></pre>
-		<dl class="fa">
-			<dt>The <span class="code">index_length</span> could be specified to minimize the size of the index, and to optimize database access speed.</dt>
+    <section id="add_index"><h3>Add regular Index to a table</h3>
+        <p>The syntax:</p>
+        <pre><code>
+            ALTER TABLE table_name ADD INDEX(column_name(index_length));
+        </code></pre>
+        <dl class="fa">
+            <dt>The <span class="code">index_length</span> could be specified to minimize the size of the index, and to optimize database access speed.</dt>
 
-			<dt class="note">Consider adding Regular Index to  columns which will be searched most often</dt>
-		</dl>
-	</section>
-	<section id="add_index_example"><h3>Example</h3>
-		<p>Let's have the <span class="code">artist</span> table, defined as:</p>
-		<pre><code rel="SQl">
-			mysql music_db_admin@localhost:music_db> desc artist;
-			+---------+-------------+--------+-------+-----------+---------+
-			| Field   | Type        | Null   | Key   |   Default | Extra   |
-			|---------+-------------+--------+-------+-----------+---------|
-			| fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
-			| lname   | varchar(20) | NO     |       |    &lt;null&gt; |         |
-			+---------+-------------+--------+-------+-----------+---------+
-		</code></pre>
-		<p>An index could be added as:</p>
-		<pre><code>
-			ALTER TABLE artist ADD INDEX(lname(10));
-		</code></pre>
-		<p>Resulting in:</p>
-		<pre><code rel="SQl">
-			mysql music_db_admin@localhost:music_db> desc artist;
-			+---------+-------------+--------+-------+-----------+---------+
-			| Field   | Type        | Null   | Key   |   Default | Extra   |
-			|---------+-------------+--------+-------+-----------+---------|
-			| fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
-			| lname   | varchar(20) | NO     | MUL   |    &lt;null&gt; |         |
-			+---------+-------------+--------+-------+-----------+---------+
-		</code></pre>
-		<p>The <span class="note">MUL</span> key means that multiple occurrences of a value may occur within that column.</p>
-	</section>
-	<section id="create_index"><h3>Using CREATE INDEX</h3>
-		<p>The syntax:</p>
-		<pre><code>
-			CREATE INDEX column_name ON table_name (column_name(index_length));
-		</code></pre>
-		<dl class="fa">
-			<dt>It is an alternative to adding an index with ALTER TABLE.</dt>
-			<dt><span class="note">NB!</span> They are equivalent, except that CREATE INDEX cannot be used to create a PRIMARY KEY</dt>
-		</dl>
-	</section>
-	<section id="on_create_table"><h3>Adding indexes when creating tables</h3>
-		<dl class="fa">
-			<dt>You should be aware that adding an index to a large table can take a very long time.</dt>
-			<dt class="note">That's why is better to add Regular Index when creating the table!</dt>
-		</dl>
+            <dt class="note">Consider adding Regular Index to  columns which will be searched most often</dt>
+        </dl>
+    </section>
+    <section id="add_index_example"><h3>Example</h3>
+        <p>Let's have the <span class="code">artist</span> table, defined as:</p>
+        <pre><code rel="SQl">
+            mysql music_db_admin@localhost:music_db> desc artist;
+            +---------+-------------+--------+-------+-----------+---------+
+            | Field   | Type        | Null   | Key   |   Default | Extra   |
+            |---------+-------------+--------+-------+-----------+---------|
+            | fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
+            | lname   | varchar(20) | NO     |       |    &lt;null&gt; |         |
+            +---------+-------------+--------+-------+-----------+---------+
+        </code></pre>
+        <p>An index could be added as:</p>
+        <pre><code>
+            ALTER TABLE artist ADD INDEX(lname(10));
+        </code></pre>
+        <p>Resulting in:</p>
+        <pre><code rel="SQl">
+            mysql music_db_admin@localhost:music_db> desc artist;
+            +---------+-------------+--------+-------+-----------+---------+
+            | Field   | Type        | Null   | Key   |   Default | Extra   |
+            |---------+-------------+--------+-------+-----------+---------|
+            | fname   | varchar(20) | YES    |       |    &lt;null&gt; |         |
+            | lname   | varchar(20) | NO     | MUL   |    &lt;null&gt; |         |
+            +---------+-------------+--------+-------+-----------+---------+
+        </code></pre>
+        <p>The <span class="note">MUL</span> key means that multiple occurrences of a value may occur within that column.</p>
+    </section>
+    <section id="create_index"><h3>Using CREATE INDEX</h3>
+        <p>The syntax:</p>
+        <pre><code>
+            CREATE INDEX column_name ON table_name (column_name(index_length));
+        </code></pre>
+        <dl class="fa">
+            <dt>It is an alternative to adding an index with ALTER TABLE.</dt>
+            <dt><span class="note">NB!</span> They are equivalent, except that CREATE INDEX cannot be used to create a PRIMARY KEY</dt>
+        </dl>
+    </section>
+    <section id="on_create_table"><h3>Adding indexes when creating tables</h3>
+        <dl class="fa">
+            <dt>You should be aware that adding an index to a large table can take a very long time.</dt>
+            <dt class="note">That's why is better to add Regular Index when creating the table!</dt>
+        </dl>
 
-		<pre><code>
-			CREATE TABLE artist (
-				fname VARCHAR(20) DEFAULT NULL,
-				lname VARCHAR(20) NOT NULL,
-				INDEX(lname(10))
-			);
-		</code></pre>
-	</section>
+        <pre><code>
+            CREATE TABLE artist (
+                fname VARCHAR(20) DEFAULT NULL,
+                lname VARCHAR(20) NOT NULL,
+                INDEX(lname(10))
+            );
+        </code></pre>
+    </section>
 </section>
 <section id="primary_key"><h2>Primary key</h2>
-	<section><h3>Why using Primary Key?</h3>
-		<dl class="fa">
-			<dt>Regular indexes do not impose the values to be unique!</dt>
-			<dt>The importance of having a key with a unique value for each row will come up when we start to combine data from different tables.</dt>
-		</dl>
+    <section><h3>Why using Primary Key?</h3>
+        <dl class="fa">
+            <dt>Regular indexes do not impose the values to be unique!</dt>
+            <dt>The importance of having a key with a unique value for each row will come up when we start to combine data from different tables.</dt>
+        </dl>
 
-	</section>
-	<section id="primary_key_create"><h3>Create</h3>
-		<p>By adding the PRIMARY KEY(column_name) at the end of CREATE TABLE.</p>
-		<pre><code>
-			CREATE TABLE artist (
-				id MEDIUMINT(4) NOT NULL AUTO_INCREMENT,
-				fname VARCHAR(20) DEFAULT NULL,
-				lname VARCHAR(20) NOT NULL,
-				PRIMARY KEY(id)
-			);
-		</code></pre>
-		<p>Resulting in:</p>
-		<pre><code>
-			+---------+--------------+--------+-------+-----------+----------------+
-			| Field   | Type         | Null   | Key   |   Default | Extra          |
-			|---------+--------------+--------+-------+-----------+----------------|
-			| id      | mediumint(4) | NO     | PRI   |    &lt;null&gt; | auto_increment |
-			| fname   | varchar(20)  | YES    |       |    &lt;null&gt; |                |
-			| lname   | varchar(20)  | NO     |       |    &lt;null&gt; |                |
-			+---------+--------------+--------+-------+-----------+----------------+
-		</code></pre>
-		<p><span class="note">NB!</span> As PRIMARY KEY requires unique values, the <span class="code">NOT NULL</span> and/or <span class="code">AUTO_INCREMENT</span> attribute should be present.</p>
-	</section>
+    </section>
+    <section id="primary_key_create"><h3>Create</h3>
+        <p>By adding the PRIMARY KEY(column_name) at the end of CREATE TABLE.</p>
+        <pre><code>
+            CREATE TABLE artist (
+                id MEDIUMINT(4) NOT NULL AUTO_INCREMENT,
+                fname VARCHAR(20) DEFAULT NULL,
+                lname VARCHAR(20) NOT NULL,
+                PRIMARY KEY(id)
+            );
+        </code></pre>
+        <p>Resulting in:</p>
+        <pre><code>
+            +---------+--------------+--------+-------+-----------+----------------+
+            | Field   | Type         | Null   | Key   |   Default | Extra          |
+            |---------+--------------+--------+-------+-----------+----------------|
+            | id      | mediumint(4) | NO     | PRI   |    &lt;null&gt; | auto_increment |
+            | fname   | varchar(20)  | YES    |       |    &lt;null&gt; |                |
+            | lname   | varchar(20)  | NO     |       |    &lt;null&gt; |                |
+            +---------+--------------+--------+-------+-----------+----------------+
+        </code></pre>
+        <p><span class="note">NB!</span> As PRIMARY KEY requires unique values, the <span class="code">NOT NULL</span> and/or <span class="code">AUTO_INCREMENT</span> attribute should be present.</p>
+    </section>
 </section>
 <section id="auto_increment"><h2>The AUTO_INCREMENT attribute</h2>
-	<section id="auto_increment"><h3>The AUTO_INCREMENT attribute</h3>
-		<dl class="fa">
-			<dt>The AUTO_INCREMENT attribute can be used to generate a unique identity for new rows.</dt>
-			<dt>A column defined with that attribute will set the value of its contents to that of the column entry in the previously inserted row, plus 1.</dt>
-		</dl>
+    <section id="auto_increment"><h3>The AUTO_INCREMENT attribute</h3>
+        <dl class="fa">
+            <dt>The AUTO_INCREMENT attribute can be used to generate a unique identity for new rows.</dt>
+            <dt>A column defined with that attribute will set the value of its contents to that of the column entry in the previously inserted row, plus 1.</dt>
+        </dl>
 
-	</section>
+    </section>
 </section>
 
 <section data-min="5" class="main-section-title"><h1>SQL Constraints and Foreign Key</h1></section>
 <section id="constraints"><h2>SQL Constraints</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>MySQL constraints are used to define rules to allow or restrict what values can be stored in columns. The purpose of inducing constraints is to enforce the integrity of a database</dt>
-			<dt>Constraints are used to limit the type of data that can be inserted into a table</dt>
-			<dt>MySQL supports next constraints:, "<code>NOT NULL</code>", "<code>UNIQUE</code>", "<code>PRIMARY KEY</code>", "<code>FOREIGN KEY</code>", "<code>CHECK</code>", "<code>DEFAULT</code>"
-			</dt>
-			<pre><code class="syntax">
-				CREATE TABLE table_name(
-					column_name data_type(size) constraint_name,
-					...
-				);
-			</code></pre>
-			<dt>Reference: <a href="https://www.w3resource.com/mysql/creating-table-advance/constraint.php">MySQL Constraint @w3resource</a></dt>
-		</dl>
-	</section>
-	<!-- <section><h3>The syntax in CREATE TABLE</h3>
-		<p>Constraint on single column:</p>
-		<pre><code class="sql">
-			CREATE TABLE table_name(
-				column_name data_type(size) constraint_name,
-				...
-			);
-		</code></pre>
-		<p>you can define constraints on more than one column, by using constraint on table, like:</p>
-		<pre><code>
-			CREATE TABLE author(
-				id int(4) key auto_increment,
-				fname varchar(200),
-				lname varchar(200),
-				UNIQUE(fname,lname)
-			)
-		</code></pre>
-	</section> -->
-	<section><h3>NOT NULL</h3>
-		<p>Indicates that a column cannot store NULL value</p>
-		<pre><code>
-			CREATE TABLE book (
-				id SMALLINT(3) UNSIGNED NOT NULL,
-				...
-			);
-		</code></pre>
-	</section>
-	<section><h3>DEFAULT</h3>
-		<p>Specifies a default value for a column</p>
-		<pre><code>
-			CREATE TABLE book (
-				pub_year MEDIUMINT(4) DEFAULT NULL,
-				...
-			);
-	</code></pre>
-	</section>
-	<section><h3>UNIQUE</h3>
-		<p>Ensures that each row for a column must have a <span class="note">unique</span> value</p>
-		<pre><code>
-			CREATE TABLE book (
-				book_name VARCHAR(250) NOT NULL UNIQUE,
-				...
-			);
-		</code></pre>
-		<p>Some vendors, MySQL as well, allows a UNIQUE column to be set with <span class="keyword">DEFAULT NULL</span> values, as by definition a NULL value is not equal to a NULL value. Anyway, it is not recommended to have UNIQUE and DEFAULT NULL column.</p>
-	</section>
-	<section><h3>CHECK</h3>
-	   <p class="advanced">Self-learning section:</p>
-	   <a href="http://www.w3schools.com/sql/sql_check.asp">w3schools: SQL CHECK Constraint</a>
-	</section>
-	<section><h3>PRIMARY KEY</h3>
-		<dl class="fa">
-			<dt>Primary Key is a combination of a NOT NULL and UNIQUE.</dt>
-			<dt>Primary Key ensures that a column (or combination of two or more columns) have a unique identity which helps to find a particular record in a table more easily and quickly</dt>
-			<dt>We can add Primary Key within the column definition, like:</dt>
-			<pre><code rel="Example" class="mysql">
-				CREATE TABLE book (
-					id SMALLINT(3) UNSIGNED NOT NULL PRIMARY KEY,
-					...
-				);
-			</code></pre>
-			<dt>We can also add Primary Key within table definition, which allows us to set multiple columns as Primary Key:</dt>
-			<pre><code rel="Example" class="mysql">
-				CREATE TABLE book (
-					id SMALLINT(3) UNSIGNED NOT NULL,
-					isbn SMALLINT(3) UNSIGNED NOT NULL,
-					author VARCHAR(10) NOT NULL,
-					PRIMARY KEY (id,isbn)
-				);
-			</code></pre>
-		</dl>
-	</section>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>MySQL constraints are used to define rules to allow or restrict what values can be stored in columns. The purpose of inducing constraints is to enforce the integrity of a database</dt>
+            <dt>Constraints are used to limit the type of data that can be inserted into a table</dt>
+            <dt>MySQL supports next constraints:, "<code>NOT NULL</code>", "<code>UNIQUE</code>", "<code>PRIMARY KEY</code>", "<code>FOREIGN KEY</code>", "<code>CHECK</code>", "<code>DEFAULT</code>"
+            </dt>
+            <pre><code class="syntax">
+                CREATE TABLE table_name(
+                    column_name data_type(size) constraint_name,
+                    ...
+                );
+            </code></pre>
+            <dt>Reference: <a href="https://www.w3resource.com/mysql/creating-table-advance/constraint.php">MySQL Constraint @w3resource</a></dt>
+        </dl>
+    </section>
+    <!-- <section><h3>The syntax in CREATE TABLE</h3>
+        <p>Constraint on single column:</p>
+        <pre><code class="sql">
+            CREATE TABLE table_name(
+                column_name data_type(size) constraint_name,
+                ...
+            );
+        </code></pre>
+        <p>you can define constraints on more than one column, by using constraint on table, like:</p>
+        <pre><code>
+            CREATE TABLE author(
+                id int(4) key auto_increment,
+                fname varchar(200),
+                lname varchar(200),
+                UNIQUE(fname,lname)
+            )
+        </code></pre>
+    </section> -->
+    <section><h3>NOT NULL</h3>
+        <p>Indicates that a column cannot store NULL value</p>
+        <pre><code>
+            CREATE TABLE book (
+                id SMALLINT(3) UNSIGNED NOT NULL,
+                ...
+            );
+        </code></pre>
+    </section>
+    <section><h3>DEFAULT</h3>
+        <p>Specifies a default value for a column</p>
+        <pre><code>
+            CREATE TABLE book (
+                pub_year MEDIUMINT(4) DEFAULT NULL,
+                ...
+            );
+    </code></pre>
+    </section>
+    <section><h3>UNIQUE</h3>
+        <p>Ensures that each row for a column must have a <span class="note">unique</span> value</p>
+        <pre><code>
+            CREATE TABLE book (
+                book_name VARCHAR(250) NOT NULL UNIQUE,
+                ...
+            );
+        </code></pre>
+        <p>Some vendors, MySQL as well, allows a UNIQUE column to be set with <span class="keyword">DEFAULT NULL</span> values, as by definition a NULL value is not equal to a NULL value. Anyway, it is not recommended to have UNIQUE and DEFAULT NULL column.</p>
+    </section>
+    <section><h3>CHECK</h3>
+       <p class="advanced">Self-learning section:</p>
+       <a href="http://www.w3schools.com/sql/sql_check.asp">w3schools: SQL CHECK Constraint</a>
+    </section>
+    <section><h3>PRIMARY KEY</h3>
+        <dl class="fa">
+            <dt>Primary Key is a combination of a NOT NULL and UNIQUE.</dt>
+            <dt>Primary Key ensures that a column (or combination of two or more columns) have a unique identity which helps to find a particular record in a table more easily and quickly</dt>
+            <dt>We can add Primary Key within the column definition, like:</dt>
+            <pre><code rel="Example" class="mysql">
+                CREATE TABLE book (
+                    id SMALLINT(3) UNSIGNED NOT NULL PRIMARY KEY,
+                    ...
+                );
+            </code></pre>
+            <dt>We can also add Primary Key within table definition, which allows us to set multiple columns as Primary Key:</dt>
+            <pre><code rel="Example" class="mysql">
+                CREATE TABLE book (
+                    id SMALLINT(3) UNSIGNED NOT NULL,
+                    isbn SMALLINT(3) UNSIGNED NOT NULL,
+                    author VARCHAR(10) NOT NULL,
+                    PRIMARY KEY (id,isbn)
+                );
+            </code></pre>
+        </dl>
+    </section>
 </section>
 <section id="foreign_key"><h2>FOREIGN KEY constraints</h2>
-	<section><h3>What is a FOREIGN KEY?</h3>
-		<dl class="fa fs-small">
-			<dt>A FOREIGN KEY in one table points to a PRIMARY KEY in another table.</dt>
-			<dt>FOREIGN KEY relationships involve a <span class="note">parent table</span> that holds the central data values, and a <span class="note">child table</span> with identical values pointing back to its parent.</dt>
-			<dt>The FOREIGN KEY clause is specified in the child table. The parent and child tables must use the same storage engine. They must not be TEMPORARY tables.</dt>
-			<dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">FOREIGN KEY Constraints</a></dt>
-		</dl>
-		<pre><code>
-			# define the Parent Table
-			CREATE TABLE `customers` (
-				`id` int NOT NULL AUTO_INCREMENT,
-				`first_name` varchar(45) NOT NULL,
-				`last_name` varchar(45) NOT NULL,
-				`email` varchar(100) DEFAULT NULL,
-				PRIMARY KEY (`id`)
-			) DEFAULT CHARSET=utf8;
+    <section><h3>What is a FOREIGN KEY?</h3>
+        <dl class="fa fs-small">
+            <dt>A FOREIGN KEY in one table points to a PRIMARY KEY in another table.</dt>
+            <dt>FOREIGN KEY relationships involve a <span class="note">parent table</span> that holds the central data values, and a <span class="note">child table</span> with identical values pointing back to its parent.</dt>
+            <dt>The FOREIGN KEY clause is specified in the child table. The parent and child tables must use the same storage engine. They must not be TEMPORARY tables.</dt>
+            <dt>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">FOREIGN KEY Constraints</a></dt>
+        </dl>
+        <pre><code>
+            # define the Parent Table
+            CREATE TABLE `customers` (
+                `id` int NOT NULL AUTO_INCREMENT,
+                `first_name` varchar(45) NOT NULL,
+                `last_name` varchar(45) NOT NULL,
+                `email` varchar(100) DEFAULT NULL,
+                PRIMARY KEY (`id`)
+            ) DEFAULT CHARSET=utf8;
 
-		</code></pre>
-		<pre><code>
-			# define the Child Table
-			CREATE TABLE `orders` (
-				`id` int NOT NULL AUTO_INCREMENT,
-				`customer_id` int NOT NULL,
-				`order_date` datetime NOT NULL,
-				PRIMARY KEY (`id`),
-				FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
-			) DEFAULT CHARSET=utf8;
+        </code></pre>
+        <pre><code>
+            # define the Child Table
+            CREATE TABLE `orders` (
+                `id` int NOT NULL AUTO_INCREMENT,
+                `customer_id` int NOT NULL,
+                `order_date` datetime NOT NULL,
+                PRIMARY KEY (`id`),
+                FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
+            ) DEFAULT CHARSET=utf8;
 
-		</code></pre>
-	</section>
-	<section><h3>"One to Many" ER Diagram</h3>
-		<p><a href="./images/customers_db_ERDiagram.png"><img src="./images/customers_db_ERDiagram.png" alt="customers_db_ERDiagram.png" style="height: 60vh;"></a></p>
-		<dl class="fa">
-			<dt>With FOREIGN KEY we can implement <span class="note">"one to many"</span> relationship between Parent and Child tables!</dt>
-			<dd><span class="note">One</span> customer can have <span class="note">many</span> orders.</dd>
-			<dt>If we need <span class="note">"many to many"</span> relation we could make third table: <code>customers_orders</code> which will store foreign keys to <code>customers(id)</code> and <code>orders(id)</code> </dt>
-		</dl>
-	</section>
-	<section><h3>Example on child table insert</h3>
-		<dl class="fa">
-			<dt>Note, that if we try to insert into orders the id of a customer, who does not exists, MySQL will through an error</dt>
-		</dl>
-		<pre><code rel="Terminal" class="bash">
-			INSERT INTO orders (customer_id,order_date)
-				VALUES (1, "2020-01-20 21:00:00");
+        </code></pre>
+    </section>
+    <section><h3>"One to Many" ER Diagram</h3>
+        <p><a href="./images/customers_db_ERDiagram.png"><img src="./images/customers_db_ERDiagram.png" alt="customers_db_ERDiagram.png" style="height: 60vh;"></a></p>
+        <dl class="fa">
+            <dt>With FOREIGN KEY we can implement <span class="note">"one to many"</span> relationship between Parent and Child tables!</dt>
+            <dd><span class="note">One</span> customer can have <span class="note">many</span> orders.</dd>
+            <dt>If we need <span class="note">"many to many"</span> relation we could make third table: <code>customers_orders</code> which will store foreign keys to <code>customers(id)</code> and <code>orders(id)</code> </dt>
+        </dl>
+    </section>
+    <section><h3>Example on child table insert</h3>
+        <dl class="fa">
+            <dt>Note, that if we try to insert into orders the id of a customer, who does not exists, MySQL will through an error</dt>
+        </dl>
+        <pre><code rel="Terminal" class="bash">
+            INSERT INTO orders (customer_id,order_date)
+                VALUES (1, "2020-01-20 21:00:00");
 
-			# Cannot add or update a child row: a foreign key constraint fails
-		</code></pre>
-	</section>
-	<section><h3>FOREIGN KEY Constraint</h3>
-		<p>Ensure the <span class="keyword">referential integrity</span> of the data in one table to match values in another table</p>
-		<p>MySQL supports FOREIGN KEY Constraint only for <a href="http://dev.mysql.com/doc/refman/8.0/en/using-innodb-tables.html">InnoDB tables</a></p>
-	</section>
-	<section><h3 class="advanced">FOREIGN KEY Constraint</h3>
-		<p>The syntax</p>
-		<pre><code class="fs-big bash">
-			[CONSTRAINT constraint_name]
-			FOREIGN KEY [fk_name] (index_columns)
-			REFERENCES tbl_name (index_columns)
-			[ON DELETE action]
-			[ON UPDATE action]
-			[MATCH FULL | MATCH PARTIAL | MATCH SIMPLE]
-		</code></pre>
-		<dl class="fa fs-small">
-			<dt>The CONSTRAINT clause, if given, supplies a name for the foreign key constraint. If you omit it, InnoDB creates a name.</dt>
-			<dt>FOREIGN KEY indicates the indexed columns in the child table that must match index values in the parent table. fk_name is the foreign key ID. If given, it is ignored unless InnoDB automatically creates an index for the foreign key; in that case, fk_name becomes the index name.</dt>
-			<dt>REFERENCES names the parent table and the index columns in that table to which the foreign key in the child table refers. The index_columns part of the REFERENCES clause must have the same number of columns as the index_columns that follows the FOREIGN KEY keywords.</dt>
+            # Cannot add or update a child row: a foreign key constraint fails
+        </code></pre>
+    </section>
+    <section><h3>FOREIGN KEY Constraint</h3>
+        <p>Ensure the <span class="keyword">referential integrity</span> of the data in one table to match values in another table</p>
+        <p>MySQL supports FOREIGN KEY Constraint only for <a href="http://dev.mysql.com/doc/refman/8.0/en/using-innodb-tables.html">InnoDB tables</a></p>
+    </section>
+    <section><h3 class="advanced">FOREIGN KEY Constraint</h3>
+        <p>The syntax</p>
+        <pre><code class="fs-big bash">
+            [CONSTRAINT constraint_name]
+            FOREIGN KEY [fk_name] (index_columns)
+            REFERENCES tbl_name (index_columns)
+            [ON DELETE action]
+            [ON UPDATE action]
+            [MATCH FULL | MATCH PARTIAL | MATCH SIMPLE]
+        </code></pre>
+        <dl class="fa fs-small">
+            <dt>The CONSTRAINT clause, if given, supplies a name for the foreign key constraint. If you omit it, InnoDB creates a name.</dt>
+            <dt>FOREIGN KEY indicates the indexed columns in the child table that must match index values in the parent table. fk_name is the foreign key ID. If given, it is ignored unless InnoDB automatically creates an index for the foreign key; in that case, fk_name becomes the index name.</dt>
+            <dt>REFERENCES names the parent table and the index columns in that table to which the foreign key in the child table refers. The index_columns part of the REFERENCES clause must have the same number of columns as the index_columns that follows the FOREIGN KEY keywords.</dt>
 
-		</dl>
-	</section>
-	<section><h3 class="advanced">FOREIGN KEY Constraint: ON DELETE</h3>
-		<dl class="fa fs-small">
-			<dt>ON DELETE specifies what happens to the child table when parent table rows are deleted.</dt>
-			<dt class="note">ON DELETE CASCADE causes matching child rows to be deleted when the corresponding parent row is deleted. In essence, the effect of the delete is cascaded from the parent to the child. This enables you to perform multiple-table deletes by deleting rows only from the parent table and letting InnoDB delete the corresponding rowsfrom the child table.</dt>
-			<dt>For MySQL InnoDB tables ON DELETE NO ACTION and ON DELETE RESTRICT are the same as omitting the ON DELETE clause,as the foreign key constraints are checked immediately.</dt>
-			<dt>ON DELETE SET NULL causes index columns in matching child rows to be set to NULL when the parent row is deleted. If you use this option, all the indexed child table columns named in the foreign key definition must be defined topermit NULL values</dt>
-		</dl>
-	</section>
-	<section><h3 class="advanced">FOREIGN KEY Constraint: ON UPDATE</h3>
-		<dl class="fa fs-small">
-			<dt>ON UPDATE enables you to specify what happens to the child table when parent table rows are updated.</dt>
-			<dt>If ON UPDATE clause is not present, the default behaviour is to reject any inserts or updates in the child table that result in foreign key values that don’t have any match in the parent table index, and to prevent updates to parent table index values to which child rows point. </dt>
-			<dt>The possible action values are the same as for ON DELETE and have similar effects.</dt>
-		</dl>
-	</section>
-	<section><h3 class="advanced">FOREIGN KEY Constraint: Guidelines</h3>
-		<dl class="fa fs-small">
-			<dt>You must create the parent table index explicitly before defining the foreign key relationship.</dt>
-			<dt>InnoDB automatically creates an index on foreign key columns (the referencing columns) in the child table if the CREATE TABLE statement does not include such an index.</dt>
-			<dd>The automatically created index will be a <span class="note">non unique</span> index and will include only the foreign key columns.</dd>
-			<dd>You should define the index in the child table explicitly if you want it to be a PRIMARY KEY or UNIQUE index, or if it should include other columns in addition to those in the foreign key.</dd>
-			<dt>Corresponding columns in the parent and child indexes must have compatible types.</dt>
-				<dd>Corresponding <span class="note">character columns</span> must be <span class="note">the same length</span>.</dd>
-				<dd>Corresponding <span class="note">integer columns</span> must have <span class="note">the same size</span> and <span class="note">same range</span> (signed or unsigned).</dd>
-			<dt>For string columns, you must index the entire column, not just a leading prefix of it.</dt>
-		</dl>
-	</section>
-	<section><h3 class="advanced">FOREIGN KEY Constraint: Examples</h3>
-		<dl class="fa fs-small">
-			<dt>Download <a href="slides_examples/books_db_schema.sql">books_db schema</a></dt>
-			<dt>Download <a href="slides_examples/books_db_sample_data.sql">books_db sample data</a></dt>
-			<dt>Now let's delete an author from the <span class="code">author</span> table:</dt>
-			<pre><code class="SQL">
-				DELETE FROM author WHERE lname='Vonnegut' and fname='Kurt';
-			</code></pre>
-			<dt>And check what happens with the books in <span class="code">book</span> table:</dt>
-			<pre><code>
-				SELECT author.fname, author.lname, book_name FROM book, author WHERE book.author_id=author.id;
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3 class="advanced">FOREIGN KEY Constraint: Exercises</h3>
-		<dl class="fa fs-small">
-			<dt>Create the next <a href="slides_examples/books_db_schema.sql">books_db schema</a> and insert the <a href="slides_examples/books_db_sample_data.sql">books_db sample data</a></dt>
-			<dt>Set <span class="note">ON UPDATE</span> constraint on <span class="code">fk_AuthorID</span> which will force the MySQL to automatically update all rows in <span class="code">book</span> table, when a corresponding row in <span class="code">author</span> table has changed.</dt>
-			<dt>Set the <span class="code">author.id</span> to be 100 for Charles Dodgson author row.</dt>
-			<dt>Check what happens with <span class="code">author_id</span> in the respective rows in <span class="code">book</span> table.</dt>
-		</dl>
-	</section>
+        </dl>
+    </section>
+    <section><h3 class="advanced">FOREIGN KEY Constraint: ON DELETE</h3>
+        <dl class="fa fs-small">
+            <dt>ON DELETE specifies what happens to the child table when parent table rows are deleted.</dt>
+            <dt class="note">ON DELETE CASCADE causes matching child rows to be deleted when the corresponding parent row is deleted. In essence, the effect of the delete is cascaded from the parent to the child. This enables you to perform multiple-table deletes by deleting rows only from the parent table and letting InnoDB delete the corresponding rowsfrom the child table.</dt>
+            <dt>For MySQL InnoDB tables ON DELETE NO ACTION and ON DELETE RESTRICT are the same as omitting the ON DELETE clause,as the foreign key constraints are checked immediately.</dt>
+            <dt>ON DELETE SET NULL causes index columns in matching child rows to be set to NULL when the parent row is deleted. If you use this option, all the indexed child table columns named in the foreign key definition must be defined topermit NULL values</dt>
+        </dl>
+    </section>
+    <section><h3 class="advanced">FOREIGN KEY Constraint: ON UPDATE</h3>
+        <dl class="fa fs-small">
+            <dt>ON UPDATE enables you to specify what happens to the child table when parent table rows are updated.</dt>
+            <dt>If ON UPDATE clause is not present, the default behaviour is to reject any inserts or updates in the child table that result in foreign key values that don’t have any match in the parent table index, and to prevent updates to parent table index values to which child rows point. </dt>
+            <dt>The possible action values are the same as for ON DELETE and have similar effects.</dt>
+        </dl>
+    </section>
+    <section><h3 class="advanced">FOREIGN KEY Constraint: Guidelines</h3>
+        <dl class="fa fs-small">
+            <dt>You must create the parent table index explicitly before defining the foreign key relationship.</dt>
+            <dt>InnoDB automatically creates an index on foreign key columns (the referencing columns) in the child table if the CREATE TABLE statement does not include such an index.</dt>
+            <dd>The automatically created index will be a <span class="note">non unique</span> index and will include only the foreign key columns.</dd>
+            <dd>You should define the index in the child table explicitly if you want it to be a PRIMARY KEY or UNIQUE index, or if it should include other columns in addition to those in the foreign key.</dd>
+            <dt>Corresponding columns in the parent and child indexes must have compatible types.</dt>
+                <dd>Corresponding <span class="note">character columns</span> must be <span class="note">the same length</span>.</dd>
+                <dd>Corresponding <span class="note">integer columns</span> must have <span class="note">the same size</span> and <span class="note">same range</span> (signed or unsigned).</dd>
+            <dt>For string columns, you must index the entire column, not just a leading prefix of it.</dt>
+        </dl>
+    </section>
+    <section><h3 class="advanced">FOREIGN KEY Constraint: Examples</h3>
+        <dl class="fa fs-small">
+            <dt>Download <a href="slides_examples/books_db_schema.sql">books_db schema</a></dt>
+            <dt>Download <a href="slides_examples/books_db_sample_data.sql">books_db sample data</a></dt>
+            <dt>Now let's delete an author from the <span class="code">author</span> table:</dt>
+            <pre><code class="SQL">
+                DELETE FROM author WHERE lname='Vonnegut' and fname='Kurt';
+            </code></pre>
+            <dt>And check what happens with the books in <span class="code">book</span> table:</dt>
+            <pre><code>
+                SELECT author.fname, author.lname, book_name FROM book, author WHERE book.author_id=author.id;
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3 class="advanced">FOREIGN KEY Constraint: Exercises</h3>
+        <dl class="fa fs-small">
+            <dt>Create the next <a href="slides_examples/books_db_schema.sql">books_db schema</a> and insert the <a href="slides_examples/books_db_sample_data.sql">books_db sample data</a></dt>
+            <dt>Set <span class="note">ON UPDATE</span> constraint on <span class="code">fk_AuthorID</span> which will force the MySQL to automatically update all rows in <span class="code">book</span> table, when a corresponding row in <span class="code">author</span> table has changed.</dt>
+            <dt>Set the <span class="code">author.id</span> to be 100 for Charles Dodgson author row.</dt>
+            <dt>Check what happens with <span class="code">author_id</span> in the respective rows in <span class="code">book</span> table.</dt>
+        </dl>
+    </section>
 </section>
 
 
@@ -779,48 +895,48 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1280,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1280,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 </body>
 </html>
