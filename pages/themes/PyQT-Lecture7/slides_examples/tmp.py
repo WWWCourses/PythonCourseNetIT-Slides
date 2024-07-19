@@ -1,7 +1,7 @@
 import sys
 
-from PyQt6.QtSql import QSqlDatabase, QSqlQuery
-from PyQt6.QtWidgets import (
+from PyQt5.QtSql import QSqlDatabase, QSqlQuery
+from PyQt5.QtWidgets import (
     QApplication,
     QMainWindow,
     QMessageBox,

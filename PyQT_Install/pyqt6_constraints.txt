@@ -1,0 +1,3 @@
+pyqt6==6.4.2
+pyqt6-plugins==6.4.2.2.2
+pyqt6-tools==6.4.2.3.3

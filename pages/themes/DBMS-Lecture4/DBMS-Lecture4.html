@@ -1083,8 +1083,10 @@
 
             # Close connection
             db.close()
-
         </code></pre>
+        <dl class="fa" style="min-width:80vw">
+            <dt>In the provided code, %s is a placeholder used in SQL queries to indicate where the values should be inserted. When cursor.executemany(insert_query, student_data) is executed, the placeholders %s are replaced with the actual values from student_data for each record to be inserted. This is part of the parameterized query execution, which helps prevent <a href="https://www.w3schools.com/sql/sql_injection.asp">SQL injection attacks</a></dt>
+        </dl>
     </section>
     <section><h3>MySQL Connector - Fetch rows</h3>
         <pre><code rel="Python" class="python" style="min-height: 90vh;">
