@@ -83,7 +83,6 @@
 			<dd><span class="note">PyQt4</span>: no longer supported and no new releases will be made.</dd>
 			<dd><span class="note">PyQt5</span>: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt5/index.html">official docs</a>.</dd>
 			<dd><span class="note">PyQt6</span>: <a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/index.html">official docs</a> (this is the version which will be used in the course)</dd>
-			<dd><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/PyQt6_differences.html">Differences Between PyQt5 and PyQt6</a></dd>
 		</dl>
 	</section>
 	<section><h3>PyQt6 Installation</h3>
@@ -104,7 +103,7 @@
 		<dl class="fa">
 			<dt>Create the <code>pyqt_test.py</code> file and run it.</dt>
 		</dl>
-		<pre><code rel="pyqt_test.py" class="python" style="min-height: 80vh;">
+		<pre><code rel="pyqt_test.py" class="python" style="min-height: 60vh;">
 			import sys
 
 			from PyQt6.QtWidgets import QApplication,QWidget
@@ -181,6 +180,10 @@
 		<dl class="fa">
 			<dt>VSCode have many extensions which facilitates the work with PyQt. You can check:</dt>
 			<dd><a href="https://marketplace.visualstudio.com/items?itemName=zhoufeng.pyqt-integration">PYQT Integration</a> - an extension help you coding PYQT form in vsocde. Support ".ui", ".qrc", ".pro", ".ts" files.</dd>
+			<dt>After installing the PyQt Integration extension, go to File > Preferences > Settings or use Ctrl+, to open the settings. Search for <code>PyQt Integration</code> in the search bar.</dt>
+			<dt>Look for the setting PyQt Integration: Designer Path</dt>
+			<dd>Set this to the full path of your standalone QtDesigner executable: C:/path_to_qtdesigner/QtDesigner.exe</dd>
+			<dt>Locate the PyQt Integration: PyQt Version setting and set it to PyQt6.</dt>
 		</dl>
 	</section>
 </section>
