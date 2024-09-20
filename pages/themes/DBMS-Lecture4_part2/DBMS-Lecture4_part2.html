@@ -223,260 +223,608 @@
 
 </section>
 
-<!--
-<section class="main-section-title"><h1>What is an ORM?</h1></section>
-<section class="sub-sections"><h2>What is an ORM?</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt><a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object-Relational Mapping (ORM)</a> is a technique that lets you query and manipulate data from a database using an object-oriented paradigm.</dt>
-			<dt>Brings an abstraction level in communication with different databases, by wrapping DB actions in an idiomatic APIs.</dt>
-			<dt>Provides automation and DRY</dt>
-			<dt>Allow expression of DB/SQL tasks using declarative patterns</dt>
-		</dl>
-	</section>
-	<section><h3>Analogy between Tables and Classes</h3>
-		<pre><code rel="SQL" class="sql" data-noescape>
-			CREATE TABLE users (
-				id serial primary key,
-				name character varying,
-				address character varying
-			)
-		</code></pre>
-		<pre><code rel="Python" class="python">
-			class Users:
-				def __init__(self, name, address):
-					self.name = name
-					self.address = address
-		</code></pre>
-	</section>
-</section> -->
-
-<!--
-<section class="main-section-title"><h1>SQLAlchemy - the Python ORM</h1></section>
-<section class="sub-sections"><h2>SQLAlchemy - the Python ORM</h2>
-	<section><h3>SimpleCompanyDB - the Model</h3>
-		<dl class="fa">
-			<dt>In next slides, in order to illustrate SQLAlchemy, I'll use a very simple model: SimpleCompanyDB</dt>
-			<a href="./examples/slides/SimpleCompanyDB/model/model.png"><img src="./examples/slides/SimpleCompanyDB/model/model.png" style="min-height: 50vh;"></a>
-			<dt>You can download the MySQL dump: <a href="examples/slides/SimpleCompanyDB/model/SimpleCompanyDB_dump.sql">SimpleCompanyDB_dump</a></dt>
-		</dl>
-
-	</section>
-	<section><h3>SimpleCompanyDB - the data</h3>
-		<dl class="fa">
-			<dt>DB engine used is <a href="https://mariadb.org/">MariaDB</a></dt>
-			<dt>Next sample data are pre-populated into the database:</dt>
-		</dl>
-		<pre><code rel="SQL" class="sql" data-noescape style="font-size: .9em; height: 70vh;">
-			 root@localhost:SimpleCompanyDB> SELECT * from company;
-			+--------------+----------------+
-			|   company_id | company_name   |
-			|--------------+----------------|
-			|            1 | Google         |
-			|            2 | Facebook       |
-			|            3 | Microsoft      |
-			+--------------+----------------+
-			4 rows in set
-			Time: 0.002s
-			mariadb root@localhost:SimpleCompanyDB> SELECT * from employee;
-			+---------------+-----------------+
-			|   employee_id | employee_name   |
-			|---------------+-----------------|
-			|             1 | Ivan Petrov     |
-			|             2 | Maria Popova    |
-			|             3 | Georgi Ivanov   |
-			+---------------+-----------------+
-			3 rows in set
-			Time: 0.005s
-			mariadb root@localhost:SimpleCompanyDB> SELECT * from company_employee
-			+---------------+--------------+
-			|   employee_id |   company_id |
-			|---------------+--------------|
-			|             1 |            2 |
-			|             2 |            1 |
-			|             3 |            1 |
-			|             3 |            2 |
-			+---------------+--------------+
-			4 rows in set
-		</code></pre>
-	</section>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>SQLAlchemy is the Python SQL Toolkit and ORM</dt>
-			<dd>Official site <a href="https://www.sqlalchemy.org/">www.sqlalchemy.org</a></dd>
-		</dl><br>
-		<a href="images/SQLAlchemy_layers.png"><img src="images/SQLAlchemy_layers.png"></a>
-	</section>
-	<section><h3>Overview</h3>
-		<p>The SQLAlchemy flow:</p>
-		<a href="images/sqla_engine_arch.png"><img src="images/sqla_engine_arch.png"></a>
-	</section>
-	<section><h3>SQLAlchemy Engines</h3>
-		<dl class="fa" style="font-size: .8em">
-			<dt>An <em>Engine</em> allows SQLAlchemy to interact with a database</dt>
-			<dt>The typical usage of create_engine() is once per particular database URL, held globally for the lifetime of a single application process</dt>
-		</dl>
-		<pre><code rel="Syntax" class="shell" data-noescape>
-			engine = create_engine(
-				dialect+driver://username:password@host:port/database)
-		</code></pre>
-		<pre><code rel="Python" class="python" style="font-size: 1em;">
-			from sqlalchemy import create_engine
-
-			# connect to Mysql/MariaDB:
-			mysql_engine = create_engine(
-			  "mysql+pymysql://user:pass@localhost/test")
-
-			# connect to PostgreSQL:
-			pg_engine = create_engine('postgresql://usr:pass@localhost/sqlalchemy')
-		</code></pre>
-		<a href="http://docs.sqlalchemy.org/en/rel_1_1/core/engines.html">Engine Configuration @http://docs.sqlalchemy.org</a>
-	</section>
-	<section><h3>Supported Databases/Dialects</h3>
-		<dl class="fa">
-			<dt>SQLAlchemy includes many Dialect implementations for various backends. Many other are available as external projects</dt>
-			<dt>List and more information about dialects can be found on: <a href="http://docs.sqlalchemy.org/en/rel_1_1/dialects/index.html">Dialects</a></dt>
-		</dl>
-	</section>
-	<section><h3>Create an engine to SimpleCompanyDB</h3>
-		<pre><code rel="base.py" class="python" data-noescape>
-			from sqlalchemy import create_engine
-
-			#Create engine with MySQL dialect:
-			engine = create_engine(
-			    'mysql+pymysql://pythontest:123@localhost/SimpleCompanyDB?charset=utf8',
-			    connect_args = {
-			        # 'port': 3306
-			    },
-			    # echo='debug',
-			    echo_pool=True
-			)
-
-			# test the connection - get tables names:
-			print("Tables in SimpleCompanyDB: ",engine.table_names())
-			# Tables in SimpleCompanyDB:  ['company', 'company_employee', 'employee']
-		</code></pre>
-	</section>
-	<section><h3>The Declarative system </h3>
-		<dl class="fa">
-			<dt>SQLAlchemy uses a system known as Declarative, which allows us to create classes that include directives to describe the actual database table they will be mapped to.</dt>
-			<dt>Classes mapped using the Declarative system are defined in terms of a base class which maintains a catalog of classes and tables relative to that base - this is known as the declarative base class.</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			from sqlalchemy.ext.declarative import declarative_base
-
-			Base = declarative_base()
-		</code></pre>
-	</section>
-	<section><h3>SQLAlchemy Data Types</h3>
-		<dl class="fa">
-			<dt>SQLAlchemy provides abstraction for various data types used in most RBMS.</dt>
-			<dd><a href="http://docs.sqlalchemy.org/en/latest/core/types.html">Column and Data Types</a></dd>
-		</dl>
-		<pre><code rel="Python" class="python">
-			class Address(Base):
-			    __tablename__ = 'address'
-			    # define columns for the table address.
-			    id = Column(Integer, primary_key=True)
-			    street_name = Column(String(250))
-			    street_number = Column(String(250))
-			    post_code = Column(String(250), nullable=False)
-			    person_id = Column(Integer, ForeignKey('person.id'))
-			    person = relationship(Person)
-		</code></pre>
-	</section>
-	<section><h3>SQLAlchemy Relationships</h3>
-		<dl class="fa">
-			<dt>SQLAlchemy supports four types of relationships: One To Many, Many To One, One To One, and Many To Many</dt>
-		</dl>
-		<p>Example of <em>One To Many</em> relationship:</p>
-		<pre><code rel="Python" class="python">
-			class Person(Base):
-			    __tablename__ = 'person'
-			    id = Column(Integer, primary_key=True)
-			    pets = relationship("Pet")
 
 
-			class Pet(Base):
-			    __tablename__ = 'pet'
-			    id = Column(Integer, primary_key=True)
-			    person_id = Column(Integer, ForeignKey('person.id'))
-		</code></pre>
-	</section>
-	<section><h3>Example of <em>Many To Many</em> relationship</h3>
-		<pre><code rel="Python" class="python">
-			company_employee = Table('company_employee', Base.metadata,
-			    Column('employee_id', Integer, ForeignKey('employee.employee_id')),
-			    Column('company_id', Integer, ForeignKey('company.company_id'))
-			)
-
-			class Employee(Base):
-			    __tablename__ = 'employee'
-			    employee_id = Column(Integer, primary_key=True)
-			    companies = relationship("Company", secondary=company_employee)
-
-			class Company(Base):
-			    __tablename__ = 'company'
-			    id = Column(Integer, primary_key=True)
-		</code></pre>
-	</section>
-	<section><h3>SQLAlchemy ORM (Mappers)</h3>
-		<dl class="fa">
-			<dt>Mappers are responsible for moving data between objects and a database while keeping them independent of each other</dt>
-		</dl>
-	</section>
-	<section><h3>SQLAlchemy Sessions</h3>
-		<dl class="fa">
-			<dt>Sessions are used to guarantee the database consistency.</dt>
-			<dt>All modifications tracked by Sessions (Units of Works) will be applied to the underlying database together, or none of them will.</dt>
-			<dt>More on Sessions: <a href="http://docs.sqlalchemy.org/en/rel_1_1/orm/session_basics.html">Session Basics @docs.sqlalchemy.org</a></dt>
-		</dl>
-	</section>
-	<section><h3>Reflecting Database Objects - Overview</h3>
-		<dl class="fa">
-			<dt>If a table already exists, SQLAlchemy can read its column definitions directly from the database.</dt>
-			<dt>This processes is called <span class="note">reflecting the table</span>.</dt>
-		</dl>
-	</section>
-	<section><h3>Reflecting Database Objects - Example</h3>
-		<pre><code rel="Python" class="bash">
-			from sqlalchemy import create_engine
-			from sqlalchemy import MetaData
-			from sqlalchemy import Table, sql
-
-
-			# connect to Mysql/MariaDB:
-			engine = create_engine("mysql+pymysql://root:1234@localhost/SimpleCompanyDB")
-
-
-			# Create a MetaData instance
-			metadata = MetaData()
-			print(metadata.tables)
-
-			# reflect db schema to MetaData
-			metadata.reflect(bind=engine)
-			print(metadata.tables)
-		</code></pre>
-	</section>
+<section><h1>What is an ORM?</h1></section>
+<section><h2>What is an ORM?</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt><a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object-Relational Mapping (ORM)</a> is a technique that lets you query and manipulate data from a relational database using an object-oriented paradigm.</dt>
+            <dt>An ORM maps Python classes to database tables, and instances of those classes to rows in those tables. It allows developers to work with database records as if they were Python objects, providing a high-level interface for database operations.</dt>
+            <dt>Benefits of Using ORM</dt>
+            <dd><b>Abstraction</b>: Developers can work with databases using familiar object-oriented concepts, without having to write raw SQL queries.</dd>
+            <dd><b>Portability</b>: ORM makes it easier to switch between different database backends without changing application code.</dd>
+            <dd><b>Productivity</b>: ORM handles many common database tasks automatically, reducing the amount of boilerplate code that developers need to write.</dd>
+            <dt>ORMs Used in Python:</dt>
+            <dd>SQLAlchemy - one of the most popular ORM libraries used in Python</dd>
+            <dd>Django ORM - part of the Django web framework and provides a high-level abstraction for working with databases in Django applications.</dd>
+        </dl>
+    </section>
+    <section><h3>Analogy between Tables and Classes</h3>
+        <pre><code rel="SQL" class="sql" data-noescape>
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL,
+                age INTEGER NOT NULL
+            )
+        </code></pre>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            class User:
+                def __init__(self, name, age):
+                    self.name = name
+                    self.age = age
+        </code></pre>
+    </section>
+    <!-- <section><h3>ORM for MongoDB?</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>MongoDB is a NoSQL document-oriented database. While SQLAlchemy provides a rich set of features for working with relational databases, it does not natively support MongoDB.</dt>
+            <dt>In Python's ecosystem there are other libraries that provide similar functionality to SQLAlchemy but are specifically designed for MongoDB.</dt>
+            <dt>One popular choice is MongoEngine, which is an Object-Document Mapper (ODM) for MongoDB that provides similar features to SQLAlchemy but tailored for MongoDB's document structure.</dt>
+        </dl>
+    </section> -->
 </section>
-<section class="main-section-title"><h1>References</h1></section>
-<section class="sub-sections"><h2>References</h2>
-	<section><h3>"Introduction to SQLAlchemy 2020 (Tutorial)" by: Mike Bayer</h3>
-		<p>Learn from source with Mike Bayer - the creator of SQLAlchemy</p>
-		<iframe width="1280" height="720" src="https://www.youtube.com/embed/sO7FFPNvX2s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	</section>
-</section> -->
 
-<!-- <section class="main-section-title"><h1>Connect, Declare a Mapping,Create a Schema</h1></section>
-<section class="sub-sections"><h2>Connect, Declare a Mapping,Create a Schema</h2>
-	<section><h3>___MainSectionSubTitle___</h3></section>
-</section> -->
+<section class="main-section-title" id="IntroductionToSQLAlchemy"><h1>Introduction to SQLAlchemy</h1></section>
+<section class="sub-sections"><h2>Introduction to SQLAlchemy</h2>
+    <section><h3>What is SQLAlchemy?</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>SQLAlchemy is a powerful SQL toolkit and Object-Relational Mapping (ORM) library for Python.</dt>
+            <dt>SQLAlchemy provides a Pythonic way to interact with databases, allowing developers to work with SQL databases using Python objects and syntax, making database operations more intuitive and efficient.</dt>
+            <a href="./images/SQLAlchemy_layers.png" style="display: block; text-align: center;">
+                <img src="./images/SQLAlchemy_layers.png" alt="SQLAlchemy_layers.png" style="min-height: 60vh;">
+            </a>
+            <!-- <dt>Key Features</dt>
+            <dd><b>ORM support</b>: Allows developers to interact with databases using Python objects, abstracting away the complexities of SQL.</dd>
+            <dd><b>Expression Language</b>: Provides a Pythonic way to construct SQL queries, making it easier to write and maintain code.</dd>
+            <dd><b>Connection Pooling</b>: Manages database connections efficiently, improving performance.</dd>
+            <dd><b>Transaction support</b>: Ensures data integrity by managing database transactions.</dd>
+            <dd><b>Schema Migration</b>: Provides tools for managing and migrating database schemas, making it easier to evolve your application over time.</dd>
+            <dd><b>Compatibility</b>: Supports multiple database backends</dd> -->
+        </dl>
+    </section>
+    <section><h3>Supported Database Backends</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>SQLAlchemy supports various database backends, including:</dt>
+            <dd>SQLite: A lightweight, file-based database engine that is suitable for small-scale applications and testing.</dd>
+            <dd>MySQL: A popular open-source relational database management system known for its reliability and performance.</dd>
+            <dd>PostgreSQL: An advanced open-source relational database management system known for its robustness and extensibility.</dd>
+            <dd>Oracle: A proprietary relational database management system widely used in enterprise environments.</dd>
+            <dd>Microsoft SQL Server: A relational database management system developed by Microsoft, commonly used in Windows-based environments.</dd>
+            <dd>DB2: A relational database management system developed by IBM, often used in large-scale enterprise applications.</dd>
+            <dd>And more...</dd>
+        </dl>
+    </section>
+    <section><h3>Installation</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Installing SQLAlchemy</dt>
+            <dd>You can install SQLAlchemy using pip:</dd>
+            <!-- --------------------- Optional code block for CLI --------------------- -->
+            <pre><code rel="Terminal" class="bash" data-noescape>
+                pip install sqlalchemy
+            </code></pre>
+        </dl>
+    </section>
+</section>
 
 
-<!-- <section class="main-section-title"><h1>Demo example with SQLAlchemy and SQLite3</h1></section>
-<section class="sub-sections"><h2>Demo example with SQLAlchemy and SQLite3</h2>
-	<section><h3>___MainSectionSubTitle___</h3></section>
-</section> -->
+<section class="main-section-title"><h1>Connecting to a Database</h1></section>
+<section class="sub-sections"><h2>Connecting to a Database</h2>
+    <section id="ConnectingToADatabase"><h3>Creating an Engine</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>To connect to a database, SQLAlchemy uses an Engine object, which represents a source of database connectivity and behavior.</dt>
+            <dt>You can create an Engine using the <code>create_engine</code> function.</dt>
+
+            <pre><code rel="Python" class="python" style="font-size: 1em;">
+                from sqlalchemy import create_engine
+
+                # Create an engine to connect to a SQLite database
+                engine = create_engine('sqlite:///python_course.db')
+
+                # create engine for MySQL dialect with MySQL Connector DBAPI:
+                engine = create_engine("mysql+mysqlconnector://test:test1234@localhost/test")
+
+                # create engine for PostgreSQL dialect with psycopg2 DBAPI:
+                pg_engine = create_engine('postgresql+psycopg2://usr:pass@localhost/sqlalchemy')
+            </code></pre>
+            <dt>An <em>Engine</em> allows SQLAlchemy to interact with a database. It is the starting point for any SQLAlchemy application</dt>
+            <dt>The typical usage of create_engine() is once per particular database URL, held globally for the lifetime of a single application process</dt>
+            <dt>Reference: <a href="https://docs.sqlalchemy.org/en/20/core/engines.html">Engine Configuration @http://docs.sqlalchemy.org</a></dt>
+        </dl>
+    </section>
+    <section><h3>Supported Databases/Dialects</h3>
+        <dl class="fa">
+            <dt>SQLAlchemy includes many Dialect implementations for various backends. Many other are available as external projects</dt>
+            <dt>List and more information about dialects can be found on: <a href="https://docs.sqlalchemy.org/en/20/dialects/index.html">Dialects</a></dt>
+        </dl>
+    </section>
+</section>
+
+<section class="main-section-title"><h1>Create Tables</h1></section>
+<section class="sub-sections"><h2>Create Tables</h2>
+    <section id="DefiningDatabaseModels"><h3>Creating a Table with Declarative Base</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>SQLAlchemy uses a system known as Declarative, which allows us to create classes that include directives to describe the actual database table they will be mapped to.</dt>
+            <dt>Classes mapped using the Declarative system are defined in terms of a base class which maintains a catalog of classes and tables relative to that base - this is known as the declarative <code>Base</code> class.</dt>
+            <dd>In SQLAlchemy, database tables are represented as Python classes. Each table class inherits from the <code>Base</code> class and defines its columns as class attributes.</dd>
+
+            <pre><code rel="Python" class="python" style="min-height: 60vh;">
+                from sqlalchemy import create_engine
+                from sqlalchemy.orm import declarative_base
+                from sqlalchemy import Column, Integer, String
+
+                # Create an engine
+                engine = create_engine('sqlite:///python_course.db')
+
+                # Declare a base using declarative_base
+                Base = declarative_base()
+
+                # Define the User class inheriting from Base
+                class User(Base):
+                    __tablename__ = 'user'
+                    id = Column(Integer, primary_key=True)
+                    name = Column(String)
+                    age = Column(Integer)
+
+                # Create the tables in the database
+                Base.metadata.create_all(engine)
+            </code></pre>
+            <dt>Note that the tables won't be created automatically just by defining the model. You'll need to create an engine, and call <code>Base.metadata.create_all(engine)</code></dt>
+        </dl>
+    </section>
+    <section><h3 class="advanced">Creating a table with MetaData and Table </h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>MetaData in SQLAlchemy represents a collection of database schema elements, such as tables, columns, and constraints. It acts as a container for storing and managing the structure of a database.</dt>
+            <dt>To define database schema elements in SQLAlchemy, you typically create instances of the Table, Column, and other schema constructs and associate them with a MetaData object.</dt>
+            <pre><code rel="Python" class="python" style="min-height: 55vh;">
+                from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
+
+                # Create an engine
+                engine = create_engine('sqlite:///python_course.db')
+
+                # Create a metadata object
+                metadata = MetaData()
+
+                # Define the table
+                user_table = Table('user', metadata,
+                    Column('id', Integer, primary_key=True),
+                    Column('name', String),
+                    Column('age', Integer)
+                )
+
+                # Create the table in the database associated with the provided engine
+                metadata.create_all(engine)
+            </code></pre>
+            <dt>This approach can be useful in situations where you prefer more control over the table definition.</dt>
+        </dl>
+    </section>
+</section>
+
+
+<section class="main-section-title"><h1>SQLAlchemy Data Types</h1></section>
+<section class="sub-sections"><h2>SQLAlchemy Data Types</h2>
+    <section id="SQLAlchemyDataTypes"><h3>SQLAlchemy Data Types</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>SQLAlchemy provides abstraction for various data types used in most RBMS.</dt>
+            <dd><b>Integer</b>: stores whole numbers. It typically maps to the INTEGER or INT SQL types</dd>
+            <dd><b>String</b>: a variable-length string data type. It represents character strings with a maximum length. It typically maps to the VARCHAR SQL type.</dd>
+            <dd><b>Float</b>: stores decimal numbers. It typically maps to the FLOAT or REAL SQL types.</dd>
+            <dd><b>Boolean</b>: stores true or false values. It typically maps to the BOOLEAN SQL type.</dd>
+            <dd><b>Date</b>: stores calendar dates without a time component. It typically maps to the DATE SQL type.</dd>
+            <dd><b>DateTime</b>: stores both date and time information. It typically maps to the DATETIME SQL type.</dd>
+
+            <dd><b>Text</b>: a variable-length string data type for storing large blocks of text. It is suitable for storing long text values. It typically maps to the TEXT SQL type.</dd>
+            <dd><b>Enum</b>: An enumerated data type that represents a set of predefined values. It is useful for representing fixed choices. It typically maps to the ENUM SQL type.</dd>
+            <dt>And More. Check <a href="http://docs.sqlalchemy.org/en/latest/core/types.html">Column and Data Types</a></dt>
+
+        </dl>
+    </section>
+    <section><h3>Example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 80vh;">
+            from sqlalchemy import create_engine, Column, Integer, String, Float, Boolean, Date, DateTime
+            from sqlalchemy.orm import declarative_base
+
+            # Create an engine
+            engine = create_engine('sqlite:///python_course.db')
+
+            # Declare a base using declarative_base
+            Base = declarative_base()
+
+            # Define the table
+            class Example(Base):
+                __tablename__ = 'example'
+
+                id = Column(Integer, primary_key=True)
+                name = Column(String(50))
+                age = Column(Integer)
+                height = Column(Float)
+                is_student = Column(Boolean)
+                birthdate = Column(Date)
+                created_at = Column(DateTime)
+
+            # Create the table in the database
+            Base.metadata.create_all(engine)
+
+        </code></pre>
+    </section>
+</section>
+
+<section class="main-section-title"><h1>CRUD Operations</h1></section>
+<section class="sub-sections"><h2>CRUD Operations</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>CRUD stands for Create, Read, Update, and Delete. It is a set of fundamental operations used in database management and application development.</dt>
+            <dt><b>Create</b> operation involves adding new data to a system. It typically corresponds to inserting new records into a database.</dt>
+
+            <dt><b>Read</b> operation involves retrieving existing data from a system. It typically corresponds to querying records from a database.</dt>
+
+            <dt><b>Update</b> operation involves modifying existing data in a system. It typically corresponds to updating records in a database.</dt>
+
+            <dt><b>Delete</b> operation involves removing existing data from a system. It typically corresponds to deleting records from a database.</dt>
+        </dl>
+    </section>
+    <section><h3>Create Session</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Once connected, SQLAlchemy uses a Session object to manage interactions with the database.</dt>
+            <dd>Use session objects to add new records, fetch data, and update or delete existing records.</dd>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            from sqlalchemy.orm import sessionmaker
+
+            # Create a session
+            Session = sessionmaker(bind=engine)
+            session = Session()
+        </code></pre>
+    </section>
+    <section><h3>Why using Session?</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><b>Transactional Integrity:</b></dt>
+            <dd>The `Session` provides a transactional boundary. It ensures that all changes made to objects in a session are persisted in the database atomically (either all changes are committed or none), maintaining the integrity of your data.</dd>
+
+            <dt><b>Unit of Work:</b></dt>
+            <dd>The `Session` tracks changes made to objects and automatically synchronizes these changes with the database upon committing a transaction. It effectively acts as a unit of work, allowing you to perform multiple operations on objects and commit them as a single transaction.</dd>
+
+            <dt><b>Identity Map:</b></dt>
+            <dd>Within a session, each object is unique. This means that if you load the same object multiple times within a session, you'll always get back the same Python object instance. This behavior helps in maintaining consistency and avoiding unnecessary duplicate objects.</dd>
+
+            <dt><b>Caching and Performance:</b></dt>
+            <dd>The `Session` implements a first-level cache to optimize performance. Once an object is loaded into a session, subsequent requests for the same object are retrieved from the cache, reducing the number of database queries and improving overall performance.</dd>
+
+            <dt><b>Context Management:</b></dt>
+            <dd>The `Session` can be used within a context manager (using the `with` statement) to ensure proper handling of resources. It automatically opens a connection to the database when entering the context and closes it when exiting, preventing resource leaks and managing connections efficiently.</dd>
+            <dt>More on Sessions: <a href="https://docs.sqlalchemy.org/en/20/orm/session_basics.html">Session Basics @docs.sqlalchemy.org</a></dt>
+        </dl>
+    </section>
+    <section id="InsertingData"><h3>Inserting Data</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Using the Session</dt>
+            <dd>To insert new records into the database, create new instances of your mapped classes and add them to the session.</dd>
+            <dd>Once added, commit the session to persist the changes to the database.</dd>
+
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # Create a new user instance
+                new_user = User(name='Ivan', age=30)
+                # Add the new user to the session
+                session.add(new_user)
+                # Commit the session to persist the changes
+                session.commit()
+            </code></pre>
+
+            <dt>Using Insert Statements</dt>
+            <dd>If you prefer, you can also use raw SQL insert statements to add data to the database. However, using SQLAlchemy's ORM approach with sessions is generally recommended for better code organization and safety against SQL injection attacks.</dd>
+
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # Execute a raw SQL insert statement
+                engine.execute("INSERT INTO user (name, age) VALUES ('Maria', 25)")
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Example: add data stored as list of dictionaries</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>If you have data stored in a list of dictionaries and you want to add this data to your database using SQLAlchemy, you can iterate over the list and add each dictionary as a new record in the database.</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 98vh;">
+            from sqlalchemy import create_engine
+            from sqlalchemy.orm import sessionmaker, declarative_base
+            from sqlalchemy import Column, Integer, String
+
+            # Create an engine
+            engine = create_engine('sqlite:///python_course.db')
+
+            # Declare a base using declarative_base
+            Base = declarative_base()
+
+            # Define the User class inheriting from Base
+            class User(Base):
+                __tablename__ = 'user'
+                id = Column(Integer, primary_key=True)
+                name = Column(String)
+                age = Column(Integer)
+
+            # Create the tables in the database
+            Base.metadata.create_all(engine)
+
+            # Create a session
+            Session = sessionmaker(bind=engine)
+            session = Session()
+
+            data = [
+                {"name": "Ivan", "age": 30},
+                {"name": "Mariya", "age": 25},
+                {"name": "Petar", "age": 35}
+            ]
+
+            # Iterate over the list of dictionaries and add each record to the session
+            for entry in data:
+                new_user = User(name=entry['name'], age=entry['age'])
+                session.add(new_user)
+
+            # Commit the session to persist the changes
+            session.commit()
+        </code></pre>
+    </section>
+    <section id="QueryingData"><h3>Querying Data</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Basic Queries</dt>
+            <dd>SQLAlchemy provides a powerful querying interface that allows developers to retrieve data from the database using Pythonic syntax.</dd>
+
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # Query all users
+                users = session.query(User).all()
+
+                # Get user by id:
+                user = session.query(User).filter(User.id == 1)
+
+                # Filter users by age
+                young_users = session.query(User).filter(User.age < 30).all()
+            </code></pre>
+        </dl>
+    </section>
+    <section id="Filtering"><h3>Filtering Data</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Using filter_by():</dt>
+            <dd>The <code>filter_by()</code> method offers a concise syntax for applying simple equality conditions in filtering.</dd>
+            <dd>It takes keyword arguments where the keys represent column names and the values specify the desired values for those columns.</dd>
+            <dd>While it's convenient for basic filtering, it's limited to equality conditions only.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # Example of using filter_by() with simple equality conditions
+                session.query(User).filter_by(age=30, name='Ivan').all()
+            </code></pre>
+            <dt>Using filter():</dt>
+            <dd>The <code>filter()</code> method in SQLAlchemy allows you to apply complex filtering conditions when querying data.</dd>
+            <dd>It takes one or more filtering criteria as arguments, which can include comparisons, logical operators, and functions.</dd>
+            <dd>This provides flexibility for constructing advanced filtering queries.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # Example of using filter() with complex conditions
+                session.query(User).filter(User.age > 25, User.name.like('%Ivan%')).all()
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Filter using multiple filter conditions</h3>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            # Users named 'Ivan' and over 25 years old
+            query = session.query(User).filter(User.name == 'Ivan').filter(User.age > 25)
+            Maria_over_25 = query.all()
+
+            for user in Maria_over_25:
+                print(user.name, user.age)
+        </code></pre>
+    </section>
+    <section><h3>Filter using Logical Operators</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>You can use and_(), or_(), and not_() to combine multiple conditions logically:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                from sqlalchemy import and_, or_, not_
+
+                # Users named 'Maria' or 'Ivan' who are over 25 years old
+                query = session.query(User).filter(or_(User.name == 'Maria', User.name == 'Ivan'), User.age > 25)
+                users = query.all()
+
+                for user in users:
+                    print(user.name, user.age)
+
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Filter using LIKE Statements</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>The filter() method can also handle LIKE statements for pattern matching:</dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # Users whose name starts with 'I'
+                query = session.query(User).filter(User.name.like('I%'))
+                a_users = query.all()
+
+                for user in a_users:
+                    print(user.name)
+            </code></pre>
+        </dl>
+    </section>
+    <section id="Update"><h3>Update data</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>The "Update" operation is used to modify existing data in the system. It allows changing the values of fields in the rows of a table.</dt>
+            <dt>The "Update" operation uses the `update()` method in combination with a condition specifying the rows you want to update.</dt>
+            <dt>To update existing records, simply modify the attributes of the corresponding objects and commit the changes.</dt>
+            <dt>Example</dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # Update the age of a user with a specific name
+                user = session.query(User).filter_by(name='Ivan').first()
+                user.age = 30
+                session.commit()
+            </code></pre>
+        </dl>
+    </section>
+    <section id="Delete"><h3>Delete</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>The "Delete" operation in SQLAlchemy is used to remove data from the database. It allows you to delete one or more rows from a table based on specified criteria.</dt>
+            <dt>To delete records, query the object to be deleted and call the <code>delete()</code> method on it.</dt>
+            <dt>Example</dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # Delete a user with a specific ID
+                session.query(User).filter(User.id == 1).delete()
+                session.commit()
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Example: CRUD Operation on User Table</h3>
+        <script src="https://gist.github.com/ProgressBG-Python-Course/e8c05b76bd582507e81e3aff35e46709.js"></script>
+    </section>
+</section>
+
+
+<section class="main-section-title"><h1 class="advanced">Tables Relationships in SQLAlchemy</h1></section>
+<section class="sub-sections"><h2 class="advanced">Tables Relationships in SQLAlchemy</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Relationships in SQLAlchemy define associations between different tables in a database. They represent how entities in one table are related to entities in another table.</dt>
+            <dt>SQLAlchemy supports defining relationships between tables using attributes like <code>relationship</code>.</dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                from sqlalchemy import ForeignKey
+                from sqlalchemy.orm import relationship
+
+                class Address(Base):
+                    __tablename__ = 'address'
+                    id = Column(Integer, primary_key=True)
+                    email = Column(String)
+                    user_id = Column(Integer, ForeignKey('user.id'))
+                    user = relationship("User", back_populates="address")
+            </code></pre>
+            <dt>With the line <code>user = relationship("User", back_populates="address")</code> we state that instances of the Address class have a relationship with instances of the User class, and instances of the User class have an attribute named address that represents the reverse relationship back to instances of the Address class</dt>
+        </dl>
+    </section>
+    <section><h3>Types of Relationships</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>A <b>one-to-one</b> relationship exists when each record in one table is associated with exactly one record in another table.</dt>
+            <dt>A <b>one-to-many</b> relationship exists when each record in one table can be associated with one or more records in another table.</dt>
+            <dt>A <b>many-to-many</b> relationship exists when each record in one table can be associated with one or more records in another table, and vice versa.</dt>
+        </dl>
+    </section>
+    <section><h3>One-to-Many/Many-to-One Relationship</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Let's define two model classes representing countries and users. We aim to establish a relationship where many users can be associated with one country (i.e., one country can have multiple users).</dt>
+            <dt>In next example: </dt>
+            <dd>The Country class has a one-to-many relationship with the User class.</dd>
+            <dd>The User class has a many-to-one relationship with the Country class.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 65vh;">
+                # Define Country class (Parent)
+                class Country(Base):
+                    __tablename__ = 'countries'
+
+                    id = Column(Integer, primary_key=True)
+                    name = Column(String)
+
+                    # Establishing one-to-many relationship with User class
+                    users = relationship("User", back_populates="country")
+
+                # Define User class (Child)
+                class User(Base):
+                    __tablename__ = 'users'
+
+                    id = Column(Integer, primary_key=True)
+                    name = Column(String)
+                    country_id = Column(Integer, ForeignKey('countries.id'))  # Foreign key linking to Country id
+
+                    # Establishing many-to-one relationship with Country class
+                    country = relationship("Country", back_populates="users")
+            </code></pre>
+            <dt>You can view the full code with usage example in next gist: <a href="https://gist.github.com/ProgressBG-Python-Course/c6d76f483129d9869a13f611c452bb96">https://gist.github.com/ProgressBG-Python-Course/c6d76f483129d9869a13f611c452bb96</a></dt>
+        </dl>
+    </section>
+    <section><h3>Bidirectional Relationship</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>A bidirectional relationship, in the context of databases and ORM frameworks like SQLAlchemy, refers to a relationship between two entities (classes or tables) where changes made on one side are automatically reflected on the other side. In other words, it allows navigation and manipulation of the relationship from both ends.</dt>
+            <dt>In the example provided earlier, the bidirectional relationship between the Country and User classes means:</dt>
+            <dd>From Country to User (One-to-Many): A Country instance has an attribute called users, which is a list of User instances associated with that country. This allows you to access all users belonging to a particular country.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # Query for all users in a country
+                country = session.query(Country).filter_by(name='Bulgaria').first()
+                print(f'Users in Bulgaria: ')
+                for user in country.users:
+                    print(user.name)
+            </code></pre>
+            <dd>From User to Country (Many-to-One): A User instance has an attribute called country, representing the country to which the user belongs. This allows you to access the country associated with a particular user.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # Query for a user country:
+                user = session.query(User).filter_by(name="Maria").first()
+                print(f'{user.name} live in {user.country.name}')
+            </code></pre>
+            <dt>The bidirectional nature ensures that if you add a user to a country's list of users, the user's associated country attribute is automatically set, and vice versa. This simplifies the management of relationships and ensures consistency when working with related entities in your application.</dt>
+        </dl>
+    </section>
+    <section><h3>One-to-One Relationship</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>One-to-One Relationship is essentially a One-To-Many relationship from a foreign key perspective, but indicates that there will only be one row at any time that refers to a particular parent row.</dt>
+            <dt>Let's define two model classes representing users and their profiles. We aim to establish a relationship where <em>each user has exactly one profile, and each profile is associated with one user</em>.</dt>
+            <dt>In next example:</dt>
+            <dd>The User class has a one-to-one relationship with the Profile class.</dd>
+            <dd>The Profile class has a one-to-one relationship with the User class.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 60vh;">
+                # Define User class
+                class User(Base):
+                    __tablename__ = 'users'
+
+                    id = Column(Integer, primary_key=True)
+                    name = Column(String)
+
+                    # One-to-one relationship with Profile
+                    profile = relationship("Profile", uselist=False, back_populates="user")
+
+                # Define Profile class
+                class Profile(Base):
+                    __tablename__ = 'profiles'
+
+                    id = Column(Integer, primary_key=True)
+                    bio = Column(String)
+                    user_id = Column(Integer, ForeignKey('users.id'), unique=True)
+
+                    # One-to-one relationship with User
+                    user = relationship("User", back_populates="profile")
+            </code></pre>
+            <dd>The <code>uselist=False</code> argument ensures that only one Profile instance is associated with each User.</dd>
+            <dt>You can view the full code with usage example in next gist: <a href="https://gist.github.com/ProgressBG-Python-Course/5384bb34e18aaea6ca01c7abe9822b17">https://gist.github.com/ProgressBG-Python-Course/5384bb34e18aaea6ca01c7abe9822b17</a></dt>
+        </dl>
+    </section>
+    <section><h3>Many-to-Many Relationship</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Let's define two model classes representing users and groups. We aim to establish a relationship where a user can participate in multiple groups, and conversely, a group can have multiple users associated with it (i.e., a many-to-many relationship).</dt>
+            <dt>To establish the many-to-many relationship, we use an association table named <code>user_group_association</code> which serves as an intermediary table that connects users and groups. It contains foreign key columns referencing the primary keys of the usres and groups tables.</dt>
+            <dt>In the next example:</dt>
+            <dd>The User class has a many-to-many relationship with the Group class.</dd>
+            <dd>The Group class has a many-to-many relationship with the User class.</dd>
+            <dd>The <code>relationship()</code> function in the Student and Course model classes specifies the secondary parameter as the association table, indicating that the relationship is defined through this intermediary table.</dd>
+            <pre><code rel="Python" class="python" style="min-height: 40vh;">
+                # Define association table for many-to-many relationship
+                user_group_association = Table('user_group_association', Base.metadata,
+                    Column('user_id', Integer, ForeignKey('users.id')),
+                    Column('group_id', Integer, ForeignKey('groups.id'))
+                )
+
+                # Define User class
+                class User(Base):
+                    __tablename__ = 'users'
+
+                    id = Column(Integer, primary_key=True)
+                    name = Column(String)
+
+                    # Define many-to-many relationship with Group
+                    groups = relationship("Group", secondary=user_group_association, back_populates="users")
+
+                # Define Group class
+                class Group(Base):
+                    __tablename__ = 'groups'
+
+                    id = Column(Integer, primary_key=True)
+                    name = Column(String)
+
+                    # Define many-to-many relationship with User
+                    users = relationship("User", secondary=user_group_association, back_populates="groups")
+            </code></pre>
+            <dt>You can view the full code with usage example in next gist: <a href="https://gist.github.com/ProgressBG-Python-Course/a43d2e80360f7286f3d2307e08fdeb6d">https://gist.github.com/ProgressBG-Python-Course/a43d2e80360f7286f3d2307e08fdeb6d</a></dt>
+        </dl>
+    </section>
+</section>
+
+
+
+
 <!--
 <section data-min="20" class="main-section-title"><h1>Pandas and DB</h1></section>
 <section class="sub-sections"><h2>Pandas and DB</h2>
@@ -491,7 +839,7 @@
       mysql_cn.close()
     </code></pre>
   </section>
-</section>
+</section> -->
 
 
 <section class="main-section-title"><h1>References</h1></section>
@@ -504,7 +852,7 @@
 			<dt><a href="https://www.pythonsheets.com/notes/python-sqlalchemy.html">Python SQLAlchemy Cheatsheet</a></dt>
 		</dl>
 	</section>
-</section> -->
+</section>
 
 <section id="hw" class="main-section-title"><h1>Exercises</h1></section>
 <section class="sub-sections"><h2>TASK: books_db</h2>
