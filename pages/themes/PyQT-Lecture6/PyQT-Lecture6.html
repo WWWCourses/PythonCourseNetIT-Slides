@@ -29,7 +29,7 @@
 <body>
 	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
 		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture7" target="_top"></a>
+			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture8" target="_top"></a>
 			<span class="help_link"><i class="fa fa-question"></i></span>
 			<div class="help_text">
 				<div class="note">Keyboard shortcuts:</div>
@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section class="main-section-title"><h1>PyQT - Lecture 6</h1></section>
+<section class="main-section-title"><h1>PyQT - Lecture 5 : Hands On a Project with PyQT and Mysql</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
 		<div class="note">
@@ -71,461 +71,343 @@
 	</section>
 </section>
 
-<section data-min="5" class="main-section-title"><h1>Create applications with QMainWindow</h1></section>
-<section class="sub-sections"><h2>Create applications with QMainWindow</h2>
-	<section><h3>Get familiar with MainWindow</h3>
+
+<section data-min="5" class="main-section-title"><h1>Hands On a Project with PyQT and Mysql</h1></section>
+<section class="sub-sections"><h2>Init Project</h2>
+	<section id="createProjectSVirtualEnvironment"><h3>Create project's virtual environment</h3>
+		<p>If you don't use PyCharm, or if you want to understand what's PyCharm is doing...:</p>
 		<dl class="fa">
-			<dt>Qt has QMainWindow and its related classes for main window management.</dt>
-			<dt>QMainWindow has its own layout to which you can add QToolBars, QDockWidgets, a QMenuBar, and a QStatusBar. </dt>
-			<dt>The Main Window of an application is created as instance of <a href="https://doc.qt.io/qt-6/qmainwindow.html">QMainWindow Class</a></dt>
-			<dt>Main windows have either a single (SDI) or multiple (MDI) Document Interface.</dt>
-			<dd>You can create MDI applications by using a <a href="https://doc.qt.io/qt-6/qmdiarea.html">QMdiArea</a> as the central widget.</dd>
-		</dl><br>
-		<a href="./images/mainwindowlayout.png"><img src="./images/mainwindowlayout.png" alt="./images/mainwindowlayout.png" style="height: 70vh;"></a>
-	</section>
-	<section><h3>MainWindow Central Widget</h3>
-		<dl class="fa">
-			<dt>A central widget will typically be a standard Qt widget such as a QTextEdit</dt>
-			<dt>Custom widgets can also be used for advanced applications</dt>
-			<dt>You set the central widget with setCentralWidget().</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			self.textedit = qtw.QTextEdit()
-			self.setCentralWidget(self.textedit)
-		</code></pre>
-	</section>
-	<section><h3>MenuBar</h3>
-		<dl class="fa">
-			<dt>A menu bar consists of a list of pull-down menu items</dt>
-			<dt>QMainWindow provides an empty <a href="https://doc-snapshots.qt.io/qt6-dev/qmenubar.html">QMenuBar</a> object by default.</dt>
-			<dt>To get access to this menu bar, you need to call .menuBar() on your QMainWindow object.</dt>
-			<dt>You add menu items with addMenu()</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			# get the menu bar
-			menubar = self.menuBar()
+			<dt>Create the root project folder</dt>
+			<pre><code rel="Terminal" class="bash">
+				# make directory named "QTsimpleLoginForm":
+				mkdir QTsimpleLoginForm
 
-			# add menu items
-			file_menu = menubar.addMenu('File')
-			edit_menu = menubar.addMenu('Edit')
-			help_menu = menubar.addMenu('Help')
-		</code></pre>
-		<dl class="fa">
-			<dt>The ampersand in the menu item's text sets Alt+Symbol as a shortcut for this menu.</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			# add menu items
-			file_menu = menubar.addMenu('&File')
-			edit_menu = menubar.addMenu('&Edit')
-			help_menu = menubar.addMenu('&Help')
-		</code></pre>
-	</section>
-	<section><h3>ToolBar</h3>
-		<dl class="fa">
-			<dt>The <a href="https://doc.qt.io/qt-6/qtoolbar.html">QToolBar</a> class provides a movable panel that contains a set of controls.</dt>
-			<dt>You add toolbars to a MainWindow with addToolBar()</dt>
-			<dt>To add some toolbar buttons you can use PyQt actions, which are instances of QAction (discussed later)</dt>
-		</dl>
-		<pre><code rel="Python" class="python" style="min-height: 80vh;">
-			toolbar = self.addToolBar('File')
+				# navigate to your root project folder:
+				cd QTsimpleLoginForm
+			</code></pre>
+			<dt>Create a virtual environment and activate it:</dt>
+			<pre><code rel="Terminal" class="bash" style="height: 30vh;">
+				### create a virtualenv named ".venv" in current working folder:
+				# on Linux/MacOS:
+				python3 -m venv ./.venv
+				#  on Windows (CMD):
+				python -m venv ./.venv
 
-			toolbar.setMovable(False)
-			toolbar.setFloatable(False)
+				### activate the ".venv" environment:
+				# on Linux/MacOS:
+				source .venv/bin/activate
+				#  on Windows (CMD):
+				.\env\Scripts\activate
 
-			# for Qt6:
-			toolbar.setAllowedAreas(
-				qtc.Qt.ToolBarArea.TopToolBarArea |
-				qtc.Qt.ToolBarArea.BottomToolBarArea
-			)
-
-			# for Qt5:
-			# toolbar.setAllowedAreas(
-			#	qtc.Qt.TopToolBarArea |
-			#	qtc.Qt.BottomToolBarArea
-			# )
-		</code></pre>
-
-	</section>
-	<section><h3>Menu Items and ToolBar Actions</h3>
-		<dl class="fa">
-			<dt>In applications many common commands can be invoked via menus, toolbar buttons, and keyboard shortcuts</dt>
-			<dt> Since the user expects each command to be performed in the same way, regardless of the user interface used, it is useful to represent each command as an action.</dt>
-			<dt class="note">Actions can be added to menus and toolbars, and will automatically keep them in sync</dt>
-			<dt>Actions can be created as independent <a href="https://doc.qt.io/qt-6/qaction.html">QAction</a> objects, but they may also be created during the construction of menus, as shown bellow.</dt>
-			<dt>A QAction may contain an icon, menu text, a shortcut, status text, "What's This?" text, and a tooltip.</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			# add actions
-			open_action = file_menu.addAction('Open')
-			save_action = file_menu.addAction('Save')
-
-			# add separator
-			file_menu.addSeparator()
-
-			quit_action = file_menu.addAction('Quit', self.close)
-			undo_action = edit_menu.addAction('Undo', self.textedit.undo)
-
-			# create a QAction manually
-			redo_action = qtg.QAction('Redo', self)
-			redo_action.triggered.connect(self.textedit.redo)
-
-			# Actions, which opens custom dialog
-			edit_menu.addAction(redo_action)
-			edit_menu.addAction('Set Font…', self.set_font)
-			edit_menu.addAction('Settings…', self.show_settings)
-
-		</code></pre>
-	</section>
-	<section><h3>Custom ToolBar Actions</h3>
-		<dl class="fa">
-			<dt>We can create a custom QAction, as well</dt>
-			<dt>And we can use a <a href="https://doc.qt.io/qt-6/qstyle.html#StandardPixmap-enum">standard pixmap</a> for icon</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			self.help_action = qtg.QAction(
-				self.style().standardIcon(qtw.QStyle.StandardPixmap.SP_DialogHelpButton),
-				'Help',
-				self  # important to pass the parent!
-			)
-
-			# add signal
-			self.help_action.triggered.connect(lambda : qtw.QMessageBox.information(self,'Not Implemented','Sorry, no help yet!'))
-
-			toolbar.addAction(help_action)
-		</code></pre>
-	</section>
-	<section><h3>Dock Widgets</h3>
-		<dl class="fa">
-			<dt>A <a href="https://doc-snapshots.qt.io/qt6-dev/qdockwidget.html">QDockWidget</a> is a window that can be docked into the main window</dt>
-			<dt>You add dock widgets to a main window with addDockWidget()</dt>
-			<dt>A QDockWidget consists of a title bar and the content area. The title bar displays the dock widgets window title, a float button and a close button (depending on the DockWidget state)</dt>
-			<dt>There are four dock widget areas as given by the Qt::DockWidgetArea enum: left, right, top, and bottom</dt>
-		</dl>
-		<pre><code rel="Python" class="python" style="min-height: 52vh;">
-			dock = qtw.QDockWidget("Replace")
-			self.addDockWidget(qtc.Qt.LeftDockWidgetArea, dock)
-
-			# set dock widget to move and float (but not closeable)
-			dock.setFeatures(
-				# for pyqt6
-				qtw.QDockWidget.DockWidgetFeature.DockWidgetMovable |
-				qtw.QDockWidget.DockWidgetFeature.DockWidgetFloatable
-
-				# for pyqt5
-				# qtw.QDockWidget.DockWidgetMovable |
-				# qtw.QDockWidget.DockWidgetFloatable
-			)
-		</code></pre>
-	</section>
-	<section><h3>Add widgets to Dock Widget</h3>
-		<dl class="fa">
-			<dt>A QDockWidget acts as a wrapper for its child widget, set with setWidget().</dt>
-		</dl>
-		<pre><code rel="Python" class="python" style="min-height: 75vh;">
-			replace_widget = qtw.QWidget()
-			replace_widget.setLayout(qtw.QVBoxLayout())
-
-			self.search_text_input = qtw.QLineEdit()
-			self.search_text_input.setPlaceholderText('search')
-			self.replace_text_input = qtw.QLineEdit()
-			self.replace_text_input.setPlaceholderText('replace')
-
-			search_and_replace_btn = qtw.QPushButton(
-				"Search and Replace",
-				)
-			search_and_replace_btn.clicked.connect(self.search_and_replace)
-
-			replace_widget.layout().addWidget(self.search_text_input)
-			replace_widget.layout().addWidget(self.replace_text_input)
-			replace_widget.layout().addWidget(search_and_replace_btn)
-			replace_widget.layout().addStretch()
-
-			dock.setWidget(replace_widget)
-		</code></pre>
-	</section>
-	<section><h3>The Status Bar</h3>
-		<dl class="fa">
-		<dt><a href="https://doc.qt.io/qt-6/qstatusbar.html">QStatusBar</a> is a widget (displayed as horizontal bar) that is used to display status information.</dt>
-			<dt>Each status indicator falls into one of three categories:</dt>
-			<dd><span class="note">Temporary</span> - briefly occupies most of the status bar. Used to explain tool tip texts or menu entries, for example.</dd>
-			<dd><span class="note">Normal</span> - occupies part of the status bar and may be hidden by temporary messages. Used to display the page and line number in a word processor, for example.</dd>
-			<dd><span class="note">Permanent</span> - is never hidden. Used for important mode indications, for example, some applications put a Caps Lock indicator in the status bar.</dd>
+				# your command prompt should be prefixed with "(.venv)" now
+			</code></pre>
+			<dt>You can deactivate a virtual environment by typing “deactivate” in your shell.</dt>
+			<dt>Reference: <a href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">Creating a virtual environment @python.org</a></dt>
 		</dl>
 	</section>
-	<section><h3>Create Temporary status messages</h3>
-		<dl class="fa">
-			<dt>the showMessage() slot is used to display a temporary message:</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			# create status bar widget and atach it to main window:
-			self.status_bar = qtw.QStatusBar()
-			self.setStatusBar(self.status_bar)
-
-			# show temporary message for 3 second:
-			self.status_bar.showMessage('Welcome to My Text Editor',3000)
+	<section id="installPackages"><h3>Install packages needed for your project</h3>
+		<pre><code rel="Terminal" class="bash">
+			pip install mysql-connector-python
+			pip install PyQt6
+			pip install pyqt6-tools
+			pip install configparser
 		</code></pre>
 	</section>
-	<section><h3>Adding Permanent Message to StatusBar</h3>
+	<section id="freezingDependencies"><h3>Freezing dependencies</h3>
 		<dl class="fa">
-			<dt>Adds the given widget permanently to this status bar</dt>
+			<dt>When you want to share your project, you must provide <a href="https://pip.pypa.io/en/latest/user_guide/#requirements-files">Requirements File</a> which allows to re-create the exact versions of all packages installed in your environment.</dt>
+			<dt>Pip can export a list of all installed packages and their versions using the freeze command</dt>
+			<pre><code rel="Terminal" class="bash">
+				# just list the installed packages
+				pip freeze
+
+				# save the list into "requirements.txt" file:
+				pip freeze > requirements.txt
+			</code></pre>
 		</dl>
-		<pre><code rel="Python" class="python">
-			charcount_label = qtw.QLabel("chars: 0")
-			self.textedit.textChanged.connect(
-				lambda: charcount_label.setText( "chars: " + str(len(self.textedit.toPlainText())) )
-			)
-			self.status_bar.addPermanentWidget(charcount_label)
-		</code></pre>
+	</section>
+	<section id="initGit"><h3>Init project git repo and add the project to Github</h3>
+		<dl class="fa">
+			<dt>Init your git repo</dt>
+			<dt>Create <a href="https://git-scm.com/docs/gitignore">.gitignore</a> file and add in it files/folders to be ignored by git</dt>
+			<dd>You can use next template for Python provided by GitHub: <a href="https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore">Python.gitignore</a> :</dd>
+			<dd>Make sure that you have <span class="note">uncomment</span> ignore sections related to your environment (like PyCharm's .idea).</dd>
+			<dt>To add your project to GitHub, follow <a href="https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git">the github's instructions</a></dt>
+		</dl>
 	</section>
 </section>
 
-<section data-min="10" class="main-section-title"><h1>Adding images and icons</h1></section>
-<section class="sub-sections"><h2>Adding images and icons</h2>
-	<section><h3>Adding images</h3>
+<section data-min="50" class="main-section-title" id="usingConfigFileForDbConnectionString"><h1>Using Config File For DB Connection String</h1></section>
+<section class="sub-sections"><h2>Using Config File For DB Connection String</h2>
+	<section>
 		<dl class="fa">
-			<dt>Qt provides four classes for handling image data: QImage, QPixmap, QBitmap and QPicture, where <span class="note">QPixmap is designed and optimized for showing images on screen</span></dt>
-			<dt>To add an image, first we must load the image using <a href="https://doc.qt.io/qt-6/qpixmap.html">QPixmap</a></dt>
-			<dt>A QPixmap can easily be displayed on the screen using QLabel or one of QAbstractButton's subclasses (such as QPushButton and QToolButton). QLabel has a pixmap property, whereas QAbstractButton has an icon property.</dt>
-			<dt>Optionally, we may want to resize the label according to the image dimensions.</dt>
+			<dt>The DB connection string contains sensitive information. To prevent security vulnerabilities and maintenance problems we do not want to embed it in our application code, but rather to put that information in a separate config file.</dt>
+			<dt>Create the application <code>config.ini</code> file using the example code bellow:</dt>
+			<pre><code rel="config.ini" class="python">
+				[mysql]
+				HOST     = 127.0.0.1
+				USER     = root
+				PASSWORD = 1234
+				DATABASE = customers_db
+				PORT=3306
+			</code></pre>
+			<dt>In order to parse the <code>config.ini</code> file we can use the <a href="https://docs.python.org/3/library/configparser.html">configparser</a> module</dt>
+			<pre><code rel="db_config.py" class="python">
+				from configparser import ConfigParser
+
+
+				def read_db_config(filename='config.ini', section='mysql'):
+					""" Read database configuration file and return a dictionary object
+						:param filename: name of the configuration file
+						:param section: section of database configuration
+						:return: a dictionary of database parameters
+					"""
+					# create parser and read the configuration file
+					parser = ConfigParser()
+					parser.read(filename)
+
+
+					db_config = {}
+					if parser.has_section(section):
+						items = parser.items(section)
+						for item in items:
+							db_config[item[0]] = item[1]
+					else:
+						raise Exception(f'{section} not found in the {filename} file')
+
+					return db_config
+
+				db_config = read_db_config()
+				print(db_config)
+			</code></pre>
+		</dl>
+	</section>
+</section>
+
+<section data-min="5" class="main-section-title"><h1>Handling SQL Databases With PyQt</h1></section>
+<section class="sub-sections"><h2>Handling SQL Databases With PyQt</h2>
+	<section><h3>Connecting PyQt to an SQL Database</h3>
+		<pre><code rel="Syntax" class="python">
+			QSqlDatabase.addDatabase(
+				driver, connectionName=QSqlDatabase.defaultConnection
+			)
+		</code></pre>
+		<dl class="fa">
+			<dt><span class="note">driver</span> - required argument that holds a string containing the name of a <a href="https://doc.qt.io/qt-5/sql-driver.html#supported-databases">PyQt-supported SQL driver</a></dt>
+			<dd>Note, that <span class="note"><b>you must compile Qt with the specific driver</b>, except for built-in SQLite.</span></dd>
+			<dt><span class="note">connectionName</span> - an optional argument that holds a string with the name of the connection</dt>
+			<dt>Once you’ve created a connection, you might need to set several attributes on it. The specific set of attributes will depend on the driver you’re using. In general, you’ll need to set attributes such as the database name, the username, and the password for accessing the database</dt>
+			<table class="table table-hover" style="font-size: .9em">
+				<thead>
+				<tr>
+				<th>Method</th>
+				<th>Description</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				<td><code>.setDatabaseName(name)</code></td>
+				<td>Sets the database name to <code>name</code>, which is a <a href="https://realpython.com/python-strings/">string</a> representing a valid database name</td>
+				</tr>
+				<tr>
+				<td><code>.setHostName(host)</code></td>
+				<td>Sets the hostname to <code>host</code>, which is a string representing a valid hostname</td>
+				</tr>
+				<tr>
+				<td><code>.setUserName(username)</code></td>
+				<td>Sets the username to <code>username</code>, which is a string representing a valid user name</td>
+				</tr>
+				<tr>
+				<td><code>.setPassword(password)</code></td>
+				<td>Sets the password to <code>password</code>, which is a string representing a valid password</td>
+				</tr>
+				</tbody>
+			</table>
 		</dl>
 	</section>
 	<section><h3>Example</h3>
-		<script src="https://gist.github.com/WWWCourses/b6f5c4f8992cc34ab3bb8f799ef38f9d.js"></script>
-	</section>
-	<section><h3>Set App Icon</h3>
-		<dl class="fa">
-			<dt>The setWindowIcon() method allows you to set the application icon. To do this, we created a QIcon object, from any downloaded icon image.</dt>
-			<pre><code rel="Python" class="python" style="min-height:80vh;">
-				import sys
-				from PyQt6 import QtWidgets as qtw
-				from PyQt6 import QtCore as qtc
-				from PyQt6 import QtGui as qtg
-
-
-				class MainWindow(qtw.QWidget):
-
-					def __init__(self , *args, **kwargs):
-						super().__init__(*args, **kwargs)
-
-						self.setWindowTitle('Icon Demo')
-						self.setWindowIcon(qtg.QIcon('./icons/calculator.png'))
-
-						self.show();
-
-
-
-				if __name__ == '__main__':
-					app = qtw.QApplication(sys.argv);
-
-					window = MainWindow()
-
-					sys.exit(app.exec())
-
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>Qt Standard Icons</h3>
-		<dl class="fa">
-			<dt>Qt ships with a set of standard icons for common actions. </dt>
-			<dt>The icons are all accessible through the current active application style -- available as a series of flags, which can be passed to .standardIcon to get the icon.</dt>
-			<dt>The following script can be used to display all the built-in icons.</dt>
-			<pre><code rel="Python" class="python" style="min-height:80vh;">
-				import sys
-
-				from PyQt6.QtWidgets import (QApplication, QGridLayout, QPushButton, QStyle, QWidget)
-
-
-				class Window(QWidget):
-					def __init__(self):
-						super(Window, self).__init__()
-
-						icons = sorted([attr for attr in dir(QStyle.StandardPixmap) if attr.startswith("SP_")])
-						layout = QGridLayout()
-
-						for n, name in enumerate(icons):
-							btn = QPushButton(name)
-
-							pixmapi = getattr(QStyle.StandardPixmap, name)
-							icon = self.style().standardIcon(pixmapi)
-							btn.setIcon(icon)
-							layout.addWidget(btn, int(n/4), int(n%4))
-
-						self.setLayout(layout)
-
-
-				app = QApplication(sys.argv)
-
-				w = Window()
-				w.show()
-
-				app.exec()
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>Set Widget's Icon - Example</h3>
-		<pre><code rel="Python" class="python" style="min-height:95vh;">
+		<pre><code rel="Python" class="python" style="min-height: 90vh;">
+			from PyQt6.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel
+			from PyQt6.QtWidgets import QTableView, QApplication
 			import sys
-			from PyQt6 import QtWidgets as qtw
-			from PyQt6 import QtCore as qtc
-			from PyQt6 import QtGui as qtg
 
 
-			class MainWindow(qtw.QWidget):
+			class DB:
+				def __init__(self) -> None:
+					self.conn()
 
-				def __init__(self , *args, **kwargs):
-					super().__init__(*args, **kwargs)
+				def conn(self):
+					db = QSqlDatabase.addDatabase('QSQLITE')
+					db.setDatabaseName('bnr.db')
 
-					self.setWindowTitle('Icons Demo')
+					if not db.open():
+						QtGui.QMessageBox.critical(None, QtGui.qApp.tr("Cannot open database"),
+							QtGui.qApp.tr("Unable to establish a database connection.\n"),
+							QtGui.QMessageBox.Cancel)
 
-					### use standard icon:
-					standardIcon = self.style().standardIcon(getattr(qtw.QStyle.StandardPixmap,'SP_DialogYesButton'))
-					self.btnStandardIcon = qtw.QPushButton('btnStandardIcon')
-					self.btnStandardIcon.setIcon(standardIcon)
+						return False
 
-					### use icon from theme:
-					# https://specifications.freedesktop.org/icon-naming-spec/latest/ar01s04.html
-					themeIcon = qtg.QIcon.fromTheme("accessories-calculator")
-					self.btnThemeIcon = qtw.QPushButton('btnThemeIcon')
-					self.btnThemeIcon.setIcon(themeIcon)
+					self.query = QSqlQuery()
+					return True
 
-					### use custom icon:
-					customIcon = qtg.QIcon('./icons/submit_icon.png')
-					self.btnCustomIcon = qtw.QPushButton('btnCustomIcon')
-					self.btnCustomIcon.setIcon(customIcon)
+			if __name__ == '__main__':
+				app = QApplication(sys.argv)
+				db = DB()
 
-					mainLayout = qtw.QVBoxLayout(self)
-					mainLayout.addWidget(self.btnCustomIcon)
-					mainLayout.addWidget(self.btnStandardIcon)
-					mainLayout.addWidget(self.btnThemeIcon)
+		</code></pre>
+	</section>
+	<section><h3>Create Tables</h3>
+		<pre><code rel="Python" class="python">
+			def createTable(self):
+				q = QSqlQuery()
+				q.exec(f"""
+					CREATE TABLE radiotheaters(
+						id int primary key,
+						title varchar(20),
+						content varchar(100),
+						date TEXT
+					)
+				""")
+		</code></pre>
+	</section>
+	<section><h3>Executing Dynamic Queries with Placeholder Parameters</h3>
+		<dl class="fa">
+			<dt>PyQt supports two parameter placeholder styles:</dt>
+			<dd>Oracle style uses named placeholders such as :name or :address.</dd>
+			<dd>ODBC style uses a question mark (?) as a positional placeholder.</dd>
+			<dt>To create this kind of dynamic query in PyQt, you first create a template with a placeholder for each query parameter and then pass that template as an argument to <code>.prepare()</code>, which parses, compiles, and prepares the query template for execution</dt>
+			<dt>If the preparation process succeeds, then <code>prepare()</code> returns True. After that, you can pass a specific value to each parameter using <code>.bindValue()</code> with named or positional parameters or using <code>.addBindValue()</code> with positional parameters.</dt>
+			<dt>.bindValue() has the following two variations:</dt>
+			<dd><code>.bindValue(placeholder, val)</code></dd>
+			<dd><code>.bindValue(pos, val)</code></dd>
+		</dl>
+	</section>
+	<section><h3>Example</h3>
+		<pre><code rel="Python" class="python" style="min-height: 90vh;">
+			def insertRow(self, **kwargs):
+				# Creating a query for later execution using .prepare()
+				q = QSqlQuery()
+				q.exec()
+				q.prepare(
+							"""
+							INSERT INTO radiotheaters (
+											title,
+											content,
+											date
+							)
+							VALUES (?, ?, ?)
+							"""
+				)
 
-
+				q.addBindValue(kwargs['title'])
+				q.addBindValue(kwargs['content'])
+				q.addBindValue(kwargs['date'])
+				q.exec()
 
 
 			if __name__ == '__main__':
-				app = qtw.QApplication(sys.argv);
+				app = QApplication(sys.argv)
+				db = DB()
 
-				window = MainWindow()
+				# Sample data
+				data = [
+					("Theater1", "Content1", "2021-01-01"),
+					("Theater2", "Content2", "2021-01-02"),
+					("Theater3", "Content3", "2021-01-03"),
+					("Theater4", "Content4", "2021-01-04"),
+				]
 
-				window.show()
-
-				sys.exit(app.exec())
-
+				for title, content, date in data:
+					db.insertRow(title=title, content=content, date=date)
 		</code></pre>
+
 	</section>
 </section>
 
-<section data-min="5" class="main-section-title"><h1>Style Widgets with Style Sheets</h1></section>
-<section class="sub-sections"><h2>Style Widgets with Style Sheets</h2>
-	<section><h3>What is CSS</h3>
+<!--
+<section data-min="5" class="main-section-title"><h1>Add GUI feature to your app</h1></section>
+<section class="sub-sections"><h2>Add GUI feature to your app</h2>
+	<section><h3>Create/Clone repos</h3>
 		<dl class="fa">
-			<dt>CSS = Cascading Style Sheets</dt>
-			<dt>CSS is a rule-based language for specifying <span class="note">how</span> documents are presented to users, how they are styled, laid out, etc.</dt>
-			<dt>CSS is developed for styling Web Pages, but PyQt also uses basic CSS rules </dt>
+			<dt>Create your github repo, or clone someone's else (if you want to contribute to the project)</dt>
+			<dt>References:</dt>
+			<dd><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">Create a repo @docs.github.com</a></dd>
+			<dd><a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository">Cloning a repository @docs.github.com</a></dd>
 		</dl>
 	</section>
-	<section><h3>A Style Sheet Rule Syntax</h3>
-		<a href="./images/CSS_syntax_image.png"><img src="./images/CSS_syntax_image.png" alt="CSS_syntax_image"></a>
+	<section><h3>Create a branch for <code>GUI</code> of your app</h3>
 		<dl class="fa">
-			<dt><span class="note">selector</span>: a pattern which select the elements to which the style will be applied.</dt>
-			<dt><span class="note">declaration</span>: consists of a <span class="note">property</span> and <span class="note">value</span>, which describes a characteristic (like color, font-size), an aspect of how the element should be displayed.</dt>
-			<dt>Reference: </dt>
-			<dd><a href="https://doc.qt.io/qt-6/stylesheet-syntax.html">The Style Sheet Syntax @qt.io</a></dd>
-			<dd><a href="https://www.w3schools.com/css/">CSS Tutorial @w3schools</a></dd>
+			<dt>If you already have a working application with console IO, and you want to refactor your app to work with GUI, it's best to separate your work in a different branch.</dt>
+			<pre><code rel="Terminal" class="bash">
+				# make sure you're in root project folder, and type:
+				git checkout -b GUI
 
+				# your prompt should change and show the branch name (GUI)
+			</code></pre>
+			<dd><a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Git branching branches in a nutshell</a> </dd>
+			<dd><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">Git Feature Branch Workflow @atlassian.com</a></dd>
 		</dl>
 	</section>
-	<section><h3>Apply Style Sheets in PyQt</h3>
-		<dl class="fa">
-			<dt>Qt Style Sheets support various properties, pseudo-states, and subcontrols that make it possible to customize the look of widgets.</dt>
-			<dt>StyleSheets can be written as string, or read by a separate <code>css</code> file and used as needed</dt>
-			<dt>A style sheet can be applyied to widget by <a href="https://doc.qt.io/qt-6/qwidget.html#styleSheet-prop">setStyleSheet setter</a></dt>
-		</dl>
-		<pre><code rel="qWidget.css" class="css">
-			QWidget {
-				border: 20px solid black;
-				border-radius: 10px;
-				background-color: rgb(255, 255, 255);
-			}
-		</code></pre>
-		<pre><code rel="myGUIapp.py" class="python">
-			with open("qWidget.css", 'r') as fh:
-				sheet = fh.read()
+</section> -->
 
-			widgetInstance.setStyleSheet(sheet)
-		</code></pre>
-	</section>
-	<section><h3>Example: selector types</h3>
-		<pre><code rel="Python" class="python">
-			self.btnSubmit = qtw.QPushButton('Submit')
-			self.btnSubmit.setObjectName('btnSubmit')
-			self.btnCancel = qtw.QPushButton('Cancel')
-		</code></pre>
-		<pre><code rel="Style Sheet" class="css">
-			/* apply red background-color to all QPushButton */
-			QPushButton{
-				background-color:red;
-			}
-			/* apply green background-color only to QPushButton with object name 'btnSubmit' */
-			QPushButton#btnSubmit{
-				background-color:green;
-			}
-		</code></pre>
-		<dl class="fa">
-			<dt>Reference: <a href="https://doc.qt.io/QT-6/stylesheet-syntax.html#selector-types">Selector Types</a></dt>
-		</dl>
-	</section>
-	<section><h3>Pseudo State Selectors</h3>
-		<dl class="fa">
-			<dt>A widget can be in various pseudo-states, like hover, checked, and we can select it by it state</dt>
-			<dt>Reference: <a href="https://doc.qt.io/qt-6/stylesheet-syntax.html#pseudo-states">Pseudo-States Selectors</a></dt>
-		</dl>
-		<pre><code rel="Style Sheet" class="css">
-			/* apply red background-color to all QPushButton */
-			QPushButton{
-				background-color:red;
-			}
-			/* apply blue background-color to buttons which are hovered */
-			QPushButton:hover{
-				background-color:blue;
-			}
 
-		</code></pre>
-	</section>
-	<section><h3>Apply style to only one widget</h3>
+<section data-min="5" class="main-section-title"><h1>Add GUI feature to your app as separate git branch (extra topic)</h1></section>
+<section class="sub-sections"><h2>Add GUI feature to your app as separate git branch</h2>
+	<!-- <section><h3>Create/Clone repos</h3>
 		<dl class="fa">
-			<dt>We can select only one widget if we have given it an object name with <code>setObjectName()</code> method, as we saw before.</dt>
-			<dt>But we can also apply one or more declarations only to one widget, with <code>setStyleSheet()</code></dt>
-			<dd>In these case, we do not need to put a  selector{}, but just declarations, separated by ';'</dd>
+			<dt>Create your github repo, or clone someone's else (if you want to contribute to the project)</dt>
+			<dt>References:</dt>
+			<dd><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo">Create a repo @docs.github.com</a></dd>
+			<dd><a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository">Cloning a repository @docs.github.com</a></dd>
 		</dl>
-		<pre><code rel="Python" class="python">
-			self.btnCancel = qtw.QPushButton('Cancel')
-			self.btnCancel.setStyleSheet("""
-				background-color:gray;
-				padding:10px;
-			""")
-		</code></pre>
-	</section>
-	<section><h3>Qt Style Sheet Reference</h3>
+	</section> -->
+	<section><h3>Disclaimer</h3>
 		<dl class="fa">
-			<dt><a href="https://doc.qt.io/QT-6/stylesheet-syntax.html#selector-types">Selector Types</a></dt>
-			<dt><a href="https://doc.qt.io/qt-6/stylesheet-reference.html#list-of-stylable-widgets">List of Stylable Widgets</a></dt>
-			<dt><a href="https://doc.qt.io/qt-6/stylesheet-reference.html#list-of-properties">List of Properties</a></dt>
-			<dt><a href="https://doc.qt.io/qt-6/stylesheet-reference.html#list-of-pseudo-states">List of Pseudo-States
-			</a></dt>
+			<dt>Note, that topics on Git/GitHub will not be included in final exam! But they will speed your workflow process, especially on final course project development!</dt>
 		</dl>
+	</section>
+	<section><h3>Git Branch Overview</h3>
+		<dl class="fa">
+			<dt>If you already have a working application with console IO, and you want to refactor your app to work with GUI, it's best to separate your work in a different branch.</dt>
+			<dt>Readings:</dt>
+			<dd><a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Git branching branches in a nutshell</a> </dd>
+			<dd><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">Git Feature Branch Workflow @atlassian.com</a></dd>
+		</dl>
+	</section>
+	<section><h3>Git Branch Overview - Video</h3>
+		<p><a href="https://www.youtube.com/watch?v=QV0kVNvkMxc">Git & GitHub Tutorial for Beginners #8 - Branches</a></p>
+		<iframe width="912" height="513" src="https://www.youtube.com/embed/QV0kVNvkMxc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</section>
+	<section><h3>Create and work in a branch for <code>GUI</code> of your app</h3>
+
+		<pre><code rel="Terminal" class="bash" style="min-height: 80vh;">
+			### make sure you're in the git project folder and that you git status is clear:
+			git status
+			#On branch main
+			#nothing to commit, working tree clean
+
+			### create new branch, named "GUI"
+			git checkout -b GUI
+			# your prompt should change and show the branch name (GUI)
+
+			# do some hard work on your GUI app...
+
+			# commit your work:
+			git add -A
+			git commit -m'hard work done'
+
+			### switching between branches
+			# go back to you main branch
+			git checkout main
+			# this command will return you to the main branch
+
+			# do some stuff on main, but remember - to commit
+
+			# swithch back to GUI branch:
+			git checkout GUI
+		</code></pre>
 	</section>
 </section>
-
-
-
-<section data-min="5" class="main-section-title"><h1>Slides Code Example</h1></section>
-<section class="sub-sections"><h2>Slides Code Example</h2>
-	<section>
-		<p>The whole code for the 'Simple Text Editor App', used in these slides:</p>
-		<script src="https://gist.github.com/WWWCourses/822a721b044856d6fe5ac047390f7097.js"></script>
-	</section>
-</section>
-
 
 <section class="disclaimer end-slide"></section>
 <!--
