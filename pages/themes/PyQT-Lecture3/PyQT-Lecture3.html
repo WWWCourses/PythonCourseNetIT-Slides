@@ -1,52 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>PyQT-Lecture3</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>PyQT-Lecture3</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -54,21 +54,21 @@
 -->
 <section class="main-section-title"><h1>PyQT - Lecture 3</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
 
@@ -77,185 +77,235 @@
 
 <section data-min="5" class="main-section-title"><h1>Hand Code the UI of a Login Form Widget</h1></section>
 <section class="sub-sections"><h2>Hand Code the UI of a Login Form Widget</h2>
-	<section><h3>Why?</h3>
-		<dl class="fa">
-			<dt>The code produced by pyuic6 is overwhelmed and not clean.</dt>
-			<dt>Hand-coding could be even faster (if you have know your IDE well) than using the QtDesigner.</dt>
-			<dt>You can really <span class="note">learn</span> Qt App methodology only if you have hand-coded a simple GUI App.</dt>
-			<dt>For next examples, we'll be using <a href="https://gist.githubusercontent.com/WWWCourses/03411466bb66b614852c1dd5ff2d0db3/raw/a9da7829727fdf5cf880b2b90e8ff16b758e2646/pyqt6_app_template.py?ts=4">the template</a> we've already created:</dt><br>
-			<script src="https://gist.github.com/WWWCourses/03411466bb66b614852c1dd5ff2d0db3.js"></script>
-			<dt style="font-size: 0.8em"><span class="note">Tip:</span> you can setup a custom snippet with this template in your editor.</dt>
-			<dd style="font-size: 0.8em">For PyCharm see <a href="https://www.jetbrains.com/help/pycharm/tutorial-creating-and-applying-live-templates-code-snippets.html">Tutorial: Creating and Applying Live Templates (Code Snippets)</a></dd>
-			<dd style="font-size: 0.8em">For VSCode see: <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">Snippets in Visual Studio Code</a></dd>
-		</dl>
-	</section>
-	<section id="QWidgetClass"><h3><code>QWidget</code> class</h3>
-		<dl class="fa">
-			<dt>QWidget is the parent class of all other widgets (including QMainWindow)</dt>
-			<dt>All properties and methods of <code>QWidget</code> class will be also available in any other widget.</dt>
-			<dt class="note">When a QWidget is created without a parent and its show() method is called, it becomes a top-level window</dt>
-			<dt>When we use it as a top-level window (as we did with in our template), there are some window-specific properties we can set.</dt>
-			<pre><code rel="Python" class="python">
-				window = MainWindow(cursor=qtc.Qt.CursorShape.WaitCursor)
-			</code></pre>
-			<dd>note, that the cursor value is an <span class="note">enum type</span>, defined in QtCore module</dd>
-			<dt>Every property of a <code>QWidget</code> object has its <span class="note">Access function</span>, which allows you to set that property after the object is created</dt>
-			<pre><code rel="Python" class="python">
-				# equivalent to example above
-				window = MainWindow()
-				window.setCursor(qtc.Qt.CursorShape.WaitCursor)
-			</code></pre>
-			<dt>Reference: <a href="https://doc.qt.io/qt-6/qwidget.html">QWidget Class</a></dt>
-		</dl>
-	</section>
-	<section id="PrimaryAndChildWidgets"><h3>Primary and Child Widgets</h3>
-		<dl class="fa">
-			<dt>Any QWidget that <span class="note">has no parent</span> will become a window, and on most platforms will be listed in the desktop's task bar.</dt>
-			<dt>Such window is called <span class="note">primary window</span></dt>
-			<dd>Usually, in our GUI App we want only one primary window.</dd>
-			<dt>If we pass a parent argument when we create new widget, that widget will be <span class="note">a child of the prent</span> widget and will become a part of its parent.</dt>
-			<dt>Reference: <dd><a href="https://doc.qt.io/qt-5/application-windows.html#primary-and-secondary-windows">Primary and secondary windows</a></dt>
-		</dl>
-	</section>
-	<section><h3>Create user input widgets</h3>
-		<dl class="fa">
-			<pre><code rel="Python" class="python">
-				# --------------------------- your code starts here -------------------------- #
-				# create user input widgets:
-				user_name_input = qtw.QLineEdit()
-				password_input = qtw.QLineEdit()
-				#
-				password_input.setEchoMode(qtw.QLineEdit.EchoMode.Password)
-				# ---------------------------- your code ends here --------------------------- #
-			</code></pre>
-			<dt>Of course, we did not see the created widgets, because they are not attached to our main window</dt>
-			<dt>We can attach them directly to out main window by passing it as parent argument to QLineEdit() constructor :</dt>
-			<pre><code rel="Python" class="python">
-				# create user input widgets:
-				user_name_input = qtw.QLineEdit(self)
-				password_input = qtw.QLineEdit(self)
-			</code></pre>
-			<dt>But we did not set the geometry of our main windows, so the result is not what we want.</dt>
-			<dt>References: </dt>
-			<dd><a href="https://doc.qt.io/qt-6/qlineedit.html">QLineEdit Class</a></dd>
-			<dd><a href="https://doc.qt.io/qt-6/qlineedit.html#echoMode-prop">EchoMode Property</a></dd>
-		</dl>
-	</section>
-	<section><h3>Window Geometry</h3>
-		<a href="./images/window_geometry.png"><img src="./images/window_geometry.png" alt="window_geometry.png"></a>
-		<dl class="fa">
-			<dt>To set our window geometry we can use the <code>geometry</code> property or its accessor method: <code>setGeometry</code></dt>
-			<pre><code rel="Python" class="python">
-				class MainWindow(qtw.QWidget):
+    <section><h3>Why?</h3>
+        <dl class="fa">
+            <dt>The code produced by pyuic6 is overwhelmed and not clean.</dt>
+            <dt>Hand-coding could be even faster (if you have know your IDE well) than using the QtDesigner.</dt>
+            <dt>You can really <span class="note">learn</span> Qt App methodology only if you have hand-coded a simple GUI App.</dt>
+            <dt>For next examples, we'll be using <a href="https://gist.githubusercontent.com/WWWCourses/03411466bb66b614852c1dd5ff2d0db3/raw/a9da7829727fdf5cf880b2b90e8ff16b758e2646/pyqt6_app_template.py?ts=4">the template</a> we've already created:</dt><br>
+            <script src="https://gist.github.com/WWWCourses/03411466bb66b614852c1dd5ff2d0db3.js"></script>
+            <dt style="font-size: 0.8em"><span class="note">Tip:</span> you can setup a custom snippet with this template in your editor.</dt>
+            <dd style="font-size: 0.8em">For PyCharm see <a href="https://www.jetbrains.com/help/pycharm/tutorial-creating-and-applying-live-templates-code-snippets.html">Tutorial: Creating and Applying Live Templates (Code Snippets)</a></dd>
+            <dd style="font-size: 0.8em">For VSCode see: <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">Snippets in Visual Studio Code</a></dd>
+        </dl>
+    </section>
+    <section id="QWidgetClass"><h3><code>QWidget</code> class</h3>
+        <dl class="fa">
+            <dt>QWidget is the parent class of all other widgets (including QMainWindow)</dt>
+            <dt>All properties and methods of <code>QWidget</code> class will be also available in any other widget.</dt>
+            <dt class="note">When a QWidget is created without a parent and its show() method is called, it becomes a top-level window</dt>
+            <dt>When we use it as a top-level window (as we did with in our template), there are some window-specific properties we can set.</dt>
+            <pre><code rel="Python" class="python">
+                window = MainWindow(cursor=qtc.Qt.CursorShape.WaitCursor)
+            </code></pre>
+            <dd>note, that the cursor value is an <span class="note">enum type</span>, defined in QtCore module</dd>
+            <dt>Every property of a <code>QWidget</code> object has its <span class="note">Access function</span>, which allows you to set that property after the object is created</dt>
+            <pre><code rel="Python" class="python">
+                # equivalent to example above
+                window = MainWindow()
+                window.setCursor(qtc.Qt.CursorShape.WaitCursor)
+            </code></pre>
+            <dt>Reference: <a href="https://doc.qt.io/qt-6/qwidget.html">QWidget Class</a></dt>
+        </dl>
+    </section>
+    <section id="PrimaryAndChildWidgets"><h3>Primary and Child Widgets</h3>
+        <div style="display: flex; align-items: center;">
+            <img src="./images/PrimarySecondaryModal.bmp" alt="PrimarySecondaryModal.bmp" style="height: 14em; margin-right: 2em;">
+            <dl class="fa">
+                <dt>Any QWidget that <span class="note">has no parent</span> will become a <span class="note">top-level window</span>.</dt>
+                <dd>Typically, in our GUI application, we want only one top-level window, which serves as the primary window.</dd>
+                <dt>If we pass a parent argument when creating a new widget, that widget will be a <span class="note">child of the parent</span> widget and will become a part of its parent.</dt>
+                <dt>Reference: <a href="https://doc.qt.io/qt-5/application-windows.html#primary-and-secondary-windows">Primary and secondary windows</a></dt>
+            </dl>
+        </div>
+    </section>
+    <section><h3>Primary and Child Widgets - example</h3>
 
-				def __init__(self , *args, **kwargs):
-					super().__init__(*args, **kwargs)
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            """primary_secondary_widgets.py"""
+            import sys
+            import PyQt6.QtWidgets as qtw
 
-					#set window geometry
-					self.setGeometry(300, 200, 500, 300)
+            class SecondaryWidget(qtw.QDialog):
+                def __init__(self, parent=None):
+                    super().__init__(parent)
+                    self.setFixedSize(300, 200)
 
-					...
-			</code></pre>
-			<dt>Reference: <a href="https://doc.qt.io/qt-6/application-windows.html#window-geometry">Window Geometry</a></dt>
-		</dl>
-	</section>
-	<section><h3>Widget Position</h3>
-		<dl class="fa">
-			<dt>In order to set a widget position within its parent widget, we can use the <code>move(int x, int y)</code> QWidget widget method </dt>
-			<pre><code rel="Python" class="python">
-				class MainWindow(qtw.QWidget):
+                    layout = qtw.QVBoxLayout()
+                    label = qtw.QLabel("This is a secondary widget!")
+                    layout.addWidget(label)
 
-				def __init__(self , *args, **kwargs):
-					super().__init__(*args, **kwargs)
+                    self.setLayout(layout)
 
-					#set window geometry
-					self.setGeometry(300, 200, 500, 300)
+            # Primary Widget (Main Window)
+            class PrimaryWidget(qtw.QMainWindow):
+                def __init__(self):
+                    super().__init__()
+                    self.setWindowTitle("Primary Widget")
+                    self.setGeometry(50, 50, 400, 300)
 
-					# create user input widgets:
-					user_name_input = qtw.QLineEdit(self)
-					password_input = qtw.QLineEdit(self)
-					user_name_input.move(20, 10)
-					password_input.move(20,50)
-			</code></pre>
-			<dt class="note">But there is a better approach - to use a Layout for children  positioning</dt>
-			<dt>Reference: <a href="https://doc.qt.io/qt-6/qwidget.html#pos-prop">pos : QPoint</a></dt>
-		</dl>
-	</section>
-	<section><h3>Layout Management</h3>
-		<dl class="fa">
-			<dt>The Qt layout system provides a simple and powerful way of automatically arranging child widgets within a widget to ensure that they make good use of the available space</dt>
-			<dt>Qt provides many <a href="https://doc.qt.io/qt-6/layout.html#qt-s-layout-classes">Layout Classes</a> useful for different use-cases.</dt>
-			<dt>The setLayout() method applies a layout to a widget. And the layout takes care of the following tasks:</dt>
-			<dd>Positioning of child widgets</dd>
-			<dd>Sensible default sizes for windows</dd>
-			<dd>Sensible minimum sizes for windows</dd>
-			<dd>Resize handling</dd>
-			<dd>Automatic updates when contents change:</dd>
-			<dt>To create more complex layouts, you can nest layouts inside each other.</dt>
-			<dt>References:</dt>
-			<dd><a href="https://doc.qt.io/qt-6/layout.html">Layout Management @Qt</a></dd>
-			<dd><a href="https://doc.qt.io/qtforpython/overviews/layout.html?highlight=layout%20management">Layout Management @Qt for Python</a></dd>
-		</dl>
-	</section>
-	<section><h3>QFormLayout Class</h3>
-		<dl class="fa">
-			<dt>For our Login Form Wdget is best to use the QFormLayout Class</dt>
-			<dt>The QFormLayout class manages forms of input widgets and their associated labels.</dt>
-			<a href="./images/QFormLayout.png"><img src="./images/QFormLayout.png" alt="QFormLayout.png" style="height: 40vh;"></a>
-			<dt>References:</dt>
-			<dd><a href="https://doc.qt.io/qtforpython/PySide6/QtWidgets/QFormLayout.html?highlight=qformlayout">QFormLayout @Qt for Python</a></dd>
-			<dd><a href="https://doc.qt.io/qt-6/qformlayout.html">QFormLayout Class @Qt</a></dd>
-		</dl>
-	</section>
-	<section><h3>Create the Form Layout</h3>
-		<dl class="fa">
-			<dt>For our Login Form Wdget is best to use the <a href="https://doc.qt.io/qt-6/qformlayout.html">QFormLayout Class</a></dt>
+                    # Button for opening modal dialog
+                    modal_button = qtw.QPushButton("Open Modal Dialog", self)
+                    modal_button.setGeometry(100, 100, 200, 40)
+                    modal_button.clicked.connect(self.open_modal_dialog)
 
-			<pre><code rel="Python" class="python" style="min-height: 80vh;">
-				# --------------------------- your code starts here -------------------------- #
-				# create user input widgets:
-				user_name_input = qtw.QLineEdit()
-				password_input = qtw.QLineEdit()
-				password_input.setEchoMode(qtw.QLineEdit.EchoMode.Password)
+                    # Button for opening modeless dialog
+                    modeless_button = qtw.QPushButton("Open Modeless Dialog", self)
+                    modeless_button.setGeometry(100, 150, 200, 40)
+                    modeless_button.clicked.connect(self.open_modeless_dialog)
 
-				# create the submit button:
-				btn_submit = qtw.QPushButton('Login')
+                def open_modal_dialog(self):
+                    # Create and open a new secondary widget in modal mode
+                    modal_dialog = SecondaryWidget(self)
+                    modal_dialog.setWindowTitle('Secondary Widget in Modal Mode')
+                    modal_dialog.exec()  # Blocks interaction with main window until closed
 
-				# create Form Layout and layout widgets in it
-				form_layout = qtw.QFormLayout()
-				form_layout.addRow('User name: ', user_name_input)
-				form_layout.addRow('Password: ', password_input)
-				form_layout.addRow(btn_submit)
+                def open_modeless_dialog(self):
+                    # Create and open a new secondary widget in modeless mode
+                    modeless_dialog = SecondaryWidget(self)
+                    modeless_dialog.setWindowTitle('Secondary Widget in Modeless Mode')
+                    modeless_dialog.show()  # Allows interaction with both windows
+
+            if __name__=="__main__":
+
+                app = qtw.QApplication(sys.argv)
+                # app.setStyle("Windows")
+                main_window = PrimaryWidget()
+                main_window.show()
+                sys.exit(app.exec())
+
+        </code></pre>
+    </section>
+    <section><h3>Create user input widgets</h3>
+        <dl class="fa">
+            <pre><code rel="Python" class="python">
+                # create user input widgets:
+                user_name_input = qtw.QLineEdit()
+                password_input = qtw.QLineEdit()
+                #
+                password_input.setEchoMode(qtw.QLineEdit.EchoMode.Password)
+            </code></pre>
+            <dt>Of course, we did not see the created widgets, because they are not attached to our main window</dt>
+            <dt>We can attach them directly to out main window by passing it as parent argument to QLineEdit() constructor :</dt>
+            <pre><code rel="Python" class="python">
+                # create user input widgets:
+                user_name_input = qtw.QLineEdit(self)
+                password_input = qtw.QLineEdit(self)
+            </code></pre>
+            <dt>But we did not set the geometry of our main windows, so the result is not what we want.</dt>
+            <dt>References: </dt>
+            <dd><a href="https://doc.qt.io/qt-6/qlineedit.html">QLineEdit Class</a></dd>
+            <dd><a href="https://doc.qt.io/qt-6/qlineedit.html#echoMode-prop">EchoMode Property</a></dd>
+        </dl>
+    </section>
+    <section><h3>Window Geometry</h3>
+        <dl class="fa">
+            <dt>The <code>widget.setGeometry(x, y, width, height)</code> method in PyQt is used to define both the position and size of a widget within its parent or on the screen</dt>
+            <dd><code>x,y</code> - specifies the <code>x</code> and <code>y</code> coordinate of the widget’s top-left corner.</dd>
+            <dd><code>width,height</code> - specifies the <code>width</code> and <code>height</code> of the widget in pixels.</dd>
+            <dt>Example:</dt>
+            <pre><code rel="Python" class="python">
+                self.setGeometry(300, 200, 500, 300)
+            </code></pre>
+
+            <dt>Reference: <a href="https://doc.qt.io/qt-6/application-windows.html#window-geometry">Window Geometry</a></dt>
+            <a href="./images/window_geometry.png"><img src="./images/window_geometry.png" alt="window_geometry.png"></a>
+        </dl>
+    </section>
+    <section><h3>Widget Position</h3>
+        <dl class="fa">
+            <dt>In order to set a widget position within its parent widget, we can use the <code>move(int x, int y)</code> widget method </dt>
+            <pre><code rel="Python" class="python">
+                class MainWindow(qtw.QWidget):
+
+                def __init__(self , *args, **kwargs):
+                    super().__init__(*args, **kwargs)
+
+                    #set window geometry
+                    self.setGeometry(300, 200, 500, 300)
+
+                    # create user input widgets:
+                    user_name_input = qtw.QLineEdit(self)
+                    password_input = qtw.QLineEdit(self)
+                    user_name_input.move(20, 10)
+                    password_input.move(20,50)
+            </code></pre>
+            <dt class="note">But there is a better approach - to use a Layout for children  positioning</dt>
+            <dt>Reference: <a href="https://doc.qt.io/qt-6/qwidget.html#pos-prop">pos : QPoint</a></dt>
+        </dl>
+    </section>
+    <section><h3>Layout Management</h3>
+        <dl class="fa">
+            <dt>The Qt layout system provides a simple and powerful way of automatically arranging child widgets within a widget to ensure that they make good use of the available space</dt>
+            <dt>Qt provides many <a href="https://doc.qt.io/qt-6/layout.html#qt-s-layout-classes">Layout Classes</a> useful for different use-cases.</dt>
+            <dt>The setLayout() method applies a layout to a widget. And the layout takes care of the following tasks:</dt>
+            <dd>Positioning of child widgets</dd>
+            <dd>Sensible default sizes for windows</dd>
+            <dd>Sensible minimum sizes for windows</dd>
+            <dd>Resize handling</dd>
+            <dd>Automatic updates when contents change:</dd>
+            <dt>To create more complex layouts, you can nest layouts inside each other.</dt>
+            <dt>References:</dt>
+            <dd><a href="https://doc.qt.io/qt-6/layout.html">Layout Management @Qt</a></dd>
+            <dd><a href="https://doc.qt.io/qtforpython/overviews/layout.html?highlight=layout%20management">Layout Management @Qt for Python</a></dd>
+        </dl>
+    </section>
+    <section><h3>QFormLayout Class</h3>
+        <dl class="fa">
+            <dt>For our Login Form Wdget is best to use the QFormLayout Class</dt>
+            <dt>The QFormLayout class manages forms of input widgets and their associated labels.</dt>
+            <a href="./images/QFormLayout.png"><img src="./images/QFormLayout.png" alt="QFormLayout.png" style="height: 40vh;"></a>
+            <dt>References:</dt>
+            <dd><a href="https://doc.qt.io/qtforpython/PySide6/QtWidgets/QFormLayout.html?highlight=qformlayout">QFormLayout @Qt for Python</a></dd>
+            <dd><a href="https://doc.qt.io/qt-6/qformlayout.html">QFormLayout Class @Qt</a></dd>
+        </dl>
+    </section>
+    <section><h3>Create the Form Layout</h3>
+        <dl class="fa">
+            <dt>For our Login Form Widget is best to use the <a href="https://doc.qt.io/qt-6/qformlayout.html">QFormLayout Class</a></dt>
+
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # create user input widgets:
+                user_name_input = qtw.QLineEdit()
+                password_input = qtw.QLineEdit()
+                password_input.setEchoMode(qtw.QLineEdit.EchoMode.Password)
+
+                # create the submit button:
+                btn_submit = qtw.QPushButton('Login')
+
+                # create Form Layout and layout widgets in it
+                form_layout = qtw.QFormLayout()
+                form_layout.addRow('User name: ', user_name_input)
+                form_layout.addRow('Password: ', password_input)
+                form_layout.addRow(btn_submit)
 
 
-				# apply the form_layout to our widget
-				# this will attach our form widget's into main window
-				self.setLayout(form_layout)
-
-				# ---------------------------- your code ends here --------------------------- #
-			</code></pre>
-		</dl>
-	</section>
-	<section id="Task_add_buttons_in_layout"><h3>TASK: add Submit and Cancel buttons to our login form</h3>
-		<dt>Create and layout the buttons as shown:</dt>
-		<a href="./images/TASK_login_form_handcoded.png"><img src="./images/TASK_login_form_handcoded.png" alt="TASK_login_form_handcoded.png"></a>
-		<dt>Reference:</dt>
-		<dd><a href="https://doc.qt.io/qt-6/qpushbutton.html">QPushButton Class</a></dd>
-		<dd><a href="https://doc.qt.io/qt-6/qhboxlayout.html">QHBoxLayout Class</a></dd>
-		<dd><a href="https://doc.qt.io/qt-6/qboxlayout.html">QBoxLayout Class</a></dd>
-	</section>
+                # apply the form_layout to our widget
+                # this will attach our form widget's into main window
+                self.setLayout(form_layout)
+            </code></pre>
+        </dl>
+    </section>
+    <section id="Task_add_buttons_in_layout"><h3>TASK: add Submit and Cancel buttons to our login form</h3>
+        <dt>Create and layout the buttons as shown:</dt>
+        <a href="./images/TASK_login_form_handcoded.png"><img src="./images/TASK_login_form_handcoded.png" alt="TASK_login_form_handcoded.png"></a>
+        <dt>Reference:</dt>
+        <dd><a href="https://doc.qt.io/qt-6/qpushbutton.html">QPushButton Class</a></dd>
+        <dd><a href="https://doc.qt.io/qt-6/qhboxlayout.html">QHBoxLayout Class</a></dd>
+        <dd><a href="https://doc.qt.io/qt-6/qboxlayout.html">QBoxLayout Class</a></dd>
+    </section>
 </section>
 
 <section data-min="5" class="main-section-title"><h1>References && Self-Learning</h1></section>
 <section class="sub-sections"><h2>References && Self-Learning</h2>
-	<section><h3>PyQt Official Documentation</h3>
-		<dl class="fa">
-			<dt><a href="https://doc.qt.io/">Qt Documentation</a> - <span>note,that this documentation covers Qt framework, i.e. C++ classes, but it's most comprehensive and useful.</span></dt>
-			<dt><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/">PyQt6 Reference Guide</a> - <span>the official PyQt6 documentation from <a href="riverbankcomputing.com">riverbankcomputing.com</a></span></dt>
-			<dt><a href="https://doc.qt.io/qtforpython/">Qt for Python Documentation</a> - <span>this is the documentation for PySide, but it's more useful than the sparse docs in official PyQt</span></dt>
-			<dt>PyQt's documentation covers only the Python-specific differences and lacks comprehensive class reference, tutorials and example code which can be find in Qt's documentation.</dt>
-		</dl>
-	</section>
+    <section><h3>PyQt Official Documentation</h3>
+        <dl class="fa">
+            <dt><a href="https://doc.qt.io/">Qt Documentation</a> - <span>note,that this documentation covers Qt framework, i.e. C++ classes, but it's most comprehensive and useful.</span></dt>
+            <dt><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/">PyQt6 Reference Guide</a> - <span>the official PyQt6 documentation from <a href="riverbankcomputing.com">riverbankcomputing.com</a></span></dt>
+            <dt><a href="https://doc.qt.io/qtforpython/">Qt for Python Documentation</a> - <span>this is the documentation for PySide, but it's more useful than the sparse docs in official PyQt</span></dt>
+            <dt>PyQt's documentation covers only the Python-specific differences and lacks comprehensive class reference, tutorials and example code which can be find in Qt's documentation.</dt>
+        </dl>
+    </section>
 </section>
 
 
@@ -266,48 +316,48 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1280,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1280,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 </body>
 </html>
