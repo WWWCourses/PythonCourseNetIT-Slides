@@ -1,52 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>PyQT-Lecture4</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>PyQT-Lecture4</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html#DB-Lecture2" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -54,291 +54,301 @@
 -->
 <section class="main-section-title"><h1>PyQT - Lecture 4</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
 
 <section data-min="5" class="main-section-title" id="IntroductionToSignalsAndSlots"><h1>Introduction to Signals And Slots</h1></section>
 <section class="sub-sections"><h2>Signals And Slots Overview</h2>
-	<section><h3>What are Signals And Slots?</h3>
-		<a href="./images/signals_and_slots.png"><img src="./images/signals_and_slots.png" alt="signals_and_slots.png" style="min-height: 80vh;"></a>
-		<dl class="fa">
-			<!-- <dt>Qt library provides two parallel mechanisms to define and process events.</dt>
-			<ol>
-				<li>Using <code>QEvent</code> class - which is appropriate for implementing custom widgets</li>
-				<li><code>Signals</code> when we just using widgets already defined in QWidget hierarchy.</li>
-			</ol> -->
-			<dt>Signals and slots are used for communication between objects.</dt>
-			<dt>For example, if a user clicks a Close button, we probably want the window's close() function to be called.</dt>
-			<dt>A signal is s notification that the event has happened</dt>
-			<dt>A slot is a function that is called, when that event occurs.</dt>
-			<dt>In order to establish communication between objects, we <span class="note">connect</span> a signal to a slot to achieve the desired action</dt>
-		</dl>
-	</section>
-	<section><h3>What are Signals And Slots?</h3>
-		<dl class="fa">
-			<dt>A <span class="note">Signal is a special object property</span> that can be emitted in response to a event.</dt>
-			<dt>Usually, we emit signals when the object's internal state has changed.</dt>
-			<dt>A <span class="note">Slot is an object method</span> that can receive a signal and act in response to it.</dt>
-			<dt>In fact, a slot can be not only a Qt object method, <span class="note">it can be any Python callable</span>.</dt>
-			<dt>When a signal is emitted, the slots connected to it are usually executed immediately</dt>
-		</dl>
-	</section>
-	<section><h3>Signals and Slots Example</h3>
-		<dl class="fa">
-			<dt>A QPushButton has a <a href="https://doc.qt.io/qt-6/qabstractbutton.html#clicked">clicked signal</a> that is emitted whenever the button is clicked by a user. </dt>
-			<dt>The QWidget class has a <a href="https://doc.qt.io/qt-6/qwidget.html#close">close() slot</a> that causes it to close if it's a top-level window. </dt>
-			<dt>We could connect the two like this:</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			self.btn_cancel = qtw.QPushButton('Cancel')
-			self.btn_cancel.clicked.connect(self.close)
-		</code></pre>
-		<dt>All classes descended from QObject (including all QWidget classes) can send and receive signals.</dt>
-	</section>
-	<section><h3>Different combinations of signals and slots</h3>
-		<dl class="fa">
-			<dt>One signal can be connected to one or many slots</dt>
-			<dd>If a signal is connected to several slots they will be executed one after the other, in the order they have been connected, when the signal is emitted.</dd>
-			<dt>Many signals can be connected to the same slot</dt>
-			<dt>A signal can be connected to other signals</dt>
-			<dt>Connections can be removed</dt>
-		</dl>
-	</section>
-	<section><h3>Common predefined Signals and Slots</h3>
-		<dl class="fa">
-			<dt>All buttons have next signals and slots: <a href="https://doc.qt.io/qt-5/qabstractbutton.html#public-slots">QAbstractButton Slots and Signals</a></dt>
-			<dt>QLineEdit object has: <a href="https://doc.qt.io/qt-5/qlineedit.html#public-slots">QLineEdit Slots And Signals</a></dt>
-			<dt>All QWidget objects have next <a href="https://doc.qt.io/qt-5/qwidget.html#public-slots">QWidget Slots</a> and <a href="https://doc.qt.io/qt-5/qwidget.html#signals">QWidget Signals</a></dt>
-		</dl>
-	</section>
+    <section><h3>What are Signals And Slots?</h3>
+        <a href="./images/signals_and_slots.png"><img src="./images/signals_and_slots.png" alt="signals_and_slots.png" style="min-height: 80vh;"></a>
+        <dl class="fa">
+            <!-- <dt>Qt library provides two parallel mechanisms to define and process events.</dt>
+            <ol>
+                <li>Using <code>QEvent</code> class - which is appropriate for implementing custom widgets</li>
+                <li><code>Signals</code> when we just using widgets already defined in QWidget hierarchy.</li>
+            </ol> -->
+            <dt>Signals and slots are used for communication between objects.</dt>
+            <dt>For example, if a user clicks a Close button, we probably want the window's close() function to be called.</dt>
+            <dt>A signal is s notification that the event has happened</dt>
+            <dt>A slot is a function that is called, when that event occurs.</dt>
+            <dt>In order to establish communication between objects, we <span class="note">connect</span> a signal to a slot to achieve the desired action</dt>
+        </dl>
+    </section>
+    <section><h3>What are Signals And Slots?</h3>
+        <dl class="fa">
+            <dt>A <span class="note">Signal is a special object property</span> that can be emitted in response to a event.</dt>
+            <dt>Usually, we emit signals when the object's internal state has changed.</dt>
+            <dt>A <span class="note">Slot is an object method</span> that can receive a signal and act in response to it.</dt>
+            <dt>In fact, a slot can be not only a Qt object method, <span class="note">it can be any Python callable</span>.</dt>
+            <dt>When a signal is emitted, the slots connected to it are usually executed immediately</dt>
+        </dl>
+    </section>
+    <section><h3>Signals and Slots Example</h3>
+        <dl class="fa">
+            <dt>A QPushButton has a <a href="https://doc.qt.io/qt-6/qabstractbutton.html#clicked">clicked signal</a> that is emitted whenever the button is clicked by a user. </dt>
+            <dt>The QWidget class has a <a href="https://doc.qt.io/qt-6/qwidget.html#close">close() slot</a> that causes it to close if it's a top-level window. </dt>
+            <dt>We could connect the two like this:</dt>
+        </dl>
+        <pre><code rel="Python" class="python">
+            self.btn_cancel = qtw.QPushButton('Cancel')
+            self.btn_cancel.clicked.connect(self.close)
+        </code></pre>
+        <dt>All classes descended from QObject (including all QWidget classes) can send and receive signals.</dt>
+    </section>
+    <section><h3>Different combinations of signals and slots</h3>
+        <dl class="fa">
+            <dt>One signal can be connected to one or many slots</dt>
+            <dd>If a signal is connected to several slots they will be executed one after the other, in the order they have been connected, when the signal is emitted.</dd>
+            <dt>Many signals can be connected to the same slot</dt>
+            <dt>A signal can be connected to other signals</dt>
+            <dt>Connections can be removed</dt>
+        </dl>
+    </section>
+    <section><h3>Common predefined Signals and Slots</h3>
+        <dl class="fa">
+            <dt>All buttons have next signals and slots: <a href="https://doc.qt.io/qt-5/qabstractbutton.html#public-slots">QAbstractButton Slots and Signals</a></dt>
+            <dt>QLineEdit object has: <a href="https://doc.qt.io/qt-5/qlineedit.html#public-slots">QLineEdit Slots And Signals</a></dt>
+            <dt>All QWidget objects have next <a href="https://doc.qt.io/qt-5/qwidget.html#public-slots">QWidget Slots</a> and <a href="https://doc.qt.io/qt-5/qwidget.html#signals">QWidget Signals</a></dt>
+        </dl>
+    </section>
 </section>
 
 <section data-min="50" class="main-section-title" id="PassingDataBetweenSignalsAndSlots"><h1>Passing data between signals and slots</h1></section>
 <section class="sub-sections"><h2>Passing data between signals and slots</h2>
-	<section>
-		<dl class="fa">
-			<dt>Signals can also pass data to the slots they are connected.</dt>
-			<dt>For example, QLineEdit object has a <code>textChanged</code> signal that sends the text entered into the widget along with the signal</dt>
-			<dt>The QLineEdit object also has a <code>setText()</code> slot that accepts a string argument. We could connect them like this:</dt>
-			<pre><code rel="Python" class="python">
-				self.line_edit1 = qtw.QLineEdit()
-				self.line_edit2 = qtw.QLineEdit()
+    <section>
+        <dl class="fa">
+            <dt>Signals can also pass data to the slots they are connected.</dt>
+            <dt>For example, QLineEdit object has a <code>textChanged</code> signal that sends the text entered into the widget along with the signal</dt>
+            <dt>The QLineEdit object also has a <code>setText()</code> slot that accepts a string argument. We could connect them like this:</dt>
+            <pre><code rel="Python" class="python">
+                self.line_edit1 = qtw.QLineEdit()
+                self.line_edit2 = qtw.QLineEdit()
 
-				self.line_edit1.textChanged.connect(self.line_edit2.setText)
+                self.line_edit1.textChanged.connect(self.line_edit2.setText)
 
-				self.mainLayout = qtw.QVBoxLayout()
-				self.mainLayout.addWidget(self.line_edit1)
-				self.mainLayout.addWidget(self.line_edit2)
+                self.mainLayout = qtw.QVBoxLayout()
+                self.mainLayout.addWidget(self.line_edit1)
+                self.mainLayout.addWidget(self.line_edit2)
 
-				self.setLayout(self.mainLayout)
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>Task: Print in console the text in a lineEdit</h3>
-		<dl class="fa">
-			<dt>Create a Widget with  1 QLineEdit object  (<code>line_edit1</code>) in it</dt>
-			<dt>We want on every change to the content of <code>line_edit1</code> that content to be printed in the console.</dt>
-		</dl>
-	</section>
-	<section><h3>Solution</h3>
-		<p>Click on "view raw" link at gist's bottom right corner to view the code, ready for copy-paste :)</p>
-		<script src="https://gist.github.com/WWWCourses/d5d3a00efa22eccd9b8b88ed75343a6b.js"></script>
-	</section>
-	<section>
-		<dl class="fa">
-			<dt>Signals can even be connected to other signals, for example:</dt>
-			<pre><code rel="Python" class="python">
-				self.line_edit1.editingFinished.connect(lambda: print('Edit Done'))
-				self.line_edit2.returnPressed.connect(self.line_edit1.editingFinished)
-			</code></pre>
-			<dt>When you connect a signal to another signal, the event and data are passed from one signal to the next</dt>
-		</dl>
-	</section>
+                self.setLayout(self.mainLayout)
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Task: Print in console the text in a lineEdit</h3>
+        <dl class="fa">
+            <dt>Create a Widget with  1 QLineEdit object  (<code>line_edit1</code>) in it</dt>
+            <dt>We want on every change to the content of <code>line_edit1</code> that content to be printed in the console.</dt>
+        </dl>
+    </section>
+    <section><h3>Solution</h3>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            import sys
+            from PyQt6 import QtWidgets as qtw
+
+            class MainWindow(qtw.QWidget):
+                def __init__(self, *args, **kwargs):
+                    super().__init__(*args, **kwargs)
+
+                    # Set up the main layout
+                    main_layout = qtw.QVBoxLayout(self)
+
+                    # Create and add the QLineEdit to the layout
+                    self.leTest = qtw.QLineEdit()
+                    main_layout.addWidget(self.leTest)
+
+                    # Connect the textChanged signal to the custom slot
+                    self.leTest.textChanged.connect(self.print_content)
+
+                    self.setWindowTitle('Demo')
+                    self.show()
+
+                def print_content(self, text):
+                    print(f'Content: {text}')
+
+            # Run the application
+            if __name__ == '__main__':
+                app = qtw.QApplication(sys.argv)
+                window = MainWindow()
+                sys.exit(app.exec())
+
+        </code></pre>
+    </section>
+    <section>
+        <dl class="fa">
+            <dt>Signals can even be connected to other signals, for example:</dt>
+            <pre><code rel="Python" class="python">
+                self.line_edit1.editingFinished.connect(lambda: print('Edit Done'))
+                self.line_edit2.returnPressed.connect(self.line_edit1.editingFinished)
+            </code></pre>
+            <dt>When you connect a signal to another signal, the event and data are passed from one signal to the next</dt>
+        </dl>
+    </section>
 </section>
 
 
 <section data-min="5" class="main-section-title" id="CustomSignalsAndSlots"><h1>Custom signals and slots</h1></section>
 <section class="sub-sections"><h2>Custom slots</h2>
-	<section><h3>Signals and Slots Type-safety</h3>
-		<dl class="fa">
-			<dt>Unlike Python, C++ is <span class="note">a statically typed language</span>, which means that all variables and function parameters must be given a type ( string , integer , float ,...) on declaration time and any value stored in the variable or passed to that function must have a matching type.</dt>
-			<dt>Native Qt signals and slots are type-safe.</dt>
-			<dt>Consider next example: we tried to connect line_edit textChange signal to btn_change clicked signal, but an error is thrown, because textChanged emits a string, and clicked signal on button (which we want to use as a slot) emits a Boolean not string.</dt>
-			<pre><code rel="Python" class="python">
-				self.line_edit.textChanged.connect(self.btn_change.clicked)
+    <section><h3>Custom Slots</h3>
+        <dl class="fa">
+            <dt>Any Python callable can play the role of a slot.</dt>
+            <dt>Custom slots are called when a signal is emitted. </dt>
+        </dl>
+        <pre><code rel="Python" class="python">
+            self.line_edit.textChanged.connect(self.some_slot)
 
-				# QObject::connect: Incompatible sender/receiver arguments
-				# QLineEdit::textChanged(QString) --> QPushButton::clicked(bool)
-				# TypeError: connect() failed between textChanged(QString) and clicked()
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>Custom Slots</h3>
-		<dl class="fa">
-			<dt>Any Python callable can play the role of a slot.</dt>
-			<dt>Custom slots are called when a signal is emitted. </dt>
-			<dt>They are called with the sender object as the first argument and the signal arguments as the second and third arguments. </dt>
-			<dt>The sender object is the object that emits the signal.</dt>
-			<dt>But when the slot is a Python callable, there will be no type-error as Python is dynamically typed language</dt>
-			<dt>Of course, an error will be thrown if did not pass enough arguments to the slot (note, that if we pass more arguments than declared there will be no error, as Qt will throw them away)</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			self.line_edit.textChanged.connect(self.some_slot)
+            def some_slot(signal, text, x):
+                print(text, x)
 
-			def some_slot(signal, text, x):
-				print(text, x)
-
-			# TypeError: some_slot() missing 1 required positional argument: 'x'
-		</code></pre>
-	</section>
-	<section><h3>Type-safety using slots decorators</h3>
-		<dl class="fa">
-			<dt>But QtCore contains a pyqtSlot() function, which we can use to decorate a Python callable as a slot.</dt>
-			<dt>pyqtSlot() is a decorator that takes a Python callable and returns a slot object. </dt>
-			<dt>The slot object is a wrapper around the Python callable that can be connected to a signal. </dt>
-			<dt>Using the pyqtSlot() decorator allows us to specify the type of the arguments that will be passed to the slot.</dt>
-		</dl>
-		<pre><code rel="Python" class="python">
-			@qtc.pyqtSlot(str)
-			def some_slot(*args):
-				for arg in args:
-					print(arg)
-		</code></pre>
-	</section>
+            # TypeError: some_slot() missing 1 required positional argument: 'x'
+        </code></pre>
+    </section>
+    <section><h3 class="advanced">Type-safety using slots decorators</h3>
+        <dl class="fa">
+            <dt>QtCore contains a pyqtSlot() function, which we can use to decorate a Python callable as a slot.</dt>
+            <dt>pyqtSlot() is a decorator that takes a Python callable and returns a slot object. </dt>
+            <dt>The slot object is a wrapper around the Python callable that can be connected to a signal. </dt>
+            <dt>Using the pyqtSlot() decorator allows us to specify the type of the arguments that will be passed to the slot.</dt>
+        </dl>
+        <pre><code rel="Python" class="python">
+            @qtc.pyqtSlot(str)
+            def some_slot(*args):
+                for arg in args:
+                    print(arg)
+        </code></pre>
+    </section>
 </section>
 <section class="sub-sections"><h2>Custom Signals</h2>
-	<section id="DefiningCustomSignals"><h3>Defining Custom Signals</h3>
-		<dl class="fa">
-			<dt>Custom signals are defined using the <code>pyqtSignal()</code> function.</dt>
-			<dt>pyqtSignal() returns a signal object, which is is a wrapper around the Python callable that can be connected to a slot. </dt>
-			<dt>Custom signals are defined as class attributes.</dt>
-			<dt>Custom signals have the emit()method, which is used to emit the signal.</dt>
-			<dt>Reference:</dt>
-			<dd><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/signals_slots.html#defining-new-signals-with-pyqtsignal">Defining New Signals with pyqtSignal</a></dd>
-			<dd><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/signals_slots.html#emit">emit</a></dd>
-		</dl>
-		<pre><code rel="Python" class="python">
-			# create custom signal which will carry a string data type data:
-			sig_submit = qtc.pyqtSignal(str)
+    <section id="DefiningCustomSignals"><h3>Defining Custom Signals</h3>
+        <dl class="fa">
+            <dt>Custom signals are defined using the <code>pyqtSignal()</code> function.</dt>
+            <dt>pyqtSignal() returns a signal object, which is is a wrapper around the Python callable that can be connected to a slot. </dt>
+            <dt>Custom signals are defined as class attributes.</dt>
+            <dt>Custom signals have the emit()method, which is used to emit the signal.</dt>
+            <dt>Reference:</dt>
+            <dd><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/signals_slots.html#defining-new-signals-with-pyqtsignal">Defining New Signals with pyqtSignal</a></dd>
+            <dd><a href="https://www.riverbankcomputing.com/static/Docs/PyQt6/signals_slots.html#emit">emit</a></dd>
+        </dl>
+        <pre><code rel="Python" class="python">
+            # create custom signal which will carry a string data type data:
+            sig_submit = qtc.pyqtSignal(str)
 
-			@qtc.pyqtSlot(bool)
-			def onSubmit(self):
-				self.sig_submit.emit(self.edit.text())
-				self.close()
-		</code></pre>
-	</section>
+            @qtc.pyqtSlot(bool)
+            def onSubmit(self):
+                self.sig_submit.emit(self.edit.text())
+                self.close()
+        </code></pre>
+    </section>
 </section>
 
 <section data-min="50" class="main-section-title" id="SharingDataBetweenWidgets"><h1>Sharing data between widgets using custom signals and slots</h1></section>
 <section class="sub-sections"><h2>Sharing data between widgets using custom signals and slots</h2>
-	<section>
-		<dl class="fa">
-			<dt>At its core, the signals and slots mechanism can be seen as a way for any two objects in an application to communicate while remaining <a href="https://en.wikipedia.org/wiki/Loose_coupling#:~:text=In%20computing%20and%20systems%20design,the%20opposite%20of%20tight%20coupling.">loosely coupled</a></dt>
-		</dl>
-	</section>
-	<section><h3>Why?</h3>
-		<dl class="fa">
-			<dt>Suppose you have a program that pops up a form window.</dt>
-			<dt>When the user finish filling the form and submits it, we need to get the entered data back to the main application class for processing.</dt>
-			<dt>There are a few ways we could approach this. One is the main application to watch for click events on the pop-up window's Submit button, then grab the data from its fields before destroying the dialog </dt>
-			<dt>But that approach requires the main form to know all about the pop-up dialog's widgets and any refactoring of the pop-up would risk breaking code in the main application.</dt>
-		</dl>
-	</section>
-	<section><h3>Demo: tightly-coupled approach</h3>
-		<p>Note that MainWindow must know form's implementation</p>
-		<script src="https://gist.github.com/WWWCourses/85a71a944860e9b37f2b40a9f6ed8a7c.js"></script>
-	</section>
-	<section><h3>Demo: loosely-coupled approach</h3>
-		<p>Note that MainWindow don't care about form's implementation, it just pass and receive data</p>
-		<script src="https://gist.github.com/WWWCourses/4f5763c425ac129a9e232cfd11adb448.js"></script>
-	</section>
+    <section>
+        <dl class="fa">
+            <dt>At its core, the signals and slots mechanism can be seen as a way for any two objects in an application to communicate while remaining <a href="https://en.wikipedia.org/wiki/Loose_coupling#:~:text=In%20computing%20and%20systems%20design,the%20opposite%20of%20tight%20coupling.">loosely coupled</a></dt>
+        </dl>
+    </section>
+    <section><h3>Why?</h3>
+        <dl class="fa">
+            <dt>Suppose you have a program that pops up a form window.</dt>
+            <dt>When the user finish filling the form and submits it, we need to get the entered data back to the main application class for processing.</dt>
+            <dt>There are a few ways we could approach this. One is the main application to watch for click events on the pop-up window's Submit button, then grab the data from its fields before destroying the dialog </dt>
+            <dt>But that approach requires the main form to know all about the pop-up dialog's widgets and any refactoring of the pop-up would risk breaking code in the main application.</dt>
+        </dl>
+    </section>
+    <section><h3>Demo: tightly-coupled approach</h3>
+        <p>Note that MainWindow must know form's implementation</p>
+        <script src="https://gist.github.com/WWWCourses/85a71a944860e9b37f2b40a9f6ed8a7c.js"></script>
+    </section>
+    <section><h3>Demo: loosely-coupled approach</h3>
+        <p>Note that MainWindow don't care about form's implementation, it just pass and receive data</p>
+        <script src="https://gist.github.com/WWWCourses/4f5763c425ac129a9e232cfd11adb448.js"></script>
+    </section>
 </section>
 
 <section data-min="5" class="main-section-title" id="UsingMySqlWithPyQt6Widgets"><h1>Hands on: Using MySQL With PyQt6 Widgets</h1></section>
 <section class="sub-sections"><h2>Hands on LoginForm: Using MySQL With PyQt6 Widgets</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>When we need our Qt app to work with database, we can use:</dt>
-			<dd>Python's <a href="https://peps.python.org/pep-0249/#introduction">DB-API</a> compliant modules, like <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector</a> - this is a kind of universal approach which works on any Python app.</dd>
-			<dd>Qt's SQL API, which is the preferred way for PyQt applications, especially when we use the Qt's model/view architecture (discussed later in these course). But note that to use MySQL with Qt SQL API you must <a href="https://doc.qt.io/qt-6/sql-driver.html#how-to-build-the-qmysql-plugin-on-windows">build QMYSQL Plugin yourself</a></dd>
-			<dt>In next examples, we will use the Python's <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector</a>, but later in the course we will discuss the Qt's approach. </dt>
-		</dl>
-	</section>
-	<section><h3>Create <code>users</code> table</h3>
-		<pre><code rel="SQL" class="sql" style="min-height: 62vh;">
-			DROP TABLE IF EXISTS `users`;
-			/*!40101 SET @saved_cs_client     = @@character_set_client */;
-			/*!40101 SET character_set_client = utf8 */;
-			CREATE TABLE `users` (
-				`id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'primary key',
-				`username` varchar(50) NOT NULL,
-				`email` varchar(20) NOT NULL,
-				`password` varchar(45) NOT NULL,
-				PRIMARY KEY (`id`),
-				UNIQUE KEY `email` (`email`)
-			) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-			/*!40101 SET character_set_client = @saved_cs_client */;
-		</code></pre>
-	</section>
-	<section><h3>Insert some data</h3>
-		<pre><code rel="SQL" class="sql">
-			INSERT INTO `users` VALUES
-				(1,'Maria','maria@gmail.com','maria123'),
-				(2,'Pesho','peho@gmail.com','pesho123'),
-				(3,'Ivan','ivan@gmail.com','ivan123');
-		</code></pre>
-	</section>
-	<section><h3>Registration Form demo - CLI, no PyQt</h3>
-		<script src="https://gist.github.com/WWWCourses/d1766798e16467af3c6619a28c776b82.js"></script>
-	</section>
-	<section><h3>References</h3>
-		<dl class="fa">
-			<dt><a href="https://wwwcourses.github.io/PythonCourseNetIT-Slides/pages/themes/DBMS-Lecture4_part2/DBMS-Lecture4_part2.html#/MySqlAndPython">MySQL and Python</a></dt>
-			<dt><a href="https://wwwcourses.github.io/PythonCourseNetIT-Slides/pages/themes/DBMS-Lecture4/DBMS-Lecture4.html#/BasicDataManipulationStatements">Basic Data Manipulation Statements</a></dt>
-			<dt><a href="https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-select.html">Querying Data Using Connector/Python</a></dt>
-		</dl>
-	</section>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>When we need our Qt app to work with database, we can use:</dt>
+            <dd>Python's <a href="https://peps.python.org/pep-0249/#introduction">DB-API</a> compliant modules, like <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector</a> - this is a kind of universal approach which works on any Python app.</dd>
+            <dd>Qt's also provides its SQL APIs, which will be discussed in later lectures.</dd>
+            <dt>In next examples, we will use the Python's <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector</a>, but later in the course we will discuss the Qt's approach. </dt>
+        </dl>
+    </section>
+    <section><h3>Create <code>users</code> table</h3>
+        <pre><code rel="SQL" class="sql" style="min-height: 62vh;">
+            DROP TABLE IF EXISTS `users`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `users` (
+                `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'primary key',
+                `username` varchar(50) NOT NULL,
+                `email` varchar(20) NOT NULL,
+                `password` varchar(45) NOT NULL,
+                PRIMARY KEY (`id`),
+                UNIQUE KEY `email` (`email`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+        </code></pre>
+    </section>
+    <section><h3>Insert some data</h3>
+        <pre><code rel="SQL" class="sql">
+            INSERT INTO `users` VALUES
+                (1,'Maria','maria@gmail.com','maria123'),
+                (2,'Pesho','peho@gmail.com','pesho123'),
+                (3,'Ivan','ivan@gmail.com','ivan123');
+        </code></pre>
+    </section>
+    <section><h3>Registration Form demo - CLI, no PyQt</h3>
+        <script src="https://gist.github.com/WWWCourses/d1766798e16467af3c6619a28c776b82.js"></script>
+    </section>
+    <section><h3>References</h3>
+        <dl class="fa">
+            <dt><a href="https://wwwcourses.github.io/PythonCourseNetIT-Slides/pages/themes/DBMS-Lecture4_part2/DBMS-Lecture4_part2.html#/MySqlAndPython">MySQL and Python</a></dt>
+            <dt><a href="https://wwwcourses.github.io/PythonCourseNetIT-Slides/pages/themes/DBMS-Lecture4/DBMS-Lecture4.html#/BasicDataManipulationStatements">Basic Data Manipulation Statements</a></dt>
+            <dt><a href="https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-select.html">Querying Data Using Connector/Python</a></dt>
+        </dl>
+    </section>
 </section>
 
 <section data-min="50" class="main-section-title"><h1>Exercises</h1></section>
 <section class="sub-sections"><h2>Exercises</h2>
-	<section id="LoginFormTask"><h3>Login Form Task</h3>
-		<dl class="fa">
-			<dt>Create a simple Login Form which functions as shown in GIF bellow:</dt>
-			<a href="./Tasks_and_HW/LoginFormTask.gif" style="display: block;"><img src="./Tasks_and_HW/LoginFormTask.gif" alt="LoginFormTask.gif" title="click for bigger image..." style="max-height: 60vh;"></a>
-			<dt>TIP: use <a href="https://doc.qt.io/qt-6/qmessagebox.html#information">QMessageBox.information()</a>  and <a href="https://doc.qt.io/qt-6/qmessagebox.html#critical">QMessageBox.critical()</a> dialog widgets.</dt>
-		</dl>
-
-	</section>
+    <section id="LoginFormTask"><h3>Login Form Task</h3>
+        <dl class="fa">
+            <dt>Create a simple Login Form which functions as shown in GIF bellow:</dt>
+            <a href="./Tasks_and_HW/LoginFormTask.gif" style="display: block;"><img src="./Tasks_and_HW/LoginFormTask.gif" alt="LoginFormTask.gif" title="click for bigger image..." style="max-height: 60vh;"></a>
+            <dt>TIP: use <a href="https://doc.qt.io/qt-6/qmessagebox.html#information">QMessageBox.information()</a>  and <a href="https://doc.qt.io/qt-6/qmessagebox.html#critical">QMessageBox.critical()</a> dialog widgets.</dt>
+        </dl>
+    </section>
 </section>
 
 
 <!-- <section data-min="5" class="main-section-title"><h1>Exercises</h1></section>
 <section class="sub-sections"><h2>Exercises</h2>
-	<section id="HW_Calculator"><h3>Task1: Calculator GUI</h3>
-		<dl class="fa">
-			<dt>Create the UI of a calculator, like the one shown in next image.</dt>
-			<a href="./images/task_calculator_ui.png" title="click for bigger image"><img src="./images/task_calculator_ui.png" alt="./images/task_calculator_ui.png" style="min-height: 60vh;"></a>
-			<dt>Use the Qt Designer and save the file as <code>calculator.ui</code></dt>
-			<dt>Convert the generated <code> calculator.ui</code> file to python code, using the <code>pyuic5</code> tool</dt>
-		</dl><br>
+    <section id="HW_Calculator"><h3>Task1: Calculator GUI</h3>
+        <dl class="fa">
+            <dt>Create the UI of a calculator, like the one shown in next image.</dt>
+            <a href="./images/task_calculator_ui.png" title="click for bigger image"><img src="./images/task_calculator_ui.png" alt="./images/task_calculator_ui.png" style="min-height: 60vh;"></a>
+            <dt>Use the Qt Designer and save the file as <code>calculator.ui</code></dt>
+            <dt>Convert the generated <code> calculator.ui</code> file to python code, using the <code>pyuic5</code> tool</dt>
+        </dl><br>
 
-	</section>
+    </section>
 </section> -->
 
 <section class="disclaimer end-slide"></section>
@@ -347,48 +357,48 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1280,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1280,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 </body>
 </html>
