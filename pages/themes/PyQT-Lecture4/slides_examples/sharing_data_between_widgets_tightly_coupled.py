@@ -1,12 +1,13 @@
 import sys
-from PyQt5 import QtWidgets as qtw
-from PyQt5 import QtCore as qtc
-from PyQt5 import QtGui as qtg
+from PyQt6 import QtWidgets as qtw
+from PyQt6 import QtCore as qtc
+from PyQt6 import QtGui as qtg
 
-class FormWindow(qtw.QWidget):
+class DataEntryDialog(qtw.QDialog):
 	def __init__(self , *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.setWindowTitle('My Form')
+		self.setGeometry(500,400,200,100)
 
 		# ------------------------- create and atach widgets ------------------------- #
 		self.edit = qtw.QLineEdit()
@@ -20,6 +21,7 @@ class MainWindow(qtw.QWidget):
 	def __init__(self , *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.setWindowTitle('My App')
+		self.setGeometry(400,300,300,200)
 
 		# ------------------------- create and atach widgets ------------------------- #
 		self.label = qtw.QLabel('Initial Text')
@@ -36,18 +38,17 @@ class MainWindow(qtw.QWidget):
 		self.show()
 
 	def onChangeClicked(self):
-		# tightly-coupled approach: we must know form's implementation
-		self.form = FormWindow()
+		self.dialog = DataEntryDialog(self)
+		# tightly-coupled approach: we must know dialog's implementation
+		self.dialog.edit.setText(self.label.text())
+		self.dialog.btn_submit.clicked.connect(self.on_dialog_text_changed)
 
-		self.form.edit.setText(self.label.text())
-		self.form.btn_submit.clicked.connect(self.on_form_text_changed)
-
-		self.form.show()
+		self.dialog.show()
 
 
-	def on_form_text_changed(self):
-		self.label.setText(self.form.edit.text())
-		self.form.close()
+	def on_dialog_text_changed(self):
+		self.label.setText(self.dialog.edit.text())
+		self.dialog.close()
 
 
 if __name__ == '__main__':
@@ -55,4 +56,4 @@ if __name__ == '__main__':
 
 	window = MainWindow()
 
-	sys.exit(app.exec_())
+	sys.exit(app.exec())

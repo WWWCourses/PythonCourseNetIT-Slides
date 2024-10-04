@@ -1,42 +1,56 @@
 import sys
-from PyQt5 import QtWidgets as qtw
-from PyQt5 import QtCore as qtc
-from PyQt5 import QtGui as qtg
+from PyQt6 import QtWidgets as qtw
+from PyQt6 import QtCore as qtc
+from PyQt6 import QtGui as qtg
 
+class DataEntryDialog(qtw.QDialog):
+	def __init__(self , *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.setWindowTitle('My Form')
+		self.setGeometry(500,400,200,100)
+
+		# ------------------------- create and atach widgets ------------------------- #
+		self.edit = qtw.QLineEdit()
+		self.btn_submit = qtw.QPushButton('Submit')
+
+		self.setLayout(qtw.QVBoxLayout())
+		self.layout().addWidget(self.edit)
+		self.layout().addWidget(self.btn_submit)
 
 class MainWindow(qtw.QWidget):
-	sig_submit = qtc.pyqtSignal(str)
+	signal1 = qtc.pyqtSignal(str)
 
 	def __init__(self , *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		self.setupUI()
+		self.setWindowTitle('My App')
+		self.setGeometry(400,300,300,200)
 
-		# self.btn_ok.clicked.connect(self.on_ok)
-		self.le_user_name.textChanged.connect(self.on_ok)
+		# ------------------------- create and atach widgets ------------------------- #
+		self.label = qtw.QLabel('Initial Text')
+		self.btn_change = qtw.QPushButton('change text')
 
-	@qtc.pyqtSlot(bool)
-	def onSubmit(self):
-		self.sig_submit.emit(self.le_user_name.text())
-		self.close()
+		self.main_layout = qtw.QVBoxLayout()
+		self.main_layout.addWidget(self.label)
+		self.main_layout.addWidget(self.btn_change)
+		self.setLayout(self.main_layout)
 
-	# @qtc.pyqtSlot(str)
-	def on_ok(self,*args):
-		print(args)
+		# ---------------------------------- signals --------------------------------- #
+		self.btn_change.clicked.connect(self.onChangeClicked)
 
-	def setupUI(self):
-		self.setWindowTitle('Main')
+		self.show()
 
-		self.le_user_name = qtw.QLineEdit()
-		self.btn_ok = qtw.QPushButton('OK')
+	def onChangeClicked(self):
+		self.dialog = DataEntryDialog(self)
+		# tightly-coupled approach: we must know dialog's implementation
+		self.dialog.edit.setText(self.label.text())
+		self.dialog.btn_submit.clicked.connect(self.on_dialog_text_changed)
 
-		main_layout = qtw.QVBoxLayout(self)
-		main_layout.addWidget(self.le_user_name)
-		main_layout.addWidget(self.btn_ok)
-
-		self.show();
-
+		self.dialog.show()
 
 
+	def on_dialog_text_changed(self):
+		self.label.setText(self.dialog.edit.text())
+		self.dialog.close()
 
 
 if __name__ == '__main__':
@@ -44,4 +58,4 @@ if __name__ == '__main__':
 
 	window = MainWindow()
 
-	sys.exit(app.exec_())
+	sys.exit(app.exec())

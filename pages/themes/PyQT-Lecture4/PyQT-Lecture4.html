@@ -253,89 +253,166 @@
                 self.close()
         </code></pre>
     </section>
+    <section>
+      <h3>Why using custom signals</h3>
+      <dl class="fa" style="min-width:80vw">
+        <dt>Custom signals help decouple components by allowing different widgets or objects to communicate without directly calling each other's methods</dt>
+        <dt>Custom signals can be used to define specific events that aren't covered by the built-in PyQt signals, such as model changes, data updates, or complex state transitions</dt>
+        <dt>They improve code modularity, as components can emit signals without needing to know which slot is handling them, reducing dependencies</dt>
+        <dt>They provide a way to safely handle communication between different threads in a PyQt application</dt>
+        <dt>Custom signals offer flexibility for complex applications, making it easier to manage and maintain large codebases by centralizing communication through signals</dt>
+      </dl>
+    </section>
 </section>
 
 <section data-min="50" class="main-section-title" id="SharingDataBetweenWidgets"><h1>Sharing data between widgets using custom signals and slots</h1></section>
 <section class="sub-sections"><h2>Sharing data between widgets using custom signals and slots</h2>
-    <section>
+    <section><h3>Common scenario</h3>
         <dl class="fa">
-            <dt>At its core, the signals and slots mechanism can be seen as a way for any two objects in an application to communicate while remaining <a href="https://en.wikipedia.org/wiki/Loose_coupling#:~:text=In%20computing%20and%20systems%20design,the%20opposite%20of%20tight%20coupling.">loosely coupled</a></dt>
-        </dl>
-    </section>
-    <section><h3>Why?</h3>
-        <dl class="fa">
-            <dt>Suppose you have a program that pops up a form window.</dt>
-            <dt>When the user finish filling the form and submits it, we need to get the entered data back to the main application class for processing.</dt>
-            <dt>There are a few ways we could approach this. One is the main application to watch for click events on the pop-up window's Submit button, then grab the data from its fields before destroying the dialog </dt>
-            <dt>But that approach requires the main form to know all about the pop-up dialog's widgets and any refactoring of the pop-up would risk breaking code in the main application.</dt>
+            <dt>Suppose you have a program that pops up a form window. When the user finishes filling the form and submits it, we need to get the entered data back to the main application class for processing.</dt>
+            <dt>There are a few ways we could approach this:</dt>
+            <dd>One is for the main application to watch for click events on the pop-up window's Submit button, then grab the data from its fields before destroying the dialog. But that approach requires the main form to know all about the pop-up dialog's widgets, and any refactoring of the pop-up would risk breaking code in the main application.</dd>
+            <dd>Another option is to pass the main application a reference to the dialog's fields, but this approach still requires tight coupling between the two classes.</dd>
+            <dd>The preferred approach is to use custom signals and slots to emit the form data when the user clicks Submit, allowing the main application to handle the data without needing to know the inner workings of the dialog.</dd>
         </dl>
     </section>
     <section><h3>Demo: tightly-coupled approach</h3>
-        <p>Note that MainWindow must know form's implementation</p>
-        <script src="https://gist.github.com/WWWCourses/85a71a944860e9b37f2b40a9f6ed8a7c.js"></script>
+        <p>Note that MainWindow must know DataEntryDialog's implementation</p>
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+            import sys
+            from PyQt6 import QtWidgets as qtw
+            from PyQt6 import QtCore as qtc
+            from PyQt6 import QtGui as qtg
+
+            class DataEntryDialog(qtw.QDialog):
+                def __init__(self , *args, **kwargs):
+                    super().__init__(*args, **kwargs)
+                    self.setWindowTitle('My Form')
+                    self.setGeometry(500,400,200,100)
+
+                    # ------------------------- create and atach widgets ------------------------- #
+                    self.edit = qtw.QLineEdit()
+                    self.btn_submit = qtw.QPushButton('Submit')
+
+                    self.setLayout(qtw.QVBoxLayout())
+                    self.layout().addWidget(self.edit)
+                    self.layout().addWidget(self.btn_submit)
+
+            class MainWindow(qtw.QWidget):
+                def __init__(self , *args, **kwargs):
+                    super().__init__(*args, **kwargs)
+                    self.setWindowTitle('My App')
+                    self.setGeometry(400,300,300,200)
+
+                    # ------------------------- create and atach widgets ------------------------- #
+                    self.label = qtw.QLabel('Initial Text')
+                    self.btn_change = qtw.QPushButton('change text')
+
+                    self.main_layout = qtw.QVBoxLayout()
+                    self.main_layout.addWidget(self.label)
+                    self.main_layout.addWidget(self.btn_change)
+                    self.setLayout(self.main_layout)
+
+                    # ---------------------------------- signals --------------------------------- #
+                    self.btn_change.clicked.connect(self.onChangeClicked)
+
+                    self.show()
+
+                def onChangeClicked(self):
+                    self.dialog = DataEntryDialog(self)
+                    # tightly-coupled approach: we must know dialog's implementation
+                    self.dialog.edit.setText(self.label.text())
+                    self.dialog.btn_submit.clicked.connect(self.on_dialog_text_changed)
+
+                    self.dialog.show()
+
+
+                def on_dialog_text_changed(self):
+                    self.label.setText(self.dialog.edit.text())
+                    self.dialog.close()
+
+
+            if __name__ == '__main__':
+                app = qtw.QApplication(sys.argv);
+
+                window = MainWindow()
+
+                sys.exit(app.exec())
+        </code></pre>
     </section>
     <section><h3>Demo: loosely-coupled approach</h3>
-        <p>Note that MainWindow don't care about form's implementation, it just pass and receive data</p>
-        <script src="https://gist.github.com/WWWCourses/4f5763c425ac129a9e232cfd11adb448.js"></script>
+        <p>Note that MainWindow don't care about DataEntryDialog's implementation, it just pass and receive data</p>
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+            import sys
+            from PyQt6 import QtWidgets as qtw
+            from PyQt6 import QtCore as qtc
+            from PyQt6 import QtGui as qtg
+
+            class DataEntryDialog(qtw.QDialog):
+                data_submitted = qtc.pyqtSignal(str)
+
+                def __init__(self , parent, msg):
+                    super().__init__(parent)
+                    self.setWindowTitle('My Form')
+                    self.setGeometry(500,400,200,100)
+
+                    # ------------------------- create and atach widgets ------------------------- #
+                    self.edit = qtw.QLineEdit()
+                    self.edit.setText(msg)
+                    self.btn_submit = qtw.QPushButton('Submit')
+
+                    self.setLayout(qtw.QVBoxLayout())
+                    self.layout().addWidget(self.edit)
+                    self.layout().addWidget(self.btn_submit)
+
+                     # Connect the button click to emit the custom signal
+                    self.btn_submit.clicked.connect(self.emit_data)
+
+                def emit_data(self):
+                    self.data_submitted.emit(self.edit.text())
+
+            class MainWindow(qtw.QWidget):
+                def __init__(self , *args, **kwargs):
+                    super().__init__(*args, **kwargs)
+                    self.setWindowTitle('My App')
+                    self.setGeometry(400,300,300,200)
+
+                    # ------------------------- create and atach widgets ------------------------- #
+                    self.label = qtw.QLabel('Initial Text')
+                    self.btn_change = qtw.QPushButton('change text')
+
+                    self.main_layout = qtw.QVBoxLayout()
+                    self.main_layout.addWidget(self.label)
+                    self.main_layout.addWidget(self.btn_change)
+                    self.setLayout(self.main_layout)
+
+                    # ---------------------------------- signals --------------------------------- #
+                    self.btn_change.clicked.connect(self.onChangeClicked)
+
+                    self.show()
+
+                def onChangeClicked(self):
+                    self.dialog = DataEntryDialog(parent=self, msg=self.label.text())
+                    # Connect the dialog's custom signal to update the label text in the main window
+                    self.dialog.data_submitted.connect(self.on_dialog_text_changed)
+                    self.dialog.show()
+
+
+                def on_dialog_text_changed(self, msg):
+                    self.label.setText(msg)
+                    self.dialog.close()
+
+
+            if __name__ == '__main__':
+                app = qtw.QApplication(sys.argv);
+
+                window = MainWindow()
+
+                sys.exit(app.exec())
+        </code></pre>
     </section>
 </section>
 
-<section data-min="5" class="main-section-title" id="UsingMySqlWithPyQt6Widgets"><h1>Hands on: Using MySQL With PyQt6 Widgets</h1></section>
-<section class="sub-sections"><h2>Hands on LoginForm: Using MySQL With PyQt6 Widgets</h2>
-    <section><h3>Overview</h3>
-        <dl class="fa">
-            <dt>When we need our Qt app to work with database, we can use:</dt>
-            <dd>Python's <a href="https://peps.python.org/pep-0249/#introduction">DB-API</a> compliant modules, like <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector</a> - this is a kind of universal approach which works on any Python app.</dd>
-            <dd>Qt's also provides its SQL APIs, which will be discussed in later lectures.</dd>
-            <dt>In next examples, we will use the Python's <a href="https://dev.mysql.com/doc/connector-python/en/">MySQL Connector</a>, but later in the course we will discuss the Qt's approach. </dt>
-        </dl>
-    </section>
-    <section><h3>Create <code>users</code> table</h3>
-        <pre><code rel="SQL" class="sql" style="min-height: 62vh;">
-            DROP TABLE IF EXISTS `users`;
-            /*!40101 SET @saved_cs_client     = @@character_set_client */;
-            /*!40101 SET character_set_client = utf8 */;
-            CREATE TABLE `users` (
-                `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'primary key',
-                `username` varchar(50) NOT NULL,
-                `email` varchar(20) NOT NULL,
-                `password` varchar(45) NOT NULL,
-                PRIMARY KEY (`id`),
-                UNIQUE KEY `email` (`email`)
-            ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-            /*!40101 SET character_set_client = @saved_cs_client */;
-        </code></pre>
-    </section>
-    <section><h3>Insert some data</h3>
-        <pre><code rel="SQL" class="sql">
-            INSERT INTO `users` VALUES
-                (1,'Maria','maria@gmail.com','maria123'),
-                (2,'Pesho','peho@gmail.com','pesho123'),
-                (3,'Ivan','ivan@gmail.com','ivan123');
-        </code></pre>
-    </section>
-    <section><h3>Registration Form demo - CLI, no PyQt</h3>
-        <script src="https://gist.github.com/WWWCourses/d1766798e16467af3c6619a28c776b82.js"></script>
-    </section>
-    <section><h3>References</h3>
-        <dl class="fa">
-            <dt><a href="https://wwwcourses.github.io/PythonCourseNetIT-Slides/pages/themes/DBMS-Lecture4_part2/DBMS-Lecture4_part2.html#/MySqlAndPython">MySQL and Python</a></dt>
-            <dt><a href="https://wwwcourses.github.io/PythonCourseNetIT-Slides/pages/themes/DBMS-Lecture4/DBMS-Lecture4.html#/BasicDataManipulationStatements">Basic Data Manipulation Statements</a></dt>
-            <dt><a href="https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-select.html">Querying Data Using Connector/Python</a></dt>
-        </dl>
-    </section>
-</section>
-
-<section data-min="50" class="main-section-title"><h1>Exercises</h1></section>
-<section class="sub-sections"><h2>Exercises</h2>
-    <section id="LoginFormTask"><h3>Login Form Task</h3>
-        <dl class="fa">
-            <dt>Create a simple Login Form which functions as shown in GIF bellow:</dt>
-            <a href="./Tasks_and_HW/LoginFormTask.gif" style="display: block;"><img src="./Tasks_and_HW/LoginFormTask.gif" alt="LoginFormTask.gif" title="click for bigger image..." style="max-height: 60vh;"></a>
-            <dt>TIP: use <a href="https://doc.qt.io/qt-6/qmessagebox.html#information">QMessageBox.information()</a>  and <a href="https://doc.qt.io/qt-6/qmessagebox.html#critical">QMessageBox.critical()</a> dialog widgets.</dt>
-        </dl>
-    </section>
-</section>
 
 
 <!-- <section data-min="5" class="main-section-title"><h1>Exercises</h1></section>
