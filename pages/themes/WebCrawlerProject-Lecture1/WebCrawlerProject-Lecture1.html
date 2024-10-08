@@ -144,14 +144,70 @@
 			<dd><a href="https://www.jarcomputers.com/Laptopi_cat_2.html?ref=c_1">https://www.jarcomputers.com/Laptopi_cat_2.html?ref=c_1</a></dd>
 		</dl>
 	</section>
-	<!-- <section><h3>Using <code>Requests</code> to get page content</h3>
-		<dl class="fa">
-			<dt>Reference: <a href="https://docs.python-requests.org/en/latest/">Requests: HTTP for Humans</a></dt>
-			<dt>Live Demo</dt>
-			<dd>get HTML content of a web site</dd>
-			<dd>Use JSON APIs: <a href="https://api.chucknorris.io/">Chuck Norris Jokes</a> or <a href="https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/">List of Free and Open Public APIs</a></dd>
-		</dl>
-	</section> -->
+	<section><h3>Hands on crawler.py: Crawler class template</h3>
+		<pre><code rel="Python" class="python" style="min-height: 80vh;">
+			import requests
+
+			class Crawler:
+				def __init__(self, base_url):
+					pass
+
+				def get_html(self):
+					pass
+
+			if __name__ == "__main__":
+				base_url = 'https://bnr.bg/hristobotev/radioteatre/list'
+
+
+			class Crawler():
+				def __init__(self, url):
+					""" Construct Crawler instances
+
+					Args:
+						url (string): the url to start Crawling
+					"""
+					pass
+
+				def make_filename(self,url):
+				""" Extracts domain from a url.
+					Prepend data_path and append '.html'
+					Needed, only if you want to store the HTML on disk
+
+					Args:
+						url: string
+
+					return `domain`.html string
+				"""
+				pass
+
+				def write_to_file(self,filename, content):
+					""" Write string to given filename
+						Needed, only if you want to store the HTML on disk
+
+						Args:
+							filename: string
+							content: sring
+					"""
+					pass
+
+				def get_html(self,url):
+					""" Make GET request and get html content
+						First try with SSL verification (default),
+						if error => disable SSL verification
+
+						Args:
+							url: string
+
+						return html:string
+					"""
+					pass
+
+
+			if __name__ == '__main__':
+				base_url = 'https://bnr.bg/hristobotev/radioteatre/list'
+				crawler = Crawler(base_url)
+		</code></pre>
+	</section>
 </section>
 
 <section class="main-section-title"><h1>HTML overview and syntax</h1></section>
@@ -331,7 +387,8 @@
 
 </section>
 
-<section class="sub-sections"><h2>CSS правила - синтаксис</h2>
+<section data-min="10" class="main-section-title"><h1>CSS overview</h1></section>
+<section class="sub-sections"><h2>CSS syntax</h2>
 	<section>
 			<p>Общ синтаксис на едно CSS правило:</p>
 			<pre><code rel="Formal Syntax">
@@ -394,9 +451,8 @@
 	</section>
 </section>
 
-
-<section class="sub-sections"><h2>Какво са CSS селекторите?</h2>
-	<section>
+<section class="sub-sections"><h2>CSS Selectors overview</h2>
+	<section><h3>Overview</h3>
 		<dl class="fa">
 			<dt>Шаблони, които определят над кои HTML елементи ще се приложи зададеният стил в декларациите.</dt>
 			<dt>Могат да бъдат съвсем прости, като '<code>*</code>' или '<code>p</code>' или доста по-сложни като:
@@ -405,9 +461,6 @@
 		<p class="advanced text_left">Списък със всички дефинирани в стандарта (CSS1 – CSS3) селектори: <a href="http://www.w3schools.com/cssref/css_selectors.asp">css_selectors</a></p>
 		<p>В момента се разработва спецификацията<br><a href="https://drafts.csswg.org/selectors-4/#subject">CSS Selectors Level 4</a></p>
 	</section>
-</section>
-
-<section class="sub-sections"><h2>Селектори за елементи</h2>
 	<section class="text_left"><h3>Element (type) selectors</h3>
 		<pre><code rel="CSS">
 			/* Всички параграфи в документа ще бъдат с червен шрифт */
@@ -428,17 +481,6 @@
 		<p><u>Действие</u>: селектира всички HTML елементи в документа.</p>
 		<p class="note">Не се препоръчва да се използва, тъй като забавя обработката на страницата.</p>
 	</section>
-	<!-- <section><h3>Универсален селектор - пример</h3>
-		<pre><code rel="HTML" class="html">
-			&lt;body&gt;
-				&lt;h1&gt;Heading 1&lt;/h1&gt;
-				&lt;section&gt;&lt;h2&gt;Section 1 Heading&lt;/h2&gt;
-					&lt;p&gt;Paragraph 1&lt;/p&gt;
-					&lt;p&gt;Paragraph 2&lt;/p&gt;
-				&lt;/section&gt;
-			&lt;/body&gt;
-		</code></pre>
-	</section> -->
 </section>
 
 <section class="sub-sections"><h2>Селектори за class и id</h2>
