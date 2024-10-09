@@ -1,16 +1,15 @@
 import sys
 from PyQt6 import QtWidgets as qtw
 from PyQt6 import QtCore as qtc
-from PyQt6 import QtGui as qtg
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
-
 
 class MainWindow(qtw.QWidget):
 
-    def __init__(self , *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.conn = self.connectToDB()(user='test', password='test1234', db_name='pyqt_users_db')
+        self.data = []
+        self.connectToDB(user='test', password='test1234', db_name='pyqt_users_db')
         self.data = self.selectAllData()
 
         lAppTitle = qtw.QLabel('Simplest Table Demo')
@@ -40,35 +39,43 @@ class MainWindow(qtw.QWidget):
 
     def selectAllData(self):
         query = QSqlQuery()
+        data = []
 
+        if query.exec("SELECT * FROM users"):  # Replace 'users' with your actual table name
+            while query.next():
+                row = []
+                for column_index in range(query.record().count()):
+                    row.append(query.value(column_index))
+                data.append(row)
+
+        return data
 
     def createTable(self):
         rows = len(self.data)
-        cols = len(self.data[0])
+        cols = len(self.data[0]) if rows > 0 else 0
 
-        # init table
-        table = qtw.QTableWidget();
-        table.setRowCount(rows);
-        table.setColumnCount(cols);
-        table.setHorizontalHeaderLabels(['id', 'username', 'password']);
-        table.setMinimumHeight(cols*100);
-        table.setMinimumWidth(rows*100);
+        # Init table
+        table = qtw.QTableWidget()
+        table.setRowCount(rows)
+        table.setColumnCount(cols)
+        table.setHorizontalHeaderLabels(['id', 'username', 'password'])  # Adjust headers as needed
+        table.setMinimumHeight(rows * 40)  # Adjust minimum height
+        table.setMinimumWidth(cols * 100)  # Adjust minimum width
 
-        # set table values
+        # Set table values
         for row in range(rows):
             for col in range(cols):
-                item = qtw.QTableWidgetItem(self.data[row][col])
+                item = qtw.QTableWidgetItem(str(self.data[row][col]))
                 table.setItem(row, col, item)
 
-        # resize cells to content:
-        table.resizeColumnsToContents();
-        table.resizeRowsToContents();
+        # Resize cells to content
+        table.resizeColumnsToContents()
+        table.resizeRowsToContents()
 
         return table
 
-
 if __name__ == '__main__':
-    app = qtw.QApplication(sys.argv);
+    app = qtw.QApplication(sys.argv)
 
     window = MainWindow()
 

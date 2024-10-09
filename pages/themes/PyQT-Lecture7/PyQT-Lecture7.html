@@ -377,60 +377,8 @@
     </section>
 </section>
 
-<section data-min="50" class="main-section-title"><h1>Displaying SQL Data With PyQt</h1></section>
-<section class="sub-sections"><h2>Displaying SQL Data With PyQt</h2>
-    <section><h3>Example</h3>
-        <pre><code rel="Python" class="python" style="min-height: 90vh;">
-            import sys
-
-            from PyQt5.QtSql import QSqlDatabase, QSqlQuery
-            from PyQt5.QtWidgets import (
-                QApplication,
-                QMainWindow,
-                QMessageBox,
-                QTableWidget,
-                QTableWidgetItem,
-            )
-            from lib.db import DB
-
-            class Radiotheaters(QMainWindow):
-                def __init__(self, parent=None):
-                    super().__init__(parent)
-                    self.setWindowTitle("QTableView Example")
-                    self.resize(450, 250)
-
-                    self.view = QTableWidget()
-                    self.view.setColumnCount(4)
-                    self.view.setHorizontalHeaderLabels(["ID", "Title", "Content", "Date"])
-
-                    query = QSqlQuery("SELECT id, title, content, date FROM radiotheaters")
-
-                    while query.next():
-                        rows = self.view.rowCount()
-
-                        self.view.setRowCount(rows + 1)
-                        self.view.setItem(rows, 0, QTableWidgetItem(str(query.value(0))))
-                        self.view.setItem(rows, 1, QTableWidgetItem(query.value(1)))
-                        self.view.setItem(rows, 2, QTableWidgetItem(query.value(2)))
-                        self.view.setItem(rows, 3, QTableWidgetItem(query.value(3)))
-
-                    self.view.resizeColumnsToContents()
-                    self.setCentralWidget(self.view)
-
-
-            if __name__ == '__main__':
-                app = QApplication(sys.argv)
-                db = DB()
-
-                win = Radiotheaters()
-                win.show()
-                sys.exit(app.exec())
-        </code></pre>
-    </section>
-</section>
-
-<section data-min="10" class="main-section-title"><h1>Introduction to Model/View Programming</h1></section>
-<section class="sub-sections"><h2>Introduction to Model/View Programming</h2>
+<section data-min="50" class="main-section-title"><h1>Model/View Architecture in PyQt6</h1></section>
+<section class="sub-sections"><h2>Model/View Architecture in PyQt6</h2>
     <section><h3>Overview</h3>
         <dl class="fa">
             <dt>PyQt utilizes a model/view architecture for structuring GUI Applications with data, which is similar to MVC (Model-View-Controller) software design pattern</dt>
@@ -438,27 +386,24 @@
         </dl>
         <a href="./images/MVC-Process.svg.png"><img src="./images/MVC-Process.svg.png" alt="MVC-Process.svg.png" style="height: 50vh;"></a>
     </section>
-
     <section><h3>The Components of the Model/View Architecture in QT Framework</h3>
         <dl class="fa">
-            <dt><span class="note">Model</span> - The class that communicates with the data source, accessing
-                the data, and provides a point of connection between the data and the view and delegate.</dt>
-            <dt><span class="note">View</span> - The class that is responsible for displaying the data to the
-                user, either in list, table, or tree formats, and for retrieving items of data from the model using model indexes. The view also has similar functionality to the controller in the MVC pattern, which handles the input from a user’s interaction with items displayed in the view.
-            </dt>
-            <dt><span class="note">Delegate</span> - The class that is in charge of painting items and providing editors in the view. The delegate also communicates back to the model if an item has been edited.</dt>
+            <dt><span class="note">Model</span> - The Model manages data, logic, and rules of the application. It notifies Views when data changes.</dt>
+            <dt><span class="note">View</span> - The View is responsible for displaying the data to the user, either in list, table, or tree formats. It can sends user commands to the Controller.</dt>
+            <dd>Views are updated automatically when the Model changes, thanks to Qt's signal/slot mechanism.</dd>
+            <dt><span class="note">Controller</span> - The typical role of a Controller in traditional MVC frameworks is often integrated into the View or the application logic, where the View handles user interactions and updates the Model directly. Thus, in PyQt6, the View often acts in the capacity of a Controller by responding to user input and making appropriate changes to the Model.</dt>
         </dl>
     </section>
-    <section><h3>Abstract Classes</h3>
+    <section><h3 class="advanced">Abstract Classes for custom models and views</h3>
         <dl class="fa">
             <dt>An abstract class is a class that is designed to be specifically used as a base class. It provides functionality and default implementation of features.</dt>
-            <dt>In Qt there are abstract classes to create custom models, views, or delegates.</dt>
+            <dt>In Qt there are abstract classes to create custom models and views</dt>
             <dt>Models - All models are based on the QAbstractItemModel class, defining the interface used by both views and delegates to access data, and can be used to handle lists, tables, or trees. Data can come form different sources, including Python data structures, separate classes, files, or databases.</dt>
-            <dd>Reference: <a href="https://doc.qt.io/qt-5/model-view-programming.html#model-classes">Model Classes</a></dd>
+            <dd>Reference: <a href="https://doc.qt.io/qt-6/model-view-programming.html#model-classes">Model Classes</a></dd>
             <dt>Views - All views are based on QAbstractItemView and are used to display data items from a data source, including QListView, QTableView, and QTreeView.</dt>
-            <dd>Reference: <a href="https://doc.qt.io/qt-5/model-view-programming.html#view-classes">View Classes</a></dd>
+            <dd>Reference: <a href="https://doc.qt.io/qt-6/model-view-programming.html#view-classes">View Classes</a></dd>
             <dt>Delegates - The base class is QAbstractItemDelegate, responsible for drawing items from the model and providing an editor widget for modifying items.</dt>
-            <dd>Reference: <a href="https://doc.qt.io/qt-5/model-view-programming.html#delegate-classes">Delegate Classes</a></dd>
+            <dd>Reference: <a href="https://doc.qt.io/qt-6/model-view-programming.html#delegate-classes">Delegate Classes</a></dd>
         </dl>
     </section>
     <section><h3>Model/View Communication</h3>
@@ -466,174 +411,144 @@
             <dt>Models, views, and delegates communicate with each other using signals and slots:</dt>
             <dd>Signals from the model inform the view about changes to the data held by the data source.</dd>
             <dd>Signals from the view provide information about the user's interaction with the items being displayed.</dd>
-            <dd>Signals from the delegate are used during editing to tell the model and view about the state of the editor.</dd>
         </dl>
     </section>
 </section>
 
-<section data-min="10" class="main-section-title"><h1>Model-View Demo</h1></section>
-<section class="sub-sections"><h2>Model-View Demo</h2>
-    <section><h3>The data</h3>
-        <dl class="fa">
-            <dt>Lets have some data in a csv file</dt>
+<section class="main-section-title"><h1>Built-in SQL Models and Views in PyQt6</h1></section>
+<section class="sub-sections"><h2>Built-in SQL Models and Views in PyQt6</h2>
+    <section><h3>QSqlTableModel</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>QSqlTableModel</code> is a predefined model for representing a table from a SQL database. It provides an interface to manipulate data directly and can be used with views like QTableView. It automatically reflects changes made to the database.</dt>
+            <pre><code rel="Python" class="python">
+                model = QSqlTableModel()
+                model.setTable("your_table_name")
+                model.select()  # Load data from the table
+            </code></pre>
         </dl>
-        <pre><code rel="parts.csv" class="csv">
-            id;name;category;price
-            1;Part1;categoryA;1.23
-            2;Part2;categoryA;1.43
-            3;Part3;categoryB;4.65
-        </code></pre>
     </section>
-    <section><h3>Load the data</h3>
-        <dl class="fa">
-            <dt>We will use csv.reader() to read header and rows form a CSV file</dt>
-            <dt>Items must be constructed before adding them to the table.</dt>
+    <section><h3>QSqlQueryModel</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>QSqlQueryModel</code> is a read-only model that displays data from a SQL query. Unlike QSqlTableModel, it does not support editing or inserting data. It's useful for displaying results from complex queries.</dt>
+            <pre><code rel="Python" class="python">
+                query_model = QSqlQueryModel()
+                query_model.setQuery("SELECT * FROM your_table_name")
+            </code></pre>
         </dl>
-        <pre><code rel="Python" class="python">
-            def loadCSVFile(self):
-                file_name = "./parts.csv"
-
-                with open(file_name, "r") as csv_f:
-                    reader = csv.reader(csv_f, delimiter=';')
-                    header_labels = next(reader)
-                    self.model.setHorizontalHeaderLabels(header_labels)
-
-                    for i, row in enumerate(csv.reader(csv_f,delimiter=';')):
-                        items = [qtg.QStandardItem(item) for item in row]
-                        self.model.insertRow(i, items)
-        </code></pre>
     </section>
-    <section><h3></h3>
-        <dl class="fa">
-            <dt>For the Model we will use QStandardItemModel class</dt>
-            <dt>For the view => QTableView class</dt>
-            <dt><a href="https://doc.qt.io/qt-5/qabstractitemview.html#SelectionMode-enum">SelectionMode() enum</a> handles how the view responds to users’ selections.</dt>
-            <dt>To set up the view to display items in the model, you simply need to call the
-                setModel() method.</dt>
+    <section><h3>QSqlRelationalTableModel</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>QSqlRelationalTableModel</code> extends QSqlTableModel by adding support for foreign key relationships. It allows for easy retrieval and display of related data from multiple tables.</dt>
+            <pre><code rel="Python" class="python">
+                relational_model = QSqlRelationalTableModel()
+                relational_model.setTable("your_table_name")
+                relational_model.setRelation(1, QSqlRelation("related_table", "id", "name"))  # Example relation
+                relational_model.select()
+            </code></pre>
         </dl>
-        <pre><code rel="Python" class="python" style="min-height: 50vh;">
-            def setupModelView(self):
-                # initialize the model
-                self.model = QStandardItemModel()
-
-                # setup table view
+    </section>
+    <section><h3>QTableView</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>QTableView</code> is a view class used to display data in a table format. It works seamlessly with models such as QSqlTableModel, QSqlQueryModel, and QSqlRelationalTableModel, allowing for dynamic representation of data.</dt>
+            <pre><code rel="Python" class="python">
                 table_view = QTableView()
-                table_view.SelectionMode(3)
-                # set up the view to display items in the model
-                table_view.setModel(self.model)
-
-                # Set initial row and column values
-                self.model.setRowCount(3)
-                self.model.setColumnCount(4)
-
-                # load data
-                self.loadCSVFile()
-
-                v_box = QVBoxLayout()
-                v_box.addWidget(table_view)
-                self.setLayout(v_box)
-        </code></pre>
-    </section>
-</section>
-
-<section data-min="50" class="main-section-title"><h1>PyQt: working With SQL</h1></section>
-<section class="sub-sections"><h2>PyQt: working With SQL</h2>
-    <section><h3>PyQt has classes for working with relational database</h3>
-        <dl class="fa">
-            <dt>In QT we can use QSqlDatabase to connect to databases and QSqlQuery for creating queries</dt>
-            <dt>Qt offers three higher-level classes for accessing databases. These classes are <code>QSqlQueryModel</code>, <code>QSqlTableModel</code>, and <code>QSqlRelationalTableModel</code>.</dt>
-            <dd>Reference: <a href="https://doc.qt.io/qt-5/sql-model.html">Using the SQL Model Classes</a></dd>
+                table_view.setModel(model)  # Set the model to the view
+            </code></pre>
         </dl>
     </section>
-    <section><h3>PyQt SQLite Demo</h3>
-        <p>View code in <a href="https://gist.github.com/WWWCourses/17e7d9ec8b4ff322d783006d4c2bfa53">Gist</a></p>
-        <script src="https://gist.github.com/WWWCourses/17e7d9ec8b4ff322d783006d4c2bfa53.js"></script>
+    <section><h3>QListView</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>QListView</code> is a view class used to display data in a list format. It can also be connected to SQL models to show data in a vertical list, useful for scenarios where a simple list representation is needed.</dt>
+            <pre><code rel="Python" class="python">
+                list_view = QListView()
+                list_view.setModel(query_model)  # Set the model to the view
+            </code></pre>
+        </dl>
     </section>
-    <section><h3>Model View Demo</h3>
-        <p>View code in <a href="https://gist.github.com/WWWCourses/05613c170ae6c10983ea5caac899a4ab">Gist</a></p>
-        <p>Note, that to load the data, you must have the <a href="./slides_examples/ModelViewDemo/carparts.db">carparts.db</a></p>
-        <script src="https://gist.github.com/WWWCourses/05613c170ae6c10983ea5caac899a4ab.js"></script>
+    <section><h3>QTreeView</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>QTreeView</code> is a view class for displaying data in a hierarchical tree structure. It can be used with models that support hierarchical data, providing a way to navigate through related records.</dt>
+            <pre><code rel="Python" class="python">
+                tree_view = QTreeView()
+                tree_view.setModel(relational_model)  # Set the model to the view
+            </code></pre>
+        </dl>
     </section>
-    <!-- <section><h3>Create  ManageUserDB class</h3>
-        <pre><code rel="manage_user_db.py" class="python" style="min-height: 80vh;">
-            import sys, random
-            from PyQt5.QtSql import QSqlDatabase, QSqlQuery
+    <section><h3>Example</h3>
+        <pre><code rel="mysql_users_table_editor.py" class="python" style="min-height: 100vh;">
+            # mysql_users_table_editor.py
+            import sys
+            from PyQt6 import QtWidgets as qtw
+            from PyQt6 import QtCore as qtc
+            from PyQt6.QtSql import QSqlDatabase, QSqlTableModel
 
-            class ManageUserDB:
+
+            class MainWindow(qtw.QWidget):
                 def __init__(self):
-                    # Create connection to database. If db file does not exist,
-                    # a new db file will be created.
-                    database = QSqlDatabase.addDatabase("QSQLITE")
-                    database.setDatabaseName("./users.db")
-                    if not database.open():
-                        print("Unable to open data source file.")
-                        sys.exit(1) # Error code 1 - signifies error
+                    super().__init__()
 
-                    self.query = QSqlQuery()
+                    # Setup database connection
+                    self.conn = self.connectToDB(user='test', password='test1234', db_name='pyqt_users_db')
 
-                    self.createTables()
-        </code></pre>
-    </section> -->
-    <!-- <section><h3>Create User and Orders Table</h3>
-        <pre><code rel="manage_user_db.py" class="python">
-            def createTables(self):
-                self.query.exec_("DROP TABLE orders")
-                self.query.exec_("DROP TABLE users")
+                    # Create the model
+                    self.model = self.createModel()
 
-                # Create users table
-                self.query.exec_("""CREATE TABLE users (
-                                id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
-                                first_name VARCHAR(30) NOT NULL,
-                                last_name VARCHAR(30) NOT NULL,
-                                email VARCHAR(40) NOT NULL,
-                                order_id VARCHAR(20) REFERENCES orders(id))
-                                """)
+                    # Setup UI elements
+                    self.table = self.createTable()
+                    self.save_button = qtw.QPushButton("Save Changes")
+                    self.save_button.clicked.connect(self.saveChanges)
 
-                # Positional binding to insert records into the database
-                self.query.prepare("""INSERT INTO
-                                    users (first_name, last_name, email, order_id)
-                                    VALUES (?, ?, ?, ?)
-                                """)
+                    layout = qtw.QVBoxLayout()
+                    layout.addWidget(self.table)
+                    layout.addWidget(self.save_button)
+                    self.setLayout(layout)
 
-                first_names = ["Maria", "Ivan", "Stoyan"]
-                last_names = ["Marinova", "Ivanov", "Stoyanov"]
+                    self.setWindowTitle('Edit Users Table')
+                    self.resize(600, 400)
+                    self.show()
 
-                orders = {
-                    "1":"TV",
-                    "2":"mobile phone"
-                }
-                order_codes = list(orders.keys())
-                order_names = list(orders.values())
+                def connectToDB(self, user, password, db_name, host="localhost", port=3306):
+                    db = QSqlDatabase.addDatabase('QMYSQL')
+                    db.setHostName(host)
+                    db.setDatabaseName(db_name)
+                    db.setUserName(user)
+                    db.setPassword(password)
 
-                # Add the values to the query to be inserted in users
-                for f_name in first_names:
-                    l_name = last_names.pop()
-                    email = (f"{l_name}_{f_name[0].lower()}@abv.bg")
+                    if db.open():
+                        print("*** Connection Established ***")
+                    else:
+                        print(f"Database Error: {db.lastError().text()}")
+                    return db
 
-                    order_id = random.choice(order_codes)
+                def createModel(self):
+                    model = QSqlTableModel(self)
+                    model.setTable("users")
+                    model.select()  # Load data from the 'users' table
+                    return model
 
-                    self.query.addBindValue(f_name)
-                    self.query.addBindValue(l_name)
-                    self.query.addBindValue(email)
-                    self.query.addBindValue(order_id)
-                    self.query.exec_()
+                def createTable(self):
+                    table = qtw.QTableView()
+                    table.setModel(self.model)
+                    table.setEditTriggers(qtw.QAbstractItemView.EditTrigger.DoubleClicked)  # Enable editing on double-click
+                    table.resizeColumnsToContents()  # Adjust column widths to contents
+                    return table
 
-                # Create the orders table
-                order_query = QSqlQuery()
-                order_query.exec_("""CREATE TABLE orders (
-                                id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
-                                order VARCHAR(20) NOT NULL)""")
+                def saveChanges(self):
+                    if self.model.submitAll():  # Save changes to the database
+                        print("Changes saved successfully.")
+                    else:
+                        print(f"Error saving changes: {self.model.lastError().text()}")
 
-                order_query.prepare("INSERT INTO orders (order) VALUES (?)")
-                # Add the values to the query to be inserted in orders
-                for name in order_names:
-                    order_query.addBindValue(name)
-                    order_query.exec_()
-                print("[INFO] Database successfully created.")
+
+            if __name__ == '__main__':
+                app = qtw.QApplication(sys.argv)
+                window = MainWindow()
+                sys.exit(app.exec())
 
         </code></pre>
-    </section> -->
+    </section>
 </section>
+
 
 
 <section class="disclaimer end-slide"></section>
