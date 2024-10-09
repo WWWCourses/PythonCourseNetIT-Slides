@@ -1,11 +1,36 @@
-QLabel{
-	border: 2px solid red;
-	font-weight: bold;
-	font-size: 30px;
-	margin: 10px 0px 30px 0px;
-	padding: 10px;
+/* -------------------------- QTableWidget Styling -------------------------- */
+
+/* Style for the QTableWidget */
+QTableWidget {
+    border: 2px solid lavender;
 }
 
-QTableWidget{
-	border: 2px solid blueviolet;
+/* Style for the section headers of the QHeaderView */
+QHeaderView::section {
+    background-color: forestgreen;
+    color: white;
+}
+
+/* Style for the items in the QTableView */
+QTableView::item {
+    background-color: lightblue;
+    color: black;
+}
+
+/* Style for alternate items in the QTableView */
+QTableView::item:alternate {
+    background-color: lightcoral;
+    color: black;
+}
+
+/* Style for selected items in the QTableView */
+QTableView::item:selected {
+    background-color: lightgoldenrodyellow;
+    color: black;
+}
+
+/* Style for hovered items in the QTableView */
+QTableView::item:hover {
+    background-color: lightsalmon;
+    color: black;
 }

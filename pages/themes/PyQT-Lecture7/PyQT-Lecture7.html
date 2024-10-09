@@ -71,11 +71,11 @@
     </section>
 </section>
 
-<section data-min="10" class="main-section-title"><h1>PyQt Tables</h1></section>
+<section class="main-section-title"><h1>PyQt Tables</h1></section>
 <section class="sub-sections"><h2>PyQt Tables</h2>
     <section><h3>QTableWidget Overview</h3>
         <dl class="fa">
-            <dt>The QTableWidget class of PyQt can be used in Python to display data in tabular form, like excell's spreadsheets.</dt>
+            <dt>QTableWidget is a widget that provides a table view for displaying and editing data.</dt>
             <dt>The table content can be generated from different types of storage, such as:</dt>
             <dd>two-dimensional lists</dd>
             <dd>CSV files</dd>
@@ -131,70 +131,247 @@
             <dt>Reference: <a href="https://doc.qt.io/qt-6/qtablewidgetitem.html#details">QTableWidgetItem</a></dt>
         </dl>
     </section>
-    <section><h3>Create Simple Table - Example</h3>
-        <dl class="fa">
-            <dt>Create a file with the PyQt App template, and in constructor call the <code>uiCreateTable</code> method. The code is given bellow:</dt>
-        </dl>
+    <section id="CreatingQTableWidget"><h3>Create Simple Table - Example 1</h3>
+        <dl class="fa" style="min-width:80vw">
+            <pre><code rel="Python" class="python" style="min-height: 90vh;">
+                from PyQt6.QtWidgets import QApplication, QTableWidget, QTableWidgetItem
 
-        <pre><code rel="simle_table_static_values.py" class="python" style="min-height: 60vh;">
-            def uiCreateTable(self):
-                rows = 4
-                cols = 3
+                app = QApplication([])
 
-                # init table
-                table = qtw.QTableWidget(self);
-                table.setRowCount(rows);
-                table.setColumnCount(cols);
-                table.setHorizontalHeaderLabels(['Heading1', 'Heading2', 'Heading3']);
-                table.setMinimumHeight(cols*100);
-                table.setMinimumWidth(rows*100);
-
-                # set table values
-                for row in range(rows):
-                    for col in range(cols):
-                        table.setItem(row, col, qtw.QTableWidgetItem(f'Cell {row+1},{col+1}'))
-
-                # resize cells to content:
-                table.resizeColumnsToContents();
-                table.resizeRowsToContents();
-
+                table = QTableWidget()
+                table.setRowCount(2)
+                table.setColumnCount(2)
+                table.setItem(0, 0, QTableWidgetItem("Item 1"))
+                table.setItem(0, 1, QTableWidgetItem("Item 2"))
+                table.setItem(1, 0, QTableWidgetItem("Item 3"))
+                table.setItem(1, 1, QTableWidgetItem("Item 4"))
                 table.show()
+
+                app.exec()
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Create Simple Table - Example 2</h3>
+
+        <pre><code rel="simle_table_static_values.py" class="python" style="min-height: 100vh;">
+            # simle_table_static_values.py
+            import sys
+            from PyQt6 import QtWidgets as qtw
+            from PyQt6 import QtCore as qtc
+            from PyQt6 import QtGui as qtg
+
+
+            class MainWindow(qtw.QWidget):
+
+                def __init__(self , *args, **kwargs):
+                    super().__init__(*args, **kwargs)
+
+                    self.setWindowTitle('')
+                    self.show()
+
+                    self.uiCreateTable()
+
+
+                def uiCreateTable(self):
+                    rows = 4
+                    cols = 3
+
+                    # init table
+                    table = qtw.QTableWidget(self)
+                    table.setRowCount(rows)
+                    table.setColumnCount(cols)
+                    table.setHorizontalHeaderLabels(['Heading1', 'Heading2', 'Heading3'])
+
+                    # set table values
+                    for row in range(rows):
+                        for col in range(cols):
+                            table.setItem(row, col, qtw.QTableWidgetItem(f'Cell {row+1},{col+1}'))
+
+                    # resize cells to content:
+                    table.resizeColumnsToContents()
+                    table.resizeRowsToContents()
+
+                    table.show()
+
+
+            if __name__ == '__main__':
+                app = qtw.QApplication(sys.argv)
+
+                window = MainWindow()
+
+                sys.exit(app.exec())
+
         </code></pre>
     </section>
     <section><h3>Custom Context Menu</h3>
-        <dl class="fa">
+        <dl class="fa" style="min-width:80vw">
             <dt>Context menus are usually invoked by right-clicking or some special keyboard key.</dt>
-            <dt>In order to implement a custom context menu we must create our custom QActions and <span class="note">we must re-implement</span> QWidget's <a href="https://doc.qt.io/qt-5/qwidget.html#contextMenuEvent">contextMenuEvent()</a> function to receive the context menu events for our widget.</dt>
-            <dt>Reference: <a href="https://doc.qt.io/qt-5/qtwidgets-mainwindows-menus-example.html">Menus Example @doc.qt.io</a>, check especially: <a href=""></a></dt>
+            <dt>Adding a custom context menu to QTableWidget allows users to perform actions easily with a right-click.</dt>
+            <dd>This enhances user experience by providing quick access to common functions, such as adding or removing rows.</dd>
+            <dt>To implement a custom context menu, set the context menu policy of the table widget.</dt>
+            <dd>This allows the table to respond to custom context menu requests.</dd>
+            <dt>Connect the custom context menu request signal to a function that creates and displays the menu.</dt>
+            <dd>In this function, you can add actions like "Add Row" and "Remove Row" that perform the corresponding operations on the table.</dd>
         </dl>
-        <pre><code rel="Python" class="python">
-            def createTableAction(self):
-                #  create our custom QActions
-                self.add_above_action = qtw.QAction("Add row above", self)
-                self.add_above_action.triggered.connect(lambda: self.insertRow(self.currentRow()))
+    </section>
+    <section><h3>Context Menu Policy</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>In PyQt, the <strong>context menu policy</strong> determines how a widget responds to right-click events, specifically regarding the display of a context menu.</dt>
+            <dt><strong>You set the context menu policy</strong> using <code>setContextMenuPolicy()</code>, passing it one of several predefined values from <code>Qt.ContextMenuPolicy</code>. Common options include:</dt>
+            <ul>
+                <li><code>NoContextMenu</code>: The widget does not show a context menu on right-click.</li>
+                <li><code>ActionsContextMenu</code>: The default actions of the widget (if any) will be displayed in a context menu.</li>
+                <li><code>CustomContextMenu</code>: Allows you to create a custom context menu by connecting the <code>customContextMenuRequested</code> signal to a function that generates and displays the menu.</li>
+            </ul>
+            <dt><strong>When the context menu policy is set to CustomContextMenu</strong>, the widget emits the <code>customContextMenuRequested</code> signal.</dt>
+            <dd>This signal provides the position of the cursor where the context menu should appear, allowing you to display the menu at the correct location.</dd>
+            <dt><strong>This approach allows for a tailored user experience</strong>, enabling quick access to functions relevant to the specific widget's context.</dt>
+        </dl>
+    </section>
+    <section><h3>Custom Context Menu - Example</h3>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            # custom_context_menu_actions.py
+            import sys
+            from PyQt6 import QtWidgets as qtw
+            from PyQt6 import QtCore as qtc
+            from PyQt6 import QtGui as qtg
 
-            def contextMenuEvent(self, event):
-                context_menu = qtw.QMenu(self)
-                context_menu.addAction(self.add_above_action)
 
-                #HW: implement add row below custom action
-                context_menu.addAction("Add row bellow")
+            class MainWindow(qtw.QWidget):
 
-                # By passing the event's position as argument we ensure that the context menu appears at the expected position.
-                context_menu.exec(event.globalPos())
-            </code></pre>
+                def __init__(self, *args, **kwargs):
+                    super().__init__(*args, **kwargs)
+
+                    self.setWindowTitle('Custom context menu actions demo')
+                    self.setGeometry(500, 200, 400, 300)  # Set the window size
+
+                    self.createTable()  # Initialize the table UI
+
+                def createTable(self):
+                    rows = 4
+                    cols = 3
+
+                    # Initialize the table
+                    self.table = qtw.QTableWidget(self)
+                    self.table.setRowCount(rows)
+                    self.table.setColumnCount(cols)
+                    self.table.setHorizontalHeaderLabels(['Heading1', 'Heading2', 'Heading3'])
+
+                    # Set table values
+                    for row in range(rows):
+                        for col in range(cols):
+                            self.table.setItem(row, col, qtw.QTableWidgetItem(f'Cell {row + 1},{col + 1}'))
+
+                    # Resize cells to fit content
+                    self.table.resizeColumnsToContents()
+                    self.table.resizeRowsToContents()
+
+                    # Set the context menu policy to allow for custom context menus in this widget
+                    self.table.setContextMenuPolicy(qtc.Qt.ContextMenuPolicy.CustomContextMenu)
+
+                    # Connect the custom context menu requested signal to the context_actions method
+                    self.table.customContextMenuRequested.connect(self.context_actions)
+
+                def context_actions(self, pos):
+                    menu = qtw.QMenu()
+
+                    # Get the index of the currently selected row
+                    current_row = self.table.currentRow()
+
+                    # Add action to insert a new row
+                    menu.addAction("Add Row", lambda: self.table.insertRow(current_row if current_row >= 0 else self.table.rowCount()))
+
+                    # Add action to remove the currently selected row
+                    menu.addAction("Remove Row", lambda: self.table.removeRow(current_row) if current_row >= 0 else None)
+
+                    # Execute the menu at the cursor position
+                    menu.exec(self.table.viewport().mapToGlobal(pos))
+
+
+            if __name__ == '__main__':
+                app = qtw.QApplication(sys.argv)
+
+                window = MainWindow()
+                window.show()  # Show the main window
+
+                sys.exit(app.exec())
+        </code></pre>
+    </section>
+</section>
+
+<section class="main-section-title" id="stylingTables"><h1>Styling tables</h1></section>
+<section class="sub-sections"><h2>Styling tables</h2>
+    <section id="QTableWidget_Styling"><h3>QTableWidget Common Selectors</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>QTableWidget</code> - selects the entire QTableWidget.</dt>
+            <dt><code>QHeaderView::section</code> - selects the section headers in the QHeaderView.</dt>
+            <dt><code>QTableView::item</code> - selects all items in the QTableView.</dt>
+            <dt><code>QTableView::item:alternate</code> - selects alternate items in the QTableView.</dt>
+            <dd>You must set <code>table.setAlternatingRowColors(True)</code> to have efect.</dd>
+            <dt><code>QTableView::item:selected</code> - selects selected items in the QTableView.</dt>
+            <dt><code>QTableView::item:hover</code> - selects hovered items in the QTableView.</dt>
+        </dl>
+    </section>
+
+    <section><h3>Example</h3>
+        <pre><code rel="QSS" class="css" style="min-height: 90vh;">
+            /* -------------------------- QTableWidget Styling -------------------------- */
+
+            /* Style for the QTableWidget */
+            QTableWidget {
+                border: 2px solid lavender;
+            }
+
+            /* Style for the section headers of the QHeaderView */
+            QHeaderView::section {
+                background-color: forestgreen;
+                color: white;
+            }
+
+            /* Style for the items in the QTableView */
+            QTableView::item {
+                background-color: lightblue;
+                color: black;
+            }
+
+            /* Style for alternate items in the QTableView */
+            QTableView::item:alternate {
+                background-color: lightcoral;
+                color: black;
+            }
+
+            /* Style for selected items in the QTableView */
+            QTableView::item:selected {
+                background-color: lightgoldenrodyellow;
+                color: black;
+            }
+
+            /* Style for hovered items in the QTableView */
+            QTableView::item:hover {
+                background-color: lightsalmon;
+                color: black;
+            }
+        </code></pre>
+    </section>
+    <section><h3>Resize rows and columns</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>To resize the rows and columns use the <code>horizontalHeader().setSectionResizeMode()</code> and <code>verticalHeader().setSectionResizeMode()</code> methods. </dt>
+            <dt><code>setSectionResizeMode()</code> can take the following values from QHeaderView.ResizeMode:</dt>
+            <dd><strong>ResizeToContents:</strong> Adjusts the section size to fit the content.</dd>
+            <dd><strong>Stretch:</strong> Stretches the section to fill the available space.</dd>
+            <dd><strong>Fixed:</strong> Sets a fixed size for the section, which won't change automatically.</dd>
+            <dd><strong>Interactive:</strong> Allows the user to resize the section manually.</dd>
+            <dd><strong>Custom:</strong> Enables custom resize behavior defined by the user.</dd>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 1vh;">
+            table.horizontalHeader().setSectionResizeMode(qtw.QHeaderView.ResizeMode.Stretch)
+            table.verticalHeader().setSectionResizeMode(qtw.QHeaderView.ResizeMode.Stretch)
+        </code></pre>
     </section>
     <section id="Task_StyledTableWithCustomActions"><h3>Task: </h3>
         <dl class="fa">
             <dt>Apply styles to table and create custom context menu actions for adding a row above/bellow the selected row. </dt>
             <dt>Try to make your table to look and behave as close as possible to the example in gif bellow</dt>
-            <dt>To stretch the table rows and columns to current table size, you can use:</dt>
-            <pre><code rel="Python" class="python">
-                table.horizontalHeader().setSectionResizeMode(qtw.QHeaderView.Stretch)
-                table.verticalHeader().setSectionResizeMode(qtw.QHeaderView.Stretch)
-            </code></pre>
-            <dt>Style hints:</dt>
-            <dd>use <code>QTableWidget::item::selected</code> to select cells which are currently selected.</dd>
         </dl>
         <a href="./images/TASK_simple_table_and_styles.gif" title="click for bigger image"><img src="./images/TASK_simple_table_and_styles.gif" alt="TASK_simple_table_and_styles.gif" style="width: 50%;"></a>
     </section>
