@@ -49,7 +49,7 @@ db = client.python_course
 # 		"priority": 1
 # 	},
 # 	{
-# 		"title": "Learn PyQT",
+# 		"title": "Learn PyQt",
 # 		"completed": False,
 # 		"dueDate": datetime.fromisoformat("2021-12-01"),
 # 		"priority": 2

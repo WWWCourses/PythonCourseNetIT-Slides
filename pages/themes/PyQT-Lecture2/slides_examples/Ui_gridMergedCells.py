@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '/media/nemsys/data/projects/courses/netIT/PythonCourseNetIT/PythonCourseNetIT-Slides/pages/themes/PyQT-Lecture2/slides_examples/gridMergedCells.ui'
+# Form implementation generated from reading ui file '/media/nemsys/data/projects/courses/netIT/PythonCourseNetIT/PythonCourseNetIT-Slides/pages/themes/PyQt-Lecture2/slides_examples/gridMergedCells.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #

@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '/media/nemsys/data/projects/courses/netIT/PythonCourseNetIT/PythonCourseNetIT-Slides/pages/themes/PyQT-Lecture1/slides_examples/demo.ui'
+# Form implementation generated from reading ui file '/media/nemsys/data/projects/courses/netIT/PythonCourseNetIT/PythonCourseNetIT-Slides/pages/themes/PyQt-Lecture1/slides_examples/demo.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #

@@ -19,7 +19,7 @@
 		"priority": 1
 	},
 	{
-		"title": "Learn PyQT",
+		"title": "Learn PyQt",
 		"completed": false,
 		"dueDate": new Date("2021-12-01"),
 		"priority": 2

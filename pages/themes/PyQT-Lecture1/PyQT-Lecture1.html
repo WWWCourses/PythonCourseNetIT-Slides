@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>PyQT-Lecture1</title>
+	<title>PyQt-Lecture1</title>
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -52,7 +52,7 @@
 ##################### SLIDES START #####################
 ########################################################
 -->
-<section class="main-section-title"><h1>PyQT-Introduction</h1></section>
+<section class="main-section-title"><h1>PyQt-Introduction</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
 		<div class="note">
@@ -71,9 +71,9 @@
 	</section>
 </section>
 
-<section data-min="5" class="main-section-title"><h1>PyQT Overview and Set Up</h1></section>
-<section class="sub-sections"><h2>PyQT Overview and Set Up</h2>
-	<section><h3>What is PyQT?</h3>
+<section data-min="5" class="main-section-title"><h1>PyQt Overview and Set Up</h1></section>
+<section class="sub-sections"><h2>PyQt Overview and Set Up</h2>
+	<section><h3>What is PyQt?</h3>
 		<dl class="fa">
 			<dt><a href="https://riverbankcomputing.com/software/pyqt/intro">PyQt</a> is a set of Python bindings for <a href="https://www.qt.io/">Qt application framework</a> for building <span class="note">traditional Graphical User Interface (GUI) desktop applications</span></dt>
 			<dd><q>Qt (pronounced "cute") framework is a widget toolkit for creating GUIs as well as cross-platform applications that run on various software and hardware platforms such as Linux, Windows, macOS, Android or embedded systems with little or no change in the underlying codebase while still being a native application with native capabilities and speed.</q>	 [Reference: <a href="https://en.wikipedia.org/wiki/Qt_(software)">Qt @wikipediq</a>]</dd>
@@ -134,7 +134,7 @@
 	</section>
 	<section><h3>QtDesigner Installation</h3>
 		<dl class="fa">
-			<p>Qt Designer normally ships as a part of <a href="https://www.qt.io/product/development-tools">Qt Creator</a>. This is Qt's official editor and lets you do a lot more than just graphically design user interfaces. It is a full-fledged and very powerful C++ IDE. But <span class="note">For PyQT development you don't need the whole Qt Creator (which is huge)</span>.<br>You can install only the Qt Designer in two ways:</p>
+			<p>Qt Designer normally ships as a part of <a href="https://www.qt.io/product/development-tools">Qt Creator</a>. This is Qt's official editor and lets you do a lot more than just graphically design user interfaces. It is a full-fledged and very powerful C++ IDE. But <span class="note">For PyQt development you don't need the whole Qt Creator (which is huge)</span>.<br>You can install only the Qt Designer in two ways:</p>
 			<dt>As python package: <a href="https://pypi.org/project/pyqt6-tools">pyqt6-tools</a> (<span>the recommended way</span>):</dt>
 			<dd class="note">Note, that pyqt6-tools doesn't support Python 3.10 yet</dd>
 			<pre><code rel="Terminal" class="bash">
@@ -357,7 +357,7 @@
 	<section id="task1MyFirstGuiApp"><h3>Task1: My_First_GUI_App</h3>
 		<dl class="fa">
 			<dt>Create a simple GUI like the one shown bellow.</dt>
-			<a href="./Tasks_and_HW/PyQT_HW_1_My_First_GUI.gif" title="click for bigger image"><img src="./Tasks_and_HW/PyQT_HW_1_My_First_GUI.gif" alt=".PyQT_HW_1_My_First_GUI.gif" style="min-height: 40vh;"></a>
+			<a href="./Tasks_and_HW/PyQt_HW_1_My_First_GUI.gif" title="click for bigger image"><img src="./Tasks_and_HW/PyQt_HW_1_My_First_GUI.gif" alt=".PyQt_HW_1_My_First_GUI.gif" style="min-height: 40vh;"></a>
 			<dt>Use the Qt Designer and save the file as <code>my_first_GUI.ui</code></dt>
 			<dt>Convert the generated <code>my_first_GUI.ui</code> file to python code, using the <code>pyuic6</code> tool</dt>
 			<dt>Create your Python app file: <code>my_first_GUI_app.py</code> which will start a Qt App and shows the GUI created by you with QtDesigner.</dt>

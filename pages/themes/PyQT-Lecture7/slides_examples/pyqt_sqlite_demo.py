@@ -1,5 +1,5 @@
 import sys
-from PyQt5 import QtSql as qtsql
+from PyQt6 import QtSql as qtsql
 
 class CarPartsDB:
 	def __init__(self):
