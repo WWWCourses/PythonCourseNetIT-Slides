@@ -398,7 +398,47 @@
             <pre><code rel="Syntax" class="python">
                 requests.methodname(params)
             </code></pre>
-            <section data-markdown>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>delete(url, args)</td>
+                        <td>Sends a DELETE request to the specified URL</td>
+                    </tr>
+                    <tr>
+                        <td>get(url, params, args)</td>
+                        <td>Sends a GET request to the specified URL</td>
+                    </tr>
+                    <tr>
+                        <td>head(url, args)</td>
+                        <td>Sends a HEAD request to the specified URL</td>
+                    </tr>
+                    <tr>
+                        <td>patch(url, data, args)</td>
+                        <td>Sends a PATCH request to the specified URL</td>
+                    </tr>
+                    <tr>
+                        <td>post(url, data, json, args)</td>
+                        <td>Sends a POST request to the specified URL</td>
+                    </tr>
+                    <tr>
+                        <td>put(url, data, args)</td>
+                        <td>Sends a PUT request to the specified URL</td>
+                    </tr>
+                    <tr>
+                        <td>request(method, url, args)</td>
+                        <td>Sends a request of the specified method to the specified URL</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- <section data-markdown>
                 <textarea data-template>
                     |Method     				| Description                                |
                     |---------------------------| -------------------------------------------|
@@ -410,7 +450,7 @@
                     |put(url, data, args)		| Sends a PUT request to the specified url 		|
                     |request(method, url, args)	| Sends a request of the specified method to the specified url|
                 </textarea>
-            </section>
+            </section> -->
             <!-- <dt>Where:</dt>
             <dd><span class="note">params</span> – (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.</dd>
             <dd><span class="note">data</span> – (optional) Dictionary, list of tuples, bytes, or file-like object to send in the body of the Request.</dd>
