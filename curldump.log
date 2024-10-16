@@ -1,0 +1,183 @@
+== Info:   Trying 3.229.60.214:80...
+== Info: Connected to httpbin.org (3.229.60.214) port 80 (#0)
+=> Send header, 75 bytes (0x4b)
+0000: GET / HTTP/1.1
+0010: Host: httpbin.org
+0023: User-Agent: curl/7.81.0
+003c: Accept: */*
+0049: 
+== Info: Mark bundle as not supporting multiuse
+<= Recv header, 17 bytes (0x11)
+0000: HTTP/1.1 200 OK
+<= Recv header, 37 bytes (0x25)
+0000: Date: Wed, 16 Oct 2024 10:20:46 GMT
+<= Recv header, 40 bytes (0x28)
+0000: Content-Type: text/html; charset=utf-8
+<= Recv header, 22 bytes (0x16)
+0000: Content-Length: 9593
+<= Recv header, 24 bytes (0x18)
+0000: Connection: keep-alive
+<= Recv header, 25 bytes (0x19)
+0000: Server: gunicorn/19.9.0
+<= Recv header, 32 bytes (0x20)
+0000: Access-Control-Allow-Origin: *
+<= Recv header, 40 bytes (0x28)
+0000: Access-Control-Allow-Credentials: true
+<= Recv header, 2 bytes (0x2)
+0000: 
+<= Recv data, 2776 bytes (0xad8)
+0000: <!DOCTYPE html>.<html lang="en">..<head>.    <meta charset="UTF-
+0040: 8">.    <title>httpbin.org</title>.    <link href="https://fonts
+0080: .googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300
+00c0: ,600|Titillium+Web:400,600,700".        rel="stylesheet">.    <l
+0100: ink rel="stylesheet" type="text/css" href="/flasgger_static/swag
+0140: ger-ui.css">.    <link rel="icon" type="image/png" href="/static
+0180: /favicon.ico" sizes="64x64 32x32 16x16" />.    <style>.        h
+01c0: tml {.            box-sizing: border-box;.            overflow: 
+0200: -moz-scrollbars-vertical;.            overflow-y: scroll;.      
+0240:   }..        *,.        *:before,.        *:after {.            
+0280: box-sizing: inherit;.        }..        body {.            margi
+02c0: n: 0;.            background: #fafafa;.        }.    </style>.</
+0300: head>..<body>.    <a href="https://github.com/requests/httpbin" 
+0340: class="github-corner" aria-label="View source on Github">.      
+0380:   <svg width="80" height="80" viewBox="0 0 250 250" style="fill:
+03c0: #151513; color:#fff; position: absolute; top: 0; border: 0; righ
+0400: t: 0;".            aria-hidden="true">.            <path d="M0,0
+0440:  L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>.         
+0480:    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.
+04c0: 0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C
+0500: 127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,1
+0540: 03.2".                fill="currentColor" style="transform-origi
+0580: n: 130px 106px;" class="octo-arm"></path>.            <path d="M
+05c0: 115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C1
+0600: 36.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.
+0640: 0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4
+0680: ,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 1
+06c0: 90.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84
+0700: .9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203
+0740: .0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9
+0780: ,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,1
+07c0: 41.9 141.8,141.8 Z".                fill="currentColor" class="o
+0800: cto-body"></path>.        </svg>.    </a>.    <svg xmlns="http:/
+0840: /www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+0880:  style="position:absolute;width:0;height:0">.        <defs>.    
+08c0:         <symbol viewBox="0 0 20 20" id="unlocked">.             
+0900:    <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.70
+0940: 3 6 5.6V6h2v-.801C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8H
+0980: 4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387
+09c0: C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.
+0a00: 196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15
+0a40: .8 8z"></path>.            </symbol>..            <symbol viewBo
+0a80: x="0 0 20 20" id="locked">.                <path d="M15.8 8H14V5
+0ac0: .6C14 2.703 12.665 1 10 
+<= Recv data, 2776 bytes (0xad8)
+0000: 1 7.334 1 6 2.703 6 5.6V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428
+0040:  1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 
+0080: 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V
+00c0: 9.199C17 8.646 16.352 8 15.8 8zM12 8H8V5.199C8 3.754 8.797 3 10 
+0100: 3c1.203 0 2 .754 2 2.199V8z".                />.            </sy
+0140: mbol>..            <symbol viewBox="0 0 20 20" id="close">.     
+0180:            <path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L1
+01c0: 0 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.469-.469
+0200: -1.229 0-1.697l2.758-3.15-2.759-3.152c-.469-.469-.469-1.228 0-1.
+0240: 697.469-.469 1.228-.469 1.697 0L10 8.183l2.651-3.031c.469-.469 1
+0280: .228-.469 1.697 0 .469.469.469 1.229 0 1.697l-2.758 3.152 2.758 
+02c0: 3.15c.469.469.469 1.229 0 1.698z".                />.           
+0300:  </symbol>..            <symbol viewBox="0 0 20 20" id="large-ar
+0340: row">.                <path d="M13.25 10L6.109 2.58c-.268-.27-.2
+0380: 68-.707 0-.979.268-.27.701-.27.969 0l7.83 7.908c.268.271.268.709
+03c0:  0 .979l-7.83 7.908c-.268.271-.701.27-.969 0-.268-.269-.268-.707
+0400:  0-.979L13.25 10z".                />.            </symbol>..   
+0440:          <symbol viewBox="0 0 20 20" id="large-arrow-down">.    
+0480:             <path d="M17.418 6.109c.272-.268.709-.268.979 0s.271
+04c0: .701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.2
+0500: 7-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.
+0540: 141z".                />.            </symbol>...            <sy
+0580: mbol viewBox="0 0 24 24" id="jump-to">.                <path d="
+05c0: M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z" />.
+0600:             </symbol>..            <symbol viewBox="0 0 24 24" i
+0640: d="expand">.                <path d="M10 18h4v-2h-4v2zM3 6v2h18V
+0680: 6H3zm3 7h12v-2H6v2z" />.            </symbol>..        </defs>. 
+06c0:    </svg>...    <div id="swagger-ui">.        <div data-reactroo
+0700: t="" class="swagger-ui">.            <div>.                <div 
+0740: class="information-container wrapper">.                    <sect
+0780: ion class="block col-12">.                        <div class="in
+07c0: fo">.                            <hgroup class="main">.         
+0800:                        <h2 class="title">httpbin.org.           
+0840:                          <small>.                               
+0880:          <pre class="version">0.9.2</pre>.                      
+08c0:               </small>.                                </h2>.   
+0900:                              <pre class="base-url">[ Base URL: h
+0940: ttpbin.org/ ]</pre>.                            </hgroup>.      
+0980:                       <div class="description">.                
+09c0:                 <div class="markdown">.                         
+0a00:            <p>A simple HTTP Request &amp; Response Service..    
+0a40:                                     <br>.                       
+0a80:                  <br>.                                        <b
+0ac0: >Run locally: </b>.     
+<= Recv data, 4041 bytes (0xfc9)
+0000:                                    <code>$ docker run -p 80:80 k
+0040: ennethreitz/httpbin</code>.                                    <
+0080: /p>.                                </div>.                     
+00c0:        </div>.                            <div>.                
+0100:                 <div>.                                    <a hre
+0140: f="https://kennethreitz.org" target="_blank">the developer - Web
+0180: site</a>.                                </div>.                
+01c0:                 <a href="mailto:me@kennethreitz.org">Send email 
+0200: to the developer</a>.                            </div>.        
+0240:                 </div>.                        <!-- ADDS THE LOA
+0280: DER SPINNER -->.                        <div class="loading-cont
+02c0: ainer">.                            <div class="loading"></div>.
+0300:                         </div>..                    </section>. 
+0340:                </div>.            </div>.        </div>.    </di
+0380: v>...    <div class='swagger-ui'>.        <div class="wrapper">.
+03c0:             <section class="clear">.                <span style=
+0400: "float: right;">.                    [Powered by.               
+0440:      <a target="_blank" href="https://github.com/rochacbruno/fla
+0480: sgger">Flasgger</a>].                    <br>.                </
+04c0: span>.            </section>.        </div>.    </div>....    <s
+0500: cript src="/flasgger_static/swagger-ui-bundle.js"> </script>.   
+0540:  <script src="/flasgger_static/swagger-ui-standalone-preset.js">
+0580:  </script>.    <script src='/flasgger_static/lib/jquery.min.js' 
+05c0: type='text/javascript'></script>.    <script>..        window.on
+0600: load = function () {.            ..            fetch("/spec.json
+0640: ").                .then(function (response) {.                 
+0680:    response.json().                        .then(function (json)
+06c0:  {.                            var current_protocol = window.loc
+0700: ation.protocol.slice(0, -1);.                            if (jso
+0740: n.schemes[0] != current_protocol) {.                            
+0780:     // Switches scheme to the current in use.                   
+07c0:              var other_protocol = json.schemes[0];.             
+0800:                    json.schemes[0] = current_protocol;.         
+0840:                        json.schemes[1] = other_protocol;..      
+0880:                       }.                            json.host = 
+08c0: window.location.host;  // sets the current host..               
+0900:              const ui = SwaggerUIBundle({.                      
+0940:           spec: json,.                                validatorU
+0980: rl: null,.                                dom_id: '#swagger-ui',
+09c0: .                                deepLinking: true,.            
+0a00:                     jsonEditor: true,.                          
+0a40:       docExpansion: "none",.                                apis
+0a80: Sorter: "alpha",.                                //operationsSor
+0ac0: ter: "alpha",.                                presets: [.       
+0b00:                              SwaggerUIBundle.presets.apis,.     
+0b40:                                // yay ES6 modules ....          
+0b80:                           Array.isArray(SwaggerUIStandalonePrese
+0bc0: t) ? SwaggerUIStandalonePreset : SwaggerUIStandalonePreset.defau
+0c00: lt.                                ],.                          
+0c40:       plugins: [.                                    SwaggerUIBu
+0c80: ndle.plugins.DownloadUrl.                                ],.    
+0cc0:         .            // layout: "StandaloneLayout"  // uncomment
+0d00:  to enable the green top header.        })..        window.ui = 
+0d40: ui..        // uncomment to rename the top brand if layout is en
+0d80: abled.        // $(".topbar-wrapper .link span").replaceWith("<s
+0dc0: pan>httpbin</span>");.        }).    }).}.    </script>  <div cl
+0e00: ass='swagger-ui'>.    <div class="wrapper">.        <section cla
+0e40: ss="block col-12 block-desktop col-12-desktop">.            <div
+0e80: >..                <h2>Other Utilities</h2>..                <ul
+0ec0: >.                    <li>.                        <a href="/for
+0f00: ms/post">HTML form</a> that posts to /post /forms/post</li>.    
+0f40:             </ul>..                <br />.                <br />
+0f80: .            </div>.        </section>.    </div>.</div>.</body>
+0fc0: ..</html>
+== Info: Connection #0 to host httpbin.org left intact

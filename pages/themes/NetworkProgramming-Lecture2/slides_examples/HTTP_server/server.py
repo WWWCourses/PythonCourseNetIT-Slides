@@ -6,8 +6,6 @@
 
 import argparse
 from http.server import HTTPServer, BaseHTTPRequestHandler, socketserver
-import os
-from utils import SERVER_ROOT_PATH
 import re
 
 class RequestHandler(BaseHTTPRequestHandler):
@@ -96,7 +94,6 @@ if __name__ == "__main__":
 	args = get_args()
 
 	addr,port,httpd_root = args.listen, args.port, args.root
-	# HTTPD_PATH=os.path.join(SERVER_ROOT_PATH,root)
 
 	server_address = (addr, port)
 
