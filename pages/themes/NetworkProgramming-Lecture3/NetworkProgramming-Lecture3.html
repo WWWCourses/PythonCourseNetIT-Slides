@@ -1,52 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>NetworkProgramming-Lecture3</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>NetworkProgramming-Lecture3</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -55,211 +55,286 @@
 
 <section class="main-section-title"><h1>NetworkProgramming-Lecture3</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
 <section data-min="10" class="main-section-title"><h1>Socket Programming</h1></section>
 <section class="sub-sections"><h2>Socket Programming</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>Socket communication is everywhere. Every HTTP Client/Server Communication rely on socket communication.</dt>
-			<dt>The client application (your browser, for example) uses “client” sockets exclusively. The Web server it’s talking to uses both “server” sockets and “client” sockets.</dt>
-			<dt>Sockets are widely use for any IPC (Inter-Process Communication), especially for cross-platform communication.</dt>
-		</dl>
-	</section>
-	<section><h3>Python socket module</h3>
-		<dl class="fa">
-			<dt>The	<a href="https://docs.python.org/3/library/socket.html">socket module</a> is a Python's standard interface for the	transport layer, and it provides functions for interacting with TCP and UDP, as well as for looking up hostnames through DNS</dt>
-   			<dt>A socket is defined by the IP address of the machine, the port on which it listens, and the protocol it uses.</dt>
-			<pre><code rel="Python" class="python">
-				socket.socket(family=AF_INET, type=SOCK_STREAM)¶
-			</code></pre>
-			<dt>There are several sockets address families like:</dt>
-			<dd><code>socket.AF_UNIX</code> - used to communicate between processes on the same machine efficiently (specified by UNIX pathname)</dd>
-			<dd><code>socket.AF_INET</code> - used for network connections (IPv4) </dd>
-			<dt>Sockets are classified into several types, as well:</dt>
-			<dd>stream sockets(socket.SOCK_STREAM) for TCP</dd>
-			<dd>datagram sockets(socket.SOCK_DGRAM) for UDP and others</dd>
-		</dl>
-	</section>
-	<section><h3>Example: UDP Server</h3>
-		<dl class="fa">
-			<dt>Note that UDP is a <span class="note">connectionless</span> protocol, so each message send must include destination address</dt>
-		</dl>
-		<pre><code rel="server.py" class="python">
-			import socket
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>Socket communication is everywhere. Every HTTP Client/Server Communication rely on socket communication.</dt>
+            <dt>The client application (your browser, for example) uses “client” sockets exclusively. The Web server it’s talking to uses both “server” sockets and “client” sockets.</dt>
+            <dt>Sockets are widely use for any IPC (Inter-Process Communication), especially for cross-platform communication.</dt>
+        </dl>
+    </section>
+    <section><h3>Python socket module</h3>
+        <dl class="fa">
+            <dt>The	<a href="https://docs.python.org/3/library/socket.html">socket module</a> is a Python's standard interface for the	transport layer, and it provides functions for interacting with TCP and UDP, as well as for looking up hostnames through DNS</dt>
+               <dt>A socket is defined by the IP address of the machine, the port on which it listens, and the protocol it uses.</dt>
+            <pre><code rel="Python" class="python">
+                socket.socket(family=AF_INET, type=SOCK_STREAM)¶
+            </code></pre>
+            <dt>There are several sockets address families like:</dt>
+            <dd><code>socket.AF_UNIX</code> - used to communicate between processes on the same machine efficiently (specified by UNIX pathname)</dd>
+            <dd><code>socket.AF_INET</code> - used for network connections (IPv4) </dd>
+            <dt>Sockets are classified into several types, as well:</dt>
+            <dd>stream sockets(socket.SOCK_STREAM) for TCP</dd>
+            <dd>datagram sockets(socket.SOCK_DGRAM) for UDP and others</dd>
+        </dl>
+    </section>
+    <section><h3>Example: UDP Client-Server</h3>
+        <dl class="fa">
+            <dt>Note that UDP is a <span class="note">connectionless</span> protocol, so each message send must include destination address</dt>
+        </dl>
+        <pre><code rel="server.py" class="python">
+            import socket
 
-			# open and bind server socket:
-			server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-			server.bind(('127.0.0.1', 9999))
+            # open and bind UDP server socket:
+            server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            server.bind(('127.0.0.1', 9999))
+            print('Serve is listening on 127.0.0.1:9999')
 
-			# receive data from a client:
-			msg,address = server.recvfrom(1024)
-			print(f"Received from {address}: {msg.decode('utf-8')}")
-		</code></pre>
-		<pre><code rel="client.py" class="python">
-			import socket
+            # receive data from a client, max 1024 bytes:
+            msg,address = server.recvfrom(1024)
+            print(f"Received from {address}: {msg.decode('utf-8')}")
+        </code></pre>
+        <pre><code rel="client.py" class="python">
+            import socket
 
-			# open client socket:
-			client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            # open UDP client socket:
+            client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-			# send data to specific address:
-			client.sendto(b'Hello Server',('127.0.0.1', 9999))
+            # send data to specific address:
+            client.sendto(b'Hello Server',('127.0.0.1', 9999))
 
-		</code></pre>
-	</section>
-	<section id="TCP_Communication"><h3>How TCP Connection Works</h3>
-		<a href="./images/how_TCP_works.png"><img src="./images/how_TCP_works.png" alt="how_TCP_works.png" style="height: 70vh;"></a>
-	</section>
-	<section><h3>Creating a Socket</h3>
-		<dl class="fa">
-			<dt>On Client side:</dt>
-			<pre><code rel="client.py" class="python" style="min-width: 70vw;">
-				PORT = 5050
-				SERVER_NAME = 'localhost'
-				SERVER_IP = socket.gethostbyname(SERVER_NAME)
+        </code></pre>
+    </section>
+    <section id="TCP_Communication"><h3>How TCP Connection Works</h3>
+        <a href="./images/how_TCP_works.png"><img src="./images/how_TCP_works.png" alt="how_TCP_works.png" style="height: 70vh;"></a>
+    </section>
+    <section><h3>Example: TCP Client-Server</h3>
+        <dl class="fa">
+            <dt>On Server side:</dt>
+            <pre><code rel="client.py" class="python" style="min-width: 70vw;">
+                import socket
 
-				# create an INET (i.e. IPv4), STREAMing (i.e. TCP) socket:
-				client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                # create an IPv4 TCP socket:
+                server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-				# reuse address (optional, only for test purposes)
-				client.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                # bind the socket to the host and port
+                server.bind(('127.0.0.1', 8888))
 
-				# now connect to the server given with (SERVER_IP, PORT) tupple:
-				client.connect((SERVER_IP, PORT))
-				print(f'Client is connected to {(SERVER_IP, PORT)} ')
-			</code></pre>
-			<dt>On Server side:</dt>
-			<pre><code rel="client.py" class="python" style="min-width: 70vw;">
-				PORT = 5050
-				SERVER_IP = socket.gethostbyname(socket.gethostname())
+                # listen for incoming connections
+                server.listen()
+                print("Server is listening on 127.0.0.1:8888")
+
+                # accept a connection
+                conn, addr = server.accept()
+                print(f"Connected by {addr}")
+
+                # receive data (TCP uses recv, not recvfrom)
+                data = conn.recv(1024)
+                print(f"Received: {data.decode()}")
+
+                # close the connection
+                conn.close()
+            </code></pre>
+            <dt>On Client side:</dt>
+            <pre><code rel="client.py" class="python" style="min-width: 70vw;">
+                import socket
+
+                # open client socket (TCP)
+                client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+                # connect to the server
+                client.connect(('127.0.0.1', 8888))
+
+                # send data after establishing the connection
+                client.send(b'Hello Server')
+
+                # close the socket
+                client.close()
+            </code></pre>
+        </dl>
+
+    </section>
+    <section><h3>Host Name Related Methods</h3>
+        <dl class="fa">
+            <dt><code>socket.gethostname()</code> - returns the host name of the current system under which the Python interpreter is executed.</dt>
+            <dt><code>socket.gethostbyname(hostname)</code> - returns the IP address of the given host</dt>
+        </dl>
+    </section>
+    <section><h3>Handling Multiple Clients - Server Example</h3>
+        <pre><code rel="server.py" class="python" style="min-height: 70vh;">
+            import socket
+            import threading
+
+            BUFF_SIZE = 1024
+            FORMAT = 'utf-8'
+            DISCONNECT_MESSAGE = 'END'
+
+            def handle_client(conn, addr):
+                print(f"[NEW CONNECTION] {addr} connected.")
+                connected = True
+
+                while connected:
+                    msg = conn.recv(BUFF_SIZE).decode(FORMAT).strip()
+
+                    if msg == DISCONNECT_MESSAGE:
+                        connected = False
+
+                    print(f"[{addr}] {msg}")
+                    conn.send("Msg received".encode(FORMAT))
+
+                conn.close()
+
+            # create an IPv4 TCP socket:
+            server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+            # bind the socket to the host and port
+            server.bind(('127.0.0.1', 8888))
+
+            # listen for incoming connections
+            server.listen()
+            print("Server is listening on 127.0.0.1:8888")
 
 
-				# create an INET (i.e. IPv4), STREAMing (i.e. TCP) socket:
-				server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            def start():
+                while True:
+                    conn, addr = server.accept()
+                    thread = threading.Thread(target=handle_client, args=(conn, addr))
+                    thread.start()
+                    print(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}")
 
-				# reuse address (optional, only for test purposes)
-				server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            start()
 
-				# bind the socket to the host
-				server.bind((SERVER_IP, PORT))
+        </code></pre>
+    </section>
+    <section><h3>Using Sockets on Server</h3>
+        <dl class="fa">
+            <dt>s.listen() enables a server to s.accept() connections</dt>
+            <dt>accept() blocks and waits for an incoming connection. When a client connects, <span class="note">it returns a new socket object</span> representing the connection and a tuple ((host, port) for IPv4 ) holding the address of the client.</dt>
+            <dt>The newly created socket by s.accept() is used only to communicate with the client. It’s distinct from the listening socket that the server is using to accept new connections</dt>
+        </dl>
+    </section>
+    <section><h3>Handling Multiple Clients - Client Example</h3>
+        <pre><code rel="client.py" class="python" style="min-height: 70vh;">
+            import socket
 
-				server.listen()
-				print(f"Server is listening on {SERVER_IP}")
-			</code></pre>
-		</dl>
+            BUFF_SIZE = 1024
+            FORMAT = 'utf-8'
+            DISCONNECT_MESSAGE = 'END'
 
-	</section>
-	<section><h3>Host Name Related Methods</h3>
-		<dl class="fa">
-			<dt><code>socket.gethostname()</code> - returns the host name of the current system under which the Python interpreter is executed.</dt>
-			<dt><code>socket.gethostbyname(hostname)</code> - returns the IP address of the given host</dt>
-		</dl>
-	</section>
-	<section><h3>Using Sockets on Server</h3>
-		<pre><code rel="server.py" class="python" style="min-height: 70vh;">
-			def handle_client(conn, addr):
-				print(f"[NEW CONNECTION] {addr} connected.")
-				connected = True
+            def send(client, msg):
+                message = (msg + "\n").encode(FORMAT)
+                client.send(message)
+                print(client.recv(BUFF_SIZE).decode(FORMAT))
 
-				while connected:
-					msg_length = conn.recv(BUFF_SIZE)
+            # open client socket (TCP)
+            client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-					if msg_length:
-						msg_length = int(msg_length)
-						msg = conn.recv(msg_length).decode(FORMAT)
+            # connect to the server
+            client.connect(('127.0.0.1', 8888))
 
-						if msg == DISCONNECT_MESSAGE:
-							connected = False
+            # send some messages:
+            while True:
+                msg = input("Enter a message: ")
+                if msg == '':
+                    send(client, DISCONNECT_MESSAGE)
+                    break
+                else:
+                    send(client, msg)
 
-						print(f"[{addr}] {msg}")
-						conn.send("Msg received".encode(FORMAT))
+        </code></pre>
+    </section>
+    <section><h3>socket.recv() method</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Syntax</dt>
+            <pre><code rel="Syntax" class="python" style="min-height: 1vh;">
+                socket.recv(buffer_size)
+            </code></pre>
+            <dt><strong>Purpose</strong>: Receives data from the socket.</dt>
+            <dt><strong>Parameters:</strong></dt>
+            <dd>buffer_size: Maximum number of bytes to receive.</dd>
+            <dt><strong>Returns</strong>: A byte string of data up to the specified buffer_size.</dt>
+            <dt><strong>How it works:</strong></dt>
+            <dd>The function waits for data to arrive from the socket.</dd>
+            <dd>It reads at most buffer_size bytes. If less data is available, it returns only that data. If more data is available, it will need to be called again to read the rest.</dd>
+        </dl>
+    </section>
+    <section><h3>socket.send() method</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Syntax</dt>
+            <pre><code rel="Syntax" class="python" style="min-height: 1vh;">
+                socket.send(data)
+            </code></pre>
+            <dt><strong>Purpose</strong>: Sends data to the socket.</dt>
+            <dt><strong>Parameters:</strong></dt>
+            <dd>data: Byte string (must be encoded if sending text).</dd>
+            <dt><strong>Returns</strong>: The number of bytes actually sent.</dt>
+            <dt><strong>How it works:</strong></dt>
+            <dd>The function sends the provided data to the connected socket.</dd>
+            <dd>If the socket buffer is full or the network is slow, it might not send all the data at once, so it's important to check how many bytes were actually sent.</dd>
+        </dl>
+    </section>
+    <section><h3>Byte Strings</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>A byte string in Python <span class="note"> a sequence of bytes (not characters)</span>, and it is written by prefixing a string with a <code>b</code>. You can also convert a normal string to a byte string using the encode() method.</dt>
+            <dt><strong>Direct byte string:</strong> Prefix a string with <code>b</code> to create a byte string.</dt>
+            <pre><code rel="Syntax" class="python" style="min-height: 1vh;">
+                # Direct byte string
+                byte_string = b"Hello, World!"
+            </code></pre>
+            <dt><strong>Convert from a regular string:</strong> Use the <code>encode()</code> method to convert a string to a byte string.</dt>
+            <pre><code rel="Python" class="python" style="min-height: 1vh;">
+                # Convert from a regular string
+                text = "Hello, World!"
+                byte_string = text.encode('utf-8')
+            </code></pre>
+        </dl>
+    </section>
 
-				conn.close()
-
-			while True:
-				conn, addr = s.accept()
-				# better to do with threading
-				handle_client(conn, addr)
-		</code></pre>
-	</section>
-	<section><h3>Using Sockets on Server</h3>
-		<dl class="fa">
-			<dt>s.listen() enables a server to s.accept() connections</dt>
-			<dt>accept() blocks and waits for an incoming connection. When a client connects, <span class="note">it returns a new socket object</span> representing the connection and a tuple ((host, port) for IPv4 ) holding the address of the client.</dt>
-			<dt>The newly created socket by s.accept() is used only to communicate with the client. It’s distinct from the listening socket that the server is using to accept new connections</dt>
-		</dl>
-	</section>
-	<section><h3>Using Sockets on Client</h3>
-		<pre><code rel="client.py" class="python" style="min-height: 70vh;">
-			def send(msg):
-				message = msg.encode(FORMAT)
-				msg_length = len(message)
-				send_length = str(msg_length).encode(FORMAT)
-
-				# pad message to be send to BUFF_SIZE
-				send_length += b' ' * (BUFF_SIZE - len(send_length))
-
-				s.send(send_length)
-				s.send(message)
-				print(s.recv(BUFF_SIZE)
-
-			# send some messages:
-			while True:
-				msg = input("Enter a message:")
-				if msg == '':
-					send(DISCONNECT_MESSAGE)
-				else:
-					send(msg)
-		</code></pre>
-	</section>
-	<section><h3>Send and Recieve</h3>
-		<dl class="fa">
-			<dt><code>socket.recv(bufsize[, flags])</code> - <a href="https://docs.python.org/3/library/socket.html#socket.socket.recv">socket.recv() @python.org</a></dt>
-			<dt><code>socket.send(bytes[, flags])</code> - <a href="https://docs.python.org/3/library/socket.html#socket.socket.send">socket.send() @python.org</a></dt>
-		</dl>
-	</section>
 </section>
 
 <section data-min="5" class="main-section-title"><h1>Monitoring TCP connection</h1></section>
 <section class="sub-sections"><h2>Monitoring TCP connection</h2>
-	<section><h3>netstat</h3>
-		<dl class="fa">
-			<dt>If we want to see all TCP connections we can use the <code>netstat</code> command (available on <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/netstat">Windows</a> and <a href="https://www.howtogeek.com/513003/how-to-use-netstat-on-linux/">Linux</a> )</dt>
-			<dt>Useful options:</dt>
-			<dd><code>-a</code>: Show both listening and non-listening sockets.</dd>
-			<dd><code>-n</code>: Show numerical addresses instead of trying to determine symbolic host, port or user names.</dd>
-			<dd><code>-t</code>: Show only TCP connections.</dd>
-			<dd><code>-p</code>: Show the PID and name of the program to which each socket belongs.</dd>
-		</dl>
-		<pre><code rel="Terminal" class="bash">
-			netstat -antp
-		</code></pre>
-	</section>
+    <section><h3>netstat</h3>
+        <dl class="fa">
+            <dt>If we want to see all TCP connections we can use the <code>netstat</code> command (available on <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/netstat">Windows</a> and <a href="https://www.howtogeek.com/513003/how-to-use-netstat-on-linux/">Linux</a> )</dt>
+            <dt>Useful options:</dt>
+            <dd><code>-a</code>: Show both listening and non-listening sockets.</dd>
+            <dd><code>-n</code>: Show numerical addresses instead of trying to determine symbolic host, port or user names.</dd>
+            <dd><code>-t</code>: Show only TCP connections.</dd>
+            <dd><code>-p</code>: Show the PID and name of the program to which each socket belongs.</dd>
+        </dl>
+        <pre><code rel="Terminal" class="bash">
+            netstat -antp
+        </code></pre>
+    </section>
 </section>
 
 <section data-min="5" class="main-section-title"><h1>ChatApp Demo</h1></section>
 <section class="sub-sections"><h2>ChatApp Demo</h2>
-	<section><h3>server.py</h3>
-		<script src="https://gist.github.com/WWWCourses/90334d2d44ea5c94de011de4e3358e75.js"></script>
-	</section>
-	<section><h3>client.py</h3>
-		<script src="https://gist.github.com/WWWCourses/84f4cddebe87f0e9f0fb2b70fd6a0ec6.js"></script>
-	</section>
+    <section><h3>server.py</h3>
+        <script src="https://gist.github.com/WWWCourses/90334d2d44ea5c94de011de4e3358e75.js"></script>
+    </section>
+    <section><h3>client.py</h3>
+        <script src="https://gist.github.com/WWWCourses/84f4cddebe87f0e9f0fb2b70fd6a0ec6.js"></script>
+    </section>
 </section>
 
 
@@ -269,48 +344,48 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1280,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1280,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 </body>
 </html>
