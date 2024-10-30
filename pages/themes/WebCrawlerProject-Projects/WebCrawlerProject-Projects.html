@@ -81,7 +81,7 @@
 ########################################################
 -->
 
-<section class="main-section-title"><h1>Финален проект</h1></section>
+<section class="main-section-title"><h1>Задания  за финален проект</h1></section>
 <section data-transition="zoom">
 	<section class="copyright" data-transition="zoom">
 		<div class="note">
@@ -101,9 +101,9 @@
 </section>
 
 
-<section data-min="50" class="main-section-title"><h1>Задания</h1></section>
+<section data-min="50" class="main-section-title"><h1>Задания  за финален проект</h1></section>
 <section class="sub-sections"><h2>Вариант 1: Филми</h2>
-	<section data-markdown>
+	<section id="imdb" data-markdown >
 		<textarea data-template>
 			# Вариант 1: Филми
 
@@ -133,7 +133,7 @@
 </section>
 
 <section class="sub-sections"><h2>Вариант 2: Новини</h2>
-	<section data-markdown>
+	<section id="bnr" data-markdown>
 		<textarea data-template>
 			# Вариант 2: Новини
 
@@ -163,23 +163,23 @@
 	</section>
 </section>
 <section class="sub-sections"><h2>Вариант 3: Обяви за работа</h2>
-	<section data-markdown >
+	<section id="devbg" data-markdown >
 		<textarea data-template>
 			# Вариант 3: Обяви за работа
 
 			## За сайта
 
-			[jobs.bg](https://jobs.bg) е кариерна медия, която се ползва от над 95 000 компании в България от всички сектори на икономиката. Публикуват се повече от 30 000 позиции месечно.
+			[Dev.bg](https://dev.bg) е българска платформа, която предлага ресурси и общност за разработчици и ИТ специалисти.
 
 			## Задача
 
-			Да се извлекат обявите за работа [съдържащи ключова дума "python"](https://www.jobs.bg/front_job_search.php?add_sh=1&from_hp=1&keywords%5B%5D=python), които са публикувани през последните 10 дни.
+			Да се извлекат обявите за работа [съдържащи ключова дума "python"](https://dev.bg/?s=python&post_type=job_listing), които са публикувани през последните 10 дни.
 
 			Данните, които трябва да се съхранят  в база данни (MySQL или MongoDB) са:
 
 			- Име на позицията
 			- Дата на публикуване
-			- Технологии
+			- Описание
 
 			Да се състави потребителски интерфейс в който да се представят таблично получените данни.
 
@@ -187,7 +187,7 @@
 
 			## Забележка
 
-			Вашият crawler трябва да се съобразява с правилата в https://www.jobs.bg/robots.txt.
+			Вашият crawler трябва да се съобразява с правилата в https://www.dev.bg/robots.txt.
 		</textarea>
 	</section>
 </section>
