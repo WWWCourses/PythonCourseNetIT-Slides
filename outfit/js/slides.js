@@ -77,7 +77,12 @@ function applyBackgrounds() {
 function addCopyButton() {
     const codeBlocks = document.querySelectorAll('pre > code');
 
-    codeBlocks.forEach(block => {
+    // Filter code blocks to exclude those with data-no-copy attribute
+    const filteredCodeBlocks = Array.from(codeBlocks).filter(codeBlock =>
+        !codeBlock.hasAttribute('data-no-copy')
+    );
+
+    filteredCodeBlocks.forEach(block => {
         const button = document.createElement('button');
         button.innerText = 'Copy';
         // button.innerHTML = '<i class="fa-regular fa-copy"></i>'

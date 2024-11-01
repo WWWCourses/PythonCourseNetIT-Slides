@@ -1,52 +1,50 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>WebCrawlerProject-Lecture1</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="utf-8">
+    <title>WebCrawlerProject-Lecture1</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/PythonCourseNetIT-Slides/favicon.png">
 
-	<!-- css & themes include -->
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
-	<!-- Printing and PDF exports -->
-	<script>
-		var link = document.createElement( 'link' );
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
-		document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<!--[if lt IE 9]>
-	<script src="lib/js/html5shiv.js"></script>
-	<![endif]-->
-	<!-- CUSTOM -->
-	<base target="_blank">
+    <!-- css & themes include -->
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/lib/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="/PythonCourseNetIT-Slides/outfit/css/themes/light.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/PythonCourseNetIT-Slides/outfit/css/print.css' : '/PythonCourseNetIT-Slides/lib/reveal.js/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!-- CUSTOM -->
+    <base target="_blank">
 </head>
 <body>
-	<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
-		<div class="top_links">
-			<a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html" target="_top"></a>
-			<span class="help_link"><i class="fa fa-question"></i></span>
-			<div class="help_text">
-				<div class="note">Keyboard shortcuts:</div>
-				<div><span>N/Спейс</span><span>Next Slide</span></div>
-				<div><span>P</span><span>Previous Slide</span></div>
-				<div><span>O</span><span>Slides Overview</span></div>
-				<div><span>ctrl+left click</span><span>Zoom Element</span></div>
-				<div class="print-howto"><br>If you want print version => add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
-				Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
-			</div>
-		</div>
-		<div class="footer theme_switch">
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
-			<a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
-		</div>
-		<div class="slides">
+    <div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+        <div class="top_links">
+            <a class="home_link" href="/PythonCourseNetIT-Slides/pages/agenda/agenda.html" target="_top"></a>
+            <span class="help_link"><i class="fa fa-question"></i></span>
+            <div class="help_text">
+                <div class="note">Keyboard shortcuts:</div>
+                <div><span>N/Спейс</span><span>Next Slide</span></div>
+                <div><span>P</span><span>Previous Slide</span></div>
+                <div><span>O</span><span>Slides Overview</span></div>
+                <div><span>ctrl+left click</span><span>Zoom Element</span></div>
+                <div class="print-howto"><br>If you want print version =&gt; add '<code>?print-pdf</code>' <br> at the end of slides URL (remove '#' fragment) and then print. <br>
+                Like: https://wwwcourses.github.io/...CourseIntro.html?print-pdf </div>
+            </div>
+        </div>
+        <div class="footer theme_switch">
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/dark.css'); return false;">Dark</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/light.css'); return false;">Light</a>
+            <a href="#" onclick="document.getElementById('theme').setAttribute('href','/PythonCourseNetIT-Slides/outfit/css/themes/projector.css'); return false;">Projector</a>
+        </div>
+        <div class="slides">
 <!--
 ########################################################
 ##################### SLIDES START #####################
@@ -55,603 +53,562 @@
 
 <section class="main-section-title"><h1>WebCrawlerProject-Lecture1</h1></section>
 <section data-transition="zoom">
-	<section class="copyright" data-transition="zoom">
-		<div class="note">
-			<p>Created for</p>
-		</div>
-		<div class="company">
-			<a href="https://softwareacademy.bg/">
-			<img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
-			</a>
-		</div>
-		<div class="author">
-			<span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
-			<!-- <i class="fa fa-linkedin"></i> -->
-		</div>
-	</section>
+    <section class="copyright" data-transition="zoom">
+        <div class="note">
+            <p>Created for</p>
+        </div>
+        <div class="company">
+            <a href="https://softwareacademy.bg/">
+            <img style="height:80%" src="/PythonCourseNetIT-Slides/outfit/images/logos/software-web@4x.png" alt="software-web@4x.png">
+            </a>
+        </div>
+        <div class="author">
+            <span class="note"><a href="https://www.linkedin.com/in/ivapopova/">Iva E. Popova</a>, 2022-2023,</span>
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            <!-- <i class="fa fa-linkedin"></i> -->
+        </div>
+    </section>
 </section>
 
 <section data-min="50" class="main-section-title"><h1>WebCrawling - Overview</h1></section>
 <section class="sub-sections"><h2>WebCrawling - Overview</h2>
-	<section><h3>What is Web Crawling?</h3>
-		<dl class="fa">
-			<dt>A Web crawler (aka <i>spider</i>, <i>internet bot</i>), is a program that systematically browses the World Wide Web, typically operated by search engines for the purpose of Web indexing (web spidering)</dt>
-			<dt>WebCrawling is a part (subsystem) of <i>WebScraping</i>, <i>Web Data Mining/Extraction</i> software systems.</dt>
-			<dt>Reference:</dt>
-			<dd><a href="https://en.wikipedia.org/wiki/Web_crawler">Web Crawler @wikipedia</a></dd>
-			<dd><a href="https://en.wikipedia.org/wiki/Web_scraping">Web Scraping @wikipedia</a></dd>
-		</dl>
-	</section>
-	<section><h3>How a WebCrawler Works?</h3>
-		<dl class="fa">
-			<dt>A web crawler starts with a list of URLs to visit, called the seed.</dt>
-			<dt>For each URL, the crawler finds links in the HTML, filters those links based on some criteria and adds the new links to a queue.</dt>
-			<dt>All the HTML or some specific information is extracted to be processed by a different pipeline.</dt>
-		</dl>
-		<a href="./images/WebCrawlerArchitecture.svg.png"><img src="./images/WebCrawlerArchitecture.svg.png" alt="WebCrawlerArchitecture.svg.png"></a>
-	</section>
-	<section><h3>Popular web crawler use cases</h3>
-		<dl class="fa">
-			<dt>Search engines (Googlebot, Bingbot, Yandex Bot…) collect all the HTML for a significant part of the Web. This data is indexed to make it searchable.</dt>
-			<dt>SEO analytics tools on top of collecting the HTML also collect metadata like the response time, response status to detect broken pages and the links between different domains to collect backlinks.</dt>
-			<dt>Price monitoring tools crawl e-commerce websites to find product pages and extract metadata, notably the price. Product pages are then periodically revisited.</dt>
-			<dt>Social Network data extraction, Sentiment Analyses, ...</dt>
-		</dl>
-	</section>
-	<section><h3>Web Crawling Legal/Ethical Concerns</h3>
-		<dl class="fa">
-			<dt>Crawlers consume resources on visited systems and often visit sites without approval.</dt>
-			<dt>Issues of schedule, load, and "politeness" come into play when large collections of pages are accessed.</dt>
-			<dt>Mechanisms exist for public sites not wishing to be crawled to make this known to the crawling agent. For example, including a <code>robots.txt</code> file can request bots to index only parts of a website, or nothing at all.</dt>
+    <section><h3>What is Web Crawling</h3>
+        <dl class="fa">
+            <dt>A Web crawler (aka <i>spider</i>, <i>internet bot</i>), is a program that systematically browses the World Wide Web, typically operated by search engines for the purpose of Web indexing (Web spidering)</dt>
+            <dt>Reference:</dt>
+            <dd><a href="https://en.wikipedia.org/wiki/Web_crawler">Web Crawler @wikipedia</a></dd>
+        </dl>
+    </section>
+    <section><h3>How a WebCrawler Works?</h3>
+        <dl class="fa">
+            <dt>A web crawler starts with a list of URLs to visit, called the seed.</dt>
+            <dt>For each URL, the crawler finds links in the HTML, filters those links based on some criteria and adds the new links to a queue.</dt>
+            <dt>All the HTML or some specific information is extracted to be processed by a different pipeline.</dt>
+        </dl>
+        <a href="./images/WebCrawlerArchitecture.svg.png"><img src="./images/WebCrawlerArchitecture.svg.png" alt="WebCrawlerArchitecture.svg.png"></a>
+    </section>
+    <section><h3>Popular Web Crawler use cases</h3>
+        <dl class="fa">
+            <dt>Search engines (Googlebot, Bingbot, Yandex Bot…) collect all the HTML for a significant part of the Web. This data is indexed to make it searchable.</dt>
+            <dt>SEO analytics tools on top of collecting the HTML also collect metadata like the response time, response status to detect broken pages and the links between different domains to collect backlinks.</dt>
+            <dt>Price monitoring tools crawl e-commerce websites to find product pages and extract metadata, notably the price. Product pages are then periodically revisited.</dt>
+            <dt>Social Network data extraction, Sentiment Analyses, ...</dt>
+        </dl>
+    </section>
+    <section><h3>Web Crawling Legal/Ethical Concerns</h3>
+        <dl class="fa">
+            <dt>Crawlers consume resources on visited systems and often visit sites without approval.</dt>
+            <dt>Issues of schedule, load, and "politeness" come into play when large collections of pages are accessed.</dt>
+            <dt>Mechanisms exist for public sites not wishing to be crawled to make this known to the crawling agent. For example, including a <code>robots.txt</code> file can request bots to index only parts of a website, or nothing at all.</dt>
 
-		</dl>
-	</section>
-	<section><h3>robots.txt - example</h3>
-		<pre><code rel="http://example.com/robots.txt" class="bash">
-			# The user agent named Googlebot is not allowed to crawl any URL that starts with http://example.com/search/.
-			User-agent: Googlebot
-			Disallow: /search/
+        </dl>
+    </section>
+    <section><h3>robots.txt - example</h3>
+        <pre><code rel="http://example.com/robots.txt" class="bash">
+            # The user agent named Googlebot is not allowed to crawl any URL that starts with http://example.com/search/.
+            User-agent: Googlebot
+            Disallow: /search/
 
-			# All other user agents are allowed to crawl the entire site.
-			User-agent: *
-			Allow: /
-		</code></pre>
-		<dl class="fa">
-			<dt>Reference: <a href="https://developers.google.com/search/docs/advanced/robots/create-robots-txt#create_rules">robots.txt syntax</a></dt>
-		</dl>
-	</section>
+            # All other user agents are allowed to crawl the entire site.
+            User-agent: *
+            Allow: /
+        </code></pre>
+        <dl class="fa">
+            <dt>Reference: <a href="https://developers.google.com/search/docs/advanced/robots/create-robots-txt#create_rules">robots.txt syntax</a></dt>
+        </dl>
+    </section>
+    <section><h3>Example: SimpleWebCrawler</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>In next example for links scraping, the Beautiful Soup library is used, which will be deeply explored in the upcoming lectures.</dt>
+        </dl>
+        <pre><code rel="Python" class="python" style="min-height: 90vh;">
+            import requests
+            from bs4 import BeautifulSoup
+            from urllib.parse import urljoin
+            from concurrent.futures import ThreadPoolExecutor
+
+            class WebCrawler:
+                def __init__(self, start_url, depth=1, max_threads=5):
+                    self.start_url = start_url
+                    self.depth = depth
+                    self.max_threads = max_threads
+                    self.visited = set()
+
+                def get_html(self, url):
+                    try:
+                        response = requests.get(url, timeout=5)
+                        response.raise_for_status()
+                        return response.text
+                    except requests.exceptions.RequestException as e:
+                        print(f'Request exception: {e}')
+
+                    return None
+
+                def fetch_links(self, url):
+                    """Fetch all links from a given URL."""
+                    links = []
+                    html = self.get_html(url)
+
+                    if html:
+                        # Create a BeautifulSoup object to parse the HTML content
+                        soup = BeautifulSoup(html, 'html.parser')
+
+                        # Find all 'a' (anchor) tags in the HTML that have an href attribute
+                        for link in soup.find_all('a', href=True):
+                            # Construct the full URL by combining the base URL with the relative link, extracted from a tag
+                            full_url = urljoin(url, link['href'])
+                            if full_url not in self.visited:
+                                links.append(full_url)
+
+                    return links
+
+
+                def crawl(self):
+                    """Crawl URLs up to the specified depth using threading."""
+                    urls_to_visit = [self.start_url]
+                    for _ in range(self.depth):
+                        new_urls = set()
+
+                        # Create a ThreadPoolExecutor to manage concurrent requests
+                        with ThreadPoolExecutor(max_workers=self.max_threads) as executor:
+                            # Use `executor.map` to apply `fetch_links` concurrently to each URL in `urls_to_visit`
+                            # This returns an iterable (`results`) containing the links found for each URL
+                            results = executor.map(self.fetch_links, urls_to_visit)
+
+                            for links in results:
+                                for link in links:
+                                    if link not in self.visited:
+                                        self.visited.add(link)
+                                        new_urls.add(link)
+                        urls_to_visit = list(new_urls)
+
+
+            if __name__ == '__main__':
+                # Instantiate and run the crawler
+                crawler = WebCrawler("https://books.toscrape.com/", depth=1, max_threads=10)
+                crawler.crawl()
+                print("\nFound URLs:")
+                print("\n".join(crawler.visited))
+        </code></pre>
+    </section>
 </section>
 
-<section data-min="50" class="main-section-title"><h1>Web Crawling with Python</h1></section>
-<section class="sub-sections"><h2>Web Crawling with Python</h2>
-	<section><h3>The Process</h3>
-		<dl class="fa">
-			<dt>Visual inspection: Figure out what to extract</dt>
-			<dd>Tools: Browser's Dev Tools, like <a href="https://developer.chrome.com/docs/devtools/overview/">Chrome DevTools</a></dd>
-			<dt>Make an HTTP request to the webpage and parse it</dt>
-			<dd>Tools: python library like: <a href="https://docs.python-requests.org/en/master/">Requests</a>, <a href="https://docs.python.org/2/library/urllib.html#module-urllib">urllib</a></dd>
-			<dt>Parse the HTML to get the relevant data</dt>
-			<dd><a href="https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a></dd>
-		</dl>
-	</section>
-	<section><h3>Using Chrome DevTools to inspect a WebPage</h3>
-		<dl class="fa">
-			<dt>Live Demo on:</dt>
-			<dd><a href="https://www.rottentomatoes.com/browse/in-theaters/">https://www.rottentomatoes.com/browse/in-theaters/</a></dd>
-			<dd><a href="https://bnr.bg/lyubopitno/list">https://bnr.bg/lyubopitno/list</a></dd>
-			<dd><a href="https://www.jobs.bg/front_job_search.php?add_sh=1&from_hp=1&keywords%5B%5D=python">https://www.jobs.bg/front_job_search.php</a></dd>
-			<dd><a href="https://www.jarcomputers.com/Laptopi_cat_2.html?ref=c_1">https://www.jarcomputers.com/Laptopi_cat_2.html?ref=c_1</a></dd>
-		</dl>
-	</section>
-	<section><h3>Hands on crawler.py: Crawler class template</h3>
-		<pre><code rel="Python" class="python" style="min-height: 80vh;">
-			import requests
+<section data-min="50" class="main-section-title"><h1>Web Scraping - Overview</h1></section>
+<section class="sub-sections"><h2>Web Scraping - Overview</h2>
+    <section><h3>What is Web Scraping</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>Web Scraping is the automated process of extracting data from websites.</dt>
+            <dt>It involves retrieving the HTML content of a web page and parsing it to extract specific information, such as text, images, links, or structured data.</dt>
+            <dt>Web scraping is commonly used for various applications, including:</dt>
+            <dd><b>Data Collection</b>: Gathering large datasets for analysis or research.</dd>
+            <dd><b>Price Monitoring</b>: Tracking prices from e-commerce sites for comparison or market analysis.</dd>
+            <dd><b>Content Aggregation</b>: Compiling information from multiple sources into a single platform.</dd>
+            <dd><b>Lead Generation</b>: Collecting contact information from web pages for marketing purposes.</dd>
 
-			class Crawler:
-				def __init__(self, base_url):
-					pass
+        </dl>
+    </section>
+    <section><h3>The Web Scraping Process</h3>
+        <dl class="fa">
+            <dt>Visual inspection: Determine what data to extract</dt>
+            <dd>Tools: Browser's Dev Tools, such as <a href="https://developer.chrome.com/docs/devtools/overview/">Chrome DevTools</a></dd>
 
-				def get_html(self):
-					pass
+            <dt>Make an HTTP request to the webpage</dt>
+            <dd>Tools: Python libraries like <a href="https://docs.python-requests.org/en/master/">Requests</a> or <a href="https://docs.python.org/2/library/urllib.html#module-urllib">urllib</a></dd>
 
-			if __name__ == "__main__":
-				base_url = 'https://bnr.bg/hristobotev/radioteatre/list'
-
-
-			class Crawler():
-				def __init__(self, url):
-					""" Construct Crawler instances
-
-					Args:
-						url (string): the url to start Crawling
-					"""
-					pass
-
-				def make_filename(self,url):
-				""" Extracts domain from a url.
-					Prepend data_path and append '.html'
-					Needed, only if you want to store the HTML on disk
-
-					Args:
-						url: string
-
-					return `domain`.html string
-				"""
-				pass
-
-				def write_to_file(self,filename, content):
-					""" Write string to given filename
-						Needed, only if you want to store the HTML on disk
-
-						Args:
-							filename: string
-							content: sring
-					"""
-					pass
-
-				def get_html(self,url):
-					""" Make GET request and get html content
-						First try with SSL verification (default),
-						if error => disable SSL verification
-
-						Args:
-							url: string
-
-						return html:string
-					"""
-					pass
-
-
-			if __name__ == '__main__':
-				base_url = 'https://bnr.bg/hristobotev/radioteatre/list'
-				crawler = Crawler(base_url)
-		</code></pre>
-	</section>
+            <dt>Parse the HTML to extract relevant data</dt>
+            <dd>Tools: <a href="https://pypi.org/project/beautifulsoup4/">Beautiful Soup</a></dd>
+        </dl>
+    </section>
+    <section><h3>Using Chrome DevTools to inspect a WebPage</h3>
+        <dl class="fa">
+            <dt>Live Demo on:</dt>
+            <dd><a href="https://www.rottentomatoes.com/browse/in-theaters/">https://www.rottentomatoes.com/browse/in-theaters/</a></dd>
+            <dd><a href="https://bnr.bg/lyubopitno/list">https://bnr.bg/lyubopitno/list</a></dd>
+            <dd><a href="https://www.jobs.bg/front_job_search.php?add_sh=1&from_hp=1&keywords%5B%5D=python">https://www.jobs.bg/front_job_search.php</a></dd>
+            <dd><a href="https://www.jarcomputers.com/Laptopi_cat_2.html?ref=c_1">https://www.jarcomputers.com/Laptopi_cat_2.html?ref=c_1</a></dd>
+        </dl>
+    </section>
 </section>
 
 <section class="main-section-title"><h1>HTML overview and syntax</h1></section>
 <section class="sub-sections"><h2>HTML overview and syntax</h2>
-	<section><h3>What is HTML?</h3>
-		<dl class="fa">
-			<dt>HTML stands for Hyper Text Markup Language</dt>
-			<dt>HTML consists of a series of elements</dt>
-			<dt>HTML elements <span class="note">describes the structure and content</span> of a Web page</dt>
-			<dt>HTML elements are styled with CSS</dt>
-			<dt>HTML elements can be dynamically manipulated with JavaScript</dt>
-		</dl>
-	</section>
-	<section>
-		<dl class="fa">
-			<dt>An HTML document consists of HTML elements!</dt>
-			<dt>Each element has:</dt>
-			<dd><pre class="inline"><code>&lt;opening tag&gt; content &lt;/closing tag&gt;</code></pre>
-			</dd>
-			<img src="images/HTML_elements_syntax.png">
-			<dt>The content can be text, or another HTML element</dt>
-			<dt>Some HTML elements are empty - they have no content, and according to HTML5 - no closing tag. For example:</dt>
-			<dd><pre class="inline"><code>&lt;img src=&quot;images/cats.png&quot;&gt;</code></pre></dd>
-		</dl>
-	</section>
-	<section><h3>Examples</h3>
-		<pre><code rel="HTML">
-			<!-- Element H1 with text content -->
-			&lt;h1&gt;Hello World&lt;/h1&gt;
+    <section><h3>What is HTML?</h3>
+        <dl class="fa">
+            <dt>HTML stands for Hyper Text Markup Language</dt>
+            <dt>HTML consists of a series of elements</dt>
+            <dt>HTML elements <span class="note">describes the structure and content</span> of a Web page</dt>
+            <dt>HTML elements are styled with CSS</dt>
+            <dt>HTML elements can be dynamically manipulated with JavaScript</dt>
+        </dl>
+    </section>
+    <section>
+        <dl class="fa">
+            <dt>An HTML document consists of HTML elements!</dt>
+            <dt>Most HTML elements are of the form:
+                <pre><code data-no-copy>&lt;opening tag&gt; content &lt;/closing tag&gt;</code></pre>
+            </dt>
+            <dd>In the opening tag we can specify some attributes: <br><img src="images/HTML_elements_syntax.png"></dd>
+            <dd>The content can be text, or another HTML element</dd>
+            <dt>Some HTML elements are empty - they have no content, and according to HTML5 - no closing tag. For example:</dt>
+            <pre><code data-no-copy>&lt;img src=&quot;images/cats.png&quot;&gt;</code></pre>
+        </dl>
+    </section>
+    <section><h3>Examples</h3>
+        <pre><code rel="HTML" style="min-height: 60vh;">
+            <!-- Element H1 with text content -->
+            &lt;h1&gt;Hello World&lt;/h1&gt;
 
-			<!-- Element H1 with nested element (EM) content -->
-			&lt;h1&gt;Hello &lt;em&gt;World&lt;/em&gt;&lt;/h1&gt;
+            <!-- Element H1 with nested element (EM) content -->
+            &lt;h1&gt;Hello &lt;em&gt;World&lt;/em&gt;&lt;/h1&gt;
 
-			<!-- Element H1 with text content and one attribute: class with value "primary"-->
-			&lt;h1 class="primary"&gt;Hello World&lt;/h1&gt;
+            <!-- Element H1 with text content and one attribute: class with value "primary"-->
+            &lt;h1 class="primary"&gt;Hello World&lt;/h1&gt;
 
-			<!-- Element H1 with text content and two attributes: class and id -->
-			&lt;h1 class="primary" id="first"&gt;Hello World&lt;/h1&gt;
-		</code></pre>
-	</section>
-	<section><h3>HTML document structure</h3>
-		<dl class="fa">
-			<dt>Each HTML document must follow next structure: </dt>
-		</dl>
-		<pre><code rel="HTML">
-			<!-- Specifies the language and the version -->
-			&lt;!DOCTYPE html&gt;
-			&lt;html&gt;
-				<!-- Meta information -->
-				&lt;head&gt;
-				...
-				&lt;/head&gt;
-				<!-- Page content -->
-				&lt;body&gt;
-				...
-				&lt;/body&gt;
-			&lt;/html&gt;
-	   </code></pre>
-	</section>
+            <!-- Element H1 with text content and two attributes: class and id -->
+            &lt;h1 class="primary" id="first"&gt;Hello World&lt;/h1&gt;
+        </code></pre>
+    </section>
+    <section><h3>HTML document structure</h3>
+        <dl class="fa">
+            <dt>Each HTML document must follow next structure: </dt>
+        </dl>
+        <pre><code rel="HTML">
+            <!-- Specifies the language and the version -->
+            &lt;!DOCTYPE html&gt;
+            &lt;html&gt;
+                <!-- Meta information -->
+                &lt;head&gt;
+                ...
+                &lt;/head&gt;
+                <!-- Page content -->
+                &lt;body&gt;
+                ...
+                &lt;/body&gt;
+            &lt;/html&gt;
+       </code></pre>
+    </section>
 </section>
 
 <section data-min="10" class="main-section-title"><h1>Basic HTML Elements</h1></section>
-<section class="sub-sections"><h2>div and span elements</h2>
-	<dl class="fa">
-		<dt><code>div</code> defines a document section (block) and is used as a container for other elements.</dt>
-		<dt><code>span</code> is an inline element used as container for text or other inline elements</dt>
-	</dl>
-</section>
-<section class="sub-sections"><h2>Хипервръзки</h2>
-    <section><h3>HTML елемент <code>a</code> (anchor)</h3>
-        <pre><code rel="Syntax" class="shell" data-noescape>
-            &lt;a href=&quot;<i>URL</i>&quot;&gt;<i>content</i>&lt;/a&gt;
-        </code></pre>
-        <dl class="fa">
-            <dt><i>URL</i> – идентификатор на ресурс в WWW или на локален файл. Задължителен атрибут!</dt>
-            <dt><i>content</i> – това, което ще се изобрази в страницата като линк. Може да бъде текст, изображение или друг HTML елемент.</dt>
-            <dd class="note">Ако пропуснете <i>content</i>, то браузърът няма да изобрази линка!</dd>
-            <dt>Браузърите слагат дефоултен CSS за посетени/непосетени линкове. Детайлното им оформление ще разгледаме в частта за CSS.</dt>
+<section class="sub-sections"><h2>Hyperlinks</h2>
+    <section><h3>HTML Element <code>a</code> (anchor)</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>The <code>a</code> element is used to link to other web pages, either within the same site or to external sites using the <code>href</code> attribute</dt>
+            <pre><code rel="Syntax" class="shell" data-noescape>
+                &lt;a href=&quot;<i>URL</i>&quot;&gt;<i>content</i>&lt;/a&gt;
+            </code></pre>
+            <dd><i>URL</i> - identifier of a resource on the WWW or a local file. Required attribute!</dd>
+            <dd><i>content</i> - what will be displayed on the page as a link. It can be text, an image, or another HTML element.</dd>
+            <dd class="note">If you omit <i>content</i>, the browser will not display the link!</dd>
         </dl>
     </section>
-    <section><h3>Атрибут <code>target</code></h3>
-        <pre><code rel="Syntax" class="shell" data-noescape>
-            &lt;a href=&quot;<i>URL</i>&quot; target="_blank"&gt;<i>content</i>&lt;/a&gt;
-        </code></pre>
+    <section><h3>More about HTML hyperlinks</h3>
         <dl class="fa">
-            <dt>Атрибута <code class="note">target</code> задава <span class="note">къде</span> да се отвори ресурсът към който сочи линка.</dt>
-            <dt>Стойности:</dt>
-            <dd><code class="note">_self</code>: това е дефоултната стойност. Ресурсът ще се отвори в текущия таб/прозорец.</dd>
-            <dd><code class="note">_blank</code>: ресурсът ще се отвори в нов таб/прозрец на браузера</dd>
-            <dd><code class="note"><i>frame_id</i></code>: ресурсът ще се отвори в зададения фрейм. Ще разгледаме по-подробно в темата за iframes.</dd>
-        </dl>
-    </section>
-    <section><h3>Атрибут <code>title</code></h3>
-        <pre><code rel="Syntax" class="shell" data-noescape>
-            &lt;a href=&quot;<i>URL</i>&quot; title="more info"&gt;<i>content</i>&lt;/a&gt;
-        </code></pre>
-        <dl class="fa">
-            <dt><code>title</code> е <a href="https://www.w3schools.com/tags/ref_standardattributes.asp">глобален атрибут, който често се употребява при хипер-линкове.</a></dt>
-            <dt>В него можем да зададем допълнителна информация, която ще се изобрази като <a href="https://en.wikipedia.org/wiki/Tooltip">tooltip</a>, когато мишката е върху елемента.</dt>
-            <dt>Позиционирайте мишката върху долния линк, и вижте какво прави атрибута <code>title</code></dt>
-            <dd><a href="https://www.google.bg/search?ei=P5muWrLoEMGUmwXaho-AAQ&q=tooltip&oq=tooltip&gs_l=psy-ab.3..0i67k1l4j0i203k1l4j0l2.3960.4583.0.4917.5.5.0.0.0.0.108.468.3j2.5.0....0...1.1.64.psy-ab..0.5.467....0.Dp9GKCA_kVs" title="more info">what is tooltip</a></dd>
-        </dl>
-    </section>
-    <section><h3>Повече за HTML hyperlinks</h3>
-        <dl class="fa">
-            <dt>Общо описание за употребата на хипер-линкове в HTML: <a href="https://www.w3schools.com/html/html_links.asp">HTML Links@w3schools</a></dt>
-            <dt>Сбит справочник за HTML a елемента: <a href="https://www.w3schools.com/tags/tag_a.asp">HTML &lt;a&gt; Tag@w3schools</a></dt>
-
+            <dt>General description of the use of hyperlinks in HTML: <a href="https://www.w3schools.com/html/html_links.asp">HTML Links@w3schools</a></dt>
+            <dt>Concise reference for the HTML a element: <a href="https://www.w3schools.com/tags/tag_a.asp">HTML &lt;a&gt; Tag@w3schools</a></dt>
         </dl>
     </section>
 </section>
 
 <!-- HTML lists -->
 <section class="sub-sections"><h2>HTML lists</h2>
-	<section><h3>Unordered lists (<code><strong>UL</strong></code>)</h3>
-		<pre><code rel="HTML">
-			<ul>
-				<li>2 бр. яйца</li>
-				<li>1 ч.ч. прясно мляко или вода</li>
-				<li>1 ч.ч. брашно тип 500</li>
-				<li>1 с.л. краве масло</li>
-				<li>Щипка сол, щипка захар</li>
-			</ul>
-		</code></pre>
-		<dl class="fa">
-			<dt class="note">An <code><strong>UL</strong></code> element could contain <b>only</b> <code><strong>LI</strong></code> elements!</dt>
-			<dt class="note">A <code><strong>LI</strong></code> element could contains any HTML elements</dt>
-		</dl>
-	</section>
-	<section><h3>Ordered lists (<code><strong>OL</strong></code>)</h3>
-		<pre style="font-size: .5em"><code rel="HTML" class="html">
-			<ol>
-				<li>Яйцата се разбиват, докато се получи еднородна смес.</li>
-				<li>Добавя се млякото, щипка сол и щипка захар.</li>
-				<li>На малки порции се добавя пресятото брашно.</li>
-				<li>Разбъркваме до получаването на гъста смес,
-					с консистенция подобна на боза.</li>
-				<li>Намазваме с масло предварително нагрятия тиган
-					и поставяме черпак от сместа.</li>
-				<li>След няколко минути обръщаме палачинката.</li>
-			</ol>
-		</code></pre>
-		<dl class="fa">
-			<dt class="note">An <code><strong>OL</strong></code> element could contain <b>only</b> <code><strong>LI</strong></code> elements!</dt>
-			<dt class="note">A <code><strong>LI</strong></code> element could contains any HTML elements</dt>
-		</dl>
-	</section>
+    <section><h3>Unordered lists (<code><strong>UL</strong></code>)</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code>UL</code> element is used as a container for a list where the order of items does not matter </dt>
+            <pre><code rel="HTML">
+                <ul>
+                    <li>2 бр. яйца</li>
+                    <li>1 ч.ч. прясно мляко или вода</li>
+                    <li>1 ч.ч. брашно тип 500</li>
+                    <li>1 с.л. краве масло</li>
+                    <li>Щипка сол, щипка захар</li>
+                </ul>
+            </code></pre>
+            <dd class="note">An <code><strong>UL</strong></code> element could contain <b>only</b> <code><strong>LI</strong></code> elements!</dd>
+            <dd class="note">A <code><strong>LI</strong></code> element could contains any HTML elements</dd>
+        </dl>
+    </section>
+    <section><h3>Ordered lists (<code><strong>OL</strong></code>)</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt><code><Obj></Obj>L</code> element is used as a container for a list where the order of items is significant, indicating a sequence or ranking.</dt>
+            <pre style="font-size: .5em"><code rel="HTML" class="html">
+                <ol>
+                    <li>Яйцата се разбиват, докато се получи еднородна смес.</li>
+                    <li>Добавя се млякото, щипка сол и щипка захар.</li>
+                    <li>На малки порции се добавя пресятото брашно.</li>
+                    <li>Разбъркваме до получаването на гъста смес,
+                        с консистенция подобна на боза.</li>
+                    <li>Намазваме с масло предварително нагрятия тиган
+                        и поставяме черпак от сместа.</li>
+                    <li>След няколко минути обръщаме палачинката.</li>
+                </ol>
+            </code></pre>
+            <dt class="note">An <code><strong>OL</strong></code> element could contain <b>only</b> <code><strong>LI</strong></code> elements!</dt>
+            <dt class="note">A <code><strong>LI</strong></code> element could contains any HTML elements</dt>
+        </dl>
+
+    </section>
 </section>
 
 <section class="sub-sections"><h2>HTML Tables</h2>
-	<section><h3>Основни елементи</h3>
-		<p><a href="http://www.w3schools.com/html/html_tables.asp">w3schools - HTML Tables</a></p>
-		<ul>
-			<li><code><a href="http://www.w3schools.com/tags/tag_table.asp">table</a></code></li>
-			<li><code><a href="http://www.w3schools.com/tags/tag_caption.asp">caption</a></code></li>
-			<li><code><a href="http://www.w3schools.com/tags/tag_colgroup.asp">colgroup</a></code></li>
-			<li><code><a href="http://www.w3schools.com/tags/tag_tr.asp">tr</a></code></li>
-			<li><code><a href="http://www.w3schools.com/tags/tag_td.asp">td</a></code></li>
-			<li><code><a href="http://www.w3schools.com/tags/tag_th.asp">th</a></code></li>
-		</ul>
-	</section>
-	<section><h3>Пример:</h3>
-        <img class="norm" src="images/table_no-span.png">
-        <pre><code rel="HTML">
-            &lt;table border="1"&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Едно&lt;/td&gt;
-                    &lt;td&gt;Две&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                    &lt;td&gt; Три &lt;/td&gt;
-                    &lt;td&gt; Четири &lt;/td&gt;
-                &lt;/tr&gt;
-            &lt;/table&gt;
-        </code></pre>
-	</section>
+    <section><h3>Basic Elements</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>An HTML table is used to display data in a structured format consisting of rows and columns. </dt>
+            <dt>It is created using the &lt;table&gt; element, with &lt;tr&gt; for rows, &lt;th&gt; for header cells, and &lt;td&gt; for standard data cells</dt>
+            <dt>Reference: <a href="http://www.w3schools.com/html/html_tables.asp">w3schools - HTML Tables</a></dt>
+            <dt>Example</dt>
+            <img class="norm" src="images/table_no-span.png">
+            <pre><code rel="HTML">
+                &lt;table border="1"&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;One&lt;/td&gt;
+                        &lt;td&gt;Two&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt; Three &lt;/td&gt;
+                        &lt;td&gt; Four &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            </code></pre>
+        </dl>
+    </section>
+</section>
 
+
+<section class="sub-sections"><h2>div and span elements</h2>
+    <section><h3>div and span elements</h3>
+        <dl class="fa">
+            <dt>The <code>div</code> and <code>span</code> elements in HTML are used for grouping content.</dt>
+            <dt><code class="note">div</code> is used to group larger sections of content or block elements for styling and layout purposes.</dt>
+            <dt><code class="note">span</code> is used to group small portions of text or inline elements for styling purposes without breaking the flow of content.</dt>
+        </dl>
+    </section>
 </section>
 
 <section data-min="10" class="main-section-title"><h1>CSS overview</h1></section>
 <section class="sub-sections"><h2>CSS syntax</h2>
-	<section>
-			<p>Общ синтаксис на едно CSS правило:</p>
-			<pre><code rel="Formal Syntax">
-					selector {
-							property1: value1;
-							property2: value2;
-									...
-					}
-			</code></pre>
-			<p>Пример:</p>
-			<pre><code rel="CSS">
-					h1{
-							background-color: red;
-							color: white;
-					}
-			</code></pre>
-	</section>
-	<section><p>Общ синтаксис на едно CSS правило:</p>
-			<img class="norm" src="images/CSS_syntax_image.png">
-	</section>
-	<section>
-			<p>Селекторите могат да се групират - отделят се със запетайка</p>
-			<pre><code rel="CSS">
-					h2,h4 {
-							color: white;
-					}
-			</code></pre>
-	</section>
-	<section>
-			<p>Декларациите също могат да се групират – отделят се с точка и запетая ‘ ; ’</p>
-			<pre><code rel="CSS">
-					h4 {
-							background-color: red;
-							color: white;
-							border: 5px solid gray;
-					}
-			</code></pre>
-			<p>' ; ' след последна декларация не е задължителна, но е добра практика да се поставя винаги – улеснява редактирането на кода.</p>
-	</section>
-
-	<section><h3>Коментари в CSS</h3>
-			<dl>
-					<dt><code>/*</code> - за начало на коментар</dt>
-					<dt><code>*/</code> - за край на коментар</dt>
-			</dl>
-			<p>Пример:</p>
-			<pre><code rel="CSS">
-					/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-						Пример за многоредов коментар
-					~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-					/*Main_Sections_Title*/
-					section>h2{
-							font-size: 1em;
-							-webkit-border-radius: 12px;  /* Safari 3-4 */
-							-moz-border-radius: 12px;     /* Firefox 3.6 and below */
-							border-radius: 12px;          /* modern browsers */
-							/*background: red;*/
-					}
-			</code></pre>
-	</section>
+    <section><h3>Syntax of CSS rule:</h3>
+            <pre><code rel="Formal Syntax">
+                    selector {
+                            property1: value1;
+                            property2: value2;
+                                    ...
+                    }
+            </code></pre>
+            <p>Example:</p>
+            <pre><code rel="CSS">
+                    h1{
+                            background-color: red;
+                            color: white;
+                    }
+            </code></pre>
+    </section>
 </section>
 
-<section class="sub-sections"><h2>CSS Selectors overview</h2>
-	<section><h3>Overview</h3>
-		<dl class="fa">
-			<dt>Шаблони, които определят над кои HTML елементи ще се приложи зададеният стил в декларациите.</dt>
-			<dt>Могат да бъдат съвсем прости, като '<code>*</code>' или '<code>p</code>' или доста по-сложни като:
-			<pre><code>a[href^="https://"]:hover</code></pre></dt>
-		</dl>
-		<p class="advanced text_left">Списък със всички дефинирани в стандарта (CSS1 – CSS3) селектори: <a href="http://www.w3schools.com/cssref/css_selectors.asp">css_selectors</a></p>
-		<p>В момента се разработва спецификацията<br><a href="https://drafts.csswg.org/selectors-4/#subject">CSS Selectors Level 4</a></p>
-	</section>
-	<section class="text_left"><h3>Element (type) selectors</h3>
-		<pre><code rel="CSS">
-			/* Всички параграфи в документа ще бъдат с червен шрифт */
-			p {
-				color: red;
-			}
-		</code></pre>
-		<p><u>Действие</u>: селектира всички HTML елементи от дадения тип.</p>
-		<p><a href="slides_examples/type_selectors_example/type_selectors_example.html">Пример: "Цитати на известни личности"</a></p>
-	</section>
-	<section><h3>Универсален селектор (Universal selector)</h3>
-		<pre><code rel="CSS">
-			* {
-				marging: 0;
-				padding: 0
-			}
-		</code></pre>
-		<p><u>Действие</u>: селектира всички HTML елементи в документа.</p>
-		<p class="note">Не се препоръчва да се използва, тъй като забавя обработката на страницата.</p>
-	</section>
+<section class="sub-sections"><h2>CSS Selectors Overview</h2>
+    <section><h3>Overview</h3>
+        <dl class="fa">
+            <dt>Patterns that determine which HTML elements the specified styles in the declarations will be applied to.</dt>
+            <dt>They can be very simple, like '<code>*</code>' or '<code>p</code>', or much more complex, such as:
+            <pre><code>a[href^="https://"]:hover</code></pre></dt>
+        </dl>
+        <p class="advanced text_left">A list of all selectors defined in the standard (CSS1 - CSS3): <a href="http://www.w3schools.com/cssref/css_selectors.asp">css_selectors</a></p>
+        <p>The specification is currently being developed<br><a href="https://drafts.csswg.org/selectors-4/#subject">CSS Selectors Level 4</a></p>
+    </section>
+    <section class="text_left"><h3>Element (type) Selectors</h3>
+        <pre><code rel="CSS">
+            /* All paragraphs in the document will have red font */
+            p {
+                color: red;
+            }
+        </code></pre>
+        <p><u>Action</u>: selects all HTML elements of the specified type.</p>
+        <p><a href="slides_examples/type_selectors_example/type_selectors_example.html">Example: "Quotes from Famous People"</a></p>
+    </section>
+    <section><h3>Universal Selector</h3>
+        <pre><code rel="CSS">
+            * {
+                margin: 0;
+                padding: 0
+            }
+        </code></pre>
+        <p><u>Action</u>: selects all HTML elements in the document.</p>
+        <p class="note">It is not recommended to use it, as it slows down the processing of the page.</p>
+    </section>
 </section>
 
-<section class="sub-sections"><h2>Селектори за class и id</h2>
-	<section><h3>HTML атрибути: class и id</h3>
-		<dl class="fa">
-			<dt><span class="code note">class</span> - можем да зададем един и същи клас на <span class="note">множество</span> елементи в HTML. Така лесно можем да селектираме всички тях.</dt>
-			<dt><span class="code note  ">id</span> - само <span class="note">един</span> елемент в документа може да има дадено id. T.e. чрез <span class="code">id</span> селектираме само един елемент.</dt>
-		</dl>
-		<pre><code rel="HTML">
-			<p class="odd">Параграф 1</p>
-			<p class="even" id="vip">Параграф 2</p>
-			<p class="odd">Параграф 3</p>
-			<p class="even">Параграф 4</p>
-			<p class="odd">Параграф 5</p>
-		</code></pre>
-	</section>
-	<section><h3>Стойности за class и id</h3>
-		<dl class="fa">
-			<dt>Стойностите на атрибутите <b>class</b> и <b>id</b> са по избор на програмиста, но задължително започват с буква, след която може да има произволна съвкупност от букви, цифри, '_' и '-'.</dt>
-			<dt>Можем да зададем <span class="note">няколко класа</span> за един елемент, като ги разделяме със <span class="note">спейс</span>.</dt>
-			<pre><code rel="HTML" style="width: 105%; margin-left: -2em;">
-				<!--Параграфът ще принадлежи към 2 класа: 'odd' и 'red'-->
-				<p class="odd red">Параграф 3</p>
-			</code></pre>
-			<dt><span class="note">В атрибута <b>id</b> не можем да имаме спейс!</span></dt>
-		</dl>
-	</section>
-	<section><h3>Селектор за class</h3>
-		<dl class="fa" style="font-size: .9em">
-			<dt>Записва се с точка ("<b>.</b>") последвана от стойност на class.</dt>
-			<dt>Може да бъде специфициран допълнително, като пред него непосредствено се запише тип на елемент.</dt>
-			<pre><code rel="CSS">
-				/* Селектира всички HTML елементи, които са дефинирали class="blue" */
-				.blue{
-					color: blue;
-				}
-				/* Селектира всички HTML елементи, от тип 'p', които са дефинирали class="red" */
-				p.red{
-					color: red;
-				}
-			</code></pre>
-		</dl>
-	</section>
-	<section><h3>Селектор за id</h3>
-		<dl class="fa">
-			<dt>Записва се с диез (хаш таг) - "<b>#</b>", последван от стойност на атрибута <b>id</b>.</dt>
-			<pre><code rel="CSS">
-				/* Селектира елементът с id="main_title" */
-				#main_title{
-					color: red;
-				}
-			</code></pre>
-			<dt>Тъй като с дадено <b>id</b> можем да обозначим само един единствен елемент от  цялото HTML дърво, то е безсмислен записът с тип на елемент отпред.</dt>
-			<dt> Например: <code>p#vip{...}</code> няма смисъл и не се препоръчва да се използва.</dt>
-		</dl>
-	</section>
-	<section><h3>Пример</h3>
-		<pre><code rel="CSS" style="width: 120%; height: 50vh; margin-left: -2em;">
-		/* Селектира всички HTML елементи, които са дефинирали class="c1" */
-		.c1{
-			color: purple;
-		}
-		/* Селектира всички H1 елементи, които са дефинирали class="c1" */
-		h1.c1{
-			font-style: italic;
-		}
-		/* Селектор по id */
-		#vip{
-			color: #aa3333;
-			font-size: 2em;
-			text-shadow:
-				2px 2px #a000a0,
-				2px 2px #c000c0;
-		}
-		</code></pre>
-		<pre><code rel="HTML" style="width: 120%; height: 30vh; margin-left: -2em;">
-			<p>Purple Section:</p>
-			<h1 class="c1">Заглавие</h1>
-			<p class="c1">Параграф</p>
-			<h2 class="c1">Под заглавие</h2>
-			<p class="c1">Параграф</p>
-			<p id="vip">Параграф с id="vip"</p>
-		</code></pre>
-	</section>
+
+<section class="sub-sections"><h2>Selectors for class and id</h2>
+    <section><h3>HTML attributes: class and id</h3>
+        <dl class="fa">
+            <dt><span class="code note">id</span> - only <span class="note">one</span> element in the document can have a given id. That is, by using <span class="code">id</span> we select only one element.</dt>
+            <dt><span class="code note">class</span> - we can assign the same class to <span class="note">multiple</span> elements in HTML. This way, we can easily select all of them.</dt>
+        </dl>
+        <pre><code rel="HTML">
+            <p class="odd">Paragraph 1</p>
+            <p class="even" id="vip">Paragraph 2</p>
+            <p class="odd">Paragraph 3</p>
+            <p class="even">Paragraph 4</p>
+            <p class="odd">Paragraph 5</p>
+        </code></pre>
+    </section>
+    <section><h3>Values for class and id</h3>
+        <dl class="fa">
+            <dt>The values of the <b>class</b> and <b>id</b> attributes are chosen by the programmer but must start with a letter, followed by any combination of letters, digits, '_' and '-'.</dt>
+            <dt>We can assign <span class="note">multiple classes</span> to one element by separating them with a <span class="note">space</span>.</dt>
+            <pre><code rel="HTML" style="width: 105%; margin-left: -2em;">
+                <!--The paragraph will belong to 2 classes: 'odd' and 'red'-->
+                <p class="odd red">Paragraph 3</p>
+            </code></pre>
+            <dt><span class="note">In the <b>id</b> attribute, we cannot have a space!</span></dt>
+        </dl>
+    </section>
+    <section><h3>Class selector</h3>
+        <dl class="fa" style="font-size: .9em">
+            <dt>It is written with a dot ("<b>.</b>") followed by the class value.</dt>
+            <dt>It can be further specified by directly writing the element type before it.</dt>
+            <pre><code rel="CSS">
+                /* Selects all HTML elements that have defined class="blue" */
+                .blue{
+                    color: blue;
+                }
+                /* Selects all HTML elements of type 'p' that have defined class="red" */
+                p.red{
+                    color: red;
+                }
+            </code></pre>
+        </dl>
+    </section>
+    <section><h3>Id selector</h3>
+        <dl class="fa">
+            <dt>It is written with a hash (hashtag) - "<b>#</b>", followed by the value of the <b>id</b> attribute.</dt>
+            <pre><code rel="CSS">
+                /* Selects the element with id="main_title" */
+                #main_title{
+                    color: red;
+                }
+            </code></pre>
+            <dt>Since we can designate only one element in the entire HTML tree with a given <b>id</b>, it is meaningless to write the element type in front.</dt>
+            <dt> For example: <code>p#vip{...}</code> makes no sense and is not recommended to use.</dt>
+        </dl>
+    </section>
+    <section><h3>Example</h3>
+        <pre><code rel="CSS" style="width: 120%; height: 50vh; margin-left: -2em;">
+        /* Selects all HTML elements that have defined class="c1" */
+        .c1{
+            color: purple;
+        }
+        /* Selects all H1 elements that have defined class="c1" */
+        h1.c1{
+            font-style: italic;
+        }
+        /* Selector by id */
+        #vip{
+            color: #aa3333;
+            font-size: 2em;
+            text-shadow:
+                2px 2px #a000a0,
+                2px 2px #c000c0;
+        }
+        </code></pre>
+        <pre><code rel="HTML" style="width: 120%; height: 30vh; margin-left: -2em;">
+            <p>Purple Section:</p>
+            <h1 class="c1">Title</h1>
+            <p class="c1">Paragraph</p>
+            <h2 class="c1">Subtitle</h2>
+            <p class="c1">Paragraph</p>
+            <p id="vip">Paragraph with id="vip"</p>
+        </code></pre>
+    </section>
 </section>
 
-<section class="sub-sections"><h2>CSS Комбинатори (<a href="https://www.w3schools.com/css/css_combinators.asp">CSS Combinators</a>)</h2>
-	<section>
-		<p>Чрез комбинаторите съставяме селектори, които отчитат позицията (контекста) на елементите в HTML дървото.</p>
-	</section>
-	<section><h3>Видове HTML възли</h3>
-		<dl class="fa">
-			<dt>Родител (Parent)</dt>
-			<dt>Дете (Child)</dt>
-			<dt>Наследници (Descendants)</dt>
-			<dt>Братя (Siblings)</dt>
-		</dl>
-	</section>
-	<!-- <section style="font-size: .7em"><h3>Видове HTML възли</h3>
-		<div class="html_block">
-			<div class="parent">
-			<p>DIV1</p>
-			<div class="parent child">
-				<p>DIV2</p>
-				<div class="child">
-					<p>DIV3</p>
-				</div>
-			</div>
-			</div>
-			<hr>
-			<ul>
-				<li>DIV3: Child of DIV2; Descendant of DIV2 and DIV1</li>
-				<li><a href="slides_examples/html_nodes_types_code_and_preview.html">Пример</a></li>
-			</ul>
-		</div>
-	</section> -->
-	<section>
-		<p>Селекторите, чрез които можем да избираме елементи според позицията им в HTML дървото се образуват чрез <span class="note">комбинатори</span>:</p>
-		<p>Комбинаторите, са символи, чрез които се задава връзка между селектори и така чрез тях се образува съставен селектор.</p>
-	</section>
-	<section>
-		<pre><code rel="Syntax">
-			selector1&lt;combinator&gt;selector2
-		</code></pre>
-		<table>
-			<tr>
-				<th>Комбинатор</th>
-				<th>Селектор</th>
-			</tr>
-			<tr>
-				<td>'&nbsp;&nbsp;' (<span class="note">спейс</span>)</td>
-				<td><a href="https://www.w3schools.com/cssref/sel_element_element.asp" title="">parentSelector &nbsp; descendantsSelector</a></td>
-			</tr>
-			<tr>
-				<td>'<span class="note">></span>'</td>
-				<td><a href="https://www.w3schools.com/cssref/sel_element_gt.asp" title="">parentSelector <span class="note">&gt;</span> childrenSelector</a></td>
-			</tr>
-			<tr>
-				<td>'<span class="note">~</span>'</td>
-				<td><a href="https://www.w3schools.com/cssref/sel_gen_sibling.asp" title="">previousSelector<span class="note">~</span>generalSiblingSelector</a></td>
-			</tr>
-			<tr>
-				<td>'<span class="note">+</span>'</td>
-				<td><a href="https://www.w3schools.com/cssref/sel_element_pluss.asp" title="">previousSelector<span class="note">+</span>adjacentSiblingSelector</a></td>
-			</tr>
-		</table>
-	</section>
-	<section><h3>Видове HTML възли и съответстващи комбинатори - Диаграма</h3>
-		<a href="images/CSS_CombinatorsDepictionInTree.png"><img src="images/CSS_CombinatorsDepictionInTree.png" style="min-height: 60vh"></a>
-	</section>
-	<section><h3>Пример: CSS Combinators</h3>
-		<p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="dQJzem/" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS Selectrors - Combinators (labs)">
-		<span>See the Pen <a href='https://codepen.io/webdesigncourse/pen/dQJzem/'>CSS Selectrors - Combinators</a>  on <a href='https://codepen.io'>CodePen</a>.
-		</span>
-		</p>
-	</section>
-	<section><h3>Пример: CSS Combinators </h3>
-		<p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="XyVaxR/" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Combinators Siblings - demo">
-		<span>See the Pen <a href='https://codepen.io/webdesigncourse/pen/XyVaxR/'>Combinators Siblings - demo</a> by Iva Popova (<a href='https://codepen.io/webdesigncourse'>@webdesigncourse</a>) on <a href='https://codepen.io'>CodePen</a>.
-		</span>
-		</p>
-	</section>
-	<section><h3>Пример: CSS Combinators</h3>
-		<p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="GRoabPz" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Task: ComplexCombinators">
-		<span>
-		See the Pen <a href='https://codepen.io/webdesigncourse/pen/GRoabPz'>Task: ComplexCombinators</a> by Iva Popova
-		(<a href='https://codepen.io/webdesigncourse'>@webdesigncourse</a>) on <a href='https://codepen.io'>CodePen</a>.
-		</span>
-		</p>
-	</section>
+
+<section class="sub-sections"><h2>CSS Combinators (<a href="https://www.w3schools.com/css/css_combinators.asp">CSS Combinators</a>)</h2>
+    <section>
+        <p>Using combinators, we create selectors that take into account the position (context) of elements in the HTML tree.</p>
+    </section>
+    <section><h3>Types of HTML Nodes</h3>
+        <dl class="fa">
+            <dt>Parent</dt>
+            <dt>Child</dt>
+            <dt>Descendants</dt>
+            <dt>Siblings</dt>
+        </dl>
+    </section>
+    <!-- <section style="font-size: .7em"><h3>Types of HTML Nodes</h3>
+        <div class="html_block">
+            <div class="parent">
+            <p>DIV1</p>
+            <div class="parent child">
+                <p>DIV2</p>
+                <div class="child">
+                    <p>DIV3</p>
+                </div>
+            </div>
+            </div>
+            <hr>
+            <ul>
+                <li>DIV3: Child of DIV2; Descendant of DIV2 and DIV1</li>
+                <li><a href="slides_examples/html_nodes_types_code_and_preview.html">Example</a></li>
+            </ul>
+        </div>
+    </section> -->
+    <section>
+        <p>The selectors that allow us to select elements based on their position in the HTML tree are formed using <span class="note">combinators</span>:</p>
+        <p>Combinators are symbols that define a relationship between selectors, thus forming a compound selector.</p>
+    </section>
+    <section>
+        <pre><code rel="Syntax">
+            selector1&lt;combinator&gt;selector2
+        </code></pre>
+        <table>
+            <tr>
+                <th>Combinator</th>
+                <th>Selector</th>
+            </tr>
+            <tr>
+                <td>'&nbsp;&nbsp;' (<span class="note">space</span>)</td>
+                <td><a href="https://www.w3schools.com/cssref/sel_element_element.asp" title="">parentSelector &nbsp; descendantsSelector</a></td>
+            </tr>
+            <tr>
+                <td>'<span class="note">></span>'</td>
+                <td><a href="https://www.w3schools.com/cssref/sel_element_gt.asp" title="">parentSelector <span class="note">&gt;</span> childrenSelector</a></td>
+            </tr>
+            <tr>
+                <td>'<span class="note">~</span>'</td>
+                <td><a href="https://www.w3schools.com/cssref/sel_gen_sibling.asp" title="">previousSelector<span class="note">~</span>generalSiblingSelector</a></td>
+            </tr>
+            <tr>
+                <td>'<span class="note">+</span>'</td>
+                <td><a href="https://www.w3schools.com/cssref/sel_element_pluss.asp" title="">previousSelector<span class="note">+</span>adjacentSiblingSelector</a></td>
+            </tr>
+        </table>
+    </section>
+    <section><h3>Types of HTML Nodes and Corresponding Combinators - Diagram</h3>
+        <a href="images/CSS_CombinatorsDepictionInTree.png"><img src="images/CSS_CombinatorsDepictionInTree.png" style="min-height: 60vh"></a>
+    </section>
+    <section><h3>Example: CSS Combinators</h3>
+        <p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="dQJzem/" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS Selectrors - Combinators (labs)">
+        <span>See the Pen <a href='https://codepen.io/webdesigncourse/pen/dQJzem/'>CSS Selectrors - Combinators</a> on <a href='https://codepen.io'>CodePen</a>.
+        </span>
+        </p>
+    </section>
+    <section><h3>Example: CSS Combinators</h3>
+        <p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="XyVaxR/" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Combinators Siblings - demo">
+        <span>See the Pen <a href='https://codepen.io/webdesigncourse/pen/XyVaxR/'>Combinators Siblings - demo</a> by Iva Popova (<a href='https://codepen.io/webdesigncourse'>@webdesigncourse</a>) on <a href='https://codepen.io'>CodePen</a>.
+        </span>
+        </p>
+    </section>
+    <section><h3>Example: CSS Combinators</h3>
+        <p class="codepen" data-height="300" data-theme-id="20230" data-default-tab="html,result" data-user="webdesigncourse" data-slug-hash="GRoabPz" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Task: ComplexCombinators">
+        <span>
+        See the Pen <a href='https://codepen.io/webdesigncourse/pen/GRoabPz'>Task: ComplexCombinators</a> by Iva Popova
+        (<a href='https://codepen.io/webdesigncourse'>@webdesigncourse</a>) on <a href='https://codepen.io'>CodePen</a>.
+        </span>
+        </p>
+    </section>
 </section>
+
 
 <section class="disclaimer end-slide"></section>
 <!--
@@ -659,50 +616,50 @@
 ##################### SLIDES END   #####################
 ########################################################
 -->
-		</div>
-	</div>
-	<!-- Custom processing -->
-	<script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
-	<!-- external scripts -->
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
-	<script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
-	 <!-- init reveal -->
-	<script>
-		// Full list of configuration options available at:
-		// https://github.com/hakimel/reveal.js#configuration
-		var highlightjsTabSize = '  ';
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			slideNumber: 'c/t',
-			keyboard: true,
-			history: true,
-			center: true,
-			width: 1920,
-			height: 1280,
-			// Bounds for smallest/largest possible scale to apply to content
-			// minScale: .5,
-			maxScale: 1,
-			// slide transition
-			transition: 'concave', // none/fade/slide/convex/concave/zoom
-			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
-			// shift+left click to zoom in/out element
-			zoomKey: 'ctrl',
-			// theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-			// transition: Reveal.getQueryHash().transition || 'default'
-			// Optional reveal.js plugins
-			dependencies: [
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-				{ src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
-			]
-		});
-	</script>
+        </div>
+    </div>
+    <!-- Custom processing -->
+    <script src="/PythonCourseNetIT-Slides/outfit/js/slides.js"></script>
+    <!-- external scripts -->
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/head.min.js"></script>
+    <script src="/PythonCourseNetIT-Slides/lib/reveal.js/js/reveal.js"></script>
+     <!-- init reveal -->
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        var highlightjsTabSize = '  ';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            slideNumber: 'c/t',
+            keyboard: true,
+            history: true,
+            center: true,
+            width: 1920,
+            height: 1280,
+            // Bounds for smallest/largest possible scale to apply to content
+            // minScale: .5,
+            maxScale: 1,
+            // slide transition
+            transition: 'concave', // none/fade/slide/convex/concave/zoom
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+            // shift+left click to zoom in/out element
+            zoomKey: 'ctrl',
+            // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            // transition: Reveal.getQueryHash().transition || 'default'
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.configure({tabReplace: highlightjsTabSize}); hljs.initHighlightingOnLoad(); } },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '/PythonCourseNetIT-Slides/lib/reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
 
-	<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+    <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 </body>
 </html>
