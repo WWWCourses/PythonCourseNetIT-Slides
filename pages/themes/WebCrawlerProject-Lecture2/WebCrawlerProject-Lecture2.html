@@ -379,6 +379,11 @@
         </dl>
     </section>
     <section><h3>Step1: Fetch the Web Page content</h3>
+        <dl class="fa" style="min-width:80vw">
+            <dt>In next example I use the Python's <a href="https://docs.python.org/3/library/logging.html">logging</a> module.</dt>
+            <dt>Using logging instead of print() for debugging provides more control over your program's output by allowing you to categorize messages by severity (e.g., INFO, ERROR) and direct them to different destinations like files or consoles.</dt>
+            <dt>It also enables better debugging with timestamps and makes it easier to disable or adjust message output in production environments, without modifying the code.</dt>
+        </dl>
         <pre><code rel="Python" class="python" style="min-height: 90vh;">
             import requests
             import logging
@@ -500,7 +505,118 @@
         </code></pre>
     </section>
     <section><h3>The whole code</h3>
-    <script src="https://gist.github.com/WWWCourses/7558d423f60c54ea7893b538b8742448.js"></script>
+    <!-- <script src="https://gist.github.com/WWWCourses/7558d423f60c54ea7893b538b8742448.js"></script> -->
+     <pre><code rel="Python" class="python" style="min-height: 90vh;">
+        import requests
+        import logging
+        import bs4
+
+        logger = logging.getLogger(__name__)
+        logging.basicConfig(
+            format=&quot;%(asctime)s:%(name)s:%(levelname)s:%(message)s&quot;, datefmt=&quot;%Y-%m-%d %H:%M:%S&quot;
+        )
+        logger.setLevel(logging.ERROR)
+
+
+        def get_html_from_file(filename=&quot;./page.html&quot;):
+            &quot;&quot;&quot;Use this function while developing your scraper to avoid making unnecessary requests&quot;&quot;&quot;
+            with open(filename, &quot;r&quot;) as f:
+                return f.read()
+
+
+        def get_html(url):
+            &quot;&quot;&quot;Retrieves the HTML content of a given URL, handling errors appropriately.&quot;&quot;&quot;
+
+            # set user-agent
+            user_agent = &quot;A scrapper for learning&quot;
+            headers = {&quot;User-Agent&quot;: user_agent}
+
+            # perform GET request
+            try:
+                response = requests.get(url, headers=headers)
+                response.raise_for_status()  # Raise an exception for non-200 status codes
+
+                response.encoding = &quot;utf-8&quot;
+                return response.text
+
+            except requests.exceptions.RequestException as e:
+                logger.error(f&quot;Failed to retrieve HTML from {url}: {e}&quot;)
+                raise  # re-raise the exception to be handled by the caller
+
+
+        def extract_data(html):
+            soup = bs4.BeautifulSoup(html, &quot;html.parser&quot;)
+
+            ### get all countries (&apos;&lt;div class=&quot;col-md-4 country&quot;&gt;&apos;)
+            selector = &quot;#countries div.country&quot;
+            countries = soup.select(selector=selector)
+
+            ### get Bulgaria area:
+            # get Bulgaria data div:
+            bulgaria_div = list(
+                filter(
+                    lambda c: c.select_one(&quot;.country-name&quot;).text.strip().lower() == &quot;bulgaria&quot;,
+                    countries,
+                )
+            )[0]
+            logger.debug(f&quot;Bulgaria data div: {bulgaria_div}&quot;)
+
+            # from Bulgaria data div get &quot;span.country-area&quot; value:
+            bulgaria_are_elem = bulgaria_div.select_one(&quot;span.country-area&quot;)
+            if bulgaria_are_elem:
+                bulgaria_area = float(bulgaria_are_elem.text.strip())
+                logger.debug(f&quot;Bulgaria area: {bulgaria_area}&quot;)
+            else:
+                logger.debug(&quot;Area information not found for Bulgaria&quot;)
+                bulgaria_area = None  # Or some default value if necessary
+
+            ### get all countries which have area&gt;bulgaria_area:
+            bigger_countries = filter(
+            lambda c: (
+                c.select_one(&quot;span.country-area&quot;) is not None and
+                float(c.select_one(&quot;span.country-area&quot;).text) &gt; bulgaria_area
+            ),
+            countries,
+        )
+
+            ### get &apos;country_name&apos;, &apos;capital&apos;, &apos;population&apos; and &apos;area&apos; for each country
+            countries_data = []
+            for country in bigger_countries:
+                logger.debug(f&quot;process country: {country}&quot;)
+                country_data = {}
+
+                country_data[&quot;name&quot;] = country.select_one(&quot;.country-name&quot;).text.strip()
+                country_data[&quot;capital&quot;] = country.select_one(&quot;.country-capital&quot;).text.strip()
+                country_data[&quot;population&quot;] = country.select_one(
+                    &quot;.country-population&quot;
+                ).text.strip()
+                country_data[&quot;area&quot;] = country.select_one(&quot;.country-area&quot;).text.strip()
+                logger.debug(f&quot;country_data: {country_data}&quot;)
+                countries_data.append(country_data)
+
+            logger.info(f&quot;countries_data: {countries_data}&quot;)
+            return countries_data
+
+
+        if __name__ == &quot;__main__&quot;:
+            url = &quot;https://www.scrapethissite.com/pages/simple&quot;
+            html = &quot;&quot;
+
+            try:
+                # html = get_html(url)
+                html = get_html_from_file()
+                if not html:
+                    raise Exception(&quot;HTML content can not be empty!&quot;)
+            except Exception as e:
+                logger.error(f&quot;An error occurred: {e}&quot;)
+
+            countries_data = extract_data(html)
+            for country in countries_data:
+                print(
+                    f&quot;name:{country[&apos;name&apos;]}, capital:{country[&apos;capital&apos;]}, population:{country[&apos;population&apos;]}, area:{country[&apos;area&apos;]}&quot;
+                )
+
+     </code></pre>
     </section>
 </section>
 

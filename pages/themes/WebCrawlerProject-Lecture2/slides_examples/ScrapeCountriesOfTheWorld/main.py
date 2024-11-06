@@ -44,23 +44,31 @@ def extract_data(html):
 
     ### get Bulgaria area:
     # get Bulgaria data div:
-    bulgaria = list(
+    bulgaria_div = list(
         filter(
             lambda c: c.select_one(".country-name").text.strip().lower() == "bulgaria",
             countries,
         )
     )[0]
-    logger.debug(f"Bulgaria data div: {bulgaria}")
+    logger.debug(f"Bulgaria data div: {bulgaria_div}")
 
     # from Bulgaria data div get "span.country-area" value:
-    bulgaria_area = float(bulgaria.select_one("span.country-area").text)
-    logger.debug(f"Bulgaria area: {bulgaria_area}")
+    bulgaria_are_elem = bulgaria_div.select_one("span.country-area")
+    if bulgaria_are_elem:
+        bulgaria_area = float(bulgaria_are_elem.text.strip())
+        logger.debug(f"Bulgaria area: {bulgaria_area}")
+    else:
+        logger.debug("Area information not found for Bulgaria")
+        bulgaria_area = None  # Or some default value if necessary
 
     ### get all countries which have area>bulgaria_area:
     bigger_countries = filter(
-        lambda c: float(c.select_one("span.country-area").text) > bulgaria_area,
-        countries,
-    )
+    lambda c: (
+        c.select_one("span.country-area") is not None and
+        float(c.select_one("span.country-area").text) > bulgaria_area
+    ),
+    countries,
+)
 
     ### get 'country_name', 'capital', 'population' and 'area' for each country
     countries_data = []
