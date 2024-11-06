@@ -98,12 +98,11 @@
 		</dl>
 	</section>
 	<section id="createProjectSVirtualEnvironment"><h3>Create project's virtual environment</h3>
-		<p>If you don't use PyCharm, or if you want to understand what's PyCharm is doing...:</p>
 		<dl class="fa">
 			<dt>Create the root project folder</dt>
 			<pre><code rel="Terminal" class="bash">
 				# navigate to your root project folder:
-				cd WebCrawler
+				cd BNRCrawler
 			</code></pre>
 			<dt>Create a virtual environment and activate it:</dt>
 			<pre><code rel="Terminal" class="bash">
@@ -154,7 +153,7 @@
 <section data-min="50" class="main-section-title" id="usingConfigFileForDbConnectionString"><h1>Create the <code>db</code> module</h1></section>
 <section class="sub-sections"><h2>Using Config File For DB Connection String</h2>
 	<section>
-		<dl class="fa" style="font-size:0.7em">
+		<dl class="fa" style="font-size:0.9em">
 			<dt>The DB connection string contains sensitive information. To prevent security vulnerabilities and maintenance problems we do not want to embed it in our application code, but rather to put that information in a separate config file. You can ignore config.ini file in .gitignore, and put a sample of it in your Readme file.</dt>
 			<dt>Create the application <code>config.ini</code> file using the example code bellow:</dt>
 			<pre><code rel="config.ini" class="python">
@@ -204,6 +203,9 @@
 	</section>
 </section>
 <section class="sub-sections"><h2>Create the <code>db</code> module</h2>
+	<dl class="fa" style="min-width:80vw">
+		<dt>Add appropriate method for any DB operations you need to perform</dt>
+	</dl>
 	<section>
 		<pre><code rel="db.py" class="python" style="min-height: 90vh;">
 			from BNRCrawler.config.read_config import read_db_config
@@ -273,6 +275,17 @@
 		</code></pre>
 	</section>
 </section>
+
+<section class="main-section-title"><h1>An example Web Crawler</h1></section>
+<section class="sub-sections"><h2>An example Web Crawler</h2>
+	<section><h3>WebCrawler</h3>
+		<dl class="fa" style="min-width:80vw">
+			<dt><a href="https://github.com/WWWCourses/WebCrawler">https://github.com/WWWCourses/WebCrawler</a></dt>
+		</dl>
+	</section>
+</section>
+
+
 
 
 <section class="disclaimer end-slide"></section>
